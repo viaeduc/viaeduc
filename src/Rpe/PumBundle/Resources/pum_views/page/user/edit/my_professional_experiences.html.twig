@@ -1,0 +1,185 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Mes expériences professionnelles' %}
+{% set page_name_analytics = 'user/edit/professional_experiences' %}
+{% set nav_section = 'profile-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-account.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-account.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            {{ "account.my_account"|trans({}, 'rpe') }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{#
+    /!\ CLASSES A AJOUTER AUX INPUTS POUR LA VALIDATION DU FORMULAIRE /!\
+
+        .formation-company     pour "Exntreprise, Université"
+        .formation-job         pour "Intitulé de poste"
+        .fromation-date        pour "Période"
+        .formation-description pour "Description"
+#}
+
+{# FORM #}
+{% macro generate_confirmer_widget(id) %}
+<li class="extra-info">
+        <div class="form-left">
+        </div><!--
+        --><div class="form-right">
+            <input class="action-btn light-blue" name="confirm" type="submit" value="Sauvegarder">
+            <a href="{{ path('delete_experience') }}" data-id="{{ id }}" class=" delete-profil-btn action-btn red">{{ "account.delete"|trans({}, 'rpe') }}</a>
+            <a href="#" class="cancel-edit action-btn light-grey" >{{ "account.cancel"|trans({}, 'rpe') }}</a>
+        </div>
+    </li>
+{% endmacro %}
+
+{% block text_row %}
+    {% set attr = attr|merge({class: 'extra-info-input'}) %}
+    {% set attr = attr|merge({'data-validation': 'required'}) %}
+    {% set attr = attr|merge({'data-validation-error-msg': 'Merci de remplir ce champ.'}) %}
+    {% set row_li_class = 'extra-info' %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block date_row %}
+    {% if 'startdate' in form.vars.id %}
+        {{ block('start_date') }}
+    {% else %}
+        {{ block('end_date') }}
+    {% endif %}
+{% endblock %}
+
+{% block start_date %}
+{% spaceless %}
+    <li class="extra-info small-info">
+        <div class="form-left">
+            {{ "pro.periode"|trans({}, 'rpe') }}
+        </div>
+    </li><!--
+    --><li class="extra-info date-picker-wrapper">
+        <div class="form-right">
+            <div class="input-append date calendar-datepicker" id="start-date-{{ form.vars.id }}">
+                <input readonly size="" value="{{ form.vars.value }}" type="text" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" data-date-format="dd/mm/yyyy" data-validation="required" data-validation-error-msg="Veuillez choisir la date de débute." /><span class="add-on dark-grey square-btn icon-calendar"></span>
+            </div>
+        </div>
+    </li>
+{% endspaceless %}
+{% endblock %}
+
+{% block end_date %}
+{% spaceless %}
+    <li class="extra-info smaller-info">
+        à
+        </li><!--
+        --><li class="extra-info date-picker-wrapper">
+            <div class="form-right">
+                <div class="input-append date calendar-datepicker" id="end-date-{{ form.vars.id }}">
+                    <input readonly size="" value="{{ form.vars.value }}" type="text" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" data-date-format="dd/mm/yyyy" /><span class="add-on dark-grey square-btn icon-calendar"></span>
+                </div>
+            </div>
+        </li>
+{% endspaceless %}
+{% endblock %}
+
+{% block textarea_row_row %}
+{% spaceless %}
+    {% set type = 'html' %}
+    {% set attr = attr|merge({class: 'extra-info-input'}) %}
+    {% set row_li_class = 'extra-info' %}
+    {{ block('rpepum_form_text_row') }}
+{% endspaceless %}
+{% endblock %}
+
+{% block confirmer_widget %}
+{% spaceless %}
+    <li class="extra-info image-form">
+        <div class="form-left">
+
+        </div><!--
+        --><div class="form-right">
+            <input class="action-btn light-blue" name="confirm" type="submit" id="form-send-button" value="Sauvegarder">
+        </div>
+    </li>
+{% endspaceless %}
+{% endblock %}
+
+{% block main_content %}
+	{% spaceless %}
+    {% form_theme form _self %}
+    {% for experiences_form in experiences_forms %}
+        {% form_theme experiences_form _self %}
+    {% endfor %}
+    <div class="form-inner-wrapper">
+        <div class="container-right box-with-padding">
+            <div class="tabbable tabbable-privacy-settings">
+                <ul class="nav new-tabs">
+                    {% set account_active_menu = 'my_pro_experiences' %}
+                    {% include 'pum://includes/common/componants/account/menu.html.twig' %}
+                </ul>
+                <div class="tab-content settings">
+                    <div class="tab-pane active" id="portlet_tab1">
+                        <div class="profil-box">
+                            <a href="#" class="edit-title action-btn light-blue">{{ "add.experience"|trans({}, 'rpe') }}</a>
+                            <div class="add-item">
+                                {{ form_errors(form) }}
+                                {{ form_start(form, {'attr': { 'class': 'new-form-styles professional-experiences-form'}}) }}
+                                    <ul class="form-wrapper">
+                                        {{ form_rest(form) }}
+                                        {{ block('confirmer_widget') }}
+                                    </ul>
+                                {{ form_end(form) }}
+                            </div>
+
+                            {% for experience in user.getMyExperiences({'enddate':'DESC'}, 10) %}
+                                <div class="profil-content">
+                                    <a href="#" class="edit-profil">
+                                        <span class="exp-date">{{ experience.startdate|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'MMMM Y') }} - {{ experience.enddate|localizeddate('none', 'none', app.request.locale, null, 'MMMM Y') }}</span>
+                                        <span class="icon-cog"></span>
+                                        <span class="exp-title">{{ experience.title }}</span>
+<!--                                         <span class="exp-location with-margin">-</span> -->
+                                        <span class="exp-location with-margin"> @ {{ experience.company }}</span>
+                                        <ul class="dots">
+                                            {% if experience.description %}
+                                                <li>{{ experience.description }}</li>
+                                            {% endif %}
+                                        </ul>
+                                    </a>
+                                    <a href="{{ path('delete_experience') }}" data-id="{{ experience.id }}" class="icon-cancel delete-profil"></a>
+                                </div>
+
+                                <div class="edit-content">
+                                    {% if experiences_forms[experience.id] is defined %}
+                                        {% set form = experiences_forms[experience.id] %}
+                                        {{ form_errors(form) }}
+                                        {{ form_start(form, {'attr': { 'class': 'new-form-styles professional-experiences-edit-form'}}) }}
+                                            <ul class="form-wrapper">
+                                                {{ form_rest(form) }}
+                                                {{ _self.generate_confirmer_widget( experience.id ) }}
+                                            </ul>
+                                        {{ form_end(form) }}
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% endspaceless %}

@@ -1,0 +1,15 @@
+{% extends "pum://page/layout.html.twig" %}
+
+{% block content %}
+    <div class="wrapper">
+        {% spaceless %}
+        <section class="content full">
+            {% block breadcrumb '' %}
+            {% block cover '' %}
+        </section>
+        <div class="content full">
+            {% block main_content '' %}
+        </div>
+        {% endspaceless %}
+    </div>
+{% endblock %}

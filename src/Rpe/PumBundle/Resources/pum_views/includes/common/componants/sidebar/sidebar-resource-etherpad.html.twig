@@ -1,0 +1,47 @@
+<div class="side-componant grey">
+    <div class="padding-wrapper">
+        <h3 class="componant-title">
+            {{ "groupPage.module.resource-etherpad"|trans({}, 'rpe') }}
+            <span class="title-small">
+                <a href="{{ path('ajax_group_resourcepadlist', {'id': group.id}) }}" class="title-link" data-toggle="modal" data-target="#modal-resources">
+                    / {{ resourcesCount }}
+                </a>
+            </span>
+        </h3>
+        <div class="componant-wrapper">
+            {% if resources|length %}
+            <ul>
+                {% for resource in resources %}
+                    {% set pad_user_count = resource.getMeta('pad_user_count') %}
+                    {% if pad_user_count %}
+                        {% set pad_user_count = pad_user_count.value %}
+                    {% else %}
+                        {% set pad_user_count = 0 %}
+                    {% endif %}
+                    <li class="ressource-wrapper sous-groupe">
+                        <a class="ressource-wrapper-link" href="{{ path('publication', {'id': resource.id}) }}">
+                            <div class="ressource-left">
+                                <div class="ressource-size-container"></div>
+                                <div class="ressource-content-container">
+                                    {{ macros.show_post_media(resource, 'default', 0, 'ressource-image', 92) }}
+                                </div>
+                            </div>
+                            <div class="ressource-right">
+                                <h3 class="ressource-title">{{ resource.name }}</h3>
+                                {# {% if pad_user_count > 0 %}
+                                    <a href="#" class="modal-ressource-link">{{ '%count% <span>contributeur</span>|%count% <span>contributeurs</span>'|transchoice(pad_user_count, {'%count%': pad_user_count}, 'rpe')|raw }}</a>
+                                {% endif %} #}
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <a href="#" class="add-etherpad icon-plus full" data-toggle="modal" data-target="#new-etherpad-modal">{{ "pad.new_content"|trans({}, 'rpe') }}</a>
+            {% endif %}
+        </div>
+    </div>
+    {% if resources|length %}
+        <a href="#" class="add-etherpad icon-plus" data-toggle="modal" data-target="#new-etherpad-modal">{{ "pad.new_content"|trans({}, 'rpe') }}</a>
+    {% endif %}
+</div>

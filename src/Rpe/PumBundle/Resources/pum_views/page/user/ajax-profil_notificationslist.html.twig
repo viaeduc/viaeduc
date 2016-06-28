@@ -1,0 +1,15 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+    {% for notification in notifications %}
+        {% include "pum://includes/common/componants/notification/notifications-array.html.twig" %}
+    {% endfor %}
+    
+    {% if notifications.nbPages is defined and notifications.currentPage < notifications.nbPages %}
+        <li class="full page-loadmore js-loadmore" data-href="{{ path('ajax_profil_notificationslist', {page: notifications.currentPage + 1, profilid: profil}) }}" data-target="#notifs-content">
+            <a href="#" class="read-other">...</a>
+        </li>
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

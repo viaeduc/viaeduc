@@ -1,0 +1,148 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set page_title = 'Relations en attente' %}
+{% set page_name_analytics = 'user/relations/pending' %}
+{% set nav_section = 'relation-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{# {% set relation_pending_tutorial_modal = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/relationships-waiting-list.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-relationships.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.side-componants.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            {{ "relationshipsWaitingList.title"|trans({}, 'rpe') }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block sidebar %}
+    <div class="side-componant grey">
+        <div class="padding-wrapper">
+            <h3 class="componant-title">
+                {{ "relationshipsWaitingList.suggestions"|trans({}, 'rpe') }}
+            </h3>
+            <div class="componant-wrapper">
+                {% set count = 1 %}
+                {% for relation in suggested_relations %}
+                    {{ (loop.first) ? '<ul class="connections-wrapper">' }}
+
+                    {% set relation_detail = pum_repository('friend').relation(relation, user) %}
+                    {% if relation_detail is null and count <= 4 %}
+                        {% set count = count + 1 %}
+                        <li class="connections-componant relation-js">
+                            <a href="{{ path('profil', {'id': hashEncode(relation.id)}) }}" class="connections-link">
+                                {{ macros.show_user_avatar(relation, 'default', 93, 'connections-profil-image') }}
+                                <div class="connections-name">
+                                    <span class="connections-firstname">{{ relation.firstname }}</span>
+                                    <span class="connections-lastname">{{ relation.lastname }}</span>
+                                </div>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {{ (loop.last) ? '</ul>' }}
+                {% endfor %}
+            </div>
+        </div>
+        {# <a href="#" class="componant-link">{{ "relationshipsWaitingList.see_more"|trans({}, 'rpe') }}</a> #}
+    </div>
+{% endblock %}
+
+{% block main_content %}
+    {% if pending_requests|length <= 1 %}
+        <h2>Demande de relation reçue (<span class="pending_count">{{ pending_requests|length }}</span>)</h2>
+    {% else %}
+        <h2>Demandes de relation reçues (<span class="pending_count">{{ pending_requests|length }}</span>)</h2>
+    {% endif %}
+    <ul>
+        {% for friend in pending_requests %}
+            {% if friend.user is not null %}
+                <li class="waiting-list-container">
+                    <div class="waiting-list-left">
+                        <a href="{{ path('profil', {id : hashEncode(friend.user.id)}) }}">{{ macros.show_user_avatar(friend.user, 'default', 120, 'image') }}</a><!--
+                        --><div class="main-information">
+                            <a href="{{ path('profil', {id : hashEncode(friend.user.id)}) }}" class="name">{{ friend.user.firstname ~ ' ' ~ friend.user.lastname }}</a>
+                            {% if friend.user.occupation is not null%}
+                                <span class="role">{{ friend.user.occupation.name }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="waiting-list-center">
+                          {# <!-- a tagger -->
+                          <!-- MAXIMUM 3 IMAGES -->
+                          <ul class="image-list">
+                            <li><a href="#"><img src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}"></a></li><!--
+                            --><li><a href="#"><img src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}"></a></li><!--
+                            --><li><a href="#"><img src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}"></a></li>
+                          </ul>
+                          <a href="#">3 amis en commun</a> #}
+                    </div>
+                    <div class="waiting-list-right">
+                        <a class="action icon-checkmark relation-accept" data-id="{{ friend.id }}" href="{{ path('relation_accept') }}"></a>
+                        <a class="action icon-cross relation-reject" data-id="{{ friend.id }}" href="{{ path('relation_reject') }}"></a>
+                    </div>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <h2>{{ 'Demande de relation envoyée (%count%)|Demandes de relation envoyées (%count%)'|transchoice(user.requestedFriends.count, {'%count%': user.requestedFriends.count}, 'rpe') }}</h2>
+    <ul>
+        {% for friend in user.requestedFriends %}
+            {% if friend.friend is not null %}
+                <li class="waiting-list-container">
+                    <div class="waiting-list-left">
+                        <a href="{{ path('profil', {id : hashEncode(friend.friend.id)}) }}">{{ macros.show_user_avatar(friend.friend, 'default', 120, 'image') }}</a>
+                        <div class="main-information">
+                            <a href="{{ path('profil', {id : hashEncode(friend.friend.id)}) }}" class="name">{{ friend.friend.firstname ~ ' ' ~ friend.friend.lastname }}</a>
+                            {% if friend.friend.occupation is not null%}
+                                <span class="role">{{ friend.friend.occupation.name }}</span>
+                            {% endif %}     
+                        </div>
+                    </div>
+                    <div class="waiting-list-right">
+                        <a href="{{ path('relation_add', {id: friend.friend.id, redirect: 'relation_pending'}) }}" class="action-btn light-blue">Relancer</a>
+                        <a href="{{ path('relation_reject', {id: friend.id, redirect: 'relation_pending'}) }}" class="action-btn light-blue">Annuler</a>
+                    </div>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
+{% block tutorial %}
+    {% if relation_pending_tutorial_modal is defined %}
+    <script>
+        {% spaceless %}
+            var relation_pending_tutorial_modal = '{{ relation_pending_tutorial_modal }}';
+        {% endspaceless %}
+    </script>
+    <div class="modal fade tutorial-modal waiting-list-tutorial-modal-1" id="waiting-list-tutorial-modal-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "waitingTutorial.title1"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "waitingTutorial.text1"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+{% endspaceless %}

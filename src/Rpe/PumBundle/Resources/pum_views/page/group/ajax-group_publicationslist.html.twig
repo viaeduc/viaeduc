@@ -1,0 +1,18 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+    {% if publications.getNbResults() == 0 %}
+        
+    {% else %}
+        {% for post in publications %}
+            {% include "pum://includes/common/componants/publications/publications-array.html.twig" %}
+        {% endfor %}
+        {% if publications.nbPages is defined and publications.currentPage < publications.nbPages %}
+            <li class="full page-loadmore js-loadmore" data-href="{{ path('ajax_group_publicationslist', {page: publications.currentPage + 1, groupid: group.id}) }}" data-target="#posts-content">
+                <a href="#" class="read-other">...</a>
+            </li>
+        {% endif %}
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

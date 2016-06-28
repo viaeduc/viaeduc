@@ -1,0 +1,268 @@
+{
+    "alias": null,
+    "name": "cms",
+    "seed": "d94c1ab025f80445c67ee9bea4a9b5e9",
+    "icon": "pencil2",
+    "color": "pomegranate",
+    "objects": [
+        {
+            "alias": "pages",
+            "name": "pages",
+            "classname": "Rpe\\PumBundle\\Model\\CMS\\Pages",
+            "repository_class": "Rpe\\PumBundle\\Repository\\CMS\\PagesRepository",
+            "fields": [
+                {
+                    "name": "areas",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "pages",
+                        "is_external": false,
+                        "target": "area",
+                        "target_beam": "cms",
+                        "target_beam_seed": "d94c1ab025f80445c67ee9bea4a9b5e9",
+                        "type": "many-to-many",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "contents",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "pages",
+                        "is_external": false,
+                        "target": "content",
+                        "target_beam": "cms",
+                        "target_beam_seed": "d94c1ab025f80445c67ee9bea4a9b5e9",
+                        "type": "many-to-many",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "date_create",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": true,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "description",
+                    "type": "html",
+                    "typeOptions": {
+                        "is_inline": true,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": true
+                    }
+                },
+                {
+                    "name": "redirect_url",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "slug",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": 42,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "status",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "title",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": true
+                    }
+                }
+            ],
+            "seo_enabled": true,
+            "seo_field": "name",
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "pum:\/\/page\/content_page.html.twig",
+            "search_enabled": false,
+            "search_fields": [
+
+            ]
+        },
+        {
+            "alias": null,
+            "name": "content",
+            "classname": "Rpe\\PumBundle\\Model\\CMS\\Content",
+            "repository_class": "Rpe\\PumBundle\\Repository\\CMS\\ContentRepository",
+            "fields": [
+                {
+                    "name": "content",
+                    "type": "html",
+                    "typeOptions": {
+                        "is_inline": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "date_create",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": true,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "date_publish",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": true
+                    }
+                },
+                {
+                    "name": "pages",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "contents",
+                        "is_external": false,
+                        "target": "pages",
+                        "target_beam": "cms",
+                        "target_beam_seed": "d94c1ab025f80445c67ee9bea4a9b5e9",
+                        "type": "many-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "title",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [
+
+            ]
+        },
+        {
+            "alias": null,
+            "name": "area",
+            "classname": "Rpe\\PumBundle\\Model\\CMS\\Area",
+            "repository_class": "Rpe\\PumBundle\\Repository\\CMS\\AreaRepository",
+            "fields": [
+                {
+                    "name": "identifier",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": 42,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": true,
+                        "required": true
+                    }
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "pages",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "areas",
+                        "is_external": false,
+                        "target": "pages",
+                        "target_beam": "cms",
+                        "target_beam_seed": "d94c1ab025f80445c67ee9bea4a9b5e9",
+                        "type": "many-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [
+
+            ]
+        }
+    ]
+}

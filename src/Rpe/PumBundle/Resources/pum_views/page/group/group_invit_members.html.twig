@@ -1,0 +1,64 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set page_title = 'Inviter des membres' %}
+{% set page_name_analytics = 'group/invit_members' %}
+{% set nav_section = 'groups-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/create-group.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/idangerous.swiper.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/idangerous.swiper.scrollbar-2.3.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.create-groupe-more.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            Page groupe : {{ group.name }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'pum://includes/common/componants/tips/tip-create-group.html.twig' %}
+{% endblock %}
+
+{# FORM #}
+{% block valider_widget %}
+    <button type="submit" class="submit-relation-btn orange" id="confirmer" name="confirmer">{{ "createGroup.invitMembers"|trans({}, 'rpe') }}</button>
+    &nbsp;
+    <button href="{{ path('group', {id: group.id}) }}" class="submit-relation-btn orange">Passer</button>
+{% endblock %}
+
+{% block main_content %}
+
+    <h4 class="title">{{ "groupPage.invit_members"|trans({}, 'rpe') }}</h4>
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+        <div class="invite-box">
+            <div class="invite-box-header">
+                <span class="invite-box-title">{{ "groupPage.invit_members_desc"|trans({}, 'rpe') }}</span>
+                <span class="text-box ">
+                    {# <input autocomplete="off" type="text" value="" id="search" name="search" placeholder="Recherche"> #}
+                </span>
+            </div>
+            <div class="invite-box-content">
+                <!-- Attention, a l'appel ajax, il faut bien enregistré les personnes coché en dehors de ce ul pour pas les remplacer lors de l'appel -->
+                <ul class="friend-list js-autoload" data-autoload="{{ path('group_invit_list_members', {id: group.id}) }}">
+                    {{ macros.loader() }}
+                </ul>
+            </div>
+            {# <a href="{{ path('group_invit_list_members') }}" data-id="{{ group.id }}" data-page="1" data-bypage="10" class="see-more-invites">{{ "groupPage.see_more"|trans({}, 'rpe') }}</a> #}
+        </div>
+        {{ form_widget(form._token) }}
+        {{ block('valider_widget') }}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endblock %}
+{% endspaceless %}

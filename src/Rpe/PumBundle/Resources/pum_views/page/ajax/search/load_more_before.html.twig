@@ -1,0 +1,4 @@
+{% if app.request.isXmlHttpRequest == false and result.currentPage > 1 %}
+    {% set nb_items_to_retrieve = (result.currentPage - 1) * app.request.query.get('per_page', 10) %}
+    <li href="#" class="full page-loadmore js-loadmore js-load-before" data-href="?{{ app.request.query.all|merge({p: null, per_page: nb_items_to_retrieve, loadmore: false})|url_encode }}" data-target=".search-result-list"><a href="#" class="read-other">...</a></li>
+{% endif %}

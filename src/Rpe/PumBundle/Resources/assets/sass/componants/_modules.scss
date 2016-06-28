@@ -1,0 +1,201 @@
+.filter .dashboard-params {
+	height         : 30px;
+	line-height    : 30px;
+	margin         : 0 10px 0 0;
+	width          : auto;
+	padding        : 0 10px;
+	vertical-align : top;
+}
+
+.dashboard-modules-wrapper {
+	display        : inline-block;
+	vertical-align : top;
+	width          : 100%;
+}
+
+.module-card {
+	display        : inline-block;
+	vertical-align : top;
+	width          : 32%;
+	height         : 400px;
+	margin         : 0 1.33333333333% 1.33333333333% 0;
+	background     : $light-grey-1;
+
+	&:nth-child(3n){
+		margin : 0;
+	}
+}
+
+
+.module-card .module-card-header,
+.module-card .module-card-content,
+.module-card .module-card-footer,
+.module-card .module-card-header .module-card-title {
+	display        : inline-block;
+	vertical-align : top;
+	width          : 100%;
+}
+
+.module-card .module-card-header,
+.module-card .module-card-footer {
+	height      : 50px;
+	line-height : 50px;
+}
+
+.module-card .module-card-content {
+	height      : 300px;
+	line-height : 300px;
+	text-align  : center;
+}
+
+.module-card .module-card-header {
+	background  : $light-blue-1;
+	color       : $white;
+	padding     : 0 15px;
+
+	.module-card-title {
+		@include fontSize(24);
+		font-family : $UbuntuCondensed;
+		margin      : 0;
+		height      : 100%;
+		line-height : 50px;
+
+		> a {
+			display : block;
+			width   : 100%;
+		}
+	}
+}
+
+.module-card .module-card-footer {
+	padding : 5px;
+
+	.module-card-link {
+		@include transition(backgrouns 0.2s linear);
+		display        : inline-block;
+		vertical-align : top;
+		background     : #e5e5e5;
+		height         : 40px;
+		line-height    : 40px;
+		width          : 100%;
+		border-bottom  : 1px solid #c5c6cb;
+		text-align     : center;
+		font-weight    : bold;
+		color          : #1e2737;
+
+		&:hover {
+			@include transition(backgrouns 0.2s linear);
+			background : #c5c6cb;
+		}
+	}
+}
+
+.module-card-empty {
+	@include fontSize(14);
+	font-family    : $UbuntuCondensed;
+	background     : $white;
+	width          : 90%;
+	display        : inline-block;
+	min-height     : 50px;
+	vertical-align : middle;
+	margin-top     : 50px;
+	line-height    : 50px;
+}
+
+.module-card .module-card-data-wrapper {
+	display        : inline-block;
+	vertical-align : top;
+	width          : 100%;
+	padding        : 10px;
+	line-height    : 1em;
+
+	.module-card-data {
+		@include fontSize(12);
+		display        : inline-block;
+		vertical-align : top;
+		padding        : 5px;
+		background     : $white;
+		color          : $dark-blue-font;
+		line-height    : 70px;
+		height         : auto;
+		width          : 100%;
+		border         : 1px solid $border-blue;
+		margin         : 0 0 15px 0;
+		text-align     : left;
+
+		&:last-of-type {
+			margin : 0;
+		}
+	}
+
+	.module-card-data-image-link {
+		display        : inline-block;
+		vertical-align : middle;
+		position       : relative;
+		width          : 17%;
+		overflow       : hidden;
+		line-height    : 1em;
+
+		&:empty {
+			display: none;
+		}
+
+		&:empty + .module-card-inner-data {
+			padding-left: 30px;
+		}
+	}
+
+	.module-card-data-image {
+		width  : 100%;
+	}
+
+	.module-card-inner-data {
+		display        : inline-block;
+		vertical-align : middle;
+		width          : 80%;
+		padding        : 0 0 0 5px;
+		line-height    : 1em;
+	}
+
+	.module-card-title,
+	.module-card-text {
+		display        : inline-block;
+		vertical-align : middle;
+		width          : 100%;
+
+		&:empty {
+			display: none;
+		}
+	}
+
+	.module-card-title {
+		@include fontSize(16);
+		font-family : $UbuntuCondensed;
+		margin      : 0 0 5px 0;
+	}
+
+	.module-card-text a {
+		color           : $new-orange-1;
+		text-decoration : none;
+	}
+
+	&.smaller {
+		.module-card-data {
+			min-height      : 65px;
+			margin      : 0 0 8px 0;
+			line-height : normal;
+		}
+
+		.module-card-data-image-link {
+			text-align: center;
+		}
+
+		.module-card-data-image {
+			width  : 100%;
+		}
+
+		.module-card-inner-data {
+			width : 81.4324324%;
+		}
+	}
+}

@@ -1,0 +1,11 @@
+{% block main_content %}
+  {% spaceless %}
+    {% if content is not defined or content is null %}
+        <strong>{{ 'search.warning'|trans({}, 'rpe') }}</strong> {{ 'search.failed'|trans({}, 'rpe') }}.
+     {% else %}
+        <iframe src="{{content}}" width="100%" style="min-height: 780px;"></iframe>
+     {% endif %}
+    </iframe>
+  {% endspaceless %}
+{% endblock %}
+

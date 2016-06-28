@@ -1,0 +1,410 @@
+// ---------------
+// General Styling
+// ---------------
+
+.side-componant {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+
+    margin: 0 0 5% 0;
+
+    // @include background-image(linear-gradient(top, $dark-blue-1, $dark-blue-2 ));
+    background: $background-blue-1;
+
+    color: $white;
+
+
+    // Type styling
+    .componant-title {
+        margin: 0 0 2.5% 0;
+
+        @include fontSize(30);
+        font-family: $MissionScript;
+
+        .title-small {
+            font-family: $Verdana;
+            @include fontSize(12);
+        }
+
+        .title-link {
+            color: $light-blue-1;
+        }
+    }
+
+    .componant-text {
+        @include fontSize(10);
+        font-family: $Verdana;
+    }
+
+    .componant-link {
+        display: inline-block;
+        vertical-align: botom;
+        width: 100%;
+        background: rgba(0,0,0,0.2);
+        text-align: right;
+        margin: 2.5% 0 0 0;
+        padding: 2.5%;
+
+        @include fontSize(10);
+        font-family: $Verdana;
+        text-transform: uppercase;
+        color: inherit;
+    }
+
+    a {
+        @include transition( background 0.2s linear, color 0.2s linear );
+
+        &:hover {
+            @include transition( background 0.2s linear, color 0.2s linear );
+            text-decoration: none;
+        }
+    }
+
+    ul {
+        margin: 0;
+    }
+
+    // Inner componants
+    .padding-wrapper {
+        padding: 2.427184466019%;
+    }
+
+    .componant-wrapper {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        padding: 2.551020408163%;
+
+        background: rgba(255,255,255,0.2);
+
+        &.small-wrapper {
+            width: 60%;
+            margin: 0 2.5% 0 0;
+        }
+    }
+
+    .componant-side-wrapper {
+        display: inline-block;
+        vertical-align: top;
+        width: 37.5%;
+    }
+
+    .componant-inner-left,
+    .componant-inner-right {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .componant-inner-left {
+        width: 50%;
+        margin: 0 2.5% 0 0;
+    }
+
+    .componant-inner-right {
+        width: 47.5%;
+    }
+
+    // Other color
+    &.grey {
+        // @include background-image(linear-gradient(top, $light-grey-3, $light-grey-1 ));
+        background: $background-grey-1;
+        color: $dark-blue-font;
+
+        .componant-link {
+            background: rgba(0,0,0,0.1);
+
+            color: $light-blue-font;
+        }
+    }
+
+    &:last-of-type {
+        margin: 0;
+    }
+
+    .ss-group-btn {
+        display        : inline-block;
+        vertical-align : top;
+        margin         : 0;
+        padding        : 0;
+        height         : 40px;
+        line-height    : 40px;
+        width          : 100%;
+    }
+
+    .add-etherpad {
+        @include transition(background 0.2s linear);
+        display        : inline-block;
+        vertical-align : top;
+        width          : auto;
+        margin         : 0 10px 10px 0;
+        float          : right;
+        padding        : 2px 5px;
+        background     : $orange-1;
+        color          : $white;
+
+        &.full {
+            margin      : 0;
+            width       : 100%;
+            text-align  : center;
+            height      : 40px;
+            line-height : 40px;
+        }
+
+        &:hover {
+            @include transition(background 0.2s linear);
+            background : $orange-2;
+        }
+    }
+
+    &.module-card {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+        height         : 400px;
+        margin         : 0 0 5% 0;
+        background     : $light-grey-1;
+
+        &.flux-rss {
+            height: auto;
+        }
+
+        &:nth-child(3n){
+            margin : 0;
+        }
+    }
+
+    &.module-card .fb_iframe_widget {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+
+        > span {
+            width: 100% !important;
+
+            > iframe {
+                width: 100% !important;
+            }
+        }
+
+    }
+
+    .uiScaledImageContainer {
+        width: 100% !important;
+        height: auto !important;
+    }
+    ._2a2q,
+    ._4-eo._2t9n {
+        width: 100% !important;
+    }
+
+    &.module-card .module-card-header,
+    &.module-card .module-card-content,
+    &.module-card .module-card-footer,
+    &.module-card .module-card-header .module-card-title {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+    }
+
+    &.module-card .module-card-header,
+    &.module-card .module-card-footer {
+        height      : 50px;
+        line-height : 50px;
+    }
+
+    &.module-card .module-card-content {
+        height      : auto;
+        line-height : 300px;
+        text-align  : center;
+    }
+
+    &.module-card .module-card-header {
+        background  : $light-blue-1;
+        color       : $white;
+        padding     : 0 15px;
+
+        .module-card-title {
+            @include fontSize(24);
+            font-family : $UbuntuCondensed;
+            margin      : 0;
+            height      : 100%;
+            line-height : 50px;
+
+            > a {
+                display : block;
+                width   : 100%;
+            }
+        }
+    }
+
+    &.module-card .module-card-footer {
+        padding : 5px;
+
+        .module-card-link {
+            @include transition(backgrouns 0.2s linear);
+            display        : inline-block;
+            vertical-align : top;
+            background     : #e5e5e5;
+            height         : 40px;
+            line-height    : 40px;
+            width          : 100%;
+            border-bottom  : 1px solid #c5c6cb;
+            text-align     : center;
+            font-weight    : bold;
+            color          : #1e2737;
+
+            &:hover {
+                @include transition(backgrouns 0.2s linear);
+                background : #c5c6cb;
+            }
+        }
+    }
+
+    &.module-card .module-card-data-wrapper {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+        padding        : 10px;
+        line-height    : 1em;
+
+        .module-card-data {
+            @include fontSize(12);
+            display        : inline-block;
+            vertical-align : top;
+            padding        : 5px;
+            background     : $white;
+            color          : $dark-blue-font;
+            line-height    : 70px;
+            height         : auto;
+            width          : 100%;
+            border         : 1px solid $border-blue;
+            margin         : 5px 0;
+            text-align     : left;
+
+        }
+
+        .module-card-data-image-link {
+            display        : inline-block;
+            vertical-align : middle;
+            position       : relative;
+            width          : 17%;
+            overflow       : hidden;
+            line-height    : 1em;
+
+            &:empty {
+                display: none;
+            }
+        }
+
+        .module-card-data-image {
+            width  : 100%;
+        }
+
+        .module-card-inner-data {
+            display        : inline-block;
+            vertical-align : middle;
+            width          : 80%;
+            padding        : 0 0 0 5px;
+            line-height    : 1em;
+        }
+
+        .module-card-title,
+        .module-card-text {
+            display        : inline-block;
+            vertical-align : middle;
+            width          : 100%;
+
+            &:empty {
+                display: none;
+            }
+        }
+
+        .module-card-title {
+            @include fontSize(16);
+            font-family : $UbuntuCondensed;
+            margin      : 0 0 5px 0;
+        }
+
+        .module-card-text a {
+            color           : $new-orange-1;
+            text-decoration : none;
+        }
+
+        &.smaller {
+            .module-card-data {
+                min-height      : 65px;
+                margin      : 0 0 8px 0;
+                line-height : normal;
+            }
+
+            .module-card-data-image-link {
+                text-align: center;
+            }
+
+            .module-card-data-image {
+                width  : 100%;
+            }
+
+            .module-card-inner-data {
+                width : 81.4324324%;
+            }
+        }
+    }
+
+    .module-card-empty {
+        @include fontSize(14);
+        font-family    : $UbuntuCondensed;
+        background     : $white;
+        width          : 90%;
+        display        : inline-block;
+        min-height     : 50px;
+        vertical-align : middle;
+        margin-top     : 50px;
+        line-height    : 50px;
+    }
+}
+
+.new-etherpad-modal {
+
+    .modal-header,
+    .modal-footer {
+        border: 0px solid transparent;
+    }
+
+    .modal-content {
+        @include border-radius(0);
+    }
+
+    .modal-title {
+        @include fontSize(30);
+        font-family : $MissionScript;
+        color: $dark-blue-2;
+    }
+
+    .new-etherpad-wrapper {
+        padding    : 10% 5%;
+        background : $lighter-grey-1;
+        border     : 1px solid $lighter-grey-2;
+
+        label,
+        input {
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+        }
+
+        label {
+            margin : 0 0 5px 0;
+        }
+    }
+
+    .modal-footer {
+        margin: 0;
+    }
+
+    .action-btn {
+        line-height: 45px !important;
+    }
+
+}

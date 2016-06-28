@@ -1,0 +1,90 @@
+.cropFrame {
+	overflow : hidden;
+	position : relative;
+    display: inline-block;
+}
+
+.cropImage {
+	position : absolute;
+	top      : 0;
+	left     : 0;
+	cursor   : move;
+	max-width: none;
+}
+
+.cropControls {
+	@include fontSize(10);
+	font-family : $Verdana;
+	background : $light-blue-1;
+	width      : 100%;
+	height     : 26px;
+	position   : absolute;
+	z-index    : 100;
+	top        : 0;
+	left       : 0;
+	opacity    : 1;
+	text-align : center;
+	opacity    : 0.6;
+
+    t-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.cropControls span {
+	display    : block;
+	color      : #fff;
+	font-size  : 11px;
+	margin     : 7px 0 0 0;
+	background : rgba(20,118,140,0.4);
+}
+
+.cropZoomIn,
+.cropZoomOut {
+	@include transition(background 0.2s linear);
+	position        : absolute;
+	bottom          : -87px;
+	display         : block;
+	background      : $light-blue-1;
+	color           : $white;
+	width           : 18px;
+	height          : 18px;
+	line-height     : 18px;
+	font-size       : 18px;
+	text-align      : center;
+	text-decoration : none;
+	cursor          : pointer;
+	/* IE SUCKS */
+	zoom            : expression(this.runtimeStyle.zoom = "1", this.appendChild( document.createElement("b") ).className = "after")\9;
+
+	&:hover {
+		@include transition(background 0.2s linear);
+		color: $white;
+		text-decoration: none;
+		background : $light-blue-2;
+	}
+}
+
+.cropZoomIn::after,
+.cropZoomIn .after {
+	content : "+";
+	display : block;
+}
+
+.cropZoomOut::after,
+.cropZoomOut .after {
+	content        : "-";
+	display        : block;
+}
+
+.cropZoomIn {
+	right : 5px;
+}
+
+.cropZoomOut {
+	left : 5px;
+}

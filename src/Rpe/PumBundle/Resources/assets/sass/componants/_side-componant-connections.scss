@@ -1,0 +1,69 @@
+// --
+// Connections
+.connections-wrapper {
+    width: 100%;
+
+    .connections-componant {
+        position: relative;
+        vertical-align: top;
+        width: 25%;
+        padding-bottom: 25%;
+        height: 0;
+        float: left;
+        overflow: hidden;
+
+        // Animation
+        position:relative;
+        right: -10px;
+        opacity: 0;
+    }
+
+    // Styling
+    .connections-profil-image,
+    .connections-profil-placeholder {
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    .connections-profil-placeholder {
+        height: 100%;
+        text-align: center;
+
+        @include fontSize(40);
+        font-family: $UbuntuCondensed;
+        color: $dark-blue-font;
+    }
+
+    .connections-name {
+        transition: background 0.2s linear;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        @include fontSize(12);
+        font-family: $UbuntuCondensed;
+        color: $background-white;
+        padding-left: 4.301075268817%;
+        background: rgba(0,0,0,0.4);
+        line-height: 1.2;
+
+        .connections-lastname {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    }
+
+    .connections-firstname,
+    .connections-lastname {
+        float: left;
+        clear: left;
+    }
+
+    .connections-link:hover > .connections-name {
+        transition: background 0.2s linear;
+        background: $light-blue-1;
+    }
+
+
+}

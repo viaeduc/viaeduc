@@ -1,0 +1,18 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+	<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <h4 class="modal-title">{{ 'homepage.resend-enable-link'|trans({}, 'rpe')}}</h4>
+            <fieldset>
+                <div class="body-gray">
+                    {{ 'homepage.resend_success'|trans({}, 'rpe')}} {{ mail }}.
+                </div>
+                <div class="button-password">
+                    <a class="action-btn dark-grey" data-dismiss="modal" aria-hidden="true">{{ 'homepage.button_cancel'|trans({}, 'rpe')}}</a>
+                </div>
+            </fieldset>
+    </div>
+{% endblock main_content %}

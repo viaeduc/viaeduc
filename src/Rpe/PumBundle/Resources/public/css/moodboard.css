@@ -1,0 +1,15 @@
+/* function to convert px to rem */
+/* line 15, ../../assets/sass/moodboard.scss */
+.content .moodboard-box { float: left; width: 32%; margin: 0 2% 0 0; }
+/* line 20, ../../assets/sass/moodboard.scss */
+.content .moodboard-box:last-child { margin: 0; }
+/* line 26, ../../assets/sass/moodboard.scss */
+.content h2, .content a { float: left; clear: left; }
+/* line 32, ../../assets/sass/moodboard.scss */
+.content h2 { margin: 0 0 20px 0; }
+/* line 37, ../../assets/sass/moodboard.scss */
+.content a { padding: 10px 20px; margin: 0 10px 10px 0; background: #d7d7d7; }
+/* line 42, ../../assets/sass/moodboard.scss */
+.content a:hover { background: #9a9a9a; }
+/* line 46, ../../assets/sass/moodboard.scss */
+.content a:last-child { margin: 0; }

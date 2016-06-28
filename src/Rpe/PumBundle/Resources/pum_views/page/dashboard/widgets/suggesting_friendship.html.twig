@@ -1,0 +1,51 @@
+<li class="module-card">
+    <div class="module-card-header">
+        {% set transkey = "dashboard." ~ widget.type %}
+        <h3 class="module-card-title">{{ transkey|trans({}, 'rpe') }}</h3>
+    </div>
+    <div class="module-card-content">
+        {% set items = pum_repository('user').suggestedFriends(user, false, 6) %}
+        {% if items|length > 0 %}
+            <ul class="module-card-data-wrapper">{# add "smaller" class to this ul to add a 4th element #}
+                {% set count = 1 %}
+                {% for suggest in items %}
+                    {% set relation_detail = pum_repository('friend').relation(suggest, user) %}
+                    {% if count <= 3 %}
+                        {% set count = count + 1 %}
+                        <li class="module-card-data">
+                            <a class="module-card-data-image-link" href="{{ path('profil', {'id': hashEncode(suggest.id)}) }}">
+                                {{ macros.show_image(suggest.avatar, 85, 'module-card-data-image') }}
+                            </a>
+                            <div class="module-card-inner-data">
+                                <h4 class="module-card-title">
+                                    <a href="{{ path('profil', {'id': hashEncode(suggest.id)}) }}">{{ suggest.fullname }}</a>
+                                </h4>
+                                <span class="module-card-text">{{ suggest.occupation }}
+                                    {% if suggest.academy %}
+                                        , {{ suggest.academy }}
+                                    {% endif %}
+                                </span>
+                                <span class="module-card-text">
+                                    {% include 'pum://includes/common/componants/profile/buttons.html.twig' with {
+                                        'id': suggest.id,
+                                        'relation_detail': relation_detail|default(null),
+                                        'style': 'link'
+                                    } %}
+                                </span>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <span class="module-card-empty">
+                {% set transkey = "dashboard." ~ widget.type ~ ".empty" %}{{ transkey|trans({}, 'rpe') }}
+            </span>
+        {% endif %}
+    </div>
+    <div class="module-card-footer">
+        {% if items|length %}
+            <a href="{{ path('relations', {'mode': 'suggested'}) }}" class="module-card-link">{{ "dashboard.suggesting_friendship.link"|trans({}, 'rpe') }}</a>
+        {% endif %}
+    </div>
+</li>

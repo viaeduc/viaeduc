@@ -1,0 +1,75 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set global_wrapper_class = 'bg-white' %}
+{% set group_id = app.request.query.get('group_id', null) %}
+{% set inbox_tutorial_enabled = true %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-messages.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-messages.js') }}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+	{% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+		{% block this_page %}
+	    	{{ "messages.title"|trans({}, 'rpe') }}
+	    {% endblock %}
+	{% endembed %}
+
+    {% include "pum://includes/common/componants/messages/messages-top.html.twig" %}
+{% endblock %}
+
+{% block sidebar %}
+    {% set opacity = '' %}
+
+    {% include "pum://includes/common/componants/messages/messages-list.html.twig" %}
+{% endblock %}
+
+{% block main_content %}
+    {% if discussion_id is not null %}
+        <div class="messages-main-container js-autoload" data-autoload="{{ path('ajax_discussion', {id: discussion_id, group_id: group_id }) }}">
+            {{ macros.loader() }}
+        </div>
+    {% elseif recipient_id is not null %}
+        <div class="messages-main-container js-autoload" data-autoload="{{ path('new_message', {recipient_id: recipient_id, group_id: group_id}) }}">
+            {{ macros.loader() }}
+        </div>
+    {% else %}
+        <div class="messages-main-container">
+            {% if app.request.get('action') == 'newMessage' %}
+                {{ render(controller('RpePumBundle:Inbox:ajaxNewMessage')) }}
+            {% elseif user.discussions.count == 0 %}
+                <div class="no-messages-message">
+                    {{ "messages.no_message_main_text"|trans({}, 'rpe') }}
+                    <a href="{{ path('new_message') }}" class="js-loadmore js-infinite js-load-inner load-new-message-form" data-target=".messages-main-container">{{ "messages.no_message_main_link"|trans({}, 'rpe') }}</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}
+{# {% block tutorial %}
+    {% if inbox_tutorial_enabled is defined %}
+    <script>
+        var inbox_tutorial_enabled = '{{ inbox_tutorial_enabled }}';
+    </script>
+    <div class="modal fade tutorial-modal inbox-tutorial-modal-1" id="inbox-tutorial-modal-1">
+        <div class="tutorial-arrow">▲</div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "inboxTutorial.title1"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "inboxTutorial.text1"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %} #}

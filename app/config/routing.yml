@@ -1,0 +1,72 @@
+_rpe_pum:
+    resource: "@RpePumBundle/Controller"
+    type: annotation
+
+_pum_app:
+    resource: "@PumAppBundle/Controller"
+    type: annotation
+
+_pum_woodwork:
+    resource: "@PumWoodworkBundle/Controller"
+    type: annotation
+    prefix: /woodwork
+
+_pum_projectadmin:
+    resource: "@PumProjectAdminBundle/Controller"
+    type: annotation
+    prefix: /project-admin
+
+rpe_rest_oauth:
+    resource: Rpe\RestBundle\Controller\ApiOAuthController
+    prefix: /api/v1
+    type: rest
+
+rpe_rest_user:
+    resource: Rpe\RestBundle\Controller\ApiUserController
+    prefix: /api/v1
+    type: rest
+
+rpe_rest_page:
+    resource: Rpe\RestBundle\Controller\ApiPageController
+    prefix: /api/v1
+    type: rest
+
+rpe_rest_group:
+    resource: Rpe\RestBundle\Controller\ApiGroupController
+    prefix: /api/v1
+    type: rest
+
+rpe_rest_event:
+    resource: Rpe\RestBundle\Controller\ApiEventController
+    prefix: /api/v1
+    type: rest
+
+rpe_rest_publication:
+    resource: Rpe\RestBundle\Controller\ApiPublicationController
+    prefix: /api/v1
+    type: rest
+
+rpe_rest_question:
+    resource: Rpe\RestBundle\Controller\ApiQuestionController
+    prefix: /api/v1
+    type: rest
+
+rpe_rest_media:
+    resource: Rpe\RestBundle\Controller\ApiMediaController
+    prefix: /api/v1
+    type: rest
+
+rpe_rest_notification:
+    resource: Rpe\RestBundle\Controller\ApiNotificationController
+    prefix: /api/v1
+    type: rest
+
+rpe_rest_activity:
+    resource: Rpe\RestBundle\Controller\ApiActivityController
+    prefix: /api/v1
+    type: rest
+
+rpe_rest_message:
+    resource: Rpe\RestBundle\Controller\ApiMessageController
+    prefix: /api/v1
+    type: rest

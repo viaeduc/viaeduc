@@ -1,0 +1,47 @@
+{% if row is defined and row is not null %}
+    {# {% set respire_class = "respire" %}
+    {% set respire_footer = "logo-respire" %} #}
+
+
+    <!-- Classes for Respire -->
+    {% if row.get('is_respire') == true %}
+        {% set respire_class = "respire" %}
+        {% set respire_footer = "logo-respire" %}
+    {% else %}
+        {% set respire_class = "" %}
+        {% set respire_footer = "" %}
+    {% endif %}
+
+    <li data-score="{{ row.score }}" data-stars="{{ row.score|elasticScore }}" class="{{ respire_class }}">
+        {% set respire_class = "" %}
+
+        <a href="{{ path('group', {id: row.id}) }}" class="search-content-image">
+            {{ macros.show_image_url(row.get('image'), 140) }}
+        </a>
+        <div class="search-results-content">
+            <div class="search-content-top">
+                <span class="search-date">{{ row.get('create')|strToDate }}</span>
+                <a href="{{ path('group', {id: row.id}) }}" class="search-title">{{ row.getHightlight('name')|striptags('<em>')|raw }}</a>
+                {% if row.getHightlight('description') %}
+                    <div>
+                        {{ row.getHightlight('description')|striptags('<em>')|raw|nl2br }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="search-content-bottom {{ respire_footer }}">
+                <div class="search-result-menu">
+                    <span class="search-social-link icon-heart2">
+                        {{ 'search.members.info'|transchoice(row.get('members'), {}, 'rpe') }}
+                    </span>
+                    <span class="search-social-seperator"> - </span>
+                    <span class="search-social-link icon-share">{{ 'search.posts.info'|transchoice(row.get('posts'), {}, 'rpe') }}</span>
+                    <span class="search-social-seperator"> - </span>
+                    Groupe {{ ('groupe.access.' ~ row.get('access')|default('null'))|trans({}, 'rpe') }} animé par <a href="{{path('profil', {'id': hashEncode(row.get('ownerid'))})}}" class="">{{ row.get('ownername') }}</a>
+                </div>
+                {% if row.get('is_respire') == true %}
+                    <img src="{{ asset('bundles/rpepum/images/logo_respire.jpg') }}" class="respire-image" />
+                {% endif %}
+            </div>
+        </div>
+    </li>
+{% endif %}

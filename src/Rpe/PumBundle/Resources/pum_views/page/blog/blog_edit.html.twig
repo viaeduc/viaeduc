@@ -1,0 +1,85 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% if mode == 'create' %}
+    {% set page_title = 'Créer un blog' %}
+{% else %}
+    {% set page_title = 'Editer mon blog' %}
+{% endif %}
+
+{% set page_name_analytics = 'blog/' ~ mode|default('form') %}
+{% set nav_section = 'profile-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/create-group.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% spaceless %}
+
+{% block sidebar %}
+    {% include 'pum://includes/common/componants/tips/tip-create-personal-page.html.twig' %}
+{% endblock %}
+
+{# FORM #}
+{% block text_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _blog_description_row %}
+    {# {% set type = 'html' %} #}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _blog_accesstype_row %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div><!--
+        --><div class="form-right radio-form-right type-error">
+            {% for child in form %}
+             {% if child.vars.value != 'ON_INVITATION' %}
+                <span class="radio-buttons">
+                    {{ form_widget(child) }}
+                    {{ form_label(child) }}
+                </span>
+             {% endif %}
+            {% endfor %}
+        </div>
+    </li>
+{% endblock %}
+
+{% block valider_widget %}
+    {% if mode == 'create' %}
+        <button type="submit" class="submit-relation-btn orange" id="confirmer" name="confirmer">{{ "blog.create"|trans({}, 'rpe') }}</button>
+    {% else %}
+        <button type="submit" class="submit-relation-btn orange" id="confirmer" name="confirmer">{{ "blog.update"|trans({}, 'rpe') }}</button>
+    {% endif %}
+{% endblock %}
+
+
+{% block main_content %}
+    {% form_theme form _self %}
+
+    <h4 class="title">
+        {% if mode == 'create' %}
+            {{ "blog.create_title"|trans({}, 'rpe') }}
+        {% else %}
+            {{ "blog.update_title"|trans({}, 'rpe') ~ ' : ' ~ blog.name }}
+        {% endif %}
+    </h4>
+
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+        <div class="form-first">
+            <ul class="form-wrapper">
+                {{ form_row(form.name) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.accesstype) }}
+            </ul>
+            {{ form_row(form._token) }}
+            {{ block('valider_widget') }}
+        </div>
+    {{ form_end(form, {render_rest: false}) }}
+{% endblock %}
+{% endspaceless %}

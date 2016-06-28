@@ -1,0 +1,17 @@
+{#
+    require:
+    - group
+    - groupModule
+ #}
+
+{% if group is defined and groupModule is defined %}
+    {% if group.isModuleEnabled(groupModule) %}
+        <a href="{{ path('group_module_action', {'group_id': group.id, 'module': groupModule, 'action': 'disable'}) }}" class="action-btn orange icon-cross module-toggle js-loadmore js-infinite js-load-replace disabled">{% spaceless %}
+            {{ "groupPage.module.desactiver"|trans({}, 'rpe') }}
+        {% endspaceless %} </a>
+    {% else %}
+        <a href="{{ path('group_module_action', {'group_id': group.id, 'module': groupModule, 'action': 'enable'}) }}" class="action-btn orange icon-cross module-toggle js-loadmore js-infinite js-load-replace enabled">{% spaceless %}
+            {{ "groupPage.module.activer"|trans({}, 'rpe') }}
+        {% endspaceless %} </a>
+    {% endif %}
+{% endif %}

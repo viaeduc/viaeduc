@@ -1,0 +1,52 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+<div class="sub-middle">
+
+    <div class="sub-middle-left">
+        <h3 class="menu-title blue">{{ "menuApps.first"|trans({}, 'rpe') }}</h3>
+
+        <div class="picture">
+            <img src="{{ asset('bundles/rpepum/images/tmp/app.png') }}"/>
+            <div class="app-title">Ludo-Histoire</div>
+            <div class="published-by">Publié par Maxiapps</div>
+        </div>
+        <span class="action-btn orange">{{ "menuApps.more"|trans({}, 'rpe') }}</span>
+    </div>
+    <div class="sub-middle-right">
+        <h3 class="menu-title blue">{{ "menuApps.suggestions"|trans({}, 'rpe') }}</h3>
+
+        <ul class="white-item-list">
+            <li class="white-item">
+                <div class="avatar">
+                   <img src="{{ asset('bundles/rpepum/images/tmp/app.png') }}"/>
+                </div>
+                <div class="text">
+                    <span class="app-name">Maxi cours.com</span>
+                    <span class="app-publisher">{{ "menuApps.published_by"|trans({}, 'rpe') }} MAxtor</span>
+                </div>
+            </li>
+            <li class="white-item">
+                <div class="avatar">
+                   <img src="{{ asset('bundles/rpepum/images/tmp/app.png') }}"/>
+                </div>
+                <div class="text">
+                    <span class="app-name">Mathématiques et géométrie</span>
+                    <span class="app-publisher">{{ "menuApps.published_by"|trans({}, 'rpe') }} Pythales</span>
+                </div>
+            </li>
+            <li class="white-item">
+                <div class="avatar">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/app.png') }}"/>
+                </div>
+                <div class="text">
+                    <span class="app-name">Prépabac S Physique</span>
+                    <span class="app-publisher">{{ "menuApps.published_by"|trans({}, 'rpe') }} MAGNARD</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endspaceless %}
+{% endblock main_content %}

@@ -1,0 +1,34 @@
+/* function to convert px to rem */
+/* line 8, ../../assets/sass/layout/_sidebar.scss */
+.sidebar { width: 32.96%; display: inline-block; vertical-align: top; margin: 0 2.4% 0 0; }
+/* line 14, ../../assets/sass/layout/_sidebar.scss */
+.sidebar.sidebar-right { margin: 0 0 0 2.4%; }
+
+/* line 5, ../../assets/sass/componants/_side-link-box.scss */
+.side-links { transition: all 0.1s; -webkit-transition: all 0.1s; margin: 0 0 10px 0; width: 100%; background: #d7d7d7; }
+/* line 13, ../../assets/sass/componants/_side-link-box.scss */
+.side-links > a { display: block; width: 100%; height: 100%; color: #313335; font-family: Verdana, Arial, sans-serif; font-size: 14px; font-size: 0.875rem; padding: 10px; }
+/* line 22, ../../assets/sass/componants/_side-link-box.scss */
+.side-links > a .image-wrapper { display: inline-block; vertical-align: middle; width: 20%; margin: 0 1% 0 0; }
+/* line 29, ../../assets/sass/componants/_side-link-box.scss */
+.side-links > a img { max-width: 60px; max-height: 60px; width: 100%; height: 100%; }
+/* line 36, ../../assets/sass/componants/_side-link-box.scss */
+.side-links > a > .data { display: inline-block; vertical-align: middle; width: 68%; margin: 0 1% 0 0; }
+/* line 42, ../../assets/sass/componants/_side-link-box.scss */
+.side-links > a > .data > span { text-transform: uppercase; font-weight: 600; color: #313335; }
+/* line 49, ../../assets/sass/componants/_side-link-box.scss */
+.side-links > a > .data > p { font-size: 14px; font-size: 0.875rem; line-height: 1em; margin: 5px 0 0 0; }
+/* line 56, ../../assets/sass/componants/_side-link-box.scss */
+.side-links > a > span { display: inline-block; vertical-align: middle; width: 10%; font-weight: 600; color: #313335; font-size: 26px; font-size: 1.625rem; }
+/* line 66, ../../assets/sass/componants/_side-link-box.scss */
+.side-links.bg-orange { background: #ff7f00; }
+/* line 69, ../../assets/sass/componants/_side-link-box.scss */
+.side-links.bg-orange a, .side-links.bg-orange span { color: #7a7b7d; }
+/* line 72, ../../assets/sass/componants/_side-link-box.scss */
+.side-links.bg-orange a .data span, .side-links.bg-orange span .data span { color: #7a7b7d; }
+/* line 77, ../../assets/sass/componants/_side-link-box.scss */
+.side-links.bg-orange:hover { background: #f47a01; }
+/* line 82, ../../assets/sass/componants/_side-link-box.scss */
+.side-links:hover { transition: all 0.1s; -webkit-transition: all 0.1s; background: #fafafa; text-decoration: none; }
+/* line 90, ../../assets/sass/componants/_side-link-box.scss */
+.side-links:last-child { margin: 0; }

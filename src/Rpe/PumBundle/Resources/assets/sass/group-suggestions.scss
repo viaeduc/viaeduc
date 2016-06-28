@@ -1,0 +1,31 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "componants/_breadcrumbs";
+@import "componants/_content-link-box";
+
+// ------------
+// Specific CSS
+// ------------
+
+.content {
+    h2 {
+        margin      : 0 0 20px 0;
+        font-family : $UbuntuCondensed;
+    }
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .content-links {
+        padding : 10px;
+    }
+}

@@ -1,0 +1,129 @@
+$msg-list-grey-1             : #efefef;
+$msg-list-grey-2             : #e2e2e2;
+$msg-list-grey-3             : #fcf2ec;
+$msg-list-grey-4             : #ebe2dc;
+
+
+//------------------------------------------------------------------------------------
+
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "layout/_sidebar";
+@import "vendors/_jcrop";
+@import "componants/_breadcrumbs";
+@import "componants/_side-messages-list";
+
+
+
+// ------------
+// Specific CSS
+// ------------
+
+.content.full{
+    margin: 0 0 20px 0;
+}
+
+
+.intro{
+    margin:0 0 10px;
+    @include fontSize(0);
+    
+    .intro-left{
+        display: inline-block;
+        width: 70%;
+        vertical-align: top;
+    }
+    .intro-right{
+        display: inline-block;
+        width: 30%;
+        text-align: right;
+        vertical-align: top;
+    }
+    h2{
+        font-family: $UbuntuCondensed;
+        @include fontSize(27);
+        color: $dark-blue-font;
+        margin: 0 0 20px 0;
+        display: inline-block;
+        line-height: 0.7;
+    }
+    .action-btn{
+        margin: 0;
+        padding: 9px 9px;
+        width: auto;
+        height: 32px;
+        @include fontSize(14);
+    }
+}
+
+
+.new-message-container{
+    ul{
+        margin: 0;
+        background: $light-grey-1;
+        border: 1px solid $light-grey-2;
+        padding: 20px;
+        color: $dark-grey-font;
+    }
+    ul > li {
+        @include fontSize(0);
+        margin: 0 0 10px 0;
+        
+        &:last-of-type{
+            margin: 0 0 0 0;
+            text-align: right;
+        }  
+        .form-left{
+            display: inline-block;
+            vertical-align: middle;
+            width: 30%;
+            @include fontSize(14);
+            text-align: left;
+        }
+        .form-right{
+            display: inline-block;
+            vertical-align: middle;
+            width: 70%;
+        }
+        &.textarea .form-left,
+        &.textarea .form-right{
+            vertical-align: top;
+        }
+        .action-btn{
+            margin: 0;
+            padding: 10px 20px;
+            width: auto;
+        }
+        input[type="text"]{
+           background: $white !important;
+        }
+    }
+}
+
+
+
+@media screen and (max-width: $landscape-screen) {
+    .intro{
+        .intro-left{
+            width: 50%;
+        }
+        .intro-right{
+            width: 50%;
+        }
+    }
+}
+
+
+
+
+

@@ -1,0 +1,26 @@
+{% spaceless %}
+<!-- This is the data for favorites - search page -->
+<div class="saved-favorites-wrapper">
+    <h1>Vos recherches favorites</h1>
+    {% if searches is defined and searches|length > 0 %}
+        <ul class="saved-favorites-list-wrapper">
+            {% for search in searches %}
+                <li id="js-search-{{ search.id }}">
+                    <div class="saved-favorites-left">
+                        <span class="saved-favorites-data">
+                            {% set path_search = (search.isAdvance == true) ? 'advanced_search' : 'search' %}
+                            <a href="{{ path(path_search, {'type': search.type, 'q': search.keyword}) }}" class="saved-favorites-link">{{ search.keyWord }}</a>
+                            <span class="saved-favorites-date">créé le {{ search.date|date('d/m/Y') }}</span>
+                        </span>
+                    </div><!--
+                    --><div class="saved-favorites-right">
+                        <a class="icon-cross delete-saved-favorites js-loadmore js-confirm-modal js-remove" data-href="{{ path('delete_search', {'id': search.id}) }}" data-delete-link="{{ path('delete_search', {'id': search.id}) }}" data-remove-div="#js-search-{{ search.id }}" data-confirm="are your sure to delete this search?" data-disable="{{ 'library.folder.action.disable_delete'|trans({}, 'rpe') }}"></a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        Aucune recherche sauvegardé.
+    {% endif %}
+</div>
+{% endspaceless %}

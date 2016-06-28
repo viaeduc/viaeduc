@@ -1,0 +1,56 @@
+{% set rpe_account_menus = {
+    'my_general_info': {
+        'title': "profil.my_general_info"|trans({}, 'rpe'),
+        'href' : path('my_account', {'form': 'basic'})
+    },
+    'my_main_info': {
+        'title': "profil.my_main_info"|trans({}, 'rpe'),
+        'href' : path('my_account', {'form': 'addition'})
+    },
+    'my_pro_experiences': {
+        'title': "profil.my_pro_experiences"|trans({}, 'rpe'),
+        'href' : path('my_professional_experiences')
+    },
+    'my_formation': {
+        'title': "profil.my_formation"|trans({}, 'rpe'),
+        'href' : path('my_training')
+    },
+    'security_params': {
+        'title': "profil.security_params"|trans({}, 'rpe'),
+        'href' : path('my_confidential')
+    },
+    'personaalert_paramsl_data': {
+        'title': "profil.alert_params"|trans({}, 'rpe'),
+        'href' : path('my_notifications')
+    }
+} %}
+{% if user.isInvited == false %}
+    {% set rpe_account_menus = rpe_account_menus|merge({'invit_users': {
+        'title': "profil.invit_users"|trans({}, 'rpe'),
+        'href' : path('my_invitations')
+    }}) %}
+{% endif %}
+{% if user.getCanCreateOauthKey == true %}
+    {% set rpe_account_menus = rpe_account_menus|merge({'my_api_keys': {
+        'title': "profil.api_keys"|trans({}, 'rpe'),
+        'href' : path('my_api_keys')
+    }}) %}
+{% endif %}
+{# MENU #}
+{% set account_active_menu = account_active_menu|default('my_general_info') %}
+
+{% for key, menu in rpe_account_menus %}
+    {% set is_active = '' %}
+
+    {% if key != account_active_menu %}
+        <li class="tab">
+            <a href="{{ menu.href }}"><span>{{ menu.title }}</span></a>
+        </li>
+    {% else %}
+        <li class="tab active">
+            <a href="#"><span>{{ menu.title }}</span></a>
+        </li>
+    {% endif %}
+
+
+{% endfor %}

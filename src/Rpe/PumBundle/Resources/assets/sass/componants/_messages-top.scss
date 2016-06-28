@@ -1,0 +1,60 @@
+.messages-top{
+    border: 1px solid $light-grey-2;
+    background: $msg-list-grey-2;
+    padding: 1%;
+    @include fontSize(0);
+    
+    .messages-top-left{
+        display: inline-block;
+        width: 60%;
+        vertical-align: top;
+    }
+    .messages-top-right{
+        display: inline-block;
+        width: 40%;
+        text-align: right;
+        vertical-align: top;
+    }
+    .action-btn {
+        margin: 0 1% 0 0;
+        padding: 9px 5px;
+        width: auto;
+        height: 32px;
+        @include fontSize(14);
+    }
+    .search{
+        width: 40%;
+        display: inline-block;
+        padding: 0 1%;
+        height: 32px;
+    }
+    .btn-submit {
+        padding: 0 5px;
+    }
+}
+
+
+@media screen and (max-width: $portrait-screen) {
+    
+
+}
+
+
+@media screen and (max-width: $landscape-screen) {
+    .messages-top{
+        .messages-top-left{
+            width: 70%;
+        }
+        .messages-top-right{
+            width: 30%;
+        }
+        .action-btn {
+            height: 29px;
+            @include fontSize(11);
+        }
+        .search{
+            width: 55%;
+            height: 29px;
+        }
+    }
+}

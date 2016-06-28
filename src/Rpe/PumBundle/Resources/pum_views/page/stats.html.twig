@@ -1,0 +1,68 @@
+{% extends "pum://page/layout.html.twig" %}
+
+{% set page_title = 'Accueil' %}
+{% set page_name_analytics = 'user/homepage' %}
+{% set nav_section = 'home' %}
+
+{% set global_wrapper_class = 'home' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/stats.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    {% spaceless %}
+    <div class="wrapper">
+        <ul class="stat-wrapper">
+            <li class="stat-inner">
+                <div class="stat-title-wrapper">
+                    <h2 class="stat-title">Titre</h2>
+                    <select>
+                        <option>Filtre1</option>
+                        <option>Filtre2</option>
+                        <option>Filtre3</option>
+                    </select>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon orange">
+                        <img alt="" src="{{ asset('bundles/rpepum/images/teacher.png') }}"/>
+                    </span>
+                    <span class="stat-number">37028</span>
+                    <span class="stat-text">{{ 'homepage.teacher_signedup'|trans({}, 'rpe')}}</span>
+                </div>
+            </li>
+        </ul>
+        {# <ul class="list-functionality">
+            <li class="functionality">
+                <ul class="item-functionality">
+                    <li class="title">
+                        {{ 'homepage.network'|trans({}, 'rpe')}}
+                        <select>
+                            <option>Académie1</option>
+                            <option>Académie2</option>
+                            <option>Académie3</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span class="round-icon orange">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/teacher.png') }}"/>
+                        </span>
+                        <span class="number">37028</span>
+                        <span class="text">{{ 'homepage.teacher_signedup'|trans({}, 'rpe')}}</span>
+                    </li>
+                    <li>
+                        <span class="round-icon orange">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/group.png') }}"/>
+                        </span> <span class="number">522</span>
+                        <span class="text">{{ 'homepage.network'|trans({}, 'rpe')}}</span>
+                    </li>
+                </ul>
+            </li>
+        </ul> #}
+    </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modals.html.twig' %}
+{% endblock %}

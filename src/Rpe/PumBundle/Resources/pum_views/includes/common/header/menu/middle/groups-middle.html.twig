@@ -1,0 +1,84 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+<div class="sub-middle">
+    <div class="sub-middle-head">
+        {% if user.isInvited == false %}
+    	    <div class="sub-middle-left">
+    	        {% if suggested_groups is defined %}
+    	            {% for group in suggested_groups %}
+    	                {{ (loop.first) ? ('<h3 class="menu-title blue">' ~ "menuMiddleGroups.suggestion_groups"|trans({}, 'rpe') ~ '</h3><ul class="white-item-list">')|raw }}
+    	                    <li class="white-item">
+    	                        <a href="{{ path('group', {id : group.id}) }}" class="avatar">
+    	                            {% if group.picture is not null %}
+    	                                {{ macros.show_group_avatar(group, 'default', 60, null) }}
+    	                            {% endif %}
+    	                        </a>
+    	                        <div class="text">
+    	                            <a href="{{ path('group', {id : group.id}) }}" class="group-name">
+    	                                <span class="group-name">{{ group.name }}</span>
+    	                            </a>
+    	                            {# {% if group.parent %}
+    	                                <span class="group-parent-name">
+    	                                    Sous groupe de
+    	                                    <a href="{{ path('group', {'id': group.parent.id}) }}">
+    	                                        {{ group.parent.name }}
+    	                                    </a>
+    	                                </span>
+    	                            {% endif %} #}
+    	                            <span class="group-members">
+    	                                {{ '%count% Membre|%count% Membres'|transchoice(group.members.count, { '%count%': '<span class="blue">' ~ group.members.count ~ '</span>' }, 'rpe')|raw }}
+    	                            </span>
+    	                            {% if group.getResources.count > 0 %}
+    	                                <a href="#" class="group-resources">
+    	                                    {{ '%count% Ressource|%count% Ressources'|transchoice(group.getResources.count, { '%count%': '<span class="blue">' ~ group.getResources.count ~ '</span>' }, 'rpe')|raw }}
+    	                                </a>
+    	                            {% endif %}
+    	                        </div>
+    	                    </li>
+    	                {{ (loop.last) ? '</ul>' }}
+    	            {% endfor %}
+    	        {% endif %}
+    	    </div>
+	    {% endif %}
+	    <div class="sub-middle-left last">
+	        {% if active_groups is defined %}
+	            {% for group in active_groups %}
+	                {{ (loop.first) ? ('<h3 class="menu-title blue">' ~ "menuMiddleGroups.active_groups"|trans({}, 'rpe') ~ '</h3><ul class="white-item-list">')|raw }}
+	                    <li class="white-item">
+	                        <a href="{{ path('group', {id : group.id}) }}" class="avatar">
+	                            {% if group.picture is not null %}
+	                                {{ macros.show_group_avatar(group, 'default', 60, null) }}
+	                            {% endif %}
+	                        </a>
+	                        <div class="text">
+	                            <a href="{{ path('group', {id : group.id}) }}" class="group-name">
+	                                <span class="group-name">{{ group.name }}</span>
+	                            </a>
+	                            {# {% if group.parent %}
+	                                <span class="group-parent-name">
+	                                    Sous groupe de
+	                                    <a href="{{ path('group', {'id': group.parent.id}) }}">
+	                                        {{ group.parent.name }}
+	                                    </a>
+	                                </span>
+	                            {% endif %} #}
+	                            <span class="group-members">
+	                                {{ '%count% Membre|%count% Membres'|transchoice(group.members.count, { '%count%': '<span class="blue">' ~ group.members.count ~ '</span>' }, 'rpe')|raw }}
+	                            </span>
+	                            {% if group.getResources.count > 0 %}
+	                                <a href="#" class="group-resources">
+	                                    {{ '%count% Ressource|%count% Ressources'|transchoice(group.getResources.count, { '%count%': '<span class="blue">' ~ group.getResources.count ~ '</span>' }, 'rpe')|raw }}
+	                                </a>
+	                            {% endif %}
+	                        </div>
+	                    </li>
+	                {{ (loop.last) ? '</ul>' }}
+	            {% endfor %}
+	        {% endif %}
+	    </div>
+    </div>
+</div>
+{% endspaceless %}
+{% endblock main_content %}

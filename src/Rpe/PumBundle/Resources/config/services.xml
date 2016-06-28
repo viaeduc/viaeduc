@@ -1,0 +1,198 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!-- PARAMETERS -->
+    <parameters>
+        <!-- NOTICIA -->
+        <parameter key="noticia" type="collection">
+            <parameter key="base_url">_NOTICIA_REST_URL_</parameter>
+            <parameter key="user">_NOTICIA_REST_USER_</parameter>
+            <parameter key="password">_NOTICIA_REST_PASSWORD_</parameter>
+        </parameter>
+        <!-- BEEBAC -->
+        <parameter key="beebac" type="collection">
+            <parameter key="base_url">_BEEBAC_API_URL_</parameter>
+            <parameter key="api_key">_BEEBAC_API_KEY</parameter>
+        </parameter>
+        <!-- SECURITY TARGET PATH LISTENER -->
+        <parameter key="security.exception_listener.class">Rpe\PumBundle\Security\Firewall\ExceptionListener</parameter>
+        <parameter key="hashkey">_ADD_HASHKEY_</parameter>
+    </parameters>
+
+    <services>
+
+        <!-- TWIG EXTENSION -->
+
+        <service id="twig.extension.filters" class="Rpe\PumBundle\Extension\Twig\RpeFilters">
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="twig.extension.functions" class="Rpe\PumBundle\Extension\Twig\RpeFunctions">
+            <argument type="service" id="rpe.object.fetcher" />
+            <argument type="service" id="rpe.utils" />
+            <argument type="service" id="rpe.hashid" />
+            <tag name="twig.extension" />
+        </service>
+
+        <!-- FORMVIEW FACTORY -->
+
+        <service id="formview.factory" class="Rpe\PumBundle\FormView\FormViewFactory">
+            <argument type="service" id="pum.context" />
+        </service>
+        <service id="tool.avatar" class="Rpe\PumBundle\Extension\Tool\Avatar">
+            <argument type="service" id="pum.context" />
+        </service>
+
+        <!-- NOTIFICATION -->
+
+        <service id="rpe.notifications" class="Rpe\PumBundle\Extension\Service\Notifications">
+            <argument type="service" id="pum.context" />
+            <argument type="service" id="rpe.mailer" />
+        </service>
+
+        <!-- LOG -->
+
+        <service id="rpe.logs" class="Rpe\PumBundle\Extension\Service\Logs">
+            <argument type="service" id="pum.context" />
+        </service>
+
+        <!-- MAIL -->
+
+        <service id="rpe.mailer" class="Rpe\PumBundle\Extension\Service\MailerLog">
+            <argument type="service" id="mailer" />
+            <argument type="service" id="templating" />
+        </service>
+
+        <service id="rpe.mailer.nolog" class="Rpe\PumBundle\Extension\Service\MailerNolog">
+            <argument type="service" id="swiftmailer.mailer.second_mailer" />
+            <argument type="service" id="templating" />
+        </service>
+
+        <!-- ELASTICSEARCH -->
+
+        <service id="rpe.search.index.factory" class="Rpe\PumBundle\Extension\ElasticSearch\IndexFactory">
+            <argument type="service" id="rpe.event_dispatcher" />
+            <argument type="service" id="pum" />
+        </service>
+
+        <service id="rpe.event_dispatcher" factory-service="pum" factory-method="getEventDispatcher" class="Symfony\Component\EventDispatcher\EventDispatcher" public="false" />
+
+        <service id="rpe.search.global" class="Rpe\PumBundle\Extension\ElasticSearch\Overall">
+            <argument type="service" id="rpe.search.context" />
+        </service>
+
+        <service id="rpe.search.user" class="Rpe\PumBundle\Extension\ElasticSearch\User">
+            <argument type="service" id="rpe.search.context" />
+        </service>
+
+        <service id="rpe.search.post" class="Rpe\PumBundle\Extension\ElasticSearch\Post">
+            <argument type="service" id="rpe.search.context" />
+        </service>
+
+        <service id="rpe.search.group" class="Rpe\PumBundle\Extension\ElasticSearch\Group">
+            <argument type="service" id="rpe.search.context" />
+        </service>
+
+        <service id="rpe.search.blog" class="Rpe\PumBundle\Extension\ElasticSearch\Blog">
+            <argument type="service" id="rpe.search.context" />
+        </service>
+
+        <service id="rpe.search.question" class="Rpe\PumBundle\Extension\ElasticSearch\Question">
+            <argument type="service" id="rpe.search.context" />
+        </service>
+
+        <service id="rpe.search.notice" class="Rpe\PumBundle\Extension\ElasticSearch\Notice">
+            <argument type="service" id="rpe.search.context" />
+        </service>
+
+        <service id="rpe.search.context" factory-service="pum.context" factory-method="getSearchEngine" class="Pum\Core\Extension\Search\SearchEngine" />
+
+        <!-- LOGIN LISTENER -->
+
+        <service id="rpe.login.success_handler" class="Rpe\PumBundle\Extension\Listener\LoginSuccessHandler">
+            <argument type="service" id="security.http_utils" />
+            <argument type="collection">
+                <argument key="login_path">/login</argument>
+                <argument key="use_referer">true</argument>
+            </argument>
+            <argument type="service" id="rpe.logs" />
+            <argument type="service" id="pum.oem" />
+        </service>
+
+        <service id="rpe.login.failure_handler" class="Rpe\PumBundle\Extension\Listener\LoginFailureHandler">
+            <argument type="service" id="http_kernel" />
+            <argument type="service" id="security.http_utils" />
+            <argument type="collection" />
+            <argument type="service" id="rpe.logs" />
+        </service>
+
+        <service id="rpe.logout.success_handler" class="Rpe\PumBundle\Extension\Listener\LogoutSuccessHandler">
+            <argument type="service" id="security.http_utils" />
+            <argument type="service" id="rpe.logs" />
+        </service>
+
+        <!-- LINK PREVIEW -->
+
+        <service id="rpe.link.preview" class="Rpe\PumBundle\Extension\LinkPreview\LinkPreview" />
+
+        <service id="rpe.type_extra.media.storage.driver" class="Rpe\PumBundle\Extension\Pum\TypeExtraBundle\Media\FilesystemStorage" public="false">
+            <argument>%pum_type_extra.media.storage.filesystem.directory%</argument>
+            <argument>%pum_type_extra.media.storage.filesystem.path%</argument>
+            <argument>%pum_type_extra.media.storage.filesystem.datefolder%</argument>
+        </service>
+
+        <!-- RSS PARSER -->
+        <service id="rpe.rss.parser" class="Rpe\PumBundle\Extension\Service\RssParser">
+            <argument>%kernel.cache_dir%/rss_cache</argument>
+        </service>
+
+        <!-- OBJECT FETCHER -->
+        <service id="rpe.object.fetcher" class="Rpe\PumBundle\Extension\Object\ObjectFetcher">
+            <argument type="service" id="pum.context" />
+        </service>
+
+        <!-- Etherpad Client -->
+        <service id="rpe.etherpad_client" class="Rpe\PumBundle\Extension\Service\EtherpadLiteClient">
+            <argument>%etherpad%</argument>
+        </service>
+
+        <!-- CHAT -->
+        <service id="rpe.chat" class="Rpe\PumBundle\Extension\Service\Chat">
+            <argument type="service" id="pum.context" />
+            <argument type="service" id="logger" />
+            <argument type="service" id="rpe.utils" />
+        </service>
+
+        <!-- Noticia -->
+        <service id="rpe.noticia" class="Rpe\PumBundle\Extension\Service\Noticia">
+            <argument>%noticia%</argument>
+        </service>
+
+        <!-- Beebac -->
+        <service id="rpe.beebac" class="Rpe\PumBundle\Extension\Service\Beebac">
+            <argument>%beebac%</argument>
+        </service>
+
+        <!-- Utils -->
+        <service id="rpe.utils" class="Rpe\PumBundle\Extension\Service\RpeUtilities">
+            <argument type="service" id="pum.context" />
+        </service>
+
+        <!-- LISTENER -->
+        <!-- Twig date request subscriber -->
+        <service id="twig.date.request" class="Rpe\PumBundle\Extension\Listener\TwigDateRequestListener">
+            <argument type="service" id="pum.context" />
+
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+		<!-- Hash id service -->
+		<service id="rpe.hashid" class="Rpe\PumBundle\Extension\Service\RpeHashId">
+			<argument>%hashkey%</argument>
+			<argument type="service" id="pum.context" />
+		</service>
+    </services>
+</container>

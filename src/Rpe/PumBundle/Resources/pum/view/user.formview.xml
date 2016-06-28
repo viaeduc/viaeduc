@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <beam>social</beam>
+    <objects>
+        <object>
+            <name>user</name>
+            <formviews>
+                <formview>
+                    <name>main</name>
+                    <columns>
+                        <column>
+                            <name>Firstname</name>
+                            <field>firstname</field>
+                            <placeholder>Tapez votre nom</placeholder>
+                            <help>Votre nom sur le site</help>
+                        </column>
+                        <column>
+                            <name>Lastname</name>
+                            <field>lastname</field>
+                        </column>
+                        <column>
+                            <name>avatar</name>
+                            <field>avatar</field>
+                        </column>
+                    </columns>
+                </formview>
+                <formview>
+                    <name>login</name>
+                    <columns>
+                        <column>
+                            <name>Email</name>
+                            <field>email_pro</field>
+                        </column>
+                    </columns>
+                </formview>
+            </formviews>
+        </object>
+        <object>
+            <name>group</name>
+            <formviews>
+                <formview>
+                    <name>main</name>
+                    <columns>
+                        <column>
+                            <name>name</name>
+                            <field>name</field>
+                        </column>
+                        <column>
+                            <name>posts</name>
+                            <field>posts</field>
+                            <options>
+                                <form_type>tab</form_type><!-- Possibles choices [tab, search, static] -->
+                                <property>name</property>
+                                <allow_add>false</allow_add>
+                                <allow_select>false</allow_select>
+                            </options>
+                        </column>
+                        <column>
+                            <name>cover</name>
+                            <field>cover</field>
+                        </column>
+                    </columns>
+                </formview>
+            </formviews>
+        </object>
+    </objects>
+</root>

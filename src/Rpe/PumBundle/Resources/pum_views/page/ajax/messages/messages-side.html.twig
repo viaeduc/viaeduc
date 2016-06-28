@@ -1,0 +1,102 @@
+{# <li>
+    <a href="#" class="js-loadmore js-infinite js-load-inner" data-href="" data-target=".messages-main-container">
+        <div class="stack-images stacked">
+            <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}"/>
+        </div>
+        <div class="messages-list-details">
+            <span class="name">Jean Patrick Leroux</span>
+            <span class="date">Il y a 3 heures</span>
+            <p class="text">gf hghfg fg hfgh fgh fghf fgh fgh fgh fgh fghfghf hjhjkil</p>
+        </div>
+    </a>
+</li>
+<li class="not-read">
+    <a href="#" class="js-loadmore js-infinite js-load-inner" data-href="" data-target=".messages-main-container">
+        <div class="not-read-label">non lu</div>
+        <div class="stack-images">
+            <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" />
+        </div>
+        <div class="messages-list-details">
+            <span class="name">Jean Patrick Leroux</span>
+            <span class="date">Il y a 3 heures</span>
+            <p class="text">gf hghfg fg hfgh fgh fghf fgh fgh fgh fgh fghfghf hjhjkil</p>
+        </div>
+    </a>
+</li>
+<li class="answered">
+    <a href="#" class="js-loadmore js-infinite js-load-inner" data-href="" data-target=".messages-main-container">
+        <div class="stack-images">
+            <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" />
+        </div>
+        <div class="messages-list-details">
+            <span class="name">Jean Patrick Leroux</span>
+            <span class="date">Il y a 3 heures</span>
+            <p class="text">gf hghfg fg hfgh fgh fghf fgh fgh fgh fgh fghfghf hjhjkil</p>
+        </div>
+    </a>
+</li> #}
+
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+    {% for discussion in pager %}
+        {% spaceless %}
+            {% set recipients                = discussion.recipients(user) %}
+            {% set lastMessage               = discussion.lastMessage %}
+            {% set lastMessageFromRecipients = discussion.lastMessageFromRecipients(user) %}
+
+            {% if lastMessageFromRecipients is not null %}
+                {% set lastResponder = lastMessageFromRecipients.author %}
+            {% else %}
+                {% set lastResponder = recipients.first ? recipients.first.user : null %}
+            {% endif %}
+
+            {% set stacked = '' %}
+            {% if recipients.count > 1 %}
+                {% set stacked = 'stacked' %}
+            {% endif %}
+
+            {% if lastMessage.author == user %}
+                {% set discussion_status = 'answered' %}
+            {% elseif discussion.isReadDiscussionBy(user) %}
+                {% set discussion_status = 'not-read' %}
+            {% else %}
+                {% set discussion_status = '' %}
+            {% endif %}
+
+            {% set is_active = '' %}
+            {% if discussion.id == active %}
+                {% set is_active = 'active' %}
+            {% endif %}
+
+            <li id="discussion_{{ discussion.id }}" class="discussion {{ discussion_status }} {{ is_active }}">
+                <a href="#" class="js-loadmore js-infinite js-load-inner" data-url="{{ path('discussion', {id: discussion.id}) }}" data-href="{{ path('ajax_discussion', {id: discussion.id}) }}" data-refresh="#grid" data-target=".messages-main-container">
+                    {% if discussion_status == 'not-read' %}
+                        <div class="not-read-label">non lu</div>
+                    {% endif %}
+                    {% if lastResponder is not null %}
+                        <div class="stack-images {{stacked}}">
+                            {{ macros.show_image(lastResponder.avatar, 64) }}
+                        </div>
+                    {% endif %}
+                    <div class="messages-list-details">
+                        {% if recipients.count == 1 and lastResponder is not null %}
+                            <span class="name">{{ lastResponder.firstname|title }}</span>
+                        {% else %}
+                            <span class="name">
+                                {{ macros.show_recipients(recipients) }}
+                            </span>
+                        {% endif %}
+
+                        <span class="date">{{ discussion.updateDate|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'dd-MM-Y • HH:mm') }}</span>
+                        <p class="text">{{ lastMessage.content|truncate(30, true, '')|detecturls|raw }}</p>
+                    </div>
+                </a>
+            </li>
+        {% endspaceless %}
+    {% endfor %}
+
+    {% if pager.nbPages is defined and pager.currentPage < pager.nbPages %}
+        <li href="#" class="full page-loadmore js-loadmore" data-href="{{ path('ajax_discussionlist', {page: pager.currentPage + 1}) }}" data-target=".list-general-box"><a href="#" class="read-other">...</a></li>
+    {% endif %}
+{% endblock %}

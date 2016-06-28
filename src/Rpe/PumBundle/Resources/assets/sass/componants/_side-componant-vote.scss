@@ -1,0 +1,148 @@
+// --
+// Sondage
+.quiz-componant {
+    margin: 0 0 2.5% 0;
+
+    .quiz-answer-stat {
+        position: relative;
+        height: 25px;
+        background: $background-white;
+
+        .answer-bar {
+            display: inline-block;
+
+            background: $light-blue-1;
+            height: 100%;
+            width: 0%;
+
+
+            > span {
+                @include fontSize(12);
+                color: $black;
+                font-weight: bold;
+                padding: 0 0 0 68%;
+                line-height: 2.3em;
+            }
+
+        }
+
+        .answer-number {
+            position: absolute;
+            height: 25px;
+            right: 2.5%;
+            top: 50%;
+            margin-top: -8.5px;
+
+            @include fontSize(12);
+            font-family: $Verdana;
+            color: $dark-blue-font;
+        }
+    }
+
+    .quiz-answer {
+        @include fontSize(10);
+        font-family: $Verdana;
+    }
+
+    // --
+    // Radio + Checkbox buttons
+
+    // Positioning, and margins
+    .radio-buttons,
+    .checkbox-buttons {
+        display: inline-block;
+        padding: 0 5px 0 0;
+    }
+
+    .radio-buttons {
+        min-width: 18px;
+        height: 18px;
+    }
+
+    .checkbox-buttons {
+        min-width: 22px;
+        height: 19px;
+    }
+
+    // On last child remove margin right
+    .radio-buttons:last-child,
+    .checkbox-buttons:last-child {
+        margin: 0;
+    }
+
+    // Hiding the input
+    .radio-buttons > input[type="radio"],
+    .checkbox-buttons > input[type="checkbox"] {
+        // Not using display:none so validation script works
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    // Styling the label
+    .radio-buttons > input[type="radio"] + label,
+    .checkbox-buttons > input[type="checkbox"] + label {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        padding: 3px 0 0 25px;
+        line-height: 1em;
+        @include fontSize(10);
+        font-family: $Verdana;
+    }
+
+    .checkbox-buttons > input[type="checkbox"] + label {
+
+    }
+
+    .radio-buttons > input[type="radio"] + label {
+        background: url(../images/bg_radio.png) left -20px no-repeat;
+    }
+
+    .radio-buttons > input[type="radio"]:checked + label {
+        background: url(../images/bg_radio.png) left -1px no-repeat;
+    }
+
+    .checkbox-buttons > input[type="checkbox"] + label{
+        background: url(../images/bg_checkbox.png) left 0px no-repeat;
+    }
+
+    .checkbox-buttons > input[type="checkbox"]:checked + label{
+        background: url(../images/bg_checkbox.png) left -21px no-repeat;
+    }
+
+    .vote-link {
+        transition: background 0.2s linear;
+        display: inline-block;
+        border: 0px solid transparent;
+        width: 100%;
+        padding: 2.5%;
+        margin: 10px 0 0 0;
+        background: $background-blue-1;
+        @include fontSize(10);
+        font-family: $Verdana;
+        text-transform: uppercase;
+        text-align: center;
+        color: $white-font;
+
+        &:hover {
+            transition: background 0.2s linear;
+            background: $background-blue-2;
+        }
+    }
+
+    &.quiz-radio {
+        // Animation
+        position: relative;
+        left: -10px;
+        opacity: 0;
+    }
+
+    &:first-child {
+        margin: 2.5% 0 2.5% 0;
+    }
+
+    &:last-child {
+        margin: 0;
+    }
+}

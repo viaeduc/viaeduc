@@ -1,0 +1,23 @@
+<div class="side-componant">
+    <div class="padding-wrapper">
+        <h3 class="componant-title">
+            <a href="{{ path('blog', {id: profil.blog.id}) }}">Blog : {{ profil.blog.name }}</a>
+            {# {{ "sidebar.web_page"|trans({}, 'rpe') }} #}
+        </h3>
+        {% if profil.blog.description is not null %}
+        <div class="componant-wrapper small-wrapper">
+            <p class="componant-text">
+                {{ profil.blog.description }}
+                {# {{ "sidebar.web_page_desc"|trans({}, 'rpe') }} #}
+            </p>
+        </div>
+        {% endif %}
+
+        <!--
+        -->{# <div class="componant-side-wrapper">
+            <a href="#" class="componant-date">2013 <span>(110)</span></a>
+            <a href="#" class="componant-date">2012 <span>(226)</span></a>
+            <a href="#" class="componant-date">2011 <span>(133)</span></a>
+        </div> #}
+    </div>
+</div>

@@ -1,0 +1,31 @@
+{% spaceless %}
+<div class="modal modal-login">
+    <div class="modal-dialog">
+        <div class="modal-content modal-login-wrapper">
+            <div class="modal-header">
+                <h4 class="modal-title">Connectez vous à la communauté</h4>
+            </div>
+            <div class="modal-body">
+                <form class="modal-login-form">
+                    <ul>
+                        <li>
+                            <input type="text" placeholder="Adresse-email@ac-académie.fr">
+                        </li>
+                        <li>
+                            <input type="password" placeholder="Mot de passe">
+                        </li>
+                        <li class="information">
+                            <span class="checkbox-buttons">
+                                <input type="checkbox" id="_remember_me" name="_remember_me" value="1">
+                                <label for="_remember_me">Se souvenir de moi</label>
+                            </span>
+                            <a data-toggle="modal" href="#popin_forget_password" class="forget">Mot de passe oublié ?</a>
+                            <button type="submit" id="submit" name="submit" class="action-btn light-blue">Connexion</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endspaceless %}

@@ -1,0 +1,75 @@
+<!-- Use this block too add color classes -->
+<li class="card app-card {% block card_class %}{% endblock %}">
+    <div class="card-left">
+        <div class="card-publisher">
+            <a href="#" class="card-publisher-image">
+                <!-- Use this block to change publisher image -->
+                <img src="{% block card_app_publisher_image %}{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}{% endblock %}" alt="">
+            </a><!--
+            --><div class="card-publisher-info">
+                <!-- Publisher link -->
+                <a href="{% block card_publisher_link %}#{% endblock %}">
+                    <!-- Name & Role blocks -->
+                    <span class="card-name">{% block card_publisher_name %}Jean Patrick Leroux{% endblock %}</span>
+                    <span class="card-role">{% block card_publisher_role %}Instituteur DE1{% endblock %}</span>
+                    <span class="card-connect icon-plus">Se connecter</span>
+                </a>
+            </div>
+        </div>
+        <a href="#" class="card-title-link">
+            <!-- Use this to change app title -->
+            <h2 class="card-title highlight highlight-wrapper">{% block card_app_title %}Quizz app{% endblock %}</h2>
+            <p class="card-text">
+                <!-- App description block -->
+                {% block card_app_description %}
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                {% endblock %}
+            </p>
+        </a>
+        <!-- Editor links to page & website -->
+        <span class="card-editor">Par <a href="{% block card_app_editor_link %}#{% endblock %}">{% block card_app_editor %}Belin{% endblock %}</a> - <a href="{% block card_app_editor_site_link %}www.editions-belin.com{% endblock %}">{% block card_app_editor_site %}www.editions-belin.com{% endblock %}</a></span>
+    </div><!--
+    --><div class="card-right">
+        <a href="#">
+            <!-- Use to change app image -->
+            <img src="{% block card_app_image %}{{ asset('bundles/rpepum/images/img_apps_big.png') }}{% endblock %}" alt="" class="card-image">
+        </a>
+        <ul class="card-rating">
+            <li class="card-star">
+                <a href="#">
+                    <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                </a>
+            </li>
+            <li class="card-star">
+                <a href="#">
+                    <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                </a>
+            </li>
+            <li class="card-star">
+                <a href="#">
+                    <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                </a>
+            </li>
+            <li class="card-star">
+                <a href="#">
+                    <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                </a>
+            </li>
+            <li class="card-star">
+                <a href="#">
+                    <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                </a>
+            </li>
+        </ul>
+        <span class="card-votes">{% block card_app_note_counter %}Noté 136 fois{% endblock %}</span>
+    </div><!--
+    --><div class="card-bottom">
+        <span class="card-published">
+            <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+        </span><!--
+        --><div class="card-links">
+            <a class="wall-btn icon-heart2 orange" href="#">52</a>
+            <a class="wall-btn icon-comment orange" href="#">512</a>
+        </div>
+    </div>
+</li>

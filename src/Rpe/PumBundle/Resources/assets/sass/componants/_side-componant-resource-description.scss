@@ -1,0 +1,80 @@
+.ressource-info {
+    display          : inline-block;
+    vertical-align   : middle;
+    width            : 100%;
+    min-height       : 200px;
+    line-height      : 200px;
+    margin           : 0 0 20px 0;
+
+    background-color : $background-grey-1;
+}
+
+.ressource-image,
+.ressource-description,
+.ressource-image-wrapper {
+    display        : inline-block;
+    vertical-align : top;
+}
+
+.ressource-image-wrapper {
+    position   : relative;
+    height     : 200px;
+    width      : 30%;
+    overflow   : hidden;
+}
+
+.ressource-image {
+    position       : absolute;
+    height         : 200px;
+    top            : 0;
+    left           : 50%;
+    margin-left    : -100px;
+    z-index        : 10;
+}
+
+.ressource-description {
+    @include fontSize(12);
+    padding        : 15px;
+    width          : 70%;
+    vertical-align : middle;
+    line-height    : 1em;
+
+    font-family: $Verdana;
+    color: $dark-grey-font;
+
+    .ressource-inner-info,
+    .ressource-inner-info-link,
+    .ajax-list-users {
+        display        : inline-block;
+        vertical-align : middle;
+        width          : 100%;
+        margin         : 0 0 5px 0;
+    }
+
+    .ressource-inner-info-link,
+    .ajax-list-users {
+        @include fontSize(11);
+        transition : color 0.2s linear;
+        color      : $light-blue-1;
+
+        &:hover {
+            transition      : color 0.2s linear;
+            color           : $light-blue-2;
+            text-decoration : none;
+        }
+
+        &:last-of-type {
+            margin : 0;
+        }
+    }
+
+    .page-desc {
+        margin : 20px 0;
+    }
+}
+
+@media screen and (max-width: 1237px) {
+    .ressource-description {
+        width : 70%;
+    }
+}

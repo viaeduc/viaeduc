@@ -1,0 +1,369 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Rpe v1\n"
+"POT-Creation-Date: 2013-11-22 11:15+0100\n"
+"PO-Revision-Date: 2013-11-22 11:51+0100\n"
+"Last-Translator: \n"
+"Language-Team: Argos\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"Language: FR\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+
+
+################################################# Homepage #####################################################
+
+msgid "homepage.discover_video"
+msgstr "découvrir le réseau des enseignants en vidéo !"
+
+msgid "homepage.see_video"
+msgstr "voir la vidéo"
+
+msgid "homepage.connect_title"
+msgstr "Connectez vous à la communauté"
+
+msgid "homepage.forgotten_pwd_question"
+msgstr "mot de passe oublié ?"
+
+msgid "homepage.no_account"
+msgstr "Vous n'avez pas de compte ?"
+
+msgid "homepage.create_account"
+msgstr "Créez-le dès maintenant"
+
+msgid "homepage.forgotten_pwd"
+msgstr "Mot de passe oublié"
+
+msgid "homepage.forgotten_pwd_content_1"
+msgstr ""
+"Pour générer un nouveau mot de passe, entrez votre adresse académique ci-"
+"dessus. Nous vous enverrons un lien par mail. Vous devrez cliquer sur le "
+"lien du message et un nouveau mot de passe vous sera donné."
+
+msgid "homepage.forgotten_pwd_content_2"
+msgstr ""
+"En effet, pour des raisons de sécurité, nous ne renvoyons pas les mots de "
+"passe par email. En cas de problème, l'équipe Support est à votre "
+"disposition."
+
+msgid "homepage.email_adress"
+msgstr "Adresse email"
+
+msgid "homepage.button_cancel"
+msgstr "annuler"
+
+msgid "homepage.button_send"
+msgstr "envoyer"
+
+msgid "homepage.advert_1"
+msgstr "Rejoignez la <span class=\"bold\">plus grande communauté d’enseignants</span> de France"
+
+msgid "homepage.advert_2"
+msgstr "Partagez des <span class=\"bold\">ressources pédagogiques<br>et échangez</span> sur votre expérience"
+
+msgid "homepage.advert_3"
+msgstr "<span class=\"bold\">Créez, débattez, collaborez<br></span>avec vos pairs dans un espace dédié<br>à l’enseignement et à ses métiers"
+
+msgid "homepage.network"
+msgstr "Le Réseau"
+
+msgid "homepage.teacher_signedup"
+msgstr "Enseignants inscrits"
+
+msgid "homepage.active_group"
+msgstr "Groupes de travail actifs"
+
+msgid "homepage.resources"
+msgstr "Les ressources"
+
+msgid "homepage.indexed_resources"
+msgstr "Ressources indexées"
+
+msgid "homepage.new_contribution_per_day"
+msgstr "Nouvelle contribution par jour"
+
+msgid "homepage.services"
+msgstr "Les services"
+
+msgid "homepage.partner_editor"
+msgstr "Éditeurs partenaires sur la plateforme"
+
+msgid "homepage.exclusive_tool"
+msgstr "Outils exclusifs pour les enseignants"
+
+################################################# Register Page #####################################################
+
+msgid "register.free_signup"
+msgstr "Inscrivez-vous gratuitement"
+
+msgid "register.signup_description"
+msgstr ""
+"En créant votre compte, vous pourrez échanger avec notre communauté "
+"exerçant une profession dans l'enseignement et consulter gratuitement "
+"des ressources pédagogique en accès libre."
+
+msgid "register.signup_info_1"
+msgstr "Participer à des groupes thématiques autour de l'enseignement,"
+
+msgid "register.signup_info_2"
+msgstr "Co-construire des ressources avec d'autres enseignants,"
+
+msgid "register.signup_info_3"
+msgstr "Annoter et recommander les ressources,"
+
+msgid "register.signup_info_4"
+msgstr "Trouver des ressources pédagogiques exclusives pour vous aider,"
+
+msgid "register.signup_info_5"
+msgstr "Vivre une expérience sociale et collaborative unique !"
+
+msgid "register.signup_requirement"
+msgstr "* L'inscription à ce site est réservée aux enseignants et aux cadres de l'enseignement"
+
+msgid "register.email_restriction"
+msgstr "Saisissez votre adresse mail professionnelle. Elle sera nécessaire pour vous faire parvenir votre nom d'utilisateur et votre mot de passe, à l'issue de votre inscription. Attention ! Cette adresse doit obligatoirement être une adresse professionnelle, de type pierre.durant@ac-poitiers.fr ou michelle.dupond@paris.iufm.fr ou marie.dupont@educagri.fr ou brett.sinclair@xxx-aefe.net. Toute adresse ne comportant pas « ac-académie.fr » ou « iufm.fr » ou « educagri.fr » ou « aefe.net » sera refusée."
+
+msgid "register.pwd_restriction"
+msgstr "Utilisez au moins huit caractères. Évitez d'indiquer un mot de passe que vous utilisez déjà sur un autre site ou qui serait trop évident tel que le nom de votre animal."
+
+msgid "register.read_and_accept"
+msgstr "J'ai lu et j'accepte les "
+
+msgid "register.cgu"
+msgstr "conditions générales"
+
+msgid "register.charte"
+msgstr "charte de la plateforme"
+
+msgid "register.required_fields"
+msgstr "Les champs marqués avec un "*" sont obligatoires"
+
+msgid "register.cgu_title"
+msgstr "Conditions générales"
+
+msgid "register.cgu_content"
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent"
+"scelerisque auctor lectus, ut imperdiet ligula commodo vitae. Maecenas"
+"viverra vitae felis non pulvinar. Ut nisl elit, consequat id egestas in,"
+"rhoncus vitae metus. Nulla facilisi. Sed ornare tortor faucibus"
+"condimentum cursus. Suspendisse tincidunt laoreet magna in placerat."
+"Integer vel tristique orci. Morbi sed molestie arcu. Donec pharetra a"
+"ligula nec dapibus. Phasellus vel pretium felis. Praesent elementum arcu"
+"a enim elementum, eu vestibulum eros fringilla. Quisque pharetra nibh"
+"sed magna scelerisque tincidunt. Maecenas consectetur justo ut volutpat"
+"molestie. Fusce fermentum ipsum at elit scelerisque, at sodales sem"
+"vulputate. Nulla facilisi. Sed non dapibus sem. Proin id vehicula nisl."
+"Vestibulum quis lobortis dui, vitae consequat enim. Aenean vitae leo ut"
+"lorem commodo mollis nec a nibh. Morbi elit quam, malesuada et ornare"
+"quis, mattis at felis. Donec et massa quis enim placerat varius."
+"Phasellus rutrum rutrum commodo. Nulla convallis fermentuin id vehicula"
+"nisl. Vestibulum quis lobortis dui, vitae consequat enim. Aenean vitae"
+"leo ut lorem commodo mollis nec a nibh. Morbi elit quam, malesuada et"
+"ornare quis, mattis at felis. Donec et massa quis enim placerat varius."
+"Phasellus rutrum rutrum commodo. Nulla convallis fermentu"
+
+msgid "register.charte_title"
+msgstr "Charte de la plateforme"
+
+msgid "register.charte_content"
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent"
+"scelerisque auctor lectus, ut imperdiet ligula commodo vitae. Maecenas"
+"viverra vitae felis non pulvinar. Ut nisl elit, consequat id egestas in,"
+"rhoncus vitae metus. Nulla facilisi. Sed ornare tortor faucibus"
+"condimentum cursus. Suspendisse tincidunt laoreet magna in placerat."
+"Integer vel tristique orci. Morbi sed molestie arcu. Donec pharetra a"
+"ligula nec dapibus. Phasellus vel pretium felis. Praesent elementum arcu"
+"a enim elementum, eu vestibulum eros fringilla. Quisque pharetra nibh"
+"sed magna scelerisque tincidunt. Maecenas consectetur justo ut volutpat"
+"molestie. Fusce fermentum ipsum at elit scelerisque, at sodales sem"
+"vulputate. Nulla facilisi. Sed non dapibus sem. Proin id vehicula nisl."
+"Vestibulum quis lobortis dui, vitae consequat enim. Aenean vitae leo ut"
+"lorem commodo mollis nec a nibh. Morbi elit quam, malesuada et ornare"
+"quis, mattis at felis. Donec et massa quis enim placerat varius."
+"Phasellus rutrum rutrum commodo. Nulla convallis fermentuin id vehicula"
+"nisl. Vestibulum quis lobortis dui, vitae consequat enim. Aenean vitae"
+"leo ut lorem commodo mollis nec a nibh. Morbi elit quam, malesuada et"
+"ornare quis, mattis at felis. Donec et massa quis enim placerat varius."
+"Phasellus rutrum rutrum commodo. Nulla convallis fermentu"
+
+msgid "register.miss"
+msgstr "Madame"
+
+msgid "register.mister"
+msgstr "Monsieur"
+
+msgid "register.field_sex"
+msgstr "Civilité"
+
+msgid "register.field_lastname"
+msgstr "Nom*"
+
+msgid "register.field_firstname"
+msgstr "Prénom*"
+
+msgid "register.field_occupation"
+msgstr "Activité professionnelle"
+
+msgid "register.field_academy"
+msgstr "Académie*"
+
+msgid "register.field_email_pro"
+msgstr "Email académique"
+
+msgid "register.field_email_pro_confirm"
+msgstr "Email académique (Confirmation)*"
+
+msgid "register.field_password"
+msgstr "Mot de passe*"
+
+msgid "register.field_password_confirm"
+msgstr "Mot de passe (Confirmation)*"
+
+msgid "register.choose_academy"
+msgstr "Sélectionner une académie"
+
+msgid "register.confirm"
+msgstr "Confirmer"
+
+################################################# Register Success Page #####################################################
+
+msgid "register.confirm_email"
+msgstr "Confirmation de votre adresse email !"
+
+msgid "register.confirm_email_content"
+msgstr "Confirmez votre adresse de courriel pour terminer votre inscription."
+"Un courriel vous a été envoyé à l’adresse indiquée lors de votre inscription. Rendez-vous sur votre messagerie et cliquez sur le lien de confirmation pour compléter votre inscription et rejoindre la communauté Viaeduc."
+"Remarque : ce courriel vous a été envoyé automatiquement et sans délai. Si toutefois il ne vous parvient pas dans les heures qui viennent, contactez le support utilisateurs à l'adresse support@viaeduc.fr en précisant votre adresse d'inscription."
+
+
+################################################# Register more infos Page #####################################################
+
+msgid "registerMore.validate_message"
+msgstr "Votre inscription a bien été validée"
+
+msgid "registerMore.fill_information"
+msgstr "Apprenez-nous en plus sur vous en remplissant vos informations de profil. En remplissant les quelques champs de ce processus nous pourrons mieux vous connaitre et tenter de répondre à vos attentes."
+
+msgid "registerMore.disciplines_interests"
+msgstr "Dites-nous quelles disciplines vous enseignez, quels sont vos centres d'intérêts"
+
+msgid "registerMore.teaching"
+msgstr "Dites-nous où vous enseignez, on vous suggérera des relations proches de vous "
+
+msgid "registerMore.describe"
+msgstr "Soyez libre de vous décrire et de parler de vous !"
+
+msgid "registerMore.informations"
+msgstr "Compléter le"
+
+msgid "registerMore.professionnelles"
+msgstr "profil"
+
+msgid "registerMore.professionnelles_informations"
+msgstr "Remplissez les champs ci-dessous avec vos informations
+                                professionnelles : afin de préciser la matière et le niveau que vous
+                                enseignez"
+
+msgid "registerMore.school"
+msgstr "Nom de votre entreprise, université"
+
+msgid "registerMore.school_more"
+msgstr "Inscrivez ici le nom de votre entreprise, université."
+
+msgid "registerMore.taught"
+msgstr "Disciplines enseignées"
+
+msgid "registerMore.taught_more"
+msgstr "Ecrivez la ou les disciplines que vous enseignez."
+
+msgid "registerMore.profil"
+msgstr "Votre profil en quelques mots"
+
+msgid "registerMore.presentation"
+msgstr "Votre présentation permettra aux autres utilisateurs de mieux comprendre votre profil et entrer en contact avec vous plus facilement."
+
+msgid "registerMore.interests"
+msgstr "Centres d'intérêts"
+
+msgid "registerMore.interests_more"
+msgstr "Choisissez les thèmes qui vous intéressent dans le cadre de votre activité professionnelle"
+
+msgid "registerMore.date_of_birth"
+msgstr "Date de naissance"
+
+msgid "registerMore.phone_number"
+msgstr "Numéro de téléphone"
+
+msgid "registerMore.phone_number_more"
+msgstr "Entrez votre numero de téléphone si vous souhaitez être joignable par téléphone par les autres membres du réseau."
+
+msgid "registerMore.web_page"
+msgstr "Site web personnel"
+
+msgid "registerMore.web_page_more"
+msgstr "Inscrivez ici l'adresse de votre site internet personnel ou de votre blog."
+
+msgid "registerMore.profil_image"
+msgstr "Image de profil"
+
+msgid "registerMore.profil_image_more"
+msgstr "Veuillez choisir votre image de profil (C'est l'image qui apparaitra à chaque fois que l'on vous sollicitera)."
+
+msgid "registerMore.change"
+msgstr "Il est possible d'en changer à tout moment."
+
+msgid "registerMore.upload"
+msgstr "Télécharger une image"
+
+msgid "registerMore.email"
+msgstr "Adresse mail professionelle"
+
+msgid "registerMore.email_more"
+msgstr "Vous pouvez utiliser votre adresse personnelle pour recevoir vos notifications."
+
+msgid "registerMore.personal_email"
+msgstr "Utiliser mon adresse mail personnelle"
+
+msgid "registerMore.visibility"
+msgstr "Gérer ma visibilité"
+
+msgid "registerMore.change_image"
+msgstr "Modifier mon image"
+
+################################################# Group creation Page #####################################################
+msgid "PUBLIC"
+msgstr "Public"
+
+msgid "ON_DEMAND"
+msgstr "Privé"
+
+msgid "ON_INVITATION"
+msgstr "Sur invitation"
+
+################ MESSAGES ################
+
+msgid "messages.no_message_side"
+msgstr "Vous n'avez pas encore de message."
+
+msgid "messages.no_message_main_text"
+msgstr "Vous n'avez pas encore de message,"
+
+msgid "messages.no_message_main_link"
+msgstr "ecrivez un nouveau message."
+
+################################################# Blog creation Page #####################################################
+msgid "FRIENDS"
+msgstr "Tous mes contacts"
+
+msgid "PRIVATE"
+msgstr "Restreint"
+
+################################################# QUESTIONS #####################################################
+
+msgid "questions.noAnswer"
+msgstr "Cette question n'a pas reçu de réponse"

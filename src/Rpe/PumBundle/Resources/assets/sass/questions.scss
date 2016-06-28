@@ -1,0 +1,134 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "componants/_filter";
+@import "componants/_cards";
+
+// ------------
+// Specific CSS
+// ------------
+
+.container-filtre ul li.publication .action-btn {
+    height: 30px;
+    line-height: 26px;
+}
+
+.question-no-answer {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    padding        : 20px;
+    font-style     : italic;
+    text-align     : center;
+}
+
+// Modal box modification
+
+.modal-content {
+    border-radius: 0px;
+}
+
+.modal-header {
+    padding: 20px 20px 10px 20px;
+}
+
+.modal-body {
+    padding: 10px 20px;
+}
+
+.form-wrapper {
+    padding: 20px;
+    background: $background-grey-1;
+    border: 1px solid $background-grey-2;
+    color: $dark-blue-font;
+}
+
+.modal-title {
+    @include fontSize(30);
+    font-family: $MissionScript;
+}
+
+.modal-body li {
+    margin: 0 0 15px 0;
+
+    .form-left,
+    .form-right {
+        display:inline-block;
+        vertical-align:middle;
+    }
+
+    .form-left {
+        @include fontSize(13);
+        width: 20%;
+    }
+    .form-right {
+        width: 80%;
+    }
+
+    &:first-child {
+        .form-left,
+        .form-right {
+            width: 100%;
+        }
+
+        input {
+            margin: 0 0 15px 0;
+        }
+    }
+
+    &:last-child {
+        margin: 0;
+
+        .form-left {
+            width: 0%;
+        }
+
+        .form-right {
+            width: 100%;
+
+            input[type="checkbox"] + label {
+                padding: 0 0 0 25px;
+                @include fontSize(12);
+            }
+        }
+    }
+
+    select {
+        color: $dark-grey-font;
+    }
+}
+
+.modal-footer {
+    border: 0;
+    margin: 0;
+    padding: 10px 20px 20px 20px;
+    a {
+        margin: 0;
+        width: auto;
+        line-height: 26px;
+        padding: 10px;
+
+        &.left {
+            float: left;
+        }
+    }
+}
+
+@media screen and (max-width: $portrait-screen) {
+
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .card .bottom .details-left {
+        width: 20%;
+    }
+}

@@ -1,0 +1,32 @@
+/* function to convert px to rem */
+/* line 5, ../../assets/sass/componants/_content-link-box.scss */
+.content-links { transition: 0.2s background; display: inline-block; width: 33%; margin: 0 0.5% 0.5% 0; background: #d7d7d7; padding: 25px 50px; border: 1px solid #9a9a9a; }
+/* line 14, ../../assets/sass/componants/_content-link-box.scss */
+.content-links > a { display: inline-block; vertical-align: middle; margin: 0 4% 0 0; width: 20%; }
+/* line 20, ../../assets/sass/componants/_content-link-box.scss */
+.content-links > a img { width: 100%; height: 100%; }
+/* line 26, ../../assets/sass/componants/_content-link-box.scss */
+.content-links .details { display: inline-block; vertical-align: middle; width: 76%; font-family: Verdana, Arial, sans-serif; font-size: 13px; font-size: 0.8125rem; line-height: 1.3em; }
+/* line 34, ../../assets/sass/componants/_content-link-box.scss */
+.content-links .details span, .content-links .details a { float: left; clear: both; }
+/* line 39, ../../assets/sass/componants/_content-link-box.scss */
+.content-links .details a { color: #313335; }
+/* line 42, ../../assets/sass/componants/_content-link-box.scss */
+.content-links .details a.title { font-family: "Ubuntu Condensed", Arial, sans-serif; display: block; width: 100%; color: #313335; font-size: 16px; font-size: 1rem; font-weight: 600; text-transform: uppercase; }
+/* line 52, ../../assets/sass/componants/_content-link-box.scss */
+.content-links .details a:hover { text-decoration: none; }
+/* line 57, ../../assets/sass/componants/_content-link-box.scss */
+.content-links .details span { width: 100%; }
+/* line 59, ../../assets/sass/componants/_content-link-box.scss */
+.content-links .details span a { float: none; display: inline; }
+/* line 66, ../../assets/sass/componants/_content-link-box.scss */
+.content-links:hover { transition: 0.2s background; background: #fafafa; }
+/* line 71, ../../assets/sass/componants/_content-link-box.scss */
+.content-links:nth-child(n+3) { margin: 0 0.5% 0.5% 0; }
+/* line 75, ../../assets/sass/componants/_content-link-box.scss */
+.content-links:nth-child(3n) { margin: 0 0 0 0; }
+
+@media screen and (max-width: 1024px) { /* line 85, ../../assets/sass/componants/_content-link-box.scss */
+  .content-links .details { font-size: 10px; font-size: 0.625rem; }
+  /* line 88, ../../assets/sass/componants/_content-link-box.scss */
+  .content-links .details a.title { font-size: 14px; font-size: 0.875rem; } }

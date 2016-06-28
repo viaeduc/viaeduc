@@ -1,0 +1,67 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-new-message.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/tagmanager.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-new-message.js') }}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+	{% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+		{% block this_page %}
+	    	{{ "messagesNew.title"|trans({}, 'rpe') }}
+	    {% endblock %}
+	{% endembed %}
+{% endblock %}
+
+
+{% block sidebar %}
+    {% set opacity = 'opaque' %}
+
+    {% include "pum://includes/common/componants/messages/messages-list.html.twig" %}
+{% endblock %}
+
+
+{% block main_content %}
+    <div class="intro">
+        <div class="intro-left">
+            <h2>{{ "messagesNew.write"|trans({}, 'rpe') }}</h2>
+        </div>
+        <div class="intro-right">
+            <a class="action-btn dark-grey" href="#">{{ "messagesNew.back"|trans({}, 'rpe') }}</a>
+        </div>
+    </div>
+
+    <div class="new-message-container">
+        <form>
+            <ul class="form-wrapper">
+                <li>
+                    <div class="form-left">
+                        <label for="receiver">{{ "messagesNew.to"|trans({}, 'rpe') }}</label>
+                    </div>
+                    <div class="form-right">
+                        <input type="text" name="receiver" />
+                        <span class="tag-list"></span>
+                    </div>
+                </li>
+                <li class="textarea">
+                    <div class="form-left">
+                        <label for="message">{{ "messagesNew.your_message"|trans({}, 'rpe') }}</label>
+                    </div>
+                    <div class="form-right">
+                        <textarea cols="72" rows="12" name="message"></textarea>
+                    </div>
+                </li>
+                <li>
+                    <input type="submit" value="Envoyer" name="" class="action-btn orange" />
+                </li>
+            </ul>
+        </form>
+    </div>
+
+{% endblock %}

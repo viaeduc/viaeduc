@@ -1,0 +1,1759 @@
+    // --
+    // General Styling
+.section-form {
+    ul {
+        // Main UL Styling, set ul to 50% for 2 col
+        @include fontSize(16);
+        display     : inline-block;
+        width       : 100%;
+        color       : $dark-grey-font;
+        font-family : $UbuntuCondensed;
+
+        &.dropdown-menu {
+            > li {
+                margin: 0;
+            }
+        }
+
+        > li {
+            // Each LI is on a seperate line
+            display : block;
+            width   : 100%;
+            float   : left;
+            margin  : 0 0 20px 0;
+
+            // Dividing left and right
+            .form-left {
+                display: inline-block;
+                vertical-align: middle;
+                width: 20%;
+                text-align: right;
+                // padding: 0 5% 0 0;
+
+                // Too align to top
+
+                &.top {
+                    vertical-align: top;
+                    margin: 0 0 0 0;
+                }
+
+                &.margin {
+                    margin: 12px 0 0 0;
+                }
+            }
+
+            .form-right {
+                display: inline-block;
+                vertical-align: middle;
+                width: 80%;
+            }
+
+            // One column, example = comment input
+            &.one-col-form {
+                .form-left {
+                    width: 100%;
+                    text-align: left;
+                }
+                .form-right {
+                    width: 100%;
+                }
+            }
+
+            &.extra-info {
+                .form-left {
+                    width: 20%;
+                }
+                .form-right {
+                    width: 80%;
+                }
+
+                &.info-bubble {
+                    .form-right {
+                        width : 75%;
+                    }
+                }
+                .extra {
+                    display: inline-block;
+                    vertical-align: middle;
+                    width : 80%;
+                    float : right;
+                    padding: 5px 10px;
+                    background: $white;
+                    margin: 10px 0 0 0;
+                    border: 1px solid $light-grey-2;
+
+                    color: $dark-grey-font;
+                    font-family: $Verdana;
+                    @include fontSize(12);
+                    text-transform: none;
+
+                    position: relative;
+                    bottom: -20px;
+                    display: none;
+                    opacity: 0;
+
+                    &.top {
+                        vertical-align: top;
+                        margin: 7px 0 0 0;
+                    }
+
+                    &.email-check {
+                        padding: 0;
+                        width: 80%;
+                        float: right;
+                        border: 0px solid transparent;
+                    }
+                }
+            }
+
+            &.info-bubble {
+                .form-right {
+                    width : 75%;
+                }
+
+                .form-info-bubble {
+                    position       : relative;
+                    display        : inline-block;
+                    vertical-align : top;
+                    width          : 5%;
+                    text-align     : right;
+                }
+
+                .info-bubble-link {
+                    @include transition(background 0.2s linear);
+                    @include fontSize(16);
+                    display        : inline-block;
+                    width          : 45px;
+                    height         : 45px;
+                    text-align     : center;
+                    line-height    : 45px;
+                    background     : $dark-blue-1;
+                    color          : $white;
+
+                    &:hover {
+                        @include transition(background 0.2s linear);
+                        background      : $dark-blue-2;
+                        text-decoration : none;
+                    }
+                }
+
+                .info-bubble-hover {
+                    @include transition(height 0.3s linear);
+                    position   : absolute;
+                    height     : 0;
+                    width      : 200px;
+                    right      : 0;
+                    top        : 50px;
+                    overflow   : hidden;
+                    background : $dark-blue-1;
+                    text-align : left;
+
+                    ul {
+                        display        : inline-block;
+                        vertical-align : top;
+                        width          : 100%;
+                        padding        : 10px;
+                        color          : $white;
+                    }
+
+                    li {
+                        padding       : 0 0 0 20px;
+                        margin-bottom : 10px;
+
+                        &.bold {
+                            margin-bottom : 5px;
+                            padding       : 0;
+                        }
+                    }
+
+                    &.active {
+                        @include transition(height 0.3s linear);
+                        height     : 300px;
+                        overflow-y : auto;
+                    }
+                }
+            }
+
+            // No margin class for select with add button (items added div)
+            &.no-margin {
+                margin: 0;
+            }
+        }
+    }
+}
+
+    label {
+        margin: 0;
+    }
+    // --
+    // Radio + Checkbox buttons
+
+    // Positioning, and margins
+    .radio-buttons,
+    .checkbox-buttons {
+        font-family : $UbuntuCondensed !important;
+        display     : inline-block;
+        padding     : 0 5px 0 0;
+        font-weight : 400;
+
+        &:disabled {
+            opacity : 0;
+        }
+    }
+
+    .radio-buttons {
+        min-width: 18px;
+        height: 18px;
+    }
+
+    .checkbox-buttons {
+        min-width: 22px;
+        height: 19px;
+    }
+
+    // On last child remove margin right
+    .radio-buttons:last-child,
+    .checkbox-buttons:last-child {
+        margin: 0;
+    }
+
+    // Hiding the input
+    .radio-buttons > input[type="radio"],
+    .checkbox-buttons > input[type="radio"],
+    .checkbox-buttons > input[type="checkbox"] {
+        // Not using display:none so validation script works
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    // Styling the label
+    .radio-buttons > input[type="radio"] + label,
+    .checkbox-buttons > input[type="radio"] + label,
+    .checkbox-buttons > input[type="checkbox"] + label {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        padding: 3px 0 0 25px;
+        line-height: 0.8em;
+        @include fontSize(16);
+    }
+
+    .checkbox-buttons > input[type="checkbox"] + label {
+        padding: 5px 0 0 25px;
+    }
+
+    .radio-buttons > input[type="radio"] + label,
+    .checkbox-buttons > input[type="radio"] + label {
+        @include fontSize(16);
+        background: url(../images/bg_radio.png) left -20px no-repeat;
+    }
+
+    .radio-buttons > input[type="radio"]:checked + label,
+    .checkbox-buttons > input[type="radio"]:checked + label {
+        @include fontSize(16);
+        background: url(../images/bg_radio.png) left -1px no-repeat;
+    }
+
+    .checkbox-buttons > input[type="checkbox"] + label{
+        @include fontSize(16);
+        background: url(../images/bg_checkbox.png) left 0px no-repeat;
+    }
+
+    .checkbox-buttons > input[type="checkbox"]:checked + label{
+        @include fontSize(16);
+        background: url(../images/bg_checkbox.png) left -21px no-repeat;
+    }
+
+    // --
+    // Text
+
+    input[type="text"],
+    input[type="password"],
+    textarea,
+    select {
+        display: block;
+        width: 100%;
+        height:45px;
+        border: 0;
+        padding:5px 10px;
+        border:1px solid $light-grey-2;
+        outline: none;
+        @include fontSize(16);
+        font-family: $UbuntuCondensed;
+        border-radius: 0;
+        color: $dark-grey-font;
+
+        &:hover {
+            border: 1px solid $light-grey-3;
+        }
+
+        &:focus {
+            border: 1px solid $dark-grey-1;
+        }
+    }
+
+    textarea {
+        // height: 200px;
+        outline    : none;
+        resize     : none;
+        overflow   : hidden;
+        padding    : 10px;
+        height     : 100%;
+
+        &.contact-textarea {
+            height : 100px;
+        }
+
+        &:invalid {
+          box-shadow: none;
+        }
+
+        &:-moz-submit-invalid {
+          box-shadow: none;
+        }
+
+        &:-moz-ui-invalid {
+          box-shadow:none;
+        }
+    }
+
+    .comment-form textarea {
+            border      : 1px solid $light-grey-1;
+            // overflow    : hidden;
+            height      : 100%;
+            padding     : 9px 10px;
+            // line-height : 1.3em;
+    }
+
+    // --
+    // Select
+    // Overiding Bootstrap style
+    // In a span to protect other bootstrap elements
+
+    .select-box {
+        display    : block;
+        height     : 100%;
+
+        a {
+            color: $dark-grey-font;
+        }
+
+        .inner {
+            li {
+                margin: 0;
+
+                a:hover {
+                    color:$light-grey-font;
+                }
+
+                // // Hiding first element in list
+                // &:first-child {
+                //     display: none;
+                // }
+            }
+        }
+
+        .bootstrap-select:not([class*="span"]) {
+            width: 100%;
+            height: 45px;
+            margin: 0;
+            @include fontSize(14);
+        }
+
+        .btn-group > .btn:first-child {
+            border-radius:0px;
+            height: 45px;
+            border: 0px;
+            box-shadow: 0;
+            color: $light-grey-font;
+            @include fontSize(16);
+            font-family: $UbuntuCondensed;
+            border: 1px solid $light-grey-2;
+
+            &:hover {
+                // Using !important too correctly override bootstrap
+                border: 1px solid $dark-grey-1;
+                background: #fff;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+
+            &:focus {
+                background: #fff;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+        }
+
+        .dropdown-menu > li > a {
+            padding: 15px 10px;
+            text-transform: none;
+            @include fontSize(14);
+            color: $dark-grey-font;
+        }
+
+        .dropdown-menu > li > a:hover,
+        .dropdown-menu > li > a:focus {
+            color: $dark-grey-font;
+            background: $light-grey-1;
+        }
+
+        // Select with add button
+        &.add-button {
+            position: relative;
+
+            .add-tags {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                height: 45px;
+                width: 45px;
+                line-height: 40px;
+                z-index:6;
+                color: $white;
+            }
+
+            .caret {
+                right: 60px;
+            }
+        }
+    }
+
+    .inline-option {
+        display: none;
+        margin: 10px 0 0 0;
+        background: #ffffff;
+        padding: 10px;
+    }
+
+    // Repositionning selected items
+    .list-tags > ul > li {
+        width: auto;
+        float: left;
+        margin: 5px 20px 0 0;
+
+        .remove {
+            text-transform: uppercase;
+            cursor: pointer;
+            background: url("../images/bg_remove.png") no-repeat scroll right center transparent;
+            padding-right: 20px;
+        }
+    }
+
+    .bootstrap-select.btn-group .dropdown-menu {
+        border-radius:0px;
+    }
+
+    // --
+    // Datepicker
+
+    .input-append {
+        width: 100%;
+        min-height: 45px;
+        height: auto;
+        position: relative;
+
+
+        input {
+            width: 100%;
+            height: 45px;
+            padding: 0 0 0 10px;
+            border: 1px solid $light-grey-2;
+            color: $dark-grey-font;
+
+            &.invalid {
+                margin : 0;
+            }
+        }
+
+        .add-on {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            height: 45px;
+            width: 45px;
+            line-height: 30px;
+        }
+    }
+
+    .datepicker table tr td.today,
+    .datetimepicker table tr td.today {
+        background: #fff;
+    }
+
+    .datepicker table tr td span,
+    .datetimepicker table tr td span {
+        color: $dark-grey-font;
+        text-shadow: 0px 0px transparent;
+    }
+
+    .datepicker table tr td.active.active,
+    .datepicker table tr td span.active.active,
+    .datetimepicker table tr td.active.active,
+    .datetimepicker table tr td span.active.active {
+        background: $light-grey-1;
+        color: $dark-grey-font;
+        text-shadow: 0px 0px transparent;
+
+        &.disabled {
+            background: $white;
+            color: $dark-grey-font;
+            border: 1px solid $light-grey-2;
+            text-shadow: 0px 0px transparent;
+        }
+
+        &.disabled:hover,
+        &:hover {
+            background: $light-grey-1;
+            color: $dark-grey-font;
+            text-shadow: 0px 0px transparent;
+        }
+    }
+
+    // --
+    // Upload
+
+    // Moving image
+    [class*="picto-"] {
+        display: inline-block;
+        // padding: 7px 0 7px 35px;
+    }
+
+    // Re-doing button
+    .btn-file {
+        display: block;
+        float: right;
+        width: 240px;
+        height:45px;
+        cursor: pointer;
+        @include fontSize(20);
+        font-family: $UbuntuCondensed;
+        text-transform: uppercase;
+        line-height: 45px;
+        padding: 0 10px;
+    }
+
+    // --
+    // Social
+
+    .social {
+        width: 80%;
+        float: right;
+
+        .inner-social {
+            display: inline-block;
+            float: left;
+            margin: 0 10px 10px 0;
+        }
+
+        .selected {
+            width: 100%;
+            float: left;
+        }
+
+        a {
+            width: auto;
+            display: inline-block;
+            height: 45px;
+            display: block;
+            float: left;
+            margin: 0 10px 0 0;
+            @include fontSize(26);
+
+            &:hover {
+                opacity: 1;
+            }
+
+            span {
+                transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                display: inline-block;
+                width: 45px;
+                height: 45px;
+                margin: 0;
+                border: 1px solid $light-grey-2;
+                color: $light-grey-font;
+                text-align: center;
+
+                &:before {
+                    @include fontSize(30);
+                    margin: 0;
+                    padding: 0;
+                    line-height: 45px;
+                }
+
+                &:hover {
+                    transition: all 0.2s;
+                    -moz-transition: all 0.2s;
+                    border: 1px solid $dark-grey-1;
+                    color: $dark-grey-font;
+                }
+            }
+        }
+
+        input {
+            width: 92%;
+            float: right;
+            display: none;
+        }
+    }
+
+    // --
+    // Submit
+
+    .submit-box input[type="submit"] {
+        display: inline-block;
+        float: right;
+        width: 150px;
+        height: 45px;
+    }
+
+    // --
+    // Errors
+
+    // Highlighting
+    input.invalid,
+    textarea.invalid {
+        border-color:$orange-1;
+        box-shadow:0 0 5px $orange-1;
+    }
+
+    // Messages
+    .invalid {
+        color: $orange-1;
+        @include fontSize(13);
+        margin: 5px 0 0 0;
+
+        // Special for upload button
+        &[for="uploadInput"]{
+            float: right;
+            clear: right;
+        }
+    }
+
+// --
+// Three Column Version
+
+.complex-form {
+
+    > li {
+        width: 100%;
+
+        .col-left {
+            display: inline-block;
+            vertical-align: middle;
+            width: 15%;
+            margin: 0 1% 0 0;
+            text-align: right;
+
+            &.top {
+                vertical-align: top;
+            }
+        }
+
+        .col-middle {
+            display: inline-block;
+            vertical-align: middle;
+            width: 63%;
+            margin: 0 1% 0 0;
+        }
+
+        .col-right {
+            display: inline-block;
+            vertical-align: middle;
+            width: 20%;
+
+            span {
+                display: inline-block;
+                width: 35%;
+
+                &:last-child{
+                    width: 65%;
+                }
+            }
+        }
+    }
+
+    &.four-col {
+        > li {
+            .col-left {
+                vertical-align: middle;
+                width: 79%;
+
+                li {
+                    width: 100%;
+
+                    label {
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 19%;
+                        margin: 0 1% 0 0;
+                    }
+
+                    span {
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 80%;
+                    }
+
+                    &:last-child{
+                        margin: 0;
+                    }
+
+                    .top {
+                        vertical-align: top;
+                    }
+                }
+            }
+
+            .col-middle {
+                width: 14%;
+                margin: 0 1% 0 0;
+                text-align: center;
+                vertical-align: middle;
+
+                .select-box {
+                    text-align : left;
+                }
+            }
+
+            .col-right {
+                vertical-align: middle;
+                width: 5%;
+
+                span {
+                    transition: opacity 0.2s;
+                    -moz-transition: opacity 0.2s;
+
+                    width: 45px;
+                    height:45px;
+                    margin: 19px 0 0 0;
+                    line-height: 45px;
+                    @include fontSize(18);
+                    color: $light-grey-font;
+                    text-align: center;
+                    background: $dark-grey-2;
+                    opacity: 0.7;
+
+                    &:hover {
+                        transition: opacity 0.2s;
+                        -moz-transition: opacity 0.2s;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// --
+// Main Message - outside ul
+.main-error {
+    display: none;
+    width: 80%;
+    float: right;
+    margin: 0 0 20px 0;
+    padding: 5px 10px;
+    background: $light-grey-1;
+    color: $orange-1;
+    font-family: $Verdana;
+    @include fontSize(12);
+
+    &[class^="icon-"]:before,
+    &[class*=" icon-"]:before {
+        font-size: 150%;
+    }
+
+    &:last-child {
+        margin: 0;
+    }
+}
+
+// --
+// Home Error Message
+
+.error-home {
+    display: none;
+    float: left;
+    width: 100%;
+    background: $light-grey-1;
+    padding: 10px;
+    text-align: center;
+    margin: 10px 0 0 0;
+
+    p {
+        color: $dark-grey-font;
+        text-align: left;
+    }
+
+    a {
+        width: auto;
+        padding: 5px 10px;
+        line-height: 38px;
+        margin: 0;
+    }
+}
+
+ul.error_list {
+    @include fontSize(13);
+    border          : 1px solid $orange-1;
+    color           : $orange-1;
+    text-align      : left;
+    font-family     : $Verdana;
+    background-color: $white-font;
+    margin-bottom   : 25px;
+    padding         : 0.8%;
+
+    & > li{
+        float: none;
+        clear: both;
+        display: inline;
+    }
+}
+
+// --
+// Popover
+
+.popover-form{
+    margin-left: 5px;
+    width: 40%;
+    border: 0 none;
+    border-radius: 0;
+    background: none $background-blue-1;
+    color: #f5f5f5;
+    font-size: 0.875em;
+    font-family: $Verdana;
+    text-transform: none;
+    @include fontSize(14);
+}
+
+.popover{
+    @extend .popover-form;
+        z-index: -1;
+    &.in{
+        z-index: 1010;
+    }
+    &.left{
+        margin-left: -7px;
+    }
+    .arrow{
+        display: none;
+    }
+    .popover-content{
+        padding: 5%;
+    }
+    .popover-title{
+        display: none;
+    }
+}
+
+// --
+// Conditions links
+
+.conditions-right {
+    a {
+        color: $dark-grey-font;
+        text-decoration: underline;
+    }
+}
+
+// Typeahead + tagmanager styles
+
+.twitter-typeahead {
+    width: 100%;
+}
+
+input[type="text"].tm-input {
+    margin: 0;
+}
+
+.tag-list {
+    display    : block;
+
+    &.grey {
+        background : #d7d7d7;
+    }
+}
+
+.tm-tag {
+    @include fontSize(16);
+    margin        : 5px 5px 0 0;
+    border-radius : 0px;
+    box-shadow    : 0px 0px;
+    background    : $light-grey-1;
+    border        : 1px solid $light-grey-2;
+    color         : $dark-grey-font;
+    font-family   : $UbuntuCondensed;
+}
+
+.tt-dropdown-menu {
+    border-right: 1px solid $light-grey-2;
+    border-left: 1px solid $light-grey-2;
+    border-bottom: 1px solid $light-grey-2;
+}
+
+.tt-dropdown-menu .tt-suggestion {
+    background: $light-grey-1;
+    height: 30px !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background : $light-blue-1;
+        color      : $white;
+        cursor     : pointer;
+    }
+}
+
+.tt-hint {
+    background: $light-grey-1;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background : $light-blue-1;
+        color      : $white;
+        cursor     : pointer;
+    }
+}
+
+.tt-dropdown-menu .tt-suggestion.tt-is-under-cursor {
+    background: $light-blue-1;
+    color: $white;
+}
+
+.question-form{
+    background: $light-grey-1;
+}
+
+//--------------------------------------------
+//--------------------------------------------
+// ----------- ////--------------------------------------------
+// PUBLISH BOX ////--------------------------------------------
+// ----------- ////--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+
+.form-publication {
+    transform-origin: center center;
+    @include transition(width 0.3s ease-in-out);
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 auto;
+    line-height: 1em;
+    // width: 490px;
+    width: 770px;
+
+    background: $background-blue-2;
+    display: none;
+
+    a:hover {
+        color: $white-font;
+        text-decoration: none;
+    }
+
+    .btn-file {
+        display: inline-block;
+        float: none;
+    }
+
+    .text-box > textarea {
+        @include fontSize(16);
+        height      : 40px;
+        padding     : 12px 10px;
+        line-height : 1em;
+        border      : 0px solid transparent;
+    }
+
+    &.inner-publication {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+}
+
+    .publication-tabs,
+    .publication-inner-forms {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        text-align: left;
+    }
+
+    .publication-tabs {
+        padding: 20px 20px 0 20px;
+    }
+
+    .no-padding {
+        padding: 0px;
+    }
+
+    .inner-padding {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        padding: 20px;
+
+        &.small {
+            padding: 10px 20px;
+        }
+    }
+
+    .right-align {
+        text-align: right;
+    }
+
+    .publication-tabs-wrapper {
+        width: 100%;
+        list-style: none;
+        text-align: left;
+    }
+
+    .publication-tab-link {
+        position: relative;
+        display: inline-block;
+        vertical-align: bottom;
+        width: 75px;
+        max-height: 61px;
+        text-align: center;
+        color: $white;
+
+        // .arrow {
+        //     content: '';
+        //     position: absolute;
+        //     bottom: -15px;
+        //     left: 50%;
+        //     margin-left: -10px;
+        //     width: 0;
+        //     height: 0;
+        //     border-left: 10px solid transparent;
+        //     border-right: 10px solid transparent;
+
+        //     border-bottom: 10px solid $white;
+
+        //     opacity: 0;
+        //     display: none;
+        // }
+    }
+    .publication-link {
+        color: $dark-grey-1;
+        &.active {
+            color: $white;
+        }
+    }
+
+        .tab-text {
+            @include fontSize(12);
+            font-family: $UbuntuCondensed;
+            color: $white-font;
+        }
+
+    .publication-inner-form-wrapper {
+        @include transition(height 0.3s ease-in-out);
+        position : relative;
+        opacity  : 0;
+        display  : none;
+
+        &:first-of-type {
+            opacity: 1;
+            display: block;
+        }
+    }
+
+    // Form specials
+    .form-left,
+    .form-right {
+        display: inline-block;
+        vertical-align: middle;
+        // color: $white-font;
+
+        &.top {
+           vertical-align: top;
+        }
+    }
+
+    .form-left {
+        width: 30%;
+    }
+
+    .invitation-form .form-left {
+        width: 12%;
+    }
+
+    .form-right {
+        width: 70%;
+    }
+
+    .message-add-image{
+        height        : auto;
+        min-height    : 0;
+        background    : $background-blue-1;
+        border-bottom : 1px solid $background-grey-3;
+        border-left   : 1px solid $background-grey-3;
+        border-right  : 1px solid $background-grey-3;
+        overflow      : hidden;
+
+        .action-btn {
+            @include fontSize(14);
+            width: auto;
+            height: 25px;
+            padding: 5px;
+            margin: 0;
+            line-height: 1.2em;
+        }
+
+        .btn-file {
+            // width: 25px;
+        }
+    }
+
+    .send-link {
+        float: right;
+    }
+
+    // Ressource specials
+    .publication-inner-forms ul li,
+    .index-content ul li {
+        margin: 0 0 10px;
+    }
+
+    .publication-inner-forms .text-box {
+        position : relative;
+    }
+
+    .publication-inner-forms .action-btn {
+        @include fontSize(14);
+        width: auto;
+        height: 25px;
+        padding: 5px;
+        margin: 0;
+        line-height: 1.2em;
+    }
+
+    .publication-inner-forms .btn-file {
+        width: auto;
+    }
+
+    .publication-inner-forms .post-file-btn {
+        position    : absolute;
+        top         : 20px;
+        right       : 60px;
+        height      : 40px;
+        width       : 40px;
+        padding     : 0;
+        line-height : 40px;
+    }
+
+    .publication-inner-forms .post-message-btn {
+        position : absolute;
+        top      : 20px;
+        right    : 20px;
+        height   : 40px;
+        width    : 40px;
+        padding  : 0;
+    }
+
+    .publication-inner-forms .simple-message-input {
+        padding-right: 90px;
+    }
+
+    .twitter-typeahead {
+        background: $white;
+    }
+
+    // Indexiation
+
+    .indexing {
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+        background: rgba(255,255,255,0.05);
+    }
+
+    .indexing-title {
+        display: inline-block;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+
+        font-family: $UbuntuCondensed;
+        color: $white-font;
+        text-transform: uppercase;
+
+        > span {
+            text-transform: lowercase
+        }
+    }
+
+    .index-content {
+        display: none;
+    }
+
+    .half {
+        display: inline-block;
+        vertical-align: middle;
+        width: 49%;
+        margin-right: 2%;
+
+        &:last-of-type {
+            margin: 0;
+        }
+    }
+
+.uploaded-files-wrapper {
+    width  : 100%;
+    margin : 0;
+
+    .uploaded-element {
+        width         : 100%;
+        margin        : 0px;
+        padding       : 5px;
+        border-bottom : 1px solid $light-grey-2;
+
+        .new-file {
+            display        : inline-block;
+            vertical-align : middle;
+            width          : 90%;
+        }
+
+        .remove-upload {
+            @include fontSize(12);
+            display        : inline-block;
+            vertical-align : middle;
+            float          : right;
+            height         : 20px;
+            width          : 20px;
+            line-height    : 20px;
+            text-align     : center;
+            color          : $white;
+            background     : $red-1;
+
+            &:hover {
+                text-decoration : none;
+                background      : $red-2;
+            }
+        }
+    }
+
+    &.text-light .uploaded-element {
+        border-bottom: 0;
+
+         .new-file {
+            color: $white;
+        }
+    }
+}
+
+.info-bubble {
+    .form-right {
+        width : 63%;
+    }
+
+    .occupation-error {
+        display : none;
+    }
+
+    .form-info-bubble {
+        position       : relative;
+        display        : inline-block;
+        vertical-align : top;
+        width          : 6%;
+        text-align     : right;
+        float          : right;
+    }
+
+    .info-bubble-link {
+        @include transition(background 0.2s linear);
+        display        : inline-block;
+        width          : 45px;
+        height         : 45px;
+        text-align     : center;
+        line-height    : 45px;
+        background     : $new-blue-1;
+        color          : $white;
+
+        &:hover {
+            @include transition(background 0.2s linear);
+            background      : $new-blue-2;
+            text-decoration : none;
+        }
+    }
+
+    .info-bubble-hover {
+        @include transition(height 0.3s linear);
+        position   : absolute;
+        height     : 0;
+        width      : 200px;
+        right      : 0;
+        top        : 50px;
+        overflow   : hidden;
+        background : $dark-blue-1;
+        text-align : left;
+
+        ul {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 100%;
+            padding        : 10px;
+            color          : $white;
+        }
+
+        li {
+            padding       : 0 0 0 20px;
+            margin-bottom : 10px;
+
+            &.bold {
+                margin-bottom : 5px;
+                padding       : 0;
+            }
+        }
+
+        &.active {
+            @include transition(height 0.3s linear);
+            height     : 300px;
+            overflow-y : auto;
+        }
+
+        .children-list {
+        	padding : 0 0 0 20px;
+        }
+    }
+}
+
+
+// NEW FORMS                  //
+// @todo : clean up form scss //
+
+
+.new-form-styles {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%; // The width of our form should be defined by the parent //
+    // Main positioning & sizes //
+
+    .form-errors,
+    .form-wrapper,
+    .form-wrapper ul,
+    .form-wrapper ul .form-left,
+    .form-wrapper ul .form-right,
+    .form-wrapper ul .form-whitespace  {
+        display        : inline-block;
+        vertical-align : middle;
+        width          : 100%;
+    }
+
+    .form-wrapper > ul > li {
+        min-height : 45px;
+        margin     : 0 0 10px 0;
+
+        &:last-of-type {
+            margin : 0;
+        }
+    }
+
+    .form-wrapper > ul .form-left {
+        width   : 24%;
+        padding : 0 !important;
+    }
+
+    .form-wrapper > ul .form-right {
+        width      : 76%;
+    }
+
+    .form-wrapper > ul .form-left
+    .form-wrapper > ul .form-right {
+        height : 100%;
+    }
+
+    .small-info {
+        height      : 42px;
+        line-height : 42px;
+    }
+
+    .smaller-info {
+        background : transparent;
+    }
+
+    ul > li.single-col {
+        .form-left {
+            width : 0%;
+
+            > label {
+                display : none;
+            }
+        }
+        .form-right {
+            width : 100%;
+        }
+    }
+
+    ul > li.info-bubble {
+        .form-right {
+            width      : 72%;
+        }
+
+        .form-info-bubble {
+            width : 4%;
+        }
+    }
+
+    ul > li.top-label {
+        .form-left,
+        .form-whitespace  {
+            height      : 45px;
+            line-height : 45px;
+        }
+        .form-whitespace {
+            width      : 76%;
+            background : $white;
+        }
+        .form-right {
+            width : 100%;
+        }
+    }
+
+    .form-left > label {
+        display        : inline-block;
+        vertical-align : middle;
+    }
+
+    // Styles //
+
+    ul > li {
+        // @include transition(background 0.2s linear);
+        // background : $form-grey-1;
+
+        &.filed-col {
+            width         : 50%;
+            // background    : transparent;
+            padding-right : 1%;
+            margin        : 0;
+
+            > ul.sex-row-wrapper {
+                height : 45px;
+            }
+
+            &.left-col,
+            &.right-col {
+                width   : 49%;
+                padding : 0;
+            }
+
+            &.left-col {
+                margin-right : 1%;
+            }
+
+            &.right-col {
+                margin-left : 1%;
+            }
+
+
+        }
+
+        &.image-form {
+            // background : transparent;
+
+            .form-left {
+                label,
+                img {
+                    width : 60%;
+                }
+
+                label {
+                    padding    : 10px 0;
+                    // background : $form-grey-1;
+                }
+            }
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea,
+        select,
+        .select-box .btn-group > .btn:first-of-type {
+            @include fontSize(18);
+            @include transition(border 0.2s linear);
+            border     : 2px solid $form-grey-1;
+            color      : #000;
+        }
+
+        .form-left {
+            @include fontSize(16);
+            text-align  : left;
+        }
+
+        &:hover {
+            // @include transition(background 0.2s linear);
+            // background : $form-grey-3;
+
+            &.image-form {
+                background : transparent;
+            }
+
+            input[type="text"],
+            input[type="password"],
+            textarea,
+            select,
+            .select-box .btn-group > .btn:first-of-type {
+                @include transition(border 0.2s linear);
+                border : 2px solid $form-grey-3;
+            }
+        }
+
+        // &.light-blue {
+        //     // background : $form-blue-1;
+
+        //     input[type="text"],
+        //     input[type="password"],
+        //     textarea,
+        //     select,
+        //     .select-box .btn-group > .btn:first-of-type{
+        //         border : 2px solid $form-blue-1;
+        //     }
+
+        //     &:hover {
+        //         // background : $form-blue-3;
+
+        //         input[type="text"],
+        //         input[type="password"],
+        //         textarea,
+        //         select,
+        //         .select-box .btn-group > .btn:first-of-type {
+        //             border : 2px solid $form-blue-3;
+        //         }
+        //     }
+        // }
+    }
+
+    &.register-form {
+        ul > li {
+            background: transparent;
+
+            ul li {
+                // background : $form-grey-1;
+
+                .white-background {
+                    border       : 2px solid $form-grey-1;
+                    background   : $white-font !important;
+                }
+
+                .form-left {
+                    padding : 0;
+                }
+
+                label {
+                    @include fontSize(12);
+                    text-align : left;
+                    width      : 100%;
+                }
+
+                &:hover {
+                    // background: $form-grey-2;
+                }
+            }
+
+            &:hover {
+                // background: transparent;
+            }
+        }
+    }
+
+    .civilite {
+        width         : 49% !important;
+        margin        : 0 0 10px 0 !important;
+        background    : $form-grey-1 !important;
+        padding-right : 0px !important;
+
+        .form-left,
+        .form-right {
+            display        : inline-block;
+            vertical-align : top;
+            height         : 100%;
+            line-height    : 45px;
+        }
+
+        .form-left {
+            @include fontSize(12);
+            width      : 20%;
+            padding    : 0;
+            text-align : center !important;
+
+            > label {
+                display        : inline-block;
+                vertical-align : middle;
+            }
+
+        }
+
+        .form-right {
+            width         : 80%;
+            border        : 2px solid $form-grey-1;
+            padding       : 0 10px;
+        }
+
+        &:hover {
+            // background : $form-grey-2 !important;
+        }
+    }
+
+    // Extra non-essential classes //
+    .align-top {
+        vertical-align : top;
+    }
+
+    .extra-info-input {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+    }
+
+    #reset_password_password,
+    #reset_password_password_confirm {
+        .form-left,
+        .form-right {
+            display        : inline-block;
+            vertical-align : top;
+
+        }
+
+        .form-left {
+            width       : 20%;
+            background  : $form-grey-1;
+            height      : 100%;
+            line-height : 45px;
+            text-align  : center;
+        }
+
+        .form-right {
+            width : 80%;
+        }
+    }
+}
+
+.new-tabs {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 15%;
+    margin         : 0 0 10px 0;
+    font-family    : $UbuntuCondensed;
+    font-weight    : 400;
+
+    > ul,
+    > ul li {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+    }
+
+    > ul li {
+        line-height : 40px;
+    }
+
+    .tab {
+        height      : 40px;
+        line-height : 40px;
+        background  : $form-grey-1;
+        margin      : 0 0 10px 0;
+
+        &:last-of-typev {
+            margin : 0;
+        }
+    }
+
+
+    a {
+        @include fontSize(14);
+        @include transition(opacity 0.2s linear);
+        display        : inline-block !important;
+        vertical-align : top;
+        width          : 100%;
+        height         : 100%;
+        line-height    : 40px !important;
+        color          : #000;
+        text-align     : center;
+        text-transform : uppercase;
+        line-height    : 1em;
+        padding        : 0 !important;
+        opacity        : 0.6;
+        background     : $form-grey-3;
+
+        > span {
+            display        : inline-block;
+            vertical-align : middle;
+            line-height    : 1em;
+        }
+
+
+        &.active,
+        &:hover {
+            @include transition(opacity 0.2s linear);
+            text-decoration : none;
+            opacity         : 1;
+        }
+
+        &.active {
+        	span {
+				width : 90%;
+        	}
+
+        	&:after {
+        		content        : '>';
+        		display        : inline-block;
+        		vertical-align : middle;
+        		width          : 10%;
+        		text-align     : center;
+        	}
+        }
+    }
+
+    &:last-of-type {
+        margin : 0;
+    }
+}
+
+@media screen and (max-width: $portrait-screen) {
+    .form-publication {
+        width : 100%;
+    }
+
+    .profil-links .action-btn {
+        height      : 35px;
+        line-height : 35px;
+        width       : 35px;
+        @include fontSize(0);
+
+        &:before {
+            @include fontSize(16);
+        }
+    }
+
+    .fileupload {
+        height      : 35px;
+        line-height : 35px;
+        @include fontSize(0);
+
+        &:before {
+            @include fontSize(16);
+        }
+    }
+
+    .extra-message-info .message-add-image .action-btn,
+    .extra-message-info .message-add-image .profil-btn {
+        height      : 35px;
+        line-height : 35px;
+        width       : 35px;
+        padding     : 0px;
+        @include fontSize(0);
+
+        &:before {
+            @include fontSize(16);
+        }
+    }
+}
+
+
+
+// TEST //
+

@@ -1,0 +1,126 @@
+// Forcing font-size tu users
+html {
+    @include fontSize(16);
+}
+
+// Styles
+.bold {
+    font-weight : bold;
+}
+
+.small-header {
+    min-height : 80px;
+}
+
+.profil-generated-link {
+    color : $white;
+
+    &:hover {
+        color           : $white;
+        text-decoration : none;
+    }
+}
+
+.profil-generated {
+    @include fontSize(58);
+    position    : relative;
+    width       : 120px;
+    height      : 120px;
+    font-family : $UbuntuCondensed;
+    line-height : 120px;
+
+    > a {
+        display : block;
+        width   : 100%;
+        height  : 100%;
+        color   : $white;
+
+        &:hover {
+            color           : $white;
+            text-decoration : none;
+        }
+    }
+
+    .initials {
+        position   : absolute;
+        top        : 0;
+        left       : 0;
+        z-index    : 11;
+        width      : 100%;
+        height     : 100%;
+        text-align : center;
+    }
+
+    .generated-image {
+        position : absolute;
+        top      : 0;
+        left     : 0;
+        z-index  : 10;
+        width    : 100%;
+        height   : 100%;
+    }
+}
+
+.logo-home {
+    margin: 0 12px;
+}
+
+.not-available {
+    position : relative;
+    opacity  : 0.4;
+    cursor   : pointer;
+
+    &:after {
+        @include fontSize(12);
+        position         : absolute;
+        top              : -40px;
+        left             : 50%;
+        display          : none;
+        margin-left      : -90px;
+        padding          : 10px;
+        width            : 180px;
+        background-color : rgba(0,0,0,0.8);
+        color            : $white;
+        content          : "Bientôt disponible";
+        font-family      : $Verdana;
+        line-height      : 1em;
+    }
+
+    &:hover {
+        &:after{
+            display : block;
+        }
+    }
+}
+
+// CKEDITOR FIXES
+.cke_chrome {
+    border-radius : 0px !important;
+}
+
+.cke_toolgroup {
+    border-radius : 0px !important;
+}
+
+.cke_combo_button {
+    border-radius : 0px !important;
+}
+
+// ---------------- //
+// PEOPLE WHO LIKED //
+// ---------------- //
+
+.icon-heart2 {
+    position : relative;
+}
+
+.liked-list {
+    position    : absolute;
+    width       : 200px;
+    max-height  : 250px;
+    left        : 50%; // Top is done dynamicly in common.js
+    margin-left : -100px;
+    padding     : 10px;
+    background  : $background-blue-2;
+    color       : $white;
+}

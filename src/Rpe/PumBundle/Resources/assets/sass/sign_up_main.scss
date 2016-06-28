@@ -1,0 +1,628 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "vendors/_jcrop";
+
+// ------------
+// Specific CSS
+// ------------
+
+
+
+.modal-footer {
+    border: 0;
+    margin: 0;
+    padding: 10px 20px 20px 20px;
+    a {
+        margin: 0;
+        width: auto;
+        line-height: 26px;
+        padding: 10px;
+
+        &.left {
+            float: left;
+        }
+    }
+}
+
+header {
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    text-transform: none;
+    font-family: $MissionScript;
+    @include fontSize(27);
+    line-height: 80px;
+
+    a {
+        color: $white-font;
+
+        &:hover {
+            color: $white-font;
+            text-decoration: none;
+        }
+    }
+}
+
+.not-logged {
+    // @include background-image(linear-gradient(top, $bg-blue-1, $bg-blue-2));
+    background: $background-blue-1;
+    @include box-shadow( 0 0 3px 0 rgba(0,0,0,0.8) );
+}
+
+
+
+.content-step {
+    padding: 1% 0px 3% 0px;
+    @include fontSize(0);
+}
+
+.main-information-img{
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+
+    img{
+        width:90%;
+        height: auto;
+    }
+}
+
+
+
+.main-information {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    @include fontSize(18);
+    line-height: 1.2em;
+    text-align: center;
+    color: $white;
+
+    .box-orange {
+        background: $orange-1;
+        @include text-shadow($orange-2 1px 1px 0);
+        padding: 5px;
+        margin: 0 0 10px 0;
+
+        text-align: left;
+        font-family: $UbuntuCondensed;
+        @include fontSize(16);
+
+        p{
+            margin: 0;
+            padding: 0;
+        }
+
+
+    }
+
+    .liste-infos {
+        font-family: $UbuntuCondensed;
+        text-align: left;
+    }
+
+    .icon-right-dir {
+        position: relative;
+        @include fontSize(16);
+        padding: 0 0 0 30px;
+
+        &:before {
+            position: absolute;
+            @include fontSize(22);
+            color: $orange-1;
+            left: 0px;
+        }
+    }
+}
+.main-white-title {
+    color: $white-font;
+    display: block;
+    font-family: $MissionScript;
+    @include fontSize(36);
+    font-weight: normal;
+    line-height: 1em;
+    margin: 0 0 20px 0;
+}
+
+
+
+
+
+.form-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 5%;
+    background: $white-font;
+    margin: 0 0 20px 0;
+
+    .reserved {
+        position: absolute;
+        top: -20px;
+        right: 0;
+        @include fontSize(11);
+        color: $white-font;
+    }
+
+    .civilite {
+        float: none !important;
+        @include fontSize(12);
+
+        .form-left {
+            width: 20%;
+        }
+        .form-right{
+            width: 80%;
+        }
+    }
+    .filed-col {
+        width: 48%;
+        margin: 0 2% 10px 0;
+
+        &:last-child {
+            margin: 0;
+        }
+
+        .form-left {
+            width: 100%;
+            text-align: left;
+        }
+
+        .form-right {
+            width: 90%;
+
+            &.error input {
+                border-color : $red-1;
+            }
+        }
+
+        .extra {
+            width: 10%;
+        }
+    }
+
+    ul {
+        text-transform: uppercase;
+        @include fontSize(0);
+
+        .file-upload-fix {
+            @include fontSize(16);
+        }
+
+        [for=occupation],
+        [for=academy] {
+            width: 80%;
+        }
+
+        .form-left {
+            [for=occupation],
+            [for=academy] {
+                width: 100%;
+            }
+        }
+
+
+        li {
+            margin: 0 0 10px 0;
+
+            // .form-left {
+            //     color: $dark-grey-1 !important;
+            // }
+
+            // .form-right {
+            //     color: $dark-grey-1 !important;
+            // }
+        }
+    }
+
+    .checkbox-buttons {
+        text-transform: none;
+    }
+}
+
+.confirm-btn {
+    display: block;
+    float: right;
+    padding: 5px 10px
+}
+
+.conditions-right {
+    line-height: 1.5rem;
+
+    // Conditions font size
+    .checkbox-buttons > input[type="checkbox"] + label,
+    .checkbox-buttons > input[type="checkbox"] + label {
+        @include fontSize(14);
+    }
+}
+
+.form-black-title {
+    color: $dark-blue-font;
+    display: inline-block;
+    font-family: $HelveticaNeue;
+    @include fontSize(30);
+    margin: 0 0 0 0;
+    text-transform: uppercase;
+    vertical-align: middle;
+    width: 100%;
+    .big {
+        font-weight: bold;
+        &.line {
+            display: inline-block;
+            margin-right: 1%;
+        }
+    }
+}
+
+.form-infos {
+    color: $dark-blue-font;
+    @include fontSize(12);
+}
+
+ul.nav-register {
+    display: inline-block;
+    font-family: $HelveticaNeue;
+    line-height: 26px;
+    padding: 0px;
+    float: right;
+    vertical-align: middle;
+    width: 47%;
+
+    li {
+        background: url("../images/bg_nav_steps.png") no-repeat scroll 0px top transparent;
+        color: $light-grey-font;
+        display: block;
+        margin: 0 -5% 0 0;
+        padding: 21px 0px;
+        text-align: center;
+        text-transform: uppercase;
+        width: 205px;
+        &.active {
+            background-position: 0px bottom;
+            color: $white-font;
+            margin: 0 -5% 0 0;
+        }
+    }
+}
+
+.form-wrapper {
+    padding: 2%;
+}
+
+.form-inner-wrapper {
+    background: $background-white;
+}
+
+ul.bottom-form {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding: 0px;
+
+    li {
+        width: auto;
+        display: inline-block;
+        vertical-align: middle;
+        float: right;
+        font-family: $Verdana;
+        @include fontSize(14);
+        margin: 0;
+
+        &.left {
+            float: left;
+            color: $white;
+        }
+
+        &.button-confirm {
+            height: 50px;
+            line-height: 50px;
+            margin: 0 0 0 15px;
+
+            .confirm-btn {
+                height: 50px;
+                width: 100px;
+                color: $white-font;
+                font-family: $Verdana;
+                padding: 10% 5%;
+                @include fontSize(14);
+            }
+        }
+
+        a {
+            color: $white-font;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+// Second form
+
+.fileupload {
+    width: 100%;
+    text-align: center;
+
+    ul {
+        margin: 0;
+        text-transform: none;
+    }
+}
+
+.second-data {
+    height: 260px;
+    line-height: 260px;
+}
+
+.content-image,
+.content-info {
+    width: 50%;
+    display: inline-block;
+    vertical-align: bottom;
+    margin: 0;
+}
+
+.content-image {
+    text-align: right;
+    padding: 0 1% 0 0;
+    border: 0;
+
+    img {
+        float: right;
+        margin: 0;
+        border: 1px solid $light-grey-2;
+    }
+}
+
+.content-info {
+    text-align: left;
+    padding: 0 0 0 1%;
+    line-height: 1rem;
+
+    .title {
+        margin: 8px 5px 0 0;
+        text-transform: uppercase;
+        @include fontSize(14);
+        font-weight: bold;
+        font-family: $Verdana;
+        color: $dark-blue-font;
+    }
+
+    p {
+        width: 60%;
+        @include fontSize(12);
+        font-family: $Verdana;
+        color: $dark-grey-font;
+    }
+
+    ul {
+        margin: 0;
+    }
+
+    li:last-child {
+        margin: 0;
+    }
+
+    a,
+    span {
+        @include fontSize(18);
+        float: left;
+        padding: 0 0 0 5px;
+
+        &:hover,
+        &:focus {
+            color: $white-font;
+        }
+    }
+
+    span.fileupload-new:before {
+        margin: 0 0 0 40px;
+    }
+
+    .picto-webcam:before {
+        margin: 0 0 0 70px;
+    }
+}
+
+// Last form
+
+
+.extra-info {
+    .form-left {
+        text-transform: none;
+        font-family: $Verdana;
+        @include fontSize(14);
+        width: 25%;
+    }
+
+    .form-right {
+        width: 70%;
+    }
+
+    .extra {
+        width: 5%;
+    }
+}
+
+.social-form {
+    margin: 0;
+}
+
+.social {
+    width: 100%;
+
+    .social-selected {
+        width: 100%;
+    }
+}
+
+p {
+    text-transform: none;
+    font-family: $Verdana;
+    @include fontSize(14);
+}
+
+// --
+// Home sizes
+//
+
+.teachers {
+    ul > li.extra-info .form-right {
+        width: 80%
+    }
+}
+
+// --
+// Profil images
+.profil-image,
+.image-upload-details {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.profil-image {
+    width: 15%;
+}
+
+.image-upload-details {
+    width: 85%;
+    padding: 20px;
+}
+
+// .btn-file {
+//     float: left;
+//     color: $white-font;
+//     border-radius: 0px;
+
+//     &:hover {
+//         color: $white-font;
+//     }
+// }
+
+.action-btn {
+    margin: 0;
+    height: 50px;
+    width: auto;
+    padding: 5px 10px;
+    line-height: 2.2em;
+}
+
+.second-step {
+    text-align: center;
+}
+
+.bloc-left-image {
+    width: 50%;
+
+}
+
+.confirmation {
+    display: inline-block;
+    height: 350px;
+    background:url('../images/bg_ecran_etape3_confirmation.png') no-repeat;
+}
+
+.footer-nav {
+    margin:0;
+}
+
+.form-error-sex,
+.academy-error,
+.occupation-error {
+    width: 80%;
+    float: right;
+
+}
+
+[for=occupation],
+[for=academy] {
+    width: 80%;
+    float: right;
+}
+
+// Charte modal
+
+.modal-charte-wrapper {
+    top : 0;
+
+    .modal-body .body-gray {
+        padding : 10px;
+    }
+
+    .modal-body .body-gray h3,
+    .modal-body .body-gray p,
+    .modal-body .body-gray ul,
+    .modal-body .body-gray ul > li {
+        @include fontSize(12);
+        margin      : 0;
+        padding     : 0;
+        line-height : 1em;
+        font-family : $Verdana;
+    }
+
+    .modal-body .body-gray h3 {
+        @include fontSize(20);
+        margin : 20px 0;
+    }
+
+    .modal-body .body-gray p {
+        line-height : 1.6em;
+    }
+
+    .modal-body .body-gray ul {
+        margin          : 10px 0;
+        padding         : 0 10px;
+        line-height     : 1.6em;
+        list-style-type : disc;
+    }
+
+    .modal-body .body-gray ul > li {
+        display: list-item;
+        line-height: 1.6em;
+        list-style-type  : disc;
+    }
+}
+
+#popin_warning {
+    .body-gray {
+        margin : 0 0 20px 0;
+    }
+
+    .refuse-warning {
+        margin : 0 0 0 20px;
+    }
+
+    .accept-warning {
+        margin : 0 0 20px 20px;
+    }
+}
+
+.checkbox-buttons > input[type="checkbox"] + label {
+    text-transform : none;
+}
+
+@media screen and (max-width: $landscape-screen-large) {
+
+
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .main-white-title {
+        @include fontSize(30);
+    }
+
+    .form-wrapper {
+        .filed-col {
+            width: 100% !important;
+        }
+    }
+}

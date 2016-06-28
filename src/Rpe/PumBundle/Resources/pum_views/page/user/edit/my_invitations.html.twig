@@ -1,0 +1,147 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Invitations' %}
+{% set page_name_analytics = 'user/edit/invitations' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-account.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-account.js') }}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            {{ "account.my_account"|trans({}, 'rpe') }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{# FORM THEME #}
+{% block _invitation_email_row %}
+{#     {% set attr = attr|merge({'data-validation': 'email'}) %}#}
+{#     {% set attr = attr|merge({'data-validation-error-msg': 'Merci de remplir ce champ avec une adresse mail valide (ex : monadresse@viaeduc.fr).'}) %}#}
+    <li class="info-bubble invit-info-bubble">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            <span class="select-box">
+                <input autocomplete="off" type="text" id="invitation_email" name="invitation[email]">
+            </span>
+        </div>
+        <a href="#" class="info-bubble-link" data-toggle="modal" data-target="#invit-help">?</a>
+    </li>
+    {# {{ block('rpepum_form_text_row') }} #}
+{% endblock %}
+
+{% block _invitation_content_row %}
+    {% set type = 'html' %}
+    {% set attr = attr|merge({'data-validation': 'required'}) %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _invitation_submit_row %}
+    <li class="image-form">
+        <div class="form-left smaller">
+        </div>
+        <div class="form-right bigger">
+            <span class="text-box">
+                <input class="action-btn orange" name="confirm" type="submit" value="Envoyer l'invitation">
+            </span>
+        </div>
+    </li>
+{% endblock %}
+
+{% block main_content %}
+{% spaceless %}
+    {# {% form_theme form _self %} #}
+    <div class="form-inner-wrapper">
+        <div class="container-right box-with-padding">
+            <div class="tabbable tabbable-privacy-settings">
+                <ul class="nav new-tabs">
+                    {% set account_active_menu = 'invit_users' %}
+                    {% include 'pum://includes/common/componants/account/menu.html.twig' %}
+                </ul>
+                <div class="tab-content settings">
+                    <div class="tab-pane active" id="portlet_tab1">
+                        {% if user.isInvited == true %}
+                            <div class="bientot">
+                                Vous ne pouvez pas inviter de relations
+                            </div>
+                        {% else %}
+                            {% form_theme form _self %}
+                            {{ form_errors(form) }}
+                            {{ form_start(form, {attr: {class: 'new-form-styles validate-invite white-background invitation-form'}}) }}
+                                <ul class="conf-wrapper">
+                                    <!-- <p class="subtext">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, repellendus ratione excepturi ipsum vero non et. Quisquam, recusandae ipsam voluptas consectetur numquam esse illo voluptatum eveniet tenetur doloremque. Nobis, ea.
+                                    </p> -->
+
+                                    {{ form_rest(form) }}
+                                </ul>
+                            {{ form_end(form) }}
+                        {% endif %}
+                        {% if user.invitations.count %}
+                            <span class="small-title">Utilisateurs invités</span>
+                            <ul class="invited-wrapper">
+                                {% for awaitingInvitation in user.awaitingInvitations %}
+                                    <li>
+                                        <span class="email">{{ awaitingInvitation.email }}</span>
+                                        <a href="{{ path('send_invitation', {id: awaitingInvitation.id}) }}" class="action-btn light-blue">Relancer</a>
+                                        <a href="{{ path('delete_invitation', {id: awaitingInvitation.id}) }}" class="action-btn light-blue decal">Annuler</a>
+                                    </li>
+                                {% endfor %}
+
+                                {% for confirmedInvitation in user.confirmedInvitations %}
+                                	{% if confirmedInvitation.user %}
+                                    <li>
+                                        <a href="{{ path('profil', {id: hashEncode(confirmedInvitation.user.id)}) }}">{{ macros.show_user_avatar(confirmedInvitation.user, 'default', 120, 'small-image') }}</a>
+                                        <div class="user-information">
+                                            <a href="{{ path('profil', {id: hashEncode(confirmedInvitation.user.id)})}}" class="name">{{ confirmedInvitation.user.firstname ~ ' ' ~ confirmedInvitation.user.lastname }}</a>
+                                            <span class="role">{{ confirmedInvitation.user.occupation }}</span>
+                                        </div>
+                                        <div class="accepted">
+                                            {# <img src="../images/bg_validate.png" class="confirm-image"> #}
+                                            <span class="confirm-text">Inscrit</span>
+                                        </div>
+                                    </li>
+                                    {% endif %}
+                                {% else %}
+                                	<li>No confirmed invitations.</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade no-reload" id="invit-help">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Inviter des utilisateurs</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="invit-modal-list">
+                        <li>
+                            Saisissez l'adresse de courriel des personnes que vous souhaitez inviter à vous rejoindre sur Viaéduc, et éventuellement un message personnalisé. Elles recevront un email leur proposant de s'inscrire sur Viaéduc. Vous pouvez inviter jusqu'à 10 personnes en même temps, en saisissant leurs adresses séparées par un point-virgule. Cette possibilité est limitée à 10 adresses par envoi.
+                        </li>
+                        <li>
+                            Si une personne que vous invitez est déjà membre de Viaéduc, l'invitation ne lui sera pas envoyée et un message sur la page vous en informera.
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" role="button" data-dismiss="modal" class="action-btn light-blue small confirm-modal-message">Fermer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock %}

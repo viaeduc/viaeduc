@@ -1,0 +1,192 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block _survey_publish_multiple_widget %}
+    <span class="radio-buttons">
+        <input type="radio" id="{{ form.vars.id }}-1" name="{{ form.vars.full_name }}" value="0" {% if form.vars.value == 0 %}checked="checked"{% endif %}>
+        <label for="{{ form.vars.id }}-1">Choix simples</label>
+    </span>
+    <span class="radio-buttons">
+        <input type="radio" id="{{ form.vars.id }}-2" name="{{ form.vars.full_name }}"  {% if form.vars.value %}checked="checked"{% endif %}>
+        <label for="{{ form.vars.id }}-2">Choix multiples</label>
+    </span>
+{% endblock %}
+
+{% block _survey_publish_startDate_widget %}
+    <div class="input-append date calendar-datetimepicker">
+        <input type="text" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" data-date-format="dd/mm/yyyy hh:ii" data-date-constraint-element="#survey_publish_endDate" data-date-constraint-type="start" data-validation-error-msg="Veuillez choisir la date de début." />
+        <span class="add-on dark-grey square-btn icon-calendar"></span>
+    </div>
+{% endblock %}
+
+{% block _survey_publish_endDate_widget %}
+    <div class="input-append date calendar-datetimepicker">
+        <input type="text" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" data-date-format="dd/mm/yyyy hh:ii" data-validation-error-msg="Veuillez choisir la date de fin." />
+        <span class="add-on dark-grey square-btn icon-calendar"></span>
+    </div>
+{% endblock %}
+
+{% block _survey_publish_submit_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn orange confirm-new-vote">{{ "Valider"|trans() }}</button>
+{% endblock %}
+
+{% block _survey_edit_multiple_widget %}
+    <span class="radio-buttons">
+        <input type="radio" id="{{ form.vars.id }}-1" name="{{ form.vars.full_name }}" value="0" {% if form.vars.value == 0 %}checked="checked"{% endif %}>
+        <label for="{{ form.vars.id }}-1">Choix simples</label>
+    </span>
+    <span class="radio-buttons">
+        <input type="radio" id="{{ form.vars.id }}-2" name="{{ form.vars.full_name }}"  {% if form.vars.value %}checked="checked"{% endif %}>
+        <label for="{{ form.vars.id }}-2">Choix multiples</label>
+    </span>
+{% endblock %}
+
+{% block _survey_edit_startDate_widget %}
+    <div class="input-append date calendar-datetimepicker">
+        <input type="text" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" data-date-format="dd/mm/yyyy hh:ii" data-date-constraint-element="#survey_edit_endDate" data-date-constraint-type="start" data-validation-error-msg="Veuillez choisir la date de début." />
+        <span class="add-on dark-grey square-btn icon-calendar"></span>
+    </div>
+{% endblock %}
+
+{% block _survey_edit_endDate_widget %}
+    <div class="input-append date calendar-datetimepicker">
+        <input type="text" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" data-date-format="dd/mm/yyyy hh:ii" data-validation-error-msg="Veuillez choisir la date de fin." />
+        <span class="add-on dark-grey square-btn icon-calendar"></span>
+    </div>
+{% endblock %}
+
+{% block _survey_edit_submit_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn orange confirm-new-vote">{{ "Valider"|trans() }}</button>
+{% endblock %}
+
+{% block main_content %}
+    {% form_theme form _self %}
+
+    <!-- Survey form -->
+    {% spaceless %}
+        {{ form_errors(form) }}
+            {% if edit %}
+                {{ form_start(form, { action: path('edit_survey', {'id': survey.id}) }) }}
+            {% else %}
+                {{ form_start(form, { action: path('publish_survey', {'group_id': group.id}) }) }}
+            {% endif %}
+
+            <span class="vote-new-title">Résumez votre question avec des mots simples (200 caractères)</span>
+
+            <ul class="ressource-edit-wrapper">
+                <li>
+                    <div class="form-left">
+                        {{ form_label(form.question) }}
+                        <span class="label-details">(200 Caractères max)</span>
+                    </div><!--
+                    --><div class="form-right">
+                        {{ form_widget(form.question, {'attr': {'data-validation': 'required', 'data-validation-error-msg': 'Merci de saisir une question.'}}) }}
+                    </div>
+                </li>
+
+                {% if edit == 0 or is_active == 0 %}
+                    <li>
+                        <div class="form-left">
+                            {{ form_label(form.multiple) }}
+                        </div><!--
+                        --><div class="form-right">
+                            {{ form_widget(form.multiple) }}
+                        </div>
+                    </li>
+                {% endif %}
+
+                {% if edit %}
+                    {% if is_active == 0 %}
+                        {% for answer in survey.answers %}
+                            <li class="new-vote-answer">
+                                <div class="form-left">
+                                    <label for="{{ form.vars.name }}_answer-{{ loop.index }}">Réponse {{ loop.index }}</label>
+                                </div>
+                                <div class="form-right">
+                                    <span class="text-box">
+                                        <input type="text" id="{{ form.vars.name }}_answer-{{ loop.index }}" name="answer[{{ loop.index }}]" value="{{ answer.name }}" />
+                                        <a href="#" class="new-vote-remove-answer icon-cross"></a>
+                                    </span>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                {% else %}
+                    <li class="new-vote-answer">
+                        <div class="form-left">
+                            <label for="{{ form.vars.name }}_answer-1">Réponse 1</label>
+                        </div>
+                        <div class="form-right">
+                            <span class="text-box">
+                                <input type="text" id="{{ form.vars.name }}_answer-1" name="answer[1]" data-validation="required" data-validation-error-msg="Veuillez saisir au moins deux réponses.">
+                                <a href="#" class="new-vote-remove-answer icon-cross"></a>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="new-vote-answer">
+                        <div class="form-left">
+                            <label for="{{ form.vars.name }}_answer-2">Réponse 2</label>
+                        </div>
+                        <div class="form-right">
+                            <span class="text-box">
+                                <input type="text" id="{{ form.vars.name }}_answer-2" name="answer[2]" data-validation="required" data-validation-error-msg="Veuillez saisir au moins deux réponses.">
+                                <a href="#" class="new-vote-remove-answer icon-cross"></a>
+                            </span>
+                        </div>
+                    </li>
+                {% endif %}
+
+                {% if edit == 0 or is_active == 0 %}
+                    <li>
+                        <div class="form-left">
+                        </div>
+                        <div class="form-right">
+                            <a href="#" class="action-btn light-grey new-vote-add-answer icon-add">Ajouter une réponse</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="new-vote-line"></div>
+                    </li>
+                {% endif %}
+
+                <li>
+                    <div class="form-left">
+                        {{ form_label(form.startDate) }}
+                    </div><!--
+                    --><div class="form-right">
+                        {{ form_widget(form.startDate) }}
+                    </div>
+                </li>
+                <li>
+                    <div class="form-left">
+                        {{ form_label(form.endDate) }}
+                    </div><!--
+                    --><div class="form-right">
+                        {{ form_widget(form.endDate) }}
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="form-left">
+                        {{ form_label(form.timezone) }}
+                    </div><!--
+                    --><div class="form-right">
+                        {{ form_widget(form.timezone) }}
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="form-left">
+                    </div><!--
+                    --><div class="form-right">
+                        {{ form_row(form._token) }}
+                        {{ form_row(form.submit) }}
+                    </div>
+                </li>
+
+            </ul>
+
+        {{ form_end(form, {render_rest: false}) }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block sidebar '' %}

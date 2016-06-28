@@ -1,0 +1,83 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+    {% set userInEvent = user.isInEvent(event) %}
+    {% set status = 'waiting' %}
+
+    {% if event.ownerUser == user %}
+        {% set status = 'editor' %}
+    {% elseif userInEvent %}
+        {% if userInEvent.hasAccepted %}
+            {% set status = 'validated' %}
+        {% elseif userInEvent.hasRejected %}
+            {% set status = 'refused' %}
+        {% endif %}
+    {% endif %}
+
+    {% set startDate = event.startDate %}
+    {% set endDate = event.endDate %}
+
+    {% set multipleDay = 0 %}
+
+    {% if startDate|date('Ymd') != endDate|date('Ymd') %}
+       {% set multipleDay = 1 %}
+    {% endif %}
+    
+    {% set event_id = null %}
+    {% if deployEvent is not null %}
+        {% set event_id = deployEvent.id %}
+    {% endif %}
+
+    <div class="month-date-card event-{{ status }} agenda-click{% if event_id == event.id %} autodeploy{% endif %}" data-href="{{ path('ajax_eventdetails', {'id': event.id}) }}" data-event="{{ event.id }}">
+        <div class="card-date {% if multipleDay %}multiple-days{% endif %}">
+            {% if multipleDay %}
+                <div class="card-inner-left">
+                    du {{ startDate|date("j") }} <span class="month">{{ startDate|date("F")|localizeddate('none', 'none', app.request.locale, event.timezone, 'LLLL') }}</span>
+                </div><!--
+                --><div class="card-inner-right">
+                    au {{ endDate|date("j") }} <span class="month">{{ endDate|date("F")|localizeddate('none', 'none', app.request.locale, event.timezone, 'LLLL') }}</span>
+                </div>
+            {% else %}
+                <div class="card-inner-left">
+                    {{ startDate|date("j") }} <span class="month">{{ startDate|date("F")|localizeddate('none', 'none', app.request.locale, event.timezone, 'LLLL') }}</span>
+                </div><!--
+                --><div class="card-inner-right">
+                    <span class="day">{{ startDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'cccc')|capitalize }}</span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="card-time {% if multipleDay %}multiple-days{% endif %}">
+            <div class="card-inner-left">
+                {% if multipleDay %}
+                    {{ startDate|date("H:i")|localizeddate('none', 'none', app.request.locale, event.timezone, 'HH:mm') }}
+                {% else %}
+                    {{ startDate|date("H:i")|localizeddate('none', 'none', app.request.locale, event.timezone, 'HH:mm') }} - {{ endDate|date("H:i")|localizeddate('none', 'none', app.request.locale, event.timezone, 'HH:mm') }}
+                {% endif %}
+            </div><!--
+            --><div class="card-inner-right">
+                {% if multipleDay %}
+                    {{ endDate|date("H:i")|localizeddate('none', 'none', app.request.locale, event.timezone, 'HH:mm') }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="card-content">
+            {{ event.description|truncate(100, true)|e }}
+        </div>
+        <div class="card-footer">
+            {% set ownerGroup = event.ownerGroup %}
+            {% set ownerUser = event.ownerUser %}
+
+            {% if ownerGroup %}
+                {{ macros.show_group_avatar(ownerGroup, 'default', 40, 'agenda-card-image') }}
+
+                <span class="card-footer-text">{{ "agenda.event_from"|trans({}, 'rpe') }} {{ ownerGroup.name }} (créé par {{ ownerUser.firstname }} {{ ownerUser.lastname }})</span>
+            {% elseif ownerUser %}
+                {{ macros.show_user_avatar(ownerUser, 'avatar', 40, 'agenda-card-image') }}
+
+                <span class="card-footer-text">{{ "agenda.event_from"|trans({}, 'rpe') }} {{ ownerUser.firstname }} {{ ownerUser.lastname }}</span>
+            {% endif %}
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock %}

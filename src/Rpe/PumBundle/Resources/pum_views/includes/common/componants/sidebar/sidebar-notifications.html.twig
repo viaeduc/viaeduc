@@ -1,0 +1,34 @@
+{% if notifications is defined and notifications.count > 0 %}
+    <div class="side-componant grey">
+        <div class="padding-wrapper">
+            <h3 class="componant-title">{{ "sidebar.notifications"|trans({}, 'rpe') }}</h3>
+            <div class="notification-container">
+                <div class="swiper-wrapper">
+                    {% for notification in notifications %}
+                        <div class="swiper-slide">
+                            <div class="notification-left">
+                                <span class="notification-date">{{ notification.date|date("d/m/Y") }}</span>
+                                <span class="notification-time">{{ notification.date|date("H\\hi") }}</span>
+                            </div><!--
+                            --><div class="notification-right">
+                                <span class="notification-action"><span class="bold">{{ notification.user.firstname }} <span class="uppercase">{{ notification.user.lastname }}</span></span> {{ notification.content }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {# <div class="swiper-slide">
+                        <div class="notification-left">
+                            <span class="notification-date">17/11/2013</span>
+                            <span class="notification-time">18h01</span>
+                        </div><!--
+                        --><div class="notification-right">
+                            <span class="notification-action"><span class="bold">Madelaine <span class="uppercase">Brioche</span></span> a commenté la ressource "Professeur de collèges"</span>
+                        </div>
+                    </div> #}
+                </div>
+            </div><!--
+            --><div class="notification-scroll">
+            </div>
+        </div>
+        <a href="#" class="componant-link">{{ '> %count% notification aujourd\'hui|> %count% notifications aujourd\'hui'|transchoice(notifications.count, {'%count%':notifications.count}, 'rpe') }}</a>
+    </div>
+{% endif %}

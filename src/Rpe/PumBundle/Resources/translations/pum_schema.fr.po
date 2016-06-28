@@ -1,0 +1,145 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Rpe v1\n"
+"POT-Creation-Date: 2013-11-22 11:15+0100\n"
+"PO-Revision-Date: 2013-11-22 11:51+0100\n"
+"Last-Translator: \n"
+"Language-Team: Argos\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"Language: FR\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+
+
+################################################# Common #####################################################
+msgid "register.field_sex"
+msgstr "Civilité"
+
+msgid "social.user.sex.Madame"
+msgstr "Madame"
+
+msgid "social.user.sex.Monsieur"
+msgstr "Monsieur"
+
+msgid "social.user.status.ACTIVE"
+msgstr "ACTIVE"
+
+msgid "social.user.status.AWAITING_CONFIRMATION"
+msgstr "AWAITING_CONFIRMATION"
+
+msgid "social.user.status.LOCKED"
+msgstr "LOCKED"
+
+msgid "social.user.status.EXPIRED"
+msgstr "EXPIRED"
+
+msgid "social.user.type.COMMON"
+msgstr "COMMON"
+
+msgid "social.user.type.PRIVILEGE"
+msgstr "PRIVILEGE"
+
+msgid "social.user.type.ADMIN"
+msgstr "ADMIN"
+
+msgid "social.user.type.INVITED"
+msgstr "INVITED"
+
+msgid "social.user.type.EDITOR"
+msgstr "EDITOR"
+
+msgid "social.friend.status.ON_HOLD"
+msgstr "ON_HOLD"
+
+msgid "social.friend.status.ACCEPTED"
+msgstr "ACCEPTED"
+
+msgid "social.friend.status.REJECTED"
+msgstr "REJECTED"
+
+msgid "social.post.status.DRAFTING"
+msgstr "DRAFTING"
+
+msgid "social.post.status.PUBLISHED"
+msgstr "PUBLISHED"
+
+msgid "social.post.status.ARCHIVED"
+msgstr "ARCHIVED"
+
+msgid "social.post.status.DELETED"
+msgstr "DELETED"
+
+msgid "social.post.visibility.PUBLIC"
+msgstr "PUBLIC"
+
+msgid "social.post.visibility.FRIEND"
+msgstr "FRIEND"
+
+msgid "social.post.visibility.PRIVATE"
+msgstr "PRIVATE"
+
+msgid "social.group.accesstype.PUBLIC"
+msgstr "Public"
+
+msgid "social.group.accesstype.ON_DEMAND"
+msgstr "Privé"
+
+msgid "social.group.accesstype.ON_INVITATION"
+msgstr "Sur invitation"
+
+msgid "social.discussion.status.OPENED"
+msgstr "OPENED"
+
+msgid "social.discussion.status.ARCHIVED"
+msgstr "ARCHIVED"
+
+msgid "social.question.accesstype.PUBLIC"
+msgstr "Public"
+
+msgid "social.question.accesstype.FRIENDS"
+msgstr "Mes relations"
+
+msgid "social.question.accesstype.GROUP"
+msgstr "Mes groupes"
+
+msgid "social.invitation.status.AWAITING"
+msgstr "AWAITING"
+
+msgid "social.invitation.status.CONFIRMED"
+msgstr "CONFIRMED"
+
+msgid "social.invitation.status.CANCELLED"
+msgstr "CANCELLED"
+
+msgid "social.post_version.status.DRAFTING"
+msgstr "DRAFTING"
+
+msgid "social.post_version.status.PUBLISHED"
+msgstr "PUBLISHED"
+
+msgid "social.post_version.status.ARCHIVED"
+msgstr "ARCHIVED"
+
+msgid "social.post_version.status.DELETED"
+msgstr "DELETED"
+
+msgid "social.event.privacy.public"
+msgstr "Public"
+
+msgid "social.event.privacy.private"
+msgstr "Privé"
+
+msgid "social.blog.accesstype.PUBLIC"
+msgstr "Public"
+
+msgid "social.blog.accesstype.FRIENDS"
+msgstr "Tous mes contacts"
+
+msgid "social.blog.accesstype.PRIVATE"
+msgstr "Restreint"
+

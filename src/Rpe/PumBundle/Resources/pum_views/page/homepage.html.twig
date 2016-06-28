@@ -1,0 +1,255 @@
+{% extends "pum://layout.html.twig" %}
+
+{% set page_title = '' %}
+{% set page_name_analytics = 'homepage' %}
+{% set noMobileMenu = 'true' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/index-not-logged.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.index-not-logged.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    {% spaceless %}
+    <div class="cookie-notice">
+        <span class="cookie-notice-text">
+            En poursuivant votre navigation sur ce site, vous acceptez l'utilisation de cookies. <a href="/page/cgu">En savoir plus</a>
+        </span>
+        <a href="#" class="cookie-notice-close icon-cross"></a>
+    </div>
+    {% include "pum://includes/common/minimal_header.html.twig" %}
+    <div class="wrapper">
+        <!-- ********************* -->
+        <!-- Here goes the content -->
+        <!-- ********************* -->
+        <section class="content full">
+            <section class="section-up">
+                <div class="video-intro">
+                    <!-- <video id="welcome_video" class="video-js vjs-default-skin" controls preload="auto" width="567px" height="327px" poster="" data-setup="{}"> -->
+                    <video id="welcome_video" class="video-js vjs-default-skin">
+                    <!-- <video id="welcome_video"> -->
+                        {# <source src="{{ asset('bundles/rpepum/video/Intro_Viaeduc.mp4') }}" type='video/mp4' /> #}
+                        <source src="http://viaeduc.s3-website-eu-west-1.amazonaws.com/bundles/rpepum/video/Intro_Viaeduc.mp4" type="video/mp4" />
+                        <!-- <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+                        <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+                        <track kind="captions" src="fonts/demo.captions.vtt" srclang="en" label="English"></track> -->
+                        <!-- Tracks need an ending tag thanks to IE9 -->
+                    </video>
+                    <div class="video-launcher active">
+                        <div class="title-video"> {{ 'homepage.discover_video'|trans({}, 'rpe')}} </div>
+                        <div class="start-video">
+                            <img src="{{ asset('bundles/rpepum/images/tmp/bg_img_video.png') }}" alt="">
+                            <div class="play-video play"></div>
+                            <div class="action-btn orange btn-video play"> {{ 'homepage.see_video'|trans({}, 'rpe')}} </div>
+                        </div>
+                    </div>
+                    <div class="shadow active"></div>
+                    <div class="shadow"></div>
+                </div><!--
+                --><div class="connect">
+                    {{ macros.alertMessages() }}
+
+                    <h3 class="title-connect">{{ 'homepage.connect_title'|trans({}, 'rpe')}}</h3>
+                    {% if error %}
+                        {% if error.type == 'disabled' %}
+                            <div class="login-error">{{ 'homepage.disabled_login'|trans({}, 'rpe')}}
+                                <a href="{{ path('resend_enable_link', {'email': error.lastlogin}) }}" class="info-bubble-link" data-toggle="modal" data-target="#resend-enable-link">{{ 'homepage.resend_enable_link'|trans({}, 'rpe')}}</a>
+                            </div>
+                        {% else %}
+                            <div class="login-error">{{ 'homepage.error_login'|trans({}, 'rpe')}}</div>
+                        {% endif %}
+                    {% endif %}
+
+                        {{ form_start(form, {action: path('login_check'), attr: { 'class': 'login-form'}}) }}
+
+                        {% for row in form %}
+                            <!-- ul -->
+                            {{ (loop.first) ? '<ul>' }}
+                            <li class="{{ (row.vars.name == '_remember_me') ? 'information' }}">
+                                {% if row.vars.attr.placeholder is defined %}
+                                    {{ form_row(row, { label: false }) }}
+                                {% else %}
+                                    {{ form_row(row) }}
+                                    {% if row.vars.name == '_remember_me' %}
+                                        <a data-toggle="modal" href="#popin_forget_password" class="forget">{{ 'homepage.forgotten_pwd_question'|trans({}, 'rpe')}}</a>
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                            {{ (loop.last) ? '</ul>' }}
+                            <!-- /ul -->
+                        {% endfor %}
+                        {{ form_end(form) }}
+                    </ul>
+                    <div class="register">
+                        <span class="signup">{{ 'homepage.no_account'|trans({}, 'rpe')}}</span>
+                        <a href="{{ path('register') }}" class="">{{ 'homepage.create_account'|trans({}, 'rpe')}}</a>
+                    </div>
+                </div>
+            </section>
+            <div class="forget-password">
+                <div class="modal fade no-reload" id="resend-enable-link"><div class="modal-dialog"><div class="modal-content"></div></div></div>
+                <div class="modal fade no-reload" id="popin_forget_password">
+                        <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4 class="modal-title">{{ 'homepage.forgotten_pwd'|trans({}, 'rpe')}}</h4>
+                                        {{ form_start(lost_pwd_form, {action: path('login'), attr: { 'class': 'pass-forgotten-form'}}) }}
+                                            <fieldset>
+                                                <div class="body-gray">
+                                                    <p>{{ 'homepage.forgotten_pwd_content_1'|trans({}, 'rpe')}}</p>
+                                                    <p>{{ 'homepage.forgotten_pwd_content_2'|trans({}, 'rpe')}}</p>
+                                                    <div class="small-popin-wrapper">
+                                                        <div class="form-error-email"></div>
+                                                        <label class="small-label" for="email">{{ 'homepage.email_adress'|trans({}, 'rpe')}}</label>
+                                                        {{ form_widget(lost_pwd_form.email, {attr: { 'class': 'text small-input clear-text ', 'data-validation': 'email', 'data-validation-error-msg' : 'Veuillez saisir une adresse email.'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="button-password">
+                                                    <a class="action-btn dark-grey" data-dismiss="modal" aria-hidden="true">{{ 'homepage.button_cancel'|trans({}, 'rpe')}}</a>
+                                                    {{ form_widget(lost_pwd_form.Confirmer, {'label' : 'homepage.button_send'|trans(), 'attr' : {'class' : 'action-btn orange right'}}) }}
+                                                </div>
+                                            </fieldset>
+                                            {{ form_widget(lost_pwd_form._token) }}
+                                        {{ form_end(lost_pwd_form, {'render_rest': false}) }}
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            </div>
+
+            <section class="section-down-home inner">
+                <ul class="home-list-wrapper">
+                    <li class="home-list home-text">
+                        <span class="home-list-text">{{ 'homepage.advert_1'|trans({}, 'rpe')|raw }}</span>
+                    </li>
+                    <li class="home-list home-text">
+                        <span class="home-list-text">{{ 'homepage.advert_2'|trans({}, 'rpe')|raw }}</span>
+                    </li>
+                    <li class="home-list home-text">
+                        <span class="home-list-text">{{ 'homepage.advert_3'|trans({}, 'rpe')|raw }}</span>
+                    </li>
+                </ul>
+
+                <ul class="home-list-wrapper">
+                    <li class="home-list">
+                        <h3 class="home-list-title">{{ 'homepage.network'|trans({}, 'rpe')}}</h3>
+                        <div class="home-list-item">
+                            <span class="round-icon orange">
+                                <img alt="" src="{{ asset('bundles/rpepum/images/teacher.png') }}"/>
+                            </span>
+                            <div class="home-list-details">
+                                <span class="number">{{ userValidatedCount }}</span>
+                                <span class="list-inner-text">{{ 'homepage.teacher_signedup'|trans({}, 'rpe')}}</span>
+                            </div>
+                        </div>
+                        <div class="home-list-item">
+                             <span class="round-icon orange">
+                                <img alt="" src="{{ asset('bundles/rpepum/images/group.png') }}"/>
+                            </span>
+                            <div class="home-list-details">
+                                <span class="number">{{ groupCount }}</span>
+                                <span class="list-inner-text">{{ 'homepage.groups'|trans({}, 'rpe')}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="home-list">
+                        <h3 class="home-list-title">{{ 'homepage.resources'|trans({}, 'rpe')}}</h3>
+                        <div class="home-list-item">
+                            <span class="round-icon orange">
+                                <img src="{{ asset('bundles/rpepum/images/poste.png') }}" alt="">
+                            </span>
+                            <div class="home-list-details">
+                                <span class="number">{{ resourceCount }}</span>
+                                <span class="list-inner-text">{{ 'homepage.indexed_resources'|trans({}, 'rpe')}}</span>
+                            </div>
+                        </div>
+                        <div class="home-list-item">
+                            <span class="round-icon orange">
+                                <img alt="" src="{{ asset('bundles/rpepum//images/msg.png')}}"/>
+                            </span>
+                            <div class="home-list-details">
+                                <span class="number">{{ resourceAverageCount }}</span>
+                                <span class="list-inner-text">{{ 'homepage.new_contribution_per_day'|trans({}, 'rpe')}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="home-list">
+                        <h3 class="home-list-title">{{ 'homepage.services'|trans({}, 'rpe')}}</h3>
+                        <div class="home-list-item">
+                            <span class="round-icon orange">
+                                <img alt="" src="{{ asset('bundles/rpepum/images/friends.png') }}"/>
+                            </span>
+                            <div class="home-list-details">
+                                <span class="number"></span>
+                                <span class="list-inner-text">{{ 'homepage.partner_editor'|trans({}, 'rpe')}}</span>
+                            </div>
+                        </div>
+                        <div class="home-list-item">
+                            <span class="round-icon orange">
+                                <img alt="" src="{{ asset('bundles/rpepum/images/telephone.png') }}"/>
+                            </span>
+                            <div class="home-list-details">
+                                <span class="number"></span>
+                                <span class="list-inner-text">{{ 'homepage.exclusive_tool'|trans({}, 'rpe')}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </section>
+    </div>
+    <footer>
+        <nav class="footer-nav">
+            <ul class="footer-list">
+            {% if exception is defined %}
+                {% set footerLinks = [] %}
+            {% else %}
+                {% set footerLinks = pum_entities('area', {'identifier': 'footer-notlogged'}) %}
+            {% endif %}
+            {% for footer in footerLinks %}
+                {% for page in footer.pages %}
+                    {% if page.redirectUrl is not empty %}
+                        <li class="footer-item"><a href="{{ page.redirectUrl }}">{{ page.title }}</a></li>
+                    {% else %}
+                        <li class="footer-item"><a href="{{ path('cms_page', {'seo': page.objectSlug}) }}">{{ page.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+            {% else %}
+                {# <li class="footer-item"><a class="not-available" href="#">{{ "footer.about"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="not-available" href="#">{{ "footer.partners"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="not-available" href="#">{{ "footer.legal"|trans({}, 'rpe') }}</a></li> #}
+                <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+            {% endfor %}
+            </ul>
+        </nav>
+    </footer>
+    {% endspaceless %}
+{% endblock %}
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-compatability.html.twig' %}
+{% endblock %}
+
+
+
+{% block main_nav %}
+<!-- emptying blocks used on connected page -->
+{% endblock %}
+
+{% block notifs_all %}
+{% endblock %}
+
+{% block notifs_msg %}
+{% endblock %}

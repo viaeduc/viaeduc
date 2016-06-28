@@ -1,0 +1,650 @@
+/* function to convert px to rem */
+/* line 8, ../../assets/sass/layout/_sidebar.scss */
+.sidebar { width: 32.96%; display: inline-block; vertical-align: top; margin: 0 2.4% 0 0; }
+/* line 14, ../../assets/sass/layout/_sidebar.scss */
+.sidebar.sidebar-right { margin: 0 0 0 2.4%; }
+
+/* line 5, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb { margin-top: 15px; margin-bottom: 15px; }
+/* line 8, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb ul { margin: 0; padding: 0; }
+/* line 12, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: middle; line-height: 15px; margin: 0 1% 0 0; color: #293547; font-family: Verdana, Arial, sans-serif; position: relative; padding-left: 15px; }
+/* line 22, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li .icon-home { color: #293547; font-size: 22px; font-size: 1.375rem; }
+/* line 26, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.home { margin-right: 0; padding-left: 0; }
+/* line 30, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li:first-child a { padding-left: 0; }
+/* line 33, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li a, #breadcrumb li span { width: auto; color: #293547; font-size: 12px; font-size: 0.75rem; font-family: Verdana, Arial, sans-serif; position: relative; }
+/* line 41, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.item-index:before { position: absolute; left: 0; display: block; content: '>'; text-align: center; top: 0; line-height: 15px; font-size: 12px; font-size: 0.75rem; }
+
+/* line 5, ../../assets/sass/componants/_cover.scss */
+.cover { background: #1c2027; display: inline-block; position: relative; margin: 0 0 20px 0; width: 100%; height: 300px; color: #FFFFFF; }
+
+/* line 16, ../../assets/sass/componants/_cover.scss */
+.cover-content { height: 100%; }
+
+/* line 21, ../../assets/sass/componants/_cover.scss */
+.cover-left, .cover-right { display: inline-block; position: relative; vertical-align: top; height: 100%; }
+
+/* line 29, ../../assets/sass/componants/_cover.scss */
+.cover-left { position: relative; width: 33.04%; padding: 20px; }
+
+/* line 35, ../../assets/sass/componants/_cover.scss */
+.cover-right { position: relative; width: 66.96%; overflow: hidden; }
+/* line 40, ../../assets/sass/componants/_cover.scss */
+.cover-right .badge-container { position: absolute; top: 0; left: 0; height: 70px; width: 100%; padding: 10px; z-index: 500; }
+/* line 49, ../../assets/sass/componants/_cover.scss */
+.cover-right .badge-container > img { display: block; height: 50px; margin: 0 0 0 10px; float: right; }
+/* line 55, ../../assets/sass/componants/_cover.scss */
+.cover-right .badge-container > img:last-of-type { margin: 0; }
+
+/* line 63, ../../assets/sass/componants/_cover.scss */
+.cover-owner { display: inline-block; position: relative; height: 120px; width: 100%; }
+
+/* line 70, ../../assets/sass/componants/_cover.scss */
+.image-box { position: relative; display: inline-block; vertical-align: top; width: auto; height: 100%; overflow: hidden; width: 31.57894736842105%; }
+/* line 79, ../../assets/sass/componants/_cover.scss */
+.image-box .profil-image { width: 100%; }
+/* line 83, ../../assets/sass/componants/_cover.scss */
+.image-box .profil-image-settings { width: 21px; height: 21px; transition: all 0.2s linear; opacity: 0; position: absolute; top: 0; right: 0; padding: 2px; color: #293547; background: rgba(255, 255, 255, 0.5); font-size: 12px; font-size: 0.75rem; overflow: hidden; }
+/* line 97, ../../assets/sass/componants/_cover.scss */
+.image-box .profil-image-settings:hover { transition: all 0.2s linear; width: 70px; }
+/* line 102, ../../assets/sass/componants/_cover.scss */
+.image-box .profil-image-settings.active { transition: all 0.2s linear; width: 70px; }
+/* line 109, ../../assets/sass/componants/_cover.scss */
+.image-box:hover .profil-image-settings { transition: all 0.2s linear; opacity: 1; text-decoration: none; }
+
+/* line 117, ../../assets/sass/componants/_cover.scss */
+.profil-info { display: inline-block; vertical-align: top; width: 67%; padding: 0 0 0 20px; }
+/* line 123, ../../assets/sass/componants/_cover.scss */
+.profil-info [class*="profil-"] { float: left; clear: left; }
+/* line 128, ../../assets/sass/componants/_cover.scss */
+.profil-info h3[class*="profil-"] { font-size: 20px; font-size: 1.25rem; margin: 0; font-family: "Ubuntu Condensed", Arial, sans-serif; }
+/* line 133, ../../assets/sass/componants/_cover.scss */
+.profil-info h3[class*="profil-"]:last-of-type { font-weight: bold; text-transform: uppercase; margin: 0 0 5px 0; }
+/* line 139, ../../assets/sass/componants/_cover.scss */
+.profil-info h3[class*="profil-"].editor-title { font-size: 20px; font-size: 1.25rem; font-family: "Ubuntu Condensed", Arial, sans-serif; margin: 0 0 10px 0; }
+/* line 146, ../../assets/sass/componants/_cover.scss */
+.profil-info span[class*="profil-"] { font-size: 12px; font-size: 0.75rem; font-family: Verdana, Arial, sans-serif; color: #FFFFFF; }
+/* line 152, ../../assets/sass/componants/_cover.scss */
+.profil-info span[class*="profil-"]:nth-of-type(2) { margin: 0 0 5px 0; }
+
+/* line 161, ../../assets/sass/componants/_cover.scss */
+.profil-tags { display: inline-block; width: 100%; margin: 10px 0 10px 0; }
+
+/* line 167, ../../assets/sass/componants/_cover.scss */
+.interest-title { margin: 0; display: inline-block; font-family: Verdana, Arial, sans-serif; font-size: 13px; font-size: 0.8125rem; color: #6F7277; }
+
+/* line 175, ../../assets/sass/componants/_cover.scss */
+.interest-tags { display: inline-block; width: 100%; }
+
+/* line 193, ../../assets/sass/componants/_cover.scss */
+.description { display: block; width: 100%; margin: 10px 0 10px 0; font-size: 14px; font-size: 0.875rem; color: #FFFFFF; height: 85px; overflow: hidden; }
+/* line 205, ../../assets/sass/componants/_cover.scss */
+.description .description-title { display: inline-block; width: 100%; font-weight: bold; }
+
+/* line 212, ../../assets/sass/componants/_cover.scss */
+.profil-links { display: inline-block; position: absolute; left: 0; padding: 0 20px 20px 20px; bottom: 0; width: 100%; color: #FFFFFF; height: 55px; line-height: 2em; }
+/* line 224, ../../assets/sass/componants/_cover.scss */
+.profil-links > small, .profil-links > a { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: top; height: 20px; line-height: 20px; line-height: 3em; }
+/* line 233, ../../assets/sass/componants/_cover.scss */
+.profil-links > small:before, .profil-links > a:before { line-height: 1.5em; font-size: 12px; font-size: 0.75rem; }
+/* line 239, ../../assets/sass/componants/_cover.scss */
+.profil-links a { color: #FFFFFF; }
+/* line 243, ../../assets/sass/componants/_cover.scss */
+.profil-links .action-btn { font-size: 14px; font-size: 0.875rem; height: 100%; float: left; width: auto; padding: 0 8px; line-height: 35px; margin: 0 3px 0 0; }
+/* line 252, ../../assets/sass/componants/_cover.scss */
+.profil-links .action-btn:before { margin-left: 0; }
+/* line 257, ../../assets/sass/componants/_cover.scss */
+.profil-links .action-dropdown-wrapper { display: inline-block; vertical-align: top; width: 40%; }
+/* line 262, ../../assets/sass/componants/_cover.scss */
+.profil-links .action-dropdown-wrapper .action-dropdown-toggle { display: block; height: 35px; width: 35px; line-height: 35px; text-align: middle; }
+/* line 270, ../../assets/sass/componants/_cover.scss */
+.profil-links .action-dropdown-wrapper .action-dropdown-menu { border: 1px solid #9a9a9a; border-radius: 0px; color: #6F7277; }
+/* line 276, ../../assets/sass/componants/_cover.scss */
+.profil-links .action-dropdown-wrapper li { width: 100%; }
+/* line 280, ../../assets/sass/componants/_cover.scss */
+.profil-links .action-dropdown-wrapper .action-dropdown-link { -moz-transition: background 0.1s linear; -o-transition: background 0.1s linear; -webkit-transition: background 0.1s linear; transition: background 0.1s linear; width: 100%; text-align: left; }
+/* line 285, ../../assets/sass/componants/_cover.scss */
+.profil-links .action-dropdown-wrapper .action-dropdown-link:hover { -moz-transition: background 0.1s linear; -o-transition: background 0.1s linear; -webkit-transition: background 0.1s linear; transition: background 0.1s linear; background: #14768C; color: #FFFFFF; }
+
+/* line 294, ../../assets/sass/componants/_cover.scss */
+.cover-right { position: relative; }
+/* line 297, ../../assets/sass/componants/_cover.scss */
+.cover-right > img { min-width: 100%; }
+/* line 301, ../../assets/sass/componants/_cover.scss */
+.cover-right .cover-image-settings { width: 21px; height: 21px; transition: all 0.2s linear; opacity: 0; position: absolute; z-index: 10; top: 0; right: 0; padding: 2px; color: #293547; background: rgba(255, 255, 255, 0.5); font-size: 12px; font-size: 0.75rem; overflow: hidden; }
+/* line 316, ../../assets/sass/componants/_cover.scss */
+.cover-right .cover-image-settings:hover { transition: all 0.2s linear; width: 70px; }
+/* line 321, ../../assets/sass/componants/_cover.scss */
+.cover-right .cover-image-settings.active { transition: all 0.2s linear; width: 70px; }
+/* line 328, ../../assets/sass/componants/_cover.scss */
+.cover-right:hover .cover-image-settings { transition: all 0.2s linear; opacity: 1; text-decoration: none; }
+/* line 336, ../../assets/sass/componants/_cover.scss */
+.cover-right.active .icon-cog { opacity: 1; }
+
+@media screen and (max-width: 1024px) { /* line 354, ../../assets/sass/componants/_cover.scss */
+  .cover-owner { height: 120px; }
+  /* line 358, ../../assets/sass/componants/_cover.scss */
+  .profil-info { padding: 0 0 0 35px; width: 59%; }
+  /* line 362, ../../assets/sass/componants/_cover.scss */
+  .profil-info h3[class*="profil-"] { font-size: 13px; font-size: 0.8125rem; }
+  /* line 365, ../../assets/sass/componants/_cover.scss */
+  .profil-info span[class*="profil-"] { font-size: 10px; font-size: 0.625rem; }
+  /* line 370, ../../assets/sass/componants/_cover.scss */
+  .profil-tags .interest-tag { font-size: 11px; font-size: 0.6875rem; padding: 5px 5px; }
+  /* line 375, ../../assets/sass/componants/_cover.scss */
+  .profil-links .action-btn { font-size: 12px; font-size: 0.75rem; padding: 0 3px; } }
+@media screen and (max-width: 768px) { /* line 385, ../../assets/sass/componants/_cover.scss */
+  .cover { position: relative; width: 100%; height: auto; }
+  /* line 390, ../../assets/sass/componants/_cover.scss */
+  .cover .cover-content { position: absolute; top: 0; left: 0; bottom: 0; right: 0; }
+  /* line 398, ../../assets/sass/componants/_cover.scss */
+  .cover:after { content: ""; display: block; padding-top: 24%; } }
+/* line 7, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box { display: inline-block; width: 100%; padding: 4% 5%; background: #D7D7D7; font-family: Verdana, Arial, sans-serif; margin: 0 0 20px 0; }
+/* line 15, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box:last-child { margin: 0; }
+/* line 19, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box > h3 { font-family: "MissionScriptRegular", Arial, sans-serif; color: #293547; font-size: 30px; font-size: 1.875rem; margin: 0 0 10px 0; }
+/* line 26, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box ul > li { display: inline-block; width: 50%; margin: 0 0 5% 0; }
+/* line 31, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box ul > li img { display: inline-block; width: 65px; height: 65px; margin: 0 4px 0 0; }
+/* line 38, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box ul > li .info-details { display: inline-block; vertical-align: middle; width: 100px; color: #293547; font-size: 12px; font-size: 0.75rem; line-height: 1.1em; }
+/* line 46, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box ul > li .info-details a { display: inline-block; color: #293547; margin: 0 0 3px 0; font-weight: bold; }
+/* line 53, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box ul > li .info-details .square-btn { display: inline-block; color: #7A7B7D; margin: 7px 0 0 0; }
+/* line 60, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box ul > li:hover { text-decoration: none; }
+/* line 65, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box > a { float: right; font-size: 14px; font-size: 0.875rem; color: #293547; }
+/* line 71, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box.tag { padding: 0; background: transparent; }
+/* line 74, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box.tag h3 { width: 100%; }
+/* line 78, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box.tag a { transition: background 0.2s; -moz-transition: background 0.2s; display: inline-block; float: none; width: auto; padding: 10px 20px; background: #D7D7D7; margin: 0 5px 5px 0; text-transform: uppercase; }
+/* line 90, ../../assets/sass/componants/_side-box.scss */
+.sidebar-box.tag a:hover { transition: background 0.2s; -moz-transition: background 0.2s; text-decoration: none; background: #6F7277; }
+
+/* jquery.Jcrop.css v0.9.12 - MIT License */
+/* The outer-most container in a typical Jcrop instance If you are having difficulty with formatting related to styles on a parent element, place any fixes here or in a like selector
+ You can also style this element if you want to add a border, etc A better method for styling can be seen below with .jcrop-light (Add a class to the holder and style elements for that extended class)
+*/
+/* line 11, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-holder { direction: ltr; text-align: left; margin: 0 auto 20px auto; width: 300px; }
+
+/* Selection Border */
+/* line 19, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline, .jcrop-hline { background: #ffffff url("images/Jcrop.gif"); font-size: 0; position: absolute; }
+
+/* line 25, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline { height: 100%; width: 1px !important; }
+
+/* line 29, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline.right { right: 0; }
+
+/* line 32, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-hline { height: 1px !important; width: 100%; }
+
+/* line 36, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-hline.bottom { bottom: 0; }
+
+/* Invisible click targets */
+/* line 40, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-tracker { height: 100%; width: 100%; /* "turn off" link highlight */ -webkit-tap-highlight-color: transparent; /* disable callout, image save panel */ -webkit-touch-callout: none; /* disable cut copy paste */ -webkit-user-select: none; }
+
+/* Selection Handles */
+/* line 51, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle { background-color: #333333; border: 1px #eeeeee solid; width: 7px; height: 7px; font-size: 1px; }
+
+/* line 58, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-n { left: 50%; margin-left: -4px; margin-top: -4px; top: 0; }
+
+/* line 64, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-s { bottom: 0; left: 50%; margin-bottom: -4px; margin-left: -4px; }
+
+/* line 70, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-e { margin-right: -4px; margin-top: -4px; right: 0; top: 50%; }
+
+/* line 76, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-w { left: 0; margin-left: -4px; margin-top: -4px; top: 50%; }
+
+/* line 82, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-nw { left: 0; margin-left: -4px; margin-top: -4px; top: 0; }
+
+/* line 88, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-ne { margin-right: -4px; margin-top: -4px; right: 0; top: 0; }
+
+/* line 94, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-se { bottom: 0; margin-bottom: -4px; margin-right: -4px; right: 0; }
+
+/* line 100, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-sw { bottom: 0; left: 0; margin-bottom: -4px; margin-left: -4px; }
+
+/* Dragbars */
+/* line 107, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-n, .jcrop-dragbar.ord-s { height: 7px; width: 100%; }
+
+/* line 112, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-e, .jcrop-dragbar.ord-w { height: 100%; width: 7px; }
+
+/* line 117, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-n { margin-top: -4px; }
+
+/* line 120, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-s { bottom: 0; margin-bottom: -4px; }
+
+/* line 124, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-e { margin-right: -4px; right: 0; }
+
+/* line 128, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-w { margin-left: -4px; }
+
+/* The "jcrop-light" class/extension */
+/* line 132, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-light .jcrop-vline, .jcrop-light .jcrop-hline { background: #ffffff; filter: alpha(opacity=70) !important; opacity: 0.7 !important; }
+
+/* line 138, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-light .jcrop-handle { -moz-border-radius: 3px; -webkit-border-radius: 3px; background-color: #000000; border-color: #ffffff; border-radius: 3px; }
+
+/* The "jcrop-dark" class/extension */
+/* line 146, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dark .jcrop-vline, .jcrop-dark .jcrop-hline { background: #000000; filter: alpha(opacity=70) !important; opacity: 0.7 !important; }
+
+/* line 152, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dark .jcrop-handle { -moz-border-radius: 3px; -webkit-border-radius: 3px; background-color: #ffffff; border-color: #000000; border-radius: 3px; }
+
+/* Simple macro to turn off the antlines */
+/* line 160, ../../assets/sass/vendors/_jcrop.scss */
+.solid-line .jcrop-vline, .solid-line .jcrop-hline { background: #ffffff; }
+
+/* Fix for twitter bootstrap et al. */
+/* line 165, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-holder img, img.jcrop-preview { max-width: none; }
+
+/* line 169, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-keymgr { opacity: 0; }
+
+/* line 173, ../../assets/sass/vendors/_jcrop.scss */
+.modal-content { border-radius: 0px; }
+
+/* line 177, ../../assets/sass/vendors/_jcrop.scss */
+.modal-header { padding: 20px 20px 10px 20px; }
+
+/* line 181, ../../assets/sass/vendors/_jcrop.scss */
+.modal-body { padding: 10px 20px; }
+
+/* line 185, ../../assets/sass/vendors/_jcrop.scss */
+.modal-title { font-size: 30px; font-size: 1.875rem; font-family: "MissionScriptRegular", Arial, sans-serif; text-transform: none; }
+
+/* line 191, ../../assets/sass/vendors/_jcrop.scss */
+.modal-inner-wrapper { padding: 20px; background: #D7D7D7; border: 1px solid #9a9a9a; color: #313335; text-align: center; }
+
+/* line 199, ../../assets/sass/vendors/_jcrop.scss */
+.inner-description { margin: 0 0 20px 0; }
+
+/* line 203, ../../assets/sass/vendors/_jcrop.scss */
+.image-crop { margin: 0 auto 20px auto; }
+
+/* line 207, ../../assets/sass/vendors/_jcrop.scss */
+.fileupload .thumbnail { background-color: transparent; border: 0px solid transparent; border-radius: 0px; padding: 0px; margin: 0px; width: 100%; }
+
+/* line 216, ../../assets/sass/vendors/_jcrop.scss */
+.thumbnail > img { max-width: 300px; }
+
+/* line 220, ../../assets/sass/vendors/_jcrop.scss */
+.btn-file { display: inline-block; float: none; width: 300px; color: #FFFFFF; border-radius: 0; border: 0px solid transparent; }
+/* line 228, ../../assets/sass/vendors/_jcrop.scss */
+.btn-file:hover { color: #FFFFFF; }
+
+/* line 30, ../../assets/sass/my-account.scss */
+.profil-image, .image-upload-details { display: inline-block; vertical-align: middle; }
+
+/* line 36, ../../assets/sass/my-account.scss */
+.profil-image { width: 15%; }
+
+/* line 40, ../../assets/sass/my-account.scss */
+.image-upload-details { width: 70%; }
+/* line 43, ../../assets/sass/my-account.scss */
+.image-upload-details img, .image-upload-details .image-text, .image-upload-details #pum_object_avatar { display: inline-block; vertical-align: middle; }
+/* line 50, ../../assets/sass/my-account.scss */
+.image-upload-details img { width: 20%; }
+/* line 54, ../../assets/sass/my-account.scss */
+.image-upload-details > .image-text { width: 100%; padding: 10px 0 0 0; }
+
+/* line 60, ../../assets/sass/my-account.scss */
+#pum_object_avatar { display: inline-block; vertical-align: middle; width: 30%; }
+/* line 65, ../../assets/sass/my-account.scss */
+#pum_object_avatar .btn-file { width: 100%; }
+
+/* line 70, ../../assets/sass/my-account.scss */
+.modal-footer { border: 0; margin: 0; padding: 10px 20px 20px 20px; }
+/* line 74, ../../assets/sass/my-account.scss */
+.modal-footer a { margin: 0; width: auto; line-height: 26px; padding: 10px; }
+/* line 80, ../../assets/sass/my-account.scss */
+.modal-footer a.left { float: left; }
+
+/* line 87, ../../assets/sass/my-account.scss */
+.cover .cover-left { width: 100%; padding: 0px; }
+
+/* line 93, ../../assets/sass/my-account.scss */
+.side-form { width: 100%; color: #293547; font-size: 14px; font-size: 0.875rem; }
+/* line 98, ../../assets/sass/my-account.scss */
+.side-form .form-left, .side-form .form-right { width: 100%; }
+/* line 103, ../../assets/sass/my-account.scss */
+.side-form > li { margin: 0 0 10px 0; }
+/* line 107, ../../assets/sass/my-account.scss */
+.side-form .validate { width: 100%; text-align: right; }
+/* line 111, ../../assets/sass/my-account.scss */
+.side-form .validate > .action-btn { height: auto; width: auto; margin: 5px 0 0 0; font-size: 14px; font-size: 0.875rem; padding: 3px 5px; }
+
+/* line 126, ../../assets/sass/my-account.scss */
+.nav-tabs { width: 15%; display: inline-block; vertical-align: top; margin: 0; border-right: 1px solid #D7D7D7; padding: 20px 0; }
+/* line 134, ../../assets/sass/my-account.scss */
+.nav-tabs .tab { display: inline-block; vertical-align: top; width: 100%; line-height: 1em; height: auto; max-height: none; border: 0px solid transparent; }
+/* line 150, ../../assets/sass/my-account.scss */
+.nav-tabs .tab > a { display: block; line-height: 1em; height: 100%; width: 100%; text-align: left; background: transparent; color: #6F7277; text-transform: capitalize; margin: 0 0 10px 0; }
+/* line 161, ../../assets/sass/my-account.scss */
+.nav-tabs .tab > a:hover { background: transparent; color: #293547; }
+/* line 168, ../../assets/sass/my-account.scss */
+.nav-tabs .tab.active > a { background: transparent; color: #293547; }
+/* line 172, ../../assets/sass/my-account.scss */
+.nav-tabs .tab.active > a:hover { color: #293547; }
+/* line 177, ../../assets/sass/my-account.scss */
+.nav-tabs .tab.active:after { content: ''; }
+/* line 182, ../../assets/sass/my-account.scss */
+.nav-tabs .tab:nth-child(4) { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #D7D7D7; }
+
+/* line 190, ../../assets/sass/my-account.scss */
+.general-form { font-size: 13px; font-size: 0.8125rem; }
+/* line 193, ../../assets/sass/my-account.scss */
+.general-form > li { margin: 0 0 20px 0 !important; padding: 0 0 20px 0; border-bottom: 1px solid #D7D7D7; }
+/* line 198, ../../assets/sass/my-account.scss */
+.general-form > li.general-form-edit { padding: 20px; border-bottom: 0px solid transparent; background: #D7D7D7; display: none; }
+/* line 204, ../../assets/sass/my-account.scss */
+.general-form > li.general-form-edit .form-left { width: 20%; margin: 0; }
+/* line 209, ../../assets/sass/my-account.scss */
+.general-form > li.general-form-edit .form-right { width: 80%; padding: 0 0 0 20px; }
+/* line 216, ../../assets/sass/my-account.scss */
+.general-form .general-form-info { display: inline-block; vertical-align: middle; width: 95%; }
+/* line 222, ../../assets/sass/my-account.scss */
+.general-form .general-form-edit-btn { font-size: 13px; font-size: 0.8125rem; text-transform: capitalize; display: inline-block; vertical-align: middle; width: 5%; text-align: right; color: #14768C; }
+/* line 231, ../../assets/sass/my-account.scss */
+.general-form .general-form-edit-btn:hover { color: #126A7E; }
+/* line 236, ../../assets/sass/my-account.scss */
+.general-form .general-form-edit-wrapper { display: inline-block; vertical-align: top; width: 70%; text-align: center; }
+/* line 243, ../../assets/sass/my-account.scss */
+.general-form .general-form-inputs { display: inline-block; vertical-align: top; width: 70%; text-align: left; margin: 0 0 15px 0; }
+/* line 250, ../../assets/sass/my-account.scss */
+.general-form .general-form-inputs > li { margin: 0 0 5px 0; }
+/* line 253, ../../assets/sass/my-account.scss */
+.general-form .general-form-inputs > li:last-of-type { margin: 0; }
+/* line 258, ../../assets/sass/my-account.scss */
+.general-form .general-form-inputs .general-form-label, .general-form .general-form-inputs .general-form-input { display: inline-block; vertical-align: middle; }
+/* line 264, ../../assets/sass/my-account.scss */
+.general-form .general-form-inputs .general-form-label { width: 15%; margin: 0 5% 0 0; text-align: right; }
+/* line 270, ../../assets/sass/my-account.scss */
+.general-form .general-form-inputs .general-form-input { width: 80%; }
+/* line 275, ../../assets/sass/my-account.scss */
+.general-form .general-form-details { text-align: left; border-bottom: 1px solid #6F7277; padding: 0 0 10px 0; margin: 0 0 10px 0; }
+/* line 282, ../../assets/sass/my-account.scss */
+.general-form .general-form-confirm-btn, .general-form .general-form-cancel-btn { display: inline-block; vertical-align: top; width: auto; padding: 5px; }
+/* line 290, ../../assets/sass/my-account.scss */
+.general-form .general-form-confirm-btn { margin: 0 10px 0 0; }
+
+/* line 295, ../../assets/sass/my-account.scss */
+.tab-pane.active { display: inline-block; vertical-align: top; width: 100%; padding: 0 0 0 20px; }
+
+/* line 306, ../../assets/sass/my-account.scss */
+.tab-content { display: inline-block; vertical-align: top; width: 84%; }
+/* line 317, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper .form-left { width: 30%; }
+/* line 321, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper .form-right { width: 70%; }
+/* line 325, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper .extra { display: inline-block; vertical-align: middle; width: 100%; padding: 5px 10px; background: #FFFFFF; margin: 10px 0 0 0; border: 1px solid #9a9a9a; color: #313335; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-size: 0.75rem; text-transform: none; position: relative; bottom: -20px; display: none; opacity: 0; }
+/* line 344, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper .extra.top { vertical-align: top; margin: 7px 0 0 0; }
+/* line 349, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper .extra.email-check { padding: 0; width: 80%; float: right; border: 0px solid transparent; }
+/* line 357, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li { margin: 0 0 10px 0; }
+/* line 360, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li:last-child { margin: 0; }
+/* line 364, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.title-wrapper { margin: 0; }
+/* line 368, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.border { border-top: 1px solid #63666B; padding: 20px 0 10px 0; }
+/* line 373, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.no-margin { margin: 0 0 20px 0; }
+/* line 378, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.info-bubble .form-right { width: 64%; background: #FFFFFF; }
+/* line 383, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.info-bubble .form-info-bubble { position: relative; display: inline-block; vertical-align: top; width: 5%; text-align: right; float: right; }
+/* line 392, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.info-bubble .info-bubble-link { -moz-transition: background 0.2s linear; -o-transition: background 0.2s linear; -webkit-transition: background 0.2s linear; transition: background 0.2s linear; display: inline-block; width: 45px; height: 45px; text-align: center; line-height: 45px; background: #264b80; color: #FFFFFF; }
+/* line 402, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.info-bubble .info-bubble-link:hover { -moz-transition: background 0.2s linear; -o-transition: background 0.2s linear; -webkit-transition: background 0.2s linear; transition: background 0.2s linear; background: #214270; text-decoration: none; }
+/* line 409, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.info-bubble .info-bubble-hover { -moz-transition: height 0.3s linear; -o-transition: height 0.3s linear; -webkit-transition: height 0.3s linear; transition: height 0.3s linear; position: absolute; height: 0; width: 200px; right: 0; top: 50px; overflow: hidden; background: #293547; text-align: left; }
+/* line 420, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.info-bubble .info-bubble-hover ul { display: inline-block; vertical-align: top; width: 100%; padding: 10px; color: #FFFFFF; }
+/* line 428, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.info-bubble .info-bubble-hover li { padding: 0 0 0 20px; margin-bottom: 10px; }
+/* line 432, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.info-bubble .info-bubble-hover li.bold { margin-bottom: 5px; padding: 0; }
+/* line 438, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li.info-bubble .info-bubble-hover.active { -moz-transition: height 0.3s linear; -o-transition: height 0.3s linear; -webkit-transition: height 0.3s linear; transition: height 0.3s linear; height: 300px; overflow-y: auto; }
+/* line 445, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper > li #pum_object_emailPro.email-error { border-color: #D13938; }
+/* line 451, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper { margin: 20px 0 0 0; font-size: 14px; font-size: 0.875rem; }
+/* line 455, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper .decal { margin: 0 10px 0 0; }
+/* line 459, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li { border-left: 1px solid #63666B; border-right: 1px solid #63666B; border-bottom: 1px solid #63666B; padding: 5px 20px; }
+/* line 465, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li:first-child { border-top: 1px solid #63666B; }
+/* line 469, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li .email { display: inline-block; vertical-align: middle; }
+/* line 474, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li .action-btn { display: inline-block; vertical-align: middle; float: right; height: auto; font-size: 14px; font-size: 0.875rem; padding: 3px 10px; }
+/* line 484, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li .small-image { display: inline-block; vertical-align: middle; width: 10%; margin: 0 2% 0 0; }
+/* line 491, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li .user-information { display: inline-block; vertical-align: middle; width: 63%; }
+/* line 496, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li .user-information .name, .tab-content .invited-wrapper > li .user-information .role { float: left; clear: left; }
+/* line 502, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li .user-information .name { font-weight: bold; color: #293547; }
+/* line 506, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li .user-information .name:hover { text-decoration: none; }
+/* line 512, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li .accepted { display: inline-block; vertical-align: middle; text-align: right; width: 25%; }
+/* line 518, ../../assets/sass/my-account.scss */
+.tab-content .invited-wrapper > li .accepted .confirm-image, .tab-content .invited-wrapper > li .accepted .confirm-text { display: inline-block; vertical-align: middle; }
+/* line 549, ../../assets/sass/my-account.scss */
+.tab-content .top { vertical-align: top; }
+/* line 553, ../../assets/sass/my-account.scss */
+.tab-content .full-width { width: 100%; }
+/* line 557, ../../assets/sass/my-account.scss */
+.tab-content .grey-background { background: #63666B; margin: 20px 0; padding: 20px; }
+/* line 563, ../../assets/sass/my-account.scss */
+.tab-content .checkbox-buttons, .tab-content .radio-buttons { width: 100%; margin: 0 0 10px 0; }
+/* line 568, ../../assets/sass/my-account.scss */
+.tab-content .checkbox-buttons > input[type="checkbox"] + label, .tab-content .checkbox-buttons > input[type="radio"] + label, .tab-content .radio-buttons > input[type="checkbox"] + label, .tab-content .radio-buttons > input[type="radio"] + label { font-size: 14px; font-size: 0.875rem; line-height: 1.2em; }
+/* line 575, ../../assets/sass/my-account.scss */
+.tab-content .action-btn { width: auto; margin: 0; float: right; }
+/* line 581, ../../assets/sass/my-account.scss */
+.tab-content .title { font-size: 18px; font-size: 1.125rem; margin: 0 0 15px 0; }
+/* line 586, ../../assets/sass/my-account.scss */
+.tab-content .subtitle { color: #63666B; font-size: 17px; font-size: 1.0625rem; margin: 0 0 20px 0; }
+/* line 592, ../../assets/sass/my-account.scss */
+.tab-content .subtext { font-size: 12px; font-size: 0.75rem; }
+/* line 596, ../../assets/sass/my-account.scss */
+.tab-content .small-title { font-size: 14px; font-size: 0.875rem; font-weight: bold; }
+/* line 600, ../../assets/sass/my-account.scss */
+.tab-content .small-title span { font-weight: normal; }
+/* line 611, ../../assets/sass/my-account.scss */
+.tab-content .delete-account { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: top; width: 100%; margin: 5% 0 0 0; text-align: center; }
+
+/* line 622, ../../assets/sass/my-account.scss */
+.profil-box { padding: 0 0 20px 0; margin: 0 0 20px 0; font-size: 14px; font-size: 0.875rem; color: #313335; position: relative; }
+/* line 630, ../../assets/sass/my-account.scss */
+.profil-box .title { font-size: 18px; font-size: 1.125rem; padding: 4px 0 0 20px; color: #293547; text-transform: uppercase; vertical-align: bottom; }
+/* line 638, ../../assets/sass/my-account.scss */
+.profil-box .icon-user-experience { background: url("../images/pictos/icon_experience.png") no-repeat scroll 0px center transparent; }
+/* line 641, ../../assets/sass/my-account.scss */
+.profil-box .icon-formation { background: url("../images/pictos/icon_formation.png") no-repeat scroll 0px center transparent; }
+/* line 646, ../../assets/sass/my-account.scss */
+.profil-box .training-list .training-desc { font-size: 14px; font-size: 0.875rem; padding: 0 30% 0 0; line-height: 1.8em; }
+/* line 653, ../../assets/sass/my-account.scss */
+.profil-box .edit-title { font-size: 14px; font-size: 0.875rem; display: inline-block; vertical-align: top; color: #FFFFFF; float: none; padding: 0px 20px; height: 50px; line-height: 50px; }
+/* line 663, ../../assets/sass/my-account.scss */
+.profil-box .edit-title:hover { text-decoration: none; }
+/* line 668, ../../assets/sass/my-account.scss */
+.profil-box .edit-profil { height: auto; margin: 0 0 10px 0; padding: 20px; position: relative; display: block; color: #293547; border-top: 1px solid #c5c4c4; }
+/* line 677, ../../assets/sass/my-account.scss */
+.profil-box .edit-profil:hover { text-decoration: none; }
+/* line 681, ../../assets/sass/my-account.scss */
+.profil-box .edit-profil.active { border-top: none; display: none; }
+/* line 687, ../../assets/sass/my-account.scss */
+.profil-box .edit-profil.active > .exp-title, .profil-box .edit-profil.active > .exp-location, .profil-box .edit-profil.active > .exp-date, .profil-box .edit-profil.active > .dots { display: none; }
+/* line 694, ../../assets/sass/my-account.scss */
+.profil-box .edit-profil.active + .icon-cancel { display: none; }
+/* line 700, ../../assets/sass/my-account.scss */
+.profil-box .profil-content { position: relative; }
+/* line 703, ../../assets/sass/my-account.scss */
+.profil-box .profil-content .exp-title, .profil-box .profil-content .exp-subtitle { color: #293547; font-size: 16px; font-size: 1rem; line-height: 22px; display: inline-block; font-weight: bold; vertical-align: baseline; }
+/* line 712, ../../assets/sass/my-account.scss */
+.profil-box .profil-content .exp-subtitle { font-weight: normal; display: block; }
+/* line 716, ../../assets/sass/my-account.scss */
+.profil-box .profil-content .exp-location { line-height: 22px; font-weight: normal; display: inline-block; vertical-align: baseline; }
+/* line 722, ../../assets/sass/my-account.scss */
+.profil-box .profil-content .exp-location.with-margin { margin: 0 5px; }
+/* line 726, ../../assets/sass/my-account.scss */
+.profil-box .profil-content .exp-date { line-height: 22px; float: right; margin-right: 80px; display: inline-block; font-weight: bold; vertical-align: baseline; }
+/* line 735, ../../assets/sass/my-account.scss */
+.profil-box .profil-content .icon-cog { position: absolute; right: 20px; top: 20px; font-size: 16px; font-size: 1rem; color: #14768C; }
+/* line 742, ../../assets/sass/my-account.scss */
+.profil-box .profil-content .icon-cog:hover { text-decoration: none; }
+/* line 747, ../../assets/sass/my-account.scss */
+.profil-box .profil-content .icon-cancel { transition: color 0.2s linear; position: absolute; right: 0; top: 0; font-size: 16px; font-size: 1rem; color: #7A7B7D; display: none; }
+/* line 756, ../../assets/sass/my-account.scss */
+.profil-box .profil-content .icon-cancel:hover { transition: color 0.2s linear; text-decoration: none; color: #D13938; }
+/* line 764, ../../assets/sass/my-account.scss */
+.profil-box .profil-content:hover .icon-cancel { display: block; }
+/* line 770, ../../assets/sass/my-account.scss */
+.profil-box:last-child { margin: 0; }
+
+/* line 775, ../../assets/sass/my-account.scss */
+.add-item { display: inline-block; vertical-align: top; width: 100%; overflow: hidden; }
+/* line 781, ../../assets/sass/my-account.scss */
+.add-item .form-left { width: 28%; }
+/* line 785, ../../assets/sass/my-account.scss */
+.add-item .form-right { width: 70%; }
+/* line 789, ../../assets/sass/my-account.scss */
+.add-item .extra-info { margin: 0 0 10px 0; }
+/* line 792, ../../assets/sass/my-account.scss */
+.add-item .extra-info:last-child { margin: 0; }
+/* line 797, ../../assets/sass/my-account.scss */
+.add-item .small-select { display: inline-block; width: 40%; margin-right: 5%; }
+/* line 802, ../../assets/sass/my-account.scss */
+.add-item .small-select:last-child { margin-left: 5%; margin-right: 0%; }
+/* line 808, ../../assets/sass/my-account.scss */
+.add-item .middle-select { display: inline-block; width: 10%; text-align: center; }
+
+/* line 817, ../../assets/sass/my-account.scss */
+.edit-content .professional-experiences-edit-form { margin: 20px 0 10px 0; }
+/* line 821, ../../assets/sass/my-account.scss */
+.edit-content.active { border-top: 1px solid #c5c4c4; }
+/* line 825, ../../assets/sass/my-account.scss */
+.edit-content .form-left { width: 28%; }
+/* line 829, ../../assets/sass/my-account.scss */
+.edit-content .form-right { width: 70%; }
+/* line 833, ../../assets/sass/my-account.scss */
+.edit-content .extra-info { margin: 0 0 10px 0; }
+/* line 836, ../../assets/sass/my-account.scss */
+.edit-content .extra-info:last-child { margin: 0; }
+/* line 841, ../../assets/sass/my-account.scss */
+.edit-content .small-select { display: inline-block; width: 40%; margin-right: 5%; }
+/* line 846, ../../assets/sass/my-account.scss */
+.edit-content .small-select:last-child { margin-left: 5%; margin-right: 0%; }
+/* line 852, ../../assets/sass/my-account.scss */
+.edit-content .middle-select { display: inline-block; width: 10%; text-align: center; }
+
+/* line 861, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper .small-info, .tab-content .form-wrapper .date-picker-wrapper { display: inline-block; vertical-align: middle; width: 30%; }
+/* line 867, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper .small-info .form-left, .tab-content .form-wrapper .date-picker-wrapper .form-left { width: 100%; }
+/* line 871, ../../assets/sass/my-account.scss */
+.tab-content .form-wrapper .small-info .form-right, .tab-content .form-wrapper .date-picker-wrapper .form-right { width: 100%; }
+
+/* line 876, ../../assets/sass/my-account.scss */
+.smaller-info { display: inline-block; vertical-align: middle; width: 10%; text-align: center; }
+
+/* line 883, ../../assets/sass/my-account.scss */
+.bientot { display: inline-bloc; vertical-align: middle; width: 100%; background-color: #FFFFFF; border: 1px solid #9a9a9a; padding: 20px; text-align: center; font-style: italic; }
+
+/* line 895, ../../assets/sass/my-account.scss */
+.error_list > li { width: 100%; }
+
+/* line 901, ../../assets/sass/my-account.scss */
+.main-notif-title { font-size: 24px; font-size: 1.5rem; font-family: "Ubuntu Condensed", Arial, sans-serif; color: #293547; margin: 0 0 10px 0; }
+
+/* line 908, ../../assets/sass/my-account.scss */
+.notif-title { font-size: 18px; font-size: 1.125rem; font-family: Verdana, Arial, sans-serif; color: #9a9a9a; margin: 0 0 10px 0; }
+
+/* line 915, ../../assets/sass/my-account.scss */
+.check-form { display: inline-block; vertical-align: top; width: 100%; padding: 20px; background: #D7D7D7; margin: 0 0 20px 0; }
+/* line 923, ../../assets/sass/my-account.scss */
+.check-form > li { display: inline-block; vertical-align: top; width: 25%; padding: 0 10px; }
+/* line 929, ../../assets/sass/my-account.scss */
+.check-form > li.first { width: 50%; }
+/* line 934, ../../assets/sass/my-account.scss */
+.check-form .checkbox-buttons > input[type="checkbox"] + label { padding: 3px 0 0 25px; text-transform: none; }
+/* line 940, ../../assets/sass/my-account.scss */
+.check-form.full > li { width: 100%; }
+/* line 945, ../../assets/sass/my-account.scss */
+.check-form:last-of-type { margin: 0; }
+
+/* line 951, ../../assets/sass/my-account.scss */
+.conf-wrapper li { margin: 0 0 10px 0; }
+/* line 955, ../../assets/sass/my-account.scss */
+.conf-wrapper .extra-info { margin: 0 0 10px 0; }
+/* line 958, ../../assets/sass/my-account.scss */
+.conf-wrapper .extra-info:last-of-type { margin: 0; }
+/* line 963, ../../assets/sass/my-account.scss */
+.conf-wrapper p { font-size: 14px; font-size: 0.875rem; font-family: "Ubuntu Condensed", Arial, sans-serif; display: inline-block; padding: 0 5px 0 0; font-weight: 400; margin: 0; padding-left: 10px; }
+
+/* line 976, ../../assets/sass/my-account.scss */
+#pum_object_password_confirm { -moz-transition: height 0.2s linear; -o-transition: height 0.2s linear; -webkit-transition: height 0.2s linear; transition: height 0.2s linear; height: 0; overflow: hidden; }
+/* line 981, ../../assets/sass/my-account.scss */
+#pum_object_password_confirm.active { -moz-transition: height 0.2s linear; -o-transition: height 0.2s linear; -webkit-transition: height 0.2s linear; transition: height 0.2s linear; height: 45px; overflow: visible; }
+
+/* line 988, ../../assets/sass/my-account.scss */
+.current-password { -moz-transition: height 0.2s linear; -o-transition: height 0.2s linear; -webkit-transition: height 0.2s linear; transition: height 0.2s linear; min-height: 0; height: 0; overflow: hidden; }
+/* line 994, ../../assets/sass/my-account.scss */
+.current-password.active { -moz-transition: height 0.2s linear; -o-transition: height 0.2s linear; -webkit-transition: height 0.2s linear; transition: height 0.2s linear; height: auto; overflow: visible; }
+
+/* line 1002, ../../assets/sass/my-account.scss */
+.invit-info-bubble .form-right { width: 64% !important; margin: 0 1.5% 0 0 !important; }
+/* line 1007, ../../assets/sass/my-account.scss */
+.invit-info-bubble .form-info-bubble { width: 4%; }
+
+/* line 1013, ../../assets/sass/my-account.scss */
+.modal .modal-body { text-align: center; }
+/* line 1016, ../../assets/sass/my-account.scss */
+.modal .modal-body .invit-modal-list { display: inline-block; vertical-align: top; list-style: disc; width: 80%; text-align: left; }
+/* line 1023, ../../assets/sass/my-account.scss */
+.modal .modal-body .invit-modal-list > li { margin: 0 0 10px 0; }
+/* line 1026, ../../assets/sass/my-account.scss */
+.modal .modal-body .invit-modal-list > li:last-child { margin: 0; }

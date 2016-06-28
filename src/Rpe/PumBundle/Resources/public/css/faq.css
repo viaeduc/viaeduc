@@ -1,0 +1,48 @@
+/* function to convert px to rem */
+/* line 8, ../../assets/sass/layout/_sidebar.scss */
+.sidebar { width: 32.96%; display: inline-block; vertical-align: top; margin: 0 2.4% 0 0; }
+/* line 14, ../../assets/sass/layout/_sidebar.scss */
+.sidebar.sidebar-right { margin: 0 0 0 2.4%; }
+
+/* line 19, ../../assets/sass/faq.scss */
+.faq-sidebar-tip { display: inline-block; vertical-align: top; width: 100%; padding: 20px; margin: 0 0 10px 0; background: #1c2027; color: white; }
+
+/* line 29, ../../assets/sass/faq.scss */
+.faq-sidebar-title { font-size: 24px; font-size: 1.5rem; position: relative; display: inline-block; vertical-align: top; width: 100%; margin: 0 0 30px 0; height: 60px; line-height: 60px; text-align: center; background: white; font-family: "Ubuntu Condensed", Arial, sans-serif; text-transform: uppercase; color: #293547; }
+/* line 44, ../../assets/sass/faq.scss */
+.faq-sidebar-title .arrow { position: absolute; bottom: -18px; left: 50px; width: 16px; height: 19px; background: url(../images/triangle_blanc.png) no-repeat scroll center top; }
+/* line 53, ../../assets/sass/faq.scss */
+.faq-sidebar-title .bold { font-weight: bold; }
+
+/* line 58, ../../assets/sass/faq.scss */
+.faq-sidebar-text { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: top; width: 100%; margin: 0 0 10px 0; font-family: Verdana, Arial, sans-serif; }
+/* line 66, ../../assets/sass/faq.scss */
+.faq-sidebar-text:last-of-type { margin: 0; }
+/* line 70, ../../assets/sass/faq.scss */
+.faq-sidebar-text .bold { text-transform: uppercase; font-weight: bold; }
+
+/* line 76, ../../assets/sass/faq.scss */
+.faq-sidebar-menu { display: inline-block; vertical-align: top; width: 100%; }
+/* line 81, ../../assets/sass/faq.scss */
+.faq-sidebar-menu .faq-sidebar-link { display: block; width: 100%; height: 40px; line-height: 40px; padding: 0 20px; background-color: #d7d7d7; color: #293547; border-bottom: 1px solid white; }
+/* line 93, ../../assets/sass/faq.scss */
+.faq-sidebar-menu .faq-sidebar-link.active { background-color: #ff7f00; color: white; }
+/* line 98, ../../assets/sass/faq.scss */
+.faq-sidebar-menu .faq-sidebar-link:hover { background-color: #293547; color: white; text-decoration: none; }
+/* line 105, ../../assets/sass/faq.scss */
+.faq-sidebar-menu .faq-sidebar-link:hover.active { background-color: #ff7f00; }
+
+/* line 112, ../../assets/sass/faq.scss */
+.faq-main-title { font-size: 30px; font-size: 1.875rem; position: relative; display: inline-block; vertical-align: top; width: 100%; height: 55px; font-family: "MissionScriptRegular", Arial, sans-serif; color: #293547; margin: 0 0 10px 0; }
+/* line 123, ../../assets/sass/faq.scss */
+.faq-main-title:before { content: ''; position: absolute; display: block; width: 100%; top: 50%; left: 0; margin-top: -2.5px; height: 1px; background: #293547; z-index: 101; }
+/* line 136, ../../assets/sass/faq.scss */
+.faq-main-title .inner-title { position: absolute; padding: 10px 20px 20px 0; background: white; z-index: 102; }
+
+/* line 144, ../../assets/sass/faq.scss */
+.faq-main-inner-title { font-size: 18px; font-size: 1.125rem; color: #293547; margin: 0 0 10px 0; font-family: Verdana, Arial, sans-serif; }
+
+/* line 151, ../../assets/sass/faq.scss */
+.faq-main-list > li { padding: 0 0 0 25px; margin: 0 0 5px 0; background: url(../images/icon-talk.png) no-repeat 0 4px; }
+/* line 156, ../../assets/sass/faq.scss */
+.faq-main-list > li:last-of-type { margin: 0 0 20px 0; }

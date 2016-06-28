@@ -1,0 +1,12 @@
+{% extends "pum://empty_layout.html.twig" %}
+{% block main_content %}
+    {% spaceless %}
+    	{% if post and user %}
+			{% if user.hasFavorited(post) %}	
+				<a id="fav-discussion-{{ post.id }}" class="js-loadmore js-confirm-modal {{ button_class|default('') }}" href="#" data-href="{{ path('delete_favorite_discussion', {'discussion_id': post.id}) }}" data-delete-link="{{ path('delete_favorite_discussion', {'discussion_id': post.id}) }}"  data-confirm="{{ 'messages.fdiscussion.delete'|trans({}, 'rpe') }}" data-replace-el="#fav-discussion-{{ post.id }}">{{ "messages.fdiscussion.delete_button"|trans({}, 'rpe') }}</a>
+			{% else %}
+				<a id="fav-discussion-{{ post.id }}" class="{{ button_class|default('') }}" href="{{ path('favorite-discussion', {'id': post.id}) }}" data-toggle="modal" data-target="#modal-fdiscussion" ><span>{{ "action.fdiscussion.add"|trans({}, 'rpe') }}</span></a>
+			{% endif %}
+		{% endif %}
+    {% endspaceless %}
+{% endblock main_content %}

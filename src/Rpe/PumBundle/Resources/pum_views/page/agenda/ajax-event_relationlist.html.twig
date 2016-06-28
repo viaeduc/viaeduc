@@ -1,0 +1,23 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="modal-label-report">Mes relations qui participent à l'évènement {{ event.title }}</h4>
+	</div>
+	<div class="modal-body">
+		{% for userInEvent in userRelations %}
+	        <a href="{{ path('profil', {id : hashEncode(userInEvent.user.id)}) }}">
+	            {{ macros.show_user_avatar(userInEvent.user, 'avatar', 90) }}
+
+	            <div class="profil-name">
+	                <span>{{ userInEvent.user.firstname }}</span>
+	                <span class="last-name">{{ userInEvent.user.lastname }}</span>
+	            </div>
+	        </a>
+		{% endfor %}
+	</div>
+	<div class="modal-footer">
+		<a role="button" data-dismiss="modal" class="action-btn light-blue">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+	</div>
+{% endblock main_content %}

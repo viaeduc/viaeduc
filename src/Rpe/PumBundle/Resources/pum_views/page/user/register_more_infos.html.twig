@@ -1,0 +1,253 @@
+{% extends "pum://layout.html.twig" %}
+
+{% set page_title = 'Plus d\'informations' %}
+{% set page_name_analytics = 'register/step2' %}
+{% set noMobileMenu = 'true' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/sign_up_main.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/tagmanager.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.form-second.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{# form #}
+{% block _pum_object_instructedDisciplines_row %}
+{% spaceless %}
+    {% set attr = attr|merge({class: 'teaching teaching-input tm-input tm-tag extra-info-input'}) %}
+    {% set row_li_class = 'extra-info' %}
+    {% set span_second_widget_class = 'first-tag-list tag-list' %}
+    {% set info_list_id = 'instructed_discipline' %}
+
+    {{ block('rpepum_object_entity_row') }}
+{% endspaceless %}
+{% endblock %}
+
+{% block _pum_object_interests_row %}
+{% spaceless %}
+    {% set attr = attr|merge({class: 'interest interest-input tm-input tm-tag extra-info-input'}) %}
+    {% set row_li_class = 'extra-info' %}
+    {% set span_second_widget_class = 'second-tag-list tag-list' %}
+    {{ block('rpepum_object_entity_row') }}
+{% endspaceless %}
+{% endblock %}
+
+{% block _pum_object_teachingLevels_row %}
+    {% set attr = attr|merge({class: 'niveau tm-input tm-tag extra-info-input'}) %}
+    {% set row_li_class = 'extra-info' %}
+    {% set span_second_widget_class = 'third-tag-list tag-list' %}
+    {% set info_list_id = 'teaching_level' %}
+
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _pum_object_birthdate_row %}
+{% spaceless %}
+    {% set endDate = "-16 years"|date('d/m/Y') %}
+
+    <li class="extra-info">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            <div class="input-append date calendar-birthdaypicker" id="date">
+                {% set attr = attr|merge({ readonly:true, 'data-date-initialdate': endDate, 'data-date-enddate': endDate }) %}
+                <input type="text" value="{{ value }}" {{ block('widget_attributes') }} data-date-format="dd/mm/yyyy" />
+                <span class="add-on dark-grey square-btn icon-calendar"></span>
+            </div>
+        </div>
+        <div class="extra">
+        </div>
+    </li>
+{% endspaceless %}
+{% endblock %}
+
+{% block _pum_object_avatar_row %}
+    {% import 'pum://macros/macros.html.twig' as rpe_macros %}
+
+    <li class="extra-info">
+        <div class="form-left top">
+            {{ form_label(form, "Image de profil") }}
+        </div>
+        <div class="form-right">
+            {% if form.vars.value != null and form.vars.value.id is defined %}
+                {{ rpe_macros.show_image(form.vars.value, 120) }}
+            {% else %}
+                <img src="{{ asset('bundles/rpepum/images/bg_upload.png') }}" class="profil-image">
+            {% endif %}
+            <div class="image-upload-details">
+                <p class="image-text">
+                    {{ "registerMore.profil_image_more"|trans({}, 'rpe')}}<br/>
+                    {{ "registerMore.change"|trans({}, 'rpe')}}
+                </p>
+                {{ form_widget(form) }}
+            </div>
+
+        </div>
+    </li>
+{% endblock _pum_object_avatar_row %}
+
+{% block _pum_object_avatar_name_row %}
+{% endblock _pum_object_avatar_name_row %}
+
+{% block _pum_object_avatar_file_row %}
+    {# <input class="file-upload-fix" type="file" {{ block('widget_attributes') }} /> #}
+    <span class="btn btn-file dark-grey">
+        <span class="open-modal-image">{{ "registerMore.change_image"|trans({}, 'rpe')}}</span>
+    </span>
+    <div class="modal fade modal-first modal-image edit_avatar no-reload">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modifier votre photo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-inner-wrapper">
+                        <p class="inner-description">{{ "registerMore.image_move"|trans({}, 'rpe')}}</p>
+                        <div class="body-update-photo fileupload fileupload-new" data-provides="fileupload">
+                            <div class="image-crop">
+                                <div class="fileupload-preview thumbnail">
+                                </div>
+                            </div>
+                            <span class="btn btn-file dark-grey">
+                                <span class="fileupload">{{ "registerMore.image_download"|trans({}, 'rpe')}}</span>
+                                <input type="file" class="uploadit" {{ block('widget_attributes') }} />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a role="button" class="action-btn light-grey left close-modal">{{ "registerMore.cancel"|trans({}, 'rpe')}}</a><!--
+                    --><a role="button" class="action-btn light-blue accept-profil">{{ "registerMore.accept"|trans({}, 'rpe')}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock _pum_object_avatar_file_row %}
+
+{% block _pum_object_emailPrivate_row %}
+{% spaceless %}
+    {#
+    <li class="extra-info">
+        <div class="form-left top">
+            {{ form_label(form, "Adresse mail personnelle") }}
+        </div>
+        <div class="form-right">
+            <p>
+                {{ "registerMore.email_more"|trans({}, 'rpe')}}
+            </p>
+            <span class="checkbox-buttons">
+                <input type="checkbox" id="email_check" name="emailCheck" value="emailCheck">
+                <label for="email_check">{{ "registerMore.personal_email"|trans({}, 'rpe')}}</label>
+            </span>
+        </div>
+        <div class="extra email-check">
+            <span class="text-box">
+                {{ form_widget(form, { 'attr': {'placeholder': 'jean.dupont@gmail.com'} }) }}
+            </span>
+        </div>
+    </li>
+    #}
+{% endspaceless %}
+{% endblock %}
+
+{% block text_row %}
+{% spaceless %}
+    {% set attr = attr|merge({class: 'extra-info-input'}) %}
+    {% set row_li_class = 'extra-info' %}
+    {{ block('rpepum_form_text_row') }}
+{% endspaceless %}
+{% endblock %}
+
+{% block textarea_row %}
+{% spaceless %}
+    {% set type = 'html' %}
+    {% set attr = attr|merge({class: 'extra-info-input'}) %}
+    {% set row_li_class = 'extra-info' %}
+    {{ block('rpepum_form_text_row') }}
+{% endspaceless %}
+{% endblock %}
+
+{% block confirmer_widget %}
+{% spaceless %}
+    <button type="submit" class="action-btn orange" id="confirmer" name="confirmer">{{ "Confirmer"|trans({}) }}</button>
+{% endspaceless %}
+{% endblock %}
+
+
+
+{% block content %}
+    {{ macros.modal('instructed_discipline', 'modal-info-list') }}
+    {{ macros.modal('teaching_level', 'modal-info-list') }}
+
+    {% form_theme form _self %}
+
+    {% include "pum://includes/common/minimal_header.html.twig" %}
+    <div class="wrapper">
+        <!-- ********************* -->
+        <!-- Here goes the content -->
+        <!-- ********************* -->
+        <section class="content full">
+            <section class="content-step second-step">
+                <div class="main-information">
+                    <h2 class="main-white-title">{{ "registerMore.validate_message"|trans({}, 'rpe')}}
+                        !</h2>
+                    <div class="box-orange">
+                        {{ "registerMore.fill_information1"|trans({}, 'rpe')}}<br />
+                        {{ "registerMore.fill_information2"|trans({}, 'rpe')}}<br />
+                        {{ "registerMore.fill_information3"|trans({}, 'rpe')}}{{ (user.isInvited ? '<a href="' ~ path('faq', {'type': 'invite'}) ~ '" target="_blank"> FAQ</a>' : '<a href="' ~ path('faq', {'type': 'member'}) ~ '" target="_blank"> FAQ</a>')|raw }}.<br />
+                        {{ "registerMore.fill_information4"|trans({}, 'rpe')}}<br /><br />
+                        {{ "registerMore.fill_information5"|trans({}, 'rpe')}}
+                    </div>
+                    <!--White title-->
+
+{#                     <!-- Liste informations step 1 -->
+                    <ul class="liste-infos">
+                        <li class="icon-right-dir">{{ "registerMore.disciplines_interests"|trans({}, 'rpe')}}</li>
+                        <li class="icon-right-dir">{{ "registerMore.teaching"|trans({}, 'rpe')}}</li>
+                        <li class="icon-right-dir">{{ "registerMore.describe"|trans({}, 'rpe')}}</li>
+                    </ul> #}
+                </div>
+            </section>
+            <section class="section-form">
+                {{ form_errors(form) }}
+                {{ form_start(form, { 'attr': { 'class': 'first-form new-form-styles' } }) }}
+                    <div class="form-wrapper">
+                        <div class="pre-form">
+                            <h2 class="form-black-title">
+                                <span class="big">{{ "registerMore.informations"|trans({}, 'rpe')}}</span> {{ "registerMore.professionnelles"|trans({}, 'rpe')}}
+                            </h2>
+                            <p class="form-infos">{{ "registerMore.professionnelles_informations"|trans({}, 'rpe')}}</p>
+                        </div>
+                        <div class="form-inner-wrapper">
+                            <div>
+                                <ul>
+                                    {{ form_rest(form) }}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="bottom-form">
+                        <li class="button-confirm">
+                            {{ block('confirmer_widget') }}
+                        </li>
+                        <li>
+                            <a href="#" class="action-btn dark-grey hidden">{{ "registerMore.visibility"|trans({}, 'rpe')}}</a>
+                        </li>
+                    </ul>
+                {{ form_end(form) }}
+            </section>
+        </section>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'pum://includes/common/footer.html.twig' %}
+{% endblock %}
+
+{# {% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-profil-image.html.twig' %}
+{% endblock %}
+ #}

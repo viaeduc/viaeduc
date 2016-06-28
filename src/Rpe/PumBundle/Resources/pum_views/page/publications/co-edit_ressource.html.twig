@@ -1,0 +1,39 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% spaceless %}
+    {% block submit_widget %}
+        <button type="submit" id="rpe_co_content_submit" name="rpe_co_content[submit]" class="action-btn orange">{{ 'common.valider'|trans({}, 'rpe') }}</button>
+    {% endblock %}
+
+    {% block main_content %}
+    <div class="pad-wrapper">
+        <!--  Formulaire de co-création de contenu d'une ressource -->
+        {% form_theme co_content_form _self %}
+
+        <div class="pad-wrapper-iframe">
+            {% if post is not null and ( user == post.author or ( not post.padIsClosed() and user.isInGroup(post.publishedGroup) ) ) and pad_id is not null %}
+                {{ form_start(co_content_form) }}
+                    {{ form_row(co_content_form.submit) }}
+                    {{ form_row(co_content_form._token) }}
+                {{ form_end(co_content_form, {render_rest: false}) }}
+
+                <div class="etherpad-title">{{ post.name }}</div>
+
+                <a href="#" class="action-btn light-blue" title="" id="padeditioniframe_link">{{ 'pad.edition'|trans({}, 'rpe') }}</a>
+                <iframe id="padeditioniframe_target" class="pad-iframe" src="{{ etherpad_base_url }}p/{{ pad_id }}?showChat=false&showLineNumbers=false&lang=fr" ></iframe>
+            {% else %}
+                <p>{{ 'pad.post.inaccessible'|trans({}, 'rpe') }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#padeditioniframe_link').on('click', function(e){
+                e.preventDefault();
+                document.getElementById("padeditioniframe_target").src=document.getElementById("padeditioniframe_target").src;
+            });
+        });
+    </script>
+    {% endblock %}
+{% endspaceless %}

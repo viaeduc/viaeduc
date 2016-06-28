@@ -1,0 +1,18 @@
+{% spaceless %}
+<div class="sub-left">
+    <!-- Back Button For Tablet Layout -->
+    {% if nav_item.submenu.title is defined %}
+    <h3 class="menu-title mp-back">{{ nav_item.submenu.title|trans({}, 'rpe') }}</h3>
+    {% endif %}
+    <!-- Navigation level 2 -->
+    {% if nav_item.submenu.nav is defined %}
+        {% for subnav_item in nav_item.submenu.nav %}
+            {{ (loop.first) ? '<ul>' }}
+                {% if subnav_item.route is defined and subnav_item.label is defined %}
+                    <li><a class="menu-btn" href="{{ path(subnav_item.route, subnav_item.routeparams|default({})) }}">{{ subnav_item.label|trans({}, 'rpe') }}</a></li>
+                {% endif %}
+            {{ (loop.last) ? '</ul>' }}
+        {% endfor %}
+    {% endif %}
+</div>
+{% endspaceless %}

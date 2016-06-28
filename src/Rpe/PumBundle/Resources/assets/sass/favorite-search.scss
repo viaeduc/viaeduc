@@ -1,0 +1,101 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "layout/_sidebar";
+@import "componants/_breadcrumbs";
+@import "componants/_forms";
+
+@import "componants/_tip-box-favorite-search";
+
+// ------------
+// Specific CSS
+// ------------
+
+.favorite-search-wrapper {
+    @include fontSize(12);
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    padding        : 20px;
+    background     : $light-grey-1;
+    border         : 1px solid $light-grey-2;
+    color          : $dark-blue-font;
+    font-family    : $Verdana;
+
+    li {
+        margin : 0 0 20px 0;
+    }
+
+    .action-btn {
+        float       : right;
+        margin      : 0;
+        padding     : 0 0.5em;
+        height      : 45px;
+        line-height : 45px;
+    }
+}
+
+.favorite-search-title {
+    @include fontSize(24);
+    margin         : 0 0 20px 0;
+    font-weight    : bold;
+    font-family    : $UbuntuCondensed;
+    letter-spacing : -1px;
+
+    > span {
+        font-weight : normal;
+    }
+}
+
+.favorite-search-inner-title {
+    @include fontSize(14);
+    margin      : 0 0 20px 0;
+    font-weight : bold;
+    font-family : $Verdana;
+}
+
+.inner-search-wrapper {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    padding        : 20px;
+    background     : $white;
+    border         : 1px solid $light-grey-2;
+}
+
+.favorite-search-left,
+.favorite-search-center,
+.favorite-search-right {
+    display        : inline-block;
+    vertical-align : middle;
+}
+
+.favorite-search-left {
+    width : 20%;
+}
+
+.favorite-search-center {
+    width : 55%;
+}
+
+.favorite-search-right {
+    width : 25%;
+}
+
+.favorite-search-left {
+    padding : 0 20px 0 0;
+}
+
+.favorite-search-right {
+    padding : 0 0 0 20px;
+}
+

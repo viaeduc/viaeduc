@@ -1,0 +1,18 @@
+{% if facets is defined %}
+    {% for facet_key,facet in facets %}
+        {% if facet_key != 'source' and search_type == 'notice' or search_type != 'notice' %}
+            <div class="search-filter-title">
+                {% set trans_key = 'search.facet.' ~ search_type ~ '.' ~ facet_key %}
+                <a href="#" class="search-filter-toggle icon-arrow-down7">{{ trans_key|trans({}, 'rpe') }}</a>
+            </div>
+            <div class="search-filter-links">
+                {% if app.request.query.get(facet_key) is iterable and app.request.query.get(facet_key)|length > 0 %}
+                    <a class="select_all" href="?{{ app.request.query.all|merge({(facet_key): null })|sort|url_encode }}">Tous <span></span></a>
+                {% else %}
+                    <a class="select_all active" href="#">Tous <span></span></a>
+                {% endif %}
+                {% include "pum://page/search/facets/name/" ~ facet_key ~ ".html.twig" %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}

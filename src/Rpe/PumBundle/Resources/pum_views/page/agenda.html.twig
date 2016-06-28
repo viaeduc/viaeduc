@@ -1,0 +1,90 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Agenda' %}
+{% set page_name_analytics = 'agenda/view' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/agenda.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/moment.min.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/fullcalendar.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/locales/fr.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/lazyload.min.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.agenda.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.loadmore.js') }}"></script>
+{% endblock %}
+
+{% block main_content %}
+    {% spaceless %}
+	{% embed "pum://includes/common/componants/filter.twig" %}
+        {% block title %}
+            {% if group is defined %}
+                <h2 class="filter-title">{{ "agenda.title_group"|trans({'%group%': group.name}, 'rpe') }}</h2>
+            {% else %}
+                <h2 class="filter-title">{{ "agenda.title"|trans({}, 'rpe') }}</h2>
+            {% endif %}
+        {% endblock %}
+        {% block filter %}
+            <div class="filter-right">
+                <ul class="filter-right-wrapper">
+                    {% if user.isInvited == false %}
+                        <li class="filter-link">
+                            <a href="{{ path('publish_event') }}" class="filter-btn icon-pencil">{{ "agenda.create_event"|trans({}, 'rpe') }}</a>
+                        </li>
+                    {% endif %}
+                    {% for agendaFilter in agendaFilters %}
+                        {% if loop.first %}
+                            <li class="filter-link">
+                                <select class="filter-select-btn js-select-href">
+                        {% endif %}
+                                    <option rel="{{loop.index0}}" {{ (mode is not null and mode == agendaFilter) ? 'selected="selected"' }} value="{{ path('agenda', {'mode': agendaFilter, 'year': currentMonth|date('Y'), 'month': currentMonth|date('n')}) }}">{{ ('agenda.filters.' ~ agendaFilter|lower)|trans({}, 'rpe') }}</option>
+                        {% if loop.last %}
+                                </select>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
+                {% set calendarActive = pum_var("calendar_active") %}
+
+
+                <ul class="filter-right-wrapper">
+                    <li class="filter-link">
+                        <span id="big" class="picto-big"></span>
+                        {% if calendarActive  %}
+                            <span id="small" class="picto-small agenda opac"></span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+    {{ macros.modal('relations') }}
+
+    <div class="event-wrapper-big active">
+        {% if group is defined %}
+            <div class="event-wrapper js-autoload" data-autoload="{{ path('ajax_eventlist_group', {'year': currentMonth|date('Y'), 'month': currentMonth|date('n'), 'group_id': group.id}) }}">
+                {{ macros.loader() }}
+            </div>
+        {% elseif event is defined %}
+            <div class="event-wrapper js-autoload" data-autoload="{{ path('ajax_eventlist_event', {'year': currentMonth|date('Y'), 'month': currentMonth|date('n'), 'event_id': event.id}) }}">
+                {{ macros.loader() }}
+            </div>
+        {% else %}
+            <div class="event-wrapper js-autoload" data-autoload="{{ path('ajax_eventlist', {'year': currentMonth|date('Y'), 'month': currentMonth|date('n'), 'mode': mode}) }}">
+                {{ macros.loader() }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="event-wrapper-small">
+        <div id="calendar" style="max-width: 900px;margin: 0 auto;" data-load="{{ path('ajax_calendar') }}">
+            {{ macros.loader() }}
+        </div>
+    </div>
+
+    {% endspaceless %}
+{% endblock %}

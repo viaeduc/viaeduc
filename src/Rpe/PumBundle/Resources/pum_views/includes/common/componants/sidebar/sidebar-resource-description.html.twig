@@ -1,0 +1,69 @@
+<div class="ressource-info">
+    {% if post.file is not null %}
+        <div class="ressource-image-wrapper">
+           <!--  <div class="box" style="width: 200px; height: 200px; position: absolute; background-color: rgba(0,0,0,0.2)"></div> -->
+            {{ macros.show_post_media(post, 'default', 200, 'ressource-image') }}
+        </div>
+    {% endif %}
+    <div class="ressource-description">
+        {% if post.teachingLevels.count > 0 %}
+        <div class="ressource-inner-info">
+            {{ 'Niveau : %levels%|Niveaux : %levels%'|transchoice(post.teachingLevels.count, {
+                '%levels%': '<span class="bold">' ~ post.teachingLevels|join(', ')|e ~ '</span>'
+            }, 'rpe')|raw }}
+        </div>
+        {% else %}
+            {{ 'Niveau : Tous' }}
+        {% endif %}
+        <br />
+        {% if post.disciplines.count > 0 %}
+            <div class="ressource-inner-info">
+                {{ 'Discipline : %disciplines%|Disciplines : %disciplines%'|transchoice(post.disciplines.count, {
+                    '%disciplines%': '<span class="bold">' ~ post.disciplines|join(', ')|e ~ '</span>'
+                }, 'rpe')|raw }}
+            </div>
+        {% else %}
+            {{ 'Discipline : Toutes' }}
+        {% endif %}
+
+        <div class="ressource-inner-info page-desc">{{ post.description }}</div>
+        {% if pum_var('active_licence') is not null and pum_var('active_licence') and post.license %}
+			<div class="ressource-inner-info page-licence">
+            	<p><a href="{{ post.license.link }}" class="ressource-inner-info-link" target="_blank">{{ post.license.title }}</a>
+            	<br /><a href="{{ post.license.link }}" class="ressource-inner-info-link" target="_blank">{{ macros.show_image(post.license.logo, 60) }}</a></p>
+    		</div>
+        {% endif %}
+        
+        {% if post.isVisible() == true and hasRight == true %}
+            {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                'type': 'post',
+                'object': post,
+                'style': 'link_post'
+            } %}
+            {% set group = null %}
+            {% if post.publishedGroup is not null %}
+                {% set group = pum_entity('group', {id: post.publishedGroup.id}) %}
+            {% endif %}
+            {% if post.publishedGroup is null or (post.publishedGroup is not null and post.publishedGroup.isSecret == false) %}
+                <a href="{{ path('publication_share', {'id': post.id}) }}" class="icon-share ressource-inner-info-link" data-toggle="modal" data-target="#modal-share">Partager (<span id="js-s-c-{{ post.id }}">{{ post.shareCount }}</span>)</a>
+            {% endif %}
+
+            {% set counter = post.bookmarkby.count %}
+            {% if post.isBookmark(user) %}
+                {% set action = 'remove' %}
+            {% else %}
+                {% set action = 'add' %}
+            {% endif %}
+            <a href="{{path('bookmark_post',{'mode': action, 'id': post.id, 'style': 'link'})}}" class="bookmark-users icon-star ressource-inner-info-link js-loadmore js-infinite js-load-replace ajax-list-users" data-users="{{ path('recommend_users', {'id': post.id}) }}" data-target=".bookmark-users.ajax-list-users">{{ "publications.button.favorite"|trans({}, 'rpe') }} (<span>{{ counter }}</span>)</a>
+        {% elseif hasRight == false %}
+            {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                'type': 'post',
+                'object': post,
+                'style': 'text'
+            } %}
+
+            <a href="#" class="icon-share ressource-inner-info-link">{{ 'resource.share_button.text'|transchoice(post.shareCount, {'%number%': post.shareCount}, 'rpe') }}</a>
+            <a href="#" class="bookmark-users icon-star ressource-inner-info-link">{{ 'resource.favorite_button.text'|transchoice(post.bookmarkby.count, {'%number%': post.bookmarkby.count}, 'rpe') }}</a>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,220 @@
+{% import 'pum://macros/macros.html.twig' as macros %}
+{% set gender = statsInfo['gender'] %}
+
+{% block main_content %}
+<!-- ADD CHART JS -->
+<script src="{{ asset('bundles/rpepum/js/external/chart.min.js') }}"></script>
+<script src="{{ asset('bundles/rpepum/js/rpe.group-stats.js') }}"></script>
+{% spaceless %}
+<div class="chart-wrapper">
+    <div class="tabbable col-md-12">
+        <div class="tab-content stats-tab">
+            <!-- Démographie -->
+            <div class="chart-left">
+                <ul class="chart-nav">
+                    <li><a href="#" class="action-btn light-blue active" data-stats-link="first">Démographie</a></li>
+                    <li><a href="#" class="action-btn light-blue" data-stats-link="second">Croissance</a></li>
+                    <li><a href="#" class="action-btn light-blue" data-stats-link="third">Publications</a></li>
+                </ul>
+                 
+{#                 <div class="sex-stat" data-stats="first">#}
+{#                     <div class="percentage-bar-labels">#}
+{#                         <div class="percentage-bar-labels-inner">#}
+{#                             <div class="percentage-number"></div>#}
+{#                             <div class="result-text">Hommes</div>#}
+{#                         </div>#}
+{#                         <div class="percentage-bar-labels-inner">#}
+{#                             <div class="percentage-number"></div>#}
+{#                             <div class="result-text">Femmes</div>#}
+{#                         </div>#}
+{#                     </div>#}
+{#                     <div class="percentage-counter" data-elements="2" data-stat-first="{{ (gender['Monsieur'] * 100 /gender['total'])|number_format(2, '.') }}" data-stat-second="{{(gender['Madame']*100/gender['total'])|number_format(2, '.') }}">#}
+{#                         <div class="percentage-bar">#}
+{#                         </div>#}
+{#                         <div class="percentage-bar">#}
+{#                         </div>#}
+{#                     </div>#}
+{#                 </div>#}
+                
+                <ul class="chart-stat-list hidden" data-stats="third">
+                    <li>
+                        <div class="stat-number">{{ avg_comment }}</div>
+                        <div class="stat-text">Nombre moyen de commentaires par publication</div>
+                    </li>
+                    <li>
+                        <div class="stat-number">{{ avg_share }}</div>
+                        <div class="stat-text">Nombre moyen de partages par publication</div>
+                    </li>
+                    <li>
+                        <div class="stat-number">{{ avg_recommend }}</div>
+                        <div class="stat-text">Nombre moyen de recommandations par publication</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="chart-right" data-stats="first">
+                {% set colors = ['orange', 'dark-blue', 'grey', 'light-blue'] %}
+                {% if statsInfo['disciplines'] is not null %}
+                    <div class="chart-inner">
+                        <div class="chart-inner-left">
+                            <canvas class="rpe-chart doughnut-chart" data-chart-name="main-info-doughnut" data-chart-type="doughnut" data-chart-data="{{ statsInfo['disciplines_chart_data']|json_encode(constant('JSON_NUMERIC_CHECK')) }}" data-chart-height="170" data-chart-width="170"></canvas>
+                        </div>
+                        <div class="chart-inner-right">
+                            <div class="stat-box">
+                                <div class="stat-head">
+                                    Disciplines enseignées
+                                </div>
+                                <ul class="stat-list">
+                                {% set keyColor = 0 %}
+                                {% for dis in statsInfo['disciplines'] %}
+                                    <li>
+                                        <span class="stat-color {{ colors[keyColor] }}"></span>
+                                        <span class="stat-title">{{ dis['name'] }}</span>
+                                        <span class="stat-percentage">{{ dis['percentage'] }}%</span>
+                                    </li>
+                                    {% set keyColor = keyColor + 1 %}
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if statsInfo['teachinglevels'] is not null %}
+                    <div class="chart-inner">
+                        <div class="chart-inner-left">
+                            <canvas class="rpe-chart doughnut-chart" data-chart-name="main-info-doughnut" data-chart-type="doughnut" data-chart-data="{{ statsInfo['teachinglevels_chart_data']|json_encode(constant('JSON_NUMERIC_CHECK')) }}" data-chart-height="170" data-chart-width="170"></canvas>
+                        </div><!--
+                        --><div class="chart-inner-right">
+                            <div class="stat-box">
+                                <div class="stat-head">
+                                  N
+                                </div>
+                                <ul class="stat-list">
+                                    {% set keyColor = 0 %}
+                                    {% for tcl in statsInfo['teachinglevels'] %}
+                                        <li>
+                                            <span class="stat-color {{ colors[keyColor] }}"></span>
+                                            <span class="stat-title">{{ tcl['name'] }}</span>
+                                            <span class="stat-percentage">{{ tcl['percentage'] }}%</span>
+                                        </li>
+                                        {% set keyColor = keyColor + 1 %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if statsInfo['academy'] is not null %}
+                    <div class="chart-inner">
+                            <div class="chart-inner-left">
+                                <canvas class="rpe-chart doughnut-chart" data-chart-name="main-info-doughnut" data-chart-type="doughnut" data-chart-data="{{ statsInfo['academy_chart_data']|json_encode(constant('JSON_NUMERIC_CHECK')) }}" data-chart-height="170" data-chart-width="170"></canvas>
+                            </div>
+                            <div class="chart-inner-right">
+                                <div class="stat-box">
+                                    <div class="stat-head">
+                                         Académie
+    								</ul>
+                                    </div>
+                                    <ul class="stat-list">
+                                        {% set keyColor = 0 %}
+                                        {% for ac in statsInfo['academy'] %}
+                                            <li>
+    	                                        <span class="stat-color {{ colors[keyColor] }}"></span>
+    	                                        <span class="stat-title">{{ ac['name'] }}</span>
+    	                                        <span class="stat-percentage">{{ ac['percentage'] }}%</span>
+    	                                    </li>
+                                            {% set keyColor = keyColor + 1 %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Croissance -->
+            <div class="chart-right hidden" data-stats="second">
+                <div class="chart-inner">
+                    <div class="chart-inner-wrapper">
+                        <div class="chart-title">Membres dans le groupe</div>
+                        <canvas class="rpe-chart line-chart" data-chart-name="main-info-line" data-chart-type="line" data-chart-data="{{ data_chart_line|json_encode(constant('JSON_NUMERIC_CHECK')) }}" data-chart-height="500" data-chart-width="300" data-step-width="{{ data_chart_line['stepWidth']}}"></canvas>
+                    </div>
+
+                    {% if active_users|length > 0 %}
+                        <div class="chart-title">Les plus actifs</div>
+                        <ul class="member-list">
+                            {% for member in active_users %}
+                                {% set member = pum_repository('user').find(member.id) %}
+                                {% if member is not null %}
+                                <li>
+                                    <a href="{{ path('profil', {id : hashEncode(member.id) }) }}">
+                                        {{ macros.show_user_avatar(member, null, 50, 'member-image') }}
+                                        <div class="member-info">
+                                            <span class="bold">{{ member.firstname }} <span class="upper-case">{{ member.lastname }}</span></span>
+                                            {#<span>Professeur de Français</span>#}
+                                        </div>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                 {#<li>#}
+                                     {#<a href="">#}
+                                         {#<img src="{{ asset('bundles/rpepum/images/tmp/avatar.jpg') }}" class="member-image">#}
+                                         {#<div class="member-info">#}
+                                             {#<span class="bold">Laure <span class="upper-case">Bouleau</span></span>#}
+                                             {#<span>Professeur de Français</span>#}
+                                         {#</div>#}
+                                     {#</a>#}
+                                 {#</li>#}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+{#                     {% if total_publish_share %}#}
+{#                     <!-- /!\ Here we added margin & padding class to percentage counter div /!\ -->#}
+{#                     <div>#}
+{#                         <div class="percentage-bar-labels">#}
+{#                             <div class="percentage-bar-labels-inner">#}
+{#                                 <div class="percentage-number"></div>#}
+{#                                 <div class="result-text">Publications</div>#}
+{#                             </div>#}
+{#                             <div class="percentage-bar-labels-inner">#}
+{#                                 <div class="percentage-number"></div>#}
+{#                                 <div class="result-text">Partages</div>#}
+{#                             </div>#}
+{#                         </div>#}
+{#                         <div class="percentage-counter padding margin" data-elements="2" data-stat-first="{{ percent_pulbications }}" data-stat-second="{{ percent_partages }}">#}
+{#                             <div class="percentage-bar"></div>#}
+{#                             <div class="percentage-bar"></div>#}
+{#                         </div>#}
+{#                     </div>#}
+{#                     {% endif %} #}
+                </div>
+            </div>
+
+            <!-- Publications -->
+            <div class="chart-right hidden" data-stats="third">
+                <div class="chart-inner">
+                    <div class="chart-inner-wrapper">
+                        <div class="chart-title">Rythme des publications</div>
+                        <canvas class="rpe-chart bar-chart" data-chart-name="main-info-bar" data-chart-type="bar" data-chart-data="{{ data_chart_bar_post|json_encode(constant('JSON_NUMERIC_CHECK')) }}" data-chart-height="500" data-chart-width="300" data-step-width="{{ data_chart_bar_post['stepWidth']}}"></canvas>
+
+                        <div class="chart-title">Rythme des commentaires</div>
+                        <canvas class="rpe-chart bar-chart" data-chart-name="main-info-bar" data-chart-type="bar" data-chart-data="{{ data_chart_bar_comment|json_encode(constant('JSON_NUMERIC_CHECK')) }}" data-chart-height="500" data-chart-width="300" data-step-width="{{ data_chart_bar_comment['stepWidth']}}"></canvas>
+                    </div>
+                    {#
+                    <!-- /!\ This has a margin-top & padding class /!\ -->
+                    <div class="percentage-counter padding margin-top" data-elements="2" data-stat-first="55" data-stat-second="45">
+                        <div class="percentage-bar">
+                            <div class="percentage-number"></div>
+                            <div class="result-text">Publications</div>
+                        </div>
+                        <div class="percentage-bar">
+                            <div class="percentage-number"></div>
+                            <div class="result-text">Partages</div>
+                        </div>
+                    </div>#}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endspaceless %}
+{% endblock %}

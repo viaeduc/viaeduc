@@ -1,0 +1,12 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+{% set q = app.request.get('q', null) %}
+{% set page_title = (q is not empty) ? '"' ~ q|e ~ '" - Recherche' : 'Recherche' %}
+{% set page_name_analytics = 'search/results/contentBelin' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% spaceless %}
+    {% block main_content %}
+         {% include "pum://page/search/type/contentBelin.html.twig" %}
+    {% endblock %}
+{% endspaceless %}

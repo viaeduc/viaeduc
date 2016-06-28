@@ -1,0 +1,28 @@
+
+{% set groupModule = 'group-rss' %}
+{% set widgetType  = constant('TYPE_RSS', groupwidget) %}
+{% set widgets = group.getWidgetsBy({'type': widgetType}) %}
+
+{% if widgets|length %}
+    <div class="side-componant">
+        <div class="padding-wrapper">
+            <h3 class="componant-title">{{ ("groupPage.module."~groupModule)|trans({}, 'rpe') }}</h3>
+            <ul>
+                {% for widget in widgets|slice(0, 3) %}
+                    <li>
+                        <div class="side-componant module-card flux-rss">
+                            <div class="module-card-header">
+                                <h3 class="module-card-title">{{ widget.name }}</h3>
+                            </div>
+                            <div class="module-card-content">
+                                <ul class="module-card-data-wrapper js-autoload" data-autoload="{{ path('group-rss-parser', {groupId: group.id, id: widget.id}) }}">
+                                    <span class="loader"></span>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,22 @@
+{% if instructedDisciplines is not defined %}
+    {% set instructedDisciplines = {} %}
+{% endif %}
+{% if teachingLevels is not defined %}
+    {% set teachingLevels = {} %}
+{% endif %}
+
+{% if instructedDisciplines|length > 0 or teachingLevels|length > 0 %}
+    <div class="side-componant grey">
+        <div class="padding-wrapper">
+            <h4 class="componant-title">{{ "sidebar.discipline"|trans({}, 'rpe') }}</h4>
+            <ul class="componant-wrapper">
+                {% for item in instructedDisciplines %}
+                    <li class="resource-type">{{ item.name }}</li>
+                {% endfor %}
+                {% for item in teachingLevels %}
+                    <li class="resource-type">{{ item.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

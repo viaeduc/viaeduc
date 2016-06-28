@@ -1,0 +1,59 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "componants/_cards";
+@import "componants/_filter";
+
+// ------------
+// Specific CSS
+// ------------
+
+.empty-publications-wrapper {
+	display        : inline-block;
+	vertical-align : top;
+	width          : 100%;
+	padding        : 5% 0 0 0;
+	text-align     : center;
+	color          : $white;
+
+	.empty-publications-inner-wrapper {
+		display        : inline-block;
+		vertical-align : top;
+		width          : 50%;
+		text-align     : left;
+
+		p {
+			margin : 0 0 15px 0;
+		}
+
+		ul {
+			list-style : disc;
+			margin     : 0 0 25px 0;
+			padding    : 0 0 0 10px;
+		}
+	}
+
+	.action-btn {
+        @include fontSize(20);
+        height      : 50px;
+        line-height : 50px;
+        margin      : 0 0 10px 0;
+        padding     : 0 15px;
+        width       : auto;
+        float       : left;
+        clear       : both;
+
+        &:last-of-type {
+            margin : 0;
+        }
+    }
+}

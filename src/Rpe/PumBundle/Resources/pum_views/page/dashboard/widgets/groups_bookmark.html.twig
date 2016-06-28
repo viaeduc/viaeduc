@@ -1,0 +1,39 @@
+<li class="module-card">
+    <div class="module-card-header">
+        {% set transkey = "dashboard." ~ widget.type %}
+        <h3 class="module-card-title">{{ transkey|trans({}, 'rpe') }}</h3>
+    </div>
+    <div class="module-card-content">
+        {% set nbItems, classSmaller = 3, '' %}
+        {% if nbItems > 3 %}
+            {% set classSmaller = 'smaller' %}
+        {% endif %}
+        {% set items = pum_repository('group').getFavoriteGroups(user, false, 3) %}
+        {% if items|length %}
+            <ul class="module-card-data-wrapper {{ classSmaller }}">
+                {% for group in items %}
+                    <li class="module-card-data">
+                        <a class="module-card-data-image-link" href="{{ path('group', {'id': group.id}) }}">
+                            {{ macros.show_image(group.cover, 85, 'module-card-data-image') }}
+                        </a>
+                        <div class="module-card-inner-data">
+                            <h4 class="module-card-title">
+                                <a href="{{ path('group', {'id': group.id}) }}">{{ group.name }}</a>
+                            </h4>
+                            <span class="module-card-text">{{ group.description|truncate(80, true) }}</span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <span class="module-card-empty">
+                {% set transkey = "dashboard." ~ widget.type ~ ".empty" %}{{ transkey|trans({}, 'rpe') }}
+            </span>
+        {% endif %}
+    </div>
+    <div class="module-card-footer">
+        {% if items|length %}
+            <a href="{{ path('groups', {'mode': 'favorite'}) }}" class="module-card-link">{{ "dashboard.groups_bookmark.link"|trans({}, 'rpe') }}</a>
+        {% endif %}
+    </div>
+</li>

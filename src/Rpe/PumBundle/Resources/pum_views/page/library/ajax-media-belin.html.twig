@@ -1,0 +1,20 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% set folder_id = (null != folder) ? folder.id : null %}
+    {% set readonly = app.request.get('readonly', false) %}
+    {% set ckeditor = app.request.get('ckeditor', false) %}
+
+        <!-- WIDGET BELIN -->
+	  <div class="widget_belin">
+	        <script charset="utf-8" type="text/javascript" src="http://api-lib-v3-alpha-preprod.immanens.com/widget/js/launch.js?width=1250&height=350&manuels=null018080962f736c22012f736c30a10001;Histoire%201%C3%A8re%20g%C3%A9n%C3%A9rale|1_WEB_8ee1b44485b28ef8735b7c30266dba01;Histoire%20g%C3%A9ographie%202nde%20Bac%20Pro&ws=http://api-lib-v3-alpha-preprod.immanens.com&url=http://www.libtheque.fr"></script><noscript><A HREF="http://www.libtheque.fr/index.php">Libtheque</A></noscript>
+	  </div>
+
+    <script type="text/javascript">
+        {% if null != folder %}
+            {% set media_form_params = {'folder_id': folder.id} %}
+        {% endif %}
+
+        $('#js-addmedia').attr('data-href', '{{ path('create_form_library_media', media_form_params|default({})) }}');
+    </script>
+{% endspaceless %}{% endblock %}

@@ -1,0 +1,568 @@
+$library-color-1         : #d77033;
+$library-color-2         : #e18d40;
+$library-color-3         : #e2e2e2;
+$library-color-4         : #46494f;
+$library-color-5         : #aaaaaa;
+$library-color-6         : #ededed;
+
+
+
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+
+// ------------
+// Specific CSS
+// ------------
+
+
+.modal-library {
+    margin: 0 auto;
+
+    .modal-dialog {
+        width: 950px;
+    }
+    &.standalone .modal-dialog {
+        width: 950px;
+        padding: 0;
+
+        & .modal-content {
+            min-height: 480px;
+        }
+    }
+    .modal-content {
+        border-radius: 0px;
+    }
+
+    .modal-title {
+        @include fontSize(30);
+        font-family: $MissionScript;
+    }
+
+    .close-submenu{
+        font-family: $UbuntuCondensed;
+
+        &:after {
+            right: -5px;
+        }
+    }
+
+
+
+    .modal-body {
+        font-family: $Verdana;
+        color: $dark-grey-font;
+        @include fontSize(0);
+        padding: 0 15px;
+
+        .modal-list-left{
+            border: 1px solid $library-color-5;
+            vertical-align: top;
+            display: inline-block;
+            width: 25%;
+            margin:0 5% 0 0;
+            @include fontSize(12);
+            position: relative;
+
+            .modal-list-intro{
+                color: $white;
+                font-family: $HelveticaNeue;
+                margin: 0;
+                padding: 10px;
+                background: $library-color-5;
+                @include fontSize(18);
+
+                .add_folder_button{
+                    display:inline-block;
+                    text-align:left;
+                    width:100%;
+                    @include fontSize(18);
+                }
+                .add_folder_form{
+                    display:none;
+                    @include fontSize(0);
+                    margin:10px 0 0 0;
+
+                    input[type="text"] {
+                        display: inline-block;
+                        @include fontSize(13);
+                        height: 46px;
+                        width: 80%;
+                    }
+                    input[type="submit"] {
+                        display: inline-block;
+                        @include fontSize(13);
+                        height: 46px;
+                        margin: 0;
+                        padding: 0;
+                        width: 20%;
+                    }
+                }
+                .action-btn {
+                    @include fontSize(13);
+                    height: 32px;
+                    margin: 0 0 0 5px;
+                    padding: 9px 6px 7px 4px;
+                    width: auto;
+                }
+            }
+
+            &.add{
+                .add_folder_form{
+                    display: block;
+                }
+            }
+
+
+            //swippers content
+            .swiper-container{
+                width: 100%;
+                height: 270px;
+                overflow: hidden;
+                position: relative;
+            }
+            .swiper-scrollbar {
+                width: 8px;
+            }
+
+            ul{
+                margin: 0;
+
+                li{
+                    background: $library-color-3;
+                    margin: 0 0 1px 0;
+                    padding: 10px;
+                    cursor: pointer;
+                    position: relative;
+                    @include fontSize(0);
+                    min-height: 46px;
+
+                    span.folder-name{
+                        background: url(../images/pictos/folder.png) no-repeat 0 50%;
+                        padding: 0 0 0 40px;
+                        width: 80%;
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-family: $HelveticaNeue;
+                        @include fontSize(16);
+                    }
+
+                    .edit-delete {
+                        display    : none;
+                        visibility : hidden;
+                    }
+
+                    &:last-of-type{
+                        margin: 0;
+                    }
+                    &:first-of-type span.folder_name{
+                        background: none;
+                        padding: 0;
+                    }
+                    &:hover{
+                        background: $white;
+
+                        span{
+                            &.edit_delete{
+                                display: inline-block;
+                            }
+                        }
+                    }
+
+                    &.selected{
+                        background: $library-color-2;
+                        position: relative;
+                        color: $white;
+                        cursor: default;
+                    }
+                }
+            }
+
+            //on dragging
+            &.drag{
+                ul{
+                    li{
+                        &.drop_hover{
+                            background: $white;
+                        }
+                        span{
+                            &.edit_delete{
+                                display: none !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .modal-list-right{
+            border: 1px solid #C1C1C1;
+            vertical-align: top;
+            display: inline-block;
+            width: 70%;
+            @include fontSize(12);
+
+            .modal-list-intro{
+                @include fontSize(0);
+                color: $white;
+                font-family: $HelveticaNeue;
+                margin: 0;
+                padding: 10px;
+                background: $library-color-5;
+
+
+                .add_media_form{
+                    display:inline-block;
+                    text-align:left;
+                    width:60%;
+                    @include fontSize(18);
+                }
+                .select_form{
+                    display:inline-block;
+                    text-align:right;
+                    width:40%;
+                    @include fontSize(18);
+                }
+
+                .btn-file{
+                    font-family: $UbuntuCondensed;
+                    @include fontSize(13);
+                    overflow: hidden;
+                    float: none;
+                    display: inline-block;
+                    height: 32px;
+                    line-height: 1em;
+                    margin: 0 0 0 5px;
+                    padding: 9px 6px 7px 4px;
+                    width: auto;
+                    text-transform: uppercase;
+
+                    span{
+                        @include fontSize(13);
+                        padding:0;
+                    }
+                }
+                .select-box{
+                    width: 100%;
+                    display: inline-block;
+
+                    .btn-group{
+                        height: 32px;
+
+                        .btn{
+                            line-height: 1.2;
+                        }
+
+                        .dropdown-toggle{
+                            height: 32px;
+                        }
+                    }
+                    .dropdown-menu{
+                        padding: 0 !important;
+                        text-align: left;
+                    }
+                }
+            }
+
+            //swippers content
+            .swiper-container{
+                width: 100%;
+                height: 270px;
+                overflow: hidden;
+                position: relative;
+            }
+            .swiper-wrapper{
+
+            }
+            .swiper-scrollbar {
+                width: 8px;
+            }
+
+            ul{
+                margin: 0;
+            }
+
+            li{
+                border-bottom: 1px solid #C1C1C1;
+                background: $library-color-3;
+                margin: 0 0 1px 0;
+                @include fontSize(0);
+                position: relative;
+
+                &:hover{
+                    background: $white;
+                }
+                &:last-of-type{
+                    border-bottom: none;
+                }
+
+                .li_content{
+                    display: block;
+                    position: relative;
+
+                    > div{
+                        vertical-align: middle;
+                        display: table-cell;
+                        font-family: Arial;
+
+                        &.move{
+                            width: 8%;
+                            background: $white url(../images/pictos/move.png) no-repeat 50% 50%;
+                            text-align: center;
+
+                            &:hover{
+                                cursor: move;
+                            }
+                        }
+                        &.picture{
+                            width: 8%;
+                            padding: 10px;
+
+                            .img{
+                                width: 100%;
+                                height: auto;
+                                position: relative;
+                            }
+                            img{
+                                width: 100%;
+                                height: auto;
+                                min-width: 52px;
+                            }
+                            .ext{
+                                position: absolute;
+                                right: 0;
+                                bottom: 0;
+                                background: $library-color-5;
+                                padding: 1px 2px;
+                                color: $white;
+                                @include fontSize(9);
+                            }
+                        }
+                        &.text{
+                            width: 46%;
+                            padding: 5px;
+                            @include fontSize(0);
+
+                            .name{
+                                width: 50%;
+                                font-weight: bold;
+                                display: inline-block;
+                                @include fontSize(11);
+                                vertical-align: middle;
+                                padding: 0 5px 0 0;
+                            }
+                            .comment{
+                                width: 50%;
+                                display: inline-block;
+                                @include fontSize(11);
+                                vertical-align: middle;
+                                padding: 0 0 0 5px;
+                            }
+                        }
+                        &.directory{
+                            width: 24%;
+                            padding: 5px;
+                            @include fontSize(11);
+                        }
+                    }
+                }
+            }
+
+            //on dragging
+            &.drag{
+                li{
+                    &:hover{
+                        background: $library-color-3;
+                    }
+                    &.empty{
+                        background: $library-color-4;
+                    }
+
+                    &.drag_selected{
+                        .dark_layer{
+                            position: absolute;
+                            width: 25%;
+                            height: 100%;
+                            z-index: 100;
+                            background-color: #000000;
+                            opacity: 0.6;
+                            content: '';
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    .modal-footer {
+        border: 0;
+        padding: 0 15px 15px 15px;
+        @include fontSize(0);
+
+        .modal-footer-left,.modal-footer-right{
+            display: inline-block;
+            width: 50%;
+        }
+        .modal-footer-left{
+            text-align:left;
+        }
+        .action-btn{
+            margin: 0;
+            padding: 10px 20px;
+            width: auto;
+        }
+    }
+
+    // Seb edits
+
+    .library_left {
+        width   : 100%;
+        padding : 0;
+    }
+
+    .library_right {
+        width : 100%;
+    }
+
+    .modal-body .modal-list-right li .li_content {
+        padding : 0 20px;
+    }
+
+    .modal-body .modal-list-right li .li_content > div.picture {
+        display        : inline-block;
+        vertical-align : middle;
+        width          : 15%
+    }
+
+    .modal-body .modal-list-right li .li_content > div.text {
+        display        : inline-block;
+        vertical-align : middle;
+        width          : 70%;
+    }
+
+    .action-btn.small {
+        @include fontSize(11);
+        display        : inline-block;
+        vertical-align : middle;
+        width          : 15%;
+
+        &.disabled {
+            background: $light-grey-1;
+            cursor: default;
+        }
+    }
+
+    // End Seb edits
+
+    .library-left {
+        width : 100%;
+    }
+
+    .library-right,
+    .library-list {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+        padding        : 10px;
+
+        .square-btn {
+            margin: 0 0 10px 0;
+        }
+
+        .square-btn + input {
+            margin-bottom : 10px;
+        }
+
+        .btn-file {
+            float     : left;
+            margin    : 10px 0 0 0;
+            font-size : 0.875rem;
+        }
+
+        #media_submit {
+            float  : right;
+            margin : 10px 0 0 0;
+
+            &[disabled] {
+                background: $light-grey-1;
+            }
+        }
+    }
+
+    .library-content {
+        height : 45px;
+
+        .picture,
+        .text,
+        .action-btn {
+            display        : inline-block;
+            vertical-align : middle;
+            height         : 45px;
+            line-height    : 45px;
+        }
+
+        .picture,
+        .img {
+            height : 45px;
+            width  : auto;
+
+            .icon-text {
+                padding : 3px 0;
+            }
+
+            .ext {
+                line-height: 15px;
+            }
+
+            > img {
+                width  : auto;
+                height : 100%;
+            }
+        }
+
+        .picture {
+            width      : 20%;
+            text-align : center;
+        }
+
+        .text {
+            width : 60%;
+            padding : 0 10px;
+
+            .name,
+            .comment {
+                @include fontSize(12);
+                display        : inline-block;
+                vertical-align : middle;
+                width          : 50%;
+                line-height    : 1em;
+            }
+
+            .name {
+                font-weight : bold;
+            }
+        }
+
+        .action-btn {
+            width   : 20%;
+            margin  : 0;
+            padding : 0
+        }
+    }
+
+}
+
+@media screen and (max-width: $portrait-screen) {
+
+}
+
+@media screen and (max-width: $landscape-screen) {
+
+}

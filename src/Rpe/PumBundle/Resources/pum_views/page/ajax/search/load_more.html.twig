@@ -1,0 +1,3 @@
+{% if app.request.query.get('loadmore', true) and result.currentPage < result.nbPages %}
+    <li href="#" class="js-pushstate full page-loadmore js-loadmore" data-href="?{{ app.request.query.all|merge({p: result.currentPage + 1})|url_encode }}" data-target=".search-result-list"><a href="#" class="read-other">Voir plus</a></li>
+{% endif %}

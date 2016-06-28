@@ -1,0 +1,603 @@
+// ------
+// Header
+// ------
+header {
+    background      : $background-blue-1;
+    // @include filter-gradient(#ffffff, #e6e6e6, horizontal);
+    $experimental-support-for-svg: true;
+    @include background-image(linear-gradient(left,  #ffffff 0%,#ffffff 50%,#e6e6e6 50%,#e6e6e6 50%,#e6e6e6 100%));
+    @include transition( height 0.3s ease-out 0.1s);
+    position        : relative;
+    display         : block;
+    vertical-align  : top;
+    width           : 100%;
+    min-height      : 140px;
+    color           : $light-grey-font;
+    font            : $font-medium $UbuntuCondensed;
+
+
+    &.active {
+        @include transition( height 0.1s ease-out );
+        height: 416px;
+
+        & .section-search {
+            @include transition( margin-top 0.1s ease-out );
+            margin-top: 266px;
+        }
+
+        & .sub-menu {
+            @include transition( height 0.2s ease-out , opacity 0.15s ease-out 0.15s);
+            height: $mega-menu-height;
+        }
+    }
+
+    &.small-header {
+        background-image : none;
+        line-height      : 80px;
+    }
+}
+
+    .header-wrapper {
+        // @include background-image(linear-gradient(top, $bg-blue-1, $bg-blue-2));
+        background-color: $background-blue-1;
+        // @include box-shadow( 0 0 3px 0 rgba(0,0,0,0.8) );
+        position: relative;
+        // z-index : 110;
+        width   : 100%;
+
+        .dropdown-menu {
+            border       : 0;
+            border-radius: 0;
+        }
+    }
+
+        .header-inner {
+            position : relative;
+            margin   : auto;
+            max-width: $max-width;
+            width    : 100%;
+        }
+
+            #logo,
+            #notifs,
+            .config-menu {
+                display       : inline-block;
+                height        : $header-height;
+                vertical-align: top;
+                text-align    : left;
+                line-height   : $header-height;
+            }
+
+            #logo {
+                // width: 19.51%;
+                width: 18.4%;
+            }
+
+// ------
+// Notifs
+// ------
+
+.notifs-msg,
+.notifs-all {
+    text-align : center;
+}
+
+.notifs-msg-link,
+.notifs-all-link {
+    color : $white;
+
+    &:hover {
+        color : $white;
+    }
+}
+#notifs {
+    position   : relative;
+    width      : $notif-width;
+    text-align : right;
+
+    // &:before, &:after {
+    //     position: absolute;
+    //     top     : 25%;
+    //     width   : auto;
+    //     height  : 50%;
+    //     content : '';
+    // }
+
+    &:before{
+        left       : 0;
+        border-left: 1px solid $light-grey-font;
+    }
+
+    &:after {
+        right       : 0;
+        border-right: 1px solid $light-grey-font;
+    }
+
+    &:hover > .btn-group > button,
+    .btn-group.inactive > button{
+        @include opacity(0.5);
+        @include transition( opacity 0.3s ease-out);
+    }
+
+    .accept-button {
+        margin : 0 5px 0 0;
+    }
+
+    & > .btn-group {
+        @include transition( opacity 0.3s ease-out);
+        position      : relative;
+        display       : inline-block;
+        width         : 30%;
+        height        : 100%;
+        vertical-align: middle;
+
+        & > button {
+            @include fontSize(20);
+            position      : relative;
+            margin        : 0;
+            padding       : 0;
+            width         : 100%;
+            height        : 100%;
+            outline       : none;
+            border        : none;
+            vertical-align: top;
+            text-align    : center;
+            color: $white;
+
+            &:before{
+                padding: 0;
+                width: inherit;
+                height: inherit;
+            }
+        }
+
+        &:hover > button,
+        .btn-group.active > button{
+            @include opacity( 1 );
+        }
+    }
+
+    .dropdown-menu{
+        @include transition(opacity 0.2s linear);
+        top       : $header-height;
+        left      : -175px;
+        padding   : 0 10px;
+        max-width : 415px;
+        width     : 400px;
+        height    : 320px; // added because of weird sizing bug
+        text-align: left;
+        opacity   : 0;
+
+        &:after {
+            position    : absolute;
+            top         : -10px;
+            left        : 50%;
+            display     : block;
+            margin-left : -10px;
+            width       : 0px;
+            height      : 0px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+            content     : '';
+        }
+
+        &.fade{
+            z-index: -1;
+            &.in {
+                z-index: 1000;
+            }
+        }
+
+        &.active-notif {
+            @include transition(opacity 0.2s linear);
+            display : block;
+            opacity : 1;
+        }
+    }
+
+    .notif-header{
+        position      : relative;
+        display       : block;
+        height        : auto;
+        border-bottom : 1px solid $dark-blue-1;
+        color         : $dark-blue-font;
+        text-transform:uppercase;
+        @include fontSize(18);
+        font-family   : $UbuntuCondensed;
+        line-height   : 2.2;
+    }
+
+    .to-inbox-link{
+        @include fontSize(14);
+        position   : relative;
+        display    : block;
+        border-top : 1px solid $dark-blue-1;
+        color      : $dark-blue-font;
+        text-align :center;
+        line-height: 2.2;
+    }
+
+    .swiper-container {
+        position   : relative;
+        display    : block;
+        width      : 100%;
+        height     : 240px;
+        overflow-y : auto;
+    }
+
+        .notif-list{
+            position: relative;
+            display : block;
+        }
+
+    .notif-item{
+        @extend .white-item;
+        position: relative;
+        display : block;
+        margin  : 0;
+        width   : 100%;
+        height  : 60px!important;
+        border  : none;
+        padding : 0;
+
+        &.not-read {
+            background-color: $light-grey-2;
+        }
+
+        .not-read-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            line-height: 1.2;
+            background-color: $orange-1;
+            padding: 0 .2em;
+        }
+
+        &:hover{
+            background-color: $light-grey-1;
+
+            & .close {
+                @include fontSize(16);
+                position   : absolute;
+                top        : 5px;
+                right      : 10px;
+                display    : block;
+                width      : 10px;
+                height     : 10px;
+                color      : $light-blue-font;
+                font-weight: normal;
+                font-family: $Verdana;
+            }
+        }
+
+        .avatar{
+            position: relative;
+            display : inline-block;
+            width   : 60px;
+            height  : 60px;
+        }
+
+        .text {
+            position: relative;
+            display : inline-block;
+            // width   : 84.5%!important;
+            height  : 100%;
+            padding : 0 .6em!important;
+
+            a {
+                color: $light-blue-1;
+            }
+        }
+
+        .name{ color: $dark-grey-font; }
+
+        .message-extract { color: $light-blue-font; }
+    }
+
+    .close {
+        @include fontSize(16);
+        position   : absolute;
+        top        : 5px;
+        right      : 10px;
+        display    : none;
+        width      : 10px;
+        height     : 10px;
+        color      : $light-blue-font;
+        font-weight: normal;
+        font-family: $Verdana;
+    }
+
+}
+
+#notifs_msg > button,
+#notifs_all > button{
+    background: none;
+}
+
+// --------------------------
+// Account configuration menu
+// --------------------------
+.config-menu {
+    width   : $config-width;
+
+    .menu-image-wrapper {
+       display        : inline-block;
+       vertical-align : middle;
+       width          : 30%;
+       text-align     : right;
+
+       .menu-profil-image {
+           @include transition(opacity 0.2s linear);
+           display        : inline-block;
+           vertical-align : middle;
+           width          : 60%;
+           opacity        : 0.8;
+
+           &:hover {
+               @include transition(opacity 0.2s linear);
+               opacity : 1;
+           }
+       }
+    }
+
+    button {
+        display        : inline-block;
+        vertical-align : middle;
+        margin         : 0;
+        padding        : 0;
+        width          : 70%;
+        height         : inherit;
+        outline        : none;
+        border         : none;
+        background     : transparent;
+    }
+
+    .user-name {
+        position      : relative;
+        color         : white;
+        font-family   : $UbuntuCondensed;
+        display       : block;
+        width         : 100%;
+        height        : inherit;
+        vertical-align: top;
+        line-height   : 80px;
+
+        &:before {
+            @include transform( rotate(0deg) );
+            @include transition(transform .2s ease-out);
+            // vertical-align: text-bottom;
+        }
+
+
+        &:hover {
+            text-decoration: none;
+
+            &:before{
+                @include transform( rotate(90deg) );
+                @include transition( transform .2s ease-out );
+            }
+        }
+    }
+
+    .dropdown-menu {
+        text-align: left;
+
+        &:after {
+            position    : absolute;
+            top         : -10px;
+            left        : 50%;
+            display     : block;
+            margin-left : -10px;
+            width       : 0px;
+            height      : 0px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+            content     : '';
+        }
+
+        li {
+            &:last-of-type {
+                border-top: 1px solid $light-grey-1;
+
+                & a:before{
+                    padding-left: 0;
+                }
+            }
+            a {
+                color      : $dark-blue-font;
+                @include fontSize(15);
+                font-family: $UbuntuCondensed;
+                line-height: 25px;
+
+
+                &:hover {
+                    background: none transparent;
+                    color     : #157287;
+                }
+            }
+        }
+    }
+}
+
+.view-inbox-link {
+    @include transition(color 0.2 linear);
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    height         : 30px;
+    line-height    : 15px;
+    color          : $dark-blue-font;
+    text-align     : center;
+    border-top     : 1px solid $dark-blue-1;
+    padding        : 10px 0 0 0;
+    font-family    : $Verdana;
+
+    &:hover {
+        @include transition(color 0.2 linear);
+        color           : $light-blue-2;
+        text-decoration : none;
+    }
+}
+
+@media screen and (max-width: $portrait-screen) {
+
+}
+
+@media screen and (max-width: $landscape-screen) {
+    #logo{ width: 16%; }
+
+    .main_nav{ width: 56%; }
+
+    #notifs {
+        width: 12.5%;
+    }
+    
+    #notifs .dropdown-menu {
+        left: -200px;
+    }
+    #notifs .dropdown-menu:after {
+        margin-left: 10px;
+    }
+
+    .config-menu {
+        width: 15.5%;
+        &:hover .user-name::after{
+            content: none;
+        }
+    }
+
+    .sub-left{ width: 30%; }
+    .sub-middle{ width: 70%; }
+    .sub-right{ display: none; }
+}
+
+.mobile {
+    header {
+        min-height: 80px;
+
+        & .section-search {
+            margin-top: 0;
+        }
+    }
+
+    #logo{
+        width: 15%;
+    }
+
+    .logo-home {
+        margin: 0 0 0 30%;
+        width: 60%;
+    }
+
+    #notifs_all_sidebar .to-inbox-link{
+        display: none;
+    }
+    #notifs_all_sidebar,
+    #notifs_msg_sidebar{
+        background: $background-white;
+    }
+        .notif-header {
+            @include fontSize(15);
+            height: $header-height;
+            line-height: $header-height;
+            font-family: $UbuntuCondensed;
+            text-transform: uppercase;
+            text-align: center;
+            border-bottom: 1px solid $light-grey-2;
+        }
+
+        .close {
+            @include fontSize(16);
+            position   : absolute;
+            top        : 5px;
+            right      : 10px;
+            display    : none;
+            width      : 10px;
+            height     : 10px;
+            color      : $light-blue-font;
+            font-weight: normal;
+            font-family: $Verdana;
+        }
+
+        .notif-item {
+            position     : relative;
+            display      : block;
+            margin       : 0;
+            width        : 100%;
+            height       : 75px;
+            border-bottom: 1px solid $light-grey-2;
+            @include fontSize(0);
+            overflow: hidden;
+
+            &:hover {
+                background-color: $light-grey-1;
+
+                & .close {
+                    @include fontSize(16);
+                    position   : absolute;
+                    top        : 5px;
+                    right      : 10px;
+                    display    : block;
+                    width      : 10px;
+                    height     : 10px;
+                    color      : $light-blue-2;
+                    font-weight: normal;
+                    font-family: $Verdana;
+                }
+            }
+
+            .avatar {
+                position: relative;
+                display : inline-block;
+                width   : 60 / 263 * 100%;
+                height  : 60 / 60 * 100%;
+                vertical-align: top;
+                padding: 3% 1% 1% 5%;
+                & > img {
+                    width: 100%;
+                }
+            }
+
+            .text {
+                position: relative;
+                display : inline-block;
+                width   : 200 / 263 * 100%;
+                height  : 100%;
+                padding: 2%
+            }
+
+            .name {
+                @include fontSize(12);
+                color: $dark-grey-2;
+            }
+
+            .message-extract {
+                @include fontSize(14);
+                color: $light-blue-2;
+            }
+
+            .date{
+                color: #848484;
+                @include fontSize(10);
+                line-height: 1.6;
+            }
+            .event-title {
+                color: #207c91;
+                text-transform: uppercase;
+                @include fontSize(12);
+            }
+            .event-subtitle {
+                color: #848484;
+                @include fontSize(12);
+            }
+        }
+            .to-inbox-link {
+                @include fontSize(12);
+                display: block;
+                margin: auto;
+                text-align: center;
+                color: #848484;
+            }
+}

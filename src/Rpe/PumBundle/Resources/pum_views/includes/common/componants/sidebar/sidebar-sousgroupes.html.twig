@@ -1,0 +1,53 @@
+{% if group.parent is null %}
+    {% set subGroupLenght = subGroupsCount %}
+    {% set members_limit  = 6 %}
+    <div class="side-componant grey">
+        <div class="padding-wrapper">
+            <h3 class="componant-title">Sous Groupes <span class="title-small">/ <a href="{{ path('ajax_group_subgrouplist', {'id': group.id}) }}" class="going-friends" data-toggle="modal" data-target="#modal-members">{{ 'sidebar.subGroups.see'|transchoice(subGroupLenght, {}, 'rpe') }}</a></span></h3>
+            <div class="componant-wrapper">
+                <ul>
+                    {% for subGroup in subGroups %}
+                        {% set sub_members = subGroup.getMembers({}, members_limit) %}
+    
+                        <li class="ressource-wrapper sous-groupe">
+                            <div class="ressource-left">
+                                <a href="{{ path('group', {'id': subGroup.id}) }}" class="ressource-image-link">
+                                    {{ macros.show_group_avatar(subGroup, 'default', 93, 'ressource-image') }}
+                                </a>
+                            </div>
+                            <div class="ressource-right">
+                                <a href="{{ path('group', {'id': subGroup.id}) }}" class="ressource-title">{{ subGroup.name }}</a>
+                                <div class="sous-groupe-people">
+                                    <ul class="sous-groupe-list">
+                                        {% set memberCount = subGroup.members.count %}
+    
+                                        {% for userInGroup in sub_members %}
+                                            <li class="sous-groupe-person">
+                                                <a href="{{ path('profil', {'id': hashEncode(userInGroup.user.id)}) }}">
+                                                    {{ macros.show_user_avatar(userInGroup.user, 'avatar', 35) }}
+                                                </a>
+                                            </li>
+    
+                                            {% set memberCount = memberCount - 1 %}
+                                        {% endfor %}
+    
+                                        {% if memberCount %}
+                                            <li class="sous-groupe-person more-people">
+                                                <a href="{{ path('ajax_group_memberlist', {'id': subGroup.id}) }}" class="going-friends" data-toggle="modal" data-target="#modal-members">
+                                                    + {{ ('groupPage.members.others')|transchoice(memberCount, {}, 'rpe') }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% if canCreateSubGroup == true %}
+                    <a href="{{ path('create_group', {'parent_group_id': group.id}) }}" class="action-btn light-blue ss-group-btn">Créer un sous groupe</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}

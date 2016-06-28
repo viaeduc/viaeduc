@@ -1,0 +1,118 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set page_title = (group.name is defined) ? group.name : 'FAQ' %}
+{% set page_name_analytics = 'faq' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    {% if user is not defined or user is null %}
+        <link href="{{ asset('bundles/rpepum/css/charte.css') }}" media="all" rel="stylesheet" type="text/css" />
+    {% endif %}
+    <link href="{{ asset('bundles/rpepum/css/faq.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.faq.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+{% block sidebar %}
+    <div class="faq-sidebar-tip">
+        <div class="faq-sidebar-title">
+            <div class="arrow"></div>
+            Qu'est-ce que <span class="bold">Viaeduc ?</span>
+        </div>
+        <span class="faq-sidebar-text">
+            Viaeduc est une plateforme collaborative qui propose <span class="bold">une approche innovante du métier d'enseignement.</span>
+        </span>
+        <span class="faq-sidebar-text">
+            Ce réseau permet à tous les membres de l'enseignement de se retrouver, de partager et de créer des ressources.
+        </span>
+        <span class="faq-sidebar-text">
+            Il favorise la traversalité des échanges entre pairs et <span class="bold">permet de constituer un gisement de richesse éducative à l'échelle nationale.</span>
+        </span>
+    </div>
+    {% for faqNav in pum_entities('area', {'identifier': contentIdentifier}) %}
+        {% for loopPage in faqNav.pages %}
+            {% if loop.first %}
+                <ul class="faq-sidebar-menu">
+            {% endif %}
+                <li>
+                    <a href="{{ path('faq', {'type': type, 'category': loopPage.objectSlug}) }}" class="faq-sidebar-link js-loadmore js-infinite js-pushstate js-load-inner {{ (app.request.get('category') == loopPage.objectSlug or (app.request.get('category') is null and loop.first)) ? 'active' : '' }}" data-loadtarget="#faq_content">{{ loopPage.title }}</a>
+                </li>
+            {% if loop.last %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{% block main_content %}
+    {% for faqNav in pum_entities('area', {'identifier': contentIdentifier}) %}
+        {% for loopPage in faqNav.pages|slice(0,1) %}
+            {% if app.request.get('category') is null %}
+                {% set faqAutoload = path('faq', {'type': type, 'category': loopPage.objectSlug}) %}
+                <div id="faq_content" class="js-autoload" data-autoload="{{ faqAutoload }}">
+                    {{ macros.loader() }}
+                </div>
+            {% else %}
+                <div id="faq_content">
+                    {% if page is defined %}
+                        <h2 class="faq-main-title">{{ page.title }}</h2>
+
+                        {% for content in page.contents %}
+                            <h4 class="faq-main-inner-title">{{ content.title }}</h4>
+                            {{ content.content|raw }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{% block header %}
+    {% if user is not defined or user is null %}
+        {% include "pum://includes/common/minimal_header.html.twig" %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+    {% if user is not defined or user is null %}
+        <footer>
+            <nav class="footer-nav">
+                <ul class="footer-list">
+                {% if exception is defined %}
+                    {% set footerLinks = [] %}
+                {% else %}
+                    {% set footerLinks = pum_entities('area', {'identifier': 'footer-notlogged'}) %}
+                {% endif %}
+                {% for footer in footerLinks %}
+                    {% for page in footer.pages %}
+                        {% if page.redirectUrl is not empty %}
+                            <li class="footer-item"><a href="{{ page.redirectUrl }}">{{ page.title }}</a></li>
+                        {% else %}
+                            <li class="footer-item"><a href="{{ path('cms_page', {'seo': page.objectSlug}) }}">{{ page.title }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                    <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+                {% else %}
+                    {# <li class="footer-item"><a class="not-available" href="#">{{ "footer.about"|trans({}, 'rpe') }}</a></li>
+                    <li class="footer-item"><a class="not-available" href="#">{{ "footer.partners"|trans({}, 'rpe') }}</a></li>
+                    <li class="footer-item"><a class="not-available" href="#">{{ "footer.legal"|trans({}, 'rpe') }}</a></li> #}
+                    <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                    <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+                {% endfor %}
+                </ul>
+            </nav>
+        </footer>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% endspaceless %}

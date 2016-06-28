@@ -1,0 +1,21 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+    <script>
+          if($('#js-post-' + {{ post.id }} + ' .icon-headline > span')){
+        	  $('#js-post-' + {{ post.id }} + ' .icon-headline > span').text("{{ ("action.headline." ~ result)|trans({}, 'rpe')|escape('js') }}");
+      	  };
+    </script>
+	<div class="modal-header">
+	</div>
+	<div class="modal-body">
+		{% if result == "added" %}
+            {{ "action.headline.added.result"|trans({}, 'rpe') }}
+		{% elseif result == "removed" %}
+			{{ "action.headline.removed.result"|trans({}, 'rpe') }}
+		{% endif %}
+	</div>
+	<div class="modal-footer">
+	   <button type="button" class="btn btn-default js-loadmore" data-dismiss="modal" data-refresh="#posts-headline">Ok</button>
+	</div>
+{% endblock main_content %}

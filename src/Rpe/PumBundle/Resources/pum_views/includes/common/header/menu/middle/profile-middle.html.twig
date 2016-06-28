@@ -1,0 +1,57 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+<!-- Groups / Persons / Content Suggestion and/or Favs -->
+<div class="sub-middle">
+    <div class="sub-middle-head">
+        <div class="sub-middle-left">
+
+        {% if postRecent is defined %}
+            <h3 class="menu-title blue">{{ "menuMiddle.last_contributons"|trans({}, 'rpe') }}</h3>
+            <ul class="white-item-list-col">
+	            {% for post in postRecent %}
+	                <li class="white-item full">
+	                    <a href="{{ path('publication', {id : post.id}) }}">
+	                        <div class="avatar">
+		                          {{ macros.show_post_media(post, 'default', 0, '', 200) }}
+
+		                            {% if post.respire is defined and post.respire is not null %}
+		                               <span class="card-stamp">Respire</span>
+		                            {% endif %}
+	                        </div>
+	                        <div class="text">
+	                            {{ post.name | truncate(50, true, '...')}}
+	                        </div>
+	                    </a>
+	                </li>
+	            {% endfor %}
+            </ul>
+        {% endif %}
+
+        </div>
+        <div class="sub-middle-right">
+
+        {% if lastResponse is defined %}
+            <h3 class="menu-title blue">{{ "menuMiddle.questions"|trans({}, 'rpe') }}</h3>
+            <ul class="white-item-list-col">
+                {% for last in lastResponse %}
+	                <li class="white-item full">
+		                    <div class="question">
+		                        <a class="preventA" href="{{ path('question', {id : last.id}) }}">{{ last.name }}</a>
+		                    </div>
+		                    <div class="question-right">
+		                        <a class="answer-btn" href="{{ path('question', {id : last.id}) }}">
+		                            {# <img src="{{ asset('bundles/rpepum/images/answer.png') }}" class="answer-image" /> #}
+		                            <span class="answer-text"><span class="answer-number">Répondre</span>
+		                        </a>
+	                       </div>
+	                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endspaceless %}
+{% endblock main_content %}

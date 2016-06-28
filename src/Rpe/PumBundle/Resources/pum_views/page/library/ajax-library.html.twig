@@ -1,0 +1,35 @@
+{% extends "pum://desk_layout.html.twig" %}
+
+{% set page_title = 'Mes documents' %}
+{% set page_name_analytics = 'library/ajax/view' %}
+{# {% set nav_section = 'ressources-menu' %} #}
+
+{% set standalone = app.request.get('standalone', true) %}
+{% set ckeditor = app.request.get('ckeditor', true) %}
+{% set modal = app.request.get('modal', false) %}
+
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% if modal == false %}
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/rpepum/css/library.css') }}" media="all" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/rpepum/css/modal-library.css') }}" media="all" rel="stylesheet" type="text/css" />
+    {% endblock %}
+
+    {% block header_javascript %}
+        <script src="{{ asset('bundles/rpepum/js/external/ui/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('bundles/rpepum/js/rpe.library.js') }}"></script>
+        <script src="{{ asset('bundles/rpepum/js/rpe.modal-library.js') }}"></script>
+    {% endblock %}
+{% endif %}
+
+{% block header '' %}
+
+{% block content %}{% spaceless %}
+    
+    {% include 'pum://includes/common/componants/modals/modal-library.html.twig' with {'standalone': standalone, 'ckeditor': ckeditor} %}
+{% endspaceless %}{% endblock %}
+
+{% block sub_footer '' %}
+{% block footer '' %}
+{% block modals '' %}

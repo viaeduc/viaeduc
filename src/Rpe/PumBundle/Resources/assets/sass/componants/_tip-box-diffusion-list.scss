@@ -1,0 +1,40 @@
+.tip-box{
+    // @include background-image(linear-gradient(top, $dark-blue-1, $dark-blue-2));
+    background: $background-blue-1;
+    @include fontSize(14);
+    position: relative;
+    padding: 10px;
+    width: 100%;
+    vertical-align: top;
+    
+    .tip-box-title{
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        @include fontSize(32);
+        font-family: $MissionScript;
+        color: $white-font;
+        margin:0 0 5px 0;
+    }
+
+    a{
+        font-family: $UbuntuCondensed;
+        color: $white-font;
+        display: block;
+        
+        img{
+            width:100%;
+        }
+        
+        span {
+            bottom: 15px;
+            position: absolute;
+            right: 7%;
+        }
+        
+        &:hover span{
+            text-decoration: underline;
+        }
+        
+    }
+}

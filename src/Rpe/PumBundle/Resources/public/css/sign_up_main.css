@@ -1,0 +1,369 @@
+/* function to convert px to rem */
+/* jquery.Jcrop.css v0.9.12 - MIT License */
+/* The outer-most container in a typical Jcrop instance If you are having difficulty with formatting related to styles on a parent element, place any fixes here or in a like selector
+ You can also style this element if you want to add a border, etc A better method for styling can be seen below with .jcrop-light (Add a class to the holder and style elements for that extended class)
+*/
+/* line 11, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-holder { direction: ltr; text-align: left; margin: 0 auto 20px auto; width: 300px; }
+
+/* Selection Border */
+/* line 20, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline, .jcrop-hline { background: white url("images/Jcrop.gif"); font-size: 0; position: absolute; }
+
+/* line 25, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline { height: 100%; width: 1px !important; }
+
+/* line 29, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline.right { right: 0; }
+
+/* line 32, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-hline { height: 1px !important; width: 100%; }
+
+/* line 36, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-hline.bottom { bottom: 0; }
+
+/* Invisible click targets */
+/* line 40, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-tracker { height: 100%; width: 100%; /* "turn off" link highlight */ -webkit-tap-highlight-color: transparent; /* disable callout, image save panel */ -webkit-touch-callout: none; /* disable cut copy paste */ -webkit-user-select: none; }
+
+/* Selection Handles */
+/* line 51, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle { background-color: #333333; border: 1px #eeeeee solid; width: 7px; height: 7px; font-size: 1px; }
+
+/* line 58, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-n { left: 50%; margin-left: -4px; margin-top: -4px; top: 0; }
+
+/* line 64, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-s { bottom: 0; left: 50%; margin-bottom: -4px; margin-left: -4px; }
+
+/* line 70, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-e { margin-right: -4px; margin-top: -4px; right: 0; top: 50%; }
+
+/* line 76, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-w { left: 0; margin-left: -4px; margin-top: -4px; top: 50%; }
+
+/* line 82, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-nw { left: 0; margin-left: -4px; margin-top: -4px; top: 0; }
+
+/* line 88, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-ne { margin-right: -4px; margin-top: -4px; right: 0; top: 0; }
+
+/* line 94, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-se { bottom: 0; margin-bottom: -4px; margin-right: -4px; right: 0; }
+
+/* line 100, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-sw { bottom: 0; left: 0; margin-bottom: -4px; margin-left: -4px; }
+
+/* Dragbars */
+/* line 108, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-n, .jcrop-dragbar.ord-s { height: 7px; width: 100%; }
+
+/* line 113, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-e, .jcrop-dragbar.ord-w { height: 100%; width: 7px; }
+
+/* line 117, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-n { margin-top: -4px; }
+
+/* line 120, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-s { bottom: 0; margin-bottom: -4px; }
+
+/* line 124, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-e { margin-right: -4px; right: 0; }
+
+/* line 128, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-w { margin-left: -4px; }
+
+/* The "jcrop-light" class/extension */
+/* line 133, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-light .jcrop-vline, .jcrop-light .jcrop-hline { background: #ffffff; filter: alpha(opacity=70) !important; opacity: 0.7 !important; }
+
+/* line 138, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-light .jcrop-handle { -moz-border-radius: 3px; -webkit-border-radius: 3px; background-color: #000000; border-color: #ffffff; border-radius: 3px; }
+
+/* The "jcrop-dark" class/extension */
+/* line 147, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dark .jcrop-vline, .jcrop-dark .jcrop-hline { background: #000000; filter: alpha(opacity=70) !important; opacity: 0.7 !important; }
+
+/* line 152, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dark .jcrop-handle { -moz-border-radius: 3px; -webkit-border-radius: 3px; background-color: #ffffff; border-color: #000000; border-radius: 3px; }
+
+/* Simple macro to turn off the antlines */
+/* line 161, ../../assets/sass/vendors/_jcrop.scss */
+.solid-line .jcrop-vline, .solid-line .jcrop-hline { background: #ffffff; }
+
+/* Fix for twitter bootstrap et al. */
+/* line 166, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-holder img, img.jcrop-preview { max-width: none; }
+
+/* line 169, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-keymgr { opacity: 0; }
+
+/* line 173, ../../assets/sass/vendors/_jcrop.scss */
+.modal-content { border-radius: 0px; }
+
+/* line 177, ../../assets/sass/vendors/_jcrop.scss */
+.modal-header { padding: 20px 20px 10px 20px; }
+
+/* line 181, ../../assets/sass/vendors/_jcrop.scss */
+.modal-body { padding: 10px 20px; }
+
+/* line 185, ../../assets/sass/vendors/_jcrop.scss */
+.modal-title { font-size: 30px; font-size: 1.875rem; font-family: "MissionScriptRegular", Arial, sans-serif; text-transform: none; }
+
+/* line 191, ../../assets/sass/vendors/_jcrop.scss */
+.modal-inner-wrapper { padding: 20px; background: #d7d7d7; border: 1px solid #9a9a9a; color: #313335; text-align: center; }
+
+/* line 199, ../../assets/sass/vendors/_jcrop.scss */
+.inner-description { margin: 0 0 20px 0; }
+
+/* line 203, ../../assets/sass/vendors/_jcrop.scss */
+.image-crop { margin: 0 auto 20px auto; }
+
+/* line 207, ../../assets/sass/vendors/_jcrop.scss */
+.fileupload .thumbnail { background-color: transparent; border: 0px solid transparent; border-radius: 0px; padding: 0px; margin: 0px; width: 100%; }
+
+/* line 216, ../../assets/sass/vendors/_jcrop.scss */
+.thumbnail > img { max-width: 300px; }
+
+/* line 220, ../../assets/sass/vendors/_jcrop.scss */
+.btn-file { display: inline-block; float: none; width: 300px; color: white; border-radius: 0; border: 0px solid transparent; }
+/* line 228, ../../assets/sass/vendors/_jcrop.scss */
+.btn-file:hover { color: white; }
+
+/* line 21, ../../assets/sass/sign_up_main.scss */
+.modal-footer { border: 0; margin: 0; padding: 10px 20px 20px 20px; }
+/* line 25, ../../assets/sass/sign_up_main.scss */
+.modal-footer a { margin: 0; width: auto; line-height: 26px; padding: 10px; }
+/* line 31, ../../assets/sass/sign_up_main.scss */
+.modal-footer a.left { float: left; }
+
+/* line 37, ../../assets/sass/sign_up_main.scss */
+header { text-align: center; color: white; text-decoration: none; text-transform: none; font-family: "MissionScriptRegular", Arial, sans-serif; font-size: 27px; font-size: 1.6875rem; line-height: 80px; }
+/* line 46, ../../assets/sass/sign_up_main.scss */
+header a { color: white; }
+/* line 49, ../../assets/sass/sign_up_main.scss */
+header a:hover { color: white; text-decoration: none; }
+
+/* line 56, ../../assets/sass/sign_up_main.scss */
+.not-logged { background: #1c2027; -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.8); -moz-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.8); box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.8); }
+
+/* line 64, ../../assets/sass/sign_up_main.scss */
+.content-step { padding: 1% 0px 3% 0px; font-size: 0px; font-size: 0rem; }
+
+/* line 69, ../../assets/sass/sign_up_main.scss */
+.main-information-img { display: inline-block; vertical-align: top; width: 50%; }
+/* line 74, ../../assets/sass/sign_up_main.scss */
+.main-information-img img { width: 90%; height: auto; }
+
+/* line 82, ../../assets/sass/sign_up_main.scss */
+.main-information { display: inline-block; vertical-align: top; width: 50%; font-size: 18px; font-size: 1.125rem; line-height: 1.2em; text-align: center; color: white; }
+/* line 91, ../../assets/sass/sign_up_main.scss */
+.main-information .box-orange { background: #ff7f00; text-shadow: #f47a01 1px 1px 0; padding: 5px; margin: 0 0 10px 0; text-align: left; font-family: "Ubuntu Condensed", Arial, sans-serif; font-size: 16px; font-size: 1rem; }
+/* line 101, ../../assets/sass/sign_up_main.scss */
+.main-information .box-orange p { margin: 0; padding: 0; }
+/* line 109, ../../assets/sass/sign_up_main.scss */
+.main-information .liste-infos { font-family: "Ubuntu Condensed", Arial, sans-serif; text-align: left; }
+/* line 114, ../../assets/sass/sign_up_main.scss */
+.main-information .icon-right-dir { position: relative; font-size: 16px; font-size: 1rem; padding: 0 0 0 30px; }
+/* line 119, ../../assets/sass/sign_up_main.scss */
+.main-information .icon-right-dir:before { position: absolute; font-size: 22px; font-size: 1.375rem; color: #ff7f00; left: 0px; }
+
+/* line 127, ../../assets/sass/sign_up_main.scss */
+.main-white-title { color: white; display: block; font-family: "MissionScriptRegular", Arial, sans-serif; font-size: 36px; font-size: 2.25rem; font-weight: normal; line-height: 1em; margin: 0 0 20px 0; }
+
+/* line 141, ../../assets/sass/sign_up_main.scss */
+.form-wrapper { position: relative; width: 100%; padding: 5%; background: white; margin: 0 0 20px 0; }
+/* line 148, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .reserved { position: absolute; top: -20px; right: 0; font-size: 11px; font-size: 0.6875rem; color: white; }
+/* line 156, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .civilite { float: none !important; font-size: 12px; font-size: 0.75rem; }
+/* line 160, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .civilite .form-left { width: 20%; }
+/* line 163, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .civilite .form-right { width: 80%; }
+/* line 167, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .filed-col { width: 48%; margin: 0 2% 10px 0; }
+/* line 171, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .filed-col:last-child { margin: 0; }
+/* line 175, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .filed-col .form-left { width: 100%; text-align: left; }
+/* line 180, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .filed-col .form-right { width: 90%; }
+/* line 183, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .filed-col .form-right.error input { border-color: #d13938; }
+/* line 188, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .filed-col .extra { width: 10%; }
+/* line 193, ../../assets/sass/sign_up_main.scss */
+.form-wrapper ul { text-transform: uppercase; font-size: 0px; font-size: 0rem; }
+/* line 197, ../../assets/sass/sign_up_main.scss */
+.form-wrapper ul .file-upload-fix { font-size: 16px; font-size: 1rem; }
+/* line 202, ../../assets/sass/sign_up_main.scss */
+.form-wrapper ul [for=occupation], .form-wrapper ul [for=academy] { width: 80%; }
+/* line 208, ../../assets/sass/sign_up_main.scss */
+.form-wrapper ul .form-left [for=occupation], .form-wrapper ul .form-left [for=academy] { width: 100%; }
+/* line 214, ../../assets/sass/sign_up_main.scss */
+.form-wrapper ul li { margin: 0 0 10px 0; }
+/* line 227, ../../assets/sass/sign_up_main.scss */
+.form-wrapper .checkbox-buttons { text-transform: none; }
+
+/* line 232, ../../assets/sass/sign_up_main.scss */
+.confirm-btn { display: block; float: right; padding: 5px 10px; }
+
+/* line 238, ../../assets/sass/sign_up_main.scss */
+.conditions-right { line-height: 1.5rem; }
+/* line 243, ../../assets/sass/sign_up_main.scss */
+.conditions-right .checkbox-buttons > input[type="checkbox"] + label, .conditions-right .checkbox-buttons > input[type="checkbox"] + label { font-size: 14px; font-size: 0.875rem; }
+
+/* line 248, ../../assets/sass/sign_up_main.scss */
+.form-black-title { color: #293547; display: inline-block; font-family: "Ubuntu Condensed", Arial, sans-serif; font-size: 30px; font-size: 1.875rem; margin: 0 0 0 0; text-transform: uppercase; vertical-align: middle; width: 100%; }
+/* line 257, ../../assets/sass/sign_up_main.scss */
+.form-black-title .big { font-weight: bold; }
+/* line 259, ../../assets/sass/sign_up_main.scss */
+.form-black-title .big.line { display: inline-block; margin-right: 1%; }
+
+/* line 266, ../../assets/sass/sign_up_main.scss */
+.form-infos { color: #293547; font-size: 12px; font-size: 0.75rem; }
+
+/* line 271, ../../assets/sass/sign_up_main.scss */
+ul.nav-register { display: inline-block; font-family: "Ubuntu Condensed", Arial, sans-serif; line-height: 26px; padding: 0px; float: right; vertical-align: middle; width: 47%; }
+/* line 280, ../../assets/sass/sign_up_main.scss */
+ul.nav-register li { background: url("../images/bg_nav_steps.png") no-repeat scroll 0px top transparent; color: #7a7b7d; display: block; margin: 0 -5% 0 0; padding: 21px 0px; text-align: center; text-transform: uppercase; width: 205px; }
+/* line 289, ../../assets/sass/sign_up_main.scss */
+ul.nav-register li.active { background-position: 0px bottom; color: white; margin: 0 -5% 0 0; }
+
+/* line 297, ../../assets/sass/sign_up_main.scss */
+.form-wrapper { padding: 2%; }
+
+/* line 301, ../../assets/sass/sign_up_main.scss */
+.form-inner-wrapper { background: #fafafa; }
+
+/* line 305, ../../assets/sass/sign_up_main.scss */
+ul.bottom-form { width: 100%; height: 50px; line-height: 50px; padding: 0px; }
+/* line 311, ../../assets/sass/sign_up_main.scss */
+ul.bottom-form li { width: auto; display: inline-block; vertical-align: middle; float: right; font-family: Verdana, Arial, sans-serif; font-size: 14px; font-size: 0.875rem; margin: 0; }
+/* line 320, ../../assets/sass/sign_up_main.scss */
+ul.bottom-form li.left { float: left; color: white; }
+/* line 325, ../../assets/sass/sign_up_main.scss */
+ul.bottom-form li.button-confirm { height: 50px; line-height: 50px; margin: 0 0 0 15px; }
+/* line 330, ../../assets/sass/sign_up_main.scss */
+ul.bottom-form li.button-confirm .confirm-btn { height: 50px; width: 100px; color: white; font-family: Verdana, Arial, sans-serif; padding: 10% 5%; font-size: 14px; font-size: 0.875rem; }
+/* line 340, ../../assets/sass/sign_up_main.scss */
+ul.bottom-form li a { color: white; }
+/* line 342, ../../assets/sass/sign_up_main.scss */
+ul.bottom-form li a:hover { text-decoration: underline; }
+
+/* line 351, ../../assets/sass/sign_up_main.scss */
+.fileupload { width: 100%; text-align: center; }
+/* line 355, ../../assets/sass/sign_up_main.scss */
+.fileupload ul { margin: 0; text-transform: none; }
+
+/* line 361, ../../assets/sass/sign_up_main.scss */
+.second-data { height: 260px; line-height: 260px; }
+
+/* line 367, ../../assets/sass/sign_up_main.scss */
+.content-image, .content-info { width: 50%; display: inline-block; vertical-align: bottom; margin: 0; }
+
+/* line 374, ../../assets/sass/sign_up_main.scss */
+.content-image { text-align: right; padding: 0 1% 0 0; border: 0; }
+/* line 379, ../../assets/sass/sign_up_main.scss */
+.content-image img { float: right; margin: 0; border: 1px solid #9a9a9a; }
+
+/* line 386, ../../assets/sass/sign_up_main.scss */
+.content-info { text-align: left; padding: 0 0 0 1%; line-height: 1rem; }
+/* line 391, ../../assets/sass/sign_up_main.scss */
+.content-info .title { margin: 8px 5px 0 0; text-transform: uppercase; font-size: 14px; font-size: 0.875rem; font-weight: bold; font-family: Verdana, Arial, sans-serif; color: #293547; }
+/* line 400, ../../assets/sass/sign_up_main.scss */
+.content-info p { width: 60%; font-size: 12px; font-size: 0.75rem; font-family: Verdana, Arial, sans-serif; color: #313335; }
+/* line 407, ../../assets/sass/sign_up_main.scss */
+.content-info ul { margin: 0; }
+/* line 411, ../../assets/sass/sign_up_main.scss */
+.content-info li:last-child { margin: 0; }
+/* line 416, ../../assets/sass/sign_up_main.scss */
+.content-info a, .content-info span { font-size: 18px; font-size: 1.125rem; float: left; padding: 0 0 0 5px; }
+/* line 422, ../../assets/sass/sign_up_main.scss */
+.content-info a:hover, .content-info a:focus, .content-info span:hover, .content-info span:focus { color: white; }
+/* line 427, ../../assets/sass/sign_up_main.scss */
+.content-info span.fileupload-new:before { margin: 0 0 0 40px; }
+/* line 431, ../../assets/sass/sign_up_main.scss */
+.content-info .picto-webcam:before { margin: 0 0 0 70px; }
+
+/* line 440, ../../assets/sass/sign_up_main.scss */
+.extra-info .form-left { text-transform: none; font-family: Verdana, Arial, sans-serif; font-size: 14px; font-size: 0.875rem; width: 25%; }
+/* line 447, ../../assets/sass/sign_up_main.scss */
+.extra-info .form-right { width: 70%; }
+/* line 451, ../../assets/sass/sign_up_main.scss */
+.extra-info .extra { width: 5%; }
+
+/* line 456, ../../assets/sass/sign_up_main.scss */
+.social-form { margin: 0; }
+
+/* line 460, ../../assets/sass/sign_up_main.scss */
+.social { width: 100%; }
+/* line 463, ../../assets/sass/sign_up_main.scss */
+.social .social-selected { width: 100%; }
+
+/* line 468, ../../assets/sass/sign_up_main.scss */
+p { text-transform: none; font-family: Verdana, Arial, sans-serif; font-size: 14px; font-size: 0.875rem; }
+
+/* line 479, ../../assets/sass/sign_up_main.scss */
+.teachers ul > li.extra-info .form-right { width: 80%; }
+
+/* line 487, ../../assets/sass/sign_up_main.scss */
+.profil-image, .image-upload-details { display: inline-block; vertical-align: middle; }
+
+/* line 492, ../../assets/sass/sign_up_main.scss */
+.profil-image { width: 15%; }
+
+/* line 496, ../../assets/sass/sign_up_main.scss */
+.image-upload-details { width: 85%; padding: 20px; }
+
+/* line 511, ../../assets/sass/sign_up_main.scss */
+.action-btn { margin: 0; height: 50px; width: auto; padding: 5px 10px; line-height: 2.2em; }
+
+/* line 519, ../../assets/sass/sign_up_main.scss */
+.second-step { text-align: center; }
+
+/* line 523, ../../assets/sass/sign_up_main.scss */
+.bloc-left-image { width: 50%; }
+
+/* line 528, ../../assets/sass/sign_up_main.scss */
+.confirmation { display: inline-block; height: 350px; background: url("../images/bg_ecran_etape3_confirmation.png") no-repeat; }
+
+/* line 534, ../../assets/sass/sign_up_main.scss */
+.footer-nav { margin: 0; }
+
+/* line 540, ../../assets/sass/sign_up_main.scss */
+.form-error-sex, .academy-error, .occupation-error { width: 80%; float: right; }
+
+/* line 547, ../../assets/sass/sign_up_main.scss */
+[for=occupation], [for=academy] { width: 80%; float: right; }
+
+/* line 554, ../../assets/sass/sign_up_main.scss */
+.modal-charte-wrapper { top: 0; }
+/* line 557, ../../assets/sass/sign_up_main.scss */
+.modal-charte-wrapper .modal-body .body-gray { padding: 10px; }
+/* line 564, ../../assets/sass/sign_up_main.scss */
+.modal-charte-wrapper .modal-body .body-gray h3, .modal-charte-wrapper .modal-body .body-gray p, .modal-charte-wrapper .modal-body .body-gray ul, .modal-charte-wrapper .modal-body .body-gray ul > li { font-size: 12px; font-size: 0.75rem; margin: 0; padding: 0; line-height: 1em; font-family: Verdana, Arial, sans-serif; }
+/* line 572, ../../assets/sass/sign_up_main.scss */
+.modal-charte-wrapper .modal-body .body-gray h3 { font-size: 20px; font-size: 1.25rem; margin: 20px 0; }
+/* line 577, ../../assets/sass/sign_up_main.scss */
+.modal-charte-wrapper .modal-body .body-gray p { line-height: 1.6em; }
+/* line 581, ../../assets/sass/sign_up_main.scss */
+.modal-charte-wrapper .modal-body .body-gray ul { margin: 10px 0; padding: 0 10px; line-height: 1.6em; list-style-type: disc; }
+/* line 588, ../../assets/sass/sign_up_main.scss */
+.modal-charte-wrapper .modal-body .body-gray ul > li { display: list-item; line-height: 1.6em; list-style-type: disc; }
+
+/* line 596, ../../assets/sass/sign_up_main.scss */
+#popin_warning .body-gray { margin: 0 0 20px 0; }
+/* line 600, ../../assets/sass/sign_up_main.scss */
+#popin_warning .refuse-warning { margin: 0 0 0 20px; }
+/* line 604, ../../assets/sass/sign_up_main.scss */
+#popin_warning .accept-warning { margin: 0 0 20px 20px; }
+
+/* line 609, ../../assets/sass/sign_up_main.scss */
+.checkbox-buttons > input[type="checkbox"] + label { text-transform: none; }
+
+@media screen and (max-width: 1024px) { /* line 619, ../../assets/sass/sign_up_main.scss */
+  .main-white-title { font-size: 30px; font-size: 1.875rem; }
+  /* line 624, ../../assets/sass/sign_up_main.scss */
+  .form-wrapper .filed-col { width: 100% !important; } }

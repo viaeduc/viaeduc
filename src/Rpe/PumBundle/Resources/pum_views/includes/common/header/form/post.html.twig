@@ -1,0 +1,188 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block _resource_file_row %}
+    {% spaceless %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+
+            <ul class="uploaded-files-wrapper">
+                {% for subform in form %}
+                    {% for subsubform in subform %}
+                        <li class="uploaded-element">
+                            {% for subsubsubform in subsubform %}
+                                {{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                            {% endfor %}
+                            <span class="new-file">{{ subsubform.vars.value.getName() }}</span>
+                            <a href="#" class="remove-upload">x</a>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+
+            <span class="action-btn btn-file orange icon-paperclip">
+                <span class="fileupload">{{ "post.add"|trans({}, 'rpe') }}</span>
+                {{ form_widget(form.file, { attr : { 'class': 'rpe-upload single-upload', 'data-name': 'resource[file][file]' }}) }}
+            </span>
+        </div>
+    </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _resource_medias_row %}
+    {% spaceless %}
+    <div class="extra-message-info">
+        <div class="message-add-image file-upload">
+            <ul class="uploaded-files-wrapper">
+                {% for subform in form %}
+                    {% for subsubform in subform %}
+                        <li class="uploaded-element">
+                            {% for subsubsubform in subsubform %}
+                                {{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                            {% endfor %}
+                            <span class="new-file">{{ subsubform.vars.value.getName() }}</span>
+                            <a href="#" class="remove-upload">x</a>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+            <span class="action-btn btn-file orange icon-paperclip">
+                <span class="fileupload">{{ "post.add"|trans({}, 'rpe') }}</span>
+                <input type="file" id="pum_object_file_file" class="rpe-upload" data-name="resource[medias][][media][file]">
+            </span>
+        </div>
+    </div>
+    {% endspaceless %}
+{% endblock %}
+
+
+{% block _resource_sources_row %}
+    {% set type = 'html' %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _resource_visibility_row %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_coAuthors_row %}
+    {% set attr = attr|merge({class: 'author tm-input extra-info-input'}) %}
+    {% set span_second_widget_class = 'authors-tag-list tag-list' %}
+    {% set ajax_url = path('create_form_publication') %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_publishedGroup_row %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_disciplines_row %}
+    {% set attr = attr|default([]) %}
+    {% set attr = attr|merge({class: 'disciplines tm-input extra-info-input'}) %}
+    {% set span_second_widget_class = 'disciplines-tag-list tag-list' %}
+    {% set ajax_url = path('create_form_publication') %}
+    {% set info_list_id = 'instructed_disciplines' %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_teachingLevels_row %}
+    {% set attr = attr|merge({class: 'niveau tm-input extra-info-input'}) %}
+    {% set span_second_widget_class = 'levels-tag-list tag-list' %}
+    {% set ajax_url = path('create_form_publication') %}
+    {% set info_list_id = 'teaching_level' %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_keywords_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _resource_description_row %}
+    {% set attr = attr|merge({maxlength: '200'}) %}
+    {% set type = 'html' %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _resource_coverage_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _resource_documentType_row %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_copyright_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _resource_language_row %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_submit_draft_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn light-grey">{{ "Mettre en brouillons"|trans() }}</button>
+{% endblock %}
+
+{% block _resource_submit_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn light-blue">{{ "Envoyer"|trans() }}</button>
+{% endblock %}
+
+{% block main_content %}
+{{ macros.modal('instructed_disciplines', 'modal-info-list') }}
+{{ macros.modal('teaching_level', 'modal-info-list') }}
+{% form_theme resource_form _self %}
+
+<div class="publication-inner-form-wrapper ressource" data-tab="ressource">
+    {{ form_errors(resource_form) }}
+    {{ form_start(resource_form, {action: path('create_form_publication'), attr: {class: 'ressource-publish'}}) }}
+        <div class="inner-padding">
+            <ul>
+                <li>
+                    {{ form_label(resource_form.name, null, {'label_attr': {'class': 'hidden'}}) }}
+                    <span class="select-box">
+                        {{ form_widget(resource_form.name) }}
+                    </span>
+                </li>
+                <li>
+                    <span class="select-box">
+                        {{ form_widget(resource_form.content) }}
+                    </span>
+                   {{ form_row(resource_form.medias) }}
+                </li>
+                {# {{ form_row(resource_form.sources) }} #}
+                {{ form_row(resource_form.file) }}
+                {{ form_row(resource_form.description) }}
+                {{ form_row(resource_form.disciplines) }}
+                {{ form_row(resource_form.teachingLevels) }}
+                {# {{ form_row(resource_form.coAuthors) }} #}
+                {{ form_row(resource_form.publishedGroup) }}
+            </ul>
+        </div>
+        <div class="indexing">
+            <div class="inner-padding small">
+                <a href="#" class="indexing-title">
+                    {{ "post.indexation"|trans({}, 'rpe') }} <span>{{ "post.optional"|trans({}, 'rpe') }}</span>
+                </a>
+            </div>
+            <div class="index-content">
+                <div class="inner-padding small">
+                    <ul>
+                        {{ form_row(resource_form.keywords) }}
+                        {{ form_row(resource_form.documentType) }}
+                        {{ form_row(resource_form.copyright) }}
+                        {{ form_row(resource_form.language) }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="inner-padding right-align">
+            {{ form_row(resource_form.submit_draft) }}
+            {{ form_row(resource_form.submit) }}
+        </div>
+
+    {{ form_row(resource_form._token) }}
+    {{ form_end(resource_form, {render_rest: false}) }}
+</div>
+{% endblock main_content %}

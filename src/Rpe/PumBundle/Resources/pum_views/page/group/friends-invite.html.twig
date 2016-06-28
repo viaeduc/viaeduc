@@ -1,0 +1,26 @@
+{% spaceless %}
+
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% for friend in pager %}
+    <li>
+        <!-- oublie pas, l'id et le for du label doivent 锚tre pareil :) -->
+        <input name="user_in_group[]" type="checkbox" value="{{ friend.id }}" id="user_in_group_{{ friend.id }}" class="friend-checkbox">
+        <label for="user_in_group_{{ friend.id }}" class="friend-label">
+            {{ macros.show_user_avatar(friend, 'default', 120, 'friend-profil-image') }}
+            <div class="friend-information">
+                <span class="friend-name">{{ friend.firstname ~ ' ' ~ friend.lastname }}</span>
+                {% if friend.occupation is not null %}
+                    <span class="profil-role">{{ friend.occupation.name }}</span>
+                {% endif %}
+            </div>
+        </label>
+    </li>
+
+{% endfor %}
+{% if pager.nbPages is defined and pager.currentPage < pager.nbPages %}
+        <li class="full page-loadmore js-loadmore" data-href="{{ path('group_invit_list_members', {id: group.id, page: pager.currentPage + 1}) }}" data-target=".friend-list">
+            <a href="#" class="read-other">...</a>
+        </li>
+    {% endif %}
+{% endspaceless %}

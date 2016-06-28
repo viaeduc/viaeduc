@@ -1,0 +1,1060 @@
+{#
+    To use Videos, :
+
+    <div class="videocontent">
+        <video class="video-js vjs-default-skin" height="auto" width="auto" data-setup='{ "controls": true, "autoplay": false, "preload": "auto" }'>
+            <source src="{{ asset('bundles/rpepum/video/Intro_Viaeduc.mp4') }}" type='video/mp4' />
+        </video>
+    </div>
+#}
+
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set page_title = 'Profil de ' ~ profil.firstname ~ ' ' ~ profil.lastname %}
+{% if profil_is_current %}
+    {% set suffix_analytics = '/personal' %}
+    {% set page_title = 'Mon profil' %}
+{% endif %}
+{% set page_name_analytics = 'profile/view' ~ suffix_analytics|default('') %}
+{% set nav_section = (profil_is_current) ? 'profile-menu' : 'relation-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{# {% set profil_tutorial_enabled = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-profil.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.cropbox.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.side-componants.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.publications.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-profil.js') }}"></script>
+{% endblock %}
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-cover-image.html.twig' %}
+    {% include 'pum://includes/common/componants/modals/modal-confirm.html.twig' %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            Profil
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block cover %}
+    <div class="profil-cover">
+    {% embed "pum://includes/common/componants/cover-layout.html.twig" %}
+        {% block cover_left_image %}
+            {% if user != profil %}
+                {{ macros.show_user_avatar(profil, 'default', 120, 'profil-image crop-box', '117', '117') }}
+            {% else %}
+                <div class="edit-profil-image">
+                {{ form_errors(form_avatar) }}
+                {{ form_start(form_avatar, {attr: {class: 'edit-profil-image'}}) }}
+                    {{ macros.show_user_avatar(profil, 'default', 120, 'profil-image crop-box', '117', '117') }}
+                    <input type="file" class="profil-image-input hidden-input" name="avatar[avatar][file]">
+                    <a href="#" class="action-btn light-blue edit-profil-link">Changer d'image</a>
+                    <div class="results">
+                        {{ form_row(form_avatar.x, {attr: {class: 'cropX'}}) }}
+                        {{ form_row(form_avatar.y, {attr: {class: 'cropY'}}) }}
+                        {{ form_row(form_avatar.w, {attr: {class: 'cropW'}}) }}
+                        {{ form_row(form_avatar.h, {attr: {class: 'cropH'}}) }}
+                        {{ form_row(form_avatar._token) }}
+                    </div>
+                    <a href="#" class="action-btn orange confirm-profil-image-change">Confirmer</a>
+                {{ form_end(form_avatar, {render_rest: false}) }}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block cover_left_information %}
+            <h3 class="profil-first-name">{{ profil.firstname }}</h3>
+            <h3 class="profil-last-name">{{ profil.lastname }}</h3>
+            <span class="profil-role">{{ profil.occupation }}</span>
+
+            <span class="profil-city">
+                {{ (profil.city is not empty) ? profil.city }}
+                {{ (profil.city is not empty and profil.academy is not null) ? ' - ' }}
+                {{ (profil.academy is not empty) ? 'Académie de %academy_name%'|trans({'%academy_name%': profil.academy.name}, 'rpe') }}
+            </span>
+            <span class="profil-class grey">{# Histoire Géographie, pâte à sel #}</span>
+
+            {% if profil.institutionName is not empty %}
+                <span class="profil-school grey">{{ profil.institutionName }}</span>
+            {% endif %}
+
+            <!-- **************** -->
+            <!-- BOUTONS A METTRE -->
+            <!-- **************** -->
+            <!--
+                Mon Profil :
+                    <a href="#" class="action-btn orange icon-pencil">Editer mon profil</a>
+
+                Profil amis :
+                    <a href="#" class="action-btn orange icon-cancel">Supprimer</a>
+                    <a href="#" class="action-btn orange icon-cancel">Bloquer</a>
+                // If blocked : <a href="#" class="action-btn orange icon-plus">Débloquer</a>
+
+                Profil non amis :
+                    <a href="#" class="action-btn orange icon-user">Ajouter</a>
+                    <a href="#" class="action-btn orange icon-plus">S'abonner</a>
+                    <a href="#" class="action-btn orange icon-cancel">Bloquer</a>
+                // If blocked : <a href="#" class="action-btn orange icon-plus">Débloquer</a>
+
+                Profil Abonnée :
+                    <a href="#" class="action-btn orange icon-user">Ajouter</a>
+                    <a href="#" class="action-btn orange icon-cancel">Desabonner</a>
+                    <a href="#" class="action-btn orange icon-cancel">Bloquer</a>
+            -->
+        {% endblock %}
+
+        {% block cover_left_extra_information %}
+            {% if profil.instructedDisciplines.count > 0 %}
+            <div class="profil-tags">
+                <h4 class="interest-title">{{ 'Disciplines'|trans({}, 'rpe') }}: </h4>
+                {% for discipline in profil.instructedDisciplines %}
+                    {{ (loop.first) ? '<ul class="interest-tags">' }}
+                        <li class="interest-tag">{{ discipline.name }}</li>
+                    {{ (loop.last) ? '</ul>' }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block cover_left_buttons %}
+            {% if profil_is_current == false %}
+                {# <a class="action-btn orange icon-mail-2" href="#">Message</a> #}
+                {% include 'pum://includes/common/componants/profile/buttons.html.twig' with {
+                    'id': profil.id,
+                    'relation_detail': relation_detail|default(null),
+                    'style': 'action_button'
+                } %}
+                {% if profil.isFriend(user) %}
+                    <a class="action-btn light-blue" href="{{ path('inbox' , {'recipient_id': profil.id } )}}">{{ 'Envoyer un message'|trans({}, 'rpe') }}</a>
+                {% endif %}
+            {% else %}
+                <a href="{{ path('my_account') }}" class="action-btn orange icon-pencil">{{ 'Editer mon profil'|trans({}, 'rpe') }}</a>
+            {% endif %}
+        {% endblock %}
+
+        {% block cover_right %}
+            {% if user != profil %}
+                {{ macros.show_user_avatar(profil, 'cover', 837, 'cover-image crop-box', '837', '300', '0', '0') }}
+            {% else %}
+                {{ form_errors(form_cover) }}
+                {{ form_start(form_cover, {attr: {class: 'edit-profil-image cover'}}) }}
+                    {{ macros.show_user_avatar(profil, 'cover', 837, 'cover-image crop-box', '837', '300', '0', '0') }}
+                    <input type="file" class="profil-image-input hidden-input" name="cover[originalCover][file]">
+                    <a href="#" class="action-btn light-blue edit-profil-link">Changer d'image</a>
+                    <div class="results">
+                        {{ form_row(form_cover.x, {attr: {class: 'cropX'}}) }}
+                        {{ form_row(form_cover.y, {attr: {class: 'cropY'}}) }}
+                        {{ form_row(form_cover.w, {attr: {class: 'cropW'}}) }}
+                        {{ form_row(form_cover.h, {attr: {class: 'cropH'}}) }}
+                        {{ form_row(form_cover._token) }}
+                    </div>
+                    <a href="#" class="action-btn orange confirm-profil-image-change">Confirmer</a>
+                {{ form_end(form_cover, {render_rest: false}) }}
+            {% endif %}
+        {% endblock %}
+	{% endembed %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {% if profil.blog is not null %}
+        {% include "pum://includes/common/componants/sidebar/sidebar-my-webpage.html.twig" %}
+    {% endif %}
+
+    {% if showFriends %}
+        {% include "pum://includes/common/componants/sidebar/sidebar-relation.html.twig" %}
+    {% endif %}
+
+    {% if showGroups %}
+        {% include "pum://includes/common/componants/sidebar/sidebar-groups.html.twig" %}
+    {% endif %}
+
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-notifications.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-author-resource.html.twig" %} #}
+
+    {% if countPublications > 0 %}
+        {% include "pum://includes/common/componants/sidebar/sidebar-resources.html.twig" with {'resources': publications} %}
+    {% else %}
+        <div class="side-componant grey">
+            <div class="padding-wrapper">
+                <h3 class="componant-title">{{ "sidebar.ressources"|trans({}, 'rpe') }}</h3>
+                <div class="componant-wrapper">
+                    <p>Les contenus et les articles que vous créez ou co-créez sont repertoriés ici.</p>
+                    <a href="{{ path('publish_publications') }}" class="action-btn sidebar-link orange">Créer une ressource maintenant</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% include "pum://includes/common/componants/sidebar/sidebar-interests.html.twig" with {'interests': profil.interests} %}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-questions.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-rss.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-agenda.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-quiz.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-quiz-result.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-my-webpage.html.twig" %} #}
+{% endblock %}
+
+{# FORM THEME #}
+{% block _post_content_row %}
+    <label class="hidden" for="simple-message">Simple Message</label>
+    <span class="text-box">
+        <textarea {{ block('widget_attributes') }} required data-link-ajax="{{ path('link_preview') }}" class="linkpreview expanding simple-message-input"></textarea>
+    </span>
+{% endblock %}
+
+{% block _post_file_row %}
+    <div class="extra-message-info">
+        <div class="message-add-image">
+            <ul class="uploaded-files-wrapper text-light">
+                {% for subform in form %}
+                    {% for subsubform in subform %}
+                        <li class="uploaded-element">
+                            {% for subsubsubform in subsubform %}
+                                {{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                            {% endfor %}
+                            <span class="new-file">{{ subsubform.vars.value.getName() }}</span>
+                            <a href="#" class="remove-upload">x</a>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+            <span class="action-btn btn-file orange icon-paperclip post-file-btn">
+                {{ form_widget(form.file, {'attr' : {'class': 'rpe-upload single-upload show-it'}}) }}
+            </span>
+            {{ block('valider_widget') }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _post_file_file_row %}
+    <input type="file" class="input-upload" {{ block('widget_attributes') }}>
+{% endblock %}
+
+
+{% block _blog_content_row %}
+    <label class="hidden" for="simple-message">Simple Message</label>
+    <span class="text-box">
+        <textarea {{ block('widget_attributes') }} required class="simple-message-input"></textarea>
+    </span>
+{% endblock %}
+
+{% block _blog_file_row %}
+    <div class="extra-message-info">
+        <div class="message-add-image">
+            <ul class="uploaded-files-wrapper text-light">
+                {% for subform in form %}
+                    {% for subsubform in subform %}
+                        <li class="uploaded-element">
+                            {% for subsubsubform in subsubform %}
+                                {{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                            {% endfor %}
+                            <span class="new-file">{{ subsubform.vars.value.getName() }}</span>
+                            <a href="#" class="remove-upload">x</a>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+            <span class="action-btn btn-file orange icon-paperclip post-file-btn">
+                {{ form_widget(form.file, {'attr' : {'class': 'rpe-upload single-upload show-it'}}) }}
+            </span>
+            {{ block('valider_widget') }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _blog_file_file_row %}
+    <input type="file" class="input-upload" {{ block('widget_attributes') }}>
+{% endblock %}
+
+{% block valider_widget %}
+    <button type="submit" class="action-btn light-blue send-link icon-paperplane post-message-btn" name="confirmer"></button>
+{% endblock %}
+
+{% block main_content %}
+    {{ macros.alertMessages() }}
+    <div class="tabbable col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="tab active"> <a data-toggle="tab" href="#portlet_tab1">{{ "profil.last_share"|trans({}, 'rpe') }}</a></li>
+            <li class="tab"> <a data-toggle="tab" href="#portlet_tab2">{{ "profil.profil"|trans({}, 'rpe') }}</a></li>
+{#             <li class="tab"> <a data-toggle="tab" href="#portlet_tab3">{{ "profil.blog"|trans({}, 'rpe') }}</a></li>#}
+            {% if user == profil %}
+                <li class="tab"> <a data-toggle="tab" href="#portlet_tab4">Notifications</a></li>
+            {% endif %}
+        </ul>
+        <div class="tab-content">
+            <div id="portlet_tab1" class="tab-pane active">
+                {% if canPost %}
+                    <div class="form-publication inner-publication">
+                        <div class="publication-inner-forms no-width">
+                            <div class="publication-inner-form-wrapper" data-tab="simple-message">
+                                <div class="inner-padding">
+                                    {% form_theme form _self %}
+
+                                    {{ form_errors(form) }}
+                                    {{ form_start(form) }}
+
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                <div id="posts-content" class="js-autoload" data-autoload="{{ path('ajax_profil_publicationslist', { profilid: profil.id}) }}">
+                    {{ macros.loader() }}
+                </div>
+            </div>
+            <div class="tab-pane profil-tab profil-tab-content" id="portlet_tab2">
+                {% if profil.profile is not empty %}
+                    <div class="profil-box grey">
+                        <h2 class="title icon-list">{{ "profil.resume"|trans({}, 'rpe') }}</h2>
+                        {% if profil_is_current %}
+                        <a href="{{ path('my_account') }}" class="icon-cog edit-title"></a>
+                        {% endif %}
+                        <div class="profil-content">
+                            <p>{{ profil.profile|nl2br }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if showInformations %}
+                    <div class="profil-box grey">
+                        <h2 class="title icon-vcard">{{ "profil.personal_info"|trans({}, 'rpe') }}</h2>
+                        {% if profil_is_current %}
+                        <a href="{{ path('my_account') }}" class="icon-cog edit-title"></a>
+                        {% endif %}
+                        <div class="profil-content">
+                            <ul>
+                                {# <li class="icon-mail">{{ 'Email :'|trans({}, 'rpe') }} <a href="#" class="bold">{{ profil.emailPro }}</a></li> #}
+                                {# <li class="icon-phone">{{ 'Téléphone :'|trans({}, 'rpe') }} {{ profil.phone }}</li> #}
+                                {% if profil.academy is not null %}
+                                    <li class="icon-location">{{ 'Académie de %academy_name%'|trans({'%academy_name%': profil.academy.name}, 'rpe') }}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if showFormationAndExperiences %}
+                    {% if profil.experiences.count > 0 %}
+                    <div class="profil-box grey">
+                        <h2 class="title icon-user">{{ "profil.pro_info"|trans({}, 'rpe') }}</h2>
+                        {% if profil_is_current %}
+                        <a href="{{ path('my_professional_experiences') }}" class="icon-cog edit-title"></a>
+                        {% endif %}
+                        {% for experience in profil.experiences %}
+                            <div class="profil-content">
+                                <span class="bold">{{ experience.startdate|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'MMMM Y') }} - {{ experience.enddate|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'MMMM Y') }} : {{ experience.title }}</span>
+                                <ul class="dots">
+                                    {% if experience.company %}
+                                        <li>{{ experience.company }}</li>
+                                    {% endif %}
+                                    {% if experience.description %}
+                                        <li>{{ experience.description }}</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            {% if loop.last == false %}
+                                <div class="line"></div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% if profil.formations.count > 0 %}
+                        <div class="profil-box grey">
+                            <h2 class="title icon-graduation">{{ "profil.training_info"|trans({}, 'rpe') }}</h2>
+                            {% if profil_is_current %}
+                            <a href="{{ path('my_training') }}" class="icon-cog edit-title"></a>
+                            {% endif %}
+                            {% for formation in profil.formations %}
+                                <div class="profil-content">
+                                    <ul class="training-list">
+                                        {% if formation.degree %}
+                                            <li><span class="bold">{{ formation.degree }}</span> @ {{ formation.place }}</li>
+                                        {% endif %}
+                                        {# {% if formation.place %}
+                                            <li>{{ formation.place }}</li>
+                                        {% endif %} #}
+                                        {% if formation.description %}
+                                            <li class="training-desc">{{ formation.description }}</li>
+                                        {% endif %}
+                                    </ul>
+                                    <span class="bold float-right">{{ formation.startdate|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'MMMM Y') }} - {{ formation.enddate|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'MMMM Y') }} {# : {{ formation.name }} #}</span>
+
+                                    <a href="#" class="icon-cog edit-profil"></a>
+                                </div>
+                                {% if loop.last == false %}
+                                    <div class="line"></div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+                {% if showInterests %}
+                    <div class="profil-box grey">
+                        <h2 class="title icon-heart2">{{ "profil.interests"|trans({}, 'rpe') }}</h2>
+                        {% if profil_is_current %}
+                        <a href="{{ path('my_account') }}" class="icon-cog edit-title"></a>
+                        {% endif %}
+                        <div class="profil-content">
+                            <ul class="dots">
+                                {% for interest in profil.interests %}
+                                   <li>{{ interest.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div id="portlet_tab3" class="tab-pane">
+                {% if user == profil %}
+                    <div class="form-publication inner-publication">
+                        <div class="publication-inner-forms no-width">
+                            <div class="publication-inner-form-wrapper" data-tab="simple-message">
+                                <div class="inner-padding">
+                                    {% form_theme blog_form _self %}
+                                    {{ form_errors(blog_form) }}
+                                    {{ form_start(blog_form) }}
+                                    {{ form_end(blog_form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div id="blog-content">
+                    {% for post in profil.blogPosts %}
+                        {% include "pum://includes/common/componants/publications/publications.html.twig" %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        {% if user == profil %}
+            <div class="tab-pane profil-tab profil-tab-content" id="portlet_tab4">
+                <ul id="notifs-content" class="js-autoload profil-notifications-wrapper" data-autoload="{{ path('ajax_profil_notificationslist', { profilid: profil.id}) }}">
+                    {{ macros.loader() }}
+                </ul>
+            </div>
+        {% endif %}
+        </div>
+    {{ macros.modal('report') }}
+    {{ macros.modal('share') }}
+    {{ macros.modal('relations') }}
+    {{ macros.modal('resources') }}
+    {{ macros.modal('commonrelations') }}
+{% endblock %}
+
+{% block tutorial %}
+{% spaceless %}
+    {% if profil_tutorial_enabled is defined %}
+        <script>
+            {% spaceless %}
+                var profil_tutorial_enabled = '{{ profil_tutorial_enabled }}';
+            {% endspaceless %}
+        </script>
+        <!-- profile tutorial -->
+        <div class="modal fade tutorial-modal profil-tutorial-modal-1" id="profil-tutorial-modal-1">
+            <div class="tutorial-arrow">▲</div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ "profil.title1"|trans({}, 'rpe') }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ "profil.text1"|trans({}, 'rpe') }}
+                    </div>
+                    <div class="modal-footer">
+                        <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                        <a role="button" href="#profil-tutorial-modal-2" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade tutorial-modal profil-tutorial-modal-2" id="profil-tutorial-modal-2">
+            <div class="tutorial-arrow">▲</div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ "profil.title2"|trans({}, 'rpe') }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ "profil.text2"|trans({}, 'rpe') }}
+                    </div>
+                    <div class="modal-footer">
+                        <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                        <a aria-hidden="true" href="#profil-tutorial-modal-1" data-toggle="modal" class="action-btn light-grey tutorial-modal-prev">{{ "tutorial.prev"|trans({}, 'rpe') }}</a>
+                        <a role="button" href="#profil-tutorial-modal-3" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade tutorial-modal profil-tutorial-modal-3" id="profil-tutorial-modal-3">
+            <div class="tutorial-arrow">▲</div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ "profil.title3"|trans({}, 'rpe') }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ "profil.text3"|trans({}, 'rpe') }}
+                    </div>
+                    <div class="modal-footer">
+                        <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                        <a aria-hidden="true" href="#profil-tutorial-modal-2" data-toggle="modal" class="action-btn light-grey tutorial-modal-prev">{{ "tutorial.prev"|trans({}, 'rpe') }}</a>
+                        <a role="button" href="#profil-tutorial-modal-4" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade tutorial-modal profil-tutorial-modal-4" id="profil-tutorial-modal-4">
+            <div class="tutorial-arrow">▲</div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ "profil.title4"|trans({}, 'rpe') }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ "profil.text4"|trans({}, 'rpe') }}
+                    </div>
+                    <div class="modal-footer">
+                        <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                        <a aria-hidden="true" href="#profil-tutorial-modal-3" data-toggle="modal" class="action-btn light-grey tutorial-modal-prev">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                        <a role="button" href="#profil-tutorial-modal-5" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade tutorial-modal profil-tutorial-modal-5" id="profil-tutorial-modal-5">
+            <div class="tutorial-arrow">▲</div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ "profil.title5"|trans({}, 'rpe') }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ "profil.text5"|trans({}, 'rpe') }}
+                    </div>
+                    <div class="modal-footer">
+                        <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                        <a aria-hidden="true" href="#profil-tutorial-modal-4" data-toggle="modal" class="action-btn light-grey tutorial-modal-prev">{{ "tutorial.prev"|trans({}, 'rpe') }}</a>
+                        <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock %}
+
+{# -------- #}
+{# OLD HTML #}
+{# -------- #}
+
+{# <form class="edit-profil-image" data-href="">
+    <input type="file" class="profil-image-input hidden-input" name="">
+    <a href="#" class="action-btn light-blue edit-profil-link">Changer d'image</a>
+    <div class="results">
+        <input type="text" class="cropX hidden-input">
+        <input type="text" class="cropY hidden-input">
+        <input type="text" class="cropW hidden-input">
+        <input type="text" class="cropH hidden-input">
+    </div>
+    <a href="#" class="action-btn orange confirm-profil-image-change">Confirmer</a>
+</form> #}
+
+{# {% if relation_detail is null %}
+    <a data-sent="0" data-id="{{ profil.id }}" class="action-btn light-blue icon-user add-to-friend" href="{{ path('relation_add') }}">{{ "profil.add_friend"|trans({}, 'rpe') }}</a>
+{% elseif relation_detail.isOnHold and user.id != relation_detail.user.id %}
+    <a data-sent="0" data-id="{{ relation_detail.id }}" class="action-btn light-blue icon-user respond-to-friend" href="{{ path('relation_accept') }}">{{ "profil.confrm_friend_demand"|trans({}, 'rpe') }}</a>
+{% elseif relation_detail.isOnHold %}
+    <span class="action-btn light-blue icon-user">{{ "profil.friend_sent"|trans({}, 'rpe') }}</span>
+{% endif %} #}
+
+{# <div class="action-dropdown-wrapper dropdown">
+    <a class="icon-cog action-dropdown-toggle light-blue" data-toggle="dropdown" href="#"></a>
+    <ul class="action-dropdown-menu dropdown-menu" role="menu">
+        <li><a href="#" class="action-btn action-dropdown-link">Test</a></li>
+        <li><a href="#" class="action-btn action-dropdown-link">Test</a></li>
+    </ul>
+</div> #}
+
+{# <form class="edit-profil-image cover">
+    {{ macros.show_user_avatar(profil, 'cover', 837, 'cover-image crop-box', '837', '300') }}
+    <input type="file" class="profil-image-input hidden-input" name="">
+    <a href="#" class="action-btn light-blue edit-profil-link">Changer d'image</a>
+    <div class="results">
+        <input type="text" class="cropX hidden-input">
+        <input type="text" class="cropY hidden-input">
+        <input type="text" class="cropW hidden-input">
+        <input type="text" class="cropH hidden-input">
+    </div>
+    <a href="#" class="action-btn orange confirm-profil-image-change">Confirmer</a>
+</form> #}
+
+{#<div class="message-add-image file-upload">
+    <ul class="uploaded-files-wrapper">
+        {% for subform in form %}
+            {% for subsubform in subform %}
+                <li class="uploaded-element">
+                    {% for subsubsubform in subsubform %}
+                        {{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                    {% endfor %}
+                    <span class="new-file">{{ subsubform.vars.value.getName() }}</span>
+                    <a href="#" class="remove-upload">x</a>
+                </li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+    <span class="action-btn btn-file orange icon-paperclip">
+        <span class="fileupload">{{ "post.add"|trans({}, 'rpe') }}</span>
+        <!-- <input type="file" id="pum_object_file_file" class="rpe-upload"> -->
+        {{ form_widget(form.file, null, {'attr': {'class': 'rpe-upload'}}) }}
+        <!-- <input type="file" class="rpe-upload" id="post_file_file" name="post[file][file]"> -->
+    </span>
+    {{ block('valider_widget') }}
+</div>#}
+
+{# {% include "pum://includes/common/componants/publications/publications.html.twig" %} #}
+
+{# <!-- Ressource Message -->
+<div class="timeline-post">
+    <div class="timeline-post-author">
+        <a href="#" class="timeline-author-link">
+            <img src="{{ asset('bundles/rpepum/images/tmp/img_profil.jpg') }}">
+        </a>
+    </div><!--
+    --><div class="timeline-post-content">
+        <div class="timeline-content-top">
+            <a href="#" class="author-profil">Jean Luc Bernard</a> a publié une resource dans le groupe <a href="#" class="published-location">'Evaluation scolaire 2.0'</a>
+        </div>
+        <div class="timeline-content-main timeline-ressource">
+            <a href="#" class="link-wrapper">
+                <div class="timeline-ressource-image">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_world.jpg') }}">
+                </div><!--
+                --><div class="timeline-ressource-content">
+                    <h4 class="ressource-title">Evaluation formative : cinquième roue du char ou cheval de troie ?</h4>
+                    <p class="ressource-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, soluta perspiciatis debitis sequi aut ab dicta consequatur molestiae ipsam. Eaque, omnis dolor explicabo nihil provident inventore nesciunt asperiores iste fugiat.
+                    </p>
+                </div>
+            </a>
+        </div>
+        <div class="timeline-content-links">
+            <a href="#" class="icon-heart2">Recommander (0)</a>
+            <a href="#" class="icon-comment">Commenter (0)</a>
+            <a href="#" class="icon-share">Partager (0)</a>
+            <a href="#" class="icon-plus">Favoris</a>
+            <a href="#" class="post-time">Il y'a 6 heures</a>
+        </div>
+    </div>
+</div>
+
+<!-- Simple Message -->
+<div class="timeline-post">
+    <div class="timeline-post-author">
+        <a href="#" class="timeline-author-link">
+            <img src="{{ asset('bundles/rpepum/images/tmp/img_profil.jpg') }}">
+        </a>
+    </div><!--
+    --><div class="timeline-post-content">
+        <div class="timeline-content-top">
+            <a href="#" class="author-profil">Jean Luc Bernard</a> <span class="icon-right-dir"></span> <a href="#" class="published-location">Lionel Lambert</a>
+        </div>
+        <div class="timeline-content-main">
+            <p class="post-text">Félicitations pour ta promotion, à bientôt pour déjeuner !</p>
+        </div>
+        <div class="timeline-content-links">
+            <a href="#" class="icon-heart2">Recommander (0)</a>
+            <a href="#" class="icon-comment">Commenter (0)</a>
+            <a href="#" class="icon-share">Partager (0)</a>
+            <a href="#" class="icon-plus">Favoris</a>
+            <a href="#" class="post-time">Il y'a 6 heures</a>
+        </div>
+    </div>
+</div>
+
+<!-- Simple message with image -->
+<div class="timeline-post">
+    <div class="timeline-post-author">
+        <a href="#" class="timeline-author-link">
+            <img src="{{ asset('bundles/rpepum/images/tmp/img_profil.jpg') }}">
+        </a>
+    </div><!--
+    --><div class="timeline-post-content">
+        <div class="timeline-content-top">
+            <a href="#" class="author-profil">Jean Luc Bernard</a> <span class="icon-right-dir"></span> <a href="#" class="published-location">Lionel Lambert</a>
+        </div>
+        <div class="timeline-content-main">
+            <p class="post-text">Félicitations pour ta promotion, à bientôt pour déjeuner !</p>
+            <a href="#"><img src="{{ asset('bundles/rpepum/images/tmp/cat-test.jpg') }}" class="post-image"></a>
+        </div>
+        <div class="timeline-content-links">
+            <a href="#" class="icon-heart2">Recommander (0)</a>
+            <a href="#" class="icon-comment">Commenter (0)</a>
+            <a href="#" class="icon-share">Partager (0)</a>
+            <a href="#" class="icon-plus">Favoris</a>
+            <a href="#" class="post-time">Il y'a 6 heures</a>
+        </div>
+    </div>
+</div>
+
+<!-- Simple Message -->
+<div class="timeline-post">
+    <div class="timeline-post-author">
+        <a href="#" class="timeline-author-link">
+            <img src="{{ asset('bundles/rpepum/images/tmp/img_profil.jpg') }}">
+        </a>
+    </div><!--
+    --><div class="timeline-post-content">
+        <div class="timeline-content-top">
+            <a href="#" class="author-profil">Jean Luc Bernard</a> <span class="icon-right-dir"></span> <a href="#" class="published-location">Lionel Lambert</a>
+        </div>
+        <div class="timeline-content-main">
+            <p class="post-text">Félicitations pour ta promotion, à bientôt pour déjeuner !</p>
+        </div>
+        <div class="timeline-content-links">
+            <a href="#" class="icon-heart2">Recommander (0)</a>
+            <a href="#" class="icon-comment">Commenter (0)</a>
+            <a href="#" class="icon-share">Partager (0)</a>
+            <a href="#" class="icon-plus">Favoris</a>
+            <a href="#" class="post-time">Il y'a 6 heures</a>
+        </div>
+    </div>
+</div>
+
+<!-- Simple Message with link & comments / extras -->
+<div class="timeline-post">
+    <div class="timeline-post-author">
+        <a href="#" class="timeline-author-link">
+            <img src="{{ asset('bundles/rpepum/images/tmp/img_profil.jpg') }}">
+        </a>
+    </div><!--
+    --><div class="timeline-post-content">
+        <div class="timeline-content-top">
+            <a href="#" class="author-profil">Jean Luc Bernard</a> <span class="icon-right-dir"></span> <a href="#" class="published-location">Lionel Lambert</a>
+        </div>
+        <div class="timeline-content-main">
+            <p class="post-text">Félicitations pour ta promotion, à bientôt pour déjeuner !</p>
+            <a href="#" class="shared-link">
+                <img src="{{ asset('bundles/rpepum/images/tmp/cat-test.jpg') }}" class="shared-link-image"><!--
+                --><div class="shared-link-info">
+                    <h4 class="shared-link-title">Evaluation scolaire 2.0</h4>
+                    <span class="shared-link-link">http://scolareevaluation.fr</span>
+                    <span class="shared-link-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, veritatis eum ut minus ipsa maxime laudantium reprehenderit necessitatibus inventore placeat! Iste, ratione accusantium cum delectus aliquam pariatur maiores consectetur doloremque.</span>
+                </div>
+            </a>
+        </div>
+        <div class="timeline-content-links">
+            <a href="#" class="icon-heart2">Recommander (0)</a>
+            <a href="#" class="icon-comment">Commenter (0)</a>
+            <a href="#" class="icon-share">Partager (0)</a>
+            <a href="#" class="icon-plus">Favoris</a>
+            <a href="#" class="post-time">Il y'a 6 heures</a>
+        </div>
+        <div class="timeline-extra">
+            <span class="icon-heart2">48</span> Ludohuitre StJohn, Julie wallonie, et 45 autres ont recommandé cet article
+        </div>
+        <div class="timeline-extra">
+            <span class="icon-share">420</span> Ludohuitre StJohn, Julie wallonie, et 45 autres ont partagé cet article
+        </div>
+        <div class="timeline-comments">
+            <div class="timeline-extra">
+                <a href="#" class="more-comments">Voir tous les commentaires (13) <span class="icon-up-dir"></span> </a>
+            </div>
+            <div class="timeline-comment">
+                <img src="{{ asset('bundles/rpepum/images/tmp/img_profil.jpg') }}" class="comment-profil-image"><!--
+                --><div class="comment-info">
+                    <a href="#" class="comment-author">Denis Malichon</a>
+                    <p class="comment-text">Ca a l'air génial je m'inscris !</p>
+                    <div class="comment-menu">
+                        <a href="#" class="icon-heart2">4</a>
+                        <a href="#" class="icon-comment">2</a>
+                        <a href="#" class="icon-pencil">Répondre</a>
+                        <a href="#" class="comment-time">20-04-2014 • 12:22</a>
+                    </div>
+                </div>
+            </div>
+            <!-- sub comment -->
+            <!-- NO REPLY BUTTON -->
+            <div class="timeline-comment sub-comment">
+                <img src="{{ asset('bundles/rpepum/images/tmp/img_profil.jpg') }}" class="comment-profil-image"><!--
+                --><div class="comment-info">
+                    <a href="#" class="comment-author">Jean Luc Bernard</a>
+                    <p class="comment-text">De rien !</p>
+                    <div class="comment-menu">
+                        <a href="#" class="icon-heart2">4</a>
+                        <a href="#" class="comment-time">20-04-2014 • 12:22</a>
+                    </div>
+                    <div class="timeline-post-comment">
+                        <form>
+                            <span class="text-box">
+                                <input type="text" name="textInput" placeholder="Ecrivez votre réponse (entrée pour envoyer)">
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-comment">
+                <img src="{{ asset('bundles/rpepum/images/tmp/img_profil.jpg') }}" class="comment-profil-image"><!--
+                --><div class="comment-info">
+                    <a href="#" class="comment-author">Denis Malichon</a>
+                    <p class="comment-text">Ca a l'air génial je m'inscris !</p>
+                    <div class="comment-menu">
+                        <a href="#" class="icon-heart2">4</a>
+                        <a href="#" class="icon-comment">2</a>
+                        <a href="#" class="icon-pencil">Répondre</a>
+                        <a href="#" class="comment-time">20-04-2014 • 12:22</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-post-comment">
+                <form>
+                    <span class="text-box">
+                        <input type="text" name="textInput" placeholder="Ecrivez votre commentaire (entrée pour envoyer)">
+                    </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> #}
+
+{# <div class="profil-box grey">
+    <h2 class="title icon-sun">{{ "profil.fun"|trans({}, 'rpe') }}</h2>
+    {% if profil_is_current %}
+    <a href="{{ path('my_account') }}" class="icon-cog edit-title"></a>
+    {% endif %}
+    <div class="profil-content">
+        <ul class="dots">
+            <li>Cuisine, Tango, Vélo (grandes excursions), lecture (histoire, sciences politiques, sciences physiques, économie, littérature) musique (classique), yoga</li>
+            <li>Soutien scolaire (2007-2009), (2002) tournée théâtrale dans les centres pour enfants handicapés ou en difficultés des Vosges (Ecriture en collaboration, montage et interprétation d'une pièce de théâtre et d'un conte).</li>
+        </ul>
+    </div>
+</div> #}
+
+{# <div class="publication-box">
+    <!-- DETAILS -->
+    <div class="publication-details">
+        <span><a href="#">Jean-Luc BERNARD</a> a publié dans le groupe <a href="#">'Evaluation Scolaire 2.0'</a></span>
+        <span>Publié par <a href="#">Jean-Luc BERNARD</a>,  31-05-2013</span>
+    </div>
+    <!-- ARTICLE -->
+    <div class="publication-article">
+        <a href="#">
+            <h4>Evaluation Formative : Cinquième roue du char ou cheval de troie ?</h4>
+        </a>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum dui et massa tristique ac elementum justo imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus et blandit metus. Nunc ultricies, ligula et imperdiet semper, diam tortor vulputate enim, id tempus turpis lectus ut enim. Donec non lectus odio, nec interdum lectus. Curabitur scelerisque massa quis leo porta non aliquam diam dictum.
+        </p>
+    </div>
+    <!--MENU -->
+    <div class="publication-menu">
+        <ul>
+            <li>
+                <!-- Like -->
+                <a href="#"><span class="square-btn icon-heart2 orange"></span></a>
+                <a href="#">
+                    <span class="color">8</span>
+                    <span>Recommandations</span>
+                </a>
+            </li>
+            <li>
+                <!-- Comment -->
+                <a href="#" class="comment">
+                    <span class="square-btn icon-comment orange"></span>
+                    <span class="color">1</span>
+                    <span>Commentaire</span>
+                </a>
+            </li>
+            <li>
+                <!-- Share -->
+                <a href="#"><span class="square-btn orange"><span class="picto picto-share-item"></span></span></a>
+                <a href="#">
+                    <span class="color">7</span>
+                    <span>Partages</span>
+                </a>
+            </li>
+            <li>
+                <!-- Add to favs -->
+                <a href="#">
+                    <span class="square-btn light-blue"><span class="picto picto-favorit-item"></span></span>
+                    <span>Ajouter aux favoris</span>
+                </a>
+            </li>
+        </ul>
+    </div><!--
+    COMMENTS
+    --><div class="publication-comments">
+        <div class="comment">
+            <div class="image-wrapper">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                </a>
+            </div>
+            <div class="comment-wrapper">
+                <a href="#">Denis M.</a>
+                <span class="date">06-09-2013 - 12:22</span>
+                <p>
+                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                </p>
+
+                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+            </span></div>
+        </div>
+        <form>
+            <span class="text-box">
+                <input placeholder="Ajouter un commentaire..." type="text">
+            </span>
+        </form>
+    </div>
+</div><!--
+--><div class="publication-box">
+    <div class="publication-details">
+        <span><a href="#">Jean-Luc BERNARD</a> a rejoint le groupe <a href="#">L'urbanisation du monde actuel</a></span>
+        <span>31-05-2013</span>
+    </div>
+</div><!--
+--><div class="publication-box">
+    <div class="publication-details">
+        <span><a href="#">Jean-Luc BERNARD</a> s'est abonné à la page <a href="#">Belin</a></span>
+        <span>28-05-2013</span>
+    </div>
+</div><!--
+--><div class="publication-box">
+    <!-- DETAILS -->
+    <div class="publication-details">
+        <span><a href="#">Jean-Luc BERNARD</a> a publié dans le groupe <a href="#">'Evaluation Scolaire 2.0'</a></span>
+        <span>Publié par <a href="#">Jean-Luc BERNARD</a>,  31-05-2013</span>
+    </div>
+    <!-- ARTICLE -->
+    <div class="publication-article">
+        <a href="#">
+            <img src="{{ asset('bundles/rpepum/images/tmp/img-peaple.png') }}" alt="">
+        </a>
+        <a href="#">
+            <h4>Evaluation Formative : Cinquième roue du char ou cheval de troie ?</h4>
+        </a>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum dui et massa tristique ac elementum justo imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus et blandit metus. Nunc ultricies, ligula et imperdiet semper, diam tortor vulputate enim, id tempus turpis lectus ut enim. Donec non lectus odio, nec interdum lectus. Curabitur scelerisque massa quis leo porta non aliquam diam dictum.
+        </p>
+    </div>
+    <!--MENU -->
+    <div class="publication-menu">
+        <ul>
+            <li>
+                <!-- Like -->
+                <a href="#"><span class="square-btn icon-heart2 orange"></span></a>
+                <a href="#">
+                    <span class="color">8</span>
+                    <span>Recommandations</span>
+                </a>
+            </li>
+            <li>
+                <!-- Comment -->
+                <a href="#" class="comment">
+                    <span class="square-btn icon-comment orange"></span>
+                    <span class="color">1</span>
+                    <span>Commentaire</span>
+                </a>
+            </li>
+            <li>
+                <!-- Share -->
+                <a href="#"><span class="square-btn orange"><span class="picto picto-share-item"></span></span></a>
+                <a href="#">
+                    <span class="color">7</span>
+                    <span>Partages</span>
+                </a>
+            </li>
+            <li>
+                <!-- Add to favs -->
+                <a href="#">
+                    <span class="square-btn light-blue"><span class="picto picto-favorit-item"></span></span>
+                    <span>Ajouter aux favoris</span>
+                </a>
+            </li>
+        </ul>
+    </div><!--
+    COMMENTS
+    --><div class="publication-comments">
+        <div class="comment">
+            <div class="image-wrapper">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                </a>
+            </div>
+            <div class="comment-wrapper">
+                <a href="#">Denis M.</a>
+                <span class="date">06-09-2013 - 12:22</span>
+                <p>
+                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                </p>
+                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+            </span></div>
+        </div><!--
+        --><div class="comment">
+            <div class="image-wrapper">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                </a>
+            </div>
+            <div class="comment-wrapper">
+                <a href="#">Denis M.</a>
+                <span class="date">06-09-2013 - 12:22</span>
+                <p>
+                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                </p>
+                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+            </span></div>
+        </div><!--
+        --><div class="comment">
+            <div class="image-wrapper">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                </a>
+            </div>
+            <div class="comment-wrapper">
+                <a href="#">Denis M.</a>
+                <span class="date">06-09-2013 - 12:22</span>
+                <p>
+                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                </p>
+                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+            </span></div>
+        </div><!--
+        --><div class="comment">
+            <a href="#">Voir tous les commentaires (13)<span class="icon-down-dir-1"></span></a>
+        </div>
+    </div>
+</div> #}
+
+{# <div class="modal fade modal-first confirm-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <p class="data-confirm-message">
+
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a aria-hidden="true" data-dismiss="modal" class="close">Annulé</a><!--
+                --><a role="button" class="action-btn light-blue small confirm-modal-message">Confirmer</a>
+            </div>
+        </div>
+    </div>
+</div> #}
+

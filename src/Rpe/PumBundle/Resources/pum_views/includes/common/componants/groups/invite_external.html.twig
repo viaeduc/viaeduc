@@ -1,0 +1,38 @@
+<script src="{{ asset('bundles/rpepum/js/rpe.group-member.js') }}"></script>
+{% spaceless %}
+<h4 class="tab-title">{{ 'groupPage.invit_extern.title'|trans({}, 'rpe') }}</h4>
+<div class="administration-box full-admin">
+    <!-- TOP -->
+    <div class="administration-top">
+        <a href="{{ path('invite_return', {id:group.id}) }}" class="filter-btn light-blue js-loadmore js-infinite js-load-inner" data-target="#portlet_tab3"><span class="icon-arrow-left">{{ "groupPage.invit.return"|trans({}, 'rpe') }}</span></a><!-- boutton retour page gestion membres -->
+    </div>
+    <div class="administration-right">
+        <div class="invite-external-search-wrapper">
+            <p>{{ "groupPage.invit.extern.description"|trans({}, 'rpe') }}</p>
+            {{ form_errors(form) }}
+            {{ form_start(form, {action:path('invite_external', {id_group: group.id})}) }}
+
+            {{ form_widget(form.email, {'attr' : {
+                'class'       : 'invite-external-email-input invite-external-email',
+                'placeholder' : 'Adresse de courriel'
+            }}) }}
+
+            {{ form_widget(form.content, {'attr' : {
+                'class'       : 'invite-external-search-input invite-external-message',
+                'placeholder' : 'Votre Message'
+            }}) }}
+
+            <button type="submit" id="invitation_submit" name="invitation[submit]" class="orange action-btn send-invite-form">{{ "Inviter"|trans({}, 'rpe') }}</button>
+            <div id="invite-friend-list"></div>
+            {{ form_end(form, {'render_rest': false}) }}
+            <!-- Old html
+            <form>
+                <input value="" type="text" class="invite-external-search-input invite-external-email" placeholder="Invitation par adresse mail">
+                <input value="" type="text" class="invite-external-search-input invite-external-message" placeholder="Votre Message">
+                <button class="orange action-btn invite-external-search-send" href="#">Envoyer</button>
+            </form>
+             -->
+        </div>
+    </div>
+</div>
+{% endspaceless %}

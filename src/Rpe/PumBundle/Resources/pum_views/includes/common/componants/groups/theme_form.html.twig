@@ -1,0 +1,53 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{# FORM #}
+{% block text_row %}
+    {# {% set id = form.vars.id ~ '_' ~ app.request.get('post') %} #}
+    {{ form_widget(form, { 'id': '' }) }}
+{% endblock %}
+
+{% block submit_widget %}
+    {% spaceless %}
+        {% set class = 'action-btn light-blue btn-submit' %}
+        {% set attr = attr|merge({class: class}) %}
+        {% if theme_id is defined and theme_id is not null %}
+            {% set label = ' ' %}
+            {% set class = 'action-btn light-blue btn-submit icon-checkmark' %}
+            {% set attr = attr|merge({class: class}) %}
+        {% else %}
+            {% set label = 'Créer'|trans({}, 'rpe') %}
+        {% endif %}
+        {{ parent() }}{{ help|default('') }}
+    {% endspaceless %}
+{% endblock submit_widget %}
+
+{% block main_content %}
+{% spaceless %}
+    {% if form is defined and theme is not defined %}
+        {% set theme_id = app.request.get('theme_id') %}
+        {% form_theme form _self %}
+        {{ form_errors(form) }}
+        {{ form_start(form, { action: path('create_form_group_theme', {'theme_id': theme_id, 'group_id': group.id}), 'attr': { 'class': ((theme_id != null) ? 'edit-input' : 'add-folder-form') } }) }}
+            {% if theme_id != null %}
+                <button type="button" class="square-btn dark-grey btn-cancel icon-arrow-left7" value="cancel"></button>
+            {% endif %}
+            {{ form_row(form.name) }}
+            {{ form_row(form._token) }}
+            {{ form_row(form.submit, {'theme_id' : theme_id}) }}
+        {{ form_end(form) }}
+    {% elseif theme is defined %}
+        <li id="js-folder_{{ theme.id }}" data-entityid="{{ theme.id }}">
+            <span class="folder-name js-loadmore js-infinite js-load-replace" data-loadtarget="#js-mediainfolder" data-href="{{ path('group-theme', {'id': group.id, 'theme_id': theme.id}) }}">
+                {{ theme.name }}
+            </span>
+            <form class="edit-input">
+
+            </form>
+            <span class="edit-delete">
+                <span class="edit square-btn light-blue icon-pencil small js-loadmore js-infinite js-load-replace" data-href="{{ path('create_form_group_theme', {'theme_id': theme.id, 'group_id': group.id}) }}" data-loadtarget="#js-folder_{{ theme.id }} .edit-input"></span>
+                <span class="delete square-btn light-blue icon-cross small js-loadmore js-confirm-modal js-remove" data-href="{{ path('delete_theme', {'id': theme.id}) }}" data-delete-link="{{ path('delete_theme', {'id': theme.id}) }}" data-confirm="{{ 'library.theme.action.confirm_delete'|trans({}, 'rpe') }}" data-remove-div="#js-folder_{{ theme.id }}" data-disable="Vous ne pouvez pas supprimer ce dossier car il y a des médias associés."></span>
+            </span>
+        </li>
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

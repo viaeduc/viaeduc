@@ -1,0 +1,316 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/app-store.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/idangerous.swiper.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/idangerous.swiper.scrollbar-2.3.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.app-store.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+	{% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+		{% block this_page %}
+	    	App Store
+	    {% endblock %}
+	{% endembed %}
+{% endblock %}
+
+{% block main_content %}
+    <h2 class="main-center-title">Apps Store</h2>
+    <div class="app-store-wrapper">
+        <!-- APP STORE SLIDER -->
+        <div class="app-store-slider">
+            <h3 class="app-store-title dark-blue">Apps <span>à la une</span></h3>
+            <div class="app-store-slider-content">
+                <!-- Slider Navs -->
+                <a href="#" class="slider-nav prev"><</a>
+                <a href="#" class="slider-nav next">></a>
+                <!-- Inner slides -->
+                <div class="app-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="slider-app light-blue">
+                                <div class="slider-content-top">
+                                    <h4 class="slider-title">Défi Bac Quizz Anglais</h4><!--
+                                    --><span class="slider-sub-title">| Crée par <span class="bold">Bordas</span></span>
+                                </div><!--
+                                --><div class="slider-app-image">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}">
+                                </div><!--
+                                --><div class="slider-content-left">
+                                    <ul class="slider-list-wrapper">
+                                        <li class="slider-list"><span class="slider-small-title">Caractéristiques</span></li>
+                                        <li class="slider-list"><span class="bold">Discipline :</span> Anglais</li>
+                                        <li class="slider-list"><span class="bold">Niveau d'enseignement :</span> Terminal</li>
+                                        <li class="slider-list"><span class="bold">Date de mise en ligne : </span> 13/06/13</li>
+                                        <li class="slider-list"><span class="bold">Configuration :</span> 13/06/13</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!--
+                        --><div class="swiper-slide">
+                            <a href="app-page.php" class="slider-app light-blue">
+                                <div class="slider-content-top">
+                                    <h4 class="slider-title">Défi Bac Quizz Anglais</h4><!--
+                                    --><span class="slider-sub-title">| Crée par <span class="bold">Bordas</span></span>
+                                </div><!--
+                                --><div class="slider-app-image">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}">
+                                </div><!--
+                                --><div class="slider-content-left">
+                                    <ul class="slider-list-wrapper">
+                                        <li class="slider-list"><span class="slider-small-title">Caractéristiques</span></li>
+                                        <li class="slider-list"><span class="bold">Discipline :</span> Anglais</li>
+                                        <li class="slider-list"><span class="bold">Niveau d'enseignement :</span> Terminal</li>
+                                        <li class="slider-list"><span class="bold">Date de mise en ligne : </span> 13/06/13</li>
+                                        <li class="slider-list"><span class="bold">Configuration :</span> 13/06/13</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!--
+                        --><div class="swiper-slide">
+                            <a href="app-page.php" class="slider-app light-blue">
+                                <div class="slider-content-top">
+                                    <h4 class="slider-title">Défi Bac Quizz Anglais</h4><!--
+                                    --><span class="slider-sub-title">| Crée par <span class="bold">Bordas</span></span>
+                                </div><!--
+                                --><div class="slider-app-image">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}">
+                                </div><!--
+                                --><div class="slider-content-left">
+                                    <ul class="slider-list-wrapper">
+                                        <li class="slider-list"><span class="slider-small-title">Caractéristiques</span></li>
+                                        <li class="slider-list"><span class="bold">Discipline :</span> Anglais</li>
+                                        <li class="slider-list"><span class="bold">Niveau d'enseignement :</span> Terminal</li>
+                                        <li class="slider-list"><span class="bold">Date de mise en ligne : </span> 13/06/13</li>
+                                        <li class="slider-list"><span class="bold">Configuration :</span> 13/06/13</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!--
+                        --><div class="swiper-slide">
+                            <a href="app-page.php" class="slider-app light-blue">
+                                <div class="slider-content-top">
+                                    <h4 class="slider-title">Défi Bac Quizz Anglais</h4><!--
+                                    --><span class="slider-sub-title">| Crée par <span class="bold">Bordas</span></span>
+                                </div><!--
+                                --><div class="slider-app-image">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}">
+                                </div><!--
+                                --><div class="slider-content-left">
+                                    <ul class="slider-list-wrapper">
+                                        <li class="slider-list"><span class="slider-small-title">Caractéristiques</span></li>
+                                        <li class="slider-list"><span class="bold">Discipline :</span> Anglais</li>
+                                        <li class="slider-list"><span class="bold">Niveau d'enseignement :</span> Terminal</li>
+                                        <li class="slider-list"><span class="bold">Date de mise en ligne : </span> 13/06/13</li>
+                                        <li class="slider-list"><span class="bold">Configuration :</span> 13/06/13</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- NEW AND BEST RATED SLIDERS -->
+        <div class="app-store-small-apps">
+            <h4 class="app-store-title dark-blue">Nouveautés</h4>
+            <div class="app-small-wrapper">
+                <div class="small-app-container first-small-app-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-small-bottom">
+                    <div class="swiper-scroll first-scroll">
+                    </div><!--
+                    --><span class="app-small-more"><a href="#">Plus</a></span>
+                </div>
+            </div>
+        </div><!--
+    --><div class="line-wrapper">
+            <div class="inner-line"></div>
+        </div><!--
+        --><div class="app-store-small-apps">
+            <h4 class="app-store-title dark-blue">Les <span class="bold">mieux notées</span></h4>
+            <div class="app-small-wrapper">
+                <div class="small-app-container second-small-app-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="app-page.php" class="small-app-link">
+                                <span class="small-app-title">Quiz bac anglais</span>
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="small-image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-small-bottom">
+                    <div class="swiper-scroll second-scroll">
+                    </div><!--
+                    --><span class="app-small-more"><a href="#">Plus</a></span>
+                </div>
+            </div>
+        </div>
+        <!-- MOST USED -->
+        <div class="app-store-most-used">
+            <h3 class="app-store-title dark-blue">Apps <span>les + utilisées</span></h3>
+            <div class="app-store-most-used-wrapper">
+                <div class="app-store-most-used-container light-blue">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="app-image">
+                    <h4 class="most-used-title"><a href="app-page.php">Quizz Bac Anglais</a></h4>
+                    <span class="editor">Hachette</span>
+                    <span class="price"><a href="app-page.php">Gratuit</a></span>
+                </div><!--
+                --><div class="app-store-most-used-container light-blue">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="app-image">
+                    <h4 class="most-used-title"><a href="app-page.php">Quizz Bac Anglais</a></h4>
+                    <span class="editor">Hachette</span>
+                    <span class="price"><a href="app-page.php">Gratuit</a></span>
+                </div><!--
+                --><div class="app-store-most-used-container light-blue">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="app-image">
+                    <h4 class="most-used-title"><a href="app-page.php">Quizz Bac Anglais</a></h4>
+                    <span class="editor">Hachette</span>
+                    <span class="price"><a href="app-page.php">Gratuit</a></span>
+                </div><!--
+                --><div class="app-store-most-used-container light-blue">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="app-image">
+                    <h4 class="most-used-title"><a href="app-page.php">Quizz Bac Anglais</a></h4>
+                    <span class="editor">Hachette</span>
+                    <span class="price"><a href="app-page.php">Gratuit</a></span>
+                </div><!--
+                --><div class="app-store-most-used-container light-blue">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="app-image">
+                    <h4 class="most-used-title"><a href="app-page.php">Quizz Bac Anglais</a></h4>
+                    <span class="editor">Hachette</span>
+                    <span class="price"><a href="app-page.php">Gratuit</a></span>
+                </div><!--
+                --><div class="app-store-most-used-container light-blue">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_quiz_ang.png') }}" class="app-image">
+                    <h4 class="most-used-title"><a href="app-page.php">Quizz Bac Anglais</a></h4>
+                    <span class="editor">Hachette</span>
+                    <span class="price"><a href="app-page.php">Gratuit</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% endspaceless %}

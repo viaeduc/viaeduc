@@ -1,0 +1,55 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+<!-- Groups / Persons / Content Suggestion and/or Favs -->
+<div class="sub-middle">
+    <div class="sub-profile-bloc">
+
+        <div class="sub-middle-left alt">
+            <div class="photo">
+               {% if user.avatar != null %}
+                    {{ macros.show_image(user.avatar, 191) }}
+                {% else %}
+                    <img alt="" src="{{ asset('bundles/rpepum/images/tmp/photo-profil.png') }}" />
+                {% endif %}
+            </div>
+            <div class="contact">
+                <span class="firstname">{{ user.firstname }}</span>
+                <span class="lastname">{{ user.lastname|upper }}</span>
+                <!-- <span class="age">{{ user.birthdate|age }} ans</span>
+                <span class="job">{{ user.occupation }}</span>
+                <span class="ville">{{ user.city }}</span> -->
+                <hr/>
+                <a class="links-to-profile" href="{{ path('relations', {'mode': 'my_relations'}) }}">
+                    <span class=" icon-user"></span><span class="big-number">{{ '%count% relation|%count% relations'|transchoice(user.acceptedFriends.count, {'%count%': user.acceptedFriends.count}, 'rpe') }}{# {{ user.friends.count }} </span> relations #}
+                </a>
+                <a class="links-to-profile" href="{{ path('profil') }}">
+                    <span class=" icon-book2"></span><span class="big-number">{{ '%count% publication|%count% publications'|transchoice(user.resources.count, {'%count%': user.resources.count}, 'rpe') }}{# {{ user.posts.count }}</span> publications #}
+                </a>
+                <a class="links-to-profile" href="{{ path('groups', {'mode':'my_groups'}) }}">
+                    <span class=" icon-users"></span><span class="big-number">{{ '%count% groupe|%count% groupes'|transchoice(user.acceptedGroups.count, {'%count%': user.acceptedGroups.count}, 'rpe') }}{# {{ user.groups.count }}</span> groupes #}
+                    </a>
+            </div>
+        </div>
+
+        {#<div class="sub-middle-right alt">
+            <div class="advice-slider light-blue">
+                <span class="">Comment augmenter ma visibilité ?</span>
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                        <span class="sr-only">50% Complete (warning)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="advice-links">
+                <a href="{{ path('profil') }}" class="advice-btn">Remplir vos coordonnées (+10%)</a>
+                <a href="{{ path('profil') }}" class="advice-btn">Ajouter une photo (+7%)</a>
+                <a href="{{ path('my_groups') }}" class="advice-btn">Rejoindre votre premier groupe (+5%)</a>
+            </div>
+        </div> #}
+
+    </div>
+</div>
+{% endspaceless %}
+{% endblock main_content %}

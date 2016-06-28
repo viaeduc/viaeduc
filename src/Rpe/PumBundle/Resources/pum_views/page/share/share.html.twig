@@ -1,0 +1,59 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+{% set q = app.request.get('q', null) %}
+{% set page_title = (q is not empty) ? '"' ~ q|e ~ '" - Share' : 'Share' %}
+{% set page_name_analytics = 'share/belin' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/share.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.share.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            Share
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block main_content %}
+
+	    {% if share.isFailed is not null %}
+	        <strong>{{ 'search.warning'|trans({}, 'rpe') }}</strong> {{ 'share.failed'|trans({}, 'rpe') }}.
+	    {% else %}
+
+		    <div class="col-md-12 well" id="share_box" data-path="{{ path('share') }}" data-response-true="{{ 'share.NotFailed'|trans({}, 'rpe') }}" data-response-false="{{ 'share.failed'|trans({}, 'rpe') }}">
+		            <div class="col-md-12">
+		                   <div class="col-md-2 col-sm-2 col-xs-4"><img class="img-thumbnail share_image" src="{{share.image}}"></div>
+		                   <div class="col-md-10">
+			                   <div class="share_title">{{share.title}}</div>
+			                   <div class="share_content">
+			                   {{share.description}}
+			                   </div>
+			               </div>
+		            </div>
+		    </div>
+		    <div class="choiceTypeShare">
+		    <h4>Partager sur:</h4>
+	            <select id="selection">
+                  <option value='0' data-type="2">{{ 'share.MyProfil'|trans({}, 'rpe') }}</option>
+                  {% if group is defined %}
+                      {% for groups in group %}
+                          <option value='{{ groups.id }}' data-type="4">{{ groups.name }}</option>
+                      {% endfor %}
+                  {% endif %}
+                </select>
+                <div>
+                   <a href="{{ path('share_save') }}" class="light-blue publish-btn" id="sendShare">{{ 'share.share'|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+	   {% endif %}
+{% endblock %}
+{% endspaceless %}

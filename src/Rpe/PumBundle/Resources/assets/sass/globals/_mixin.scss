@@ -1,0 +1,78 @@
+// ------------------------------------ //
+//                Mixins                //
+// ------------------------------------ //
+
+@mixin placeholder {
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+    &::-ms-input-placeholder { @content; }
+}
+
+// mixin placeholder focus
+@mixin placeholder-focus {
+    &:focus:-moz-placeholder { @content; }
+    &:focus::-moz-placeholder { @content; }
+    &:focus::-webkit-input-placeholder { @content; }
+    &:focus:-ms-input-placeholder { @content; }
+}
+
+
+// Prefixed keyframe definition
+// =====================================
+// @include keyframes(move-the-object) {
+//   0%   { left: 100px; }
+//   100% { left: 200px; }
+// }
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+// Prefixed animation definition
+// =============================
+// .object-to-animate {
+//   @include animation('move-the-object .5s 1', 'move-the-object-again .5s 1 .5s');
+// }
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+/* function to convert px to rem */
+@function calculateRem($size) {
+    @return ($size / 16) + rem;
+}
+
+@mixin fontSize($size) {
+    font-size: $size + px; //Fallback in px
+    font-size: calculateRem($size);
+}
+
+//form of text and number
+@mixin form-text-number($size,$vertical,$text) {
+    font-size: $size;
+    vertical-align: $vertical;
+    text-align: $text;
+}

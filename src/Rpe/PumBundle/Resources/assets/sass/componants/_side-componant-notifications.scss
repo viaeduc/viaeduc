@@ -1,0 +1,56 @@
+// Notification
+.notification-container {
+    display: inline-block;
+    vertical-align: top;
+    width: 99%;
+    height: 200px;
+    overflow: hidden;
+
+    // Positioning
+    .swiper-slide {
+        width: 100%;
+        float: left;
+        margin: 0 0 1px 0;
+
+        @include fontSize(10);
+        font-family: $Verdana;
+        color: $dark-blue-font;
+        background: $light-grey-1;
+    }
+
+    .notification-left,
+    .notification-right {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 2.5%;
+    }
+
+    .notification-left {
+        width: 30%;
+        background: $light-grey-1;
+        text-align: right;
+    }
+
+    .notification-right {
+        width: 70%;
+        background: $background-white;
+    }
+
+    // Styling
+    .notification-date {
+        display: block;
+        font-weight: bold;
+    }
+
+    .uppercase {
+        text-transform: uppercase;
+    }
+}
+
+.notification-scroll {
+    display: inline-block;
+    vertical-align: top;
+    width: 1%;
+    height: 200px;
+    background: $light-grey-1;
+}

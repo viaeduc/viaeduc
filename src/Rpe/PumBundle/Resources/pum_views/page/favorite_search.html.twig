@@ -1,0 +1,85 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/favorite-search.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+	{% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+		{% block this_page %}
+	    	Favoris de recherche
+	    {% endblock %}
+	{% endembed %}
+{% endblock %}
+
+
+{% block sidebar %}
+    {% include 'pum://includes/common/componants/tips/tip-favorite-search.html.twig' %}
+{% endblock %}
+
+{% block main_content %}
+    <h2 class="main-title">{{ "favoriteSearch.title"|trans({}, 'rpe') }}</h2>
+    <ul>
+        <li class="favorite-list-container">
+            <form>
+                <div class="favorite-list-left">
+                    <div class="main-information">
+                        <a href="#" class="name">Les philosophes du 18e siècle</a>
+                        <span class="role">Créé le 15/07/2013</span>
+                    </div>
+                </div><!--
+                --><div class="favorite-list-center">
+                    <span class="alert-mails">Alertes mails</span><!--
+                    --><div class="favorite-selection">
+                        <span class="select-box first-select">
+                            <select class="required" name="selectInput">
+                                <option selected="" value="default">Selectionner un element</option>
+                                <option value="mustard">Tous</option>
+                                <option value="ketchup">Amis</option>
+                                <option value="relish">Personne</option>
+                              </select>
+                        </span><!--
+                        --><a href="#" class="action-btn light-blue answer">4 {{ "favoriteSearch.new_results"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div><!--
+                --><div class="favorite-list-right">
+                    <a class="action icon-ok-squared" href="#"></a>
+                    <a class="action icon-cancel-squared" href="#"></a>
+                </div>
+            </form>
+        </li>
+        <li class="favorite-list-container">
+            <form>
+                <div class="favorite-list-left">
+                    <div class="main-information">
+                        <a href="#" class="name">Histoires de France</a>
+                        <span class="role">{{ "favoriteSearch.created"|trans({}, 'rpe') }} 13/07/2013</span>
+                    </div>
+                </div><!--
+                --><div class="favorite-list-center">
+                    <span class="alert-mails">{{ "favoriteSearch.email_alert"|trans({}, 'rpe') }}</span><!--
+                    --><div class="favorite-selection">
+                        <span class="select-box first-select">
+                            <select class="required" name="selectInput">
+                                <option selected="" value="default">Selectionner un element</option>
+                                <option value="mustard">Tous</option>
+                                <option value="ketchup">Amis</option>
+                                <option value="relish">Personne</option>
+                              </select>
+                        </span><!--
+                        --><span class="answer">0 {{ "favoriteSearch.new_results"|trans({}, 'rpe') }}s</span>
+                    </div>
+                </div><!--
+                --><div class="favorite-list-right">
+                    <!-- NEEDS TO BE REFRESH ICON -->
+                    <a class="action icon-ok-squared" href="#"></a>
+                    <a class="action icon-cancel-squared" href="#"></a>
+                </div>
+            </form>
+        </li>
+    </ul>
+
+{% endblock %}
+{% endspaceless %}

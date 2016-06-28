@@ -1,0 +1,34 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+    {% spaceless %}
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="modal-label-report">Ressources du groupe {{ group.name }}</h4>
+	</div>
+	<div class="modal-body modal-ressource-body">
+        <ul class="modal-ressource-list">
+            {% for resource in group.resources %}
+                {% spaceless %}
+                    <li class="modal-ressource-wrapper">
+                        <a href="{{ path('publication', {'id': resource.id}) }}">
+                            <div class="modal-ressource-left">
+                                {{ macros.show_post_media(resource, 'default', 92, 'ressource-image') }}
+                            </div>
+                            <div class="modal-ressource-right">
+                                <h3 class="modal-ressource-title">{{ resource.name|truncate(50, true) }}</h3>
+                                {% if resource.coAuthors.count > 0 %}
+                                    <span class="modal-ressource-link">{{ '%count% <span>contributeur</span>|%count% <span>contributeurs</span>'|transchoice(resource.coAuthors.count, {'%count%': resource.coAuthors.count}, 'rpe')|raw }}</span>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </li>
+                {% endspaceless %}
+            {% endfor %}
+        </ul>
+	</div>
+	<div class="modal-footer">
+		<a role="button" data-dismiss="modal" class="action-btn light-blue">Fermer</a>
+	</div>
+    {% endspaceless %}
+{% endblock main_content %}

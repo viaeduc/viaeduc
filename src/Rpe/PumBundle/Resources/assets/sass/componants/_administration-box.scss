@@ -1,0 +1,559 @@
+// -----------------
+// Administraton box
+// -----------------
+
+.administration-box {
+    display : inline-block;
+    width   : 100%;
+    // height  : 562px;
+    border  : 1px solid $light-grey-2;
+
+    .administration-top {
+        position       : relative;
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+        height         : 60px;
+
+        padding: 2%;
+        background: $light-grey-2;
+
+        .invit-dropdown-toggle {
+            .icon-cog {
+                vertical-align : top;
+            }
+            &.active {
+                background : $orange-2;
+            }
+        }
+
+        .invit-dropdown-menu {
+            @include box-shadow(0 6px 12px rgba(0,0,0,0.175));
+            position   : absolute;
+            right      : 2%;
+            background : $white;
+            margin     : 0;
+            width      : 230px;
+            color      : $dark-blue-1;
+            z-index    : 1200;
+            padding    : 5px 0px;
+
+            display    : none;
+
+            &.active {
+                display : block;
+            }
+
+            li {
+                &:before {
+                    content        : '>';
+                    display        : inline-block;
+                    vertical-align : top;
+                    width          : 6%;
+                }
+
+                @include fontSize(15);
+                font-family    : $UbuntuCondensed;
+                display        : inline-block;
+                vertical-align : top;
+                width          : 100%;
+                padding        : 5px 20px;
+
+                a {
+                    display        : inline-block;
+                    vertical-align : top;
+                    height         : 100%;
+                    width          : 94%;
+                    color          : $dark-blue-1;
+
+                    &:hover {
+                        text-decoration : none;
+                    }
+                }
+
+                &:hover {
+                    color : $light-blue-1;
+
+                    &:before {
+                        color : $light-blue-1;
+                    }
+
+                    a {
+                        color : $light-blue-1;
+                    }
+                }
+            }
+
+
+        }
+
+        form {
+            display : inline-block;
+            width   : 33%;
+        }
+
+        input[type="text"]{
+            height : 30px;
+            margin : 0 3.3% 0 0;
+        }
+
+        .friend-filter {
+            display        : inline-block;
+            vertical-align : middle;
+            width          : 31.017369727047146%;
+        }
+
+        .profil-btn {
+            float       : right;
+            padding     : 0px 5px;
+            margin      : 0;
+            height      : 30px;
+            line-height : 30px;
+
+            span {
+                background-position : 0 center;
+            }
+        }
+
+        .filter-btn {
+            display        : inline-block;
+            vertical-align : middle;
+            padding        : 0px 10px 0 0;
+            margin         : 0 4px 0 0;
+            height         : 30px;
+            line-height    : 30px;
+            border         : 0px solid transparent;
+
+            &.light-blue {
+                @include transition(background-color 0.2s linear);
+                background : $light-blue-1;
+                color      : $white;
+
+                &:hover{
+                    @include transition(background-color 0.2s linear);
+                    background : $light-blue-2;
+                }
+            }
+
+            span {
+                @include fontSize(16);
+                display             : block;
+                height              : 100%;
+                width               : 100%;
+                line-height         : 30px;
+                background-position : 0 center;
+                text-transform      : uppercase;
+            }
+        }
+    }
+
+    .administration-left {
+        position       : relative;
+        display        : inline-block;
+        vertical-align : top;
+        width          : 35%;
+        height         : 500px;
+        background     : $light-grey-1;
+        overflow-y     : auto;
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            height: 100%;
+
+            p {
+                padding : 20px;
+            }
+
+            li {
+                display: inline-block;
+                height: 95px;
+                width: 100%;
+                margin: 0 0 4% 0;
+
+                a {
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                    padding: 4%;
+                    color: $dark-grey-font;
+                    font-family: $Verdana;
+                    @include fontSize(14);
+
+                    img,
+                    .details {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+
+                    img {
+                        margin : 0 3% 0 0;
+                        width  : 64px;
+                    }
+
+                    .details {
+                        width : 65%;
+                    }
+
+                    span {
+                        display: block;
+                        float: left;
+                        clear:left;
+
+                        &:first-of-type {
+                            font-weight: 600;
+                        }
+                    }
+
+                    &:hover {
+                        text-decoration: none;
+                        background: $background-white;
+                    }
+                }
+
+                &:last-child {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .administration-right {
+        display: inline-block;
+        vertical-align: top;
+        width: 65%;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        padding: 2%;
+        background: $background-white;
+        font-family: $Verdana;
+        @include fontSize(13);
+
+        .invite-external-search-wrapper {
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+            padding: 0 20px;
+
+            > p {
+                margin : 0 0 20px 0;
+            }
+
+            .expanding-wrapper,
+            .invite-external-email-input {
+                width: 100% !important;
+            }
+
+            .send-invite-form {
+                margin : 10px 0 0 0 !important;
+            }
+        }
+
+        img,
+        .member-info {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        img {
+            margin : 0 2% 0 0;
+            width  : 158px;
+        }
+
+        .member-info {
+            width  : 60%;
+
+            span,
+            a {
+                float: left;
+                clear: left;
+            }
+
+            span.title {
+                font-family: $UbuntuCondensed;
+                @include fontSize(30);
+                margin: 0 0 2% 0;
+            }
+
+            a:first-of-type {
+                margin: 10px 0 5px 0;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+        }
+
+        p {
+            display        : inline-block;
+            vertical-align : top;
+            margin         : 10px 0 5% 0;
+            width          : 100%;
+
+            .text {
+                display : block;
+                width   : 100%;
+            }
+        }
+
+        .links {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 100%;
+
+            > a,
+            span {
+                @include fontSize(14);
+                display        : inline-block;
+                vertical-align : top;
+                height         : 40px;
+                width          : auto;
+                padding        : 0 10px 0 5px;
+                line-height    : 40px;
+                margin         : 0 0 10px 0;
+
+                &:first-of-type {
+                    padding : 0 10px;
+                }
+
+                &.icon-key{
+                    margin : 0 10px 10px 0;
+                }
+
+                &.light-blue.icon-users.profil-btn {
+                    margin-right: 20px;
+                }
+
+                &.accept, &.reject {
+                    margin-right: 10px;
+                    padding: 0 10px;
+                }
+            }
+
+            #js-profil-buttons {
+                min-width : 150px;
+                overflow  : hidden;
+
+                > a {
+                    width : 100%;
+
+                    span {
+                        padding : 0px;
+                        width   : 100%;
+                    }
+                }
+            }
+
+            span[id*="js-profil-buttons"] {
+
+                display: none;
+
+                > a {
+                    .icon-users.profil-btn {
+                        display       : inline-block;
+                        margin-right  : 0;
+                    }
+                    .red.icon-cross.action-btn {
+                        display : none;
+                        margin  : 0;
+                    }
+                }
+
+
+            }
+
+            .icon-cross {
+                margin : 0 10px 0 0;
+            }
+            .icon-mail {
+                margin: 0 10px;
+            }
+        }
+
+        .view-profil-btn {
+            height      : 35px;
+            line-height : 35px;
+            padding     : 0px;
+            margin      : 0px;
+        }
+
+        .invite-members-search-wrapper,
+        .invite-external-search-wrapper {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 100%;
+            margin         : 20px 0 0 0;
+            text-align     : center;
+
+            .invite-members-search-input,
+            .invite-external-search-input,
+            .invite-external-email-input {
+                display        : inline-block;
+                vertical-align : top;
+                width          : 96.5%;
+                text-align     : left;
+                margin         : 0 0 10px 0;
+            }
+
+            .invite-external-message {
+                height  : 45px;
+                padding : 11.5px 10px;
+            }
+
+            .invite-external-search-send {
+                display        : inline-block;
+                vertical-align : top;
+                margin         : 0;
+            }
+        }
+
+        .invite-external-confirm-wrapper {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 100%;
+            padding        : 20px 0;
+        }
+
+        .invite-external-confirm {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 100%;
+            text-align     : center;
+            font-style     : italic;
+
+            &.top {
+                padding : 20px 0;
+            }
+        }
+
+        .invite-friend-list {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 100%;
+            height        : auto;
+            max-height        : 450px;
+            overflow-y     : auto;
+            padding        : 20px 0 70px 0;
+
+            .invite-friend-wrapper {
+                display        : inline-block;
+                vertical-align : top;
+                width          : 12.5%;
+                text-align     : center;
+                margin         : 0 0 10px 0;
+            }
+
+            .invite-friend-label {
+                cursor : pointer;
+            }
+
+            .invite-friend-inner-wrapper {
+                position   : relative;
+                display    : block;
+                min-width  : 75px;
+                max-width  : 75px;
+                min-height : 75px;
+                max-height : 75px;
+                overflow   : hidden;
+            }
+
+            .invite-friend-image,
+            .invite-friend-name-wrapper,
+            .invite-friend-surname,
+            .invite-friend-name {
+                display : block;
+                width   : 100%;
+            }
+
+            .invite-friend-image {
+                height : 100%;
+            }
+
+            .invite-friend-name-wrapper {
+                @include transition(background 0.2s linear);
+                position   : absolute;
+                bottom     : 0;
+                left       : 0;
+                background : rgba(0,0,0,0.4);
+            }
+
+            .invite-friend-surname,
+            .invite-friend-name {
+                float       : left;
+                color       : $white;
+                text-align  : left;
+                padding     : 3%;
+                line-height : 0.8em;
+            }
+
+            .invite-friend-name {
+                font-weight : bold;
+            }
+
+            .invite-friend-label:hover {
+                .invite-friend-name-wrapper {
+                    @include transition(background 0.2s linear);
+                    background : $light-blue-2;
+                }
+            }
+
+            .invite-friend-label.active {
+                .invite-friend-name-wrapper {
+                    @include transition(background 0.2s linear);
+                    background : $light-blue-2;
+                }
+            }
+        }
+    }
+
+    &.full-admin {
+        .administration-left {
+            width   : 0px;
+            height  : 0px;
+            display : none;
+        }
+
+        .administration-right {
+            position : relative;
+            width    : 100%;
+            padding  : 0 0 0 0;
+
+            .invite-bottom {
+                position       : absolute;
+                display        : inline-block;
+                vertical-align : top;
+                bottom         : 0px;
+                right          : 0;
+                width          : 100%;
+                height         : 40px;
+                line-height    : 40px;
+                background     : $background-white;
+                padding: 10px;
+                @include box-sizing(content-box);
+                // box-sizing: content-box;
+            }
+
+            .send-invite-form {
+                width       : auto;
+                height      : 40px;
+                line-height : 40px;
+                margin      : 0;
+                padding     : 0 15px;
+                float       : right;
+            }
+        }
+    }
+
+    @media screen and (max-width: $portrait-screen) {
+
+    }
+
+    @media screen and (max-width: $landscape-screen) {
+        .details {
+            width: 60%;
+        }
+    }
+}

@@ -1,0 +1,64 @@
+{#
+    require:
+    - action
+    - group_id
+    - member_id
+    - user
+    - useringroup?
+ #}
+{% set cont = 'Rpe\\PumBundle\\Controller\\GroupController::' %}
+
+{# {% set action_origin = action %} #}
+
+{% if redirect_current_url|default(false) == true %}
+    {% set redirect_url = app.request.uri %}
+{% endif %}
+
+{% if action is defined and action != false %}
+    {% if action == 'accept_reject' %}
+        <a class="accept profil-btn orange icon-checkmark js-loadmore js-infinite js-load-inner" href="{{ path('group_action_manage_request', {
+            'action': constant(cont~'ACTION_ACCEPT'),
+            'member_id': member_id,
+            'group_id': group_id
+        }) }}" data-post="{{ (redirect_url is defined) ? 'redirect_url=' ~ redirect_url }}" data-target=".administration-right">
+            {{ ("groupAdmin." ~ constant(cont~'ACTION_ACCEPT'))|trans({}, 'rpe') }}
+        </a>
+        <a class="reject profil-btn orange icon-cross js-loadmore js-infinite js-load-inner" href="{{ path('group_action_manage_request', {
+            'action': constant(cont~'ACTION_REJECT'),
+            'member_id': member_id,
+            'group_id': group_id
+        }) }}" data-post="{{ (redirect_url is defined) ? 'redirect_url=' ~ redirect_url }}">
+            {{ ("groupAdmin." ~ constant(cont~'ACTION_REJECT'))|trans({}, 'rpe') }}
+        </a>
+	{% elseif action == 'accept' %}
+		Vous avez accepté.
+	{% elseif action == 'reject' %}
+		Vous avez refusé.			
+    {% else %}
+        {% set pathway = path('group_action_manage_request', {
+            'action': action,
+            'member_id': member_id,
+            'group_id': group_id
+        }) %}
+
+        {% set icon = '' %}
+
+        {% if action == constant(cont~'ACTION_SET_ADMIN') %}
+            {% set icon = 'icon-key' %}
+        {% elseif action == constant(cont~'ACTION_SET_USER') or action == constant(cont~'ACTION_REMOVE_ADMIN') or action == constant(cont~'ACTION_REMOVE_MODERATOR') %}
+            {% set icon = 'icon-cross' %}
+        {% elseif action == constant(cont~'ACTION_SET_MODERATOR') %}
+            {% set icon = 'icon-key' %}
+        {% elseif action == constant(cont~'ACTION_BAN_USER') %}
+            {% set icon = 'icon-blocked' %}
+        {% elseif action == constant(cont~'ACTION_UNBAN_USER') %}
+            {% set icon = 'icon-checkmark' %}
+        {% endif %}
+
+        {% set icon = icon ~ ' js-loadmore js-infinite js-load-inner' %}
+
+        <a class=" profil-btn orange {{ icon }}" href="{{ pathway }}" data-post="{{ (redirect_url is defined) ? 'redirect_url=' ~ redirect_url }}" data-target=".administration-right" data-reload=".sidebar">
+            {{ ("groupAdmin." ~ action) |trans({}, 'rpe') }}
+        </a>
+    {% endif %}
+{% endif %}

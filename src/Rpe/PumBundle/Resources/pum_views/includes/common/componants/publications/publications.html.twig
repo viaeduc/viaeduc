@@ -1,0 +1,172 @@
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% spaceless %}
+<div id="js-post-{{ post.id }}" class="timeline-post" data-post-id="{{ post.id }}" data-href="{{ url('create_form_comment') }}">
+    <div class="timeline-post-author">
+        <a href="{{ path('profil', {id : post.author.id}) }}" class="timeline-author-link">
+            {{ macros.show_user_avatar(post.author, 'default', 44, 'author-image') }}
+        </a>
+    </div>
+    <div class="timeline-post-content">
+        {% if post.resource == true %}
+            <div class="timeline-content-top">
+                {% if post.publishedGroup is not null %}
+                    {{ '%author% a publié une ressource dans %group%'|trans({
+                        '%author%': '<a href="' ~ path('profil', {id : hashEncode(post.author.id)}) ~'" class="author-profil">' ~ macros.author_fullname(post.author) ~ '</a>',
+                        '%group%': '<a href="' ~ path('group', {id : post.publishedGroup.id}) ~'" class="author-profil">' ~ post.publishedGroup.name|e ~ '</a>',
+                    }, 'rpe')|raw }}
+                {% else %}
+                    {{ '%author% a publié une ressource'|trans({
+                        '%author%': '<a href="' ~ path('profil', {id : hashEncode(post.author.id)}) ~'" class="author-profil">' ~ macros.author_fullname(post.author) ~ '</a>',
+                    }, 'rpe')|raw }}
+                {% endif %}
+            </div>
+            <div class="timeline-content-main timeline-ressource">
+                <a href="{{ path('publication', {'id': post.id}) }}" class="link-wrapper">
+                    <div class="timeline-ressource-image">
+                        {{ macros.show_post_media(post, 'default', 115, '') }}
+                    </div><!--
+                    --><div class="timeline-ressource-content">
+                        <h4 class="ressource-title">{{ post.name }}</h4>
+                        <p class="ressource-text">
+                            {{ (post.description is not empty) ? post.description : post.content|striptags|wordwrap() }}
+                        </p>
+                    </div>
+                </a>
+            </div>
+        {% else %}
+            <div class="timeline-content-top">
+                {% if post.publishedGroup is not null %}
+                    {{ '%author% &gt; %group%'|trans({
+                        '%author%': '<a href="' ~ path('profil', {id : hashEncode(post.author.id)}) ~'" class="author-profil">' ~ macros.author_fullname(post.author) ~ '</a>',
+                        '%group%': '<a href="' ~ path('group', {id : post.publishedGroup.id}) ~'" class="author-profil">' ~ post.publishedGroup.name|e ~ '</a>',
+                    }, 'rpe')|raw }}
+                {% elseif post.targetUser is not null and post.targetUser != post.author %}
+                    {{ '%author% &gt; %target%'|trans({
+                        '%author%': '<a href="' ~ path('profil', {id : hashEncode(post.author.id)}) ~'" class="author-profil">' ~ macros.author_fullname(post.author) ~ '</a>',
+                        '%target%': '<a href="' ~ path('profil', {id : hashEncode(post.targetUser.id)}) ~'" class="author-profil">' ~ macros.author_fullname(post.targetUser) ~ '</a>',
+                    }, 'rpe')|raw }}
+                {% elseif post.sharePost.count %}
+                    {% for sharePost in post.sharePost %}
+                        {% set originalPost =  sharePost.sourcePost%}
+
+                        {{ '%author% a partagé une publication de %original_author%'|trans({
+                            '%author%': '<a href="' ~ path('profil', {id : hashEncode(post.author.id)}) ~'" class="author-profil">' ~ macros.author_fullname(post.author) ~ '</a>',
+                            '%original_author%': '<a href="' ~ path('profil', {id : hashEncode(originalPost.author.id)}) ~'" class="author-profil">' ~ macros.author_fullname(originalPost.author) ~ '</a>',
+                        }, 'rpe')|raw }}
+                    {% endfor %}
+                {% else %}
+                    {{ '%author% a publié un message'|trans({
+                        '%author%': '<a href="' ~ path('profil', {id : hashEncode(post.author.id)}) ~'" class="author-profil">' ~ macros.author_fullname(post.author) ~ '</a>',
+                    }, 'rpe')|raw }}
+                {% endif %}
+            </div>
+            <div class="timeline-content-main">
+                <p class="post-text">{{ post.content|striptags('<a>')|nl2br|detecturls|raw }}</p>
+
+                {% if post.sharePost.count %}
+                    {% for sharePost in post.sharePost %}
+                        {% set originalPost =  sharePost.sourcePost %}
+
+                        {% if originalPost.resource %}
+                            <div class="timeline-content-main timeline-ressource">
+                                <a href="{{ path('publication', {'id': originalPost.id}) }}" class="link-wrapper">
+                                    <div class="timeline-ressource-image">
+                                        {{ macros.show_post_media(originalPost, 'default', 115, '') }}
+                                    </div><!--
+                                    --><div class="timeline-ressource-content">
+                                        <h4 class="ressource-title">{{ originalPost.name|truncate(75, true) }} }}</h4>
+                                        <p class="ressource-text">
+                                            {{ (originalPost.description is not empty) ? originalPost.description : originalPost.content|striptags('<a>')|raw|wordwrap() }}
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        {% else %}
+                            <em>{{ originalPost.content|striptags('<a>')|raw }}</em>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                {% if post.file is not null %}
+                    {# <a href="#"> #}
+                    {% if post.file.isImage %}
+                        {{ macros.show_image(post.file, 0, 'post-image') }}
+                    {% else %}
+                        {% set ext = post.file.extension|lower %}
+                        <ul class="uploaded-files-wrapper">
+                            <li class="uploaded-file">
+                                <a href="{{ macros.downloadFile(post.id, 'post', post.file.token) }}" target="_blank" class="attached-files-image-link">
+                                    <span class="label label-default">{{ ext|upper }}</span>
+                                    {{ post.file.name }}
+                                </a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                    {# </a> #}
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if post.linkPreview is not null %}
+            {% include "pum://page/linkpreview/index.html.twig" with {'link' : post.linkPreview} %}
+        {% endif %}
+    </div>
+
+    <div class="timeline-content-links">
+        {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+            'type': 'post',
+            'object': post,
+            'style': 'link'
+        } %}
+		
+        <a href="#js-c-post-{{ post.id }}" class="icon-comment" data-target="#js-c-post-{{ post.id }}">{{ 'Commenter (%count%)'|transchoice(post.comments.count, {'%count%': post.comments.count}, 'rpe') }}</a>
+        {% set group = null %}
+        {% if post.publishedGroup is not null %}
+            {% set group = pum_entity('group', {id: post.publishedGroup.id}) %}
+        {% endif %}
+        {% if post.publishedGroup is null or (post.publishedGroup is not null and post.publishedGroup.isSecret == false) %}
+            <a href="{{ path('publication_share', {'id': post.id}) }}" class="icon-share" data-toggle="modal" data-target="#modal-share">Partager (<span id="js-s-c-{{ post.id }}">{{ post.shareCount }}</span>)</a>
+        {% endif %}
+        
+        {% if post.publishedGroup is not null and group is not null and post.publishedGroup.id == group.id and group.isAdmin(user) %}
+            {% set text = pum_repository('social_headline_post').getHeadline(post.id, group.id) == null ? "action.headline.removed"|trans({}, 'rpe') : "action.headline.added"|trans({}, 'rpe') %}
+            <a href="{{ path('publication-headline', {'id': post.id, 'group':post.publishedGroup.id }) }}" class="icon-headline" data-toggle="modal" data-target="#modal-share" ><span>{{ text }}</span></a>
+        {% endif %}
+        {% if post.resource %}
+            {% include 'pum://includes/common/componants/bookmark/buttons.html.twig' with {
+                'type': 'post',
+                'object': post,
+                'style': 'link'
+            } %}
+        {% endif %}
+
+        {# Delete #}
+        {% if user == post.author or user == post.targetUser %}
+        	<!-- here is the delete link problem --> 
+            <a href="#" class="icon-trash js-loadmore js-confirm-modal js-infinite" data-remove-div="#js-post-{{ post.id }}" data-delete-link="{{ path('delete_post', {'id': post.id}) }}" data-confirm="{{ 'common.action.delete.post_confirm'|trans({}, 'rpe')|e('html') }}">{{ 'common.action.delete.post'|trans({}, 'rpe') }}</a>
+        	<!-- end link -->
+        {% endif %}
+
+        {% include 'pum://includes/common/componants/report/buttons.html.twig' with {
+            'type': 'post',
+            'object': post,
+            'style': 'link'
+        } %}
+
+        <a href="#" class="post-time timeago" title="{{ post.createDate|date('c') }}"></a>
+    </div>
+    <div class="timeline-comments">
+        {% for comment in post.mainComments %}
+            {% include "pum://includes/common/componants/publications/comment.html.twig" %}
+        {% endfor %}
+        <div id="js-c-post-{{ post.id }}" class="timeline-post-comment">
+            {% include 'pum://includes/common/componants/comments/comment-form-raw.html.twig' with {'post': post.id} %}
+            {# {{ render(path('create_form_comment', {'post': post.id})) }} #}
+        </div>
+    </div>
+
+    <!-- Comment Form -->
+    {# {% include 'pum://includes/common/componants/comment-form.html.twig' %} #}
+</div>
+{% endspaceless %}

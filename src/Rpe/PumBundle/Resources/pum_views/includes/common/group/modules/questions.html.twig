@@ -1,0 +1,71 @@
+<!-- ****************** -->
+<!-- Questions réponses -->
+<!-- ****************** -->
+<div class="module-wrapper questions {% if group.isModuleEnabled('questions') %}enabled{% else %}disabled{% endif %}" data-module="questions">
+    <div class="module-top">
+        <img src="{{ asset('bundles/rpepum/images/module_questions.png') }}" class="module-image">
+        <h3 class="module-title">Questions Réponses</h3>
+    </div>
+    <p class="module-text">
+        Ce module permet de créer et visualiser les questions posées par le groupe à ses membres.<br>
+    </p>
+    <div class="module-bottom">
+        {% include 'pum://includes/common/componants/groups/admin_modules_button-activation.html.twig' with {
+            'group': group,
+            'groupModule': 'questions'
+        } %}
+
+        <a href="#" class="action-btn light-blue icon-cog module-config">Paramètres</a>
+    </div>
+    <div class="module-content">
+            <a href="#" class="action-btn light-blue add-question open-new">{{ "questions.publishBtn"|trans({}, 'rpe') }}</a>
+        <!-- Adds new event -->
+        <div class="question-new-form new-form js-autoload js-load-inner" data-autoload="{{ path('publish_question', {'group_id': group.id}) }}">
+            {{ macros.loader() }}
+        </div>
+        <span class="module-desc">Questions en ligne :</span>
+        <div class="event-wrapper">
+            {% for question in group.questions %}
+                {{ (loop.first) ? '<ul>' }}
+
+                <li>
+                    <div class="event-main">
+                        <div class="event-wrapper">
+                            <div class="event-left one-line">
+                                <span class="event-date">?</span>
+                            </div>
+                            <div class="event-right one-line">
+                                <a href="{{ path('question', {'id': question.id}) }}" class="event-title">{{ question.name }}</a>
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="{{ path('edit_question', {'id': question.id}) }}" class="action-btn light-blue icon-pencil edit-link"></a><!-- edits question -->
+                            {# <a href="#" class="action-btn light-blue icon-cross delete-link"></a><!-- delets question --> #}
+                        </div>
+                    </div>
+                </li>
+
+                {{ (loop.last) ? '</ul>' }}
+            {% endfor %}
+
+            <!-- *************** -->
+            <!-- POSITION CHANGE -->
+            <!-- *************** -->
+            <div class="vote-content blue change-position">
+                <div class="position-wrapper">
+                    <form>
+                        <div class="form-left">
+                            <label for="module-position">Position du module : </label>
+                        </div>
+                        <div class="form-right">
+                            {% include 'pum://includes/common/componants/groups/admin_modules_select-position.html.twig' with {
+                                'group': group,
+                                'groupModule': 'questions'
+                            } %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

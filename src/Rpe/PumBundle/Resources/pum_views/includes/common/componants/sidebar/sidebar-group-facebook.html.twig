@@ -1,0 +1,26 @@
+
+{% set groupModule = 'group-facebook' %}
+{% set widgetType  = constant('TYPE_FACEBOOK', groupwidget) %}
+{% set widgets = group.getWidgetsBy({'type': widgetType}) %}
+
+{% if widgets|length %}
+    <div class="side-componant">
+        <div class="padding-wrapper">
+            <h3 class="componant-title">{{ ("groupPage.module."~groupModule)|trans({}, 'rpe') }}</h3>
+            <ul>
+                {% for widget in widgets|slice(0, 3) %}
+                    <li>
+                        <div class="side-componant module-card">
+                            <div class="module-card-header">
+                                <h3 class="module-card-title">{{ widget.name }}</h3>
+                            </div>
+                            <div class="module-card-content">
+                                <div class="fb-like-box" data-href="{{ widget.content }}" data-width="400" data-height="340" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="true" data-show-border="false"></div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,65 @@
+{#
+    require:
+    - type ('post')
+    - object (post, group, question)
+    - user
+    - style ('link', 'button')
+ #}
+
+{% if type == 'post' %}
+    {% set pathway = 'bookmark_post' %}
+    {% set relationName = 'bookmarkby' %}
+{% elseif type == 'group' %}
+    {% set pathway = 'bookmark_group' %}
+    {% set relationName = 'bookmarkby' %}
+{% elseif type == 'question' %}
+    {% set pathway = 'bookmark_question' %}
+    {% set relationName = 'bookmarkby' %}
+{% elseif type == 'blog' %}
+    {% set pathway = 'bookmark_blog' %}
+    {% set relationName = 'bookmarkby' %}
+{% elseif type == 'editor' %}
+    {% set pathway = 'bookmark_editor' %}
+    {% set relationName = 'bookmarkby' %}
+{% endif %}
+
+{% if pathway is defined and object is defined and user is defined %}
+
+    {% set counter    = relationCount(type, relationName, object) %}
+    {% set isBookmark = isBookmark(user, type, object) %}
+
+    {% if isBookmark %}
+        {% set action = 'remove' %}
+    {% else %}
+        {% set action = 'add' %}
+    {% endif %}
+
+    {% set href = path(pathway, {
+        'mode':action,
+        'id':object,
+        'style': style,
+        'short': (short is defined) ? short : null
+    }) %}
+
+    {% if type == 'question' %}
+        <a href="{{ href }}" class="{{ (style == 'wall') ? 'wall-btn' : 'action-btn' }} {{ (isBookmark ? 'orange' : 'light-blue' ) }} icon-star js-loadmore js-infinite js-load-replace ajax-list-users" data-users="{{ path('recommend_users', {'id': object}) }}">{% spaceless %}
+            {% if style == 'wall' %}
+                {{ ('%count%')|trans({'%count%': counter}, 'rpe') }}
+            {% else %}
+                {{ ('action.bookmark.' ~ type ~ '.' ~ action)|trans({'%count%': counter}, 'rpe') }}
+            {% endif %}
+        {% endspaceless %}</a>
+    {% elseif type == 'blog' or type == 'editor' %}
+        <a href="{{ href }}" class="{{ (style == 'wall') ? 'wall-btn' : 'action-btn' }} {{ (isBookmark ? 'orange' : 'light-blue' ) }} icon-star ressource-inner-info-link js-loadmore js-infinite js-load-replace ajax-list-users" data-users="{{ path('recommend_users', {'id': object}) }}">{% spaceless %}
+            {{ ('action.bookmark.subscription.' ~ type ~ '.' ~ action)|trans({'%count%': counter}, 'rpe') }}
+        {% endspaceless %}</a>
+    {% else %}
+        <a href="{{ href }}" class="icon-star ressource-inner-info-link js-loadmore js-infinite js-load-replace ajax-list-users" data-users="{{ path('recommend_users', {'id': object}) }}">
+            {% if short is defined and short == true %}
+                <span>{{ counter }}</span>
+            {% else %}
+                {{ "publications.button.favorite"|trans({}, 'rpe') }} (<span>{{ counter }}</span>)
+            {% endif %}
+        </a>
+    {% endif %}
+{% endif %}

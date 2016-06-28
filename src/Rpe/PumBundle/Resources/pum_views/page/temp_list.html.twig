@@ -1,0 +1,95 @@
+{% extends "pum://page/layout.html.twig" %}
+
+{% set page_title = 'Accueil' %}
+{% set page_name_analytics = 'user/homepage' %}
+{% set nav_section = 'home' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{# {% set main_tutorial = true %} #}
+{# {% set tutorial_menu_profil_enabled = true %} #}
+{# {% set tutorial_menu_content_enabled = true %} #}
+{# {% set tutorial_menu_group_enabled = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/index.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.boxs-loading.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.index.js') }}"></script>
+    {% if tutorial_enabled is defined %}
+    <script>
+        {% spaceless %}
+            var user_tutorial_enabled = '{{ tutorial_enabled }}',
+                user_menu_tutorial    = '{{ tutorial_enabled }}';
+        {% endspaceless %}
+    </script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% spaceless %}
+    <div class="wrapper">
+        <form class="section-form">
+            <ul>
+                <li class="info-bubble"> <!-- NEW CLASS TO ADD -->
+                    <div class="form-left">
+                        <label for="resource_description">Décrivez votre ressource en quelques mots :</label>
+                    </div>
+                    <div class="form-right">
+                        <span class="select-box ">
+                            <textarea id="resource_description" name="resource[description]" placeholder="" data-validation="required" data-validation-error-msg="Veuillez écrire la description." maxlength="100"></textarea>
+                        </span>
+                    </div>
+                    <!-- IF INFOBUBBLE CLASS ON LI, ACTIVATE THIS PART -->
+                    <div class="form-info-bubble">
+                        <a href="#" class="info-bubble-link">?</a>
+                        <div class="info-bubble-hover">
+                            <ul>
+                                <li class="bold">école maternelle</li>
+                                <li>toute petite section</li>
+                                <li>petite section</li>
+                                <li>moyenne section</li>
+                                <li>grande section</li>
+                                <li class="bold">école élémentaire</li>
+                                <li>CP</li>
+                                <li>CE1</li>
+                                <li>CE2</li>
+                                <li>CM1</li>
+                                <li>CM2</li>
+                                <li class="bold">collège</li>
+                                <li>6e</li>
+                                <li>5e</li>
+                                <li>4e</li>
+                                <li>3e</li>
+                                <li class="bold">collège professionnel</li>
+                                <li>4e professionnelle</li>
+                                <li>3e professionnelle</li>
+                                <li class="bold">lycée général et technologique</li>
+                                <li>2de générale et technologique</li>
+                                <li>1re générale et technologique</li>
+                                <li>terminale générale et technologique</li>
+                                <li class="bold">lycée professionnel</li>
+                                <li>2de professionnelle</li>
+                                <li>1re professionnelle</li>
+                                <li>terminale professionnelle</li>
+                                <li class="bold">adaptation scolaire et scolarisation des élèves handicapés</li>
+                                <li class="bold">enseignement supérieur en lycée</li>
+                                <li class="bold">formation professionnelle</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+{% endspaceless %}
+{% endblock %}
+
+{% block sub_footer %}
+    <div class="sub-footer js-autoload" data-autoload="{{ path('ajax_footersuggestions') }}">
+        {# {% include 'pum://includes/common/footer/sub_footer.html.twig' %} #}
+        {{ macros.loader() }}
+    </div>
+{% endblock %}

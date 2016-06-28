@@ -1,0 +1,16 @@
+{% spaceless %}
+    {% if invited is defined %}
+        {% for invite in invited %}
+            {{ (loop.first) ? '<ul class="invite-external-confirm-wrapper">' }}
+                <li class="invite-external-confirm">{{ "blogPage.user.added"|trans({}, 'rpe') }} </li>
+            {{ (loop.last) ? '</ul>' }}
+        {% endfor %}
+    {% endif %}
+
+    <!-- for email external sent -->
+    {% if externalEmail is defined %}
+        <div class="invite-external-confirm">
+            <p>{{ "groupPage.confirmExternalMail.sent"|trans({}, 'rpe') }} {{ externalEmail }}</p>
+        </div>
+    {% endif %}
+{% endspaceless %}

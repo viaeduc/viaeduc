@@ -1,0 +1,80 @@
+{% extends "pum://layout.html.twig" %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/rpepum/css/common.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/rpepum/css/charte.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    {% include "pum://includes/common/minimal_header.html.twig" %}
+
+    <div class="charte-page">
+    <div class="charte-wrapper">
+        <h4 class="modal-title">{{ 'register.charte_title'|trans({}, 'rpe')}}</h4>
+        <div class="gray-wrapper">
+
+			<h3>{{ 'charte.viaeduc.title'|trans({}, 'rpe')}}</h3>
+			<p>{{ 'charte.viaeduc.description'|trans({}, 'rpe')}}</p>
+			<p>{{ 'charte.viaeduc.ambition'|trans({}, 'rpe')}}</p>
+			<p>{{ 'charte.viaeduc.philosophy'|trans({}, 'rpe')}}</p>
+			<p><strong>{{ 'charte.viaeduc.accept'|trans({}, 'rpe')}}</strong></p>
+
+			<h3>{{ 'charte.users.title'|trans({}, 'rpe')}}</h3>
+			<p>{{ 'charte.users.description'|trans({}, 'rpe')}}</p>
+			<p>{{ 'charte.users.rules'|trans({}, 'rpe')}}</p>
+			<ul>
+				<li>{{ 'charte.users.rule1'|trans({}, 'rpe')}}</li>
+				<li>{{ 'charte.users.rule2'|trans({}, 'rpe')}}</li>
+				<li>{{ 'charte.users.rule3'|trans({}, 'rpe')}}</li>
+				<li>{{ 'charte.users.rule4'|trans({}, 'rpe')}}</li>
+				<li>{{ 'charte.users.rule5'|trans({}, 'rpe')}}</li>
+				<li>{{ 'charte.users.rule6'|trans({}, 'rpe')}}</li>
+				<li>{{ 'charte.users.rule7'|trans({}, 'rpe')}}</li>
+			</ul>
+			<p>{{ 'charte.users.modos'|trans({}, 'rpe')}}</p>
+			<h3>{{ 'charte.engagements.title'|trans({}, 'rpe')}}</h3>
+			<p>{{ 'charte.engagements.description'|trans({}, 'rpe')}}</p>
+			<ul>
+				<li>{{ 'charte.engagements.engagement1'|trans({}, 'rpe')}}</li>
+				<li>{{ 'charte.engagements.engagement2'|trans({}, 'rpe')}}</li>
+				<li>{{ 'charte.engagements.engagement3'|trans({}, 'rpe')}}</li>
+				<li>{{ 'charte.engagements.engagement4'|trans({}, 'rpe')}}</li>
+			</ul>
+
+			 <h3>{{ 'charte.privacy.title'|trans({}, 'rpe')}}</h3>
+			 <p>{{ 'charte.privacy.description'|trans({}, 'rpe')}}</p>
+          </div>
+        </div>
+    </div>
+    <footer>
+        <nav class="footer-nav">
+            <ul class="footer-list">
+            {% if exception is defined %}
+                {% set footerLinks = [] %}
+            {% else %}
+                    {% set footerLinks = pum_entities('area', {'identifier': 'footer-notlogged'}) %}
+            {% endif %}
+            {% for footer in footerLinks %}
+                {% for page in footer.pages %}
+                    {% if page.redirectUrl is not empty %}
+                        <li class="footer-item"><a href="{{ page.redirectUrl }}">{{ page.title }}</a></li>
+                    {% else %}
+                        <li class="footer-item"><a href="{{ path('cms_page', {'seo': page.objectSlug}) }}">{{ page.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+            {% else %}
+                {# <li class="footer-item"><a class="not-available" href="#">{{ "footer.about"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="not-available" href="#">{{ "footer.partners"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="not-available" href="#">{{ "footer.legal"|trans({}, 'rpe') }}</a></li> #}
+                <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+            {% endfor %}
+            </ul>
+        </nav>
+    </footer>
+{% endblock %}
+

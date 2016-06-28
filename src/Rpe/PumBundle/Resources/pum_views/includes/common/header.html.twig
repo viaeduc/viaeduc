@@ -1,0 +1,71 @@
+{% spaceless %}
+<header>
+    <div class="header-wrapper">
+        <div class="header-inner">
+
+            <div id="logo" class="logo">
+                <span class="toggle-sidebar-icon"></span>
+                <a href="{{ path('home') }}"><img src="{{ asset('bundles/rpepum/images/logo.svg') }}" class="logo-home"></a>
+            </div>
+            {% if not( is_tablet() or is_mobile() ) %}
+                {% include 'pum://includes/common/header/main_nav.html.twig' %}
+            {% else %}
+                {% include 'pum://includes/common/header/search.html.twig' %}
+            {% endif %}
+
+            <div id="notifs">
+                <div id="notifs_msg" class="notifs-msg btn-group">
+                    <a href="#" class="notifs-msg-link notif-icon icon-mail js-loadmore js-once" data-href="{{ path('ajax_discussionlist_nav') }}" data-loadtarget=".message-container"></a>
+                    {% set badge_inbox_count = app.session.get('counter') ? app.session.get('counter').inbox.count : 0 %}
+                    {% set badge_inbox_time = app.session.get('counter') ? app.session.get('counter').inbox.time : 0 %}
+                    <span class="badge crossbadger-js" data-xbdgr_id="inbox" data-xbdgr_time="120000" data-xbdgr_nozero="1" data-xbdgr_time="{{ badge_inbox_time }}">{{ (badge_inbox_count > 0) ? badge_inbox_count : '' }}</span>
+                    {% if not(is_tablet() and is_mobile() ) %}
+                        <div class="dropdown-menu pull-center notif-dropdown" role="menu">
+                            <div class="notif-header icon-mail">
+                                Messages
+                            </div>
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <ul class="notif-list swiper-slide message-container">
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="{{ path('inbox') }}" class="view-inbox-link">{{ "messages.view"|trans({}, 'rpe') }}</a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div id="notifs_all" class="notifs-all btn-group">
+                    <a href="#" class="notifs-all-link notif-icon icon-bell js-loadmore js-once" data-href="{{ path('menu_notification_globalview') }}" data-loadtarget=".notif-container"></a>
+                    {% set badge_notifications_count = app.session.get('counter') ? app.session.get('counter').notification.count : 0 %}
+                    {% set badge_notifications_time = app.session.get('counter') ? app.session.get('counter').notification.time : 0 %}
+                    <span class="badge crossbadger-js" data-xbdgr_id="notification" data-xbdgr_time="120000" data-xbdgr_nozero="1" data-xbdgr_time="{{ badge_notifications_time }}">{{ (badge_notifications_count > 0) ? badge_notifications_count : '' }}</span>
+                    {% if not(is_tablet() and is_mobile() ) %}
+                        <div class="dropdown-menu pull-center notif-dropdown">
+                            <div class="notif-header icon-bell">
+                                Notifications
+                            </div>
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <ul class="notif-list swiper-slide notif-container">
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="{{ path('profil') }}#portlet_tab4" class="view-inbox-link">Voir toutes les notifications</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if not( is_tablet() and is_mobile() ) %}
+                {% include 'pum://includes/common/header/config_menu.html.twig' %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% if not(is_tablet() and is_mobile() ) %}
+        {% include 'pum://includes/common/header/search.html.twig' %}
+    {% endif %}
+</header>
+{% endspaceless %}

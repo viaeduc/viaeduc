@@ -1,0 +1,22 @@
+<!--        *******       -->
+<!-- Module page facebook -->
+<!--        *******       -->
+{% set groupModule = 'group-facebook' %}
+{% set widgetType  = constant('TYPE_FACEBOOK', groupwidget) %}
+{% set widgets = group.getWidgetsBy({'type': widgetType}) %}
+{% set nbModulesLimit = group.getMeta(constant('META_DEFAULT_NB_MAX', groupwidget) ~ widgetType) %}
+{% if nbModulesLimit %}
+    {% set nbModulesLimit = nbModulesLimit.value %}
+{% else %}
+    {% set nbModulesLimit = constant('DEFAULT_NB_MAX', groupwidget) %}
+{% endif %}
+
+{% include 'pum://includes/common/group/modules/group-widget-common.html.twig' with {
+        'group': group,
+        'groupModule': groupModule,
+        'nbModulesLimit': nbModulesLimit,
+        'widgets': widgets,
+        'groupwidget': groupwidget,
+        'widgetType': widgetType
+    }
+%}

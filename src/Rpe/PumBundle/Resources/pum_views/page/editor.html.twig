@@ -1,0 +1,285 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set page_title = (group.name is defined) ? group.name : 'Page du groupe' %}
+{% set page_name_analytics = 'group/view' %}
+{% set nav_section = 'groups-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/group-administration.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/rpepum/css/editor-page.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.cropbox.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.side-componants.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.group.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.publications.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+
+{% endblock %}
+
+{% block cover %}
+    {# Attention, il faut également toutes les fonctionalités d'administration (changement cover etc), cf : page group #}
+    {% embed "pum://includes/common/componants/cover-layout.html.twig" %}
+        {% block cover_left_information %}
+            <h3 class="profil-title editor-title">Page Partenaire</h3>
+            <h3 class="profil-last-name">Editions Belin</h3>
+            <span class="profil-role">éditeur de livres</span>
+            <span class="profil-class grey">Créé par Belin</span>
+        {% endblock %}
+        {% block cover_left_extra_information %}
+            <p class="description">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, illum recusandae repudiandae quas autem voluptatum ullam esse odit reiciendis dolorem voluptate ipsa nulla corporis earum voluptatibus ipsam cum suscipit quo!
+            </p>
+        {% endblock %}
+        {% block cover_left_buttons %}
+            {# Il faut mettre les boutons : envoyer un message, s'abonner #}
+            {# {% include 'pum://includes/common/componants/bookmark/buttons.html.twig' with {
+                'type': 'group',
+                'object': group,
+                'style': 'link'
+            } %} #}
+
+            <small class="membres icon-user">20</small> -
+            <small class="messages icon-newspaper">30</small>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block sidebar %}
+    {# afficher les derniers membres du page #}
+    {% include "pum://includes/common/componants/sidebar/sidebar-members.html.twig" %}
+{% endblock %}
+
+{% block main_content %}
+    {{ macros.modal('report') }}
+    {{ macros.modal('share') }}
+    {{ macros.modal('members') }}
+
+    <ul class="nav nav-tabs">
+        <li class="tab active"><a data-toggle="tab" href="#portlet_tab1">Dernières publications du partenaire</a></li>
+        <li class="tab"><a data-toggle="tab" href="#portlet_tab2">Produits</a></li>
+        <li class="tab"><a data-toggle="tab" href="#portlet_tab3">Informations</a></li>
+        <li class="tab"><a data-toggle="tab" href="#portlet_tab4">Contact</a></li>
+    </ul>
+
+
+    <div class="tab-content">
+        <!-- Fil d'activités -->
+        <div id="portlet_tab1" class="tab-pane active">
+            {# flux d'actualité classique, type groupe ou page profil #}
+            {# {% include "pum://includes/common/componants/publications/publications.html.twig" %} #}
+        </div>
+
+        <!-- produits -->
+        <div id="portlet_tab2" class="tab-pane">
+            <div class="editor-title">
+                <h2 class="title">Ajouter un produit</h2>
+                <a href="#" class="add-title icon-plus3"></a>
+            </div>
+            <div class="editor-add">
+                <form>
+                    <ul>
+                        <li>
+                            <div class="form-left">
+                                <label for="product_title">Titre</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="select-box">
+                                    <input type="text" name="product_title">
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-left">
+                                <label for="product_subtitle">Sous titre</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="select-box">
+                                    <input type="text" name="product_subtitle">
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-left">
+                                <label for="product_collection">Collection</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="select-box">
+                                    <input type="text" name="product_collection">
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-left">
+                                <label for="product_authors">Auteurs</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="select-box">
+                                    <input type="text" name="product_authors">
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-left">
+                                <label for="product_desc">Description</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="select-box">
+                                    <textarea name="product_desc"></textarea>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-left">
+                                <label for="product_file">Illustration</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="action-btn btn-file orange icon-paperclip">
+                                    <span class="fileupload">Ajouter</span>
+                                    <input type="file" name="product_file" class="rpe-upload single-upload">
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <button type="submit" name="product_submit" class="action-btn publish-btn orange">Publier</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="editor-box">
+                <div class="product-box-top">
+                    <div class="product-box-left">
+                        <!-- img -->
+                        <img src="{{ asset('bundles/rpepum/images/tmp/a_2.jpg') }}" class="product-image">
+                    </div>
+                    <div class="product-box-right">
+                        <!-- title -->
+                        <h3 class="product-title">Francais - étude de la lange CM1-CM2</h3>
+                        <!-- subtitle -->
+                        <h4 class="product-subtitle">Guide pédagogique</h4>
+
+                        <!-- collection -->
+                        <span class="product-details">Collection : Mauffrey - Cohen</span>
+                        <!-- editor -->
+                        <span class="product-details">Edtieur : Belin</span>
+                        <!-- authors -->
+                        <span class="product-details">Annick Mauffrey, Isdey cohen</span>
+
+                        <!-- more infos btn -->
+                        <a href="#" class="action-btn orange product-more-infos">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="product-box-main">
+                    <!-- main title -->
+                    <h3 class="product-details-title">Programmes 2013</h3>
+                    <!-- main subtitle -->
+                    <h4  class="product-details-subtitle">Pour chaque chapitre du manuel de CM1 - CM2</h4>
+
+                    <!-- list -->
+                    <ul class="product-details-list">
+                        <li>La présentation des objectifs pédagogiques généraux et particuliers</li>
+                        <li>La présentation des objectifs pédagogiques généraux et particuliers</li>
+                        <li>La présentation des objectifs pédagogiques généraux et particuliers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informations -->
+        <div id="portlet_tab3" class="tab-pane">
+            <div class="editor-box">
+                <h3 class="information-title">Nom de la page</h3>
+                <p class="information-text">Editions Belin</p>
+
+                <h3 class="information-title">Date de création</h3>
+                <p class="information-text">10 mars 1777</p>
+
+                <h3 class="information-title">Description</h3>
+                <p class="information-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, eligendi tenetur illum doloremque ipsam facere natus. Expedita fugiat aspernatur soluta! Ab debitis eos id voluptatum obcaecati eius fuga nam dicta.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, et delectus ab eius ipsa quam atque soluta omnis? Iure temporibus repudiandae a nulla quos vitae quae laboriosam vero repellat velit!
+                </p>
+
+                <h3 class="information-title">Liens (blog, site...)</h3>
+                <p class="information-text"><a href="http://www.editions-belin.com/" class="inner-link" target="_blank">www.editions-belin.fr</a></p>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div id="portlet_tab4" class="tab-pane">
+            <div class="editor-box">
+                <h3 class="editor-contact-title">Contacter le partenaire</h3>
+                <form class="editor-form">
+                    <ul>
+                        <li class="extra-infos">
+                            <div class="form-left">
+                                <label for="editor_name">Votre nom</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="select-box">
+                                    <input type="text" name="editor_name" data-validation="required" data-validation-error-msg="Veuillez écrire votre nom.">
+                                </span>
+                            </div>
+                        </li>
+                        <li class="extra-infos">
+                            <div class="form-left">
+                                <label for="editor_firstname">Votre prénom</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="select-box">
+                                    <input type="text" name="editor_firstname" data-validation="required" data-validation-error-msg="Veuillez écrire votre prénom.">
+                                </span>
+                            </div>
+                        </li>
+                        <li class="extra-infos">
+                            <div class="form-left">
+                                <label for="editor_email">Votre adresse mail</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="select-box">
+                                    <input type="text" name="editor_email" data-validation="email" data-validation-error-msg="Veuillez écrire une adresse mail valide.">
+                                </span>
+                            </div>
+                        </li>
+                        <li class="extra-infos">
+                            <div class="form-left">
+                                <label for="editor_object">L'objet de votre message</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="select-box">
+                                    <input type="text" name="editor_object" data-validation="required" data-validation-error-msg="Veuillez écrire l'objet du message.">
+                                </span>
+                            </div>
+                        </li>
+                        <li class="extra-infos">
+                            <div class="form-left">
+                                <label for="editor_message">Votre message</label>
+                            </div>
+                            <div class="form-right">
+                                <span class="select-box">
+                                    <textarea type="text" name="editor_message" data-validation="required" data-validation-error-msg="Veuillez écrire votre message."></textarea>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="extra-infos">
+                            <div class="form-left">
+
+                            </div>
+                            <div class="form-right">
+                                <button type="submit" id="editor_submit" name="editor_submit" class="action-btn publish-btn orange">Envoyer</button>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% endspaceless %}

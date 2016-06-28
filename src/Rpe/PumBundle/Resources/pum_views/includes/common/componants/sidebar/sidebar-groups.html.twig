@@ -1,0 +1,33 @@
+{% set groupsLength = countGroups %}
+<div class="side-componant grey">
+    <div class="padding-wrapper">
+        <h3 class="componant-title">{{ "sidebar.groups"|trans({}, 'rpe') }} <span class="title-small">/
+            <a href="{{ path('ajax_profil_grouplist', {'id': profil.id}) }}" class="relations" data-toggle="modal" data-target="#modal-relations">{{ groupsLength }} {% if groupsLength > 1 %}groupes{% else %}groupe{% endif %}</a>
+        </span></h3>
+        <div class="componant-wrapper">
+            {% set memberLimit  = 8 %}
+            {% for group in groups %}
+                {% if loop.first %}
+                    <ul class="connections-wrapper">
+                {% endif %}
+                <li class="connections-componant group-js">
+                    <a href="{{ path('group', {'id': group.id}) }}" class="connections-link">
+                        {% if group.picture_id is not null and isImage(group.picture_mime) %}
+                            {{ macros.show_group_avatar_url(group, 'default', 120, 'connections-profil-image') }}
+                        {% endif %}
+                        <div class="connections-name">
+                            <span class="connections-firstname">{{ group.name|truncate(50) }}</span>
+                            {# <span class="connections-lastname">Leroux</span> #}
+                        </div>
+                    </a>
+                </li>
+                {% if loop.last  %}
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% if groupsLength > 1 %}
+        <a href="{{ path('ajax_profil_grouplist', {'id': profil.id}) }}" class="componant-link" data-toggle="modal" data-target="#modal-relations">&gt; {{ groupsLength }} groupes</a>
+    {% endif %}
+</div>

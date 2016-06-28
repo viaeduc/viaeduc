@@ -1,0 +1,66 @@
+
+
+  {#{ macros.show_user_avatar(user, 15, null) }#}
+
+<div id="config_menu" class="btn-group config-menu">
+    <div class="menu-image-wrapper">
+        <a href="{{ path('profil') }}">
+            <!-- Here goes the user image with the classe : profil-image -->
+            {{ macros.show_user_avatar(user, null, 50, 'menu-profil-image') }}
+        </a>
+    </div>
+    <button type="button" data-toggle="dropdown">
+        <span class="user-name icon-cog" >{{ user.firstname ~ ' ' ~ user.lastname|initials ~ '.' }}</span>
+    </button>
+    <ul class="dropdown-menu pull-right" role="menu">
+        {% if user.isEditor == false %}
+            <li>
+                <a href="{{ path('my_account') }}">
+                    {{ "menuConfig.personal_general"|trans({}, 'rpe') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('my_account', {'form':'addition'}) }}">
+                    {{ "menuConfig.personal_info"|trans({}, 'rpe') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('my_confidential') }}">
+                    {{ "menuConfig.confidential"|trans({}, 'rpe') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('my_notifications') }}">
+                    {{ "menuConfig.notifications"|trans({}, 'rpe') }}
+                </a>
+            </li>
+            {# <li><a href="{{ path('my_account') }}">
+                {{ "menuConfig.following"|trans({}, 'rpe') }}
+            </a></li> #}
+            <li>
+                <a href="{{ path('agenda') }}">
+                    {{ "menuConfig.agenda"|trans({}, 'rpe') }}
+                </a>
+            </li>
+            {% if user.isInvited == false %}
+                <li>
+                    <a href="{{ path('my_invitations') }}">
+                        {{ "menuConfig.invit"|trans({}, 'rpe') }}
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ path('faq', {'type': 'invite'}) }}">
+                        {{ "menuConfig.faq_invit"|trans({}, 'rpe') }}
+                    </a>
+                </li>
+            {% endif %}
+            {# <li><a href="#">
+                {{ "menuConfig.help"|trans({}, 'rpe') }}
+            </a></li> #}
+        {% endif %}
+        <li><a href="{{ path('logout') }}" class="icon-logout">
+            {{ "menuConfig.disconnect"|trans({}, 'rpe') }}
+        </a></li>
+    </ul>
+</div>

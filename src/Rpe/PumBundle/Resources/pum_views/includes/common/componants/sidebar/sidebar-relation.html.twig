@@ -1,0 +1,40 @@
+{% set relation_count = pum_repository('user').acceptedFriendsActive(profil, true, true, null, null, 'count') %}
+{% set relations      = pum_repository('user').acceptedFriendsActive(profil, true, true, 8, null, 'id, firstname, lastname, avatar_id, cover_id, avatar_mime, cover_mime') %}
+
+<div class="side-componant grey">
+    <div class="padding-wrapper">
+        <h3 class="componant-title">
+            {{ "sidebar.relations"|trans({}, 'rpe') }}
+            <span class="title-small">/ <a href="{{ path('ajax_profil_relationlist', {'id': profil.id}) }}" class="relations" data-toggle="modal" data-target="#modal-relations">{{ relation_count }} {% if relation_count > 1 %}relations{% else %}relation{% endif %}</a>
+                {% if profil_is_current == false %}
+                    {% set common_relation_count = common_relation|length %}
+                    {% if common_relation_count > 0 %}
+                        (<a href="{{ path('ajax_profil_commonrelationlist', {'id': profil.id}) }}" class="title-link" data-toggle="modal" data-target="#modal-relations">{{ common_relation_count }} {{ "sidebar.common"|trans({}, 'rpe') }}</a>)
+                    {% endif %}
+                {% endif %}
+            </span>
+        </h3>
+        <div class="componant-wrapper">
+            <ul class="connections-wrapper">
+                {% for relation in relations %}
+                    <li class="connections-componant relation-js">
+                        <a href="{{ path('profil', {id : hashEncode(relation.id) }) }}" class="connections-link">
+                             {{ macros.show_user_avatar_url(relation, 'default', 120, 'connections-profil-image') }}
+                            <div class="connections-name">
+                                <span class="connections-firstname">{{ relation.firstname }}</span>
+                                <span class="connections-lastname">{{ relation.lastname }}</span>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% if relation_count > 1 %}
+        {% if profil_is_current == false %}
+            <a href="{{ path('ajax_profil_relationlist', {'id': profil.id}) }}" class="componant-link" data-toggle="modal" data-target="#modal-relations">&gt; {{ '%count% relation|%count% relations'|transchoice(relation_count, {'%count%': relation_count}, 'rpe') }}</a>
+        {% else %}
+            <a href="{{ path('relations', {'mode': 'my_relations'}) }}" class="componant-link">&gt; {{ '%count% relation|%count% relations'|transchoice(relation_count, {'%count%': relation_count}, 'rpe') }}</a>
+        {% endif %}
+    {% endif %}
+</div>

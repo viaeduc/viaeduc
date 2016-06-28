@@ -1,0 +1,197 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "layout/_sidebar";
+@import "componants/_breadcrumbs";
+@import "componants/_tip-box-create-personal-page";
+
+// ------------
+// Specific CSS
+// ------------
+
+// Content
+.content {
+    .title {
+        @include fontSize(28);
+        margin         : 0 0 20px 0;
+        text-transform : uppercase;
+    }
+
+    .small {
+        @include fontSize(13);
+        color : $dark-grey-font;
+    }
+
+    .form-wrapper {
+        margin     : 0 0 2px 0;
+        padding    : 20px;
+        border     : 1px solid $light-grey-2;
+        background : $light-grey-1;
+        color      : $dark-grey-font;
+
+        li {
+            margin : 0 0 10px 0;
+
+            &:last-child {
+                margin : 0;
+            }
+        }
+
+        .form-left,
+        .form-right {
+            display        : inline-block;
+            vertical-align : middle;
+        }
+
+        .form-left {
+            @include fontSize(14);
+            width : 30%;
+        }
+
+        .form-right {
+            width : 70%;
+
+            // Specific form styling
+
+            img {
+                display        : inline-block;
+                margin         : 0 5px 0 0;
+                vertical-align : bottom;
+            }
+
+            .btn-file {
+                display        : inline-block;
+                float          : none;
+                width          : auto;
+                vertical-align : bottom;
+            }
+
+            select {
+                color : $dark-grey-font;
+            }
+            .checkbox-buttons{
+                margin : 10px 0 0 0;
+            }
+            .radio-buttons {
+                margin : 0 10px 0 0;
+            }
+
+            .checkbox-buttons > input[type="checkbox"] + label,
+            .radio-buttons > input[type="radio"] + label {
+                @include fontSize(13);
+            }
+            
+            .radio-buttons > input[type="radio"] + label {
+                padding : 3px 0 0 25px;
+            }
+        }
+
+        &.white {
+            margin     : 0 0 10px 0;
+            background : $white-font;
+            // Height fix for label input hack
+
+
+            li {
+                display        : inline-block;
+                padding        : 10px;
+                width          : 25%;
+                vertical-align : top;
+            }
+
+            li:first-child {
+                margin      : 0 0 30px 0;
+                width       : 100%;
+                height      : 32px;
+                line-height : 32px;
+
+                p {
+                    @include fontSize(14);
+                    display        : inline-block;
+                    margin         : 0;
+                    width          : auto;
+                    color          : $dark-grey-font;
+                    vertical-align : middle;
+                    text-shadow    : 0px 0px transparent;
+                }
+
+                span {
+                    display        : inline-block;
+                    margin         : 0 0 0 10px;
+                    vertical-align : middle;
+                }
+
+                .popover {
+                    line-height : 1.2rem;
+                }
+            }
+
+            .checkbox-buttons {
+                display : block;
+                margin  : 0 0 94px 0;
+            }
+            
+            
+            .checker > input[type="checkbox"] + label {
+                background : url(../images/bg_checkbox.png) left 0px no-repeat;
+            }
+
+            .checker >  input[type="checkbox"]:checked + label {
+                background : url(../images/bg_checkbox.png) left -21px no-repeat;
+            }
+
+            .checker {
+                float  : left;
+                margin : 40px 10px 20px 0;
+            }
+
+            .image-label {
+                float  : left;
+                margin : 0 0 20px 0;
+
+                &.small-image {
+                    margin : 0 0 35px 0;
+                }
+            }
+
+            .information {
+                @include fontSize(13);
+                display     : block;
+                width       : 100%;
+                color       : $dark-grey-font;
+                text-shadow : 0px 0px transparent;
+
+                .name {
+                    float       : left;
+                    width       : 100%;
+                    font-weight : bold;
+                }
+            }
+        }
+    }
+    
+    .submit {
+        margin     : 10px 0 0 0;
+        text-align : right;
+        
+        input[type="submit"]{
+            margin  : 0;
+            padding : 10px 20px;
+            width   : auto;
+        }
+    }
+    
+}
+
+@media screen and (max-width: $landscape-screen) {
+
+}

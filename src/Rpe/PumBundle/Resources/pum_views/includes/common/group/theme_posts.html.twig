@@ -1,0 +1,38 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+	{% spaceless %}
+    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="modal-label-group">Ressources de <strong>{{ theme.name }}</strong></h4>
+	</div>
+	<div class="modal-body modal-ressource-body">
+		{% if posts|length %}
+            {% for post in posts %}
+                {{ (loop.first) ? '<ul class="modal-ressource-list">' }}                
+                {% spaceless %}
+                    <li class="modal-ressource-wrapper">
+                        <a href="{{ path('publication', {'id': post.id}) }}">
+                            <div class="modal-ressource-left">
+                                {{ macros.show_post_media(post, 'default', 92, 'ressource-image') }}
+                            </div>
+                            <div class="modal-ressource-right">
+                                <h3 class="modal-ressource-title">{{ post.name|truncate(50, true) }}</h3>
+                                {% if post.coAuthors.count > 0 %}
+                                    <span class="modal-ressource-link">{{ '%count% <span>contributeur</span>|%count% <span>contributeurs</span>'|transchoice(post.coAuthors.count, {'%count%': post.coAuthors.count}, 'rpe')|raw }}</span>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </li>
+                {% endspaceless %}
+                {{ (loop.last) ? '</ul>'}}
+            {% endfor %}
+        {% else %}
+            <p>Aucun post.</p>
+        {% endif %}		
+	</div>
+	<div class="modal-footer">
+		<a role="button" data-dismiss="modal" class="action-btn light-blue">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+	</div>
+    {% endspaceless %}
+{% endblock %}

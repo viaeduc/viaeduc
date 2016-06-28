@@ -1,0 +1,73 @@
+{#
+    require:
+    - type ('post', 'comment', 'user')
+    - object (post, comment, user)
+    - user
+    - style ('link', 'button')
+ #}
+
+{% if type == 'post' %}
+    {% set pathway = 'recommend_post' %}
+{% elseif type == 'comment' %}
+    {% set pathway = 'recommend_comment' %}
+{% elseif type == 'external_notice_comment' %}
+    {% set pathway = 'recommend_notice_comment' %}
+{% elseif type == 'user' %}
+    {% set pathway = 'recommend_user' %}
+{% elseif type == 'answer' %}
+    {% set pathway = 'recommend_answer' %}
+{% elseif type == 'answer_select' %}
+    {% set pathway = 'answer_action_manage_request' %}
+{% elseif type == 'external_notice' %}
+    {% set pathway = 'external_recommend_notice' %}
+{% endif %}
+
+{% if pathway is defined and object is defined and user is defined %}
+    {% set counter = object.recommendby.count %}
+
+    {% if (type != 'answer_select' and object.isLike(user)) or (type == 'answer_select' and object.isGood == true) %}
+        {% set action = 'remove' %}
+    {% else %}
+        {% set action = 'add' %}
+    {% endif %}
+
+    {% set href = path(pathway, {
+        'mode':action,
+        'id':object.id,
+        'style': style,
+    }) %}
+
+    {% if style == 'link' %}
+        <a href="{{ href }}" class="recommend-users icon-heart2 js-loadmore js-infinite js-load-replace ajax-list-users" {% if type == 'post' %} data-users="{{ path('recommend_users', {'id': object.id}) }}"{% endif %} data-target=".recommend-users.ajax-list-users">{% spaceless %}
+            {{ ('action.recommend.' ~ type ~ '.' ~ action)|transchoice(counter, {
+                '%count%': counter
+            }, 'rpe') }}
+        {% endspaceless %}</a>
+    {% elseif style == 'link_post' %}
+        <a href="{{ href }}" class="recommend-users icon-heart2 js-loadmore js-infinite js-load-replace ajax-list-users" data-target=".recommend-users.ajax-list-users" data-users="{{ path('recommend_users', {'id': object.id}) }}">{% spaceless %}
+            {{ ('action.recommend.' ~ type ~ '.' ~ action)|transchoice(counter, {
+                '%count%': counter
+            }, 'rpe') }}
+        {% endspaceless %}</a>
+    {% elseif style == 'link_counter' %}
+        <a href="{{ href }}" class="icon-heart2 js-loadmore js-infinite js-load-replace">{% spaceless %}
+            {{ counter }}
+        {% endspaceless %}</a>
+    {% elseif style == 'button' %}
+        <a href="{{ href }}" class="wall-btn ajax-list-users icon-heart2 {{ (action == 'add') ? 'light-blue' : 'orange'}} js-loadmore js-infinite js-load-replace" title="Nombre de recommandations">{% spaceless %}
+            {{ counter }}
+        {% endspaceless %}</a>
+    {% elseif style == 'select' %}
+        <a href="{{ href }}" class="square-btn icon-checkmark {{ (action == 'add') ? 'light-blue' : 'orange'}} js-loadmore js-infinite js-load-replace">{% spaceless %}
+            {# {{ counter }} #}
+        {% endspaceless %}</a>
+    {% elseif style == 'trophy' %}
+        <a href="{{ href }}" class="square-btn icon-trophy {{ (action == 'add') ? 'light-blue' : 'orange'}} js-loadmore js-infinite js-load-replace">{% spaceless %}
+            <span class="counter-text">{{ counter }}</span>
+        {% endspaceless %}</a>
+    {% elseif style == 'text' %}
+        <a href="#" class="ressource-inner-info-link icon-heart2 icon-trophy">{% spaceless %}
+            {{ 'resource.like_button.text'|transchoice(counter, {'%number%': counter}, 'rpe') }}
+        {% endspaceless %}</a>
+    {% endif %}
+{% endif %}

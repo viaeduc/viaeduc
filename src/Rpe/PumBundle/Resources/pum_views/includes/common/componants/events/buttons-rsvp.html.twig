@@ -1,0 +1,39 @@
+{#
+    require:
+    - user
+    - event
+    - style ('single', 'multiple', 'notification', 'mail')
+ #}
+
+<span class="event-rsvp event-rsvp-{{ event.id }}-{{ style }}">
+	{% set userInEvent = user.isInEvent(event) %}
+    {% set status = 'waiting' %}
+
+    {% if userInEvent %}
+        {% if userInEvent.hasAccepted %}
+            {% set status = 'validated' %}
+        {% elseif userInEvent.hasRejected %}
+            {% set status = 'refused' %}
+        {% endif %}
+    {% endif %}
+
+	{% if style == 'notification' %}
+		{% if status == 'validated' %}
+			Vous avez accepté
+		{% elseif status == 'refused' %}
+			Vous avez refusé
+		{% endif %}
+	{% else %}
+		{% if status == 'validated' %}
+	    	<a href="{{ path('ajax_event_rsvp', {'id': event.id, 'answer': 'reject', 'style': style}) }}" class="btn-agenda orange inner-notif-button js-loadmore js-infinite js-load-inner" data-target=".event-rsvp-{{ event.id }}-{{ style }}">{{ "agenda.reject_after_accept_event"|trans({}, 'rpe') }}</a>
+		{% else %}
+	    	<a href="{{ path('ajax_event_rsvp', {'id': event.id, 'answer': 'accept', 'style': style}) }}" class="btn-agenda orange  inner-notif-button js-loadmore js-infinite js-load-inner" data-target=".event-rsvp-{{ event.id }}-{{ style }}">{{ "agenda.accept_event"|trans({}, 'rpe') }}</a>
+
+			{% if style == 'multiple' %}
+				{% if status != 'refused' %}
+			    	<a href="{{ path('ajax_event_rsvp', {'id': event.id, 'answer': 'reject', 'style': style}) }}" class="btn-agenda orange  inner-notif-button js-loadmore js-infinite js-load-inner" data-target=".event-rsvp-{{ event.id }}-{{ style }}">{{ "agenda.reject_event"|trans({}, 'rpe') }}</a>
+				{% endif %}
+			{% endif %}
+		{% endif %}
+	{% endif %}
+</span>

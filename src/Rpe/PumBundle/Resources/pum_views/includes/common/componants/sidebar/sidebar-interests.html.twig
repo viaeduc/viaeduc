@@ -1,0 +1,12 @@
+{% if interests is defined and interests|length > 0 %}
+    <div class="side-componant grey">
+        <div class="padding-wrapper">
+            <h4 class="componant-title">{{ "sidebar.interests"|trans({}, 'rpe') }}</h4>
+            <ul class="componant-wrapper">
+                {% for interest in interests %}
+                    <li class="resource-type interest-tag">{{ interest.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

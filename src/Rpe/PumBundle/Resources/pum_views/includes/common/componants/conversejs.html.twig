@@ -1,0 +1,34 @@
+{% spaceless %}
+    <link href="{{ asset('bundles/rpepum/css/external/conversejs/converse.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('bundles/rpepum/js/external/conversejs/converse.min.js') }}"></script>
+    <script>
+        // $( document ).ready(function() {
+        $(window).load(function() {
+            var prebindUrl     = '{{ url('chat_prebind') }}',
+                chatHostDomain = '{{ getAppParameter('chat.host_domain') }}',
+                chatHostPort   = '{{ getAppParameter('chat.host_port') }}',
+                boshUrl        = 'http://'+ chatHostDomain + (chatHostPort ? (':'+chatHostPort) : '') +'/http-bind',
+                jid            = '{{ user.getJabberId }}@'+chatHostDomain
+            ;
+
+            converse.initialize({
+                allow_contact_removal: false, // Contact removals are handled via the RPE web app.
+                allow_contact_requests: false, // Contact requests are handled via the RPE web app.
+                allow_muc: false, // Disable Chatrooms
+                allow_logout: false, // Users are always logged in.
+                bosh_service_url: boshUrl, // This URL points to the BOSH service of Prosody
+                csi_waiting_time: 300,
+                fullname: '{{ user.fullname }}',
+                i18n: locales.fr,  // Make sure that the French language is being used.
+                jid: jid,
+                keepalive: true,
+                ping_interval: 30,
+                prebind: true,
+                prebind_url: prebindUrl, // This URL points to the prebind API of the RPE web app
+                roster_groups: false,
+                show_only_online_users: true,
+                debug: true
+            });
+        });
+    </script>
+{% endspaceless %}

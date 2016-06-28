@@ -1,0 +1,161 @@
+// @import "compass/css3/shared";
+// -------
+// General
+// -------
+
+//
+// Needs to be checked, reset / overrides, not really general
+
+html, body{
+    margin : 0;
+    padding: 0;
+    width  : 100%;
+    border : 0;
+    background-color: $background-blue-1;
+    font-size: 1em;
+    font-family: $UbuntuCondensed ;
+    height: 100%;
+    // overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+ul {
+    list-style: none;
+}
+
+.ressource-content ul {
+    list-style : disc !important;
+    padding    : 0 0 0 20px;
+}
+
+.ressource-content ol {
+    list-style : decimal !important;
+    padding    : 0 0 0 20px;
+}
+
+.ressource-content img {
+    max-width: 100%;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+// Suppress input outline on focus
+input:focus {
+    outline: none;
+}
+
+
+// Bootstrap Progress-bar override
+.progress{
+    height: 10px;
+    background-color: none;
+    @include background(linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent));
+    background-size: 2px 36px;
+}
+.progress-striped .progress-bar{
+    background-size: 20px 20px;
+}
+.main-center-title{
+    margin: 0 0 28px 0;
+    color: $dark-blue-font;
+    @include fontSize(28);
+    font-family: $HelveticaNeue;
+    text-transform: uppercase;
+    &.middle{
+        margin-top: 35px;
+    }
+}
+
+// Read more button
+.read-other {
+    width: 100%;
+    float: left;
+    clear: both;
+}
+
+// ================
+// Animated Loader
+// ================
+
+$animation-support: not -moz, -webkit, not -o, not -ms, not -khtml, official;
+.loader{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: transparent;
+    position: relative;
+    display: block;
+    left: 50%;
+    top: 50%;
+    font-size: medium;
+    border-bottom: 3px solid rgba(75,75,75, 0);
+    border-right: 3px solid rgba(241,132,38, .6);
+    border-left: 3px solid rgba(241,132,38, .6);
+    border-top: 3px solid rgba(241,132,38, .6);
+    @include experimental('animation', rotate-main 3s infinite linear, $animation-support );
+
+
+    &::before {
+        content: '';
+        top: 6%;
+        left: 5%;
+        width: 90%;
+        height: 90%;
+        position: relative;
+        display: block;
+        border-radius: 100%;
+        background-color: transparent;
+        @include experimental('animation', rotate-reverse 1.6s infinite linear, $animation-support );
+        border-bottom: 3px solid rgba(75,75,75, 0);
+        border-top: 3px solid rgba(241,132,38, .8);
+        border-left: 3px solid rgba(241,132,38, .8);
+        border-right: 3px solid rgba(241,132,38, .8);
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 25%;
+        left: 24%;
+        width: 50%;
+        height: 50%;
+        border-radius: 100%;
+        background-color: transparent;
+        @include experimental('animation', rotate 10s infinite linear, $animation-support );
+        border-bottom: 3px solid rgba(75,75,75, 0);
+        border-top: 3px solid rgba(241,132,38, 1);
+        border-right: 3px solid rgba(241,132,38, 1);
+        border-left: 3px solid rgba(241,132,38, 1);
+    }
+}
+
+// .expanding-clone {
+//     display : none !important;
+// }
+
+.ckeditor-content pre {
+    display : none !important;
+}
+
+@include keyframes(rotate-main) {
+    from{
+        @include transform(rotate(0deg));
+        @include opacity(1);
+    }
+    50% { @include opacity(0.4) }
+    to{
+        @include transform(rotate(360deg));
+        @include opacity(1);
+    }
+}
+@include keyframes(rotate) {
+    from{ @include transform(rotate(0deg)); }
+    to{ @include transform(rotate(360deg)); }
+}
+@include keyframes(rotate-reverse) {
+    from{ @include transform(rotate(0deg)); }
+    to{ @include transform(rotate(-360deg)); }
+}

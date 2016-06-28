@@ -1,0 +1,1120 @@
+/* function to convert px to rem */
+/* line 1, ../../assets/sass/componants/_filter.scss */
+.filter { display: inline-block; margin: 0 0 30px 0; width: 100%; height: 50px; padding: 20px 0 0 0; border-top: 1px solid #FFFFFF; position: relative; font-size: 20px; font-size: 1.25rem; color: #FFFFFF; }
+
+/* line 15, ../../assets/sass/componants/_filter.scss */
+.filter-title, .filter-right { display: inline-block; vertical-align: middle; }
+
+/* line 21, ../../assets/sass/componants/_filter.scss */
+.filter-title { font-size: 20px; font-size: 1.25rem; margin: 0; color: #FFFFFF; text-transform: uppercase; font-family: "Ubuntu Condensed", Arial, sans-serif; padding: 0 0 5px 0; }
+/* line 29, ../../assets/sass/componants/_filter.scss */
+.filter-title > span { font-style: italic; }
+/* line 33, ../../assets/sass/componants/_filter.scss */
+.filter-title.active { text-decoration: none; border-bottom: 1px solid #FFFFFF; }
+/* line 38, ../../assets/sass/componants/_filter.scss */
+.filter-title:hover { text-decoration: none; border-bottom: 1px solid #FFFFFF; color: #FFFFFF; }
+
+/* line 45, ../../assets/sass/componants/_filter.scss */
+.filter-right { float: right; }
+
+/* line 49, ../../assets/sass/componants/_filter.scss */
+.filter-right-wrapper { height: 30px; list-style: none; line-height: 30px; }
+/* line 54, ../../assets/sass/componants/_filter.scss */
+.filter-right-wrapper > .filter-link { display: inline-block; padding: 0 30px 0 0; vertical-align: top; }
+/* line 59, ../../assets/sass/componants/_filter.scss */
+.filter-right-wrapper > .filter-link:last-child { padding: 0; }
+
+/* line 65, ../../assets/sass/componants/_filter.scss */
+.filter .bootstrap-select:not([class*="span"]) { width: auto; }
+
+/* line 69, ../../assets/sass/componants/_filter.scss */
+.filter .btn-group, .filter .btn-default, .filter .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default { margin: 0px; border: 0px; background: transparent; }
+
+/* line 77, ../../assets/sass/componants/_filter.scss */
+.filter .btn-group .btn { padding: 0; box-shadow: none; }
+
+/* line 82, ../../assets/sass/componants/_filter.scss */
+.filter .bootstrap-select .btn:focus { outline: 0px transparent !important; }
+
+/* line 86, ../../assets/sass/componants/_filter.scss */
+.filter .filter-option { font-size: 11px; font-size: 0.6875rem; color: #FFFFFF; font-family: Verdana, Arial, sans-serif; }
+
+/* line 92, ../../assets/sass/componants/_filter.scss */
+.filter .bootstrap-select.btn-group .btn .filter-option { position: relative; }
+
+/* line 96, ../../assets/sass/componants/_filter.scss */
+.filter .bootstrap-select.btn-group .btn .caret { left: 0; margin-top: -3px; border-top-color: #FFFFFF; }
+
+/* line 102, ../../assets/sass/componants/_filter.scss */
+.filter .dropdown-menu { margin: 6px 0 0 0; border: 0px solid transparent; border-right: 1px solid #9a9a9a; border-bottom: 1px solid #9a9a9a; border-left: 1px solid #9a9a9a; border-radius: 0px; background: #1c2027; -webkit-box-shadow: 0px 0px transparent; box-shadow: 0px 0px transparent; color: #FFFFFF; }
+
+/* line 115, ../../assets/sass/componants/_filter.scss */
+.filter .dropdown-menu > li > a { font-size: 11px; font-size: 0.6875rem; padding: 4px 10px; color: #7A7B7D; font-family: Verdana, Arial, sans-serif; }
+/* line 121, ../../assets/sass/componants/_filter.scss */
+.filter .dropdown-menu > li > a:hover { background: transparent; color: #FFFFFF; }
+
+@media screen and (max-width: 1024px) { /* line 129, ../../assets/sass/componants/_filter.scss */
+  .filter { height: 52px; }
+  /* line 133, ../../assets/sass/componants/_filter.scss */
+  .filter-title, .filter-right { display: inline-block; vertical-align: top; height: 30px; line-height: 30px; }
+  /* line 141, ../../assets/sass/componants/_filter.scss */
+  .filter-title { width: 20%; }
+  /* line 145, ../../assets/sass/componants/_filter.scss */
+  .filter-right { width: 80%; text-align: right; } }
+/* line 152, ../../assets/sass/componants/_filter.scss */
+.mobile .filter { height: 52px; }
+/* line 156, ../../assets/sass/componants/_filter.scss */
+.mobile .filter-title, .mobile .filter-right { display: inline-block; vertical-align: top !important; height: 30px; line-height: 30px; }
+/* line 164, ../../assets/sass/componants/_filter.scss */
+.mobile .filter-title { width: auto; }
+/* line 168, ../../assets/sass/componants/_filter.scss */
+.mobile .filter-right { width: 49%; text-align: right; float: right; }
+
+/* line 24, ../../assets/sass/agenda.scss */
+.action-btn { font-size: 12px; font-size: 0.75rem; margin: 0; padding: 14.5px 0; height: 12px; text-transform: none; line-height: 0px; }
+
+/* line 33, ../../assets/sass/agenda.scss */
+.filter { height: 95px; margin-bottom: 20px; }
+
+/* line 37, ../../assets/sass/agenda.scss */
+.filter-right-wrapper { margin-bottom: 16px; display: inline-block; }
+
+/* line 41, ../../assets/sass/agenda.scss */
+.filter-right-wrapper + .filter-right-wrapper { margin-left: 20px; }
+
+/* line 49, ../../assets/sass/agenda.scss */
+.filter-link { position: relative; }
+/* line 52, ../../assets/sass/agenda.scss */
+.filter-link span { margin-right: 0; }
+
+/* line 57, ../../assets/sass/agenda.scss */
+.create-event-toggle { transition: background 0.4s linear; }
+
+/* line 61, ../../assets/sass/agenda.scss */
+.on { background-color: #FFFFFF; color: #293547; transition: background 0.4s linear; }
+/* line 66, ../../assets/sass/agenda.scss */
+.on:hover { background-color: #FFFFFF; color: #293547; transition: background 0.4s linear; }
+
+/* line 73, ../../assets/sass/agenda.scss */
+.create-event { position: absolute; top: 30px; right: 0; z-index: 300; overflow: hidden; padding: 0px; width: 600px; height: 0px; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; background-color: #FFFFFF; transition: height 0.4s linear, padding 0.3s linear, border 0.3s linear; }
+/* line 90, ../../assets/sass/agenda.scss */
+.create-event.open { padding: 30px; height: 755px; border-right: 1px solid #D7D7D7; border-bottom: 1px solid #D7D7D7; border-left: 1px solid #D7D7D7; transition: height 0.4s linear, padding 0.3s linear, border 0.3s linear; }
+/* line 100, ../../assets/sass/agenda.scss */
+.create-event.open .arrow-close { opacity: 1; transition: opacity 0.3s linear; }
+
+/* line 107, ../../assets/sass/agenda.scss */
+.arrow-close { font-size: 22px; font-size: 1.375rem; position: absolute; top: 6px; right: 6px; display: block; color: #6F7277; font-family: Verdana, Arial, sans-serif; opacity: 0; transition: color 0.2s linear, opacity 0.1s linear; }
+/* line 119, ../../assets/sass/agenda.scss */
+.arrow-close:hover { color: #63666B; text-decoration: none; transition: color 0.2s linear; }
+
+/* line 126, ../../assets/sass/agenda.scss */
+.event-btn { font-size: 14px; font-size: 0.875rem; padding: 0 15px; width: auto; height: 40px; text-transform: uppercase; font-family: Verdana, Arial, sans-serif; line-height: 40px; }
+
+/* line 136, ../../assets/sass/agenda.scss */
+.create-event-link { float: right; }
+
+/* line 140, ../../assets/sass/agenda.scss */
+.create-event-wrapper { display: inline-block; margin: 0 0 10px 0; padding: 30px; width: 100%; height: 650px; border: 1px solid #9a9a9a; background-color: #D7D7D7; vertical-align: top; }
+/* line 150, ../../assets/sass/agenda.scss */
+.create-event-wrapper .bootstrap-select:not([class*="span"]) { margin: 0; width: 100%; height: 45px; border: 1px solid #9a9a9a; background-color: #FFFFFF; }
+/* line 158, ../../assets/sass/agenda.scss */
+.create-event-wrapper .bootstrap-select.btn-group .btn .filter-option { height: 45px; color: #6F7277; line-height: 45px; }
+/* line 164, ../../assets/sass/agenda.scss */
+.create-event-wrapper .bootstrap-select.btn-group .btn .caret { right: 12px; left: inherit; border-top-color: #6F7277; }
+/* line 170, ../../assets/sass/agenda.scss */
+.create-event-wrapper .dropdown-menu { margin: 1px 0 0 0; background-color: #FFFFFF; color: #6F7277; }
+/* line 176, ../../assets/sass/agenda.scss */
+.create-event-wrapper .dropdown-menu > li > a:hover { color: #63666B; }
+/* line 180, ../../assets/sass/agenda.scss */
+.create-event-wrapper textarea { height: 150px; }
+
+/* line 185, ../../assets/sass/agenda.scss */
+.extra-info { margin: 0 0 10px 0; }
+/* line 188, ../../assets/sass/agenda.scss */
+.extra-info:last-child { margin: 0; }
+
+/* line 193, ../../assets/sass/agenda.scss */
+.form-left, .form-right { display: inline-block; vertical-align: middle; }
+/* line 198, ../../assets/sass/agenda.scss */
+.form-left.top, .form-right.top { vertical-align: top; }
+
+/* line 203, ../../assets/sass/agenda.scss */
+.date, .time { display: inline-block; width: 45%; vertical-align: middle; }
+
+/* line 210, ../../assets/sass/agenda.scss */
+.time { margin: 0 0 0 10%; }
+
+/* line 218, ../../assets/sass/agenda.scss */
+.event-wrapper-big, .event-wrapper-small { display: none; }
+
+/* line 222, ../../assets/sass/agenda.scss */
+.event-wrapper-big.active, .event-wrapper-small.active { display: block; }
+
+/* line 228, ../../assets/sass/agenda.scss */
+.month-title { display: inline-block; margin: 0 0 35px 0; width: 100%; background-color: #2c394c; vertical-align: middle; text-align: center; line-height: 45px; }
+/* line 237, ../../assets/sass/agenda.scss */
+.month-title .month-prev, .month-title .month-next, .month-title .month-title { font-size: 17px; font-size: 1.0625rem; display: inline-block; color: #FFFFFF; }
+/* line 245, ../../assets/sass/agenda.scss */
+.month-title .month-title { margin: 0; width: auto; min-width: 152px; text-transform: uppercase; }
+/* line 251, ../../assets/sass/agenda.scss */
+.month-title .month-title > span { font-weight: bold; }
+/* line 256, ../../assets/sass/agenda.scss */
+.month-title .month-prev, .month-title .month-next { font-weight: bold; opacity: 0.7; transition: opacity 0.2s linear; }
+/* line 262, ../../assets/sass/agenda.scss */
+.month-title .month-prev:hover, .month-title .month-next:hover { text-decoration: none; opacity: 1; transition: opacity 0.2s linear; }
+
+/* line 274, ../../assets/sass/agenda.scss */
+.agenda-click { -moz-transition: opacity 0.2s linear; -o-transition: opacity 0.2s linear; -webkit-transition: opacity 0.2s linear; transition: opacity 0.2s linear; cursor: pointer; }
+
+/* line 279, ../../assets/sass/agenda.scss */
+.month-cards { display: inline-block; width: 100%; text-align: left; }
+/* line 284, ../../assets/sass/agenda.scss */
+.month-cards:after { display: inline-block; width: 100%; content: ""; }
+/* line 290, ../../assets/sass/agenda.scss */
+.month-cards > div:nth-of-type(4n+4) { margin: 0 0 10px 0; }
+/* line 294, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card { -moz-transition: all 0.1s linear; -o-transition: all 0.1s linear; -webkit-transition: all 0.1s linear; transition: all 0.1s linear; display: inline-block; margin: 0 0.97% 10px 0; min-height: 240px; width: 23.9%; background-color: #6F7277; font-size: 0; vertical-align: top; }
+/* line 304, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card:hover { -moz-transform: scale(1.05); -ms-transform: scale(1.05); -webkit-transform: scale(1.05); transform: scale(1.05); -moz-transition: all 0.1s linear; -o-transition: all 0.1s linear; -webkit-transition: all 0.1s linear; transition: all 0.1s linear; }
+/* line 309, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card .card-date, .month-cards .month-date-card .card-time, .month-cards .month-date-card .card-content, .month-cards .month-date-card .card-footer { display: inline-block; width: 100%; font-size: 1rem; }
+/* line 322, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card .card-date, .month-cards .month-date-card .card-time { padding: 0 3.6363636363636362%; height: 45px; color: #FFFFFF; font-family: "Ubuntu Condensed", Arial, sans-serif; line-height: 45px; }
+/* line 331, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card .card-time { background-color: #b5bac1; }
+/* line 334, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card .card-time.multiple-days { background: url("../images/agenda-multiple-light-grey.jpg") no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+/* line 343, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card .card-content { font-size: 18px; font-size: 1.125rem; padding: 3.6363636363636362%; height: 110px; background-color: #FFFFFF; color: #313335; text-align: left; font-family: "Ubuntu Condensed", Arial, sans-serif; }
+/* line 353, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card .card-footer { font-size: 12px; font-size: 0.75rem; padding: 0 3.6363636363636362% 0 0; height: 40px; background-color: #efefef; color: #293547; text-align: left; font-family: "Ubuntu Condensed", Arial, sans-serif; line-height: 40px; }
+/* line 363, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card .card-footer .agenda-card-image { display: inline-block; width: 40px; height: 40px; vertical-align: top; }
+/* line 370, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card .card-footer .card-footer-text { display: inline-block; margin: 0 0 0 3.6363636363636362%; width: 70%; vertical-align: middle; line-height: 1em; }
+/* line 380, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card.event-waiting .card-date { background-color: #2c394c; }
+/* line 383, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card.event-waiting .card-date.multiple-days { background: url("../images/agenda-multiple-blue.jpg") no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+/* line 394, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card.event-validated .card-date { background-color: #ff7f00; }
+/* line 397, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card.event-validated .card-date.multiple-days { background: url("../images/agenda-multiple-orange.jpg") no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+/* line 408, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card.event-editor .card-date { background-color: #14768C; }
+/* line 411, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card.event-editor .card-date.multiple-days { background: url("../images/agenda-multiple-light-blue.jpg") no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+/* line 421, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card.event-refused { opacity: 0.5; transition: opacity 0.2s linear; }
+/* line 425, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card.event-refused .card-date { background-color: #2c394c; }
+/* line 428, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card.event-refused .card-date.multiple-days { background: url("../images/agenda-multiple-blue.jpg") no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+/* line 437, ../../assets/sass/agenda.scss */
+.month-cards .month-date-card.event-refused:hover { opacity: 1; transition: opacity 0.2s linear; }
+/* line 445, ../../assets/sass/agenda.scss */
+.month-cards.more-rows > div:nth-of-type(4n+4) { margin: 0 0.97% 10px 0; }
+/* line 448, ../../assets/sass/agenda.scss */
+.month-cards.more-rows > div:nth-of-type(4) { margin: 0 0 10px 0; }
+/* line 451, ../../assets/sass/agenda.scss */
+.month-cards.more-rows > div:nth-of-type(5n+4) { margin: 0 0 10px 0; }
+
+/* line 461, ../../assets/sass/agenda.scss */
+.card-date, .card-time { font-size: 20px; font-size: 1.25rem; }
+
+/* line 466, ../../assets/sass/agenda.scss */
+.card-inner-left, .card-inner-right { font-size: 12px; font-size: 0.75rem; display: inline-block; width: 50%; }
+
+/* line 473, ../../assets/sass/agenda.scss */
+.card-inner-right { text-align: right; }
+
+/* line 477, ../../assets/sass/agenda.scss */
+.card-date .month { text-transform: uppercase; }
+
+/* line 481, ../../assets/sass/agenda.scss */
+.card-date .day { color: #D7D7D7; }
+
+/* line 489, ../../assets/sass/agenda.scss */
+.agenda-row, .month-date-event { display: inline-block; overflow: hidden; width: 100%; height: 395px; vertical-align: middle; transition: height 0.4s linear; }
+/* line 498, ../../assets/sass/agenda.scss */
+.agenda-row.open, .month-date-event.open { height: 395px; margin: 0 0 10px 0; transition: height 0.4s linear; }
+
+/* line 505, ../../assets/sass/agenda.scss */
+.agenda-row { overflow: hidden; height: 0px; }
+
+/* line 511, ../../assets/sass/agenda.scss */
+.event-main, .event-left, .event-going, .event-map { display: inline-block; vertical-align: top; }
+
+/* line 519, ../../assets/sass/agenda.scss */
+.event-main { margin: 0 1.25% 0 0; width: 72.91666666666666%; height: 395px; }
+
+/* line 525, ../../assets/sass/agenda.scss */
+.event-left { width: 25.833333333333336%; }
+
+/* line 529, ../../assets/sass/agenda.scss */
+.event-going, .event-map { margin: 0 0 15px 0; width: 100%; height: 190px; background-color: #2c394c; }
+/* line 536, ../../assets/sass/agenda.scss */
+.event-going:last-child, .event-map:last-child { margin: 0; }
+
+/* line 543, ../../assets/sass/agenda.scss */
+.event-main-header, .event-main-content, .event-main-footer { display: inline-block; width: 100%; vertical-align: top; }
+
+/* line 551, ../../assets/sass/agenda.scss */
+.event-main-header, .event-main-footer { padding: 0 10px; height: 50px; background-color: #2c394c; color: #FFFFFF; line-height: 50px; }
+
+/* line 560, ../../assets/sass/agenda.scss */
+.event-main-content { padding: 20px; height: 295px; background-color: #FFFFFF; color: #293547; }
+
+/* line 567, ../../assets/sass/agenda.scss */
+.event-content-top, .event-content-main { display: inline-block; width: 100%; vertical-align: bottom; }
+
+/* line 574, ../../assets/sass/agenda.scss */
+.event-main-left, .event-main-right { display: inline-block; vertical-align: bottom; }
+
+/* line 580, ../../assets/sass/agenda.scss */
+.event-main-left { margin: 0 1.7221584385763489% 0 0; width: 4.5924225028702645%; }
+
+/* line 585, ../../assets/sass/agenda.scss */
+.event-main-right { width: 93.6854190586%; }
+
+/* line 589, ../../assets/sass/agenda.scss */
+.event-image, .event-heading, .event-title { display: inline-block; width: 100%; vertical-align: bottom; line-height: 1em; }
+
+/* line 598, ../../assets/sass/agenda.scss */
+.event-big-title, .event-text { display: inline-block; width: 100%; vertical-align: top; }
+
+/* line 605, ../../assets/sass/agenda.scss */
+.event-going { padding: 10px 3.3003300330033%; }
+
+/* line 609, ../../assets/sass/agenda.scss */
+.event-going-top, .event-going-main, .event-going-bottom { display: inline-block; width: 100%; vertical-align: top; }
+
+/* line 617, ../../assets/sass/agenda.scss */
+.event-going-top, .event-going-bottom { height: 35px; }
+
+/* line 622, ../../assets/sass/agenda.scss */
+.event-going-main { margin: 0 0 10px 0; height: 90px; }
+
+/* line 627, ../../assets/sass/agenda.scss */
+.going-title, .going-list { display: inline-block; width: 50%; vertical-align: middle; }
+
+/* line 634, ../../assets/sass/agenda.scss */
+.going-list { text-align: right; }
+
+/* line 640, ../../assets/sass/agenda.scss */
+.event-main-date { font-size: 14px; font-size: 0.875rem; font-family: "Ubuntu Condensed", Arial, sans-serif; }
+
+/* line 645, ../../assets/sass/agenda.scss */
+.event-content-top { font-size: 12px; font-size: 0.75rem; }
+
+/* line 649, ../../assets/sass/agenda.scss */
+.event-big-title { font-size: 24px; font-size: 1.5rem; margin: 20px 0 10px 0; font-family: "Ubuntu Condensed", Arial, sans-serif; }
+
+/* line 655, ../../assets/sass/agenda.scss */
+.event-text { font-size: 12px; font-size: 0.75rem; font-family: Verdana, Arial, sans-serif; line-height: 1.8em; }
+
+/* line 661, ../../assets/sass/agenda.scss */
+.btn-agenda { display: inline-block; margin: 0 5px 0 0; padding: 0 10px; height: 30px; color: #FFFFFF; text-transform: uppercase; line-height: 30px; }
+/* line 670, ../../assets/sass/agenda.scss */
+.btn-agenda.orange { background-color: #ff7f00; transition: all 0.2s linear; }
+/* line 674, ../../assets/sass/agenda.scss */
+.btn-agenda.orange:hover { background-color: #f47a01; transition: all 0.2s linear; }
+/* line 680, ../../assets/sass/agenda.scss */
+.btn-agenda.dark-grey { background-color: #6F7277; transition: all 0.2s linear; }
+/* line 684, ../../assets/sass/agenda.scss */
+.btn-agenda.dark-grey:hover { background-color: #63666B; transition: all 0.2s linear; }
+/* line 690, ../../assets/sass/agenda.scss */
+.btn-agenda.light-blue { background-color: #14768C; transition: all 0.2s linear; }
+/* line 694, ../../assets/sass/agenda.scss */
+.btn-agenda.light-blue:hover { background-color: #126A7E; transition: all 0.2s linear; }
+/* line 700, ../../assets/sass/agenda.scss */
+.btn-agenda.btn-full { width: 100%; text-align: center; }
+/* line 705, ../../assets/sass/agenda.scss */
+.btn-agenda:hover { text-decoration: none; }
+/* line 709, ../../assets/sass/agenda.scss */
+.btn-agenda:last-child { margin: 0; }
+
+/* line 714, ../../assets/sass/agenda.scss */
+.event-going { color: #FFFFFF; }
+
+/* line 718, ../../assets/sass/agenda.scss */
+.going-title { font-size: 22px; font-size: 1.375rem; font-family: "MissionScriptRegular", Arial, sans-serif; }
+
+/* line 723, ../../assets/sass/agenda.scss */
+.going-list { font-size: 10px; font-size: 0.625rem; font-family: Verdana, Arial, sans-serif; }
+/* line 727, ../../assets/sass/agenda.scss */
+.going-list a { color: #14768C; }
+/* line 730, ../../assets/sass/agenda.scss */
+.going-list a:hover { color: #126A7E; text-decoration: none; }
+
+/* line 737, ../../assets/sass/agenda.scss */
+.event-going-main { overflow: hidden; text-align: justify; }
+/* line 741, ../../assets/sass/agenda.scss */
+.event-going-main:after { content: ""; text-align: justify; }
+/* line 746, ../../assets/sass/agenda.scss */
+.event-going-main a { position: relative; display: inline-block; width: 90px; height: 90px; color: #FFFFFF; vertical-align: middle; }
+/* line 754, ../../assets/sass/agenda.scss */
+.event-going-main a:hover { color: #FFFFFF; text-decoration: none; }
+/* line 760, ../../assets/sass/agenda.scss */
+.event-going-main img { width: 100%; height: 100%; }
+
+/* line 766, ../../assets/sass/agenda.scss */
+.profil-name { font-size: 11px; font-size: 0.6875rem; position: absolute; bottom: 0; left: 0; padding: 5px; width: 100%; height: 35px; background-color: rgba(0, 0, 0, 0.4); font-family: "Ubuntu Condensed", Arial, sans-serif; line-height: 1em; }
+/* line 778, ../../assets/sass/agenda.scss */
+.profil-name span { display: inline-block; width: 100%; vertical-align: middle; }
+/* line 783, ../../assets/sass/agenda.scss */
+.profil-name span.last-name { font-weight: bold; }
+
+/* line 789, ../../assets/sass/agenda.scss */
+.image-map { overflow: hidden; width: 100%; }
+/* line 793, ../../assets/sass/agenda.scss */
+.image-map > img { width: 100%; }
+
+/* line 798, ../../assets/sass/agenda.scss */
+.map-infos { font-size: 11px; font-size: 0.6875rem; margin: 10px 0 0 0; padding: 0 10px; color: #FFFFFF; font-family: "Ubuntu Condensed", Arial, sans-serif; }
+/* line 805, ../../assets/sass/agenda.scss */
+.map-infos a { color: #FFFFFF; }
+/* line 808, ../../assets/sass/agenda.scss */
+.map-infos a:hover { color: #FFFFFF; text-decoration: none; }
+
+/* line 815, ../../assets/sass/agenda.scss */
+.map-icon { font-size: 18px; font-size: 1.125rem; display: inline-block; margin: 0 2% 0 0; width: 30px; height: 30px; background: #ff7f00; color: #FFFFFF; vertical-align: middle; text-align: center; line-height: 30px; }
+/* line 827, ../../assets/sass/agenda.scss */
+.map-icon:before { padding: 0px; }
+
+/* line 832, ../../assets/sass/agenda.scss */
+.map-text { display: inline-block; width: 80%; vertical-align: middle; }
+
+/* line 838, ../../assets/sass/agenda.scss */
+.map-noplace { font-size: 14px; font-size: 0.875rem; font-family: "Ubuntu Condensed", Arial, sans-serif; color: #FFFFFF; padding: 4px 6px; }
+
+@media screen and (max-width: 1217px) { /* line 848, ../../assets/sass/agenda.scss */
+  .month-cards .month-date-card { width: 23.9%; }
+  /* line 852, ../../assets/sass/agenda.scss */
+  .filter .filter-right .action-btn { font-size: 12px; font-size: 0.75rem; height: 30px; line-height: 30px; padding: 0 0.5em; } }
+@media screen and (max-width: 930px) { /* line 861, ../../assets/sass/agenda.scss */
+  .month-cards .month-date-card { width: 23.8%; } }
+/*!
+ * FullCalendar v2.2.3 Stylesheet
+ * Docs & License: http://arshaw.com/fullcalendar/
+ * (c) 2013 Adam Shaw
+ */
+/* line 8, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc { direction: ltr; text-align: left; }
+
+/* line 13, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-rtl { text-align: right; }
+
+/* line 17, ../../assets/sass/vendors/_fullcalendar.scss */
+body .fc { /* extra precedence to overcome jqui */ font-size: 1em; }
+
+/* Colors
+--------------------------------------------------------------------------------------------------*/
+/* line 25, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-unthemed th, .fc-unthemed td, .fc-unthemed hr, .fc-unthemed thead, .fc-unthemed tbody, .fc-unthemed .fc-row, .fc-unthemed .fc-popover { border-color: #ddd; }
+
+/* line 35, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-unthemed .fc-popover { background-color: #fff; }
+
+/* line 39, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-unthemed hr, .fc-unthemed .fc-popover .fc-header { background: #eee; }
+
+/* line 44, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-unthemed .fc-popover .fc-header .fc-close { color: #666; }
+
+/* line 48, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-unthemed .fc-today { background: #fcf8e3; }
+
+/* line 52, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-highlight { /* when user is selecting cells */ background: #bce8f1; opacity: .3; filter: alpha(opacity=30); /* for IE */ }
+
+/* line 58, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-bgevent { /* default look for background events */ background: #8fdf82; opacity: .3; filter: alpha(opacity=30); /* for IE */ }
+
+/* line 64, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-nonbusiness { /* default look for non-business-hours areas */ /* will inherit .fc-bgevent's styles */ background: #ccc; }
+
+/* Icons (inline elements with styled text that mock arrow icons)
+--------------------------------------------------------------------------------------------------*/
+/* line 73, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-icon { display: inline-block; font-size: 2em; line-height: .5em; height: .5em; /* will make the total height 1em */ }
+
+/* line 80, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-icon-left-single-arrow:after { content: "\02039"; font-weight: bold; }
+
+/* line 85, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-icon-right-single-arrow:after { content: "\0203A"; font-weight: bold; }
+
+/* line 90, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-icon-left-double-arrow:after { content: "\000AB"; }
+
+/* line 94, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-icon-right-double-arrow:after { content: "\000BB"; }
+
+/* line 98, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-icon-x:after { content: "\000D7"; }
+
+/* Buttons (styled <button> tags, normalized to work cross-browser)
+--------------------------------------------------------------------------------------------------*/
+/* line 106, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc button { /* force height to include the border and padding */ -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; /* dimensions */ margin: 0; height: 2.1em; padding: 0 .6em; /* text & cursor */ font-size: 1em; /* normalize */ white-space: nowrap; cursor: pointer; }
+
+/* Firefox has an annoying inner border */
+/* line 124, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc button::-moz-focus-inner { margin: 0; padding: 0; }
+
+/* line 126, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-state-default { /* non-theme */ border: 1px solid; }
+
+/* line 130, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-state-default.fc-corner-left { /* non-theme */ border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
+
+/* line 135, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-state-default.fc-corner-right { /* non-theme */ border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
+
+/* icons in buttons */
+/* line 142, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc button .fc-icon { /* non-theme */ position: relative; top: .05em; /* seems to be a good adjustment across browsers */ margin: 0 .1em; }
+
+/* button states borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
+*/
+/* line 153, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-state-default { background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(to bottom, #ffffff, #e6e6e6); background-repeat: repeat-x; border-color: #e6e6e6 #e6e6e6 #bfbfbf; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); color: #333; text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }
+
+/* line 168, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-state-hover, .fc-state-down, .fc-state-active, .fc-state-disabled { color: #333333; background-color: #e6e6e6; }
+
+/* line 176, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-state-hover { color: #333333; text-decoration: none; background-position: 0 -15px; -webkit-transition: background-position 0.1s linear; -moz-transition: background-position 0.1s linear; -o-transition: background-position 0.1s linear; transition: background-position 0.1s linear; }
+
+/* line 186, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-state-down, .fc-state-active { background-color: #cccccc; background-image: none; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); }
+
+/* line 193, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-state-disabled { cursor: default; background-image: none; opacity: 0.65; filter: alpha(opacity=65); box-shadow: none; }
+
+/* Buttons Groups
+--------------------------------------------------------------------------------------------------*/
+/* line 205, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-button-group { display: inline-block; }
+
+/*
+every button that is not first in a button group should scootch over one pixel and cover the
+previous button's border...
+*/
+/* line 214, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc .fc-button-group > * { /* extra precedence b/c buttons have margin set to zero */ float: left; margin: 0 0 0 -1px; }
+
+/* line 219, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc .fc-button-group > :first-child { /* same */ margin-left: 0; }
+
+/* Popover
+--------------------------------------------------------------------------------------------------*/
+/* line 227, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-popover { position: absolute; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }
+
+/* line 232, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-popover .fc-header { padding: 2px 4px; }
+
+/* line 236, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-popover .fc-header .fc-title { margin: 0 2px; }
+
+/* line 240, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-popover .fc-header .fc-close { cursor: pointer; }
+
+/* line 244, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-ltr .fc-popover .fc-header .fc-title, .fc-rtl .fc-popover .fc-header .fc-close { float: left; }
+
+/* line 249, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-rtl .fc-popover .fc-header .fc-title, .fc-ltr .fc-popover .fc-header .fc-close { float: right; }
+
+/* unthemed */
+/* line 256, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-unthemed .fc-popover { border-width: 1px; border-style: solid; }
+
+/* line 261, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-unthemed .fc-popover .fc-header .fc-close { font-size: 25px; margin-top: 4px; }
+
+/* jqui themed */
+/* line 268, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-popover > .ui-widget-header + .ui-widget-content { border-top: 0; /* where they meet, let the header have the border */ }
+
+/* Misc Reusable Components
+--------------------------------------------------------------------------------------------------*/
+/* line 276, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc hr { height: 0; margin: 0; padding: 0 0 2px; /* height is unreliable across browsers, so use padding */ border-style: solid; border-width: 1px 0; }
+
+/* line 284, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-clear { clear: both; }
+
+/* line 288, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-bg, .fc-bgevent-skeleton, .fc-highlight-skeleton, .fc-helper-skeleton { /* these element should always cling to top-left/right corners */ position: absolute; top: 0; left: 0; right: 0; }
+
+/* line 299, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-bg { bottom: 0; /* strech bg to bottom edge */ }
+
+/* line 303, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-bg table { height: 100%; /* strech bg to bottom edge */ }
+
+/* Tables
+--------------------------------------------------------------------------------------------------*/
+/* line 311, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc table { width: 100%; table-layout: fixed; border-collapse: collapse; border-spacing: 0; font-size: 1em; /* normalize cross-browser */ }
+
+/* line 319, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc th { text-align: center; }
+
+/* line 323, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc th, .fc td { border-style: solid; border-width: 1px; padding: 0; vertical-align: top; }
+
+/* line 331, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc td.fc-today { border-style: double; /* overcome neighboring borders */ }
+
+/* Fake Table Rows
+--------------------------------------------------------------------------------------------------*/
+/* line 339, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc .fc-row { /* extra precedence to overcome themes w/ .ui-widget-content forcing a 1px border */ /* no visible border by default. but make available if need be (scrollbar width compensation) */ border-style: solid; border-width: 0; }
+
+/* line 345, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row table { /* don't put left/right border on anything within a fake row. the outer tbody will worry about this */ border-left: 0 hidden transparent; border-right: 0 hidden transparent; /* no bottom borders on rows */ border-bottom: 0 hidden transparent; }
+
+/* line 355, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row:first-child table { border-top: 0 hidden transparent; /* no top border on first row */ }
+
+/* Day Row (used within the header and the DayGrid)
+--------------------------------------------------------------------------------------------------*/
+/* line 363, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row { position: relative; }
+
+/* line 367, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row .fc-bg { z-index: 1; }
+
+/* highlighting cells & background event skeleton */
+/* line 373, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row .fc-bgevent-skeleton, .fc-row .fc-highlight-skeleton { bottom: 0; /* stretch skeleton to bottom of row */ }
+
+/* line 378, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row .fc-bgevent-skeleton table, .fc-row .fc-highlight-skeleton table { height: 100%; /* stretch skeleton to bottom of row */ }
+
+/* line 383, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row .fc-highlight-skeleton td, .fc-row .fc-bgevent-skeleton td { border-color: transparent; }
+
+/* line 388, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row .fc-bgevent-skeleton { z-index: 2; }
+
+/* line 393, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row .fc-highlight-skeleton { z-index: 3; }
+
+/*
+row content (which contains day/week numbers and events) as well as "helper" (which contains
+temporary rendered events).
+*/
+/* line 402, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row .fc-content-skeleton { position: relative; z-index: 4; padding-bottom: 2px; /* matches the space above the events */ }
+
+/* line 408, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row .fc-helper-skeleton { z-index: 5; }
+
+/* line 412, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row .fc-content-skeleton td, .fc-row .fc-helper-skeleton td { /* see-through to the background below */ background: none; /* in case <td>s are globally styled */ border-color: transparent; /* don't put a border between events and/or the day number */ border-bottom: 0; }
+
+/* line 422, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row .fc-content-skeleton tbody td, .fc-row .fc-helper-skeleton tbody td { /* don't put a border between event cells */ border-top: 0; }
+
+/* Scrolling Container
+--------------------------------------------------------------------------------------------------*/
+/* line 432, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-scroller { /* this class goes on elements for guaranteed vertical scrollbars */ overflow-y: scroll; overflow-x: hidden; }
+
+/* line 437, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-scroller > * { /* we expect an immediate inner element */ position: relative; /* re-scope all positions */ width: 100%; /* hack to force re-sizing this inner element when scrollbars appear/disappear */ overflow: hidden; /* don't let negative margins or absolute positioning create further scroll */ }
+
+/* Global Event Styles
+--------------------------------------------------------------------------------------------------*/
+/* line 447, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-event { position: relative; /* for resize handle and other inner positioning */ display: block; /* make the <a> tag block */ font-size: .85em; line-height: 1.3; border-radius: 3px; border: 1px solid #3a87ad; /* default BORDER color */ background-color: #3a87ad; /* default BACKGROUND color */ font-weight: normal; /* undo jqui's ui-widget-header bold */ }
+
+/* overpower some of bootstrap's and jqui's styles on <a> tags */
+/* line 459, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-event, .fc-event:hover, .ui-widget .fc-event { color: #fff; /* default TEXT color */ text-decoration: none; /* if <a> has an href */ }
+
+/* line 466, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-event[href], .fc-event.fc-draggable { cursor: pointer; /* give events with links and draggable events a hand mouse pointer */ }
+
+/* line 471, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-not-allowed, .fc-not-allowed .fc-event { /* to override an event's custom cursor */ cursor: not-allowed; }
+
+/* DayGrid events
+----------------------------------------------------------------------------------------------------
+We use the full "fc-day-grid-event" class instead of using descendants because the event won't
+be a descendant of the grid when it is being dragged.
+*/
+/* line 483, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-day-grid-event { margin: 1px 2px 0; /* spacing between events and edges */ padding: 0 1px; }
+
+/* events that are continuing to/from another week. kill rounded corners and butt up against edge */
+/* line 490, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-ltr .fc-day-grid-event.fc-not-start, .fc-rtl .fc-day-grid-event.fc-not-end { margin-left: 0; border-left-width: 0; padding-left: 1px; /* replace the border with padding */ border-top-left-radius: 0; border-bottom-left-radius: 0; }
+
+/* line 499, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-ltr .fc-day-grid-event.fc-not-end, .fc-rtl .fc-day-grid-event.fc-not-start { margin-right: 0; border-right-width: 0; padding-right: 1px; /* replace the border with padding */ border-top-right-radius: 0; border-bottom-right-radius: 0; }
+
+/* line 508, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-day-grid-event > .fc-content { /* force events to be one-line tall */ white-space: nowrap; overflow: hidden; }
+
+/* line 513, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-day-grid-event .fc-time { font-weight: bold; }
+
+/* resize handle (outside of fc-content, so can go outside of bounds) */
+/* line 519, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-day-grid-event .fc-resizer { position: absolute; top: 0; bottom: 0; width: 7px; }
+
+/* line 526, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-ltr .fc-day-grid-event .fc-resizer { right: -3px; cursor: e-resize; }
+
+/* line 531, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-rtl .fc-day-grid-event .fc-resizer { left: -3px; cursor: w-resize; }
+
+/* Event Limiting
+--------------------------------------------------------------------------------------------------*/
+/* "more" link that represents hidden events */
+/* line 542, ../../assets/sass/vendors/_fullcalendar.scss */
+a.fc-more { margin: 1px 3px; font-size: .85em; cursor: pointer; text-decoration: none; }
+
+/* line 549, ../../assets/sass/vendors/_fullcalendar.scss */
+a.fc-more:hover { text-decoration: underline; }
+
+/* line 553, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-limited { /* rows and cells that are hidden because of a "more" link */ display: none; }
+
+/* popover that appears when "more" link is clicked */
+/* line 559, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-day-grid .fc-row { z-index: 1; /* make the "more" popover one higher than this */ }
+
+/* line 563, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-more-popover { z-index: 2; width: 220px; }
+
+/* line 568, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-more-popover .fc-event-container { padding: 10px; }
+
+/* Toolbar
+--------------------------------------------------------------------------------------------------*/
+/* line 575, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-toolbar { text-align: center; margin-bottom: 1em; }
+
+/* line 580, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-toolbar .fc-left { float: left; }
+
+/* line 584, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-toolbar .fc-right { float: right; }
+
+/* line 588, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-toolbar .fc-center { display: inline-block; }
+
+/* the things within each left/right/center section */
+/* line 593, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc .fc-toolbar > * > * { /* extra precedence to override button border margins */ float: left; margin-left: .75em; }
+
+/* the first thing within each left/center/right section */
+/* line 599, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc .fc-toolbar > * > :first-child { /* extra precedence to override button border margins */ margin-left: 0; }
+
+/* title text */
+/* line 605, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-toolbar h2 { margin: 0; }
+
+/* button layering (for border precedence) */
+/* line 611, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-toolbar button { position: relative; }
+
+/* line 615, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-toolbar .fc-state-hover, .fc-toolbar .ui-state-hover { z-index: 2; }
+
+/* line 620, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-toolbar .fc-state-down { z-index: 3; }
+
+/* line 624, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-toolbar .fc-state-active, .fc-toolbar .ui-state-active { z-index: 4; }
+
+/* line 629, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-toolbar button:focus { z-index: 5; }
+
+/* View Structure
+--------------------------------------------------------------------------------------------------*/
+/* undo twitter bootstrap's box-sizing rules. normalizes positioning techniques */
+/* don't do this for the toolbar because we'll want bootstrap to style those buttons as some pt */
+/* line 639, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-view-container *, .fc-view-container *:before, .fc-view-container *:after { -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; }
+
+/* line 647, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-view, .fc-view > table { /* so dragged elements can be above the view's main element */ position: relative; z-index: 1; }
+
+/* BasicView
+--------------------------------------------------------------------------------------------------*/
+/* day row structure */
+/* line 658, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-basicWeek-view .fc-content-skeleton, .fc-basicDay-view .fc-content-skeleton { /* we are sure there are no day numbers in these views, so... */ padding-top: 1px; /* add a pixel to make sure there are 2px padding above events */ padding-bottom: 1em; /* ensure a space at bottom of cell for user selecting/clicking */ }
+
+/* line 665, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-basic-view tbody .fc-row { min-height: 4em; /* ensure that all rows are at least this tall */ }
+
+/* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
+/* line 671, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row.fc-rigid { overflow: hidden; }
+
+/* line 675, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-row.fc-rigid .fc-content-skeleton { position: absolute; top: 0; left: 0; right: 0; }
+
+/* week and day number styling */
+/* line 684, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-basic-view .fc-week-number, .fc-basic-view .fc-day-number { padding: 0 2px; }
+
+/* line 689, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-basic-view td.fc-week-number span, .fc-basic-view td.fc-day-number { padding-top: 2px; padding-bottom: 2px; }
+
+/* line 695, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-basic-view .fc-week-number { text-align: center; }
+
+/* line 699, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-basic-view .fc-week-number span { /* work around the way we do column resizing and ensure a minimum width */ display: inline-block; min-width: 1.25em; }
+
+/* line 705, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-ltr .fc-basic-view .fc-day-number { text-align: right; }
+
+/* line 709, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-rtl .fc-basic-view .fc-day-number { text-align: left; }
+
+/* line 713, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-day-number.fc-other-month { opacity: 0.3; filter: alpha(opacity=30); /* for IE */ /* opacity with small font can sometimes look too faded might want to set the 'color' property instead making day-numbers bold also fixes the problem */ }
+
+/* AgendaView all-day area
+--------------------------------------------------------------------------------------------------*/
+/* line 724, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-agenda-view .fc-day-grid { position: relative; z-index: 2; /* so the "more.." popover will be over the time grid */ }
+
+/* line 729, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-agenda-view .fc-day-grid .fc-row { min-height: 3em; /* all-day section will never get shorter than this */ }
+
+/* line 733, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton { padding-top: 1px; /* add a pixel to make sure there are 2px padding above events */ padding-bottom: 1em; /* give space underneath events for clicking/selecting days */ }
+
+/* TimeGrid axis running down the side (for both the all-day area and the slot area)
+--------------------------------------------------------------------------------------------------*/
+/* line 742, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc .fc-axis { /* .fc to overcome default cell styles */ vertical-align: middle; padding: 0 4px; white-space: nowrap; }
+
+/* line 748, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-ltr .fc-axis { text-align: right; }
+
+/* line 752, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-rtl .fc-axis { text-align: left; }
+
+/* line 756, ../../assets/sass/vendors/_fullcalendar.scss */
+.ui-widget td.fc-axis { font-weight: normal; /* overcome jqui theme making it bold */ }
+
+/* TimeGrid Structure
+--------------------------------------------------------------------------------------------------*/
+/* line 764, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-container, .fc-time-grid { /* so slats/bg/content/etc positions get scoped within here */ position: relative; z-index: 1; }
+
+/* line 770, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid { min-height: 100%; /* so if height setting is 'auto', .fc-bg stretches to fill height */ }
+
+/* line 774, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid table { /* don't put outer borders on slats/bg/content/etc */ border: 0 hidden transparent; }
+
+/* line 778, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid > .fc-bg { z-index: 1; }
+
+/* line 782, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-slats, .fc-time-grid > hr { /* the <hr> AgendaView injects when grid is shorter than scroller */ position: relative; z-index: 2; }
+
+/* line 788, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-bgevent-skeleton, .fc-time-grid .fc-content-skeleton { position: absolute; top: 0; left: 0; right: 0; }
+
+/* line 796, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-bgevent-skeleton { z-index: 3; }
+
+/* line 800, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-highlight-skeleton { z-index: 4; }
+
+/* line 804, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-content-skeleton { z-index: 5; }
+
+/* line 808, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-helper-skeleton { z-index: 6; }
+
+/* TimeGrid Slats (lines that run horizontally)
+--------------------------------------------------------------------------------------------------*/
+/* line 816, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-slats td { height: 1.5em; border-bottom: 0; /* each cell is responsible for its top border */ }
+
+/* line 821, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-slats .fc-minor td { border-top-style: dotted; }
+
+/* line 825, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-slats .ui-widget-content { /* for jqui theme */ background: none; /* see through to fc-bg */ }
+
+/* TimeGrid Highlighting Slots
+--------------------------------------------------------------------------------------------------*/
+/* line 833, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-highlight-container { /* a div within a cell within the fc-highlight-skeleton */ position: relative; /* scopes the left/right of the fc-highlight to be in the column */ }
+
+/* line 837, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-highlight { position: absolute; left: 0; right: 0; /* top and bottom will be in by JS */ }
+
+/* TimeGrid Event Containment
+--------------------------------------------------------------------------------------------------*/
+/* line 848, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-event-container, .fc-time-grid .fc-bgevent-container { /* a div within a cell within the fc-bgevent-skeleton */ position: relative; }
+
+/* line 853, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-ltr .fc-time-grid .fc-event-container { /* space on the sides of events for LTR (default) */ margin: 0 2.5% 0 2px; }
+
+/* line 857, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-rtl .fc-time-grid .fc-event-container { /* space on the sides of events for RTL */ margin: 0 2px 0 2.5%; }
+
+/* line 861, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-event, .fc-time-grid .fc-bgevent { position: absolute; z-index: 1; /* scope inner z-index's */ }
+
+/* line 867, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid .fc-bgevent { /* background events always span full width */ left: 0; right: 0; }
+
+/* TimeGrid Event Styling
+----------------------------------------------------------------------------------------------------
+We use the full "fc-time-grid-event" class instead of using descendants because the event won't
+be a descendant of the grid when it is being dragged.
+*/
+/* line 880, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event.fc-not-start { /* events that are continuing from another day */ /* replace space made by the top border with padding */ border-top-width: 0; padding-top: 1px; /* remove top rounded corners */ border-top-left-radius: 0; border-top-right-radius: 0; }
+
+/* line 890, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event.fc-not-end { /* replace space made by the top border with padding */ border-bottom-width: 0; padding-bottom: 1px; /* remove bottom rounded corners */ border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+
+/* line 900, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event { overflow: hidden; /* don't let the bg flow over rounded corners */ }
+
+/* line 904, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event > .fc-content { /* contains the time and title, but no bg and resizer */ position: relative; z-index: 2; /* above the bg */ }
+
+/* line 909, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event .fc-time, .fc-time-grid-event .fc-title { padding: 0 1px; }
+
+/* line 914, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event .fc-time { font-size: .85em; white-space: nowrap; }
+
+/* line 919, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event .fc-bg { z-index: 1; background: #fff; opacity: .25; filter: alpha(opacity=25); /* for IE */ }
+
+/* short mode, where time and title are on the same line */
+/* line 928, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event.fc-short .fc-content { /* don't wrap to second line (now that contents will be inline) */ white-space: nowrap; }
+
+/* line 933, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event.fc-short .fc-time, .fc-time-grid-event.fc-short .fc-title { /* put the time and title on the same line */ display: inline-block; vertical-align: top; }
+
+/* line 940, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event.fc-short .fc-time span { display: none; /* don't display the full time text... */ }
+
+/* line 944, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event.fc-short .fc-time:before { content: attr(data-start); /* ...instead, display only the start time */ }
+
+/* line 948, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event.fc-short .fc-time:after { content: "\000A0-\000A0"; /* seperate with a dash, wrapped in nbsp's */ }
+
+/* line 952, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event.fc-short .fc-title { font-size: .85em; /* make the title text the same size as the time */ padding: 0; /* undo padding from above */ }
+
+/* resizer */
+/* line 959, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event .fc-resizer { position: absolute; z-index: 3; /* above content */ left: 0; right: 0; bottom: 0; height: 8px; overflow: hidden; line-height: 8px; font-size: 11px; font-family: monospace; text-align: center; cursor: s-resize; }
+
+/* line 974, ../../assets/sass/vendors/_fullcalendar.scss */
+.fc-time-grid-event .fc-resizer:after { content: "="; }
+
+/* line 874, ../../assets/sass/agenda.scss */
+#calendar { position: relative; max-width: none !important; font-size: 1em; }
+/* line 883, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar { background: #2c394c; color: #FFFFFF; margin: 0 0 10px 0; font-size: 0; }
+/* line 890, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar h2 { font-size: 17px; font-size: 1.0625rem; text-transform: uppercase; display: inline-block; vertical-align: top; font-weight: bold; line-height: 45px; margin: 0; width: auto; }
+/* line 901, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar.month h2 { min-width: 152px; }
+/* line 906, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar.agendaWeek h2 { min-width: 290px; }
+/* line 911, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar.agendaDay h2 { min-width: 280px; }
+/* line 916, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar .fc-prev-button, #calendar .fc-toolbar .fc-next-button { font-size: 17px; font-size: 1.0625rem; display: inline-block; vertical-align: top; background: none; text-shadow: none; border: none; box-shadow: none; height: auto; width: auto; padding: 0; }
+/* line 929, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar .fc-icon { font-size: 17px; font-size: 1.0625rem; color: #FFFFFF; display: inline-block; height: auto; line-height: 1; margin: 0; font-weight: bold; opacity: 0.7; transition: opacity 0.2s linear; }
+/* line 940, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar .fc-icon:hover { text-decoration: none; opacity: 1; transition: opacity 0.2s linear; }
+/* line 946, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar .fc-icon.fc-icon-left-single-arrow:after { content: "<"; }
+/* line 949, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar .fc-icon.fc-icon-right-single-arrow:after { content: ">"; }
+/* line 954, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar button { font-size: 17px; font-size: 1.0625rem; background: none; line-height: 45px; height: 100%; border: 0; box-shadow: none; text-shadow: none; color: #FFFFFF; }
+/* line 963, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar button.fc-state-active { text-decoration: underline; }
+/* line 966, ../../assets/sass/agenda.scss */
+#calendar .fc-toolbar button.fc-today-button.fc-state-disabled { text-decoration: underline; opacity: 1; }
+/* line 978, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-day-grid-container { position: relative; }
+/* line 982, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-widget-header { font-family: "Ubuntu Condensed", Arial, sans-serif; border: 0; }
+/* line 986, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-widget-header table th { border: 10px solid #1c2027; border-width: 0 10px; }
+/* line 990, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-widget-header .fc-day-header { font-size: 14px; font-size: 0.875rem; background: #2c394c; color: #FFFFFF; text-align: left; padding: 14px 8px 5px 8px; text-transform: uppercase; }
+/* line 999, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-widget-content { font-family: "Ubuntu Condensed", Arial, sans-serif; border: 0; }
+/* line 1002, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-widget-content .fc-event { background: none; border: 0; color: #000000; border-radius: 0; height: auto; cursor: pointer; margin: 0; }
+/* line 1011, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-widget-content .fc-event .fc-content { white-space: normal; }
+/* line 1014, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-widget-content .fc-event .fc-time { font-size: 13px; font-size: 0.8125rem; line-height: 1em; color: #2c394c; display: block; white-space: normal; }
+/* line 1020, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-widget-content .fc-event .fc-time span { display: block; }
+/* line 1024, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-widget-content .fc-event .fc-title { font-size: 12px; font-size: 0.75rem; color: #1c2027; display: block; vertical-align: top; }
+/* line 1030, ../../assets/sass/agenda.scss */
+#calendar .fc-view .fc-widget-content .fc-event .fc-title img { margin: 2px 3px 3px 0; vertical-align: top; }
+/* line 1043, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view { margin: 0 0 0 -0.8%; width: 101.6%; }
+/* line 1047, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+/* line 1054, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-header > table { border-left: 5px solid transparent; border-right: 5px solid transparent; }
+/* line 1060, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-row { height: 158px; margin: 10px 0; }
+/* line 1064, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-day { background: #FFFFFF; color: #000000; }
+/* line 1068, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-day-number { font-size: 11px; font-size: 0.6875rem; background: #2c394c; color: #FFFFFF; text-align: right; padding: 4px 4px; cursor: pointer; }
+/* line 1075, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-day-number.fc-other-month { background: #b5bac1; opacity: 1; }
+/* line 1079, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-day-number.fc-today { background: #ff7f00; }
+/* line 1083, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-bg > table { border-left: 5px solid transparent; border-right: 5px solid transparent; }
+/* line 1087, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-bg > table td { border: 10px solid #1c2027; border-width: 0 10px; }
+/* line 1091, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-content-skeleton > table { border-left: 5px solid transparent; border-right: 5px solid transparent; }
+/* line 1096, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-content-skeleton > table td { border: 10px solid #1c2027; border-width: 0 10px; }
+/* line 1100, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-event-container { padding: 0; }
+/* line 1103, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-content-skeleton > table tbody tr td .fc-event { padding: 6px; }
+/* line 1105, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-content-skeleton > table tbody tr td .fc-event:after { background: #b5bac1; content: ""; position: absolute; height: 1px; width: 50%; left: 6px; width: 93%; top: 0; }
+/* line 1117, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-widget-content .fc-content-skeleton > table tbody tr:first-of-type td .fc-event:after { display: none; }
+/* line 1124, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-more-cell { text-align: right; }
+/* line 1126, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-more-cell a.fc-more { font-size: 12px; font-size: 0.75rem; color: #14768c; cursor: pointer; margin: 0 8px; text-decoration: none; }
+/* line 1132, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-more-cell a.fc-more:hover { text-decoration: underline; }
+/* line 1138, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-popover { border: 0; width: 351px; height: 326px; z-index: 1000; position: absolute; }
+/* line 1144, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-popover .fc-header { font-size: 11px; font-size: 0.6875rem; padding: 4px 4px; background: #2c394c; color: #FFFFFF; text-transform: uppercase; }
+/* line 1150, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-popover .fc-header .fc-title { float: right; margin: 0 24px 0 0; }
+/* line 1154, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-popover .fc-header .fc-close { background: url("../images/close-popup.png") no-repeat center; position: absolute; right: 4px; top: 4px; z-index: 5001; width: 16px; height: 15px; opacity: 0.8; margin: 0; }
+/* line 1165, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-popover .fc-header .fc-close:hover { opacity: 1; }
+/* line 1168, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-popover .fc-header .fc-close:after { content: ''; }
+/* line 1173, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-popover .fc-event-container { padding: 6px; height: 290px; overflow-y: auto; }
+/* line 1177, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-popover .fc-event-container .fc-event { border-top: 1px solid #b5bac1; margin: 6px 0 0 0; padding: 6px 0 0 0; }
+/* line 1181, ../../assets/sass/agenda.scss */
+#calendar .fc-month-view .fc-popover .fc-event-container .fc-event:first-of-type { border-top: 0; margin: 0; padding: 0; }
+/* line 1197, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-bg > table td, #calendar .fc-agendaDay-view .fc-widget-content .fc-bg > table td { background: #FFFFFF url("../images/calendar-lines.png") repeat top left; border: 10px solid #1c2027; border-width: 0 10px; color: #000000; }
+/* line 1203, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-content-skeleton > table td, #calendar .fc-agendaDay-view .fc-widget-content .fc-content-skeleton > table td { border: 10px solid #1c2027; border-width: 0 10px; }
+/* line 1207, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-event-container, #calendar .fc-agendaDay-view .fc-widget-content .fc-event-container { margin: 0 2px; }
+/* line 1210, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-event, #calendar .fc-agendaDay-view .fc-widget-content .fc-event { border: 0; border-radius: 0; margin: 0; padding: 0; background: #2c394c; -moz-box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.8); -webkit-box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.8); box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.8); }
+/* line 1217, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-event .fc-time, #calendar .fc-agendaDay-view .fc-widget-content .fc-event .fc-time { color: #FFFFFF; }
+/* line 1220, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-event .fc-title, #calendar .fc-agendaDay-view .fc-widget-content .fc-event .fc-title { color: #FFFFFF; }
+/* line 1223, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-event .fc-content, #calendar .fc-agendaDay-view .fc-widget-content .fc-event .fc-content { padding: 6px; }
+/* line 1226, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-event .fc-bg, #calendar .fc-agendaDay-view .fc-widget-content .fc-event .fc-bg { background: none; opacity: 1; }
+/* line 1230, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-event.editor, #calendar .fc-agendaDay-view .fc-widget-content .fc-event.editor { background: #1e4b80; }
+/* line 1233, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-event.validated, #calendar .fc-agendaDay-view .fc-widget-content .fc-event.validated { background: #ff7f00; }
+/* line 1236, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-event.waiting, #calendar .fc-agendaDay-view .fc-widget-content .fc-event.waiting { background: #2c394c; }
+/* line 1239, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-event.refused, #calendar .fc-agendaDay-view .fc-widget-content .fc-event.refused { background: #b5bac1; }
+/* line 1244, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-slats table tr, #calendar .fc-agendaDay-view .fc-widget-content .fc-slats table tr { border: 0; }
+/* line 1246, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-slats table tr td, #calendar .fc-agendaDay-view .fc-widget-content .fc-slats table tr td { height: 20px; }
+/* line 1249, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-slats table tr .fc-axis, #calendar .fc-agendaDay-view .fc-widget-content .fc-slats table tr .fc-axis { width: 50px !important; }
+/* line 1251, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-slats table tr .fc-axis span, #calendar .fc-agendaDay-view .fc-widget-content .fc-slats table tr .fc-axis span { font-size: 10px; font-size: 0.625rem; display: block; }
+/* line 1261, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .popup, #calendar .fc-agendaDay-view .popup { top: 36px !important; left: 304px !important; }
+/* line 1269, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaWeek-view .fc-widget-content .fc-time-grid { margin: 10px 0 0; }
+/* line 1276, ../../assets/sass/agenda.scss */
+#calendar .fc-agendaDay-view .fc-widget-header { display: none; }
+/* line 1288, ../../assets/sass/agenda.scss */
+#calendar .popup { -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.8); -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.8); box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.8); position: absolute; z-index: 1000; width: 710px; height: 326px; background-color: #2c394c; }
+/* line 1296, ../../assets/sass/agenda.scss */
+#calendar .popup *, #calendar .popup *:before, #calendar .popup *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+/* line 1303, ../../assets/sass/agenda.scss */
+#calendar .popup .loader { margin-left: -15px; margin-top: -15px; }
+/* line 1307, ../../assets/sass/agenda.scss */
+#calendar .popup .close { background: url("../images/close-popup.png") no-repeat center; position: absolute; right: 7px; top: 7px; z-index: 5001; text-shadow: none; float: none; width: 16px; height: 15px; opacity: 0.8; }
+/* line 1318, ../../assets/sass/agenda.scss */
+#calendar .popup .close:hover { opacity: 1; }
+/* line 1322, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event { height: auto; }
+/* line 1324, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-main { margin: 0; width: 390px; height: auto; }
+/* line 1328, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-main .event-big-title { margin: 10px 0; }
+/* line 1331, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-main .event-main-header { height: 24px; line-height: 24px; width: 176%; }
+/* line 1336, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-main .event-main-content { padding: 10px; height: 252px; }
+/* line 1340, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-main .event-main-content .event-main-left { margin: 0 2% 0 0; width: 11%; }
+/* line 1344, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-main .event-main-content .event-main-right { width: 86%; }
+/* line 1348, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-main .event-main-date { text-transform: uppercase; }
+/* line 1351, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-main .btn-agenda { font-size: 12px; font-size: 0.75rem; height: 26px; line-height: 26px; margin: 12px 2px; vertical-align: top; }
+/* line 1359, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-left { margin: 0; width: 320px; }
+/* line 1363, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-left .event-going { margin: 24px 0 0 0; height: 112px; padding: 0 6px; }
+/* line 1369, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-left .event-going .event-going-top .going-title { font-size: 15px; font-size: 0.9375rem; }
+/* line 1373, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-left .event-going .event-going-main { margin: 0; }
+/* line 1375, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-left .event-going .event-going-main a { height: 70px; width: 70px; }
+/* line 1381, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-left .map-infos { margin: 12px 0 0; padding: 0 10px 0 0; }
+/* line 1385, ../../assets/sass/agenda.scss */
+#calendar .popup .month-date-event .event-left .map-infos .map-icon { width: 26px; height: 26px; }

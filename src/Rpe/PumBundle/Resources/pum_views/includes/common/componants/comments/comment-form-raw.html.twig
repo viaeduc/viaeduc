@@ -1,0 +1,29 @@
+{% if post is defined and post is not null %}
+    {% set comment_parent_id = '' %}
+    {% if comment is defined and comment is not null %}
+        {% set comment_parent_id = comment %}
+    {% endif %}
+    <form class="comment-form" action="{{ path('create_form_comment') }}" method="POST" name="comment">
+        <span class="text-box">
+            <textarea data-validation-error-msg="Merci de saisir un message." data-validation="required" required="required" data-link-ajax="{{ path('link_preview') }}" class="linkpreview expanding" placeholder="Ajouter un commentaire..." name="content"></textarea>
+        </span>
+        <button class="mini-btn light-blue pull-right icon-comment" type="submit">Envoyer</button>
+        <input type="hidden" value="{{ post }}" name="post_id">
+        <input type="hidden" value="{{ comment_parent_id }}" name="parent_comment_id">
+        <input type="hidden" name="link_preview_id" >
+    </form>
+{% elseif notice is defined and notice is not null %}
+    {% set comment_parent_id = '' %}
+    {% if comment is defined and comment is not null %}
+        {% set comment_parent_id = comment %}
+    {% endif %}
+    <form class="comment-form" action="{{ path('create_form_comment') }}" method="POST" name="comment">
+        <span class="text-box">
+            <textarea data-validation-error-msg="Merci de saisir un message." data-validation="required" required="required" data-link-ajax="{{ path('link_preview') }}" class="linkpreview expanding" placeholder="Ajouter un commentaire..." name="content"></textarea>
+        </span>
+        <button class="mini-btn light-blue pull-right icon-comment" type="submit">Envoyer</button>
+        <input type="hidden" value="{{ notice }}" name="notice_id">
+        <input type="hidden" value="{{ comment_parent_id }}" name="parent_comment_id">
+        <input type="hidden" name="link_preview_id" >
+    </form>
+{% endif %}

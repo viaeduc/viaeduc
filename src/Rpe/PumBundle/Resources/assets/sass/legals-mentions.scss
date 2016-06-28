@@ -1,0 +1,39 @@
+$msg-list-grey-1             : #f9f9f9;
+$msg-list-grey-2             : #efefef;
+$msg-list-grey-3             : #e4e4e4;
+$msg-list-grey-4             : #f3f3f3;
+
+//------------------------------------------------------------------------------------
+
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "componants/_breadcrumbs";
+
+
+// ------------
+// Specific CSS
+// ------------
+
+
+h2 {
+    margin-top  : 0;
+    font-family : $MissionScript;
+}
+.mentions {
+    @include fontSize(12);
+    padding     : 15px;
+    border      : 1px solid $light-grey-2;
+    background  : $light-grey-1;
+    color       : $dark-grey-font;
+    line-height : 2em;
+}

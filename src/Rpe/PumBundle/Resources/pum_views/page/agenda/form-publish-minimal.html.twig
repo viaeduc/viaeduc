@@ -1,0 +1,132 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block _event_startDate_widget %}
+    <div class="input-append date calendar-datetimepicker">
+        <input type="text" id="js-event_datetime_start" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" data-date-format="dd/mm/yyyy hh:ii" data-date-constraint-element="#js-event_datetime_end" data-date-constraint-type="start" data-validation="required" data-validation-error-msg="Veuillez choisir la date de début." />
+        <span class="add-on dark-grey square-btn icon-calendar"></span>
+    </div>
+{% endblock %}
+
+{% block _event_endDate_widget %}
+    <div class="input-append date calendar-datetimepicker">
+        <input type="text" id="js-event_datetime_end" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" data-date-format="dd/mm/yyyy hh:ii" data-validation="required" data-validation-error-msg="Veuillez choisir la date de fin." />
+        <span class="add-on dark-grey square-btn icon-calendar"></span>
+    </div>
+{% endblock %}
+
+{% block _event_privacy_widget %}
+    <select class="select-time" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}">
+        <option value="public">Publique</option>
+        <option value="private">Privée</option>
+    </select>
+{% endblock %}
+
+{% block _event_placeAddress_widget %}
+    <input type="text" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="input-small" value="{{ form.vars.value }}" />
+{% endblock %}
+
+{% block _event_description_widget %}
+    <span class="text-box">
+        <textarea id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" data-validation="required" data-validation-error-msg="Veuillez décrire votre évènement.">{{ form.vars.value }}</textarea>
+    </span>
+{% endblock %}
+
+{% block _event_submit_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn publish-btn orange">{{ "Valider"|trans() }}</button>
+{% endblock %}
+
+{% block _event_participants_row %}
+    {% set full_name = form.vars.full_name ~ '[]' %}
+    {% set force_ajax_url = path('ajax_participants_event') %}
+    {% set attr = attr|merge({class: 'participants tm-input extra-info-input', 'data-ttl' : 'false'}) %}
+    {% set span_second_widget_class = 'first-tag-list tag-list' %}
+
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block main_content %}
+    {% form_theme form _self %}
+
+    <!-- Event form -->
+    {{ form_errors(form) }}
+    {{ form_start(form, { action: path('publish_event', {'group_id': group.id}) }) }}
+        <ul class="ressource-edit-wrapper">
+            <li>
+                <div class="form-left">
+                    {{ form_label(form.title) }}
+                </div><!--
+                --><div class="form-right">
+                    {{ form_widget(form.title, {'attr': {'data-validation': 'required', 'data-validation-error-msg': 'Veuillez écrire le nom de l\'évènement.'}}) }}
+                </div>
+            </li>
+            <li>
+                <div class="form-left">
+                    {{ form_label(form.startDate) }}
+                </div><!--
+                --><div class="form-right">
+                    {{ form_widget(form.startDate) }}
+                    {# {{ form_widget(form.startDate_time) }} #}
+                </div>
+            </li>
+            <li>
+                <div class="form-left">
+                    {{ form_label(form.endDate) }}
+                </div><!--
+                --><div class="form-right">
+                    {{ form_widget(form.endDate) }}
+                    {# {{ form_widget(form.endDate_time) }} #}
+                </div>
+            </li>
+            <li>
+                <div class="form-left">
+                    {{ form_label(form.placeName) }}
+                </div><!--
+                --><div class="form-right">
+                    {{ form_widget(form.placeName, {'attr': {'data-validation': 'required', 'data-validation-error-msg': 'Veuillez préciser le lieu.'}}) }}
+                </div>
+            </li>
+            <li>
+                <div class="form-left">
+                    {{ form_label(form.placeAddress) }}
+                </div><!--
+                --><div class="form-right">
+                    {{ form_widget(form.placeAddress) }}
+                </div>
+            </li>
+            <li>
+                <div class="form-left">
+                    {{ form_label(form.description) }}
+                </div><!--
+                --><div class="form-right">
+                    {{ form_widget(form.description) }}
+                </div>
+            </li>
+            <li>
+                <div class="form-left">
+                    {{ form_label(form.privacy) }}
+                </div><!--
+                --><div class="form-right">
+                    {{ form_widget(form.privacy) }}
+                </div>
+            </li>
+
+            {% if id is not defined %}
+                {{ form_row(form.participants) }}
+            {% endif %}
+            
+            <li>
+                <div class="form-left">
+                    {{ form_label(form.timezone) }}
+                </div><!--
+                --><div class="form-right">
+                    {{ form_widget(form.timezone) }}
+                </div>
+            </li>
+
+            {{ form_row(form._token) }}
+        </ul>
+        {{ form_row(form.submit) }}
+    {{ form_end(form, {render_rest: false}) }}
+{% endblock %}
+
+{% block sidebar '' %}

@@ -1,0 +1,53 @@
+{% import 'pum://macros/macros.html.twig' as macros %}
+<script src="{{ asset('bundles/rpepum/js/rpe.group-member.js') }}"></script>
+{% spaceless %}
+<h4 class="tab-title">INVITATION RELATIONS</h4>
+<div class="administration-box full-admin">
+    <!-- TOP -->
+    <div class="administration-top">
+        <a href="{{ path('invite_return_blog', {id:blog.id}) }}"  class="filter-btn light-blue js-loadmore js-infinite js-load-inner" data-target="#portlet_tab2"><span class="icon-arrow-left">Retour gestion des membres</span></a><!-- boutton retour page gestion membres -->
+    </div>
+    <div class="administration-right">
+        {% if scope == "internal" %}
+            <div class="invite-members-search-wrapper">
+                <input value="" type="text" class="invite-members-search-input" placeholder="Nom / Prénom d'un membre" data-href="{{ path('ajax_blog_notmemberlist', {id:blog.id}) }}" data-target="#invite-friend-list" />
+            </div>
+        {% endif %}
+
+        {% if form is defined %}
+            {{ form_errors(form) }}
+            {{ form_start(form, {'action': path('invite_relation_blog', {id:blog.id, scope:scope})}) }}
+                <!-- Attention, a l'appel ajax, il faut bien enregistré les personnes coché en dehors de ce ul pour pas les remplacer lors de l'appel -->
+                <div id="invite-friend-list">
+                    {% if friends is not null and friends|length == 0 %}
+                        <span class="invite-external-confirm top">{{ "groupPage.invit_members.nofriends"|trans({}, 'rpe') }}</span>
+                    {% endif %}
+                    {# {% if friends is null %}
+                        <span class="invite-external-confirm top">{{ "groupPage.invit_members.nouserfound"|trans({}, 'rpe') }}</span>
+                    {% endif %} #}
+                    <ul class="invite-friend-list js-autoload">
+                        {% for friend in friends %}
+                            <li class="invite-friend-wrapper">
+                                <!-- oublie pas, l'id et le for du label doivent être pareil :) -->
+                                <label for="user_in_group_{{friend.id }}" class="invite-friend-label">
+                                    <div class="invite-friend-inner-wrapper">
+                                        {{ macros.show_user_avatar(friend, 'default', 120, 'invite-friend-image') }}
+                                        <div class="invite-friend-name-wrapper">
+                                            <span class="invite-friend-surname">{{ friend.firstname }}</span>
+                                            <span class="invite-friend-name">{{ friend.lastname }}</span>
+                                        </div>
+                                    </div>
+                                    <input name="user_in_group[]" type="checkbox" value="{{ friend.id }}" id="user_in_group_{{ friend.id }}" class="invite-friend-checkbox">
+                                </label>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="invite-bottom">
+                    <button type="submit" class="orange action-btn send-invite-form" id="confirmer" name="confirmer">{{ "createGroup.invitMembers"|trans({}, 'rpe') }}</button>
+                </div>
+            {{ form_end(form, {'render_rest': false}) }}
+        {% endif %}
+    </div>
+</div>
+{% endspaceless %}

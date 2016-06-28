@@ -1,0 +1,122 @@
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% if answer.answers is defined %}
+    {% set answer = answer.answers %}
+{% endif %}
+
+{% spaceless %}
+<div id="js-answer-{{ answer.id }}" class="timeline-comment{{ (answer.parent is not null) ? ' sub-comment' }}">
+
+    <!-- Image commentateur -->
+    {# <div class="image-wrapper">
+        <a href="{{ path('profil', {id: comment.user.id}) }}"> <!-- Lien vers page de profile de la personne --> #}
+            {{ macros.show_user_avatar(answer.author, 'default', 44, 'comment-profil-image') }}
+        {# </a>
+    </div> #}
+    <div class="comment-info">
+        <!-- Prénom et nom deu commentateur -->
+        <a href="{{ path('profil', {id: hashEncode(answer.author.id)}) }}" class="comment-author">{{ answer.author.firstname ~ ' ' ~ answer.author.lastname }}</a>
+        <!-- Texte du commentaire -->
+        <p class="comment-text">
+            {{ answer.content|raw|nl2br }}
+        </p>
+
+        <!-- Les data-xxxxx sont utilisés pour générer des noms uniques et passer les params pour l'enregistrement des commentaires -->
+        <div class="comment-menu">
+            <!-- Actions: Liker Commenter -->
+            {# <a href="#" class="icon-heart">{{ comment.recommendby.count }}</a> #}
+            {# {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                'type': 'answer',
+                'object': answer,
+                'style': 'link_counter'
+            } %} #}
+
+             {# | <a href="{{ url('create_form_comment') }}" class="icon-export comment-this" data-comment-id="{{ comment.id }}" data-post-id="{{ post.id }}"></a> #}
+            {% if answer.children.count %}
+                <a href="#" class="icon-comment">{{ answer.children.count }}</a>
+            {% endif %}
+            {% if answer.parent is null %}
+                <a href="#js-a-answer-{{ answer.id }}" class="icon-reply js-loadmore js-infinite" data-href="{{ path('create_form_answer', {'question':question.id, 'answer': answer.id}) }}" data-target="#js-a-answer-{{ answer.id }}">{{ 'Répondre'|trans({}, 'rpe') }}</a>
+            {% endif %}
+
+            {# Delete #}
+            {% if user == answer.author or user == question.author %}
+                <a href="{{ path('delete_answer', {'id': answer.id}) }}" class="icon-trash js-loadmore js-confirm-modal js-remove" data-delete-link="{{ path('delete_answer', {'id': answer.id}) }}" data-confirm="{{ 'common.action.delete.comment_confirm'|trans({}, 'rpe')|e('html') }}" data-remove-div="#js-answer-{{ answer.id }}, [id^=js-subanswer-{{ answer.id }}">{{ 'common.action.delete.comment'|trans({}, 'rpe') }}</a>
+            {% endif %}
+            <!-- Date et heure de la réponse -->
+            <a href="#" class="comment-time timeago" title="{{ answer.date|date('c') }}"></a>
+        </div>
+
+        <div id="js-a-answer-{{ answer.id }}" class="timeline-post-comment sub-comment-form"></div>
+    </div>
+    <!-- =============================== -->
+    <!--  Buttons for question comments  -->
+    <!-- =============================== -->
+    {# <div class="square-btn light-blue icon-checkmark"></div> #}
+    {# <div class="square-btn light-blue icon-trophy"></div> #}
+    {% if user == question.author %}
+        {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+            'type': 'answer_select',
+            'object': answer,
+            'style': 'select'
+        } %}
+    {% endif %}
+    {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+        'type': 'answer',
+        'object': answer,
+        'style': 'trophy'
+    } %}
+    <!-- =============================== -->
+
+</div>
+{% if answer.children.count %}
+    {% for sub_answer in answer.children %}
+        <div id="js-subanswer-{{ answer.id }}-{{ sub_answer.id }}" class="timeline-comment sub-comment">
+            <!-- Image commentateur -->
+            {{ macros.show_user_avatar(sub_answer.author, 'default', 44, 'comment-profil-image') }}
+            <div class="comment-info">
+                <!-- Prénom et nom deu commentateur -->
+                <a href="{{ path('profil', {id: hashEncode(sub_answer.author.id)}) }}" class="comment-author">{{ sub_answer.author.firstname ~ ' ' ~ sub_answer.author.lastname }}</a>
+                <!-- Texte du commentaire -->
+                <p class="comment-text">
+                    {{ sub_answer.content|raw|nl2br }}
+                </p>
+
+                <!-- Les data-xxxxx sont utilisés pour générer des noms uniques et passer les params pour l'enregistrement des commentaires -->
+                <div class="comment-menu">
+                    <!-- Actions: Liker Commenter -->
+
+                    {# <a href="#" class="icon-heart">{{ sub_comment.recommendby.count }}</a> #}
+                    {# {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                        'type': 'answer',
+                        'object': sub_answer,
+                        'style': 'link_counter'
+                    } %} #}
+                    {# <a href="#" class="icon-heart">{{ sub_comment.recommendby.count }}</a> | <a href="{{ url('create_form_comment') }}" class="icon-export comment-this" data-comment-id="{{ comment.id }}" data-post-id="{{ post.id }}"></a> #}
+                    {# <a href="#" class="icon-pencil-1">{{ 'Répondre'|trans({}, 'rpe') }}</a> #}
+                    {# Delete #}
+                    {% if user == sub_answer.author or user == question.author %}
+                        <a href="{{ path('delete_answer', {'id': sub_answer.id}) }}" class="icon-trash js-loadmore js-confirm-modal js-remove"  data-delete-link="{{ path('delete_answer', {'id': sub_answer.id}) }}" data-confirm="{{ 'common.action.delete.comment_confirm'|trans({}, 'rpe')|e('html') }}" data-remove-div="#js-subanswer-{{ sub_answer.parent.id }}-{{ sub_answer.id }}">{{ 'common.action.delete.comment'|trans({}, 'rpe') }}</a>
+                    {% endif %}
+
+                    <!-- Date et heure de commentaire -->
+                    <a href="#" class="comment-time timeago" title="{{ sub_answer.date|date('c') }}"></a>
+                </div>
+                {# <div id="js-c-scom-{{ sub_comment.id }}" class="timeline-post-comment"></div> #}
+            </div>
+            <!-- =============================== -->
+            <!--  Buttons for question comments  -->
+            <!-- =============================== -->
+            {# <div class="square-btn light-blue icon-checkmark"></div> #}
+            {# {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                'type': 'answer',
+                'object': sub_answer,
+                'style': 'select'
+            } %}
+            <div class="square-btn light-blue icon-trophy"></div> #}
+            <!-- =============================== -->
+        </div>
+    {% endfor %}
+{% endif %}
+{{ (loop is not defined or loop.last == false) ? '<hr />' }}
+{% endspaceless %}

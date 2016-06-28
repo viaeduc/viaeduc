@@ -1,0 +1,58 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% if userinblog is defined and userinblog is not null %}
+        {% set user_infos = userinblog.user %}
+
+        {{ macros.show_user_avatar(user_infos, 'default', 158, '') }}
+        <div class="member-info">
+            <span class="title">{{ user_infos.firstname ~ ' ' ~ user_infos.lastname }}</span>
+            <span>{{ user_infos.occupation }} {{ '%city%, %country%'|trans({
+                '%city%': user_infos.city,
+                '%country%': 'France'|trans({}, 'rpe')
+            }, 'rpe') }}</span>
+            {# <a href="#">12 amis en commun</a> #}
+            {# {% if user_infos.emailPro is not null %}
+                <a class="mail icon-mail" href="mailto:{{ user_infos.emailPro }}">{{ user_infos.emailPro }}</a>
+            {% endif %} #}
+            {# {% if user_infos.phone is not null %}
+                <span class="number icon-phone">{{ user_infos.phone }}</span>
+            {% endif %} #}
+
+        </div>
+
+        {% set const_BlogController = 'Rpe\\PumBundle\\Controller\\BlogController::' %}
+
+        <div class="links">
+            <p>
+                {{ user_infos.profile }}
+            </p>
+            <a href="{{ path('profil', {'id': hashEncode(user_infos.id)}) }}" target="_blank" class="action-btn orange view-profil-btn">{{ 'Voir le profil'|trans({}, 'rpe') }}</a>
+            {% if user_infos.id != user.id %}
+                {# {% if relation_detail is null %}
+                    <a data-sent="0" data-id="{{ user_infos.id }}" class="action-btn light-blue icon-user add-to-friend" href="{{ path('relation_add') }}">{{ "profil.add_friend"|trans({}, 'rpe') }}</a>
+                {% elseif relation_detail.status is constant(const_socialFriend ~ 'STATUS_ON_HOLD') and user.id != relation_detail.user.id %}
+                    <a data-sent="0" data-id="{{ relation_detail.id }}" class="action-btn light-blue icon-user respond-to-friend" href="{{ path('relation_accept') }}">{{ "profil.confrm_friend_demand"|trans({}, 'rpe') }}</a>
+                {% elseif relation_detail.status is constant(const_socialFriend ~ 'STATUS_ON_HOLD') %}
+                    <span class="action-btn light-blue icon-user">{{ "profil.friend_sent"|trans({}, 'rpe') }}</span>
+                {% endif %} #}
+                {% include 'pum://includes/common/componants/profile/buttons.html.twig' with {
+                    'id': user_infos.id,
+                    'relation_detail': relation_detail|default(null)
+                } %}
+                {# <a class="profil-btn icon-user-add light-blue" href="#">{{ "groupAdmin.add_relation"|trans({}, 'rpe') }}</a> #}
+                {% if userinblog.user != user %}
+                    <a class="profil-btn icon-mail light-blue" href="{{ path('inbox' , {'recipient_id': userinblog.user.id } )}}">{{ "groupAdmin.message"|trans({}, 'rpe') }}</a>
+                {% endif %}
+
+
+
+            {% endif %}
+            {# <a class="profil-btn icon-user light-blue" href="#">{{ "groupAdmin.view_page"|trans({}, 'rpe') }}</a> #}
+        </div>
+    {% elseif user_id is defined and relation_detail is null %}
+        <script>
+            $('#useringroup-{{ user_id }}').remove();
+        </script>
+    {% endif %}
+{% endspaceless %}{% endblock %}

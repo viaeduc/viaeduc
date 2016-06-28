@@ -1,0 +1,437 @@
+// -----------------
+// Compass utilities
+// -----------------
+
+@import "compass";
+@import "compass/reset";
+@import "compass/utilities";
+@import "compass/css3";
+
+// -------------------
+// Always import these
+// -------------------
+
+@import "globals/_vars";
+@import "globals/_mixin";
+@import "globals/_colors";
+@import "globals/_animations";
+@import "globals/_font";
+@import "globals/_icomoon";
+@import "globals/_general";
+@import "vendors/_bootstrap";
+@import "vendors/_bootstrap-fileupload";
+@import "vendors/_bootstrap-select";
+@import "vendors/_datetimepicker";
+@import "vendors/_datepicker";
+@import "componants/_buttons";
+@import "layout/_general";
+@import "layout/_header";
+@import "layout/_main_nav";
+@import "layout/_search";
+@import "layout/_search-autocomplete";
+@import "componants/_forms";
+@import "layout/_footer";
+@import "layout/_content";
+
+// On your specific scss page, import what you need below :
+
+// -------------------------------------------
+// External imports, import only what you need
+// -------------------------------------------
+
+// --------------
+// Layout Imports
+// --------------
+
+@import "layout/_filter";
+@import "layout/_sidebar";
+
+// Page //
+
+.stats-tab {
+    padding: 20px 0 0 0;
+
+}
+.chart-wrapper { // temp
+    background : $light-grey-1;
+}
+
+.tabbable {
+    padding :0;
+}
+
+.nav {
+    margin : 0 0 30px 0;
+}
+
+.tab {
+    width : 50%;
+}
+
+.chart-left,
+.chart-right,
+.chart-inner-left,
+.chart-inner-right {
+    display : inline-block;
+}
+
+.chart-left {
+    width          : 24.133663366336634%;
+    vertical-align : top;
+    padding        : 0 10px;
+}
+
+.chart-right {
+    width : 75.8663366337%;
+    vertical-align : top;
+
+    &.hidden {
+        display: none;
+    }
+}
+
+.chart-inner {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    margin         : 0 0 20px 0;
+}
+
+.chart-inner-left {
+    width          : 50%;
+    text-align     : center;
+    vertical-align : middle;
+}
+
+.chart-inner-right {
+    width          : 50%;
+    padding        : 0 10px 0 0;
+    vertical-align : middle;
+}
+
+.chart-inner-wrapper {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 97%;
+    padding        : 10px;
+    background     : $white;
+    margin         : 0 0 20px 0;
+    text-align     : center;
+
+    .percentage-counter {
+        padding : 0 10px;
+        margin  : 0 0 20px 0;
+    }
+}
+
+.member-list {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    list-style     : none;
+    margin         : 0 0 40px 0;
+
+    > li {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 33.3333333333%;
+        height         : 45px;
+        line-height    : 45px;
+
+        .member-image {
+            display        : inline-block;
+            vertical-align : top;
+            height         : 100%;
+            width          : 22.058823529411764%;
+            margin         : 0 4.901960784313726% 0 0;
+        }
+
+        .member-info {
+            @include fontSize(12);
+            display        : inline-block;
+            vertical-align : top;
+            width          : 73.0392156863%;
+            color          : $dark-blue-1;
+            line-height    : 1em;
+
+            span {
+                display        : inline-block;
+                vertical-align : top;
+                width          : 100%;
+            }
+
+            .bold {
+                @include fontSize(13);
+                font-weight : bold;
+            }
+
+            .upper-case {
+                text-transform : uppercase;
+            }
+        }
+    }
+}
+
+.chart-stat-list {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    font-family    : $Verdana;
+    text-align     : center;
+
+    &.hidden {
+        display: none;
+    }
+
+    > li {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 75%;
+        margin         : 0 0 20px 0;
+        text-align     : center;
+    }
+
+    .stat-number {
+        @include fontSize(40);
+        width       : 100%;
+        padding     : 30px 0;
+        color       : $orange-1;
+        background  : $white;
+        margin      : 0 0 10px 0;
+    }
+
+    .stat-text {
+        @include fontSize(14);
+        color      : $dark-blue-1;
+        text-align : center;
+    }
+}
+
+.chart-title {
+    @include fontSize(26);
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    font-family    : $MissionScript;
+    color          : $dark-blue-1;
+    margin         : 0 0 20px 0;
+    text-align     : left;
+}
+
+.chart-nav {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    list-style     : none;
+
+
+    > li {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+        margin         : 0 0 10px 0;
+
+        a {
+            padding     : 0;
+            margin      : 0;
+            text-align  : middle;
+            height      : 45px;
+            line-height : 45px;
+            width       : 100%;
+
+            &.active {
+                background : $orange-1;
+            }
+        }
+    }
+}
+
+.sex-stat {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    padding        : 40px 10px;
+    background     : $white;
+
+    &.hidden {
+        display: none;
+    }
+}
+
+.stat-box {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    padding        : 10px;
+    background     : $white;
+    color          : $dark-blue-1;
+
+    .stat-head {
+        @include fontSize(26);
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+        font-family    : $MissionScript;
+    }
+
+    .stat-list {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+        list-style     : none;
+        margin         : 0;
+
+        > li {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 100%;
+            height         : 25px;
+            line-height    : 25px;
+            margin         : 0 0 10px 0;
+
+            &:last-of-type{
+                margin : 0;
+            }
+        }
+    }
+
+    .stat-color,
+    .stat-title,
+    .stat-percentage {
+        display        : inline-block;
+        vertical-align : middle;
+        height         : 100%;
+        line-height    : 25px;
+    }
+
+    .stat-color {
+        height  : 100%;
+        width   : 9.057971014492754%;
+        padding : 0 0 0 9.057971014492754%;
+
+        &.orange {
+            background : $orange-1;
+        }
+
+        &.dark-blue {
+            background : $dark-blue-1;
+        }
+
+        &.grey {
+            background : $dark-grey-1;
+        }
+
+        &.light-blue {
+            background : $light-blue-1;
+        }
+    }
+
+    .stat-title {
+        width       : 66%;
+        padding     : 0 5px 0 10px;
+        line-height : 1.5em;
+    }
+
+    .stat-percentage {
+        width : 24.9420289855%;
+
+        &:before {
+            content: '|';
+            padding : 0 5px;
+        }
+    }
+}
+
+.percentage-bar-labels {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+
+    .percentage-bar-labels-inner {
+        display: inline-block;
+        vertical-align: middle;
+        width: 50%;
+
+        &:first-of-type {
+            .percentage-number {
+                color : $light-blue-1;
+            }
+        }
+
+        &:last-of-type {
+            .percentage-number {
+                color : $dark-blue-1;
+            }
+        }
+    }
+
+    .percentage-number {
+        @include fontSize(22);
+        font-family : $MissionScript;
+        height      : 30px;
+        width       : 100%;
+        text-align  : center;
+    }
+
+    .result-text {
+        @include fontSize(14);
+        width       : 100%;
+        height      : 30px;
+        color       : $dark-grey-1;
+        text-align  : center;
+        font-family : $Verdana;
+        text-align  : center;
+    }
+}
+
+.percentage-counter {
+    display        : inline-block;
+    vertical-align : top;
+    height         : 20px;
+    width          : 100%;
+
+    &.padding {
+        padding : 0 10px;
+    }
+
+    &.margin {
+        margin : 0 0 20px 0;
+    }
+
+    &.margin-top {
+        margin : 20px 0;
+    }
+
+    .percentage-bar {
+        position       : relative;
+        display        : inline-block;
+        vertical-align : top;
+        height         : 100%;
+    }
+
+    .percentage-bar:nth-child(1) {
+        background : $light-blue-1;
+    }
+
+    .percentage-bar:nth-child(2) {
+        background : $dark-blue-1;
+    }
+
+    .percentage-bar:nth-child(3) {
+        background : $orange-1;
+    }
+}
+
+.nav-tabs .dropdown-menu {
+    @include fontSize(15);
+    @include border-radius(0);
+    font-family : $UbuntuCondensed;
+
+    li > a {
+        background : $white;
+        &:hover {
+            background : transparent;
+            color      : $light-blue-1;
+        }
+    }
+}

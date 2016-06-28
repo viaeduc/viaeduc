@@ -1,0 +1,10 @@
+{% set user = app.security.token ? app.security.token.user : null %}
+
+{% use 'pum://form/form.html.twig' %}
+{% if form is defined and form is not null %}
+{% form_theme form _self %}
+{% endif %}
+
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% extends is_mobile() or is_tablet() ? "pum://tablet_layout.html.twig" : "pum://desk_layout.html.twig" %}

@@ -1,0 +1,231 @@
+// -----------------
+// Compass utilities
+// -----------------
+
+@import "compass";
+@import "compass/reset";
+@import "compass/utilities";
+@import "compass/css3";
+
+// -------------------
+// Always import these
+// -------------------
+
+@import "globals/_vars";
+@import "globals/_mixin";
+@import "globals/_colors";
+@import "globals/_animations";
+@import "globals/_font";
+@import "globals/_icomoon";
+@import "globals/_general";
+@import "vendors/_bootstrap";
+@import "vendors/_bootstrap-fileupload";
+@import "vendors/_bootstrap-select";
+@import "vendors/_datetimepicker";
+@import "vendors/_datepicker";
+@import "componants/_buttons";
+@import "layout/_general";
+@import "layout/_header";
+@import "layout/_main_nav";
+@import "layout/_search";
+@import "layout/_search-autocomplete";
+@import "componants/_forms";
+@import "layout/_footer";
+@import "layout/_content";
+@import "layout/_sidebar";
+
+// ---------- //
+// Main Style //
+// ---------- //
+
+.new-form-styles {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%; // The width of our form should be defined by the parent //
+    // Main positioning & sizes //
+
+    .form-errors,
+    .form-wrapper,
+    .form-wrapper ul,
+    .form-wrapper ul .form-left,
+    .form-wrapper ul .form-right,
+    .form-wrapper ul .form-whitespace  {
+        display        : inline-block;
+        vertical-align : middle;
+        width          : 100%;
+    }
+
+    .form-wrapper > ul > li {
+        min-height : 45px;
+        margin     : 0 0 10px 0;
+
+        &:last-of-type {
+            margin : 0;
+        }
+    }
+
+    .form-wrapper > ul .form-left {
+        width : 24%;
+    }
+
+    .form-wrapper > ul .form-right {
+        width : 76%;
+    }
+
+    .form-wrapper > ul .form-left
+    .form-wrapper > ul .form-right {
+        height : 100%;
+    }
+
+    ul > li.single-col {
+        .form-left {
+            width : 0%;
+
+            > label {
+                display : none;
+            }
+        }
+        .form-right {
+            width : 100%;
+        }
+    }
+
+    ul > li.info-bubble {
+        .form-right {
+            width : 72%;
+        }
+
+        .form-info-bubble {
+            width : 4%;
+        }
+    }
+
+    ul > li.top-label {
+        .form-left,
+        .form-whitespace  {
+            height      : 45px;
+            line-height : 45px;
+        }
+        .form-whitespace {
+            width      : 76%;
+            background : $white;
+        }
+        .form-right {
+            width : 100%;
+        }
+    }
+
+    // Styles //
+
+    ul > li {
+        @include transition(background 0.2s linear);
+        background : $form-grey-1;
+
+        input[type="text"],
+        input[type="password"],
+        textarea,
+        select,
+        .select-box .btn-group > .btn:first-of-type {
+            @include fontSize(18);
+            @include transition(border 0.2s linear);
+            border : 2px solid $form-grey-1;
+            color  : #000;
+        }
+
+        .form-left {
+            @include fontSize(18);
+            text-align  : center;
+        }
+
+        &:hover {
+            @include transition(background 0.2s linear);
+            background : $form-grey-3;
+
+            input[type="text"],
+            input[type="password"],
+            textarea,
+            select,
+            .select-box .btn-group > .btn:first-of-type {
+                @include transition(border 0.2s linear);
+                border : 2px solid $form-grey-3;
+            }
+        }
+
+        &.light-blue {
+            background : $form-blue-1;
+
+            input[type="text"],
+            input[type="password"],
+            textarea,
+            select,
+            .select-box .btn-group > .btn:first-of-type{
+                border : 2px solid $form-blue-1;
+            }
+
+            &:hover {
+                background : $form-blue-3;
+
+                input[type="text"],
+                input[type="password"],
+                textarea,
+                select,
+                .select-box .btn-group > .btn:first-of-type {
+                    border : 2px solid $form-blue-3;
+                }
+            }
+        }
+    }
+
+    // The register page form is a bit diffrent
+    &.register-form {
+        ul > li {
+            background: transparent;
+
+
+
+            &:hover {
+                background: transparent;
+            }
+        }
+    }
+
+    // Extra non-essential classes //
+    .align-top {
+        vertical-align : top;
+    }
+}
+
+.new-tabs {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+
+    > ul,
+    > ul li {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+    }
+
+
+    a {
+        @include fontSize(14);
+        display        : block;
+        height         : 100%;
+        width          : 100%;
+        background     : $form-grey-1;
+        color          : #000;
+        text-align     : center;
+        text-transform : uppercase;
+        height         : 40px;
+        line-height    : 40px;
+
+
+        &.active,
+        &:hover {
+            font-weight     : bold;
+            background      : $form-grey-3;
+            text-decoration : none;
+        }
+    }
+}

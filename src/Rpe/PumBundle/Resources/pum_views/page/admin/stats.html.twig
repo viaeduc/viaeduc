@@ -1,0 +1,192 @@
+{% extends "pum://page/layout.html.twig" %}
+
+{% set page_title = 'Statistiques - Admin' %}
+{% set page_name_analytics = 'admin/stats' %}
+
+{% set global_wrapper_class = 'home' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/stats.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.admin.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    {% spaceless %}
+    <div class="wrapper">
+        {% embed "pum://includes/common/componants/filter.twig" %}
+            {% block title %}
+                <h2 class="filter-title">Statistiques</h2>
+            {% endblock %}
+
+            {% block filter %}
+                <div class="filter-right">
+                    <ul class="filter-right-wrapper">
+                        <li class="filter-link">
+                            <form method="get" action="{{ app.request.server.get('REQUEST_URI') }}">
+                                <div class="input-append date calendar-datepicker">
+                                    <input type="text" id="js-event_datetime_start" name="date_start" value="{{ dateStart }}" data-date-format="dd/mm/yyyy" data-date-constraint-element="#js-event_datetime_end" data-date-constraint-type="start" />
+                                    <span class="add-on dark-grey square-btn icon-calendar"></span>
+                                </div>
+                                <div class="input-append date calendar-datepicker">
+                                    <input type="text" id="js-event_datetime_end" name="date_end" value="{{ dateEnd }}" data-date-format="dd/mm/yyyy" />
+                                    <span class="add-on dark-grey square-btn icon-calendar"></span>
+                                </div>
+
+                                <button type="submit" class="light-blue publish-btn">OK</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            {% endblock %}
+        {% endembed %}
+        <ul class="stat-wrapper">
+            <li class="stat-inner">
+                <div class="stat-title-wrapper">
+                    <h2 class="stat-title">Utilisateurs</h2>
+                    <select class="filter">
+                        <option value="{{ path(app.request.attributes.get('_route'), app.request.query.all()|merge({})) }}">- Académie -</option>
+
+                        {% for academy in academies %}
+                            <option value="{{ path(app.request.attributes.get('_route'), app.request.query.all()|merge({'users-academy':academy.id})) }}" {% if app.request.get('users-academy', false) == academy.id %}selected="selected"{% endif %}>{{ academy.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-user">
+                    </span>
+                    <span class="stat-number">{{ userValidatedCount }}</span>
+                    <span class="stat-text">Utilisateurs validés</span>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-clock">
+                    </span>
+                    <span class="stat-number">{{ userAwaitingCount }}</span>
+                    <span class="stat-text">Utilisateurs en attente de confirmation</span>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-mail">
+                    </span>
+                    <span class="stat-number">{{ userInvitedCount }}</span>
+                    <span class="stat-text">Invitations envoyées</span>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-checkmark">
+                    </span>
+                    <span class="stat-number">{{ userInvitedValidatedCount }}</span>
+                    <span class="stat-text">Utilisateurs invités validés</span>
+                </div>
+            </li>
+            <li class="stat-inner">
+                <div class="stat-title-wrapper">
+                    <h2 class="stat-title">Groupes</h2>
+                    <select class="filter">
+                        <option value="{{ path(app.request.attributes.get('_route'), app.request.query.all()|merge({})) }}">- Type -</option>
+
+                        {% for typeName, typeKey in groupTypes %}
+                            <option value="{{ path(app.request.attributes.get('_route'), app.request.query.all()|merge({'groups-type':typeKey})) }}" {% if app.request.get('groups-type', false) == typeKey %}selected="selected"{% endif %}>{{ ('admin.stats.grouptype.' ~ typeName)|trans({}, 'rpe') }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-users">
+                    </span>
+                    <span class="stat-number">{{ groupCount }}</span>
+                    <span class="stat-text">Groupes créés</span>
+                </div>
+            </li>
+            <li class="stat-inner">
+                <div class="stat-title-wrapper">
+                    <h2 class="stat-title">Publications</h2>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-book2">
+                    </span>
+                    <span class="stat-number">{{ resourceCount }}</span>
+                    <span class="stat-text">Ressources créées</span>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-bookmark">
+                    </span>
+                    <span class="stat-number">{{ postCount }}</span>
+                    <span class="stat-text">Posts créés</span>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-comment">
+                    </span>
+                    <span class="stat-number">{{ commentCount }}</span>
+                    <span class="stat-text">Commentaires</span>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-heart2">
+                    </span>
+                    <span class="stat-number">{{ recommendCount }}</span>
+                    <span class="stat-text">Recommandations</span>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-share">
+                    </span>
+                    <span class="stat-number">{{ shareCount }}</span>
+                    <span class="stat-text">Partages</span>
+                </div>
+            </li>
+            <li class="stat-inner">
+                <div class="stat-title-wrapper">
+                    <h2 class="stat-title">Questions</h2>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-question">
+                    </span>
+                    <span class="stat-number">{{ questionCount }}</span>
+                    <span class="stat-text">Questions posées</span>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-checkmark">
+                    </span>
+                    <span class="stat-number">{{ answerCount }}</span>
+                    <span class="stat-text">Réponses</span>
+                </div>
+            </li>
+            <li class="stat-inner">
+                <div class="stat-title-wrapper">
+                    <h2 class="stat-title">Evènements</h2>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-calendar">
+                    </span>
+                    <span class="stat-number">{{ eventCount }}</span>
+                    <span class="stat-text">Evènements créés</span>
+                </div>
+            </li>
+            <li class="stat-inner">
+                <div class="stat-title-wrapper">
+                    <h2 class="stat-title">Messagerie</h2>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-mail">
+                    </span>
+                    <span class="stat-number">{{ messageCount }}</span>
+                    <span class="stat-text">Messages échangés</span>
+                </div>
+            </li>
+            <li class="stat-inner">
+                <div class="stat-title-wrapper">
+                    <h2 class="stat-title">Médiathèque</h2>
+                </div>
+                <div class="stat-data-wrapper">
+                    <span class="stat-icon round-icon icon-pictures">
+                    </span>
+                    <span class="stat-number">{{ mediaCount }}</span>
+                    <span class="stat-text">Médias</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modals.html.twig' %}
+{% endblock %}

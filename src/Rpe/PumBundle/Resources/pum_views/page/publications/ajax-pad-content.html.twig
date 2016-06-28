@@ -1,0 +1,5 @@
+
+{% spaceless %}
+    {{ pad_content|raw }}
+    <textarea id="resource_content" name="resource[content]" style="display:none;">{{ pad_content }}</textarea>
+{% endspaceless %}

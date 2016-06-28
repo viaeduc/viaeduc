@@ -1,0 +1,92 @@
+// ------------------
+// Content link boxes
+// ------------------
+
+.content-links {
+    transition: 0.2s background;
+    display: inline-block;
+    width: 33%;
+    margin: 0 0.5% 0.5% 0;
+    background: $light-grey-1;
+    padding: 25px 50px;
+    border: 1px solid $light-grey-2;
+    
+    > a {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 4% 0 0;
+        width: 20%;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .details {
+        display: inline-block;
+        vertical-align: middle;
+        width: 76%;
+        font-family: $Verdana;
+        @include fontSize(13);
+        line-height: 1.3em;
+
+        span, a {
+            float: left;
+            clear: both;
+        }
+
+        a {
+            color: $dark-grey-font;
+
+            &.title {
+                font-family: $UbuntuCondensed;
+                display: block;
+                width: 100%;
+                color: $dark-grey-font;
+                @include fontSize(16);
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        span {
+            width: 100%;
+            a {
+                float: none;
+                display: inline;
+            }
+        }
+    }
+
+    &:hover {
+        transition: 0.2s background;
+        background: $background-white;
+    }
+
+    &:nth-child(n+3){
+        margin: 0 0.5% 0.5% 0;
+    }
+
+    &:nth-child(3n) {
+        margin: 0 0 0 0;
+    }
+}
+
+@media screen and (max-width: $portrait-screen) {
+
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .content-links .details {
+        @include fontSize(10);
+
+        a.title {
+            @include fontSize(14);
+        }
+    }
+}

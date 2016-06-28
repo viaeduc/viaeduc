@@ -1,0 +1,454 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "globals/_animations";
+@import "componants/_cards";
+@import "globals/_animations";
+@import "componants/_filter";
+@import "vendors/_owl-carousel";
+// @import "layout/_mobile_general";
+
+
+// ------------
+// Specific CSS
+// ------------
+
+.content {
+    // Padding for footer
+    min-height: 600px;
+    padding : 0 0 235px 0;
+
+    h2 {
+        @include fontSize(19);
+        color          : $white-font;
+        text-transform : uppercase;
+        font-family    : $UbuntuCondensed;
+    }
+}
+
+.list-general-box {
+    text-align : left;
+    font-size: 0;
+}
+
+
+
+// --
+// Suggestions pop in
+
+.modal-dialog {
+    max-width : 1115px;
+    width     : 100%;
+
+    .modal-inner-wrapper {
+        padding    : 5%;
+        width      : 100%;
+        background : $light-grey-1;
+    }
+
+    .small-title {
+        @include fontSize(18);
+        display     : block;
+        float       : left;
+        margin      : 0 0 5px 0;
+        width       : 100%;
+        color       : $dark-grey-font;
+        font-family : $UbuntuCondensed;
+    }
+
+    .content-links {
+        display        : inline-block;
+        margin         : 0 0.5% 0 0;
+        margin         : 0 0 5px 0;
+        padding        : 0px;
+        width          : 33%;
+        height         : 95px;
+        vertical-align : top;
+        font-family    : $Verdana;
+        line-height    : 95px;
+        cursor         : pointer;
+
+        &:hover {
+            background : #fff;
+        }
+
+        &:nth-child(2n) {
+            margin : 0;
+        }
+
+        .action-invitation,
+        .informations {
+            display        : inline-block;
+            height         : 95px;
+            vertical-align : middle;
+        }
+
+        .action-invitation {
+            width      : 15%;
+            text-align : center;
+
+            a {
+                color          : $dark-grey-font;
+                vertical-align : middle;
+                text-shadow    : 0 0 transparent;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background  : transparent;
+                    color       : $dark-blue-font;
+                    text-shadow : 0 0 transparent;
+                }
+            }
+        }
+
+        .informations {
+            width : 85%;
+
+            img,
+            .extra-info {
+                display        : inline-block;
+                vertical-align : middle;
+            }
+
+            img {
+                margin : 0 5% 0 0;
+                width  : 65px;
+            }
+
+            .extra-info {
+                width       : 65%;
+                line-height : 1rem;
+
+
+                .information-title,
+                .information-job {
+                    display : inline-block;
+                    width   : 100%;
+                }
+
+                .information-title {
+                    @include fontSize(13);
+                    color       : $dark-blue-2;
+                    font-weight : bold;
+
+                    &:hover {
+                        text-decoration : none;
+                    }
+                }
+
+                .information-job {
+                    @include fontSize(12);
+                }
+            }
+        }
+    }
+
+    .next-link {
+        float  : right;
+        margin : 0;
+    }
+}
+
+// --
+// Modal, redoing bootstraps styling
+
+// For showing elements
+.show-smaller {
+    position : relative;
+    z-index  : 1035;
+}
+
+.show {
+    position : relative;
+    z-index  : 1036;
+}
+
+.show-footer {
+    position : fixed;
+    z-index  : 1036;
+}
+
+.modal {
+    margin : 0 auto;
+    width  : 365px;
+
+    // Rebuilding modals
+
+    .modal-content {
+        border-radius : 0px;
+    }
+
+    .modal-footer {
+        padding     : 0 20px 20px 20px;
+        height      : 80px;
+        border      : 0;
+        line-height : 80px;
+    }
+
+    // Styling
+
+    .modal-title {
+        @include fontSize(30);
+        font-family : $MissionScript;
+    }
+
+    .modal-body {
+        @include fontSize(12);
+        color       : $dark-grey-font;
+        font-family : $Verdana;
+    }
+
+    // Redoing Buttons
+
+    .close {
+        @include fontSize(12);
+        display        : inline-block;
+        float          : none;
+        margin         : 0 2% 0 0;
+        width          : 49%;
+        color          : $light-blue-1;
+        vertical-align : middle;
+        text-align     : left;
+        text-shadow    : 0 0 transparent;
+        font-family    : $Verdana;
+        opacity        : 1;
+    }
+
+    .action-btn {
+        display        : inline-block;
+        margin         : 0;
+        width          : 49%;
+        height         : 40px;
+        vertical-align : middle;
+        line-height    : 10px;
+    }
+
+    // Arrows
+    .icon-up-dir {
+        @include fontSize(26);
+        position    : absolute;
+        top         : 8px;
+        left        : 50%;
+        z-index     : 100;
+        margin-left : -18px;
+        color       : #fff;
+    }
+
+    .icon-down-dir {
+        @include fontSize(26);
+        position    : absolute;
+        bottom      : 11px;
+        left        : 50%;
+        z-index     : 100;
+        margin-left : -18px;
+        color       : #fff;
+    }
+}
+
+// Special modal styling
+
+.modal-second {
+    position    : absolute;
+    top         : 60px;
+    left        : 50%;
+    margin-left : -182.5px;
+}
+
+.modal-third {
+    position    : absolute;
+    top         : 120px;
+    left        : 50%;
+    margin-left : -182.5px;
+}
+
+.modal-fourth {
+    position    : absolute;
+    top         : 10px;
+    left        : 50%;
+    margin-left : -182.5px;
+}
+
+// Suggestions modal
+
+.suggestions-modal {
+    width : auto;
+
+    .close {
+        float : right;
+        width : auto;
+        color : $dark-blue-font;
+    }
+
+    .action-btn {
+        width : 140px;
+    }
+}
+
+// Sub footer
+
+.footer-nav {
+    margin-top : 0px;
+}
+
+.sub-footer {
+    // position   : fixed;
+    // bottom     : 50px;
+    display    : inline-block;
+    width      : 100%;
+    border-top : 1px solid $background-blue-2;
+}
+
+.sub-footer-wrapper {
+    margin : 0 auto;
+    width  : 100%;
+    max-width  : 1250px;
+}
+
+.round-icon {
+    background-color : $white;
+}
+
+.footer-suggestion {
+    display        : inline-block;
+    width          : 33.3333333333%;
+    border-right   : 1px solid $background-blue-2;
+    vertical-align : top;
+
+    text-align : center;
+
+    &:last-of-type {
+        border-right : 0px solid transparent;
+    }
+
+    > a {
+        @include fontSize(24);
+        display     : inline-block;
+        margin      : 10px 0;
+        color       : $white;
+        font-family : $MissionScript;
+        line-height : 1em;
+
+        &:hover {
+            color           : $white;
+            text-decoration : none;
+        }
+    }
+
+    li {
+        display        : inline-block;
+        padding        : 0 0 0 10px;
+        width          : 50%;
+        vertical-align : middle;
+        text-align     : left;
+
+        a {
+            color : $white;
+            &:hover {
+                color           : $white;
+                text-decoration : none;
+            }
+        }
+
+        &:first-of-type {
+            padding      : 0 10px 0 0;
+            border-right : 1px solid $white;
+        }
+
+        img.sub-footer-image {
+            display        : inline-block;
+            margin-right   : 2%;
+            width          : 45px;
+            vertical-align : middle;
+        }
+
+        .description {
+            @include fontSize(12);
+            display        : inline-block;
+            width          : 73%;
+            color          : $white;
+            vertical-align : middle;
+            font-family    : $Verdana;
+
+            a.sub-footer-link {
+                @include fontSize(12);
+                display     : inline-block;
+                width       : 100%;
+                color       : $white;
+                font-family : $UbuntuCondensed;
+            }
+
+            .name{
+                @include fontSize(13);
+                display        : inline-block;
+                vertical-align : middle;
+                text-transform : capitalize;
+                margin-left    : 5px;
+                width          : 100%;
+                font-family    : $UbuntuCondensed;
+            }
+        }
+
+        .no-image {
+            width      : 98%;
+            text-align : right;
+        }
+    }
+
+    &.wide {
+        width: 50%;
+
+        li {
+            width: 33.3333333333%;
+        }
+    }
+
+    .icon-plus {
+        @include fontSize(18);
+        display     : inline-block;
+        width       : 100%;
+        color       : $white;
+        font-family : $Verdana;
+
+        &:hover {
+            color : $white;
+        }
+    }
+}
+
+footer {
+    position   : fixed;
+    bottom     : 0;
+    left       : 0;
+    background : $background-blue-1;
+    z-index    : 2000;
+}
+
+.sub-footer {
+    position   : fixed;
+    bottom     : 50px;
+    left       : 0;
+    background : $background-blue-1;
+    z-index    : 2000;
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .sub-footer {
+        display: none;
+    }
+
+    .footer-suggestion {
+        > a {
+            margin      : 22px 0;
+        }
+    }
+}

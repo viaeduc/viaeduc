@@ -1,0 +1,23 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+    {% for publication in publications %}
+        {# Notices #}
+        {% if publication.source is defined %}
+            {% set notice = publication %}
+            {% include "pum://includes/common/componants/notices/notices-array.html.twig" %}
+        {% else %}
+        {# Posts #}
+            {% set post = publication %}
+            {% include "pum://includes/common/componants/publications/publications-array.html.twig" %}
+        {% endif %}
+    {% endfor %}
+    
+    {% if publications.nbPages is defined and publications.currentPage < publications.nbPages %}
+        <li class="full page-loadmore js-loadmore" data-href="{{ path('ajax_profil_publicationslist', {page: publications.currentPage + 1, profilid: profil}) }}" data-target="#posts-content">
+            <a href="#" class="read-other">...</a>
+        </li>
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

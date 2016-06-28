@@ -1,0 +1,32 @@
+<div class="side-componant grey">
+    <div class="padding-wrapper">
+        {% set nb_authors = (1 + post.coAuthors.count) %}
+        <h3 class="componant-title">{{ "sidebar.authors"|transchoice(nb_authors, {}, 'rpe') }} <span class="title-small">/ <a href="#" class="title-link">{{ nb_authors }}</a></span></h3>
+        <div class="author-container">
+            <div class="swiper-wrapper">
+                <a href="{{ path('profil', {'id': hashEncode(post.author.id)}) }}">
+                    {{ macros.show_user_avatar(post.author, 'default', 97, 'side-author-image') }}
+                    <div class="author-info">
+                        <h4 class="author-name">{{ post.author.firstname }} <span>{{ post.author.lastname }}</span></h4>
+                        <span class="author-status">{{ post.author.occupation }}</span>
+                        <span class="author-role">{{ post.author.instructedDisciplines|join(', ') }}</span>
+                        {# <a href="#" class="author-relations">82 relatons en commun</a> #}
+                    </div>
+                </a>
+                {% for author in post.coAuthors %}
+                    <a href="{{ path('profil', {'id': hashEncode(author.id)}) }}">
+                        {{ macros.show_user_avatar(author, 'default', 97, 'side-author-image') }}
+                        <div class="author-info">
+                            <h4 class="author-name">{{ author.firstname }} <span>{{ author.lastname }}</span></h4>
+                            <span class="author-status">{{ author.occupation }}</span>
+                            <span class="author-role">{{ author.instructedDisciplines|join(', ') }}</span>
+                            {# <a href="#" class="author-relations">82 relatons en commun</a> #}
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div><!--
+        --><div class="author-scroll">
+        </div>
+    </div>
+</div>

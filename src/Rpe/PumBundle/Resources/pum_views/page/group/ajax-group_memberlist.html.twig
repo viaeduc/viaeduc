@@ -1,0 +1,23 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="modal-label-group">Membres du groupe {{ group.name }}</h4>
+	</div>
+	<div class="modal-body">
+		{% for userInGroup in groupMembers %}
+	        <a href="{{ path('profil', {id : hashEncode(userInGroup.user.id)}) }}" class="modal-member-link">
+	            {{ macros.show_user_avatar(userInGroup.user, 'avatar', 90) }}
+
+	            <div class="profil-name">
+	                <span>{{ userInGroup.user.firstname }}</span>
+	                <span class="last-name">{{ userInGroup.user.lastname }}</span>
+	            </div>
+	        </a>
+		{% endfor %}
+	</div>
+	<div class="modal-footer">
+		<a role="button" data-dismiss="modal" class="action-btn light-blue">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+	</div>
+{% endblock main_content %}

@@ -1,0 +1,27 @@
+{% if editor is defined and editor is not null %}
+    <div class="ressource-link">
+        <a href="{{ path('editor', {'id': editor.id}) }}" class="ressource-back">
+            <span class="ressource-arrow icon-arrow-left7">
+    
+            </span><!--
+            -->{{ macros.show_editor_avatar(editor, 'default', 40, 'group-image') }}<!--
+            --><div class="ressource-group-info">
+                <span class="back-title">{{ 'Page :'|trans({}, 'rpe') }}</span>
+                <span class="group-title">{{ editor.name|truncate(40, true) }}</span>
+            </div>
+        </a>
+    </div>
+{% else %}
+    <div class="ressource-link">
+        <a href="{{ path('group', {'id': group.id}) }}" class="ressource-back">
+            <span class="ressource-arrow icon-arrow-left7">
+
+            </span><!--
+            -->{{ macros.show_group_avatar(group, 'default', 40, 'group-image') }}<!--
+            --><div class="ressource-group-info">
+                <span class="back-title">{{ 'Ressource de :'|trans({}, 'rpe') }}</span>
+                <span class="group-title">{{ group.name|truncate(40, true) }}</span>
+            </div>
+        </a>
+    </div>
+{% endif %}

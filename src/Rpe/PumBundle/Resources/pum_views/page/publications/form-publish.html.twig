@@ -1,0 +1,555 @@
+{% extends "pum://page/publish/publish.html.twig" %}
+
+{% set page_title = (post is defined and post.name is defined) ? post.name ~ ' - Edition' : 'Publication de ressource' %}
+{% set page_name_analytics = 'resource/' ~ ((post is defined) ? 'edit' : 'create') %}
+
+{# {% set publish_tutorial_enabled = true %} #}
+
+{% block modals %}
+    {# {% include 'pum://includes/common/componants/modals/modal-library.html.twig' %} #}
+    {{ macros.modal('js-library', 'modal-library') }}
+{% endblock %}
+
+{% block _resource_file_label %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <label class="ressource-description-label" for="{{ id }}">
+        {{ label|trans }}
+        {# {% if required %}
+            *
+        {% endif %} #}
+        <span class="ressource-description-details"></span>
+    </label>
+{% endblock %}
+
+{% block _resource_file_row %}
+    {% spaceless %}
+    <li>
+        <div class="form-left top-align">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            <ul class="uploaded-files-wrapper linkedIllustrations">
+                {% for subform in form %}
+                    {% for subsubform in subform %}
+                        {% if subsubform.vars.value is not null %}
+                            <li class="uploaded-element">
+                                {% for subsubsubform in subsubform %}
+                                    {{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                                {% endfor %}
+                                 <span class="new-file"><span class="label label-default">{{ 'post.library_from'|trans({}, 'rpe') }}</span> {{ subsubform.vars.value.getName() }}</span>
+                                <a href="#" class="remove-upload" data-media_id="{{ subform.vars.value.id }}">x</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+
+            <span class="action-btn btn-file orange icon-paperclip">
+                <span class="fileupload">{{ "post.add"|trans({}, 'rpe') }}</span>
+                <input type="file" id="pum_object_file_file" class="rpe-upload show-it btn-ressource-illustration" data-name="resource[file][file]">
+            </span>
+            {{ form_widget(form.parent.library_medias) }}
+        </div>
+    </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _resource_library_medias_file_widget %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': form_widget(prototype) }) %}
+        {% endif %}
+        {{ 'post.medias_or'|trans({}, 'rpe') }}
+        <a href="{{ path('ajax_library', {'modal': true, 'ckeditor': false}) }}" class="action-btn btn-file btn-file-multiple orange icon-archive" type="button" data-toggle="modal" data-target="#modal-js-library" {{ block('widget_attributes') }}>{{ 'post.library_selectin'|trans({}, 'rpe') }}</a>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _resource_medias_label %}
+    {% if label is empty %}
+        {% set label = name %}
+    {% endif %}
+    <label class="ressource-description-label" for="{{ id }}">
+        {{ ('post.publish.' ~ label|lower)|trans({}, 'rpe') }}
+        {# {% if required %}
+            *
+        {% endif %} #}
+        <span class="ressource-description-details">(doc, xls, ...)</span>
+    </label>
+{% endblock %}
+
+{% block _resource_medias_row %}
+    {% spaceless %}
+    <li>
+        <div class="form-left top-align">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            <ul class="uploaded-files-wrapper linkedFiles" {{ ((form.count > 0) ? 'style="display:inline-block"') }}>
+                {% for subform in form %}
+                    {% for subsubform in subform %}
+                        {% if subsubform.vars.value is not null %}
+                            <li class="uploaded-element">
+                                {% for subsubsubform in subsubform %}
+                                    {{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                                {% endfor %}
+                                {# <input type="text" name="{{ subform.vars.full_name }}" value="{{ subform.vars.value.getId() }}" style="display:none" /> #}
+                                <span class="new-file"><span class="label label-default">{{ 'post.library_from'|trans({}, 'rpe') }}</span> {{ subsubform.vars.value.getName() }}</span>
+                                <a href="#" class="remove-upload" data-media_id="{{ subform.vars.value.id }}">x</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+
+            <span class="action-btn btn-file btn-file-multiple orange icon-paperclip">
+                <span class="fileupload">{{ "post.add"|trans({}, 'rpe') }}</span>
+                <input type="file" id="pum_object_medias_file" class="rpe-upload show-it" data-name="resource[medias][][media][file]">
+            </span>
+            {{ form_widget(form.parent.library_medias) }}
+        </div>
+    </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _resource_library_medias_widget %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': form_widget(prototype) }) %}
+        {% endif %}
+        {{ 'post.medias_or'|trans({}, 'rpe') }}
+        <a href="{{ path('ajax_library', {'modal': true, 'ckeditor': false}) }}" class="action-btn btn-file btn-file-multiple orange icon-archive" type="button" data-toggle="modal" data-target="#modal-js-library" {{ block('widget_attributes') }}>{{ 'post.library_selectin'|trans({}, 'rpe') }}</a>
+    {% endspaceless %}
+{% endblock %}
+
+
+{% block _resource_sources_row %}
+    {% set type = 'html' %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _resource_visibility_row %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_coAuthors_row %}
+
+    {% set attr = attr|merge({class: 'author tm-input extra-info-input'}) %}
+    {% set span_second_widget_class = 'authors-tag-list tag-list' %}
+    {% set ajax_url = path('publish_publications') %}
+    {% set custom_choices = friends %}
+
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_where_row %}
+    <li class="">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            {% for choice in form.vars.choices %}
+                {% if form.vars.data == choice.value %}
+                    <span class="radio-buttons">
+                        <input checked="checked" class="post_type" name="{{ form.vars.full_name }}" type="radio" value="{{ choice.value }}" id="radio-{{ choice.value }}" {{ (loop.first) ? ' data-validation="required"' : '' }} {{ (loop.first) ? 'data-validation-error-msg="Veuillez choisir ou vous voulez poster votre ressource."': '' }}/><!--
+                        --><label for="radio-{{ choice.value }}">{{ choice.label|trans({}, 'rpe')}}</label>
+                    </span>
+                {% else %}
+                    <span class="radio-buttons">
+                        <input class="post_type" name="{{ form.vars.full_name }}" type="radio" value="{{ choice.value }}" id="radio-{{ choice.value }}" {{ (loop.first) ? ' data-validation="required"' : '' }} {{ (loop.first) ? 'data-validation-error-msg="Veuillez choisir ou vous voulez poster votre ressource."': '' }}/><!--
+                        --><label for="radio-{{ choice.value }}">{{ choice.label|trans({}, 'rpe')}}</label>
+                    </span>
+                    <!--<span class="radio-buttons">
+                        <input class="post_type" name="{{ form.vars.full_name }}" type="radio" value="{{ choice.value }}" id="radio-{{ choice.value }}" {{ (loop.first) ? ' data-validation="required"' : '' }} {{ (loop.first) ? 'data-validation-error-msg="Veuillez choisir ou vous voulez poster votre ressource."': '' }}/>
+                        <label for="radio-{{ choice.value }}">{{ choice.label|trans({}, 'rpe')}}</label>
+                    </span>
+-->                {% endif %}
+            {% endfor %}
+        </div>
+    </li>
+{% endblock %}
+
+{% block _resource_publishedGroup_row %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_disciplines_row %}
+    {% set attr = attr|default([]) %}
+    {% set attr = attr|merge({class: 'disciplines tm-input extra-info-input'}) %}
+    {% set span_second_widget_class = 'disciplines-tag-list tag-list' %}
+    {% set ajax_url = path('publish_publications') %}
+    {% set info_list_id = 'instructed_discipline' %}
+
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_teachingLevels_row %}
+    {% set attr = attr|merge({class: 'niveau tm-input extra-info-input'}) %}
+    {% set span_second_widget_class = 'levels-tag-list tag-list' %}
+    {% set ajax_url = path('publish_publications') %}
+    {% set info_list_id = 'teaching_level' %}
+
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_keywords_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _resource_description_row %}
+    {% set attr = attr|merge({maxlength: '100'}) %}
+    {% set type = 'html' %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _resource_publish_date_row %}
+    {% set startDate = form.vars.value ? form.vars.value : "now"|date('d/m/Y H:i') %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            <div class="input-append date calendar-datetimepicker-single">
+                {% set attr = attr|merge({ readonly:true, 'data-date-initialdate': startDate}) %}
+                <input type="text" id="js-event_datetime_start" value="{{ startDate }}" {{ block('widget_attributes') }} data-date-format="dd/mm/yyyy hh:ii" />
+                <span class="add-on dark-grey square-btn icon-calendar"></span>
+            </div>
+        </div>
+        <div class="extra">
+        </div>
+    </li>
+{% endblock %}
+
+{% block _resource_coverage_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _resource_documentType_row %}
+    <li class="">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            {% for choice in form.vars.choices %}
+                {% if form.vars.data == choice.value %}
+                    {% if loop.index % 4 == 1 %}
+                        <div class="row-list">
+                    {% endif %}
+                    <span class="checkbox-buttons">
+                        <input checked="checked" class="doc_type" name="{{ form.vars.full_name }}" type="radio" value="{{ choice.value }}" id="checkbox-doctype-{{ choice.value }}"/><!--
+                        --><label for="checkbox-doctype-{{ choice.value }}">{{ choice.label|trans({}, 'rpe')}}</label>
+                    </span>
+                    {% if (loop.index % 4 == 0 or loop.last) %}
+                        </div>
+                    {% endif %}
+                {% else %}
+                    {% if loop.index % 4 == 1 %}
+                        <div class="row-list">
+                    {% endif %}
+                    <span class="checkbox-buttons">
+                        <input class="doc_type" name="{{ form.vars.full_name }}" type="radio" value="{{ choice.value }}" id="checkbox-doctype-{{ choice.value }}"/><!--
+                        --><label for="checkbox-doctype-{{ choice.value }}">{{ choice.label|trans({}, 'rpe')}}</label>
+                    </span>
+                    {% if (loop.index % 4 == 0 or loop.last) %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </li>
+{% endblock %}
+
+{% block _resource_copyright_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _resource_language_row %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_license_row %}
+	{% set empty_value = "Pas de licence Creative Commons" %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _resource_submit_draft_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn draft-btn light-grey">{{ "post.publish.submit.draft"|trans({}, 'rpe') }}</button>
+{% endblock %}
+
+{% block _resource_submit_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn publish-btn orange">{{ "post.publish.submit.publish"|trans({}, 'rpe') }}</button>
+{% endblock %}
+
+{% block _resource_submit_current_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn publish-btn light-blue">{{ "post.publish.submit.current"|trans({}, 'rpe') }}</button>
+{% endblock %}
+
+{% block _resource_submit_new_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn publish-btn orange">{{ "post.publish.submit.save"|trans({}, 'rpe') }}</button>
+{% endblock %}
+
+{% block main_content %}
+    {{ macros.modal('teaching_level', 'modal-info-list') }}
+    {{ macros.modal('instructed_discipline', 'modal-info-list') }}
+    {{ block('_publish_nav') }}
+
+    {% form_theme form _self %}
+
+    {{ form_errors(form) }}
+    {{ form_start(form, {'attr': { 'class': 'ressource-edit-form-wrapper ressource-publish ressource-form'}}) }}
+        <ul class="ressource-edit-wrapper">
+            <li>
+                {{ form_label(form.name, null, {'label_attr': {'class': 'hidden'}}) }}
+                <span class="select-box">
+                    {{ form_widget(form.name, {'attr': {'data-validation': 'required', 'data-validation-error-msg': 'Veuillez écrire le titre de la ressource.'}}) }}
+                </span>
+            </li>
+            {% if pad_id is not defined or pad_id is empty %}
+                <li class="ckeditor-content">
+                    {{ form_label(form.content, null, {'label_attr': {'class': 'hidden'}}) }}
+                    <span>
+                        {{ form_widget(form.content, {'attr': {'class': 'ckeditor', 'data-validation': 'required', 'data-validation-error-msg': 'Veuillez écrire votre ressource.'}}) }}
+                    </span>
+                </li>
+            {% endif %}
+            <!-- NEW ETHERPAD RESSOURCE -->
+            <!-- If Etherpad, don't show the "Co-auteurs de la ressource" Input (lower in the form) -->
+            {% if post is defined and post.isCollaborative() %}
+                <li class="etherpad-content">
+                    {% if ( pad_is_closed and post.getAuthor == user ) or ( not pad_is_closed ) %}
+                        <a href="{{ path('co_edit', {postid: post.id}) }}" class="etherpad-inner-link icon-cog">{{ "pad.access_edition"|trans({}, 'rpe') }}</a>
+                    {% endif %}
+                    <div class="etherpad-inner-content js-autoload js-load-inner" data-autoload="{{ path('ajax_refresh_pad_content', {padID: pad_id}) }}">
+                        {{ macros.loader() }}
+                    </div>
+                    {% if ( pad_is_closed and post.getAuthor == user ) or ( not pad_is_closed ) %}
+                        <a href="{{ path('co_edit', {postid: post.id}) }}" class="etherpad-inner-link icon-cog">{{ "pad.access_edition"|trans({}, 'rpe') }}</a>
+                    {% endif %}
+                </li>
+            {% endif %}
+            <!-- /NEW -->
+            {{ form_row(form.medias) }}
+            {{ form_row(form.file) }}
+            {{ form_row(form.description, {'attr': {'data-validation': 'required', 'data-validation-error-msg': 'Veuillez écrire la description.'}}) }}
+            {{ form_row(form.disciplines) }}
+            {{ form_row(form.teachingLevels) }}
+
+            <!-- hide this if etherpad ressource -->
+            {% if pad_id is not defined or pad_id is empty %}
+                {% if post is not defined or post.getAuthor == user %}
+                    {{ form_row(form.coAuthors, {'friends': friends}) }}
+                {% endif %}
+            {% endif %}
+            <!-- /hide -->
+
+            {% if post is defined and post.isCollaborative() %}
+                <li class="">
+                    <div class="form-left ">
+                        <label for="resource_publishedGroup">{{ "groupPage.publishedgroup"|trans({}, 'rpe') }} :</label>
+                    </div>
+                    <div class="form-right">
+                        <span class="select-box tag-box ">
+                            {{ post.publishedGroup.name }}
+                        </span>
+                    </div>
+                </li>
+                <input type="hidden" name="resource[where]" value="{{ constant('TYPE_GROUP', post) }}" >
+                <input type="hidden" name="resource[publishedGroup]" value="{{ post.publishedGroup.id }}">
+            {% else %}
+                {{ form_row(form.where) }}
+                {{ form_row(form.publishedGroup) }}
+            {% endif %}
+            {{ form_row(form.publish_date) }}
+            {% if pum_var('active_licence') is not null and pum_var('active_licence') %}
+			    {{ form_row(form.license, {macros: macros}) }}
+			{% endif %}
+        </ul>
+        <a href="#" class="open-indexation arrow-right">{{ "post.indexation"|trans({}, 'rpe') }} <span>{{ "post.optional"|trans({}, 'rpe') }}</span></a>
+        <ul class="ressource-edit-wrapper indexation-list-wrapper">
+            {{ form_row(form.keywords) }}
+            {{ form_row(form.documentType) }}
+            {{ form_row(form.copyright) }}
+            {{ form_row(form.language) }}
+        </ul>
+        {{ form_row(form.submit_draft) }}
+        {% if post is not defined %}
+            {{ form_row(form.submit) }}
+        {% else %}
+            {{ form_row(form.submit_new) }}
+        {% endif %}
+        {{ form_row(form._token) }}
+
+        <!-- NEW Etherpad author block, only show if creator of ressource is original author -->
+        {% if post is defined and post.isCollaborative() and user == post.author %}
+            <div class="etherpad-author">
+                <div class="etherpad-author-form">
+                    <span class="checkbox-buttons">
+                        {{ form_widget(form.pad_close) }}
+                        <label for="resource_pad_close">{{ "pad.access_edition_closed"|trans({}, 'rpe') }}</label>
+                    </span>
+                    <span class="etherpad-author-extra">{{ "pad.access_closed.text"|trans({}, 'rpe') }}</span>
+                </div>
+                <div class="etherpad-author-form-help">
+                    <a href="#" class="ehterpad-author-help-btn">?</a>
+                </div>
+            </div>
+        {% endif %}
+        <!-- /new -->
+
+    {{ form_end(form, {render_rest: false}) }}
+    
+    {% if pad_id is not defined or pad_id is empty %}<!-- editing is done with etherpad -->
+    <!-- PLUGIN CKEDITOR BELIN -->
+    {% if pum_var('active_belin') and belinParam is not null %}
+    	<div class="modal fade no-reload" id="belinWidgetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 10;">
+    	  <div class="modal-dialog">
+    	    <div class="modal-content">
+    	      <div class="modal-header">
+    	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    	      </div>
+    	      <div style="margin: 10px 0px 25px 40px">
+                  <script charset="utf-8" type="text/javascript" src="{{ pum_var('belin_sso_api') ~ '/widget/js/launch.js?width=500&height=350&ws=' ~ pum_var('belin_sso_api') ~ '&url=http://www.libtheque.fr&logo=' ~ pum_var('belin_sso_api') ~ '/widget/lib_icn_32.png&cible=viaeduc&method=myFunction&user_matiere=&user_niveau=' ~ '&user=' ~ belinParam.id ~ '&user_auth=' ~ belinParam.auth }}"></script><noscript><A HREF="http://www.libtheque.fr/index.php">Libtheque</A></noscript>
+    	     </div>
+    	    </div>
+    	  </div>
+    	</div>
+    <script>
+        CKEDITOR.replace('resource_content',
+        {
+            customConfig : "{{ asset('bundles/rpepum/ckeditor/custom/belin.js') }}"
+        });
+    </script>
+    {% endif %}
+    <!-- END PLUGING CKEDITOR BELIN -->
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    <!-- ******** -->
+    <!-- SIDEBAR -->
+    <!-- ******** -->
+
+    <!-- Tips ! -->
+    <!-- These tips are shown on the page where we create a new ressource -->
+    <div class="post-ressource-tip">
+        <h3 class="tip-title">{{ 'post.versions.advice.title'|trans({}, 'rpe') }}</h3>
+        <span class="tip-main-text">{{ 'post.versions.advice.subtitle'|trans({'%bold%': '<span class="bold">','%/bold%':'</span>'}, 'rpe')|raw }}</span></span>
+        <ul class="tip-list-wrapper">
+            {% set advices = 'post.versions.advice.list'|trans({}, 'rpe')|split('|') %}
+            {# <li>Vous êtes sur la première version de cette ressource. Cliquez sur le bouton modifier pour apporter des modifications.</li> #}
+            {% for advice in advices %}
+                <li>{{ advice }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if post is defined and post.versions is defined %}
+        <!-- Form versions -->
+        <!-- This is used on the page when we edit a form, if there are multiple versions. The user can compare 2 versions at once -->
+        <h3 class="sidebar-version-title">
+            {{ 'post.versions.title'|trans({}, 'rpe') }}
+        </h3>
+        <form class="sidebar-version-compare">
+            <ol class="sidebar-version-list">
+                {% for version in post.getPostVersions %}
+                    <li>
+                        <span class="version-number">{{ loop.revindex }}.</span>
+                        {% if (loop.first and isLastVersion) or (current_version == version) %}
+                            <a class="version-title current">
+                                <abbr class="ressource-time timeago" title="{{ version.updateDate|date('c') }}">{{ version.updateDate|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'dd-MM-YYYY HH:mm') }}</abbr>
+                            </a>
+                        {% else %}
+                         <a href="{{ path('publication_edit', {'id': post.id, 'version': version.id}) }}" class="version-title">
+                            <abbr class="ressource-time timeago" title="{{ version.updateDate|date('c') }}">{{ version.updateDate|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'dd-MM-YYYY HH:mm') }}</abbr>
+                        </a>
+                        {% endif %}
+                        <small>
+                            {{ ('post.versions.author'|trans({'%name%': '<a href="' ~ path('profil', {'id': hashEncode(version.author.id)}) ~ '">' ~ macros.author_fullname(version.author) ~ '</a>'}, 'rpe'))|raw }}
+                        </small>
+                    </li>
+                {% endfor %}
+            </ol>
+        </form>
+    {% endif %}
+{% endblock %}
+{% block tutorial %}
+    {% if publish_tutorial_enabled is defined %}
+    <script>
+        {% spaceless %}
+            var publish_tutorial_enabled = '{{ publish_tutorial_enabled }}';
+        {% endspaceless %}
+    </script>
+    <div class="modal fade tutorial-modal publish-tutorial-modal-1" id="publish-tutorial-modal-1">
+        <div class="tutorial-arrow">▲</div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "publishRessource.title1"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "publishRessource.text1"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                    <a role="button" href="#publish-tutorial-modal-2" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade tutorial-modal publish-tutorial-modal-2" id="publish-tutorial-modal-2">
+        <div class="tutorial-arrow">▲</div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "publishRessource.title2"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "publishRessource.text2"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                    <a role="button" href="#publish-tutorial-modal-1" data-toggle="modal" class="action-btn light-blue tutorial-modal-prev">{{ "tutorial.prev"|trans({}, 'rpe') }}</a>
+                    <a role="button" href="#publish-tutorial-modal-3" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade tutorial-modal publish-tutorial-modal-3" id="publish-tutorial-modal-3">
+        <div class="tutorial-arrow">▲</div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "publishRessource.title3"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "publishRessource.text3"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                    <a role="button" href="#publish-tutorial-modal-2" data-toggle="modal" class="action-btn light-blue tutorial-modal-prev">{{ "tutorial.prev"|trans({}, 'rpe') }}</a>
+                    <a role="button" href="#publish-tutorial-modal-4" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade tutorial-modal publish-tutorial-modal-4" id="publish-tutorial-modal-4">
+        <div class="tutorial-arrow">▲</div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "publishRessource.title4"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "publishRessource.text4"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                    <a role="button" href="#publish-tutorial-modal-3" data-toggle="modal" class="action-btn light-blue tutorial-modal-prev">{{ "tutorial.prev"|trans({}, 'rpe') }}</a>
+                    <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

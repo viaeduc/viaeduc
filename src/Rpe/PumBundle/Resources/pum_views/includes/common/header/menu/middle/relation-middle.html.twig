@@ -1,0 +1,28 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+    <div class="sub-middle">
+        <div class="sub-middle-head">
+            <h3 class="menu-title blue">{{ "menuMiddleRelation.know"|trans({}, 'rpe') }}</h3>
+        </div>
+
+        {% for relation in suggested_relations %}
+            {{ (loop.first) ? '<ul class="white-item-list-col">' }}
+                <li class="white-item">
+                    <a href="{{ path('profil', {'id': hashEncode(relation.id)}) }}">
+                        <div class="avatar">
+                            {{ macros.show_user_avatar(relation, 'default', 60, null) }}
+                        </div>
+                        <div class="text">
+                            <span class="surname">{{ relation.firstname }} {{ relation.lastname }}</span>
+                            <span class="poste">{{ relation.occupation }}</span>
+                        </div>
+                        <span class="connect-people icon-plus3 relation_ask" data-url="{{ path('ask_relation', {'relationId': relation.id}) }}">{{ "Se connecter"|trans({}, 'rpe') }}</span>
+                    </a>
+                </li>
+            {{ (loop.last) ? '</ul>' }}
+        {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock main_content %}

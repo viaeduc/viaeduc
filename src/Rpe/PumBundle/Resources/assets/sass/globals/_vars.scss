@@ -1,0 +1,247 @@
+// -----------------
+// GENERAL VARIABLES
+// -----------------
+
+// ------------------------------------ //
+//                Sizes                 //
+// ------------------------------------ //
+
+$legacy-support-for-ie: false;
+$experimental-support-for-mozilla : true;
+$experimental-support-for-webkit: true;
+$experimental-support-for-opera: true;
+$experimental-support-for-microsoft: true;
+// Activate SVG support for IE 9 and old opera
+$experimental-support-for-svg: true;
+
+// Sizes
+$header-height               : 80px;
+$mega-menu-height            : 265px;
+$mega-menu-margin            : 10px;
+$footer-height               : 50px;
+$white-list-item-width       : 60px;
+$white-list-item-height      : 60px;
+
+// Main menu elements width
+$nav-width                   : 50%;
+$logo-width                  : 18.64%;
+$logo-large-width            : 100%;
+$notif-width                 : 13.92%;
+$config-width                : 15.76%;
+
+// Sub menus elements width
+$sub-left                    : 275 / 1250 * 100%;
+$sub-middle                  : 636 / 1250 * 100%;
+$sub-right                   : 339 / 1250 * 100%;
+
+// Main wrapper max-width
+$max-width                   : 1250px;
+$min-width                   : 1024px;
+
+// Buttons
+$menu-btn-width              : 250px;
+$menu-btn-height             : 37px;
+
+$action-btn-width            : 144px;
+$action-btn-height           : 48px;
+
+$wall-btn-width              : 60px;
+$wall-btn-height             : 28px;
+
+$square-btn-width            : 35px;
+$square-btn-height           : 35px;
+
+$square-btn-small-width      : 26px;
+$square-btn-small-height     : 26px;
+
+$square-btn-big-width        : 45px;
+$square-btn-big-height       : 45px;
+
+$advice-btn-width            : 254px;
+
+$profil-btn-height           : 31px;
+$base-font                   : 16;
+
+// Media Queries
+
+$portrait-screen             : 768px;
+$landscape-screen            : 1024px;
+
+//between 1280 and 1024
+$landscape-screen-large      : 1280px;
+
+// ------------------------------------ //
+//               Colors                 //
+// ------------------------------------ //
+
+// // Red
+// $red-1                       : #d13938;
+// $red-2                       : #a52e2e;
+
+// // Orange
+// $orange-1                    : #e18d40;
+// $orange-2                    : #d46930;
+
+// // Green
+// $green-1                     : #1fbb17;
+// $green-2                     : #008900;
+// $green-3                     : #b3c833;
+
+// // Blue
+// $bg-light-blue               : #e7f1f3;
+// $light-blue-1                : #259aae;
+// $light-blue-2                : #136f85;
+// $dark-blue-1                 : #374860;
+// $dark-blue-2                 : #293547;
+// $sub-grey-4                  : #566070;
+// $dark-blue-13                : #2f353e;
+// $bg-blue-1                   : #242a33;
+// $bg-blue-2                   : #1c2027;
+
+// // Light-grey
+// $light-grey-1                : #ededed;
+// $light-grey-2                : #939393;
+// $light-grey-3                : #d7d7d7;
+// $dark-grey-1                 : #a7a7a7;
+// $dark-grey-2                 : #767676;
+// $dark-grey-3                 : #6f7277;
+// $light-black                 : #18191c;
+
+// // Dark-grey
+// $dark-grey-4                 : #252a31;
+
+// // Buttons
+// $dark-blue-3                 : #24445d;
+// $light-grey                  : #717880;
+
+// // Background
+
+// $white                       : #ffffff;
+// $bg-white                    : #ffffff;
+// $color-active                : #ffffff;
+// $color-light-gray            : #6a6c6e;
+// $color-light-gray-1          : #f9f9f9;
+// $color-lighter-gray          : #a0a0a0;
+// $color-inactive              : #b6c0c6;
+
+// // fonts
+// $dark-font                   : #3d4658;
+// $dark-font2                  : #1d2128;
+// $dark-font3                  : $bg-blue-2;
+// $dark-font4                  : #393d43;
+// $dark-font5                  : #262b35;
+// $bleu-font                   : #1993a8;
+// $bleu-font2                  : #2c394c;
+
+// $average-font                : #14768c;
+// $light-font                  : #ffffff;
+// $color_error                 : #d77033;
+// $orange-font                 : #e0893e;
+
+// $dark-gray                   : #565656;
+
+// $black                       : #000000;
+
+// TOTAL : 45 couleurs.
+
+// ------------------------------------ //
+//         New Colors 13/12/13          //
+// ------------------------------------ //
+
+// Generic
+$white                   : #FFFFFF;
+
+// Light Blue
+$light-blue-1            : #14768C;
+$light-blue-2            : #126A7E; // #105E70
+$light-blue-3            : #3b5998;
+
+//Dark Blue
+$dark-blue-1             : #293547;
+$dark-blue-2             : #242f3f; // #202A38
+
+// Orange
+$orange-1                : #ff7f00;
+$orange-2                : #f47a01; // #AC5928
+
+// Lighter Grey
+$lighter-grey-1          : #f3f3f3;
+$lighter-grey-2          : #e5e6e9;
+$lighter-grey-3          : #eaeaea;
+
+// Light Grey
+$light-grey-1            : #D7D7D7;
+$light-grey-2            : #9a9a9a;
+$light-grey-3            : #c5c4c4;
+$light-grey-4            : #9197a3;
+
+// Dark Grey
+$dark-grey-1             : #6F7277;
+$dark-grey-2             : #63666B; // #585B5D
+$dark-grey-3             : #252a31;
+
+// Red
+$red-1                   : #D13938;
+$red-2                   : #BC3332; // #A72D2C
+
+// Green
+$green-1                 : #1FBB17;
+$green-2                 : #1BA814; // #189512
+
+// Fonts
+$white-font              : $white;
+$lighter-grey-font       : #b6c0c6;
+$light-grey-font         : #7A7B7D;
+$dark-grey-font          : #313335; // #27282A;
+$light-blue-font         : $light-blue-1;
+$light-blue-font-hover   : $light-blue-2;
+$dark-blue-font          : $dark-blue-1;
+
+// Backgrounds
+$background-grey-1       : $light-grey-1;
+$background-grey-2       : $dark-grey-1;
+$background-grey-3       : $dark-grey-2;
+$background-white        : #FAFAFA;
+$background-blue-1       : #1c2027;
+$background-blue-2       : #191c23;
+
+// Borders
+$border-1                : #dee2e9 #dbdee5 #d2d5dc #dee2e9;
+$border-2                : #e5e6e9 #dfe0e4 #d0d1d5 #dfe0e4;
+
+// New
+$border-blue             : #dfe0e4;
+
+$new-blue-1              : #264b80;
+$new-blue-2              : #214270;
+
+$form-blue-1             : #008099;
+$form-blue-2             : #008aa5;
+$form-blue-3             : #007a92;
+
+$form-grey-1             : #e6e6e6;
+$form-grey-2             : #ededed;
+$form-grey-3             : #dedede;
+
+$black                   : #000000;
+
+$library-color-1         : #d77033;
+$library-color-2         : #e18d40;
+$library-color-3         : #e2e2e2;
+$library-color-4         : #46494f;
+$library-color-5         : #aaaaaa;
+$library-color-6         : #ededed;
+
+$new-orange-1            : #f18426;
+
+// ------------------------------------ //
+//                Fonts                 //
+// ------------------------------------ //
+
+$logo-size                   : 1.7em;
+$font-medium                 : medium;
+$UbuntuCondensed             : 'Ubuntu Condensed', Arial, sans-serif;
+$HelveticaNeue               : 'Ubuntu Condensed', Arial, sans-serif;
+$helvelight                  : 'Ubuntu Condensed', Arial, sans-serif;
+$MissionScript               : "MissionScriptRegular", Arial, sans-serif ;
+$Verdana                     : Verdana, Arial, sans-serif;

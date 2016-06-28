@@ -1,0 +1,64 @@
+<div class="advanced-search-content">
+    <div class="favorite-search-wrapper">
+        <form action="{{ path('advanced_search', {type: search_type}) }}">
+            {% set search_trans = 'searchResults.' ~ search_type %}
+            <h3 class="favorite-search-title">Recherche <span>avancée : {{ search_trans|transchoice(2, {}, 'rpe') }}</span></h3>
+            <ul class="inner-search-wrapper">
+                <li>
+                    <h4 class="favorite-search-inner-title">{{ "advancedSearch.searchContent"|trans({}, 'rpe') }}</h4>
+                    <div class="favorite-search-left">
+                        <label for="search-all">{{ "advancedSearch.allWords"|trans({}, 'rpe') }}</label>
+                    </div>
+                    <div class="favorite-search-center">
+                        <span class="text-box">
+                            <input type="text" name="q_all" value="{{ app.request.query.get('q_all', '') }}">
+                        </span>
+                    </div>
+                    <div class="favorite-search-right">
+                        <span class="search-desc">{{ "advancedSearch.importantWords"|trans({}, 'rpe') }}</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="favorite-search-left">
+                        <label for="search-precis">{{ "advancedSearch.exactExpression"|trans({}, 'rpe') }}</label>
+                    </div>
+                    <div class="favorite-search-center">
+                        <span class="text-box">
+                            <input type="text" name="q_expr" value="{{ app.request.query.get('q_expr', '') }}">
+                        </span>
+                    </div>
+                    <div class="favorite-search-right">
+                        <span class="search-desc">{{ "advancedSearch.expression"|trans({}, 'rpe') }}</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="favorite-search-left">
+                        <label for="search-one">{{ "advancedSearch.oneWord"|trans({}, 'rpe') }}</label>
+                    </div>
+                    <div class="favorite-search-center">
+                        <span class="text-box">
+                            <input type="text" name="q_one" value="{{ app.request.query.get('q_one', '') }}">
+                        </span>
+                    </div>
+                    <div class="favorite-search-right">
+                        <span class="search-desc">{{ "advancedSearch.multipleWords"|trans({}, 'rpe') }}</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="favorite-search-left">
+                        <label for="search-one">{{ "advancedSearch.noWords"|trans({}, 'rpe') }}</label>
+                    </div>
+                    <div class="favorite-search-center">
+                        <span class="text-box">
+                            <input type="text" name="q_exclude" value="{{ app.request.query.get('q_exclude', '') }}">
+                    </span>
+                </div>
+                <div class="favorite-search-right">
+                    <span class="search-desc">{{ "advancedSearch.excludedWords"|trans({}, 'rpe') }}</span>
+                </div>
+            </li>
+        </ul>
+        <button type="submit" class="action-btn orange confirm-advanced-search">{{ "advancedSearch.search"|trans({}, 'rpe') }}</button>
+    </form>
+    </div>
+</div>

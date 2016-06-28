@@ -1,0 +1,59 @@
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+
+
+{% spaceless %}
+<div class="editor-box" id="js-product-{{ product.id }}" data-product-id="{{ product.id }}">
+	<div class="product-box-top">
+		<div class="product-box-left">
+			{{ macros.show_product_avatar(product, 'default', 120, 'product-image crop-box', '117', '117') }}
+		</div>
+		<div class="product-box-right">
+			<!-- title -->
+			<h3 class="product-title">{{ product.title }}</h3>
+			<!-- subtitle -->
+			<h4 class="product-subtitle">{{ product.subtitle }}</h4>
+
+			<!-- collection -->
+
+			<span class="product-details">{{ 'editor.product.type'|trans({'%type%': '<b>' ~ product.type ~ '</b>'}, 'rpe')|raw }}</span>
+			<!-- editor -->
+			<span class="product-details">{{ 'Partenaire : %editor%'|trans({'%editor%': '<a href="' ~ path('editor', {id : editor.id}) ~ '" class="author-link">' ~ editor.name|e ~ '</a>'}, 'rpe')|raw }}</span>
+			<!-- authors -->
+			{% if editor.owner is not null %}
+                <span class="product-details">{{ 'Animé par : %name%'|trans({'%name%': '<a href="' ~ path('profil', {id : hashEncode(editor.owner.id)}) ~ '" class="author-link">' ~ editor.owner.firstname|e ~ ' ' ~ editor.owner.lastname|e ~ '</a>'}, 'rpe')|raw }}</span>
+            {% endif %}
+
+			<!-- more infos btn -->
+			<a href="{{ product.linkmore }}" class="action-btn orange product-more-infos" target="_blank">En savoir plus</a>
+            {# Delete button #}
+            {% if editor.owner == user %}
+{#                 <a href="{{ path('edit-product', {'id': product.id}) }}" class="action-btn light-blue product-more-infos" target="_blank">Editer</a>#}
+                <a href="{{ path('edit-product', {'id': product.id}) }}" class="action-btn light-blue product-more-infos" data-toggle="modal" data-target="#modal-product">Editer</a>
+            	<a href="#" data-href="{{ path('delete_product', {'id': product.id}) }}" data-delete-link="{{ path('delete_product', {'id': product.id}) }}" data-confirm="{{ 'common.action.delete.product_confirm'|trans({}, 'rpe')|e('html') }}" data-remove-div="#js-product-{{ product.id }}" class="action-btn red product-more-infos js-remove js-loadmore js-confirm-modal">{{ 'common.action.delete.post'|trans({}, 'rpe') }}</a>
+            	{% if product.isVisible() %}
+            	   <p class="product-extra">Ce produit est visible des utilisateurs Viaéduc. <a href="{{ path('publish-product', {'id': product.id, 'status': constant('STATUS_DRAFTING', product) }) }}">Masquer ce produit.</a></p>
+            	{% else %}
+            	   <p class="product-extra">Ce produit n’est pas visible des utilisateurs Viaéduc. <a href="{{ path('publish-product', {'id': product.id, 'status': constant('STATUS_PUBLISHED', product) }) }}">Rendre visible maintenant.</a></p>
+            	{% endif %}
+            {% endif %}
+		</div>
+	</div>
+	{# Il faudrais rajouter une condition, si le produit a pas de desc, alors on affiche pas cette div #}
+	<div class="product-box-main">
+		{#<!-- main title -->
+		<h3 class="product-details-title">Programmes 2013</h3>
+		<!-- main subtitle -->
+		<h4  class="product-details-subtitle">Pour chaque chapitre du manuel de CM1 - CM2</h4>
+
+		<!-- list -->
+		<ul class="product-details-list">
+			<li>La présentation des objectifs pédagogiques généraux et particuliers</li>
+			<li>La présentation des objectifs pédagogiques généraux et particuliers</li>
+			<li>La présentation des objectifs pédagogiques généraux et particuliers</li>
+		</ul>
+        #}
+        {{ product.content }}
+	</div>
+</div>
+{% endspaceless %}

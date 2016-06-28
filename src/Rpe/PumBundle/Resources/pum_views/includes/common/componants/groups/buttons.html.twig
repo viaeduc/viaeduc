@@ -1,0 +1,76 @@
+{#
+    require:
+    - group
+    - userInGroup
+    - user
+ #}
+{% if group is defined and userInGroup is defined and user is defined %}
+    {% if group.isPublic %}
+        {% if userInGroup is not empty %}
+            {% if userInGroup.isOwner == false and userInGroup.isPotentialUser %}
+                <a class="action-btn light-blue pull-right js-loadmore js-infinite js-confirm-modal js-redirect" data-confirm="{{ 'group.action.confirm_cancel_text'|trans({'%name%': group.name}, 'rpe') }}" data-statetitle="{{'group.action.confirm_cancel_title'|trans({}, 'rpe') }}" data-delete-link="{{ path('group_action_request', {'id': group.id, 'mode':'cancel'}) }}" data-target="{{ path('group', {id: group.id}) }}">{% spaceless %}
+                    {% if userInGroup.isInvited %}
+                        invité
+                    {% elseif userInGroup.isRequested %}
+                        en attente
+                    {% else %}
+                        {{ "groupPage.action.quit"|trans({}, 'rpe') }}
+                    {% endif %}
+                {% endspaceless %}</a>
+            {% endif %}
+        {% else %}
+            <a class="action-btn light-blue icon-plus pull-right js-loadmore js-infinite js-load-replace" href="{{ path('group_action_request', {'id': group.id, 'mode': 'join'}) }}">{{ "groupPage.action.join"|trans({}, 'rpe') }}</a>
+        {% endif %}
+    {% elseif group.isPrivate or group.accessType is empty %}
+        {% if userInGroup is not empty %}
+            {% if userInGroup.isOwner == false and userInGroup.isPotentialUser %}
+                <a class="action-btn light-blue pull-right js-loadmore js-infinite js-confirm-modal js-redirect" data-confirm="{{ 'group.action.confirm_cancel_text'|trans({'%name%': group.name}, 'rpe') }}" data-statetitle="{{'group.action.confirm_cancel_title'|trans({}, 'rpe') }}" data-delete-link="{{ path('group_action_request', {'id': group.id, 'mode':'cancel'}) }}" data-target="{{ path('group', {id: group.id}) }}">{% spaceless %}
+                    {# INVITATION #}
+                    {% if userInGroup.isInvited %}
+                        {{ "groupPage.action.cancel_invitation"|trans({}, 'rpe') }}
+                    {# REQUEST #}
+                    {% elseif userInGroup.isRequested %}
+                        {{ "profil.action2.sent"|trans({}, 'rpe') }}
+                    {# IN GROUP #}
+                    {% else %}
+                        {{ "groupPage.action.quit"|trans({}, 'rpe') }}
+                    {% endif %}
+                {% endspaceless %}</a>
+
+                {# INVITATION #}
+                {% if userInGroup.isInvited %}
+                    <a class="action-btn light-blue icon-plus pull-right js-loadmore js-infinite js-load-replace accept-group-invit" href="{{ path('group_action_request', {'id': group.id, 'mode': 'accept'}) }}">{{ "groupPage.action.accept"|trans({}, 'rpe') }}</a>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <a class="action-btn light-blue icon-plus pull-right js-loadmore js-infinite js-load-replace" href="{{ path('group_action_request', {'id': group.id, 'mode': 'join'}) }}">{{ "groupPage.action.request_access"|trans({}, 'rpe') }}</a>
+        {% endif %}
+    {% elseif group.isSecret %}
+        {% if userInGroup is not empty %}
+            {% if userInGroup.isOwner == false and userInGroup.isPotentialUser %}
+            	{% if style is defined and style == 'simple' %}
+            		{% if userInGroup.isUser %}
+                            Vous avez accepté.
+                    {% endif %}
+            	{% else %}
+					<a class="action-btn light-blue pull-right js-loadmore js-infinite js-confirm-modal js-redirect" data-confirm="{{ 'group.action.confirm_cancel_text'|trans({'%name%': group.name}, 'rpe') }}" data-statetitle="{{'group.action.confirm_cancel_title'|trans({}, 'rpe')}}" data-delete-link="{{ path('group_action_request', {'id': group.id, 'mode':'cancel'}) }}" data-target="{{ path('group', {id: group.id}) }}">{% spaceless %}
+                        {# INVITATION #}
+                        {% if userInGroup.isInvited %}
+                            {{ "groupPage.action.cancel_invitation"|trans({}, 'rpe') }}
+                        {# IN GROUP #}
+                        {% else %}
+                            {{ "groupPage.action.quit"|trans({}, 'rpe') }}
+                        {% endif %}
+                    {% endspaceless %}</a>
+    
+                    {# INVITATION #}
+                    {% if userInGroup.isInvited %}
+                        <a class="action-btn light-blue icon-plus pull-right js-loadmore js-infinite js-load-replace accept-group-invit" href="{{ path('group_action_request', {'id': group.id, 'mode': 'accept'}) }}">{{ "groupPage.action.accept"|trans({}, 'rpe') }}</a>
+                    {% endif %}
+            	{% endif %}
+            {% endif %}
+        {% else %}
+        	Vous avez refusé.
+        {% endif %}
+    {% endif %}
+{% endif %}

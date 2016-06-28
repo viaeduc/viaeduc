@@ -1,0 +1,214 @@
+{% extends "pum://page/layout_single_cover_col.html.twig" %}
+
+{% set page_title = (group.name is defined) ? group.name : 'Page du groupe' %}
+{% set page_name_analytics = 'group/view' %}
+{% set nav_section = 'groups-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{# {% set group_page_tutorial_modal = true %} #}
+
+{% block stylesheets %}
+    	<link href="{{ asset('bundles/rpepum/css/group-administration.css') }}" media="all" rel="stylesheet" type="text/css" />
+    	<link href="{{ asset('bundles/rpepum/css/library.css') }}" media="all" rel="stylesheet" type="text/css" />
+    	<link href="{{ asset('bundles/rpepum/css/modal-library.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    	<script src="{{ asset('bundles/rpepum/js/external/ui/jquery-ui.min.js') }}"></script>
+    	<script src="{{ asset('bundles/rpepum/js/external/jquery.ui.touch.js') }}"></script>
+
+    	<script src="{{ asset('bundles/rpepum/js/rpe.modal-library.js') }}"></script>
+    	<script src="{{ asset('bundles/rpepum/js/rpe.library.js') }}"></script>
+    	<script src="{{ asset('bundles/rpepum/js/rpe.common.js') }}"></script>
+{% endblock %}
+
+{% block modals %}
+    	{% include 'pum://includes/common/componants/modals/modal-confirm.html.twig' %}
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+	{% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+		{% block this_page %}
+            		{% if group.parent is not null %}
+                			{{ "groupPage.page.subgroup"|trans({'%parent%': group.parent.name, '%group%': group.name}, 'rpe') }}
+            		{% else %}
+                			{{ "groupPage.page"|trans({'%group%': group.name}, 'rpe') }}
+            		{% endif %}
+	    	{% endblock %}
+	{% endembed %}
+{% endblock %}
+
+{% block cover %}
+	{% embed "pum://includes/common/componants/cover-layout.html.twig" %}
+		{% block cover_left_image %}
+            		{{ macros.show_group_avatar(group, 'default', 120, 'profil-image crop-box', '117', '117') }}
+				{# <img src="{{ asset('bundles/rpepum/images/tmp/img_brevet.png') }}" class="profil-image" alt=""> #}
+		{% endblock %}
+		{% block cover_left_information %}
+            		<h3 class="profil-last-name">
+                			{{ group.name|truncate(80, true) }}
+            		</h3>
+		{% endblock %}
+		{% block cover_left_extra_information %}
+			<p class="description">
+	            		{# <span class="description-title">{{ "groupPage.description"|trans({}, 'rpe') }}</span> #}
+	            		{# {{ group.description|truncate(255, true) }} #}
+	            		{% if group.description|length > 200 %}
+	               			{{ group.description|slice(0, 200)|raw }}<a href="#" data-toggle="modal" data-target="#group-desc-modal" >... Lire la suite</a>
+	            		{% else %}
+	               			{{ group.description|raw }}
+	            		{% endif %}
+	        		</p>
+		{% endblock %}
+		{% block cover_left_buttons %}
+		    	{% if user.isInGroup(group) %}
+                			{% include 'pum://includes/common/componants/bookmark/buttons.html.twig' with {
+                    			'type': 'group',
+                    			'object': group,
+                    			'style': 'link',
+                    			'short': true
+                			} %} -
+            		{% endif %}
+            		<small class="membres icon-user">
+                			{{ group.members.count }}
+            		</small> -
+            		<small class="messages icon-newspaper">
+                			{% if group.resources.count == 0 %}
+                    			0
+                			{% else %}
+                    			{{ group.resources.count }}
+                			{% endif %}
+            		</small> -
+            		{# <small class="membres icon-user">{{ '%count% membre|%count% membres'|transchoice(group.members.count, {'%count%': group.members.count}, 'rpe') }}</small> -
+            		<small class="messages icon-newspaper">{{ '%count% ressource|%count% ressources'|transchoice(group.resources.count, {'%count%': group.resources.count}, 'rpe') }}</small>  #}
+            		<small>
+            			{% include 'pum://includes/common/componants/report/buttons.html.twig' with {
+                				'type': 'group',
+                				'object': group,
+                				'style': 'link'
+            			} %}
+            		</small>
+
+            		{% include 'pum://includes/common/componants/groups/buttons.html.twig' with {'group':group, 'userInGroup': userInGroup} %}
+
+			{# <a class="action-btn membres orange icon-user">{{ '%count% membre|%count% membres'|transchoice(group.members.count, {'%count%': group.members.count}, 'rpe') }}</a>
+			<a class="action-btn messages orange icon-newspaper">{{ '%count% ressource|%count% ressources'|transchoice(group.resources.count, {'%count%': group.resources.count}, 'rpe') }}</a> #}
+		{% endblock %}
+
+        		{% block cover_right %}
+            		{% if form_cover is defined and form_cover is not null %}
+                			{{ form_errors(form_cover) }}
+                			{{ form_start(form_cover, {attr: {class: 'edit-profil-image cover'}}) }}
+                    		{{ macros.show_group_avatar(group, 'cover', 837, 'cover-image crop-box', '837', '300', '0', '0') }}
+                    		<input type="file" class="profil-image-input hidden-input" name="cover[originalCover][file]">
+                    		<a href="#" class="action-btn light-blue edit-profil-link">{{ "groupPage.changeimage"|trans({}, 'rpe') }}</a>
+                    		<div class="results">
+                        			{{ form_row(form_cover.x, {attr: {class: 'cropX'}}) }}
+                        			{{ form_row(form_cover.y, {attr: {class: 'cropY'}}) }}
+                        			{{ form_row(form_cover.w, {attr: {class: 'cropW'}}) }}
+                        			{{ form_row(form_cover.h, {attr: {class: 'cropH'}}) }}
+                        			{{ form_row(form_cover._token) }}
+                    		</div>
+                    		<a href="#" class="action-btn orange confirm-profil-image-change">{{ "common.confirmer"|trans({}, 'rpe') }}</a>
+                			{{ form_end(form_cover, {render_rest: false}) }}
+            		{% else %}
+                			{{ macros.show_group_avatar(group, 'cover', 837, 'cover-image crop-box', '837', '300', '0', '0') }}
+            		{% endif %}
+        		{% endblock cover_right %}
+	{% endembed %}
+{% endblock %}
+
+{# FORM THEME #}
+{% block _post_content_row %}
+      	<label class="hidden" for="simple-message">{{ "groupPage.form.simlemessage"|trans({}, 'rpe') }}</label>
+        <span class="text-box">
+           	<textarea {{ block('widget_attributes') }} required data-link-ajax="{{ path('link_preview') }}" class="linkpreview simple-message-input expanding"></textarea>
+        </span>
+{% endblock %}
+
+{% block _post_file_row %}
+    	<div class="extra-message-info">
+        		<div class="message-add-image">
+            		<ul class="uploaded-files-wrapper text-light">
+                			{% for subform in form %}
+                    			{% for subsubform in subform %}
+                        				<li class="uploaded-element">
+                            				{% for subsubsubform in subsubform %}
+                                					{{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                            				{% endfor %}
+                            				<span class="new-file">{{ subsubform.vars.value.getName() }}</span>
+                            				<a href="#" class="remove-upload">x</a>
+                        				</li>
+                    			{% endfor %}
+                			{% endfor %}
+            		</ul>
+            		<span class="action-btn btn-file orange icon-paperclip post-file-btn">
+                			{{ form_widget(form.file, {'attr' : {'class': 'rpe-upload single-upload show-it'}}) }}
+            		</span>
+            		{{ block('valider_widget') }}
+        		</div>
+    	</div>
+{% endblock %}
+
+{% block _post_file_file_row %}
+    	<input type="file" class="input-upload" {{ block('widget_attributes') }}>
+{% endblock %}
+
+{% block valider_widget %}
+    	<button type="submit" class="action-btn light-blue send-link icon-paperplane post-message-btn" name="confirmer"></button>
+{% endblock %}
+
+{% block main_content %}
+    	<div class="library group-library">
+        		<a href="{{ path('group', {'id': group.id, 'tab':4}) }}" class="action-btn light-blue library-back-btn icon-arrow-left">Retour aux paramètres du groupe</a>
+        		<!-- Top block with the media folder breadcrumb and add folder button-->
+        		<div class="library-top">
+            		<div class="library-sidebar-wrapper">
+                			<h3 class="library-title black">Thèmes /</h3>
+                			<a class="add-folder-button action-btn orange icon-plus js-loadmore js-infinite js-load-replace" data-href="{{ path('create_form_group_theme', {'theme_id': theme_id, 'group_id': group.id}) }}" data-loadtarget="form.add-folder-form">{{ "library.add"|trans({}, 'rpe') }}</a>
+                			<div class="add-folder-form-wrapper">
+                    			<form class="add-folder-form"><span class="loader"></span></form>
+                			</div>
+            		</div>
+        		</div>
+
+        		<!-- Folder list -->
+        		<div class="library-left">
+            		<ul class="library-folder-list">
+                			<!-- Unique ID needed for the drag and drop -->
+                			<li id="js-folder_root" class="{{ (null == theme_id) ? 'selected' }} js-loadmore js-infinite js-load-inner js-pushstate" data-loadtarget=".library-right" data-href="{{ path('group-theme', {'id': group.id }) }}" {#  class="open_modal" #}>
+                    			<span class="folder-name">
+                        				{{ "group.theme.no_class"|trans({}, 'rpe') }}
+                    			</span>
+                			</li>
+                			{% for theme in themes %}
+                    			<li id="js-folder_{{ theme.id }}" {{ (theme.id == theme_id) ? 'class="selected"' }} data-entityid="{{ theme.id }}" >
+                        				<span class="folder-name js-loadmore js-infinite js-load-inner js-pushstate" data-loadtarget=".library-right" data-href="{{ path('group-theme', {'id': group.id, 'theme_id': theme.id}) }}">
+                            				{{ theme.name }}
+                        				</span>
+                        				<form class="edit-input">
+                            				{{ macros.loader() }}
+                        				</form>
+                        				<span class="edit-delete">
+                            				{% set disable_class = '' %}
+                            				{% if theme.posts.count > 0 %}
+                                					{% set disable_class = 'disable-delete' %}
+                            				{% endif %}
+                            				<span class="edit square-btn light-blue icon-pencil small js-loadmore js-infinite js-load-replace" data-href="{{ path('create_form_group_theme', {'group_id': group.id, 'theme_id': theme.id}) }}" data-loadtarget="#js-folder_{{ theme.id }} .edit-input"></span>
+                            				<span class="delete square-btn light-blue icon-cross small js-loadmore js-confirm-modal js-remove {{ disable_class }}" data-href="{{ path('delete_theme', {'id': theme.id}) }}" data-delete-link="{{ path('delete_theme', {'id': theme.id}) }}" data-remove-div="#js-folder_{{ theme.id }}" data-confirm="{{ 'library.folder.action.confirm_delete'|trans({}, 'rpe') }}" data-disable="{{ 'library.folder.action.disable_delete'|trans({}, 'rpe') }}"></span>
+                        				</span>
+                    			</li>
+               			 {% endfor %}
+           		 </ul>
+        		</div>
+
+        		<!-- Ajax autoloaded and refreshed content -->
+        		<div class="library-right js-autoload js-load-once" data-autoload="{{ path('group-theme', {'id': group.id, 'theme_id': theme_id}) }}">
+            		{{ macros.loader() }}
+        		</div>
+    	</div>
+{% endblock %}
+{% endspaceless %}

@@ -1,0 +1,39 @@
+{#
+    --------------------------------------
+    This search menu is now in the sidebar
+    --------------------------------------
+
+    <nav class="search-tab-wrapper">
+        <ul>
+            {% include 'pum://includes/common/componants/search/menu.html.twig' %}
+        </ul>
+    </nav>
+#}
+{% if result is not null %}
+    <div class="tab-content">
+{#         {% include "pum://page/search/advanced_search.html.twig" %}#}
+        <!-- FIRST TAB CONTENT -->
+        <!-- Search result title -->
+        <div class="inner-search-menu" id="belin_inner_search_title" style="display: none">
+            <h3 class="search-results-title"><span class="count">{{ result.total }}</span> {{ 'search.results'|transchoice(result.total , {}, 'rpe') }}
+                {% if app.request.get('q') %}
+                    <span>"{{ app.request.get('q') }}"</span>
+                {% endif %}
+                <a href="{{ path('search-save', {'type': search_type, 'path_name': path_name, 'q': app.request.get('q') }) }}" class="rpe-save-search" data-toggle="modal" data-target="#modal-savesearch">
+                    <img src="{{ asset('bundles/rpepum/images/pictos/picto-save.png') }}" class="picto-search-save" />
+                </a>
+            </h3>
+        </div>
+
+        {% if result.total is not defined %}
+            <div class="alert">
+              <a class="close" data-dismiss="alert">×</a>
+              <strong>{{ 'search.warning'|trans({}, 'rpe') }}</strong> {{ 'search.failed'|trans({}, 'rpe') }}.
+            </div>
+        {% else %}
+            <ul class="search-result-list js-autoload" id="belin_list" data-autoload="">
+                {{ macros.loader() }}
+            </ul>
+        {% endif %}
+    </div>
+{% endif %}

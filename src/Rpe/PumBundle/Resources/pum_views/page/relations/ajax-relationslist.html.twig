@@ -1,0 +1,52 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+		{% if pager.count == 0 %}
+            <div class="empty-relations-wrapper">
+                <div class="empty-relations-inner-wrapper">
+                    <ul>
+                        <li><div class="img-wrapper"><img src="{{ asset('bundles/rpepum/images/pictos/empty-relations-1.png') }}"></div> Vous n'avez pas encore créé votre réseau sur Viaéduc.</li>
+                        <li><div class="img-wrapper"><img src="{{ asset('bundles/rpepum/images/pictos/empty-relations-2.png') }}"></div> Utilisez le moteur de recherche pour retrouver des collègues.</li>
+                        <li><div class="img-wrapper"><img src="{{ asset('bundles/rpepum/images/pictos/empty-relations-3.png') }}"></div> Vous pouvez également inviter des collègues à vous rejoindre sur Viaéduc.</li>
+                    </ul>
+                    <a href="{{ path('relations', {'mode':'suggested'}) }}" class="action-btn icon-eye light-blue">Chercher des collègues</a>
+                    {% if user.isInvited == false %}
+                        <a href="{{ path('my_invitations') }}" class="action-btn icon-plus3 orange">Inviter des collègues</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        {% for relation in pager %}
+
+	        {% if (loop.index -1) is divisible by(8) %}
+    	        <ul data-href="{{ path('relation_detail') }}" class="user-row">
+	        {% endif %}
+            {# Check if we are in "friend" object instead of "user" object #}
+            {% if relation.user is defined %}
+                {% set relation = relation.friend %}
+            {% endif %}
+
+
+            <li class="relation-box" data-id="{{ relation.id }}">
+                {{ macros.show_user_avatar(relation, 'relation', 120, 'generated-image lazyload', 120, 120, '', '', '', true) }}
+                <span class="profil-name">{{ relation.firstname ~ ' ' ~ relation.lastname }}</span>
+                {#{% if friend.friend.occupation is not null %}
+                    <span class="profil-role">{{ friend.friend.occupation.name }}</span>
+                {% endif %} #}
+            </li>
+			{% if (loop.index is divisible by(8)) or ((loop.index + (pager.currentPage-1) * 24) == loop.length) %}
+            	    <div class="relation-popin"></div>
+        	    </ul>
+	        {% endif %}
+        {% endfor %}
+
+    {% if pager.nbPages is defined and pager.currentPage < pager.nbPages %}
+        <li class="full page-loadmore js-loadmore" data-href="{{ path('ajax_relationslist', {mode: mode, page: pager.currentPage + 1}) }}" data-target="#relationslist">
+            <a href="#" class="read-other">...</a>
+        </li>
+    {% endif %}
+{% endspaceless %}
+
+
+{% endblock %}

@@ -1,0 +1,233 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set page_title = (post.name is defined) ? post.name : 'Edition ressource' %}
+{% set page_name_analytics = 'resource/view' %}
+{% set nav_section = 'profile-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/ressource.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.side-componants.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/draggable.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.publications.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.ressource.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+    {% block breadcrumb %}
+        {% if post is not null %}
+            {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+                {% block prev_page %}
+                    {% if post.publishedGroup is not null %}
+                        <li class="item-index">
+                            {{ 'Group : %name%'|trans({'%name%': post.publishedGroup.name}, 'rpe') }}
+                        </li>
+                    {% endif %}
+                {% endblock %}
+                {% block this_page %}
+                    {{ post.name }}
+                {% endblock %}
+            {% endembed %}
+        {% endif %}
+    {% endblock %}
+
+      {% block sidebar %}
+        {% if post is not null %}
+        {% if post.publishedGroup is not null %}
+                {# This button goes back to the group page, or profil page, depending on where the user comes from #}
+                {% include "pum://includes/common/componants/sidebar/sidebar-resource-link.html.twig" with {'group': post.publishedGroup} %}
+            {% endif %}
+            {% include "pum://includes/common/componants/sidebar/sidebar-resource-description.html.twig" %}
+            {% include "pum://includes/common/componants/sidebar/sidebar-author-resource.html.twig" %}
+            {% include "pum://includes/common/componants/sidebar/sidebar-resource-type.html.twig" %}
+            {# {% include "pum://includes/common/componants/sidebar/sidebar-resource-list.html.twig" %} #}
+        {% endif %}
+        <!-- sources -->
+    {% endblock %}
+
+    {# FORM THEME #}
+    {% block _editresource_file_row %}
+        <li>
+            <div class="form-left">
+                {{ form_label(form) }}
+            </div><!--
+            --><div class="form-right">
+                <span class="action-btn btn-file orange">
+                    <span class="fileupload icon-export-1">{{ "post.add"|trans({}, 'rpe') }}</span>
+                    {{ form_widget(form.file) }}
+                </span>
+            </div>
+        </li>
+    {% endblock %}
+
+    {% block _editresource_medias_row %}
+
+        <div class="extra-message-info">
+            <div class="message-add-image file-upload">
+                <ul class="uploaded-files-wrapper">
+                    {% for subform in form %}
+                        {% for subsubform in subform %}
+                            <li class="uploaded-element">
+                                {% for subsubsubform in subsubform %}
+                                    {{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                                {% endfor %}
+                                <span class="new-file">{{ subsubform.vars.value.getName() }}</span>
+                                <a href="#" class="remove-upload">x</a>
+                            </li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+                <span class="action-btn btn-file orange icon-paperclip">
+                    <span class="fileupload">{{ "post.add"|trans({}, 'rpe') }}</span>
+                    <input type="file" id="pum_object_file_file" class="rpe-upload" data-name="editresource[medias][][media][file]">
+                </span>
+            </div>
+        </div>
+    {% endblock %}
+
+
+    {% block _editresource_sources_row %}
+        {% set type = 'html' %}
+        {{ block('rpepum_form_text_row') }}
+    {% endblock %}
+
+    {% block _editresource_visibility_row %}
+        {{ block('rpepum_object_entity_row') }}
+    {% endblock %}
+
+    {% block _editresource_coAuthors_row %}
+        {% set attr = attr|default([]) %}
+        {% set attr = attr|merge({class: 'authors extra-info-input'}) %}
+        {{ block('rpepum_object_entity_row') }}
+    {% endblock %}
+
+    {% block _editresource_publishedGroup_row %}
+        {{ block('rpepum_object_entity_row') }}
+    {% endblock %}
+
+    {% block _editresource_disciplines_row %}
+        {% set attr = attr|default([]) %}
+        {% set attr = attr|merge({class: 'disciplines tm-input extra-info-input'}) %}
+        {% set span_second_widget_class = 'disciplines-tag-list tag-list' %}
+        {% set ajax_url = path('create_form_publication') %}
+        {% set info_list_id = 'instructed_discipline' %}
+
+        {{ block('rpepum_object_entity_row') }}
+    {% endblock %}
+
+    {% block _editresource_teachingLevels_row %}
+        {% set attr = attr|merge({class: 'niveau tm-input extra-info-input'}) %}
+        {% set span_second_widget_class = 'levels-tag-list tag-list' %}
+        {% set ajax_url = path('create_form_publication') %}
+        {% set info_list_id = 'teaching_level' %}
+        {{ block('rpepum_object_entity_row') }}
+    {% endblock %}
+
+    {% block _editresource_keywords_row %}
+        {{ block('rpepum_form_text_row') }}
+    {% endblock %}
+
+    {% block _editresource_description_row %}
+        {% set type = 'html' %}
+        {{ block('rpepum_form_text_row') }}
+    {% endblock %}
+
+    {% block _editresource_coverage_row %}
+        {{ block('rpepum_form_text_row') }}
+    {% endblock %}
+
+    {% block _editresource_documentType_row %}
+        {{ block('rpepum_object_entity_row') }}
+    {% endblock %}
+
+    {% block _editresource_copyright_row %}
+        {{ block('rpepum_form_text_row') }}
+    {% endblock %}
+
+    {% block _editresource_language_row %}
+        {{ block('rpepum_object_entity_row') }}
+    {% endblock %}
+
+    {% block _editresource_submit_draft_row %}
+        <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn light-grey">{{ "Mettre en brouillons"|trans() }}</button>
+    {% endblock %}
+
+    {% block _editresource_submit_row %}
+        <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn light-blue">{{ "Envoyer"|trans() }}</button>
+    {% endblock %}
+
+    {% block main_content %}
+    {{ macros.modal('teaching_level', 'modal-info-list') }}
+    {{ macros.modal('instructed_discipline', 'modal-info-list') }}
+    <div class="ressource-wrapper">
+        <!--  Formulaire d'édition d'une ressource -->
+        {% form_theme edit_resource_form _self %}
+
+        <div class="publication-inner-form-wrapper ressource" data-tab="ressource">
+            {{ form_errors(edit_resource_form) }}
+            {{ form_start(edit_resource_form) }}
+                <div class="inner-padding">
+                    <ul>
+                        <li>
+                            {{ form_label(edit_resource_form.name, null, {'label_attr': {'class': 'hidden'}}) }}
+                            <span class="select-box">
+                                {{ form_widget(edit_resource_form.name) }}
+                            </span>
+                        </li>
+                        <li>
+                            <span class="select-box">
+                                {{ form_widget(edit_resource_form.content) }}
+                            </span>
+                           {{ form_row(edit_resource_form.medias) }}
+                        </li>
+                        {# {{ form_row(edit_resource_form.sources) }} #}
+                        {{ form_row(edit_resource_form.file) }}
+                        {{ form_row(edit_resource_form.description) }}
+                        {{ form_row(edit_resource_form.disciplines) }}
+                        {{ form_row(edit_resource_form.teachingLevels) }}
+                        {# {{ form_row(edit_resource_form.coAuthors) }} #}
+                        {{ form_row(edit_resource_form.publishedGroup) }}
+                    </ul>
+                </div>
+                <div class="indexing">
+                    <div class="inner-padding small indexing-title-wrapper">
+                        <a href="#" class="indexing-title">
+                            {{ "post.indexation"|trans({}, 'rpe') }} <span>{{ "post.optional"|trans({}, 'rpe') }}</span>
+                        </a>
+                    </div>
+                    <div class="index-content">
+                        <div class="inner-padding small">
+                            <ul>
+                                {{ form_row(edit_resource_form.keywords) }}
+                                {{ form_row(edit_resource_form.documentType) }}
+                                {{ form_row(edit_resource_form.copyright) }}
+                                {# <li>
+                                    <div class="form-left">
+                                        {{ form_label(edit_resource_form.linkedPosts) }}
+                                    </div><!--
+                                    --><div class="form-right">
+                                            <span class="select-box">
+                                                {{ form_widget(edit_resource_form.linkedPosts) }}
+                                            </span>
+                                    </div>
+                                </li> #}
+                                {{ form_row(edit_resource_form.language) }}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="inner-padding right-align">
+                    {{ form_row(edit_resource_form.submit_draft) }}
+                    {{ form_row(edit_resource_form.submit) }}
+                </div>
+
+            {{ form_row(edit_resource_form._token) }}
+            {{ form_end(edit_resource_form, {render_rest: false}) }}
+        </div>
+    </div>
+    {% endblock %}
+{% endspaceless %}

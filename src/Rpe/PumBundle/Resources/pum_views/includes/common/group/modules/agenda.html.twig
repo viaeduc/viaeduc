@@ -1,0 +1,73 @@
+<!-- ****** -->
+<!-- AGENDA -->
+<!-- ****** -->
+<div class="module-wrapper agenda {% if group.isModuleEnabled('agenda') %}enabled{% else %}disabled{% endif %}" data-module="agenda">
+    <div class="module-top">
+        <img src="{{ asset('bundles/rpepum/images/module_agenda.png') }}" class="module-image">
+        <h3 class="module-title">Agenda</h3>
+    </div>
+    <p class="module-text">
+        Ce module permet de créer et visualiser les évènements à venir ainsi que planifier des tâches pour des projets.<br>
+    </p>
+    <div class="module-bottom">
+        {% include 'pum://includes/common/componants/groups/admin_modules_button-activation.html.twig' with {
+            'group': group,
+            'groupModule': 'agenda'
+        } %}
+
+        <a href="#" class="action-btn light-blue icon-cog module-config">Paramètres</a>
+    </div>
+    <div class="module-content">
+        <a href="#" class="action-btn light-blue add-event open-new">Ajouter un évènement</a>
+        <!-- Adds new event -->
+        <div class="event-new-form new-form js-autoload js-load-inner" data-autoload="{{ path('publish_event', {'group_id': group.id}) }}">
+            {{ macros.loader() }}
+        </div>
+        <span class="module-desc">Evènements en ligne : </span>
+        <div class="event-wrapper">
+            {% for event in group.getCurrentEvents()|slice(0, 3) %}
+                {{ (loop.first) ? '<ul>' }}
+
+                <li>
+                    <div class="event-main">
+                        <div class="event-wrapper">
+                            <div class="event-left">
+                                <span class="event-date">{{ event.startDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'd')|capitalize }}</span>
+                                <span class="event-month">{{ event.startDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'LLLL')|capitalize }}</span>
+                            </div>
+                            <div class="event-right">
+                                <a href="{{ path('agenda_event', {'event_id': event.id}) }}" class="event-title">{{ event.title }}</a>
+                                <span class="event-location">à {{ event.placeName }}</span>
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="{{ path('edit_event', {'id': event.id}) }}" class="action-btn light-blue icon-pencil edit-link"></a><!-- edits event -->
+                            {# <a href="#" class="action-btn light-blue icon-cross delete-link"></a><!-- delets event --> #}
+                        </div>
+                    </div>
+                </li>
+
+                {{ (loop.last) ? '</ul>' }}
+            {% endfor %}
+            
+            <!-- *************** -->
+            <!-- POSITION CHANGE -->
+            <!-- *************** -->
+            <div class="vote-content blue change-position">
+                <div class="position-wrapper">
+                    <form>
+                        <div class="form-left">
+                            <label for="module-position">Position du module :</label>
+                        </div>
+                        <div class="form-right">
+                            {% include 'pum://includes/common/componants/groups/admin_modules_select-position.html.twig' with {
+                                'group': group,
+                                'groupModule': 'agenda'
+                            } %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

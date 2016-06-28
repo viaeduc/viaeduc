@@ -1,0 +1,175 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block _question_keywords_row %}
+    {% spaceless %}
+    {{ block('rpepum_form_text_row') }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block _question_instructedDisciplines_row %}
+    {% spaceless %}
+    {% set attr = attr|merge({class: 'disciplines tm-input extra-info-input'}) %}
+    {% set span_second_widget_class = 'first-tag-list tag-list' %}
+    {% set ajax_url = path('publish_question') %}
+    {% set info_list_id = 'instructed_discipline' %}
+
+    {{ block('rpepum_object_entity_row') }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block radio_row %}
+    {% spaceless %}
+        {% if label is not sameas(false) %}
+            {% set label_attr = label_attr|merge({'class': 'checkbox-inline'}) %}
+            {% if not compound %}
+                {% set label_attr = label_attr|merge({'for': id}) %}
+            {% endif %}
+            {% if required %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+            {% endif %}
+            {% if label is empty %}
+                {% set label = name|humanize %}
+            {% endif %}
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                {{ form_widget(form) }}
+                {{ label|trans({}, translation_domain) }}
+            </label>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block _question_accesstype_row %}
+    {% spaceless %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right type-error">
+            {% for child in form %}
+             {% if child.vars.value != 'ON_INVITATION' %}
+                <span class="radio-buttons">
+                    {{ form_row(child, {'label': 'question.publish.accesstype.' ~ child.vars.label|lower, 'translation_domain': 'rpe'}) }}
+                    {# {{ form_label(child) }} #}
+                    {# <span class="radio-buttons">
+                        <input type="radio" id="question_access_public" name="question_access" value="publique">
+                        <label for="question_access_public">Publique</label>
+                    </span>
+                    <span class="radio-buttons">
+                        <input type="radio" id="question_access_friends" name="question_access" value="amis">
+                        <label for="question_access_friends">Amis</label>
+                    </span>
+                    <span class="radio-buttons">
+                        <input type="radio" id="question_access_group" name="question_access" value="group">
+                        <label for="question_access_group">Groupe</label>
+                    </span> #}
+                </span>
+             {% endif %}
+            {% endfor %}
+        </div>
+    </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _question_submit_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn publish-btn orange">{{ "Valider"|trans() }}</button>
+{% endblock %}
+
+{% block main_content %}
+    {{ block('_publish_nav') }}
+    {{ macros.modal('instructed_discipline', 'modal-info-list') }}
+    {% form_theme form _self %}
+
+    <!-- Post question form -->
+    {{ form_errors(form) }}
+    {{ form_start(form, { action: path('publish_question', {'group_id': group.id}) }) }}
+    {# <form class="ressource-edit-form-wrapper question-form"> #}
+        <ul class="ressource-edit-wrapper">
+            <li>
+                {{ form_label(form.name, null, {'label_attr': { 'class' : 'hidden'}} ) }}
+                <span class="select-box">
+                    {{ form_widget(form.name, {'attr': { 'data-validation': 'required', 'data-validation-error-msg': 'Veuillez écrire votre question.'}}) }}
+                </span>
+            </li>
+            <li>
+                {{ form_label(form.description, null, {'label_attr': { 'class' : 'hidden'}} ) }}
+                <span class="select-box">
+                    {{ form_widget(form.description, {'attr': { 'data-validation': 'required', 'data-validation-error-msg': 'Veuillez préciser votre question.'}}) }}
+                </span>
+            </li>
+            {{ form_row(form.instructedDisciplines, {'attr': { 'data-validation': 'required', 'data-validation-error-msg': 'Veuillez préciser les disciplines concernées.'}}) }}
+            {{ form_row(form.keywords) }}
+            {{ form_row(form._token) }}
+            {# <li>
+                <!--
+                    Question
+                -->
+                <label class="hidden" for="question_name">Posez votre question</label>
+                <span class="select-box">
+                    <input type="text" name="question_name" placeholder="Posez votre question">
+                </span>
+            </li>
+            <li>
+                <!--
+                    Details
+                -->
+                <label class="hidden" for="question_body">Explicitez et précisez votre question</label>
+                <span class="select-box">
+                    <textarea name="question_body" placeholder="Explicitez et précisez votre question"></textarea>
+                </span>
+            </li>
+            <li>
+                <!--
+                    Disciplines typeahead
+                -->
+                <div class="form-left">
+                    <label class="ressource-description-label" for="resource_discipline">Disciplines enseignées</label>
+                    <span class="ressource-description-details">(Plusieurs choix possibles)</span>
+                </div><!--
+                --><div class="form-right">
+                    <span class="select-box tag-box">
+                        <input class="tm-input" type="text" name="resource_discipline" data-ajax-url="/sites/rpe-pum/web/app_dev.php/createform/type/publication?_pum_list=disciplines" data-ajax-target="#resource_pajaxobj_disciplines" data-ajax-target-list="#resource_pajaxobj_disciplines_second">
+                        <span id="resource_pajaxobj_disciplines" class="tag-list"></span>
+                    </span>
+                    <span id="resource_pajaxobj_disciplines_second" class="tag-list"></span>
+                </div>
+            </li>
+            <li>
+                <!--
+                    Keywords
+                -->
+                <div class="form-left">
+                    <label class="ressource-description-label" for="question_keywords">Mots clés</label>
+                </div><!--
+                --><div class="form-right">
+                    <span class="select-box">
+                        <input type="text" name="question_keywords">
+                    </span>
+                </div>
+            </li>
+            <li>
+                <div class="form-left">
+                    <label>Type d'accès à la question : </label>
+                </div>
+                <div class="form-right">
+                    <span class="radio-buttons">
+                        <input type="radio" id="question_access_public" name="question_access" value="publique">
+                        <label for="question_access_public">Publique</label>
+                    </span>
+                    <span class="radio-buttons">
+                        <input type="radio" id="question_access_friends" name="question_access" value="amis">
+                        <label for="question_access_friends">Amis</label>
+                    </span>
+                    <span class="radio-buttons">
+                        <input type="radio" id="question_access_group" name="question_access" value="group">
+                        <label for="question_access_group">Groupe</label>
+                    </span>
+                </div>
+            </li> #}
+        </ul>
+        {# <a href="#" class="publish-btn action-btn orange">Publier</a> #}
+        {{ form_row(form.submit) }}
+    {# </form> #}
+    {{ form_end(form, {render_rest: false}) }}
+{% endblock %}
+
+{% block sidebar '' %}

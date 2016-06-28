@@ -1,0 +1,24 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="modal-label-share">{{ post is defined ? ('action.share.publication')|trans({}, 'rpe') : ('action.share.notice')|trans({}, 'rpe') }}</h4>
+	</div>
+	<div class="modal-body">
+		{% if sent %}
+			La {{ post is defined ? 'publication' : 'notice' }} <strong>{{ post is defined ? post.name : notice.title }}</strong> a bien été partagée sur votre profil.
+		{% else %}
+			{{ form(form, {action: path(post is defined ? 'publication_share' : 'notice_share', {id: id})}) }}
+		{% endif %}
+	</div>
+	
+	<div class="modal-footer">
+		{% if sent == 0 %}
+			<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+			<button type="submit" class="btn btn-primary" form="{{ form.vars.attr.id }}">Valider</button>
+		{% else %}
+			<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+		{% endif %}
+	</div>
+{% endblock main_content %}

@@ -1,0 +1,156 @@
+<!-- ******* -->
+<!-- SONDAGE -->
+<!-- ******* -->
+<div class="module-wrapper survey {% if group.isModuleEnabled('survey') %}enabled{% else %}disabled{% endif %}" data-module="survey">
+    <div class="module-top">
+        <img src="{{ asset('bundles/rpepum/images/module_sondage.png') }}" class="module-image">
+        <h3 class="module-title">Sondage</h3>
+    </div>
+    <p class="module-text">
+        Ce module permet de réaliser des sondages dans un groupe afin de récolter l'avis des membres et d'établir des statistiques sur ce que vous souhaitez.<br>
+    </p>
+    <div class="module-bottom">
+        {% include 'pum://includes/common/componants/groups/admin_modules_button-activation.html.twig' with {
+            'group': group,
+            'groupModule': 'survey'
+        } %}
+
+        <a href="#" class="action-btn light-blue icon-cog module-config">Paramètres</a>
+    </div>
+
+    <!-- This is the div that opens on module-config.click -->
+    <div class="module-content">
+        <a href="#" class="action-btn light-blue open-new add-vote">Ajouter un sondage</a> <!-- Adds new vote -->
+        <!-- ************************************ -->
+        <!--              New vote form           -->
+        <!-- This is the same styling for editing -->
+        <!-- ************************************ -->
+        <div class="vote-new-form new-form js-autoload js-load-inner" data-autoload="{{ path('publish_survey', {'group_id': group.id}) }}">
+            {{ macros.loader() }}
+        </div>
+
+        <!-- ************************ -->
+        <!--         Upcoming         -->
+        <!-- These votes are editable -->
+        <!-- ************************ -->
+        {% for survey in group.futureSurveys %}
+            {{ (loop.first) ? '<span class="module-desc">Sondages à venir :</span>' }}
+
+            <div class="vote-content white">
+                <div class="vote-question">
+                    {{ survey.question }}
+                </div>
+                <div class="event-actions">
+                    <a href="{{ path('edit_survey', {'id': survey.id}) }}" class="action-btn light-blue icon-pencil edit-link js-loadmore js-infinite js-load-inner" data-target=".vote-edit-form"></a><!-- edits vote -->
+                    <a href="#" class="action-btn light-blue icon-cross delete-link"></a>
+                </div>
+                <div class="vote-result-wrapper">
+                    <ul class="result-list">
+                        {% set totalUsersAnswers = survey.usersAnswers.count() %}
+
+                        {% for answer in survey.answers %}
+                            <li class="vote-result" data-result="{% if totalUsersAnswers %}{{ ((survey.getUserAnswerCount(answer) / totalUsersAnswers) * 100)|round }}{% else %}0{% endif %}">
+                                <div class="vote-result-left">
+                                    <div class="vote-result-progress"></div>
+                                    <span class="vote-result-text"></span>
+                                </div>
+                                <div class="vote-result-right">
+                                    ({{ survey.getUserAnswerCount(answer) }}) {{ answer.name }}
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- Vote in progress, no editing possible -->
+        {% for survey in group.presentSurveys %}
+            {{ (loop.first) ? '<span class="module-desc">Sondages en ligne :</span>' }}
+
+            <div class="vote-content blue open">
+                <div class="vote-question">
+                    {{ survey.question }}
+                </div>
+                <div class="event-actions">
+                    <a href="{{ path('edit_survey', {'id': survey.id}) }}" class="action-btn light-blue icon-pencil edit-link js-loadmore js-infinite js-load-inner" data-target=".vote-edit-form"></a><!-- edits vote -->
+                    <a href="{{ path('close_survey', {'id': survey.id}) }}" alt="Fermer le sondage" class="action-btn light-blue icon-checkmark close-survey-link"></a>
+                </div>
+                <div class="vote-result-wrapper">
+                    <ul class="result-list">
+                        {% set totalUsersAnswers = survey.usersAnswers.count() %}
+
+                        {% for answer in survey.answers %}
+                            <li class="vote-result" data-result="{% if totalUsersAnswers %}{{ ((survey.getUserAnswerCount(answer) / totalUsersAnswers) * 100)|round }}{% else %}0{% endif %}">
+                                <div class="vote-result-left">
+                                    <div class="vote-result-progress"></div>
+                                    <span class="vote-result-text"></span>
+                                </div>
+                                <div class="vote-result-right">
+                                    ({{ survey.getUserAnswerCount(answer) }}) {{ answer.name }}
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- Already voted, no editing possible -->
+        {% for survey in group.pastSurveys %}
+            {{ (loop.first) ? '<span class="module-desc">Sondages terminés :</span>' }}
+
+            <div class="vote-content grey open">
+                <div class="vote-question active-question">
+                    {{ survey.question }}
+                </div>
+                <div class="event-actions active-question">
+                    <a href="#" class="action-btn light-blue icon-cross delete-link"></a>
+                </div>
+                <div class="vote-result-wrapper active-question">
+                    <ul class="result-list">
+                        {% set totalUsersAnswers = survey.usersAnswers.count() %}
+
+                        {% for answer in survey.answers %}
+                            <li class="vote-result" data-result="{% if totalUsersAnswers %}{{ ((survey.getUserAnswerCount(answer) / totalUsersAnswers) * 100)|round }}{% else %}0{% endif %}">
+                                <div class="vote-result-left">
+                                    <div class="vote-result-progress"></div>
+                                    <span class="vote-result-text"></span>
+                                </div>
+                                <div class="vote-result-right">
+                                    ({{ survey.getUserAnswerCount(answer) }}) {{ answer.name }}
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- ************************************ -->
+        <!--             Edit vote form           -->
+        <!-- ************************************ -->
+        <div class="vote-edit-form new-form">
+            {{ macros.loader() }}
+        </div>
+
+        <!-- *************** -->
+        <!-- POSITION CHANGE -->
+        <!-- *************** -->
+        <div class="vote-content blue change-position">
+            <div class="position-wrapper">
+                <form>
+                    <div class="form-left">
+                        <label for="module-position">Position du module :</label>
+                    </div>
+                    <div class="form-right">
+                        {% include 'pum://includes/common/componants/groups/admin_modules_select-position.html.twig' with {
+                            'group': group,
+                            'groupModule': 'survey'
+                        } %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

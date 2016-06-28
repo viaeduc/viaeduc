@@ -1,0 +1,11 @@
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% if message.author %}
+    <li class="discution-row">
+        {{ macros.show_image(message.author.avatar, 64) }}
+        <div class="messages-list-details">
+            <a href="{{ path('profil', {id: hashEncode(message.author.id)}) }}">{{ message.author.firstname ~ ' ' ~ message.author.lastname }}</a><span class="separator">-</span><span class="date">{{ message.date|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'dd-MM-Y • HH:mm') }}</span>
+            <p class="text">{{ message.content|nl2br|detecturls|raw }}</p>
+        </div>
+    </li>
+{% endif %}

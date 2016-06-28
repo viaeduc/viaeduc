@@ -1,0 +1,365 @@
+{% extends "pum://empty_layout.html.twig" %}
+{% set cont = 'Rpe\\PumBundle\\Controller\\GroupController::' %}
+
+{% block main_content %}
+{% spaceless %}
+    {% if notifications|length %}
+        {% for notification in notifications %}
+            {% set actor = pum_entity(notification.actorType, notification.actorId) %}
+            {% set target = pum_entity(notification.targetType, notification.targetId) %}
+
+            {% if notification.treated %}
+                {% set read = 'read' %}
+            {% else %}
+                {% set read = 'unread' %}
+            {% endif %}
+			
+            {% if actor is not null %}
+                <li class="notif-item {{ read }}" id="notification-{{ notification.id }}">
+                    <div class="avatar">
+                        {% if actor.avatar is not null %}
+                            {{ macros.show_image(actor.avatar, 40) }}
+                        {% endif %}
+                    </div>
+                    <div class="text">
+                        <div class="date">{{ notification.date|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'dd MMMM Y HH:mm') }}</div>
+    
+                        {% if notification.isTypePublication %}
+                            <div class="event-subtitle">
+                                {% if target is not null %}
+                                    <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                        <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+    
+                                        a publié un message
+    
+                                        {% if target.isTypeWall %}
+                                            sur <strong>votre profil</strong>
+                                        {% elseif target.isTypeGroup %}
+                                            dans le groupe <strong>{{ target.publishedGroup.name }}</strong>
+                                        {% endif %}
+                                    </a>
+                                {% else %}
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+                                        a publié un message
+                                {% endif %}
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeResource %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+    
+                                    a publié une ressource
+    
+                                    {% if target.isTypeWall %}
+                                        sur <strong>votre profil</strong>
+                                    {% elseif target.isTypeGroup %}
+                                        dans le groupe <strong>{{ target.publishedGroup.name }}</strong>
+                                    {% endif %}
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeResourceEdit %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+                                    a édité la ressource
+                                    {% if target.isTypeWall %}
+                                        sur <strong>votre profil</strong>
+                                    {% elseif target.isTypeGroup %}
+                                        dans le groupe <strong>{{ target.publishedGroup.name }}</strong>
+                                    {% endif %}
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+						{% elseif notification.isTypeBecomeAdmin %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+                                    vous a nommé animateur du groupe <strong>{{ target.name }}</strong>
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>                            
+                        {% elseif notification.isTypeRecommend %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+    
+                                    a recommandé
+    
+                                    {% if notification.targetType == 'post' %}
+                                        {% if target.author == user %}
+                                            votre
+                                        {% else %}
+                                            une
+                                        {% endif %}
+    
+                                        {% if target.resource %}
+                                            ressource
+                                        {% else %}
+                                            publication
+                                        {% endif %}
+    
+                                        {% if target.isTypeWall %}
+                                            sur <strong>votre profil</strong>
+                                        {% elseif target.isTypeGroup %}
+                                            dans le groupe <strong>{{ target.publishedGroup.name }}</strong>
+                                        {% endif %}
+                                    {% elseif notification.targetType == 'comment' %}
+                                        {% if target.user == user %}
+                                            votre
+                                        {% else %}
+                                            un
+                                        {% endif %}
+    
+                                        commentaire
+    
+                                        {% if target.post.isTypeWall %}
+                                            sur <strong>votre profil</strong>
+                                        {% elseif target.post.isTypeGroup %}
+                                            dans le groupe <strong>{{ target.publishedGroup.name }}</strong>
+                                        {% endif %}
+                                    {% endif %}
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeComment and target %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+    
+                                    a commenté
+    
+                                    {% if target.post.author == user %}
+                                        votre
+                                    {% else %}
+                                        une
+                                    {% endif %}
+    
+                                    {% if target.post.resource %}
+                                        ressource
+                                    {% else %}
+                                        publication
+                                    {% endif %}
+    
+                                    {% if target.post.isTypeWall %}
+                                        {% if target.post.targetUser == user %}
+                                            sur <strong>votre profil</strong>
+                                        {% elseif target.post.targetUser == actor and target.post.isLike(user) %}
+                                            que vous avez recommandé sur <strong>son profil</strong>
+                                        {% elseif target.post.isLike(user) %}
+                                            que vous avez recommandé sur le profil de <strong>{{ target.post.targetUser.firstname }} {{ target.post.targetUser.lastname }}</strong>
+                                        {% endif %}
+                                    {% elseif target.post.isTypeGroup %}
+                                        {% if user.isGroupOwner(target.post.publishedGroup) %}
+                                            sur votre groupe <strong>{{ target.post.publishedGroup.name }}</strong>
+                                        {% elseif actor.isGroupOwner(target.post.publishedGroup) and target.post.isLike(user) %}
+                                            que vous avez recommandé sur son groupe <strong>{{ target.post.publishedGroup.name }}</strong>
+                                        {% elseif target.post.isLike(user) %}
+                                            que vous avez recommandé sur le groupe <strong>{{ target.post.publishedGroup.name }}</strong>
+                                        {% endif %}
+                                    {% endif %}
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeRelationRequest %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+    
+                                    souhaite vous ajouter à <strong>sa liste de relations</strong>
+                                </a>
+    
+                                {% set friend = target.relation(user) %}
+    
+                                <div class="buttons">
+                                    {% if friend is not null %}
+                                        {% if friend.isFriend %}
+                                            Vous avez accepté
+                                        {% else %}
+                                            <a href="{{ path('relation_accept') }}?id={{ friend.id }}" class="js-loadmore js-infinite js-load-inner accept-button" data-target="#notification-{{ notification.id }} .buttons">
+                                                Accepter
+                                            </a>
+                                            <a href="{{ path('relation_reject') }}?id={{ friend.id }}" class="js-loadmore js-infinite js-load-inner js-load-replace" data-target="#notification-{{ notification.id }} .buttons">
+                                                Refuser
+                                            </a>
+                                        {% endif %}
+                                    {% else %}
+                                        Vous avez refusé
+                                    {% endif %}
+                                </div>
+    
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeRelationAccept and actor %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+    
+                                    a accepté votre demande de mise en relation
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeJoinRequest %}
+                            <div class="event-subtitle">
+                                {% if actor is not null %}
+                                    <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                        <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+                                        souhaite rejoindre votre groupe <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong>
+                                    </a>
+                                {% else %}
+                                    <strong>Quelqu'un</strong>
+                                        souhaite rejoindre votre groupe <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong>
+                                {% endif %}
+                                {% set userInGroup = actor.isInGroup(target, 0) %}
+                                <div class="buttons">
+                                    {% if userInGroup %}
+                                        {% if userInGroup.isUser %}
+                                            Vous avez accepté
+                                        {% else %}
+                                            <a href="{{ path('group_action_manage_request', {
+                                                'action': constant(cont~'ACTION_ACCEPT'),
+                                                'member_id': actor.id,
+                                                'group_id': target.id
+                                            }) }}" class="js-loadmore js-infinite js-load-inner accept-button" data-target="#notification-{{ notification.id }} .buttons">Accepter</a>
+    
+                                            <a href="{{ path('group_action_manage_request', {
+                                                'action': constant(cont~'ACTION_REJECT'),
+                                                'member_id': actor.id,
+                                                'group_id': target.id
+                                            }) }}" class="js-loadmore js-infinite js-load-inner" data-target="#notification-{{ notification.id }} .buttons">Refuser</a>
+                                        {% endif %}
+                                    {% else %}
+                                        Vous avez refusé
+                                    {% endif %}
+                                </div>
+    
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeJoinInvite and target %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+                                    vous invite {{ notification.targetType == "blog" ? "à venir découvrir son blog" : "à rejoindre le groupe" }} <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong>
+                                </a>
+                                <div class="buttons">
+                                    {% if notification.targetType == "group" %}
+                                        {% set userInGroup = user.isInGroup(target, 0) %}
+                                        {% if userInGroup %}
+                                            {% if userInGroup.isUser %}
+                                                Vous avez accepté
+                                            {% else %}
+                                                <a href="{{ path('group_action_request', {'id': target.id, 'mode': 'accept', 'style':'simple'}) }}" class="js-loadmore js-infinite js-load-inner accept-button" data-target="#notification-{{ notification.id }} .buttons">Accepter</a>
+                                                <a href="{{ path('group_action_request', {'id': target.id, 'mode': 'cancel'}) }}" class="js-loadmore js-infinite js-load-inner" data-target="#notification-{{ notification.id }} .buttons">Refuser</a>
+                                            {% endif %}
+                                        {% else %}
+                                            Vous avez refusé
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+    
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeJoinUserAccept %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+    
+                                    a rejoint le groupe <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong> suite à votre invitation
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeJoinGroupAccept %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    {% if user.isInvited == true %}
+                                        Vous faites partie du groupe <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong> en tant qu'intervenant
+                                    {% else %}
+                                        <strong>{{ actor.firstname }} {{ actor.lastname }}</strong> vous a ajouté au groupe <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong> suite à votre demande
+                                    {% endif %}
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeSharePublication %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+    
+                                    a partagé votre publication <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong>
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeShareResource %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+                                    a partagé votre ressource <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong>
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeEventInvitation %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+                                    vous invite à l'évènement <strong>{{ target.title }}</strong>
+                                </a>
+    
+                                {% set userInEvent = user.isInEvent(target) %}
+    
+                                <div class="buttons">
+                                    {% if userInEvent %}
+                                        {% if userInEvent.isInvited == 1 %}
+                                            <a href="{{ path('ajax_event_rsvp', {'id': target.id, 'answer': 'accept', 'style': 'notification'}) }}" class="js-loadmore js-infinite js-load-inner accept-button" data-target="#notification-{{ notification.id }} .buttons">Accepter</a>
+                                            <a href="{{ path('ajax_event_rsvp', {'id': target.id, 'answer': 'reject', 'style': 'notification'}) }}" class="js-loadmore js-infinite js-load-inner" data-target="#notification-{{ notification.id }} .buttons">Refuser</a>
+                                        {% elseif userInEvent.hasAccepted %}
+                                            Vous avez accepté
+                                        {% elseif userInEvent.hasRejected %}
+                                            Vous avez refusé
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+    
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeAnswer %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+                                    a répondu à votre question <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong>
+                                </a>
+    
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeCoAuthor %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+                                    vous a invité à co créer le ressource <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong>
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isTypeEditPublication %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    <strong>{{ actor.firstname }} {{ actor.lastname }}</strong>
+                                    a édité votre ressource <strong>{{ target.name|length > 20 ? target.name|slice(0, 17) ~ '...' : target.name }}</strong>
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% elseif notification.isFree %}
+                            <div class="event-subtitle">
+                                <a href="{{ path('menu_notification_view', {'id': notification.id}) }}">
+                                    {{ notification.content }}
+                                </a>
+                                <a href="{{ path('delete_notification', {'id': notification.id}) }}" class="close">x</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </li>
+			{% endif %}                
+        {% endfor %}
+    {% else %}
+        <li>Vous n'avez aucune notification.</li>
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

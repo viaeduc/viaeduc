@@ -1,0 +1,132 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+<div class="sub-middle">
+    {% for post in posts %}
+    {% spaceless %}
+        {{ (loop.first) ? ('<div class="sub-middle-left"><h3 class="menu-title blue">' ~ "menuMiddle.resources"|trans({}, 'rpe') ~ '</h3><ul class="white-item-list">')|raw }}
+
+        <li class="white-item">
+            <div class="agenda-date">
+                {{ macros.show_post_media(post, 'default', 54, '') }}
+            </div>
+            <div class="text">
+                <a href="{{ path('publication', {'id': post.id}) }}" class="event-title">
+                    {{ post.name|truncate(45, true) }}
+                </a>
+                <div class="event-subtitle">
+                    <small>
+                        {{ 'par %name% - le %date%'|trans({
+                            '%name%': (post.author.firstname ~ ' ' ~ post.author.lastname|initials)|e,
+                            '%date%': post.updateDate|date("d/m/Y")|e,
+                            '%hour%': post.updateDate|date("H\\hi")|e
+                        }, 'rpe')|raw }}
+                    </small>
+                </div>
+            </div>
+        </li>
+
+        {# {{ ((loop.index % 3) == 0) ? '</ul></div><div class="sub-middle-right"><ul class="white-item-list">' }} #}
+
+        {{ (loop.last) ? '</ul></div>' }}
+    {% endspaceless %}
+    {% endfor %}
+
+    {% for question in questions %}
+    {% spaceless %}
+        {{ (loop.first) ? ('<div class="sub-middle-right"><h3 class="menu-title blue">' ~ "menuMiddle.questions"|trans({}, 'rpe') ~ '</h3><ul class="white-item-list">')|raw }}
+
+        <li class="white-item">
+            <div class="question">
+                {{ question.name }}
+            </div>
+            <div class="question-right">
+                <a class="answer-btn" href="{{ path('question', {'id': question.id}) }}">
+                    {# <img src="{{ asset('bundles/rpepum/images/answer.png') }}" class="answer-image" /> #}
+                    <span class="answer-text"><span class="answer-number">{{ question.answers.count }}</span> {{ "menuMiddle.answer"|trans({}, 'rpe') }}</span>
+                </a>
+            </div>
+        </li>
+
+        {{ (loop.last) ? '</ul></div>' }}
+    {% endspaceless %}
+    {% endfor %}
+
+{#     <div class="sub-middle-left">
+        <h3 class="menu-title blue">{{ "menuMiddle.events"|trans({}, 'rpe') }}</h3>
+        <ul class="white-item-list">
+            <li class="white-item">
+                <div class="agenda-date">
+                    <div class="date-number">12</div><!--
+                    --><div class="date-month">Nov</div>
+                </div>
+                <div class="text">
+                    <a href="#" class="event-title">Mise en commun de la doc Histoire Géographie</a>
+                    <div class="event-subtitle">à Marne la vallée</div>
+                </div>
+            </li>
+            <li class="white-item">
+                <div class="agenda-date">
+                    <div class="date-number">12</div><!--
+                    --><div class="date-month">Nov</div>
+                </div>
+                <div class="text">
+                    <a href="#" class="event-title">Meeting des profs de maths</a>
+                    <div class="event-subtitle">à Évian</div>
+                </div>
+            </li>
+            <li class="white-item">
+                <div class="agenda-date">
+                    <div class="date-number">12</div><!--
+                    --><div class="date-month">Nov</div>
+                </div>
+                <div class="text">
+                    <a href="#" class="event-title">Meeting des profs de maths</a>
+                    <div class="event-subtitle">Meeting des profs de maths</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="sub-middle-right">
+        <h3 class="menu-title blue">{{ "menuMiddle.questions"|trans({}, 'rpe') }} </h3>
+        <ul class="white-item-list">
+            <li class="white-item">
+                <div class="question">
+                    Combien de temps exclure un élève violent en classe élémentaire ?
+                </div>
+                <div class="question-right">
+                    <a class="answer-btn" href="#">
+                        <img src="{{ asset('bundles/rpepum/images/answer.png') }}" class="answer-image">
+                        <span class="answer-text"><span class="answer-number">8</span> {{ "menuMiddle.answer"|trans({}, 'rpe') }}</span>
+                    </a>
+                </div>
+            </li>
+            <li class="white-item">
+                <div class="question">
+                    À partir de quel âge considère-t-on qu'un enfant est "illettré" ?
+                </div>
+                <div class="question-right">
+                    <a class="answer-btn" href="#">
+                        <img src="{{ asset('bundles/rpepum/images/answer.png') }}" class="answer-image">
+                        <span class="answer-text"><span class="answer-number">18</span> {{ "menuMiddle.answer"|trans({}, 'rpe') }}</span>
+                    </a>
+                </div>
+            </li>
+            <li class="white-item">
+                <div class="question">
+                    Mais ou et donc or ni car ?
+                </div>
+                <div class="question-right">
+                    <a class="answer-btn" href="#">
+                        <img src="{{ asset('bundles/rpepum/images/answer.png') }}" class="answer-image">
+                        <span class="answer-text"><span class="answer-number">8</span> {{ "menuMiddle.answer"|trans({}, 'rpe') }}</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div> #}
+</div>
+{% endspaceless %}
+{% endblock main_content %}

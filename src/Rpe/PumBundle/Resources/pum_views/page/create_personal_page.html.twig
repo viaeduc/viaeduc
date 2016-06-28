@@ -1,0 +1,97 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/create-personal-page.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.create-groupe.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+	{% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+		{% block this_page %}
+	    	{{ "personalCreate.title"|trans({}, 'rpe') }}
+	    {% endblock %}
+	{% endembed %}
+{% endblock %}
+
+
+{% block sidebar %}
+    {% include 'pum://includes/common/componants/tips/tip-create-personal-page.html.twig' %}
+{% endblock %}
+
+{% block main_content %}
+    <h4 class="title">{{ "personalCreate.sub_title"|trans({}, 'rpe') }}</h4>
+    <form>
+        <div class="form-first">
+            <ul class="form-wrapper">
+                <li>
+                    <div class="form-left">
+                        <label for="group-name">{{ "personalCreate.page_title"|trans({}, 'rpe') }}</label>
+                    </div><!--
+                    --><div class="form-right">
+                        <span class="text-box">
+                            <input type="text" name="group-name" placeholder="">
+                        </span>
+                    </div>
+                </li>
+                <li class="textarea">
+                    <div class="form-left">
+                        <label for="message">{{ "personalCreate.page_desc"|trans({}, 'rpe') }}</label>
+                    </div>
+                    <div class="form-right">
+                        <textarea cols="72" rows="12" name="message"></textarea>
+                    </div>
+                </li>
+                <li class="textarea">
+                    <div class="form-left">
+                        <label for="message">Visible par :</label>
+                    </div>
+                    <div class="form-right">
+                        <span class="select-box first-select">
+                            <select class="required" name="selectInput">
+                                <option selected="" value="default">Selectionner un element</option>
+                                <option value="mustard">Mustard</option>
+                                <option value="ketchup">Ketchup</option>
+                                <option value="relish">Relish</option>
+                            </select>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="form-wrapper">
+                <li>
+                    <div class="form-left">
+                        <label for="access">Cette page sera visible par :</label>
+                    </div><!--
+                    --><div class="form-right">
+                        <span class="radio-buttons">
+                            <input name="access" type="radio" value="radio-one" id="radio-one"/>
+                            <label for="radio-one">Moi uniquement</label>
+                        </span>
+                        <span class="radio-buttons">
+                            <input name="access" type="radio" value="radio-two" id="radio-two"/>
+                            <label for="radio-two">Tout le monde</label>
+                        </span>
+                        <span class="radio-buttons">
+                            <input name="access" type="radio" value="radio-three" id="radio-three"/>
+                            <label for="radio-three">Mes relations</label>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="submit">
+                <li>
+                    <input type="submit" value="Creer ma page" id="" name="confirm" class="action-btn orange">
+                </li>
+            </ul>
+
+        </div>
+    </form>
+{% endblock %}
+{% endspaceless %}

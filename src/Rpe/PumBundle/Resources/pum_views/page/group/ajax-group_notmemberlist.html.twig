@@ -1,0 +1,23 @@
+{% extends "pum://empty_layout.html.twig" %}
+{% block main_content %}
+    {% if users|length == 0 %}
+        <span class="invite-external-confirm top">{{ "groupPage.invit_members.nouserfound"|trans({}, 'rpe') }}</span>
+    {% endif %}
+	<ul class="invite-friend-list js-autoload">
+        {% for user in users %}
+            <li class="invite-friend-wrapper">
+                <!-- oublie pas, l'id et le for du label doivent être pareil :) -->
+                <label for="user_in_group_{{user.id }}" class="invite-friend-label">
+                    <div class="invite-friend-inner-wrapper">
+                        {{ macros.show_image_url(user.avatar_id, 120, 'invite-friend-image') }}
+                        <div class="invite-friend-name-wrapper">
+                            <span class="invite-friend-surname">{{ user.firstname }}</span>
+                            <span class="invite-friend-name">{{ user.lastname }}</span>
+                        </div>
+                    </div>
+                    <input name="user_in_group[]" type="checkbox" value="{{ user.id }}" id="user_in_group_{{ user.id }}" class="invite-friend-checkbox">
+                </label>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock main_content %}

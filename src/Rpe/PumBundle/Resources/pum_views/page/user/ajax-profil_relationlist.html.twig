@@ -1,0 +1,23 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="modal-label-relations">Relations de {{ profil.fullname }}</h4>
+	</div>
+	<div class="modal-body">
+		{% set userRelations = pum_repository('user').acceptedFriendsActive(profil, true, true, null, null, 'id, firstname, lastname, avatar_id, avatar_mime, cover_id') %}
+		{% for friend in userRelations %}
+	        <a href="{{ path('profil', {'id' : hashEncode(friend.id)}) }}">
+	            {{ macros.show_user_avatar_url(friend, 'avatar', 90) }}
+	            <div class="profil-name">
+	                <span>{{ friend.firstname }}</span>
+	                <span class="last-name">{{ friend.lastname }}</span>
+	            </div>
+	        </a>
+		{% endfor %}
+	</div>
+	<div class="modal-footer">
+		<a role="button" data-dismiss="modal" class="action-btn light-blue">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+	</div>
+{% endblock main_content %}

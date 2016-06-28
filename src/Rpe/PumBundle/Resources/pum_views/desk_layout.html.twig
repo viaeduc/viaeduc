@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ page_title|default()|trans({}, 'rpe') ~ ((page_title is defined and page_title is not empty) ? ' - ') ~ site_title|default('Viaeduc')|trans({}, 'rpe') }}</title>
+
+        {% block meta %}
+            <meta charset="utf-8" />
+            <meta name="description" content="" />
+            <meta name="keywords" content="" />
+            <meta name="author" content="" />
+            <meta property="og:title" content="Viaeduc" />
+            <meta property="og:type" content="html" />
+            <meta property="og:description" content="Réseau professionnel des enseignants" />
+            <meta property="og:image" content="{{ asset('bundles/rpepum/images/logo-background.png') }}" />
+        {% endblock %}
+
+        <link rel="icon" href="{{ asset('bundles/rpepum/images/favicon.ico') }}" />
+
+        <!-- VideoJS -->
+        <link href="//vjs.zencdn.net/4.4/video-js.css" rel="stylesheet" />
+        <script src="//vjs.zencdn.net/4.4/video.js"></script>
+        <link href="{{ asset('bundles/rpepum/css/common.css') }}" media="all" rel="stylesheet" type="text/css" />
+
+        {% block stylesheets '' %}
+
+        <script>
+            sliderTimeout = {{ pum_var('slider_timeout', 5000) }};
+            _xbadgr_options = {
+                'badgeRequestUrl': '{{ path('ajax_counter') }}'
+            };
+        </script>
+
+
+        <!--[if !IE]><!-->
+           {% javascripts combine=true output="js/rpe.bundle.js" filter="?yui_js"
+               "bundles/rpepum/js/external/jquery-2.0.3.js"
+               "bundles/rpepum/js/external/modernizr-2.6.2.js"
+               "bundles/rpepum/js/external/bootstrap.js"
+               "bundles/rpepum/js/external/hogan-2.0.0.js"
+               "bundles/rpepum/js/external/typeahead.bundle.js"
+               "bundles/rpepum/js/external/tagmanager.js"
+               "bundles/rpepum/js/external/bootstrap-select.js"
+               "bundles/rpepum/js/external/bootstrap-datetimepicker.js"
+               "bundles/rpepum/js/external/locales/bootstrap-datetimepicker.fr.js"
+               "bundles/rpepum/js/external/bootstrap-fileupload.js"
+               "bundles/rpepum/js/external/handlebars.js"
+               "bundles/rpepum/js/external/jquery.form-validator.js"
+               "bundles/rpepum/js/external/security.js"
+               "bundles/rpepum/js/external/masonry.js"
+               "bundles/rpepum/js/external/imagesloaded.js"
+               "bundles/rpepum/js/external/AnimOnScrollCustom.js"
+               "bundles/rpepum/js/external/cookie.js"
+               "bundles/rpepum/js/external/jquery.Jcrop.min.js"
+               "bundles/rpepum/js/external/timeago.js"
+               "bundles/rpepum/js/external/idangerous.swiper.js"
+               "bundles/rpepum/js/external/idangerous.swiper.scrollbar-2.3.js"
+               "bundles/rpepum/js/external/autosize.min.js"
+               "bundles/rpepum/js/external/owl.carousel.js"
+               "bundles/rpepum/js/external/crossbadger.js"
+
+               "bundles/rpepum/js/rpe.loadmore.js"
+               "bundles/rpepum/js/rpe.menu.js"
+               "bundles/rpepum/js/rpe.search.js"
+               "bundles/rpepum/js/rpe.common.js"
+               "bundles/rpepum/js/rpe.upload.js"
+               "source/js/html.js"
+               "bundles/rpepum/js/rpe.tutorial.js"
+           %}
+            {#
+
+            #}
+            <script type="text/javascript" src="{{ asset(asset_url) }}"></script>
+            {% endjavascripts %}
+
+            {# <!-- debug --> #}
+            {# <script src="http://192.168.2.8:8080/target/target-script-min.js#anonymous"></script> #}
+        <!--<![endif]-->
+
+        <!-- IF IE9 + -->
+        {{ "<!--[if gt IE 8]>" }}
+            {% javascripts combine=true output="js/rpe.ie9.bundle.js" filter="?yui_js"
+                "bundles/rpepum/js/external/jquery-2.0.3.js"
+                "bundles/rpepum/js/external/modernizr-2.6.2.js"
+                "bundles/rpepum/js/external/bootstrap.js"
+                "bundles/rpepum/js/external/hogan-2.0.0.js"
+                "bundles/rpepum/js/external/typeahead.bundle.js"
+                "bundles/rpepum/js/external/tagmanager.js"
+                "bundles/rpepum/js/external/bootstrap-select.js"
+                "bundles/rpepum/js/external/bootstrap-datepicker.js"
+                "bundles/rpepum/js/external/bootstrap-datetimepicker.js"
+                "bundles/rpepum/js/external/locales/bootstrap-datetimepicker.fr.js"
+                "bundles/rpepum/js/external/bootstrap-fileupload.js"
+                "bundles/rpepum/js/external/jquery.form-validator.js"
+                "bundles/rpepum/js/external/security.js"
+                "bundles/rpepum/js/external/masonry.js"
+                "bundles/rpepum/js/external/imagesloaded.js"
+                "bundles/rpepum/js/external/AnimOnScrollCustom.js"
+                "bundles/rpepum/js/external/cookie.js"
+                "bundles/rpepum/js/external/jquery.Jcrop.min.js"
+                "bundles/rpepum/js/external/timeago.js"
+                "bundles/rpepum/js/external/idangerous.swiper.js"
+                "bundles/rpepum/js/external/idangerous.swiper.scrollbar-2.3.js"
+                "bundles/rpepum/js/external/autosize.min.js"
+                "bundles/rpepum/js/external/owl.carousel.js"
+                "bundles/rpepum/js/external/crossbadger.js"
+
+                "bundles/rpepum/js/external/jquery.ui.widget.js"
+                "bundles/rpepum/js/external/tmpl.js"
+                "bundles/rpepum/js/external/load-image.all.min.js"
+                "bundles/rpepum/js/external/jquery.blueimp-gallery.min.js"
+                "bundles/rpepum/js/external/jquery.iframe-transport.js"
+                "bundles/rpepum/js/external/jquery.fileupload.js"
+                "bundles/rpepum/js/external/jquery.fileupload-process.js"
+                "bundles/rpepum/js/external/jquery.fileupload-validate.js"
+                "bundles/rpepum/js/external/jquery.fileupload-ui.js"
+
+                "bundles/rpepum/js/rpe.loadmore.js"
+                "bundles/rpepum/js/rpe.menu.js"
+                "bundles/rpepum/js/rpe.search.js"
+                "bundles/rpepum/js/rpe.common.js"
+                "bundles/rpepum/js/rpe.upload.js"
+                "source/js/html.js"
+            %}
+            <script type="text/javascript" src="{{ asset(asset_url) }}"></script>
+            {% endjavascripts %}
+        {{ "<![endif]-->" }}
+
+        {% block header_javascript '' %}
+
+        {% include 'pum://includes/common/analytics.html.twig' %}
+
+        {% if pum_var('activate_chat', false) and (user is not null) and ('les-argonautes' in user.emailPro)  %}
+            {% include 'pum://includes/common/componants/conversejs.html.twig' %}
+        {% endif %}
+    </head>
+
+    <body>
+        {% include 'pum://includes/common/analytics.html.twig' with {'container': 'body'} %}
+
+        {% if global_wrapper_class is defined %}
+            {% set wrapper_class = global_wrapper_class %}
+        {% else %}
+            {% set wrapper_class = null %}
+        {% endif %}
+
+        <div class="global-wrapper {{ wrapper_class }}">
+            {% block header '' %}
+            {% block content '' %}
+            {% block sub_footer '' %}
+            {% block footer '' %}
+            {% block modals '' %}
+            {% block tutorial '' %}
+        </div>
+
+        {% block body_javascript '' %}
+    </body>
+</html>

@@ -1,0 +1,11 @@
+{% if facet is defined %}
+    {% for row in facet.rows %}
+        {% include "pum://page/search/facets/name/type/term.html.twig" with 
+            {
+                '_label' : row.term,
+                '_value' : row.term,
+                '_count' : row.count 
+            }
+       %}
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,1063 @@
+
+// --------
+// Main nav
+// --------
+.main-nav {
+    display       : inline-block;
+    height        : $header-height;
+    vertical-align: top;
+    text-align    : left;
+    line-height   : $header-height;
+    width         : $nav-width;
+
+    @media screen and (max-width: 1024px) {
+        width         : 54%;
+    }
+}
+    .mp-back{
+        display: none;
+    }
+    .menu-list {
+        display        : table;
+        margin         : 0;
+        padding        : 0;
+        width          : 80%;
+        height         : inherit;
+        list-style-type: none;
+        margin         : 0 10%;
+
+        @media screen and (max-width: 1024px) {
+            width         : 100%;
+        }
+    }
+        // --------------------
+        // Nav first level item
+        // --------------------
+        .menu-item {
+            @include fontSize(16);
+            display    : table-cell;
+            // cursor     : pointer;
+            text-align : center;
+
+
+            & > a {
+                @include transition(all 0.3s ease-out);
+                @include fontSize(16);
+                position       : relative;
+                color          : $lighter-grey-font;
+                vertical-align : baseline;
+                text-decoration: none;
+                text-transform : uppercase;
+                font-family    : $UbuntuCondensed;
+                font-weight    : bold;
+                font-weight    : 400;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: none;
+                }
+
+                &:after { // Underline effect on :hover
+                    @include transition(all 0.2s ease-out);
+                    position        : absolute;
+                    top             : 120%;
+                    left            : 50%;
+                    width           : 0%;
+                    height          : 1px;
+                    background-color: $background-white;
+                    content         : '';
+                }
+            }
+
+            a.current {
+                color : $white-font;
+
+                &:after { // Underline effect on :hover
+                    @include transition(all 0.2s ease-out);
+                    position        : absolute;
+                    top             : 120%;
+                    left            : 0%;
+                    width           : 100%;
+                    height          : 1px;
+                    background-color: $background-white;
+                    content         : '';
+                }
+            }
+
+            a.active {
+                color : $white-font;
+
+                // &:after {
+                //     content         : '';
+                //     position        : absolute;
+                //     bottom          : 0%;
+                //     left            : 50%;
+                //     margin-left     : -7.5px;
+                //     width           : 0;
+                //     height          : 0;
+                //     border-style    : solid;
+                //     border-width    : 0 7.5px 10px 7.5px;
+                //     border-color    : transparent transparent #e6e6e6 transparent;
+                // }
+            }
+
+            &:hover > a {
+                // @include transition(all 0.3s ease-out);
+                color: $white-font;
+
+                // &:after {
+                //     @include transition(all 0.2s ease-out);
+                //     left   : 0;
+                //     width  : 100%;
+                //     content: '';
+                // }
+            }
+        }
+
+// -------
+// Submenu
+// -------
+.sub-menu{
+    @include transition( height 0.2s ease-out 0.2s, opacity 0.2s ease-out );
+    @include opacity( 0 );
+    @include filter-gradient(#ffffff, #e6e6e6, horizontal);
+    $experimental-support-for-svg: true;
+    @include background-image(linear-gradient(left,  #ffffff 0%,#ffffff 25%,#e6e6e6 25%,#e6e6e6 25%,#e6e6e6 100%));
+    position  : absolute;
+    left      : 0;
+    z-index   : 100;
+    display   : block;
+    overflow  : hidden;
+    margin    : auto;
+    width     : 100%;
+    height    : 0;
+    cursor    : default;
+
+    &.active{
+        @include transition( opacity 0.3s ease-out , height 0.2s ease-out);
+        @include opacity( 1 );
+        z-index: 200;
+    }
+}
+
+    .sub-menu-wrapper{
+        position      : absolute;
+        top           : 0;
+        right         : 0;
+        left          : 0;
+        z-index       : -1;
+        display       : block;
+        overflow      : hidden;
+        margin        : auto;
+        max-width     : $max-width;
+        width         : 100%;
+        height        : inherit;
+        vertical-align: top;
+        text-align    : left;
+    }
+
+        // Submenu 3 blocks
+        .sub-left,
+        .sub-middle,
+        .sub-right {
+            @include fontSize(14);
+            position      : relative;
+            display       : inline-block;
+            box-sizing    : border-box;
+            padding       : 25px;
+            height        : 100%;
+            vertical-align: top;
+        }
+
+        // Special stying for right side
+        .sub-middle {
+            padding : 25px 0 25px 25px;
+        }
+
+            // Mega Menu Titles
+            .menu-title {
+                @include fontSize(30);
+                position   : relative;
+                display    : block;
+                margin     : 0;
+                height     : 40px;
+                background : none;
+                color      : $dark-blue-font;
+                font-family: $MissionScript;
+                line-height: 40px;
+
+                &.blue { color: $light-blue-font; }
+                &.white { color: $white-font; }
+            }
+
+
+// -------------------------
+// Submenu left (Navigation)
+// -------------------------
+.sub-left{
+    padding-right: 0;
+    width        : 25%;
+
+    & > ul {
+        margin         : 0;
+        padding        : 0;
+        list-style     : none;
+        list-style-type: none;
+
+        // & > li {
+        //     border-bottom: 1px solid $light-grey-1;
+
+        //     &:last-of-type{
+        //         border: none;
+        //     }
+        // }
+    }
+}
+
+        // -----------------------------------------------------
+        // Submenu middle (Suggestions, Favorites, Profile, ...)
+        // -----------------------------------------------------
+        .sub-middle {
+            width    : 75%;
+        }
+            // Submenu middle head (title + link => Groups / Apps / Relations)
+            .sub-middle-head{
+                height     : 40px;
+                line-height: 40px;
+
+                & > .menu-title {
+                    display       : inline-block;
+                    width         : 58.532423208191%;
+                    vertical-align: top;
+                }
+
+                & > .see-more {
+                    @include fontSize(12);
+                    position      : relative;
+                    display       : inline-block;
+                    margin        : 0;
+                    width         : 41.467576791809%;
+                    height        : auto;
+                    color         : $dark-grey-font;
+                    vertical-align: baseline;
+                    text-align    : right;
+                    text-transform: uppercase;
+                    line-height   : 4;
+
+                    &:before {
+                        position    : relative;
+                        margin-right: 5px;
+                        width       : auto;
+                        height      : 40px;
+                        content     :'>';
+                    }
+                }
+            }
+
+                .picture {
+                    position      : relative;
+                    display       : inline-block;
+                    width         : 116/281*100%;
+                    height        : 116/281*100%;
+                    line-height   : 1.2;
+                    vertical-align: top;
+
+                    & > img {
+                        position      : relative;
+                        max-width     : 100%;
+                        max-height    : 100%;
+                        width         : 100%;
+                        height        : 100%;
+                        vertical-align: top;
+                    }
+                }
+
+                .surname,
+                .firstname { font-weight: bold;
+                    &:before {
+                        color    : $orange-1;
+                        font-size: 1.1em;
+                    }
+                }
+                .app-infos{
+                    position   : relative;
+                    display    : inline-block;
+                    width      : 50%;
+                    line-height: 1.2;
+                }
+                .app-name,
+                .app-publisher{
+                    position      : relative;
+                    display       : block;
+                    color         : $dark-blue-font;
+                    vertical-align: top;
+                    line-height   : 1.2;
+                }
+                .app-name{
+                    @include fontSize(12);
+                    text-transform: none;
+                    font-weight   : bold;
+                }
+                .app-publisher{
+                    @include fontSize(11);
+                    & > .name{ font-weight: bold; }
+                }
+                .group-name {
+                    @include fontSize(12);
+                    display       : block;
+                    color         : $dark-blue-font;
+                    text-transform: none;
+                    font-weight   : bold;
+                    line-height   :1.2em;
+                }
+                .group-resources,
+                .group-members{
+                    @include fontSize(11);
+                    display       : inline-block;
+                    width         : auto;
+                    color         : $dark-blue-font;
+                    vertical-align: top;
+                    line-height   :1.2em;
+
+                    & .blue {
+                        color      : $dark-grey-font;
+                        font-weight: bold;
+                    }
+
+                }
+                .group-members{
+                    display: block;
+                    margin: 0 5px 0 0;
+                }
+
+            // Submenu middle divided in two blocs side by side
+            .sub-middle-left,
+            .sub-middle-right {
+                @include fontSize(16);
+                display       : inline-block;
+                padding       : 0;
+                width         : 50%;
+                height        : 100%;
+                vertical-align: top;
+                text-align    : left;
+            }
+            .sub-middle-right {
+                padding: 0 0 0 2.047781569966%;
+
+                &.alt { padding: 0; }
+            }
+
+            .sub-middle-left {
+                padding: 0 2.047781569966% 0 0;
+
+                &.last {
+                    padding : 0;
+                }
+
+                &.alt {
+                    padding: 2.047781569966%;
+                    width: 100%; // Temporaire en attendant qu on remette en place les pourcentages de remplissage de compte
+                }
+
+                & .photo {
+                    display       : inline-block;
+                    margin        : 0 10px 0 0 ;
+                    width         : (80 / 293) * 100%;
+                    width         : 33.985765124555%;
+                    vertical-align: top;
+
+                    & > img {
+                        position      : relative;
+                        height        : 100%;
+                        vertical-align: top;
+                    }
+                }
+
+                & .contact {
+                    position      : relative;
+                    display       : inline-block;
+                    width         : 185 / 293 * 100%;
+                    vertical-align: top;
+                    text-align    : left;
+
+                    & > span {
+                        display    : block;
+                        color      : $dark-blue-1;
+                        font-family: $UbuntuCondensed;
+                        line-height: 1.2;
+                    }
+
+                    & .firstname,
+                    & .lastname { @include fontSize(24); }
+                    & .lastname { font-weight: bold }
+
+                    & .age,
+                    & .job,
+                    & .ville { @include fontSize(12); }
+
+                    & hr{
+                        margin    : 2px 0;
+                        border-top: 1px solid $dark-blue-1;
+                    }
+                }
+            }
+
+            // Profile bloc
+            .sub-profile-bloc{
+                position        : relative ;
+                display         : block;
+                margin          : 0;
+                height          : 100%;
+                background-color: $white;
+            }
+                .advice-slider {
+                    position: relative;
+                    padding : 20px 30px;
+                    width   : 100%;
+                    height  : 95 / 215 * 100%;
+
+                    span {
+                        position      : relative;
+                        display       : block;
+                        margin-bottom : 15px;
+                        text-transform: uppercase;
+                        font-size     : 0.9em;
+                        font-family   : $UbuntuCondensed;
+                        line-height   : 1.2;
+                    }
+                }
+                .advice-links {
+                    padding         : 2.047781569966% 6.143344709898%;
+                    background-color: $background-grey-3;
+                    height          : 55.813953488372%;
+                }
+            .links-to-profile {
+                @include fontSize(14);
+                position      : relative;
+                display       : block;
+                color         : $light-blue-font;
+                text-transform: uppercase;
+                font-family   : $UbuntuCondensed;
+                line-height   : 45px;
+                border-bottom : 1px solid $light-grey-1;
+
+                &:last-of-type {
+                    border-bottom: none;
+                }
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+                & span:before {
+                    color          : $light-grey-font;
+                    text-decoration: none;
+                    vertical-align : baseline;
+                }
+                &:hover span:before {
+                    text-decoration: none;
+                }
+            }
+
+// ------------------
+// Submenu right bloc
+// ------------------
+.sub-right {
+    @include fontSize(14);
+    background: $dark-blue-1;
+    width     : 0px;
+    display   : none;
+
+    a {
+        position   : reltive;
+        display    : block;
+        color      : white;
+        font-family: $UbuntuCondensed;
+        line-height: 1.2;
+        img {
+            max-width: 100%;
+        }
+        span{
+            position: absolute;
+            right   : 7%;
+            bottom  : 15px;
+        }
+        &:hover span{
+            text-decoration: underline;
+        }
+    }
+}
+
+
+
+// --------------------
+// Submenu Close button
+// --------------------
+.close-submenu {
+    @include transition( all 0.2s ease-out );
+    @include fontSize( 0 );
+    position      : absolute;
+    top           : 2%;
+    right         : 2%;
+    display       : block;
+    padding-right : 10px;
+    min-height    : 20px;
+    width         : auto;
+    height        : 20px;
+    text-align    : right;
+    text-transform: none;
+    line-height   : 21px;
+    cursor        : pointer;
+
+    &:after {
+        @include transition( all 0.2s ease-out );
+        @include fontSize( 16 );
+        position   : absolute;
+        top        : 0;
+        right      : -10px;
+        display    : block;
+        width      : auto;
+        height     : auto;
+        content    : 'x';
+        font-family: $Verdana;
+        line-height: 1.2;
+    }
+
+    &:hover {
+        @include transition( all 0.2s ease-out );
+        @include fontSize( 14 );
+        width: 100%;
+    }
+}
+
+
+
+
+.white-item-list { /*ul*/
+    position   : relative;
+    display    : block;
+    margin     : 0;
+    padding    : 0;
+    line-height: 1.2;
+}
+.white-item { /*li*/
+    @include fontSize(12);
+    position        : relative;
+    display         : block;
+    margin-bottom   : 5px;
+    width           : 100%;
+    height          : 56px;
+    background-color: white;
+    overflow        : hidden;
+    font-family     : $Verdana;
+
+    & > * {
+        @include fontSize(12);
+        display       : inline-block;
+        vertical-align: top;
+        position      : relative;
+        height        : 100%;
+    }
+
+    & > a {
+        width: 100%;
+    }
+    & > .answer-btn {
+        padding-top    : 12%;
+        width          : 23%;
+        height         : 100%;
+        border-left    : 1px solid $light-grey-1;
+        background     : url("../images/answer.png") no-repeat center 30%;
+        color          : $white-font !important;
+        text-align     : center;
+        text-transform : lowercase;
+    }
+    &  .text{
+        padding    : .6em;
+        width      : 76.8%;
+        width      : 75%;
+        color      : $dark-blue-font;
+        line-height: 1.2;
+        display    : inline-block;
+    }
+    &  .question {
+        padding    : .6em;
+        width      : 76.7%;
+        color      : $dark-blue-font;
+        text-align : left;
+        line-height: 40px;
+        margin     : 0;
+    }
+    &  .avatar {
+        margin        : 0;
+        width         : $white-list-item-width;
+        height        : $white-list-item-height;
+        text-align    : left;
+        line-height   : 1.2;
+        display       : inline-block;
+        vertical-align: top;
+
+        img {
+            margin        : auto;
+            max-width     : 100%;
+            width         : 100%;
+            vertical-align: middle;
+        }
+    }
+
+    & .date{
+        @include fontSize(10);
+        color      : #848484;
+        line-height: 1.6;
+    }
+    & .event-title {
+        @include fontSize(12);
+        font-family: $Verdana;
+        color      : $dark-blue-1;
+        font-weight: bold;
+        line-height: 1.2;
+    }
+    & .event-subtitle {
+        @include fontSize(12);
+        color      : $light-grey-2;
+        line-height: 1.2;
+    }
+}
+.white-item-list-col { /*ul*/
+    @extend .white-item-list;
+
+    .white-item {
+        @include fontSize(12);
+        position        : relative;
+        display         : block;
+        margin-bottom   : 5px;
+        height          : 56px;
+        background-color: white;
+        overflow        : hidden;
+        font-family     : $Verdana;
+        line-height     : 56px;
+        display         : inline-block;
+        position        : relative;
+        vertical-align  : top;
+        width           : 281/586*100%;
+
+        &:nth-child(n){
+            margin: 0 2.047781569966% 5px 0;
+        }
+        &:nth-child(2n){
+            margin: 0 0 5px 2.047781569966%;
+        }
+
+        &.full {
+            width  : 100%;
+            margin : 0 0 10px 0;
+
+            &:last-of-type {
+                margin : 0;
+            }
+        }
+
+        .text {
+            width         : 55%;
+            vertical-align: middle;
+        }
+    }
+}
+
+.group-name {
+    @include fontSize(12);
+    display       : block;
+    color         : $dark-grey-font;
+    font-weight   : bold;
+    line-height   : 1.2em;
+}
+.group-parent-name {
+    @include fontSize(12);
+    display       : block;
+    color         : $dark-grey-font;
+    line-height   : 1em;
+}
+.group-resources,
+.group-members{
+    @include fontSize(11);
+    display       : inline-block;
+    width         : auto;
+    color         : $dark-grey-font;
+    vertical-align: top;
+    line-height   :1.2em;
+    text-transform: lowercase;
+
+    & .blue {
+        color      : $light-grey-font;
+        font-weight: bold;
+    }
+}
+
+.app-name,
+.app-publisher{
+    position      : relative;
+    display       : block;
+    color         : $dark-grey-font;
+    vertical-align: top;
+    line-height   : 1.2;
+}
+.app-name{
+
+    font-weight   : bold;
+}
+.app-publisher{
+    @include fontSize(11);
+}
+
+.connect-people {
+    @include transition(color 0.2s linear);
+    @include fontSize(12);
+    display       : inline-block;
+    width         : 31%;
+    height        : 100%;
+    vertical-align: top;
+    line-height   : 56px;
+    text-align    : left;
+    padding       : 0 0 0 20px;
+    color         : $dark-blue-font;
+
+    &:before {
+        @include transition(color 0.2s linear);
+        @include fontSize(25);
+        color       : $new-blue-1;
+        margin      : 0;
+        padding     : 0;
+        line-height : 56px;
+        text-align  : left;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+.surname,
+.firstname {
+    @include fontSize(12);
+    font-weight: bold;
+    color      : $light-blue-font;
+}
+
+.firstname {
+    @include fontSize(12);
+    text-transform: uppercase;
+    text-transform: capitalize;
+}
+
+.poste{
+    @include fontSize(12);
+    display: block;
+    color         : $dark-grey-font;
+}
+
+
+// *****************
+// Version Tablette
+// *****************
+.mobile {
+
+    .main-nav {
+        display       : inline-block;
+        vertical-align: top;
+        text-align    : left;
+        line-height   : $header-height;
+        width         : 300px;
+        position      : absolute;
+
+        .mp-level {
+            background-color: $dark-grey-3;
+
+            // Close sidebar button
+            .toggle-sidebar{
+                position      : relative;
+                vertical-align: middle;
+                height        : $header-height;
+                line-height   : $header-height;
+                cursor        :pointer;
+            }
+        }
+
+        .mp-back {
+            @include transition( background 0.3s );
+            position      : relative;
+            display       : block;
+            padding       : 1em;
+            outline       : none;
+            background    : rgba(0,0,0,0.1);
+            border-bottom : 1px solid $dark-grey-font;
+            color         : #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight   : 700;
+            font-size     : 0.8em;
+        }
+
+
+        .menu-btn { // Override default class style
+            @include fontSize(16);
+            position      : relative;
+            display       : inline-block;
+            color         : $light-grey-font;
+            vertical-align: top;
+            background    : none;
+            box-shadow    : none;
+            // border-bottom : 1px solid $dark-grey-font;
+            padding       : 1.5em 1em 1.5em 1.8em;
+            line-height   : 1.2;
+            height        : auto;
+
+            &:hover {
+                background: rgba( 0, 0, 0, 0.2 );
+                box-shadow: none;
+            }
+            &:before {
+                content: none;
+            }
+            &.current {
+                color           : $light-grey-font;
+                text-decoration : underline;
+            }
+        }
+
+        .menu-title {
+            @include fontSize( 20 );
+            margin        : 0;
+            padding       : 0 0 0 30px;
+            height        : $header-height;
+            vertical-align: middle;
+            letter-spacing: normal;
+            font-weight   : normal;
+            font-family   : $UbuntuCondensed; // Back button
+            line-height   : $header-height;
+
+            &.mp-back:before {
+                content    : '<';
+                position   : absolute;
+                display    : block;
+                left       : 10px;
+                color      : $white;
+                line-height: 3.9;
+            }
+        }
+
+        .mp-cover .menu-title {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight   : 700;
+            font-size     : 1em;
+        }
+
+        .menu-list {
+            @include background-image(linear-gradient(to bottom, $background-blue-2 0%,$background-blue-1 50%,$background-blue-2 100%));
+            margin    : 0;
+            padding   : 0;
+            height    : auto;
+            list-style: none;
+        }
+
+        .menu-item { // Items level 1
+            display: block;
+            padding: 0;
+            outline: none;
+            display: block;
+            width  : 100%;
+
+            &:hover {
+                background: rgba( 0, 0, 0, 0.2 );
+                box-shadow: inset 0 -1px rgba( 0, 0, 0, 0 );
+            }
+
+            & > a{
+                @include fontSize(15);
+                @include transition( background 0.3s, box-shadow 0.3s ); // menu-btn (level 2)
+                display       : block;
+                line-height   : 1.2;
+                padding       : 1.5em 1em 1.5em 1.8em;
+                outline       : none;
+                background    : none;
+                border-bottom : 1px solid $dark-grey-2;
+                text-shadow   : 0 0 1px rgba(255,255,255,0.1);
+                color         : $lighter-grey-font;
+                font-family   : $UbuntuCondensed;
+                text-transform: uppercase;
+
+                &:hover:after,
+                &:after {
+                    content: none;
+                }
+            }
+        }
+
+        .config-menu {
+            @include fontSize(15);
+            width : 100%;
+            height: auto;
+
+            button {
+                text-align: left;
+            }
+            ul {
+                // @include background-image(linear-gradient(to bottom, $bg-blue-2 0%,$bg-blue-1 50%,$bg-blue-2 100%));
+                background: $background-blue-1;
+            }
+        }
+
+        .sub-menu {
+            @include opacity(1);
+            background-image: none;
+
+            .close-submenu{
+                display: none;
+            }
+        }
+
+        .sub-left,
+        .sub-middle {
+            padding    : 0;
+            height     : auto;
+            line-height: 1.2;
+            width      : 100%;
+            display    : block;
+        }
+
+        .sub-left ul {
+            // @include background-image(linear-gradient(to bottom, $bg-blue-2 0%,$bg-blue-1 50%,$bg-blue-2 100%));
+            background: $background-blue-1;
+        }
+
+            .sub-profile-bloc {
+                // background: none;
+            }
+
+            .sub-middle-left,
+            .sub-middle-right,
+            .sub-middle-head {
+                display        : inline-block;
+                vertical-align : top;
+                width          : 100%;
+            }
+
+            // [data-menu="profile-menu"] .sub-middle-left {
+            //     display : block;
+            //     width   : 100%;
+            // }
+
+            .sub-middle-left,
+            .sub-middle-right {
+                h3 {
+                    @include fontSize(25);
+                    color      : $white;
+                    font-family: $MissionScript;
+                    height     : auto;
+                    line-height: 2.5;
+                    padding    : 0 3%;
+                    margin     : 0;
+                }
+
+                &.alt {
+                    padding: 4%;
+                }
+            }
+
+            .sub-middle-head {
+                line-height: 1.2;
+                height     : auto;
+
+                h3 {
+                    @include fontSize(25);
+                    color      : $white;
+                    font-family: $MissionScript;
+                    height     : auto;
+                    line-height: 2.5;
+                    padding    : 0 3%;
+                    margin     : 0;
+                    width      : 100%;
+                }
+
+                &.alt {
+                    padding: 4%;
+                }
+
+                .see-more {
+                    display: none;
+                }
+            }
+
+            .suggest-related li{
+                margin : 0;
+                width  : 100%;
+                padding: 2%;
+
+                &:nth-child(3n){
+                    display: none;
+                }
+            }
+
+            .white-item-list-col,
+            .white-item-list-col .white-item {
+                display        : inline-block;
+                vertical-align : top;
+                width          : 100%;
+                margin         : 0 0 10px 0;
+
+                &:last-child {
+                    margin : 0;
+                }
+            }
+
+        // Should be handled by the template engine
+        .sub-right {
+            display: none;
+        }
+    }
+
+    // Sidebar toggle menu button
+    .toggle-sidebar-icon {
+        @include transform( translate3d(1200%,0,0) );
+        @include transition( all 0.3s );
+        @include fontSize(0);
+        position        : absolute;
+        top             : $header-height/2;
+        left            : 16%;
+        display         : inline-block;
+        width           :20px;
+        height          :2px;
+        background-color:$white;
+
+        &:before,
+        &:after{
+            @include transition( all 0.3s );
+            position        :absolute;
+            left            :0;
+            width           :100%;
+            height          :100%;
+            background-color:$white;
+            content         :'';
+        }
+        &:before{
+            @include transform( translateY(-6px) );
+        }
+        &:after{
+            @include transform( translateY(6px) );
+        }
+    }
+
+    // Sidebar opened
+    .mp-pushed .toggle-sidebar-icon {
+        @include transform( translate3d(0,0,0) );
+        @include transition( all 0.3s );
+    }
+    // Header logo toggle menu button
+    .logo .toggle-sidebar-icon {
+        @include transform( translate3d(0,0,0) );
+        @include transition( all 0.3s );
+        left: 12px;
+    }
+    // Sidebar opened
+    .mp-pushed .logo .toggle-sidebar-icon {
+        @include transform( translate3d(-200%,0,0) );
+        @include transition( all 0.3s );
+    }
+}

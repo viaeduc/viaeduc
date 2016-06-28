@@ -1,0 +1,17 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+    {% if result is defined %}
+        {% include "pum://page/ajax/search/load_more_before.html.twig" %}
+
+        {% for row in result.rows %}
+            {% if row.type in  ['group', 'user', 'post', 'question'] %}
+               {% include 'pum://page/ajax/search/row/' ~ (row.type == 'external_notice' ? 'notice' : row.type) ~ '.html.twig' with {row: row} %}
+            {% endif %}
+        {% endfor %}
+
+        {% include "pum://page/ajax/search/load_more.html.twig" %}
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

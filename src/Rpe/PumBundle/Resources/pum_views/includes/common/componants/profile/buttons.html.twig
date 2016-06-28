@@ -1,0 +1,104 @@
+{#
+    require:
+    - relation_detail
+    - id = relation.user.id
+    - user
+    - style ('link', 'button', 'action_button')
+ #}
+{% spaceless %}
+{% set style = style|default('button') %}
+{% set class = '' %}
+{% set status = null %}
+{% set request_user_id = null %}
+
+{% if relation_detail is not null %}
+    {% set status = relation_detail.status %}
+    {% set request_user_id = relation_detail.user.id %}
+    {% set id = relation_detail.id %}
+{% endif %}
+
+{% if status == null %}
+    {% set actions = ['add'] %}
+{% elseif relation_detail.isOnHold() and user.id != request_user_id %}
+    {% set actions = ['confirm','reject'] %}
+{% elseif relation_detail.isOnHold() %}
+    {% set actions = ['sent'] %}
+{% elseif relation_detail.isFriend() %}
+    {% set actions = ['remove'] %}
+{% endif %}
+
+{% set random_id = 'js-profil-buttons-' ~ random(3000) %}
+{% for action in actions %}
+    {% set span = '<span id="' ~ random_id ~ '">' %}
+    {{ (loop.first) ? span|raw }}
+    {% if action == 'add' %}
+        {% set pathway = 'relation_add' %}
+        {% set class = 'light-blue icon-user-add ' %}
+    {% elseif action == 'confirm' %}
+        {% set pathway = 'relation_accept' %}
+        {% set class = 'light-blue icon-checkmark ' %}
+    {% elseif action == 'reject' %}
+        {% set pathway = 'relation_reject' %}
+        {% set class = 'red icon-cross ' %}
+    {% elseif action == 'cancel' %}
+        {% set pathway = 'relation_reject' %}
+        {% set class = 'red icon-cross ' %}
+    {% elseif action == 'remove' %}
+        {% set pathway = 'relation_reject' %}
+        {% set class = 'light-blue icon-users ' %}
+        {% set class2 = 'red icon-cross ' %}
+
+    {% elseif action == 'sent' %}
+        {% set pathway = 'relation_reject' %}
+        {% set class = 'light-blue icon-hourglass ' %}
+        {% set class2 = 'red icon-cross ' %}
+    {% endif %}
+
+    {% if style == 'action_button' %}
+        {% set class = class ~ ' action-btn ' %}
+    {% else %}
+        {% set class = class ~ ' profil-btn ' %}
+    {% endif %}
+
+    {% if pathway is defined and id is defined and user is defined %}
+        {% set href = path(pathway, {
+            'action': action,
+            'id': id,
+            'style': style,
+        }) %}
+
+        {% if style == 'button' or style == 'action_button' %}
+            {% spaceless %}
+            {% if class2 is defined %}
+                <a href="{{ href }}" class="dual-action-btn js-loadmore js-infinite js-load-replace" data-loadtarget="#{{ random_id }}" data-async="false">
+                    <span class="{{ class }}">{{ ('profil.action.' ~ action)|trans({}, 'rpe') }}</span>
+                    <span class="{{ class2 }} action-btn">{{ ('profil.action2.' ~ action)|trans({}, 'rpe') }}</span>
+                </a>
+            {% else %}
+                <a href="{{ href }}" class="{{ class }} js-loadmore js-infinite js-load-replace" data-loadtarget="#{{ random_id }}" data-async="false">
+                    {{ ('profil.action.' ~ action)|trans({}, 'rpe') }}
+                </a>
+            {% endif %}
+            {% endspaceless %}
+        {% elseif style == 'link' %}
+            {% spaceless %}
+            {% if class2 is defined %}
+                <a href="{{ href }}" class="js-loadmore js-infinite js-load-replace" data-loadtarget="#{{ random_id }}" data-async="false">
+                    <span>{{ ('profil.action2.' ~ action)|trans({}, 'rpe') }}</span>
+                </a>
+            {% else %}
+                <a href="{{ href }}" class="js-loadmore js-infinite js-load-replace" data-loadtarget="#{{ random_id }}" data-async="false">
+                    {{ ('profil.action.' ~ action)|trans({}, 'rpe') }}
+                </a>
+            {% endif %}
+            {{ (loop.last == false) ? ' - ' }}
+            {% endspaceless %}
+        {% endif %}
+    {% else %}
+        <a class="{{ class }}">
+            {{ ('profil.action.' ~ action)|trans({}, 'rpe') }}
+        </a>
+    {% endif %}
+    {{ (loop.last) ? '</span>' }}
+{% endfor %}
+{% endspaceless %}

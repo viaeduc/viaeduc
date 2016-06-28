@@ -1,0 +1,279 @@
+/* function to convert px to rem */
+/* line 8, ../../assets/sass/layout/_sidebar.scss */
+.sidebar { width: 32.96%; display: inline-block; vertical-align: top; margin: 0 2.4% 0 0; }
+/* line 14, ../../assets/sass/layout/_sidebar.scss */
+.sidebar.sidebar-right { margin: 0 0 0 2.4%; }
+
+/* jquery.Jcrop.css v0.9.12 - MIT License */
+/* The outer-most container in a typical Jcrop instance If you are having difficulty with formatting related to styles on a parent element, place any fixes here or in a like selector
+ You can also style this element if you want to add a border, etc A better method for styling can be seen below with .jcrop-light (Add a class to the holder and style elements for that extended class)
+*/
+/* line 11, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-holder { direction: ltr; text-align: left; margin: 0 auto 20px auto; width: 300px; }
+
+/* Selection Border */
+/* line 20, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline, .jcrop-hline { background: white url("images/Jcrop.gif"); font-size: 0; position: absolute; }
+
+/* line 25, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline { height: 100%; width: 1px !important; }
+
+/* line 29, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline.right { right: 0; }
+
+/* line 32, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-hline { height: 1px !important; width: 100%; }
+
+/* line 36, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-hline.bottom { bottom: 0; }
+
+/* Invisible click targets */
+/* line 40, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-tracker { height: 100%; width: 100%; /* "turn off" link highlight */ -webkit-tap-highlight-color: transparent; /* disable callout, image save panel */ -webkit-touch-callout: none; /* disable cut copy paste */ -webkit-user-select: none; }
+
+/* Selection Handles */
+/* line 51, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle { background-color: #333333; border: 1px #eeeeee solid; width: 7px; height: 7px; font-size: 1px; }
+
+/* line 58, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-n { left: 50%; margin-left: -4px; margin-top: -4px; top: 0; }
+
+/* line 64, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-s { bottom: 0; left: 50%; margin-bottom: -4px; margin-left: -4px; }
+
+/* line 70, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-e { margin-right: -4px; margin-top: -4px; right: 0; top: 50%; }
+
+/* line 76, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-w { left: 0; margin-left: -4px; margin-top: -4px; top: 50%; }
+
+/* line 82, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-nw { left: 0; margin-left: -4px; margin-top: -4px; top: 0; }
+
+/* line 88, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-ne { margin-right: -4px; margin-top: -4px; right: 0; top: 0; }
+
+/* line 94, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-se { bottom: 0; margin-bottom: -4px; margin-right: -4px; right: 0; }
+
+/* line 100, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-sw { bottom: 0; left: 0; margin-bottom: -4px; margin-left: -4px; }
+
+/* Dragbars */
+/* line 108, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-n, .jcrop-dragbar.ord-s { height: 7px; width: 100%; }
+
+/* line 113, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-e, .jcrop-dragbar.ord-w { height: 100%; width: 7px; }
+
+/* line 117, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-n { margin-top: -4px; }
+
+/* line 120, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-s { bottom: 0; margin-bottom: -4px; }
+
+/* line 124, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-e { margin-right: -4px; right: 0; }
+
+/* line 128, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-w { margin-left: -4px; }
+
+/* The "jcrop-light" class/extension */
+/* line 133, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-light .jcrop-vline, .jcrop-light .jcrop-hline { background: #ffffff; filter: alpha(opacity=70) !important; opacity: 0.7 !important; }
+
+/* line 138, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-light .jcrop-handle { -moz-border-radius: 3px; -webkit-border-radius: 3px; background-color: #000000; border-color: #ffffff; border-radius: 3px; }
+
+/* The "jcrop-dark" class/extension */
+/* line 147, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dark .jcrop-vline, .jcrop-dark .jcrop-hline { background: #000000; filter: alpha(opacity=70) !important; opacity: 0.7 !important; }
+
+/* line 152, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dark .jcrop-handle { -moz-border-radius: 3px; -webkit-border-radius: 3px; background-color: #ffffff; border-color: #000000; border-radius: 3px; }
+
+/* Simple macro to turn off the antlines */
+/* line 161, ../../assets/sass/vendors/_jcrop.scss */
+.solid-line .jcrop-vline, .solid-line .jcrop-hline { background: #ffffff; }
+
+/* Fix for twitter bootstrap et al. */
+/* line 166, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-holder img, img.jcrop-preview { max-width: none; }
+
+/* line 169, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-keymgr { opacity: 0; }
+
+/* line 173, ../../assets/sass/vendors/_jcrop.scss */
+.modal-content { border-radius: 0px; }
+
+/* line 177, ../../assets/sass/vendors/_jcrop.scss */
+.modal-header { padding: 20px 20px 10px 20px; }
+
+/* line 181, ../../assets/sass/vendors/_jcrop.scss */
+.modal-body { padding: 10px 20px; }
+
+/* line 185, ../../assets/sass/vendors/_jcrop.scss */
+.modal-title { font-size: 30px; font-size: 1.875rem; font-family: "MissionScriptRegular", Arial, sans-serif; text-transform: none; }
+
+/* line 191, ../../assets/sass/vendors/_jcrop.scss */
+.modal-inner-wrapper { padding: 20px; background: #d7d7d7; border: 1px solid #9a9a9a; color: #313335; text-align: center; }
+
+/* line 199, ../../assets/sass/vendors/_jcrop.scss */
+.inner-description { margin: 0 0 20px 0; }
+
+/* line 203, ../../assets/sass/vendors/_jcrop.scss */
+.image-crop { margin: 0 auto 20px auto; }
+
+/* line 207, ../../assets/sass/vendors/_jcrop.scss */
+.fileupload .thumbnail { background-color: transparent; border: 0px solid transparent; border-radius: 0px; padding: 0px; margin: 0px; width: 100%; }
+
+/* line 216, ../../assets/sass/vendors/_jcrop.scss */
+.thumbnail > img { max-width: 300px; }
+
+/* line 220, ../../assets/sass/vendors/_jcrop.scss */
+.btn-file { display: inline-block; float: none; width: 300px; color: white; border-radius: 0; border: 0px solid transparent; }
+/* line 228, ../../assets/sass/vendors/_jcrop.scss */
+.btn-file:hover { color: white; }
+
+/* line 5, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb { margin-top: 15px; margin-bottom: 15px; }
+/* line 8, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb ul { margin: 0; padding: 0; }
+/* line 12, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: middle; line-height: 15px; margin: 0 1% 0 0; color: #293547; font-family: Verdana, Arial, sans-serif; position: relative; padding-left: 15px; }
+/* line 22, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li .icon-home { color: #293547; font-size: 22px; font-size: 1.375rem; }
+/* line 26, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.home { margin-right: 0; padding-left: 0; }
+/* line 30, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li:first-child a { padding-left: 0; }
+/* line 33, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li a, #breadcrumb li span { width: auto; color: #293547; font-size: 12px; font-size: 0.75rem; font-family: Verdana, Arial, sans-serif; position: relative; }
+/* line 41, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.item-index:before { position: absolute; left: 0; display: block; content: '>'; text-align: center; top: 0; line-height: 15px; font-size: 12px; font-size: 0.75rem; }
+
+/* line 1, ../../assets/sass/componants/_tip-box-diffusion-list.scss */
+.tip-box { background: #1c2027; font-size: 14px; font-size: 0.875rem; position: relative; padding: 10px; width: 100%; vertical-align: top; }
+/* line 10, ../../assets/sass/componants/_tip-box-diffusion-list.scss */
+.tip-box .tip-box-title { width: 100%; margin: 0; text-align: left; font-size: 32px; font-size: 2rem; font-family: "MissionScriptRegular", Arial, sans-serif; color: white; margin: 0 0 5px 0; }
+/* line 20, ../../assets/sass/componants/_tip-box-diffusion-list.scss */
+.tip-box a { font-family: "Ubuntu Condensed", Arial, sans-serif; color: white; display: block; }
+/* line 25, ../../assets/sass/componants/_tip-box-diffusion-list.scss */
+.tip-box a img { width: 100%; }
+/* line 29, ../../assets/sass/componants/_tip-box-diffusion-list.scss */
+.tip-box a span { bottom: 15px; position: absolute; right: 7%; }
+/* line 35, ../../assets/sass/componants/_tip-box-diffusion-list.scss */
+.tip-box a:hover span { text-decoration: underline; }
+
+/* line 32, ../../assets/sass/my-diffusion-list.scss */
+.content.full { margin: 0 0 20px 0; }
+
+/* line 37, ../../assets/sass/my-diffusion-list.scss */
+.intro { margin: 0 0 10px; font-size: 0px; font-size: 0rem; }
+/* line 41, ../../assets/sass/my-diffusion-list.scss */
+.intro .intro-left { display: inline-block; width: 70%; vertical-align: top; }
+/* line 46, ../../assets/sass/my-diffusion-list.scss */
+.intro .intro-right { display: inline-block; width: 30%; text-align: right; vertical-align: top; }
+/* line 52, ../../assets/sass/my-diffusion-list.scss */
+.intro h2 { font-family: "Ubuntu Condensed", Arial, sans-serif; font-size: 27px; font-size: 1.6875rem; color: #293547; margin: 0 0 20px 0; display: inline-block; line-height: 0.7; }
+/* line 60, ../../assets/sass/my-diffusion-list.scss */
+.intro .action-btn { margin: 0; padding: 9px 9px; width: auto; height: 32px; font-size: 14px; font-size: 0.875rem; }
+
+/* line 71, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul { margin: 0; }
+/* line 74, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li { border: 1px solid #9a9a9a; margin: 0 0 10px 0; padding: 20px; font-size: 0px; font-size: 0rem; }
+/* line 80, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li > div { display: inline-block; vertical-align: middle; font-size: 12px; font-size: 0.75rem; font-family: Verdana, Arial, sans-serif; }
+/* line 88, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li .list-left { width: 43%; padding: 0 5% 0 0; }
+/* line 94, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li .list-left span { display: block; color: #313335; }
+/* line 98, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li .list-left span + span { color: #313335; }
+/* line 104, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li .list-middle { width: 43%; padding: 0 5% 0 0; }
+/* line 108, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li .list-middle div { font-size: 0px; font-size: 0rem; }
+/* line 112, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li .list-middle div img { display: inline-block; width: 15%; padding: 0 2px 0 0; }
+/* line 118, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li .list-middle a { color: #313335; }
+/* line 123, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li .list-right { width: 14%; text-align: right; }
+/* line 128, ../../assets/sass/my-diffusion-list.scss */
+.diffusion-list ul > li .list-right .square-btn { margin: 0; }
+
+/* line 137, ../../assets/sass/my-diffusion-list.scss */
+.modal { margin: 0 auto; }
+/* line 140, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-dialog { width: 950px; }
+/* line 143, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-content { border-radius: 0px; }
+/* line 147, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-title { font-size: 30px; font-size: 1.875rem; font-family: "MissionScriptRegular", Arial, sans-serif; }
+/* line 152, ../../assets/sass/my-diffusion-list.scss */
+.modal .close-submenu { font-family: "Ubuntu Condensed", Arial, sans-serif; }
+/* line 155, ../../assets/sass/my-diffusion-list.scss */
+.modal .close-submenu:after { right: -5px; }
+/* line 160, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body { font-family: Verdana, Arial, sans-serif; color: #313335; font-size: 0px; font-size: 0rem; padding: 0 15px; }
+/* line 166, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-left { vertical-align: top; display: inline-block; width: 60%; margin: 0 5% 0 0; font-size: 12px; font-size: 0.75rem; border: 1px solid #9a9a9a; position: relative; }
+/* line 175, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-left:after { content: ''; display: block; position: absolute; top: 49%; right: -36px; width: 23px; height: 22px; background: url("../images/pictos/double_arrow.png"); background-position: left center; background-repeat: no-repeat; }
+/* line 189, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-right { vertical-align: top; display: inline-block; width: 35%; font-size: 12px; font-size: 0.75rem; border: 1px solid #9a9a9a; }
+/* line 197, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-intro { padding: 10px; background: #fcf2ec; font-size: 0px; font-size: 0rem; }
+/* line 202, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-intro .form-left { vertical-align: middle; display: inline-block; font-size: 12px; font-size: 0.75rem; width: 60%; }
+/* line 208, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-intro .form-right { vertical-align: middle; display: inline-block; font-size: 12px; font-size: 0.75rem; width: 40%; }
+/* line 214, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-intro input[type="text"] { background: white !important; }
+/* line 217, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-intro .twitter-typeahead { display: block !important; }
+/* line 223, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .swiper-container { width: 100%; height: 270px; overflow: hidden; position: relative; }
+/* line 229, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .swiper-scrollbar { width: 8px; }
+/* line 233, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body ul { margin: 0; }
+/* line 236, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body ul > li { background: #efefef; position: relative; padding: 8px; height: 90px; font-size: 0px; font-size: 0rem; }
+/* line 243, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body ul > li:hover { background: #fcf2ec; }
+/* line 247, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body ul > li img { display: inline-block; height: auto; width: 25%; }
+/* line 252, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body ul > li .messages-list-details { display: inline-block; vertical-align: top; position: relative; width: 75%; height: 100%; padding: 0 0 0 3%; color: #293547; font-size: 12px; font-size: 0.75rem; line-height: 1.1em; }
+/* line 263, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body ul > li .messages-list-details a { display: inline-block; color: #293547; margin: 0 0 1% 0; font-weight: bold; }
+/* line 269, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body ul > li .messages-list-details .fonction { color: #313335; font-size: 11px; font-size: 0.6875rem; margin: 0 0 3% 0; display: block; }
+/* line 275, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body ul > li .messages-list-details .delete, .modal .modal-body ul > li .messages-list-details .add { position: absolute; left: 3%; bottom: 0; }
+/* line 284, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-left ul { font-size: 0px; font-size: 0rem; }
+/* line 287, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-left ul > li { display: inline-block; width: 50%; }
+/* line 291, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-left ul > li img { width: 29%; }
+/* line 294, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-left ul > li .messages-list-details { width: 71%; }
+/* line 302, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-right .modal-list-intro .form-left { width: 50%; }
+/* line 305, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-body .modal-list-right .modal-list-intro .form-right { width: 50%; }
+/* line 311, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-footer { border: 0; padding: 0 15px 15px 15px; font-size: 0px; font-size: 0rem; }
+/* line 316, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-footer .modal-footer-left, .modal .modal-footer .modal-footer-right { display: inline-block; width: 50%; }
+/* line 320, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-footer .modal-footer-left { text-align: left; }
+/* line 323, ../../assets/sass/my-diffusion-list.scss */
+.modal .modal-footer .action-btn { margin: 0; padding: 10px 20px; width: auto; }
+
+@media screen and (max-width: 1024px) { /* line 334, ../../assets/sass/my-diffusion-list.scss */
+  .modal .modal-dialog { width: 760px; } }

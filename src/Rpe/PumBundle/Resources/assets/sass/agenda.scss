@@ -1,0 +1,1404 @@
+$agenda-blue   : #2c394c;
+$agenda-grey   : #b5bac1;
+$agenda-grey-2 : #b5bac1;
+$agenda-blue-2 : #1e4b80;
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+@import "componants/_filter";
+
+// ------------
+// Specific CSS
+// ------------
+
+// Filter fixes
+
+.action-btn {
+	@include fontSize(12);
+	margin         : 0;
+	padding        : 14.5px 0;
+	height         : 12px;
+	text-transform : none;
+	line-height    : 0px;
+}
+
+.filter {
+    height: 95px;
+    margin-bottom: 20px;
+}
+.filter-right-wrapper{
+    margin-bottom: 16px;
+    display: inline-block;
+}
+.filter-right-wrapper + .filter-right-wrapper{
+    margin-left: 20px;
+}
+
+// ------------
+// CREATE EVENT
+// ------------
+
+.filter-link {
+	position : relative;
+    
+    span{
+        margin-right:0;
+    }
+}
+
+.create-event-toggle{
+	transition : background 0.4s linear;
+}
+
+.on {
+	background-color : $white;
+	color            : $dark-blue-font;
+	transition       : background 0.4s linear;
+
+	&:hover {
+		background-color : $white;
+		color            : $dark-blue-font;
+		transition       : background 0.4s linear;
+	}
+}
+
+.create-event {
+	position         : absolute;
+	top              : 30px;
+	right            : 0;
+	z-index          : 300;
+	overflow         : hidden;
+	padding          : 0px;
+	width            : 600px;
+	height           : 0px;
+	border-right     : 0px solid transparent;
+	border-bottom    : 0px solid transparent;
+	border-left      : 0px solid transparent;
+	background-color : $white;
+	transition       : height 0.4s linear,
+					   padding 0.3s linear,
+					   border 0.3s linear;
+
+	&.open {
+		padding          : 30px;
+		height           : 755px;
+		border-right     : 1px solid $light-grey-1;
+		border-bottom    : 1px solid $light-grey-1;
+		border-left      : 1px solid $light-grey-1;
+		transition       : height 0.4s linear,
+					       padding 0.3s linear,
+					       border 0.3s linear;
+
+		.arrow-close {
+			opacity    : 1;
+			transition : opacity 0.3s linear;
+		}
+	}
+}
+
+.arrow-close {
+	@include fontSize(22);
+	position    : absolute;
+	top         : 6px;
+	right       : 6px;
+	display     : block;
+	color       : $dark-grey-1;
+	font-family : $Verdana;
+	opacity     : 0;
+	transition  : color 0.2s linear,
+				  opacity 0.1s linear;
+
+	&:hover {
+		color           : $dark-grey-2;
+		text-decoration : none;
+		transition      : color 0.2s linear;
+	}
+}
+
+.event-btn {
+	@include fontSize(14);
+	padding        : 0 15px;
+	width          : auto;
+	height         : 40px;
+	text-transform : uppercase;
+	font-family    : $Verdana;
+	line-height    : 40px;
+}
+
+.create-event-link {
+	float : right;
+}
+
+.create-event-wrapper {
+	display          : inline-block;
+	margin           : 0 0 10px 0;
+	padding          : 30px;
+	width            : 100%;
+	height           : 650px;
+	border           : 1px solid $light-grey-2;
+	background-color : $light-grey-1;
+	vertical-align   : top;
+
+	.bootstrap-select:not([class*="span"]) {
+		margin           : 0;
+		width            : 100%;
+		height           : 45px;
+		border           : 1px solid $light-grey-2;
+		background-color : $white;
+	}
+
+	.bootstrap-select.btn-group .btn .filter-option {
+		height      : 45px;
+		color       : $dark-grey-1;
+		line-height : 45px;
+	}
+
+	.bootstrap-select.btn-group .btn .caret {
+		right            : 12px;
+		left             : inherit;
+		border-top-color : $dark-grey-1;
+	}
+
+	.dropdown-menu {
+		margin           : 1px 0 0 0;
+		background-color : $white;
+		color            : $dark-grey-1;
+	}
+
+	.dropdown-menu > li > a:hover {
+		color : $dark-grey-2;
+	}
+
+	textarea {
+		height : 150px;
+	}
+}
+
+.extra-info {
+	margin : 0 0 10px 0;
+
+	&:last-child {
+		margin : 0;
+	}
+}
+
+.form-left,
+.form-right {
+	display        : inline-block;
+	vertical-align : middle;
+
+	&.top {
+		vertical-align : top;
+	}
+}
+
+.date,
+.time {
+	display        : inline-block;
+	width          : 45%;
+	vertical-align : middle;
+}
+
+.time {
+	margin : 0 0 0 10%;
+}
+
+// -----------
+// MAIN LAYOUT
+// -----------
+
+.event-wrapper-big,
+.event-wrapper-small{
+    display : none;
+}
+.event-wrapper-big.active,
+.event-wrapper-small.active{
+    display : block;
+}
+
+
+.month-title {
+	display          : inline-block;
+	margin           : 0 0 35px 0;
+	width            : 100%;
+	background-color : $agenda-blue;
+	vertical-align   : middle;
+	text-align       : center;
+	line-height      : 45px;
+
+	.month-prev,
+	.month-next,
+	.month-title {
+		@include fontSize(17);
+		display : inline-block;
+		color   : $white;
+	}
+
+	.month-title {
+		margin         : 0;
+		width          : auto;
+        min-width      : 152px;
+		text-transform : uppercase;
+
+		> span {
+			font-weight : bold;
+		}
+	}
+
+	.month-prev,
+	.month-next {
+		font-weight : bold;
+		opacity     : 0.7;
+		transition  : opacity 0.2s linear;
+
+		&:hover {
+			text-decoration : none;
+			opacity         : 1;
+			transition      : opacity 0.2s linear;
+		}
+	}
+}
+
+// -----------
+// EVENT CARDS
+// -----------
+
+.agenda-click {
+	@include transition(opacity 0.2s linear);
+	cursor : pointer;
+}
+
+.month-cards {
+	display    : inline-block;
+	width      : 100%;
+	text-align : left;
+
+	&:after {
+		display : inline-block;
+		width   : 100%;
+		content : "";
+	}
+
+	>div:nth-of-type(4n+4){
+		margin : 0 0 10px 0;
+	}
+
+	.month-date-card {
+		@include transition(all 0.1s linear);
+		display          : inline-block;
+		margin           : 0 0.97% 10px 0;
+		min-height       : 240px;
+		width            : 23.9%;
+		background-color : $background-grey-2;
+		font-size        : 0;
+		vertical-align   : top;
+
+		&:hover {
+			@include transform( scale(1.05) );
+			@include transition(all 0.1s linear);
+		}
+
+		.card-date,
+		.card-time,
+		.card-content,
+		.card-footer {
+			display   : inline-block;
+			width     : 100%;
+			font-size : 1rem;
+		}
+
+		//
+		// Positioning & Backgrounds
+		//
+
+		.card-date,
+		.card-time {
+			padding     : 0 3.6363636363636362%;
+			height      : 45px;
+			color       : $white;
+			font-family : $UbuntuCondensed;
+			line-height : 45px;
+		}
+
+		.card-time {
+			background-color : $agenda-grey;
+
+			&.multiple-days {
+				background              : url('../images/agenda-multiple-light-grey.jpg') no-repeat center;
+				-webkit-background-size : cover;
+				-moz-background-size    : cover;
+				-o-background-size      : cover;
+				background-size         : cover;
+			}
+		}
+
+		.card-content {
+			@include fontSize(18);
+			padding          : 3.6363636363636362%;
+			height           : 110px;
+			background-color : $white;
+			color            : $dark-grey-font;
+			text-align       : left;
+			font-family      : $UbuntuCondensed;
+		}
+
+		.card-footer {
+			@include fontSize(12);
+			padding          : 0 3.6363636363636362% 0 0;
+			height           : 40px;
+			background-color : #efefef;
+			color            : $dark-blue-font;
+			text-align       : left;
+			font-family      : $UbuntuCondensed;
+			line-height      : 40px;
+
+			.agenda-card-image {
+				display        : inline-block;
+				width          : 40px;
+				height         : 40px;
+				vertical-align : top;
+			}
+
+			.card-footer-text {
+				display        : inline-block;
+				margin         : 0 0 0 3.6363636363636362%;
+				width          : 70%;
+				vertical-align : middle;
+				line-height    : 1em;
+			}
+		}
+
+		&.event-waiting {
+			.card-date {
+				background-color : $agenda-blue;
+
+				&.multiple-days {
+					background              : url('../images/agenda-multiple-blue.jpg') no-repeat center;
+					-webkit-background-size : cover;
+					-moz-background-size    : cover;
+					-o-background-size      : cover;
+					background-size         : cover;
+				}
+			}
+		}
+
+		&.event-validated {
+			.card-date {
+				background-color : $orange-1;
+
+				&.multiple-days {
+					background              : url('../images/agenda-multiple-orange.jpg') no-repeat center;
+					-webkit-background-size : cover;
+					-moz-background-size    : cover;
+					-o-background-size      : cover;
+					background-size         : cover;
+				}
+			}
+		}
+
+		&.event-editor {
+			.card-date {
+				background-color : $light-blue-1;
+
+				&.multiple-days {
+					background              : url('../images/agenda-multiple-light-blue.jpg') no-repeat center;
+					-webkit-background-size : cover;
+					-moz-background-size    : cover;
+					-o-background-size      : cover;
+					background-size         : cover;
+				}
+			}
+		}
+
+		&.event-refused {
+			opacity    : 0.5;
+			transition : opacity 0.2s linear;
+
+			.card-date {
+				background-color : $agenda-blue;
+
+				&.multiple-days {
+					background              : url('../images/agenda-multiple-blue.jpg') no-repeat center;
+					-webkit-background-size : cover;
+					-moz-background-size    : cover;
+					-o-background-size      : cover;
+					background-size         : cover;
+				}
+			}
+
+			&:hover {
+				opacity    : 1;
+				transition : opacity 0.2s linear;
+			}
+		}
+	}
+
+	&.more-rows {
+		>div:nth-of-type(4n+4){
+			margin : 0 0.97% 10px 0;
+		}
+		>div:nth-of-type(4){
+			margin : 0 0 10px 0;
+		}
+		>div:nth-of-type(5n+4){
+			margin : 0 0 10px 0;
+		}
+	}
+}
+
+//
+// Styling
+//
+
+.card-date,
+.card-time {
+	@include fontSize(20);
+}
+
+.card-inner-left,
+.card-inner-right {
+	@include fontSize(12);
+	display : inline-block;
+	width   : 50%;
+}
+
+.card-inner-right {
+	text-align : right;
+}
+
+.card-date .month {
+	text-transform : uppercase;
+}
+
+.card-date .day {
+	color : $light-grey-1;
+}
+
+// -----------
+// OPEN EVENTS
+// -----------
+
+.agenda-row,
+.month-date-event {
+	display        : inline-block;
+	overflow       : hidden;
+	width          : 100%;
+	height         : 395px;
+	vertical-align : middle;
+	transition     : height 0.4s linear;
+
+	&.open {
+		height     : 395px;
+		margin     : 0 0 10px 0;
+		transition : height 0.4s linear;
+	}
+}
+
+.agenda-row {
+	overflow : hidden;
+	height   : 0px;
+	// margin : 0 0 10px 0;
+}
+
+.event-main,
+.event-left,
+.event-going,
+.event-map {
+	display        : inline-block;
+	vertical-align : top;
+}
+
+.event-main {
+	margin : 0 1.25% 0 0;
+	width  : 72.91666666666666%;
+	height : 395px;
+}
+
+.event-left {
+	width : 25.833333333333336%;
+}
+
+.event-going,
+.event-map {
+	margin           : 0 0 15px 0;
+	width            : 100%;
+	height           : 190px;
+	background-color : $agenda-blue;
+
+	&:last-child {
+		margin : 0;
+	}
+}
+
+// Event Main Positioning
+
+.event-main-header,
+.event-main-content,
+.event-main-footer {
+	display        : inline-block;
+	width          : 100%;
+	vertical-align : top;
+}
+
+.event-main-header,
+.event-main-footer {
+	padding          : 0 10px;
+	height           : 50px;
+	background-color : $agenda-blue;
+	color            : $white;
+	line-height      : 50px;
+}
+
+.event-main-content {
+	padding          : 20px;
+	height           : 295px;
+	background-color : $white;
+	color            : $dark-blue-font;
+}
+
+.event-content-top,
+.event-content-main {
+	display        : inline-block;
+	width          : 100%;
+	vertical-align : bottom;
+}
+
+.event-main-left,
+.event-main-right {
+	display        : inline-block;
+	vertical-align : bottom;
+}
+
+.event-main-left {
+	margin : 0 1.7221584385763489% 0 0;
+	width  : 4.5924225028702645%;
+}
+
+.event-main-right {
+	width : 93.6854190586%;
+}
+
+.event-image,
+.event-heading,
+.event-title {
+	display        : inline-block;
+	width          : 100%;
+	vertical-align : bottom;
+	line-height    : 1em;
+}
+
+.event-big-title,
+.event-text {
+	display        : inline-block;
+	width          : 100%;
+	vertical-align : top;
+}
+
+.event-going {
+	padding : 10px 3.3003300330033%;
+}
+
+.event-going-top,
+.event-going-main,
+.event-going-bottom {
+	display        : inline-block;
+	width          : 100%;
+	vertical-align : top;
+}
+
+.event-going-top,
+.event-going-bottom {
+	height : 35px;
+}
+
+.event-going-main {
+	margin : 0 0 10px 0;
+	height : 90px;
+}
+
+.going-title,
+.going-list {
+	display        : inline-block;
+	width          : 50%;
+	vertical-align : middle;
+}
+
+.going-list {
+	text-align : right;
+}
+
+// Event Main Styling
+
+.event-main-date {
+	@include fontSize(14);
+	font-family : $UbuntuCondensed;
+}
+
+.event-content-top {
+	@include fontSize(12);
+}
+
+.event-big-title {
+	@include fontSize(24);
+	margin      : 20px 0 10px 0;
+	font-family : $UbuntuCondensed;
+}
+
+.event-text {
+	@include fontSize(12);
+	font-family : $Verdana;
+	line-height : 1.8em;
+}
+
+.btn-agenda {
+	display        : inline-block;
+	margin         : 0 5px 0 0;
+	padding        : 0 10px;
+	height         : 30px;
+	color          : $white;
+	text-transform : uppercase;
+	line-height    : 30px;
+
+	&.orange {
+		background-color : $orange-1;
+		transition       : all 0.2s linear;
+
+		&:hover {
+			background-color : $orange-2;
+			transition       : all 0.2s linear;
+		}
+	}
+
+	&.dark-grey {
+		background-color : $dark-grey-1;
+		transition       : all 0.2s linear;
+
+		&:hover {
+			background-color : $dark-grey-2;
+			transition       : all 0.2s linear;
+		}
+	}
+
+	&.light-blue {
+		background-color : $light-blue-1;
+		transition       : all 0.2s linear;
+
+		&:hover {
+			background-color : $light-blue-2;
+			transition       : all 0.2s linear;
+		}
+	}
+
+	&.btn-full {
+		width      : 100%;
+		text-align : center;
+	}
+
+	&:hover {
+		text-decoration : none;
+	}
+
+	&:last-child {
+		margin : 0;
+	}
+}
+
+.event-going {
+	color : $white;
+}
+
+.going-title {
+	@include fontSize(22);
+	font-family : $MissionScript;
+}
+
+.going-list {
+	@include fontSize(10);
+	font-family : $Verdana;
+
+	a {
+		color : $light-blue-1;
+
+		&:hover {
+			color           : $light-blue-2;
+			text-decoration : none;
+		}
+	}
+}
+
+.event-going-main {
+	overflow   : hidden;
+	text-align : justify;
+
+	&:after {
+		content    : "";
+		text-align : justify;
+	}
+
+	a {
+		position       : relative;
+		display        : inline-block;
+		width          : 90px;
+		height         : 90px;
+		color          : $white;
+		vertical-align : middle;
+
+		&:hover {
+			color           : $white;
+			text-decoration : none;
+		}
+	}
+
+	img {
+		width  : 100%;
+		height : 100%;
+	}
+}
+
+.profil-name {
+	@include fontSize(11);
+	position         : absolute;
+	bottom           : 0;
+	left             : 0;
+	padding          : 5px;
+	width            : 100%;
+	height           : 35px;
+	background-color : rgba(0,0,0,0.4);
+	font-family      : $UbuntuCondensed;
+	line-height      : 1em;
+
+	span {
+		display        : inline-block;
+		width          : 100%;
+		vertical-align : middle;
+
+		&.last-name {
+			font-weight : bold;
+		}
+	}
+}
+
+.image-map {
+	overflow : hidden;
+	width    : 100%;
+
+	> img {
+		width : 100%;
+	}
+}
+
+.map-infos {
+	@include fontSize(11);
+	margin      : 10px 0 0 0;
+	padding     : 0 10px;
+	color       : $white;
+	font-family : $UbuntuCondensed;
+
+	a {
+		color : $white;
+
+		&:hover {
+			color           : $white;
+			text-decoration : none;
+		}
+	}
+}
+
+.map-icon {
+	@include fontSize(18);
+	display        : inline-block;
+	margin         : 0 2% 0 0;
+	width          : 30px;
+	height         : 30px;
+	background     : $orange-1;
+	color          : $white;
+	vertical-align : middle;
+	text-align     : center;
+	line-height    : 30px;
+
+	&:before {
+		padding : 0px;
+	}
+}
+
+.map-text {
+	display        : inline-block;
+	width          : 80%;
+	vertical-align : middle;
+}
+
+.map-noplace{
+    @include fontSize(14);
+    font-family : $UbuntuCondensed;
+    color       : $white;
+    padding     : 4px 6px;
+}
+
+
+
+@media screen and (max-width: 1217px) {
+    .month-cards .month-date-card {
+    	width : 23.9%;
+    }
+
+    .filter .filter-right .action-btn {
+    	@include fontSize(12);
+    	height      : 30px;
+    	line-height : 30px;
+    	padding     : 0 0.5em;
+    }
+}
+
+@media screen and (max-width: 930px) {
+    .month-cards .month-date-card {
+    	width : 23.8%;
+    }
+}
+
+
+
+
+
+
+
+@import "vendors/_fullcalendar";
+
+#calendar{
+    position:relative;
+    max-width: none !important;
+    font-size: 1em;
+
+
+
+    
+    //header toolbar
+    .fc-toolbar{
+        background: $agenda-blue;
+        color: $white;
+        margin:0 0 10px 0;
+        font-size: 0;
+        
+        
+        h2{
+            @include fontSize(17);
+            text-transform: uppercase;
+            display: inline-block;
+            vertical-align:top;
+            font-weight:bold;
+            line-height: 45px;
+            margin: 0;
+            width: auto;
+        }
+        &.month{
+            h2{
+                min-width: 152px;
+            }
+        }
+        &.agendaWeek{
+            h2{
+                min-width: 290px;
+            }
+        }
+        &.agendaDay{
+            h2{
+                min-width: 280px;
+            }
+        }
+    
+        .fc-prev-button,
+        .fc-next-button{
+            @include fontSize(17);
+            display: inline-block;
+            vertical-align:top;
+            background: none;
+            text-shadow: none;
+            border:none;
+            box-shadow:none;
+            height:auto;
+            width:auto;
+            padding:0;
+        }
+        .fc-icon {
+            @include fontSize(17);
+            color: $white;
+            display: inline-block;
+            height: auto;
+            line-height: 1;
+            margin:0;
+            font-weight:bold;
+            opacity     : 0.7;
+            transition  : opacity 0.2s linear;
+
+            &:hover {
+                text-decoration : none;
+                opacity         : 1;
+                transition      : opacity 0.2s linear;
+            }
+            
+            &.fc-icon-left-single-arrow:after {
+                content: "<";
+            }
+            &.fc-icon-right-single-arrow:after {
+                content: ">";
+            }  
+        }
+        
+        button{
+            @include fontSize(17);
+            background: none;
+            line-height: 45px;
+            height: 100%;
+            border:0;
+            box-shadow:none;
+            text-shadow:none;
+            color:$white;
+            &.fc-state-active{
+                text-decoration: underline;
+            }
+            &.fc-today-button.fc-state-disabled{
+                text-decoration: underline;
+                opacity: 1;
+            }
+        }
+    }
+    
+    
+    
+    //all view common
+    .fc-view{
+    
+        .fc-day-grid-container{
+            position:relative;
+        }
+    
+        .fc-widget-header{
+            font-family : $UbuntuCondensed;
+            border:0;
+            
+            table th{
+                border:10px solid $background-blue-1;
+                border-width: 0 10px;
+            }
+            .fc-day-header{
+                @include fontSize(14);
+                background: $agenda-blue;
+                color: $white;
+                text-align:left;
+                padding:14px 8px 5px 8px;
+                text-transform: uppercase;
+            }
+        }
+        .fc-widget-content{
+            font-family : $UbuntuCondensed;
+            border: 0;
+            .fc-event {
+                background: none;
+                border: 0;
+                color: $black;
+                border-radius: 0;
+                height: auto;
+                cursor:pointer;
+                margin: 0;
+                
+                .fc-content{
+                    white-space: normal;
+                }
+                .fc-time{
+                    @include fontSize(13);
+                    line-height: 1em;
+                    color: $agenda-blue;
+                    display: block;
+                    white-space: normal;
+                    span{
+                        display: block;
+                    }
+                }
+                .fc-title{
+                    @include fontSize(12);
+                    color: #1c2027;
+                    display: block;
+                    vertical-align: top;
+                    
+                    img{
+                        margin: 2px 3px 3px 0;
+                        vertical-align: top;
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    //month view
+    .fc-month-view{
+        margin: 0 0 0 -0.8%;
+        width: 101.6%;
+        
+        & *{
+            -webkit-box-sizing: border-box;
+               -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+        }
+        
+        .fc-widget-header{
+            & > table{
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;        
+            }  
+        }
+        .fc-widget-content{
+            .fc-row{
+                height:158px;
+                margin: 10px 0;
+            }
+            .fc-day{
+                background: $white;
+                color: $black;
+            }
+            .fc-day-number{
+                @include fontSize(11);
+                background: $agenda-blue;
+                color: $white;
+                text-align:right;
+                padding: 4px 4px;
+                cursor:pointer;
+                &.fc-other-month{
+                    background: $agenda-grey;
+                    opacity: 1;
+                }
+                &.fc-today{
+                    background: $orange-1;
+                }   
+            }
+            .fc-bg > table{
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+            }
+            .fc-bg > table td{
+                border: 10px solid $background-blue-1;
+                border-width: 0 10px;
+            }
+            .fc-content-skeleton > table{
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+            }
+            
+            .fc-content-skeleton > table td{
+                border:10px solid $background-blue-1;
+                border-width: 0 10px;
+            }
+            .fc-event-container{
+                padding: 0;
+            }
+            .fc-content-skeleton > table tbody tr td .fc-event{
+                padding: 6px;
+                &:after{
+                    background:$agenda-grey;
+                    content:"";
+                    position:absolute;
+                    height:1px;
+                    width:50%;
+                    left: 6px;
+                    width: 93%;
+                    top:0;
+                }
+            }
+            .fc-content-skeleton > table tbody tr:first-of-type td .fc-event{
+                &:after{
+                    display:none;
+                }
+            }
+            
+        }
+        //more link
+        .fc-more-cell{
+            text-align:right;
+            a.fc-more {
+                @include fontSize(12);
+                color: #14768c;
+                cursor: pointer;
+                margin: 0 8px;
+                text-decoration: none;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+        //more popup
+        .fc-popover {
+            border: 0;
+            width: 351px;
+            height: 326px;
+            z-index: 1000;
+            position: absolute;
+            .fc-header{
+                @include fontSize(11);
+                padding: 4px 4px;
+                background: $agenda-blue;
+                color: $white;
+                text-transform: uppercase;
+                .fc-title{
+                    float:right;
+                    margin: 0 24px 0 0;
+                }
+                .fc-close{
+                    background : url('../images/close-popup.png') no-repeat center;
+                    position:absolute;
+                    right:4px;
+                    top:4px;
+                    z-index: 5001;
+                    width:16px;
+                    height:15px;
+                    opacity:0.8;
+                    margin:0;
+                    
+                    &:hover{
+                       opacity:1; 
+                    }
+                    &:after{
+                        content: '';
+                    }
+                }
+            }
+            .fc-event-container{
+                padding: 6px;
+                height: 290px;
+                overflow-y: auto;
+                .fc-event{
+                    border-top: 1px solid $agenda-grey;
+                    margin: 6px 0 0 0;
+                    padding: 6px 0 0 0;
+                    &:first-of-type{
+                        border-top: 0; 
+                        margin:0;
+                        padding:0;
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    //week view , day view
+    .fc-agendaWeek-view,
+    .fc-agendaDay-view {
+        .fc-widget-content{
+            .fc-bg > table td{
+                background: $white url('../images/calendar-lines.png') repeat top left;
+                border: 10px solid $background-blue-1;
+                border-width: 0 10px;
+                color: $black;
+            }
+            .fc-content-skeleton > table td{
+                border:10px solid $background-blue-1;
+                border-width: 0 10px;
+            }
+            .fc-event-container {
+                margin: 0 2px;
+            }
+            .fc-event {
+                border: 0;
+                border-radius: 0;
+                margin: 0;
+                padding: 0;
+                background: $agenda-blue;
+                @include box-shadow( 0 0 2px 0px rgba(0,0,0,0.8) );
+                .fc-time{
+                    color: $white;
+                }
+                .fc-title{
+                    color: $white;                
+                }
+                .fc-content{
+                    padding: 6px;
+                }
+                .fc-bg {
+                    background: none;
+                    opacity: 1;
+                }
+                &.editor{
+                    background: $agenda-blue-2;
+                }
+                &.validated{
+                    background: $orange-1;
+                }
+                &.waiting{
+                    background: $agenda-blue;
+                }
+                &.refused{
+                    background: $agenda-grey-2;
+                }
+            }
+            .fc-slats{
+                table tr{
+                    border: 0;
+                    td{
+                        height:20px;
+                    }
+                    .fc-axis{
+                        width: 50px !important;
+                        span{
+                            @include fontSize(10);
+                            display: block;
+                        }
+                    } 
+                }
+            }
+        }
+        
+        
+        .popup{
+            top: 36px !important;
+            left: 304px !important;
+        }   
+    }
+    //week view
+    .fc-agendaWeek-view{
+        .fc-widget-content{
+            .fc-time-grid {
+                margin: 10px 0 0;
+            }
+        }
+    }
+    //day view
+    .fc-agendaDay-view{
+        .fc-widget-header{
+            display:none;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    //popup ajax
+    .popup{
+        @include box-shadow( 0 0 10px 3px rgba(0,0,0,0.8) );
+        position: absolute;
+        z-index: 1000;
+        width: 710px;
+        height: 326px;
+        background-color: $agenda-blue;
+        
+        & *,
+        & *:before,
+        & *:after{
+            -webkit-box-sizing: border-box;
+               -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+        }
+        .loader {
+            margin-left: -15px;
+            margin-top: -15px;
+        }
+        .close{
+            background: url('../images/close-popup.png') no-repeat center;
+            position: absolute;
+            right: 7px;
+            top: 7px;
+            z-index: 5001;
+            text-shadow: none;
+            float: none;
+            width: 16px;
+            height: 15px;
+            opacity: 0.8;
+            &:hover{
+               opacity:1; 
+            }
+        }
+        .month-date-event{
+            height:auto;
+            .event-main {
+                margin: 0;
+                width: 390px;
+                height: auto;
+                .event-big-title{
+                    margin: 10px 0;
+                }
+                .event-main-header{
+                    height: 24px;
+                    line-height: 24px;
+                    width: 176%;
+                }
+                .event-main-content{
+                    padding: 10px;
+                    height: 252px;
+                    
+                    .event-main-left{
+                        margin: 0 2% 0 0;
+                        width: 11%;
+                    }
+                    .event-main-right{
+                        width: 86%;
+                    }
+                }
+                .event-main-date{
+                    text-transform: uppercase;
+                }
+                .btn-agenda {
+                    @include fontSize(12);
+                    height: 26px;
+                    line-height: 26px;
+                    margin: 12px 2px;
+                    vertical-align: top;
+                } 
+            }
+            .event-left {
+                margin: 0;
+                width: 320px;
+                
+                .event-going{
+                    margin: 24px 0 0 0;
+                    height: 112px;
+                    padding: 0 6px;
+                    
+                    .event-going-top{
+                        .going-title{
+                            @include fontSize(15);
+                        }
+                    }
+                    .event-going-main{
+                        margin:0;
+                        a {
+                            height: 70px;
+                            width: 70px;
+                        }
+                    }
+                }
+                .map-infos {
+                    margin: 12px 0 0;
+                    padding: 0 10px 0 0;
+                    
+                    .map-icon {
+                        width   : 26px;
+                        height  : 26px; 
+                    }
+                }
+            }
+        }
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+

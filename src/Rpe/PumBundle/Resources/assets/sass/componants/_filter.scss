@@ -1,0 +1,173 @@
+.filter {
+	display       : inline-block;
+	margin        : 0 0 30px 0;
+	width         : 100%;
+	height        : 50px;
+	padding       : 20px 0 0 0;
+	border-top    : 1px solid $white-font;
+	position      : relative;
+	// z-index       : 10;
+
+	@include fontSize(20);
+	color: $white;
+}
+
+.filter-title,
+.filter-right {
+	display        : inline-block;
+	vertical-align : middle;
+}
+
+.filter-title {
+	@include fontSize(20);
+	margin         : 0;
+	color          : $white-font;
+	text-transform : uppercase;
+	font-family    : $UbuntuCondensed;
+	padding: 0 0 5px 0;
+
+	> span {
+		font-style : italic;
+	}
+
+	&.active {
+		text-decoration: none;
+		border-bottom: 1px solid $white;
+	}
+
+	&:hover {
+		text-decoration: none;
+		border-bottom: 1px solid $white;
+		color: $white;
+	}
+}
+
+.filter-right {
+	float : right;
+}
+
+.filter-right-wrapper {
+	height      : 30px;
+	list-style  : none;
+	line-height : 30px;
+
+	> .filter-link {
+		display        : inline-block;
+		padding        : 0 30px 0 0;
+		vertical-align : top;
+
+		&:last-child {
+			padding : 0;
+		}
+	}
+}
+
+.filter .bootstrap-select:not([class*="span"]) {
+	width : auto;
+}
+
+.filter .btn-group,
+.filter .btn-default,
+.filter .btn-default:hover,.btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+	margin     : 0px;
+	border     : 0px;
+	background : transparent;
+}
+
+.filter .btn-group .btn {
+	padding    : 0;
+    box-shadow : none;
+}
+
+.filter .bootstrap-select .btn:focus {
+	outline : 0px transparent !important; // C'est moche, je sais, mais bootstrap a mis un !important, donc je suis obligé, désolé :(
+}
+
+.filter .filter-option {
+	@include fontSize(11);
+	color       : $white-font;
+	font-family : $Verdana;
+}
+
+.filter .bootstrap-select.btn-group .btn .filter-option {
+    position : relative;
+}
+
+.filter .bootstrap-select.btn-group .btn .caret {
+	left             : 0;
+	margin-top       : -3px;
+	border-top-color : $white;
+}
+
+.filter .dropdown-menu {
+	margin             : 6px 0 0 0;
+	border             : 0px solid transparent;
+	border-right       : 1px solid $light-grey-2;
+	border-bottom      : 1px solid $light-grey-2;
+	border-left        : 1px solid $light-grey-2;
+	border-radius      : 0px;
+	background         : $background-blue-1;
+	-webkit-box-shadow : 0px 0px transparent;
+	box-shadow         : 0px 0px transparent;
+	color              : $white-font;
+}
+
+.filter .dropdown-menu > li > a {
+	@include fontSize(11);
+	padding     : 4px 10px;
+	color       : $light-grey-font;
+	font-family : $Verdana;
+
+	&:hover {
+		background : transparent;
+		color      : $white-font;
+	}
+}
+
+//fix menu responsive
+@media screen and (max-width: $landscape-screen) {
+    .filter {
+        height : 52px;
+    }
+
+    .filter-title,
+    .filter-right {
+        display        : inline-block;
+        vertical-align : top;
+        height         : 30px;
+        line-height    : 30px;
+    }
+
+    .filter-title {
+    	width : 20%;
+    }
+
+    .filter-right {
+        width      : 80%;
+        text-align : right;
+    }
+}
+
+.mobile {
+	.filter {
+        height : 52px;
+    }
+
+    .filter-title,
+    .filter-right {
+        display        : inline-block;
+        vertical-align : top !important;
+        height         : 30px;
+        line-height    : 30px;
+    }
+
+    .filter-title {
+    	width : auto;
+    }
+
+    .filter-right {
+        width      : 49%;
+        text-align : right;
+        float      : right;
+    }
+}

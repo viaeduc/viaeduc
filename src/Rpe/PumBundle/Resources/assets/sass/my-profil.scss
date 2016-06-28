@@ -1,0 +1,699 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "layout/_sidebar";
+@import "componants/_breadcrumbs";
+@import "componants/_cover";
+@import "componants/_publications";
+@import "componants/_side-componants";
+@import "componants/_side-componant-authors";
+@import "componants/_side-componant-connections";
+@import "componants/_side-componant-notifications";
+@import "componants/_side-componant-ressources";
+@import "componants/_side-componant-rss";
+@import "componants/_side-componant-vote";
+@import "componants/_side-componant-webpage";
+@import "componants/_modals";
+@import "vendors/_cropbox";
+
+// ------------
+// Specific CSS
+// ------------
+
+.content.full {
+    margin: 0 0 20px 0;
+}
+
+// --
+// Tabs
+
+.col-md-12 {
+    padding: 0;
+}
+
+.tab-content {
+    margin-bottom: 8%;
+}
+
+// .nav-tabs {
+//     margin: 0 0 20px 0;
+// }
+.nav-tabs > .tab {
+    width: 33.3333333333%;
+}
+
+h2 {
+    @include fontSize(20);
+}
+
+// --
+// Rebuilding Modals
+
+.modal-content {
+    border-radius: 0px;
+}
+
+.modal-header {
+    padding: 20px 20px 10px 20px;
+}
+
+.modal-body {
+    padding: 10px 20px;
+}
+
+.modal-title {
+    @include fontSize(30);
+    font-family: $MissionScript;
+}
+
+.modal-inner-wrapper {
+    padding: 20px;
+    background: $light-grey-1;
+    border: 1px solid $light-grey-2;
+    color: $dark-grey-font;
+    text-align: center;
+}
+
+.inner-description {
+    margin: 0 0 20px 0;
+}
+
+.modal-dialog {
+    width: 820px;
+}
+
+.image-crop {
+    margin: 0 auto 20px auto;
+    width: 670px;
+    height: 330px;
+    border: 1px solid $light-grey-2;
+    background: $background-blue-1;
+}
+
+.jcrop-holder {
+    width : 670px;
+    height : 330px;
+}
+
+.fileupload .image-crop {
+    width : 670px;
+    height : 330px;
+}
+
+.thumbnail > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.btn-file {
+    display: inline-block;
+    float: none;
+    width: 300px;
+    color: $white-font;
+    border-radius: 0;
+    border: 0px solid transparent;
+
+    &:hover {
+        color: $white-font;
+    }
+}
+
+.modal-footer {
+    border: 0;
+    margin: 0;
+    padding: 10px 20px 20px 20px;
+    a {
+        margin: 0;
+        width: auto;
+        line-height: 26px;
+        padding: 10px;
+
+        &.left {
+            float: left;
+        }
+    }
+}
+
+// --
+// Cover menu
+
+.move-message {
+    height: 50px;
+    width: 300px;
+    padding: 5px 10px;
+    line-height: 40px;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    margin-top: -40px;
+    margin-left: -150px;
+    background: rgba(255,255,255,0.5);
+    color: $dark-blue-font;
+    text-align: center;
+
+    display: none;
+    opacity: 0;
+}
+
+.cover-menu {
+    position: absolute;
+    z-index: 10;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    padding: 10px 20px;
+    line-height: 40px;
+    background: rgba(255,255,255,0.5);
+
+    display: none;
+    opacity: 0;
+
+    .action-btn {
+        height: 40px;
+        line-height: 8px;
+        margin: 0;
+
+        &.right {
+            float: right;
+        }
+    }
+
+    .btn-file {
+        width: 145px;
+        line-height: 40px;
+        @include fontSize(18);
+    }
+
+    .animated-btn {
+        position: relative;
+        bottom: -10px;
+        opacity: 0;
+    }
+}
+
+// --
+// Profil
+
+.profil-tab {
+    // Titles
+    .title {
+        margin: 0 0 20px 0;
+        @include fontSize(18);
+        line-height: 1.2;
+        font-family: $Verdana;
+        color: $dark-blue-font;
+        text-transform: uppercase;
+
+        &:before {
+            @include fontSize(35);
+            line-height: 20px;
+            vertical-align: middle;
+            padding-left: 0;
+        }
+
+        // Icons
+        &.icon-list {
+            // background: url("../images/pictos/icon_list.png") no-repeat scroll 0px center transparent;
+            // padding-left: 34px;
+            vertical-align: middle;
+        }
+
+        &.icon-user-male {
+            vertical-align: middle;
+            &:before {
+                margin-right: 10px;
+            }
+        }
+
+        &.icon-user-experience {
+            background: url("../images/pictos/icon_experience.png") no-repeat scroll 0px center transparent;
+            padding-top: 3px;
+            padding-left: 34px;
+        }
+
+        &.icon-formation {
+            background: url("../images/img-formation.png") no-repeat scroll 0px 0px transparent;
+            padding-left: 34px;
+        }
+
+        &.icon-sun {
+            &:before {
+                margin-left: 0px;
+                @include fontSize(22);
+                font-weight: bold;
+            }
+        }
+    }
+
+    // Styles
+    a {
+        color: $dark-grey-font;
+
+        &.bold {
+            font-weight: bold;
+        }
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .training-list {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 70%;
+
+        &:empty {
+            display: none;
+        }
+
+        .training-desc {
+            @include fontSize(14);
+            line-height : 1.8em;
+        }
+    }
+
+    .line {
+        width: 100%;
+        height: 1px;
+        margin: 10px 0;
+        background: $light-grey-2;
+    }
+}
+
+.profil-box {
+    padding: 20px;
+    border: 1px solid $light-grey-2;
+    margin: 0 0 20px 0;
+    @include fontSize(14);
+    color: $dark-grey-font;
+    position:relative;
+
+    a {
+        display : block;
+    }
+
+    .edit-title {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        @include fontSize(16);
+        font-weight: bold;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .profil-content {
+        position: relative;
+        width   : 100%;
+
+        .float-right {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 30%;
+        }
+
+        .icon-cog {
+            display: none;
+            visibility: hidden;
+        }
+
+        .icon-mail a {
+            display: inline-block;
+        }
+
+        &:hover {
+            .icon-cog {
+                transition: all 0.2s all;
+                opacity: 1;
+            }
+        }
+    }
+
+    .icon-cog {
+        transition: all 0.2s all;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        opacity: 0;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    // Extra box styling
+    &.grey {
+        background: $light-grey-1;
+    }
+
+    &:last-child {
+        margin: 0;
+    }
+}
+
+// --
+// Edit box
+
+.edit-content {
+    display: none;
+    opacity: 0;
+
+    ul {
+        margin: 0;
+    }
+
+    .button-box {
+        margin: 10px 0 0 0;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    a {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .action-btn {
+        margin: 0;
+        color: $white-font;
+
+        &.right {
+            float: right;
+        }
+    }
+}
+
+.exp-form {
+    width: 100%;
+    height: 265px;
+
+    > * {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    li {
+        margin: 0 0 10px 0;
+
+        &:last-child {
+            margin: 0;
+        }
+    }
+
+    .exp-form-left {
+        width: 79%;
+
+        .inner-left {
+            display: inline-block;
+            vertical-align: middle;
+            width: 30%;
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .inner-right {
+            display: inline-block;
+            vertical-align: middle;
+            width: 70%;
+
+            .inner-right-left,
+            .inner-right-center,
+            .inner-right-right {
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            .inner-right-left,
+            .inner-right-right {
+                width: 45%;
+            }
+
+            .inner-right-center{
+                width: 10%;
+                text-align: center;
+            }
+        }
+
+        textarea {
+            height: 100px;
+        }
+    }
+
+    .exp-form-right {
+        width: 15%;
+        text-align: center;
+        padding: 0 10px;
+
+        label {
+            width: 100%;
+            text-align: center;
+        }
+
+        .select-box {
+            width: 100%;
+        }
+    }
+
+    .exp-form-last {
+        width: 6%;
+        text-align: center;
+        margin-top: 20px;
+
+        .icon-cancel {
+            transition: all 0.2s linear;
+            height: 45px;
+            width: 45px;
+            line-height: 45px;
+            background: $background-grey-3;
+            color: $white-font;
+
+            &:hover {
+                transition: all 0.2s linear;
+                text-decoration: none;
+                background: $background-blue-1;
+            }
+        }
+    }
+}
+
+// Extra styling
+
+.not-friends-title{
+    font-style: italic;
+    text-align: center;
+    color: $light-grey-font;
+}
+
+// ----------- //
+// PROFIL CROP //
+// ----------- //
+
+.hidden-input {
+    display    : none;
+    visibility : none;
+    opacity    : 0;
+    height     : 0px;
+    width      : 0px;
+}
+
+.edit-profil-image {
+    @include transition(opacity 0.2s linear);
+    position : relative;
+    height   : 117px;
+    width    : 117px;
+
+    .edit-profil-link, .confirm-profil-image-change {
+        @include fontSize(12);
+        @include transition(all 0.2s linear);
+        display        : none;
+        opacity        : 0;
+        width          : 117px;
+        height         : 35px;
+        line-height    : 35px;
+        padding        : 0;
+        text-align     : center;
+        font-family    : $UbuntuCondensed;
+        text-transform : uppercase;
+        position       : absolute;
+        margin         : 0;
+        bottom         : -35px;
+        left           : 0;
+    }
+
+    &.cover {
+        height : 300px;
+        width  : 837px;
+
+        .edit-profil-link, .confirm-profil-image-change {
+            bottom : 5px;
+            right  : 5px;
+            left   : auto;
+        }
+
+        .cropZoomIn {
+            bottom : -270px;
+            left   : 30px;
+        }
+
+        .cropZoomOut {
+            bottom : -270px;
+            left   : 5px;
+        }
+
+    }
+
+    &:hover {
+        @include transition(opacity 0.2s linear);
+        .edit-profil-link {
+            @include transition(all 0.2s linear);
+            display : block;
+            opacity : 1;
+            bottom  : 0;
+        }
+    }
+
+    &.active {
+        @include transition(opacity 0.2s linear);
+        .confirm-profil-image-change {
+            @include transition(opacity 0.2s linear);
+            display : block;
+            opacity : 1;
+            bottom: 0;
+        }
+    }
+
+    &.active:hover {
+        @include transition(opacity 0.2s linear);
+        .edit-profil-link {
+            @include transition(opacity 0.2s linear);
+            display : none;
+            opacity : 0;
+        }
+    }
+
+    .results {
+        display : none;
+    }
+}
+
+.nav-tabs {
+    margin : 0 0 20px 0;
+}
+
+.sidebar-link {
+    width       : 100%;
+    margin      : 0;
+    height      : 40px;
+    line-height : 40px;
+    padding     : 0;
+}
+
+// Notifications //
+.profil-notifications-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+
+    .profil-notifications-element {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        margin: 0 0 10px 0;
+        color: $light-grey-2;
+        height: 60px;
+        line-height: 60px;
+    }
+
+    .profil-notifications-image,
+    .profil-notifications-details {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .profil-notifications-image {
+        width  : 7.425742574257425%;
+        margin : 0 2% 0 0;
+    }
+
+    .profil-notifications-details {
+        width : 90.5742574257%;
+        line-height: 1em;
+        color: $light-blue-1;
+    }
+
+    .profil-notifications-date {
+        position: absolute;
+        top:0;
+        left:9.425742574257425;
+        @include fontSize(11);
+    }
+
+    .profil-notifications-date {
+        color: $light-grey-2;
+    }
+
+    .profil-notifications-notification:first-child {
+        font-weight : bold;
+    }
+    a {
+        color       : $light-blue-2;
+    }
+    .close {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        -ms-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    }
+}
+
+
+.profil-notifications-btn {
+    width  : 100%;
+    color  : $white !important;
+    margin : 0;
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .nav-tabs > .tab {
+        width: 33%;
+    }
+}
+
+@media screen and (max-width: $portrait-screen) {
+    .nav-tabs > .tab {
+        width: 50%;
+    }
+
+    .form-publication {
+        width : 100%;
+    }
+
+    // Sidebar fixes
+
+    .connections-wrapper .connections-componant {
+        width          : 33.3333333%;
+        padding-bottom : 33.3333333%;
+    }
+
+    .ressource-wrapper {
+        width : 100%;
+    }
+}

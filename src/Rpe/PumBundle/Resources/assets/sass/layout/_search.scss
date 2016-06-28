@@ -1,0 +1,795 @@
+// ------
+// Search
+// ------
+.section-search {
+    @include transition( margin-top 0.3s ease-out 0.1s);
+    display         : inline-block;
+    vertical-align  : top;
+    padding         : 10px 0;
+    background-color: $background-blue-1;
+    text-align      : center;
+    width           : 100%;
+}
+
+// TEMP
+.temp-search {
+    margin  : 0;
+    height  : 40px;
+    width   : 19%;
+    padding : 10px;
+    margin  : 0;
+    vertical-align : baseline;
+}
+
+.modal-warning {
+    width    : 600px !important;
+    overflow : hidden;
+}
+
+.modal-warning > .modal-dialog {
+    width : 600px !important;
+}
+
+.modal-warning > .modal-dialog > .modal-content {
+    width         : 600px;
+    padding       : 20px;
+    line-height   : 1.6em;
+    border-radius : 0px;
+}
+
+.temp-warning {
+    display: inline-block;
+    vertical-align: top;
+    width : 100%;
+    margin : 0 0 10px 0;
+}
+
+// ---------------
+// Main Search Bar
+// ---------------
+.form-search {
+    position      : relative;
+    margin        : auto;
+    max-width     : $max-width;
+    width         : 100%;
+    height        : 50px;
+    vertical-align: top;
+    line-height   : 50px;
+    text-align    : left;
+}
+
+// ------------
+// Publish menu
+// ------------
+.menu-publish {
+    @include fontSize(18);
+    position       : relative;
+    display        : inline-block;
+    margin-right   : 2.666666666666667%;
+    width          : 22%;
+    vertical-align : top;
+    text-transform : uppercase;
+
+    // --------------
+    // Publish button
+    // --------------
+    .publish-btn {
+        @include transition(all 0.3s ease);
+        @include fontSize(18);
+        position       : relative;
+        display        : inline-block;
+        padding        : 0;
+        width          : 100%;
+        color          : $white-font;
+        font-family    : $UbuntuCondensed;
+        line-height    : 50px;
+        height         : 50px;
+        vertical-align : top;
+        text-align     : center;
+
+        // Picto
+        &:before{
+            @include transition(all 0.3s ease);
+            position      : relative;
+            display       : inline-block;
+            width         : 10%;
+            height        : 50px;
+            // background    : url("../images/pictos/pencil.png") no-repeat scroll center center transparent;
+            // content       : '';
+            vertical-align: baseline;
+            line-height   : 50px;
+            padding       : 0;
+            text-align    : center;
+        }
+
+        &:hover,
+        &:active{
+            color          : $white-font;
+            text-decoration: none;
+            &:before {
+                @include transition(all 0.3s ease);
+                // background-position: 60% center;
+            }
+        }
+        &:focus{
+            outline        : none;
+            text-decoration: none;
+        }
+    }
+    // Flèche
+    .caret {
+        position          : absolute;
+        top               : 46%;
+        right             : 6%;
+        border-top-width  : 5px;
+        border-top-color  : $white;
+        border-right-width: 6px;
+        border-left-width : 6px;
+    }
+    &.open .caret {
+        top                : 40%;
+        border-top         : 0px;
+        border-right-width : 6px;
+        border-bottom-width: 5px;
+        border-bottom-color: $white;
+        border-left-width  : 6px;
+    }
+
+    // -------------
+    // Dropdown Menu
+    // -------------
+    .dropdown-menu {
+        margin       : 0px;
+        padding      : 0px;
+        width        : 100%;
+        border       : none;
+        border-radius: 0px;
+        background   : none;
+        box-shadow   : none;
+        top: 99%;
+
+        li{
+            @include transition(all 0.2s ease);
+            position   : relative;
+            height     : 50px;
+            line-height: 50px;
+            &:before {
+                @include transition(all 0.2s ease);
+                @include fontSize(18);
+                position      : relative;
+                margin        :0;
+                line-height   :1.2;
+                vertical-align: middle;
+                width         : 20%;
+                padding-left  : 0;
+            }
+            &:hover{
+                &:before {
+                    @include transition(all 0.2s ease);
+                    padding-left: 5%;
+                }
+            }
+        }
+
+        a {
+            @include transition(all 0.2s ease);
+            @include fontSize(14);
+            position      : relative;
+            display       : inline-block;
+            padding       : 0;
+            width         : 80%;
+            height        : inherit;
+            color         : $white-font;
+            vertical-align: top;
+            line-height   : inherit;
+            font-family   : $UbuntuCondensed;
+
+            &:hover,
+            &:focus {
+                @include transition(all 0.2s ease);
+                background: none;
+            }
+        }
+    }
+}
+
+// -----------
+// White Block
+// -----------
+.white-block {
+    display    : inline-block;
+    width      : 75.3333333333%;
+    height     : 50px;
+    background : $background-white;
+    line-height: 50px;
+}
+
+// -----------
+// Select Menu
+// -----------
+.menu-select .bootstrap-select.select-styled.open .caret {
+    margin-top: -2px;
+    border-width: 0 7px 6px;
+    border-bottom-color: $light-grey-2;
+}
+.menu-select {
+    @extend .menu-publish;
+    margin: 0;
+    width : 0%;
+    height: 50px;
+
+    .bootstrap-select.select-styled {   // Bootstrap override
+        width         : 100%;
+        background    : $light-grey-1;
+        vertical-align: top;
+
+        button {
+            @include transition(background-position  0.3s ease-out);
+            height       : 50px;
+            outline      : none!important;    //Bootstrap override -_-'
+            border       : 0;
+            background    : $light-grey-1;
+            border-radius: 0px;
+            // background   : url("../images/pictos/loupe.png") no-repeat scroll 15px center transparent;
+            color        : $dark-grey-font;
+            padding: 0;
+
+
+            &:hover,
+            &:active{
+                @include transition(background-position-left 0.3s ease-in);
+                // background   : url("../images/pictos/loupe.png") no-repeat scroll 18px center transparent;
+            }
+
+        }
+        .pull-left {
+            @include fontSize(20);
+            // padding-left  : 10px;
+            text-align    : left;
+            text-transform: uppercase;
+            font-weight   : normal;
+            font-family   : $UbuntuCondensed;
+            line-height   : 1.2;
+            left : initial;
+            right: initial;
+            width: 90%;
+
+            &:before{
+                content: '\e625';
+                font-family: 'icomoon';
+                speak: none;
+                font-style: normal;
+                font-weight: normal;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+
+                width: 28%;
+                position: relative;
+                display: inline-block;
+                padding       : 0 8px;
+                padding       : 0 .5em;
+                text-align: center;
+
+                /* Better Font Rendering =========== */
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+            .caret {
+                border-top-width  : 7px;
+                border-top-color  : $dark-grey-2;
+                border-right-width: 6px;
+                border-left-width : 6px;
+            }
+
+        .dropdown-menu li {
+            height       : 50px;
+            line-height  : 50px;
+            border-bottom: 1px solid $light-grey-2;
+            background   : $light-grey-1;
+            text-align   : left;
+            a {
+                @include fontSize(14);
+                @include transition(all 0.2s ease-out);
+                display    : block;
+                width      : 100%;
+                height     : 50px;
+                color      : $dark-grey-font;
+                line-height: 50px;
+
+                &:before {
+                    @include fontSize(18);
+                    @include transition(all 0.2s ease-in);
+                    content     : '\e6cd';
+                    font-family : "icomoon";
+                    display     : inline-block;
+                    width       : 2.4em;
+                    text-align  : left;
+                    line-height : 1.2;
+                    padding-left: 10%;
+                    vertical-align: sub;
+                }
+
+                &:hover,
+                &:active,
+                &:focus {
+                    @include transition(none);
+                    background: $light-grey-2;
+
+                    &:before {
+                        @include transition(all 0.2s ease-in);
+                        width       : 2.4em;
+                        padding-left: 12%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// -----------
+// Right links
+// -----------
+.links-menu {
+    @include fontSize(16);
+    display       : inline-block;
+    padding       : 8px 0px;
+    width         : 15.865384615385%;
+    vertical-align: top;
+    a {
+        @include fontSize(12);
+        display       : block;
+        color         : $light-grey-font;
+        vertical-align: middle;
+        text-transform: uppercase;
+        font-family   : $UbuntuCondensed;
+        line-height   : 1.5;
+
+        &:before {
+            @include fontSize(13);
+            text-decoration: none;
+        }
+        &:hover,
+        &:focus {
+            color: $light-grey-font;
+        }
+    }
+}
+
+// -----------------------
+// Search and autocomplete
+// -----------------------
+.input-search {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    //width: 80.28846%;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+
+    .twitter-typeahead {
+        width: 92%;
+        vertical-align: top;
+
+        &:after {
+            position: absolute;
+            top: 9px;
+            right: 0;
+            display: block;
+            width: 1px;
+            height: 34px;
+            background-color: $light-grey-1;
+            content: '';
+        }
+    }
+
+    .typeahead,
+    .tt-query,
+    .tt-hint,
+    .tt-input {
+        @include fontSize(14);
+        @include transition(all 0.2s ease);
+        @include placeholder {
+            color: $light-grey-font;
+            text-transform: uppercase;
+        }
+        // padding: 0 0 0 2.803738317756%;
+        padding: 0 0 0 2.702702702703%;
+        width: 100%;
+        height: 50px;
+        outline: none;
+        border: 0px none;
+        font-family: $UbuntuCondensed;
+        line-height: 1em;
+        box-shadow: none;
+
+
+        &:hover {
+            border: none;
+            box-shadow: inset 0 0 5px 3px $light-grey-1;
+            @include transition(all 0.2s ease);
+        }
+        &:focus,
+        &:active {
+            @include transition(all 0.2s ease);
+            z-index: 999;
+            outline: 0!important;
+            border: none;
+            box-shadow: inset 0 0 5px 0px $light-blue-1;
+        }
+    }
+
+    input.btn-submit {
+        @include fontSize(14);
+        display : inline-block;
+        vertical-align: top;
+        margin : 0;
+        padding : 0;
+        width: 8%;
+        height: 50px;
+        border-radius: 0;
+        font-weight: normal;
+        line-height: 1.2;
+    }
+
+    .btn-icon {
+        @include transition(background-color 0.2s linear);
+        @include fontSize(22);
+        display     : block;
+        position    : absolute;
+        width       : 8%;
+        height      : 50px;
+        top         : 0;
+        right       : 0;
+        color       : $white;
+        text-align  : center;
+        font-weight : 400;
+        background  : $light-blue-1;
+        cursor      : pointer;
+
+        &:hover {
+            @include transition(background-color 0.2s linear);
+            background : $light-blue-2;
+        }
+
+    }
+}
+
+.input-search {
+    .tt-dropdown-menu {
+        width    : 100%;
+        position : relative;
+        z-index  : 2000 !important;
+
+        .tt-suggestion {
+            height  : 55px !important;
+            padding : 0;
+            border  : 0px solid transparent;
+
+            &:hover {
+                background: inherit;
+            }
+        }
+    }
+}
+
+.home-search-result {
+    @include transition(background-color 0.2s linear);
+    border-bottom    : 1px solid $light-grey-3;
+    background-color : $lighter-grey-1;
+    height           : 54px;
+
+    &:hover,
+    &:focus {
+        background-color : $lighter-grey-2;
+    }
+
+    &.more-result {
+        background-color : $light-blue-1;
+        height           : 52px;
+        line-height      : 52px;
+        text-align       : center;
+        border           : 0;
+        a {
+            color       : $white;
+            font-family : $HelveticaNeue;
+            border      : 0;
+        }
+        &:hover,
+        &:focus {
+            background-color : $light-blue-2;
+        }
+    }
+
+    .home-search-result-info {
+        display        : inline-block;
+        vertical-align : middle;
+        width          : 100%;
+        height         : 100%;
+        span {
+            display : block;
+            span {
+                display : inline-block;
+            }
+        }
+    }
+
+    p, img {
+        display        : inline-block;
+        vertical-align : middle;
+    }
+
+    img {
+        width  : 35px;
+        margin : 8px;
+    }
+
+    p {
+        font-weight : bold;
+        font-family : $HelveticaNeue;
+        line-height : 1.3em;
+        margin      : 0;
+        span {
+            font-weight : normal;
+        }
+    }
+
+    strong {
+        color : $light-blue-1;
+    }
+
+    a {
+        text-decoration : none;
+        color           : $dark-grey-font;
+        display         : block;
+        height          : 100%;
+    }
+}
+
+// ------------------
+// Dropdown typeahead
+// ------------------
+.tt-dropdown-menu {
+    width: 100%;
+    background-color: $light-grey-1;
+    font-family: $Verdana;
+    .tt-suggestion {
+        @include fontSize(12);
+        padding: 10px 8px;
+        border-top: 1px solid $light-grey-2;
+        line-height: 1.2em;
+        &:first-child {
+            border: 0px;
+        }
+        &.tt-is-under-cursor {
+            background-color: $light-grey-1;
+        }
+        .results-informations {
+            display: inline-table;
+            width: 100%;
+            color: $dark-grey-font;
+            vertical-align: top;
+            .bleu {
+                color: $dark-blue-font;
+            }
+            .col-lef,
+            .col-right {
+                display: inline-block;
+                vertical-align: top;
+            }
+            .col-lef {
+                width: 81%;
+            }
+            .col-right {
+                @include fontSize(16);
+                padding: 5px 0px;
+                width: 12%;
+                border-left: 1px solid $light-grey-2;
+                text-align: center;
+                font-weight: bold;
+                span:before {
+                    @include fontSize(18);
+                    color: $light-blue-1;
+                }
+            }
+            .number {
+                display: inline-block;
+                margin: 0px 5px;
+                vertical-align: top;
+            }
+            .author {
+                display: block;
+            }
+            .description {
+                float: left;
+            }
+        }
+        .results-images {
+            display: inline-table;
+            margin-right: 8px;
+            vertical-align: top;
+        }
+    }
+    .all-results {
+        @include fontSize(12);
+        display: block;
+        padding: 0px;
+        height: 45px;
+        border-radius: 0px;
+        text-align: center;
+        font-weight: bold;
+        font-family: verdana;
+        line-height: 45px;
+
+        &:focus,
+        &:active{
+            border-color: transparent;
+            box-shadow: 0 0 0 transparent;
+        }
+    }
+    p {
+        margin: 0px;
+    }
+}
+
+//
+@media screen and (max-width: 1280px) {
+    .section-search{
+        padding : 10px 0;
+        width   : 100%;
+        display : inline-block;
+
+        .twitter-typeahead {
+            width : 88%;
+        }
+
+        .input-search input.btn-submit,
+        .input-search .btn-icon {
+            width : 12%;
+        }
+    }
+    .home-search-box {
+        width:88%;
+    }
+
+    .links-menu a {
+        @include fontSize(11);
+        line-height: 1.7;
+    }
+
+    .sub-left {
+        width: 25%;
+    }
+    .sub-middle {
+        width: 67%;
+    }
+    .sub-right {
+        display: none;
+    }
+
+        .menu-publish .publish-btn,
+        .menu-select .bootstrap-select.btn-group  .filter-option {
+            @include fontSize(16);
+        }
+
+}
+
+
+// Mobile
+.mobile {
+    .temp-search{
+        width: 29%;
+    }
+
+    .section-search{
+        width: 71%;
+        background: none;
+        padding-left: 0;
+        padding-right: 0;
+
+        .form-search {
+            width : 100% !important;
+        }
+
+        .menu-publish {
+            margin: 0;
+            width: 25%;
+
+            > .publish-btn {
+                @include fontSize(10);
+            }
+        }
+
+        .white-block {
+            width: 75%;
+        }
+        .menu-select {
+            width: 0%;
+        }
+        .input-search {
+            width: 100%;
+
+            .twitter-typeahead{
+                width: 100%;
+            }
+            input.btn-submit{
+                width: 100/400*100%;
+                margin: 0;
+            }
+        }
+
+        .menu-publish .publish-btn,
+        .menu-select .bootstrap-select.select-styled .pull-left{
+            @include fontSize(10);
+        }
+        .links-menu {
+            display: none;
+        }
+
+        .input-search {
+            position : relative;
+
+            .btn-submit,
+            .btn-icon {
+                position : absolute;
+                top      : 0;
+                right    : 0;
+                width    : 50px !important;
+            }
+        }
+    }
+
+    #notifs{
+        &:before,
+        &:after {
+            content: none;
+            border: 0;
+        }
+
+        &>div {
+            width: 50%;
+        }
+    }
+}
+
+@media screen and (max-width: $portrait-screen) {
+    .form-publication {
+        width : 75%;
+    }
+
+    .profil-links .action-btn {
+        height      : 35px;
+        line-height : 35px;
+        width       : 35px;
+        @include fontSize(0);
+
+        &:before {
+            @include fontSize(16);
+        }
+    }
+
+    .fileupload {
+        height      : 35px;
+        line-height : 35px;
+        @include fontSize(0);
+
+        &:before {
+            @include fontSize(16);
+        }
+    }
+
+    .extra-message-info .message-add-image .action-btn,
+    .extra-message-info .message-add-image .profil-btn {
+        height      : 35px;
+        line-height : 35px;
+        width       : 35px;
+        padding     : 0px;
+        @include fontSize(0);
+
+        &:before {
+            @include fontSize(16);
+        }
+    }
+}

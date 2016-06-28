@@ -1,0 +1,31 @@
+// -------
+// General
+// -------
+body{
+    background : $background-blue-1;
+}
+
+.global-wrapper{
+    width      : 100%;
+    background : $background-blue-1;
+    min-height : 100%;
+    position   : relative;
+    padding    : 0 0 60px 0;
+
+    &.bg-white {
+        background: $background-white;
+    }
+}
+
+.wrapper{
+    margin    : auto;
+    max-width : 1250px;
+    width     : 100%;
+}
+
+@media screen and (max-width: 1280px) {
+    .wrapper{
+        padding : 1%;
+        min-height: 500px;
+    }
+}

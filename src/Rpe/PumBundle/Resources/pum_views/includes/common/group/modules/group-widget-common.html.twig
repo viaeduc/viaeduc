@@ -1,0 +1,77 @@
+<!--   *******************   -->
+<!-- Common for group widget -->
+<!--   *******************   -->
+
+<div class="module-wrapper {{ groupModule }} {% if group.isModuleEnabled(groupModule) %}enabled{% else %}disabled{% endif %}" data-module="{{ groupModule }}">
+    <div class="module-top">
+        <img src="{{ asset('bundles/rpepum/images/module_sondage.png') }}" class="module-image">
+        <h3 class="module-title">{{ ("groupPage.module."~groupModule)|trans({}, 'rpe') }}</h3>
+    </div>
+    <p class="module-text">
+        {{ ("groupPage.module."~groupModule~".description")|trans({'%maxWidgets%': nbModulesLimit}, 'rpe') }}<br/>
+    </p>
+    <div class="module-bottom">
+        {% include 'pum://includes/common/componants/groups/admin_modules_button-activation.html.twig' with {
+            'group': group,
+            'groupModule': groupModule
+        } %}
+
+        <a href="#" class="action-btn light-blue icon-cog module-config">{{ "common.module.parameters"|trans({}, 'rpe') }}</a>
+    </div>
+
+    <!-- This is the div that opens on module-config.click -->
+    <div class="module-content">
+        {% if widgets|length < nbModulesLimit %}
+            <a href="#" class="action-btn light-blue open-new">{{ ("groupPage.module."~groupModule~".addBtn")|trans({}, 'rpe') }}</a>
+            <div class="new-form js-autoload js-load-inner" data-autoload="{{ path('group_widget', {'groupId': group.id, 'type': widgetType, 'widgetId': groupwidget.id}) }}">
+                {{ macros.loader() }}
+            </div>
+        {% endif %}
+
+        {% if widgets|length %}
+            <span class="module-desc">{{ ("groupPage.module."~groupModule~".list")|trans({}, 'rpe') }} :</span>
+        {% endif %}
+        <div class="event-wrapper">
+            {% for widget in widgets %}
+                {{ (loop.first) ? '<ul>' }}
+
+                <li>
+                    <div class="event-main">
+                        <div class="event-wrapper">
+                            <div class="event-left one-line">
+                                <span class="event-date"></span>
+                            </div>
+                            <div class="event-right one-line">
+                                <a href="{{ path('group_widget_edit', {'groupId': group.id, 'widgetId': widget.id}) }}" class="event-title">{{ widget.name }}</a>
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="{{ path('group_widget_delete', {'groupId': group.id, 'widgetId': widget.id}) }}" class="action-btn red edit-link icon-cross"></a>
+                        </div>
+                    </div>
+                </li>
+
+                {{ (loop.last) ? '</ul>' }}
+            {% endfor %}
+
+            <!-- *************** -->
+            <!-- POSITION CHANGE -->
+            <!-- *************** -->
+            <div class="vote-content blue change-position">
+                <div class="position-wrapper">
+                    <form>
+                        <div class="form-left">
+                            <label for="module-position">{{ "common.module.position"|trans({}, 'rpe') }} :</label>
+                        </div>
+                        <div class="form-right">
+                            {% include 'pum://includes/common/componants/groups/admin_modules_select-position.html.twig' with {
+                                'group': group,
+                                'groupModule': groupModule
+                            } %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

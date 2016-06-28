@@ -1,0 +1,14 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+    {% if result is defined %}
+        {% include "pum://page/ajax/search/load_more_before.html.twig" %}
+
+        {% for row in result.rows %}
+            {% include 'pum://page/ajax/search/row/' ~ search_type ~ '.html.twig' with {row: row} %}
+        {% endfor %}
+        {% include "pum://page/ajax/search/load_more.html.twig" %}
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

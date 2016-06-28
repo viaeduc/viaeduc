@@ -1,0 +1,84 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-diffusion-list.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/tagmanager.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-diffusion-list.js') }}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+	{% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+		{% block this_page %}
+	    	Mes listes de diffusion
+	    {% endblock %}
+	{% endembed %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'pum://includes/common/componants/tips/tip-diffusion-list.html.twig' %}
+{% endblock %}
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-diffusion-list.html.twig' %}
+{% endblock %}
+
+{% block main_content %}
+    <div class="intro">
+        <div class="intro-left">
+            <h2>Mes listes de diffusion</h2>
+        </div>
+        <div class="intro-right">
+            <a class="create-list action-btn dark-grey" href="#">Créer une liste</a>
+        </div>
+    </div>
+
+    <div class="diffusion-list">
+        <ul>
+            <li>
+                <div class="list-left">
+                    <span>Groupe de travail - Lycée St Louis</span>
+                    <span>créé le 15/07/2013</span>
+                </div>
+                <div class="list-middle">
+                    <div>
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" />
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" />
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" />
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" />
+                    </div>
+                    <a href="">Voir les 18 membres</a>
+                </div>
+                <div class="list-right">
+                    <a href="#" class="square-btn dark-blue icon-pencil small"></a>
+                    <a href="#" class="square-btn dark-blue icon-cancel small"></a>
+                </div>
+            </li>
+            <li>
+                <div class="list-left">
+                    <span>Groupe de travail - Lycée St Louis</span>
+                    <span>créé le 15/07/2013</span>
+                </div>
+                <div class="list-middle">
+                    <div>
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" />
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" />
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" />
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" />
+                    </div>
+                    <a href="">Voir les 18 membres</a>
+                </div>
+                <div class="list-right">
+                    <a href="#" class="square-btn dark-blue icon-pencil small"></a>
+                    <a href="#" class="square-btn dark-blue icon-cancel small"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+
+
+

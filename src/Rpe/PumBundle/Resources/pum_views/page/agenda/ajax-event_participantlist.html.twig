@@ -1,0 +1,35 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+    <div class="event-going-top">
+        {% spaceless %}
+            <span class="going-title">{{ "agenda.going"|trans({}, 'rpe') }}</span>
+            <span class="going-list">
+                <a href="{{ path('ajax_event_relationlist', {'id': event.id}) }}" class="going-friends" data-toggle="modal" data-target="#modal-relations">
+                    {{ ('agenda.relations')|transchoice(userRelations|length, {
+                        '%count%': userRelations|length
+                    }, 'rpe') }}
+                </a> / {{ participants|length }}
+            </span>
+        {% endspaceless %}
+    </div>
+    <div class="event-going-main">
+	    {% for userInEvent in participants %}
+	        <a href="{{ path('profil', {id : hashEncode(userInEvent.user.id)}) }}">
+	            {{ macros.show_user_avatar(userInEvent.user, 'avatar', 90) }}
+
+	            <div class="profil-name">
+	                <span>{{ userInEvent.user.firstname }}</span>
+	                <span class="last-name">{{ userInEvent.user.lastname }}</span>
+	            </div>
+	        </a>
+	    {% endfor %}
+    </div>
+    <div class="event-going-bottom">
+        {# {% include 'pum://includes/common/componants/events/buttons-rsvp.html.twig' with {
+            'user': user,
+            'event': event,
+            'style': 'single'
+        } %} #}
+    </div>
+{% endblock main_content %}

@@ -1,0 +1,37 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{# FORM #}
+{% block _discussion_message_row %}
+    {% set type = 'html' %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _discussion_destinataires_row %}
+    {% set full_name = full_name ~ '[]' %}
+    {% set force_ajax_url = path('ajax_recipients_message', {'group_id': group_id, 'recipient_id': recipient_id }) %}
+    {% set attr = attr|merge({class: 'recipients tm-input extra-info-input', 'data-ttl' : 'false'}) %}
+    {% set span_second_widget_class = 'first-tag-list tag-list' %}
+    {% set required = '' %}
+
+    {% set custom_choices = friends %}
+
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _discussion_submit_row %}
+    <button type="submit" class="submit-relation-btn orange" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}">{{ "messages.send"|trans({}, 'rpe') }}</button>
+{% endblock %}
+
+{% block main_content %}
+    {% form_theme form _self %}
+
+    {{ form_errors(form) }}
+    {{ form_start(form, {'action': path('new_message', {'group_id': group_id|default(null), 'recipient_id': recipient_id|default(null)}) , 'attr': { 'class': 'new-message-form' } }) }}
+        <div class="new-message-error"></div>
+        <ul class="new-message-wrapper">
+            {{ form_row(form.destinataires, {'friends': friends, 'group_id': group_id|default(null), 'recipient_id': recipient_id|default(null) }) }}
+            {{ form_row(form.message) }}
+        </ul>
+        {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+{% endblock %}

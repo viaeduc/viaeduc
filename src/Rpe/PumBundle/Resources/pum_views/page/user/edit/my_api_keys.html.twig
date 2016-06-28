@@ -1,0 +1,113 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Mon compte' %}
+{% set page_name_analytics = 'user/edit/account' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{#
+	- Supprimer la div en plu (occupation error) sur activité pro
+	- enlever la class extra-info sur disciplines enseignés
+#}
+
+{# {% set account_tutorial_enabled = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-account.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-account.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            {{ "account.my_account"|trans({}, 'rpe') }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{# FORM THEME #}
+{% block form_row %}
+{% spaceless %}
+    {% if compound == false %}
+        <li class="extra-info">
+    {% endif %}
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div><!--
+        --><div class="form-right">
+            {{ form_widget(form) }}
+        </div>
+    {% if compound == false %}
+        </li>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block _pum_object_name_row %}
+    <li class="extra-info">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            {{ form_widget(form) }}
+        </div>
+    </li>
+{% endblock %}
+
+{% block _pum_object_submit_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn orange">{{ "Sauvegarder"|trans() }}</button>
+{% endblock %}
+
+{% block main_content %}
+{% spaceless %}
+    <div class="form-inner-wrapper">
+        <div class="container-right box-with-padding">
+            <div class="tabbable tabbable-privacy-settings">
+                <ul class="nav new-tabs">
+                    {% set account_active_menu = 'my_api_keys' %}
+                    {% include 'pum://includes/common/componants/account/menu.html.twig' %}
+                </ul>
+                <div class="tab-content settings">
+                    <div class="tab-pane active" id="portlet_tab1">
+                        {{ macros.alertMessages() }}
+                        <ul>
+                            {% for oauthKey in oauthKeys %}
+                                <li>
+                                    <p><strong>{{ oauthKey.appName }}</strong></p>
+                                    <p>{{ oauthKey.apiKey }} / {{ oauthKey.apiSecret }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        
+
+                        {% if error is defined %}
+                            {% if error == 'cannot_create' %}
+                                <p>Erreur : vous ne pouvez pas créer de clés API sur Viaeduc.</p>
+                            {% endif %}
+                        {% endif %}
+                        
+                        {% if error is not defined or error != 'cannot_create' %}
+                            {% form_theme form _self %}
+                            {{ form_errors(form) }}
+                            
+                            {{ form_start(form, { attr : { class : 'my-account-form new-form-styles', id: 'my-account-form' } }) }}
+                                <ul class="form-wrapper">
+                                    {{ form_rest(form) }}
+                                </ul>
+                                {{ block('confirmer_widget') }}
+                            {{ form_end(form) }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock %}
+
+{% endspaceless %}

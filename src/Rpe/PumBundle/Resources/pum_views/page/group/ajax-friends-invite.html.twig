@@ -1,0 +1,27 @@
+{% spaceless %}
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% if friends.count == 0  %}
+    <span>{{ "groupPage.invit_members.nofriends"|trans({}, 'rpe') }}</span>
+{% endif %}
+
+{% for friend in friends %}
+    <li class="invite-friend-wrapper">
+        <!-- oublie pas, l'id et le for du label doivent être pareil :) -->
+        <label for="user_in_group_{{friend.friend.id }}" class="invite-friend-label">
+            
+            <div class="invite-friend-inner-wrapper">
+                {{ macros.show_user_avatar(friend.friend, 'default', 120, 'friend-profil-image') }}
+                <div class="invite-friend-name-wrapper">
+                    <span class="invite-friend-surname">{{ friend.friend.firstname }}</span>
+                    <span class="invite-friend-name">{{ friend.friend.lastname }}</span>
+                    {% if friend.friend.occupation is not null %}
+                        <span class="invite-friend-profil">{{ friend.friend.occupation.name }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <input name="user_in_group[]" type="checkbox" value="{{ friend.friend.id }}" id="user_in_group_{{ friend.friend.id }}" class="friend-checkbox">
+        </label>
+    </li>
+{% endfor %}
+{% endspaceless %}

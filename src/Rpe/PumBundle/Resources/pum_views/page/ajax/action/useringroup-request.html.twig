@@ -1,0 +1,12 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% if group_id is defined and member_id is defined and user is defined %}
+        {% include 'pum://includes/common/componants/useringroup/buttons.html.twig' with {
+            'action': action|default(app.request.get('action')),
+            'group_id': group_id|default(app.request.get('group_id')),
+            'member_id': member_id|default(app.request.get('member_id')),
+            'reverse': reverse|default(false)
+        } %}
+    {% endif %}
+{% endspaceless %}{% endblock %}

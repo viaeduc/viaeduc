@@ -1,0 +1,29 @@
+<div class="side-componant">
+    <div class="padding-wrapper">
+        <h3 class="componant-title">{{ "sidebar.sondage"|trans({}, 'rpe') }}</h3>
+        <div class="componant-wrapper">
+            <span class="componant-text">Combien d'examen blanc avez vous fait ?</span>
+            <ul>
+                {% set totalUsersAnswers = survey.usersAnswers.count() %}
+
+                {% for answer in survey.answers %}
+                    {% set answerCount = survey.getUserAnswerCount(answer) %}
+                    <li class="quiz-componant quiz-js">
+                        <div class="componant-inner-left quiz-answer-stat">
+                            <span class="answer-bar">{% if answerCount > 0 %}<span>({{ answerCount }})</span>{% endif %}</span><!-- add number of votersd here in a <span>(3)</span> --></span>
+                            <span class="answer-number">
+                                {% if totalUsersAnswers %}
+                                    {% set answerCount = survey.getUserAnswerCount(answer) %}
+                                    {% if answerCount > 0 %}(answerCount){% endif %}{{ ((survey.getUserAnswerCount(answer) / totalUsersAnswers) * 100)|round }}{% else %}0{% endif %}%
+                            </span>
+                        </div><!--
+                        --><div class="componant-inner-right quiz-answer">
+                            {{ answer.name }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <a href="#" class="componant-link">>Voir tous les sondages</a>
+</div>

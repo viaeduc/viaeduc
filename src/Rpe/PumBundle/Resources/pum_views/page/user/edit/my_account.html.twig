@@ -1,0 +1,512 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Mon compte' %}
+{% set page_name_analytics = 'user/edit/account' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{#
+	- Supprimer la div en plu (occupation error) sur activité pro
+	- enlever la class extra-info sur disciplines enseignés
+#}
+
+{# {% set account_tutorial_enabled = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-account.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-account.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            {{ "account.my_account"|trans({}, 'rpe') }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{# FORM THEME #}
+{% block form_row %}
+{% spaceless %}
+    {% if compound == false %}
+        <li class="extra-info">
+    {% endif %}
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div><!--
+        --><div class="form-right">
+            {{ form_widget(form) }}
+        </div>
+    {% if compound == false %}
+        </li>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block _pum_object_avatar_row %}
+    {% import 'pum://macros/macros.html.twig' as rpe_macros %}
+    <li class="extra-info image-form">
+        <div class="form-left">
+            {{ form_label(form, "Image de profil") }}
+        </div>
+        <div class="form-right">
+            <div class="image-upload-details">
+                {% if form.vars.value != null and form.vars.value.id is defined %}
+                    {{ rpe_macros.show_image(form.vars.value, 120) }}
+                {% else %}
+                    <img src="{{ asset('bundles/rpepum/images/bg_upload.png') }}" class="profil-image">
+                {% endif %}
+                <p class="image-text">
+                    {{ "registerMore.profil_image_more"|trans({}, 'rpe')}}<br/>
+                    {{ "registerMore.change"|trans({}, 'rpe')}}
+                </p>
+            </div>
+            {{ form_widget(form) }}
+        </div>
+    </li>
+{% endblock _pum_object_avatar_row %}
+
+{% block _pum_object_avatar_name_row %}
+{% endblock _pum_object_avatar_name_row %}
+
+{% block _pum_object_avatar_file_row %}
+    {# <input type="file" {{ block('widget_attributes') }} /> #}
+    <span class="btn btn-file light-blue">
+        <span class="open-modal-image">{{ "registerMore.change_image"|trans({}, 'rpe')}}</span>
+    </span>
+    <div class="modal fade modal-first modal-image edit_avatar no-reload">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "account.change_image"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-inner-wrapper">
+                        <p class="inner-description">{{ "account.move_image"|trans({}, 'rpe') }}</p>
+                        <div class="body-update-photo fileupload fileupload-new" data-provides="fileupload">
+                            <div class="image-crop">
+                                <div class="fileupload-preview thumbnail">
+                                <img id="preview-image" class="image-crop" />
+                                </div>
+                            </div>
+                            <span class="btn btn-file dark-grey">
+                                <span class="fileupload">{{ "account.download_image"|trans({}, 'rpe') }}</span>
+                                <input type="file" id="newuploadit" class="uploadit" {{ block('widget_attributes') }} />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a role="button" class="action-btn light-grey left close-modal">{{ "account.cancel"|trans({}, 'rpe') }}</a><!--
+                    --><a role="button" class="action-btn light-blue accept-profil">{{ "account.save"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock _pum_object_avatar_file_row %}
+
+{% block _pum_object_lastname_row %}
+    <li class="extra-info">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            {{ form_widget(form) }}
+        </div>
+    </li>
+{% endblock %}
+
+{% block _pum_object_firstname_row %}
+    <li class="extra-info">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            {{ form_widget(form) }}
+        </div>
+    </li>
+{% endblock %}
+
+{% block _pum_object_sex_row %}
+    <li class="extra-info">
+        <div class="form-left">
+            {{ form_label(form, 'register.field_sex') }}
+        </div>
+        <div class="form-right">
+            {% for choice in form.vars.choices %}
+                {% set checked = "" %}
+                {% if form.vars.data == choice.label %}
+                    {% set checked = "checked" %}
+                {% endif %}
+                <span class="radio-buttons">
+                    <input name="pum_object[sex]" type="radio" value="{{ choice.value }}" id="radio-{{ choice.value }}" {{ (loop.first) ? ' data-validation="required"' : '' }} {{ (loop.first) ? 'data-validation-error-msg="Veuillez choisir votre sexe."': '' }} {{ checked }}/><!--
+                    --><label for="radio-{{ choice.value }}">{{ choice.label|trans({}, 'rpe')}}</label>
+                    {# Only one input needs the data-valdation #}
+                </span>
+            {% endfor %}
+        </div>
+    </li>
+{% endblock %}
+
+{% block _pum_object_emailPrivate_row %}
+    <li class="extra-info info-bubble">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            {{ form_widget(form) }}
+        </div>
+        <div class="form-info-bubble">
+            <a href="#modal_personal_email" class="info-bubble-link" data-toggle="modal">?</a>
+        </div>
+    </li>
+{% endblock %}
+
+{% block _pum_object_occupation_row %}
+    {% set error_block = true %}
+
+    {% set attr = attr|merge({class: 'teaching teaching-input tm-input tm-tag extra-info-input'}) %}
+    {% set row_li_class = 'info-bubble' %}
+    {% set span_widget_class = 'select-box first-select extra-info-input-bootstrap' %}
+    {% set empty_value = 'register.choose_occupation'|trans({}, 'rpe') %}
+    {% set top_margin = false %}
+    {% set error_block_class = 'occupation-error' %}
+
+    {% set info_list_id = 'occupation' %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _pum_object_instructedDisciplines_row %}
+{% spaceless %}
+    {% set attr = attr|merge({class: 'teaching teaching-input tm-input tm-tag extra-info-input'}) %}
+    {% set row_li_class = 'info-bubble' %}
+    {% set span_second_widget_class = 'first-tag-list tag-list' %}
+
+    {% set info_list_id = 'instructed_discipline' %}
+    {{ block('rpepum_object_entity_row') }}
+{% endspaceless %}
+{% endblock %}
+
+{% block _pum_object_interests_row %}
+{% spaceless %}
+    {% set attr = attr|merge({class: 'interest interest-input tm-input tm-tag extra-info-input'}) %}
+    {% set row_li_class = 'info-bubble' %}
+    {% set span_second_widget_class = 'second-tag-list tag-list' %}
+    
+    {% set info_list_id = 'interest' %}
+    {{ block('rpepum_object_entity_row') }}
+{% endspaceless %}
+{% endblock %}
+
+{% block _pum_object_teachingLevels_row %}
+    {% set attr = attr|merge({class: 'niveau tm-input tm-tag extra-info-input'}) %}
+    {% set span_second_widget_class = 'third-tag-list tag-list' %}
+    {% set row_li_class = 'info-bubble' %}
+
+    {% set info_list_id = 'teaching_level' %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _pum_object_academy_row %}
+    {% set attr = attr|merge({class: 'academy academy-input tm-input tm-tag extra-info-input'}) %}
+    {% set row_li_class = 'extra-info' %}
+    {% set span_widget_class = 'select-box first-select extra-info-input-bootstrap' %}
+    {% set empty_value = 'register.choose_academy'|trans({}, 'rpe') %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block date_widget %}
+    {% set endDate = "-16 years"|date('d/m/Y') %}
+    {% set attr = attr|merge({class: 'calendar-birthdaypicker', 'data-date-initialdate': endDate, 'data-date-enddate': endDate}) %}
+    {{ parent() }}
+{% endblock %}
+
+{% block confirmer_widget %}
+{% spaceless %}
+    {% if app.request.query.get('form') == 'addition' %}
+        <input class="action-btn orange" name="confirm" type="submit" id="#form-send-button" value="{{ "register.save"|trans({}, 'rpe')}}">
+    {% else %}
+        <a data-toggle="modal" href="#popin_verify_user" class="action-btn orange">{{ 'register.save'|trans({}, 'rpe')}}</a>
+    {% endif %}
+{% endspaceless %}
+{% endblock %}
+
+{% block _pum_object_password_new_single_row %}
+    <div class="form-left">
+        {{ form_label(form.parent) }}
+    </div><!--
+    --><div class="form-right">
+        <input class="password-first-input" autocomplete="off" type="password" {{ block('widget_attributes') }} data-validation="" data-validation-strength="1" data-validation-error-msg="Veuillez choisir un mot de passe (8 caractères avec chiffres et lettres)." />
+    </div>
+{% endblock %}
+
+{% block _pum_object_password_new_row %}
+    <li class="extra-info">
+        {{ form_widget(form) }}
+    </li>
+{% endblock %}
+
+{% block _pum_object_password_confirm_single_row %}
+    <div class="form-left">
+        {{ form_label(form.parent) }}
+    </div>
+    <div class="form-right">
+    <!-- data-validation="confirmation" -->
+        <input class="password-confirm-input" autocomplete="off" type="password" {{ block('widget_attributes') }} data-validation="" data-validation-confirm="pum_object[password_new][single]" data-validation-error-msg="Assurez vous d'avoir écrit le même mot de passe" />
+    </div>
+{% endblock %}
+
+{% block _pum_object_password_confirm_row %}
+    <li class="extra-info">
+        {{ form_widget(form) }}
+    </li>
+{% endblock %}
+
+{% block _pum_object_password_current_single_row %}
+    <div class="form-left">
+        {{ form_label(form.parent) }}
+    </div>
+    <div class="form-right">
+    	<input class="current-password-input" autocomplete="off" type="password" {{ block('widget_attributes') }} data-validation="" data-validation-strength="1" data-validation-error-msg="Veuillez confirmer avec votre mot de passe." />
+   	</div>
+{% endblock %}
+
+{% block _pum_object_password_current_row %}
+    <li class="extra-info current-password">
+        {{ form_widget(form) }}
+    </li>
+{% endblock %}
+
+{% block _pum_object_email_private_row %}
+    <li class="extra-info">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            {{ form_widget(form) }}
+        </div>
+    </li>
+{% endblock %}
+
+{% block _pum_object_email_pro_row %}
+    <li class="extra-info">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            {{ form_widget(form) }}
+        </div>
+    </li>
+{% endblock %}
+
+{% block _pum_object_timezone_row %}
+    <li class="extra-info">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            <span class="select-box">
+                {{ form_widget(form) }}
+            </span>
+        </div>
+    </li>
+{% endblock %}
+
+
+{% block main_content %}
+{% spaceless %}
+    {{ macros.modal('teaching_level', 'modal-info-list') }}
+    {{ macros.modal('instructed_discipline', 'modal-info-list') }}
+    {{ macros.modal('occupation', 'modal-info-list') }}
+    {{ macros.modal('interest', 'modal-info-list') }}
+    <div class="modal fade no-reload" id="popin_verify_user">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(verify_user_form, {action: path('my_account_verify_user'), attr: { id: 'verify-user-form'}}) }}
+                        <fieldset>
+                            <div class="body-gray">
+                                <p>{{ 'account.checkuser.modal_intro'|trans({}, 'rpe')}}</p>
+                                <div class="small-popin-wrapper">
+                                    <label class="small-label" for="password">{{ 'account.checkuser.modal_pwd'|trans({}, 'rpe')}}</label>
+                                    {{ form_widget(verify_user_form.password) }}
+                                    <div class="form-error-password alert alert-dismissable alert-danger hidden">
+                                        <ul><li>{{ 'account.checkuser.modal_error_pwd'|trans({}, 'rpe')}}</li></ul>
+                                    </div>
+                                    <span class="loader hidden"></span>
+                                </div>
+                            </div>
+                            <div class="button-password">
+                                {{ form_widget(verify_user_form.Valider, {'label' : 'account.checkuser.modal_submit'|trans({}, 'rpe'), 'attr' : {'class' : 'action-btn orange right'}}) }}
+                            </div>
+                        </fieldset>
+                        {{ form_widget(verify_user_form._token) }}
+                    {{ form_end(verify_user_form, {'render_rest': false}) }}
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade no-reload" id="modal_personal_email">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        {{ 'account.personal_email'|trans({}, 'rpe')}}
+                    </p>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="form-inner-wrapper">
+        <div class="container-right box-with-padding">
+            <div class="tabbable tabbable-privacy-settings">
+                <ul class="nav new-tabs">
+                    {% if app.request.query.get('form') == 'addition' %}
+                        {% set account_active_menu = 'my_main_info' %}
+                    {% else %}
+                        {% set account_active_menu = 'my_general_info' %}
+                    {% endif %}
+                    {% include 'pum://includes/common/componants/account/menu.html.twig' %}
+                    {# <li class="tab active">
+                        <a data-toggle="tab" href="#portlet_tab1">Paramètres de confidentialité</a>
+                    </li>
+                    <li class="tab">
+                        <a data-toggle="tab" href="#portlet_tab2">Paramètres de notification</a>
+                    </li>
+                    <li class="tab">
+                        <a data-toggle="tab" href="#portlet_tab3">Inviter des utilisateurs</a>
+                    </li> #}
+                </ul>
+                <div class="tab-content settings">
+                    <div class="tab-pane active" id="portlet_tab1">
+                        {{ macros.alertMessages() }}
+                        {% form_theme form _self %}
+                        {{ form_errors(form) }}
+                        {% for field in form.children %}
+                            {% if field.vars.errors|length %}
+                                {% if field.vars.name == 'emailPro' %}
+                                    <ul class="error_list">
+                                        <li>
+                                            Vous ne pouvez utiliser cette adresse de courriel.
+                                        </li>
+                                    </ul>
+                                {% else %}
+                                    {{ form_errors(field) }}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {{ form_start(form, { attr : { class : 'my-account-form new-form-styles', id: 'my-account-form' } }) }}
+                            <ul class="form-wrapper">
+                                {{ form_rest(form) }}
+                            </ul>
+                            {{ block('confirmer_widget') }}
+                        {{ form_end(form) }}
+                    </div>
+                    <div class="delete-account">
+                        Si vous souhaitez vous désinscrire de Viaéduc, merci d'envoyer un courriel à l'adresse <a href="mailto:support@viaeduc.fr">support@viaeduc.fr</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock %}
+
+{% endspaceless %}
+{% block tutorial %}
+    {% if account_tutorial_enabled is defined %}
+    <script>
+        {% spaceless %}
+            var account_tutorial_enabled = '{{ account_tutorial_enabled }}';
+        {% endspaceless %}
+    </script>
+    <div class="modal fade tutorial-modal account-tutorial-modal-1" id="account-tutorial-modal-1">
+        <div class="tutorial-arrow">▲</div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "account.title1"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "account.text1"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                    <a role="button" href="#account-tutorial-modal-2" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade tutorial-modal account-tutorial-modal-2" id="account-tutorial-modal-2">
+        <div class="tutorial-arrow">▲</div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "account.title2"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "account.text2"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                    <a aria-hidden="true" href="#account-tutorial-modal-1" data-toggle="modal" class="action-btn light-grey tutorial-modal-prev">{{ "tutorial.prev"|trans({}, 'rpe') }}</a>
+                    <a role="button" href="#account-tutorial-modal-3" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade tutorial-modal account-tutorial-modal-3" id="account-tutorial-modal-3">
+        <div class="tutorial-arrow">▲</div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "account.title3"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "account.text3"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                    <a aria-hidden="true" href="#account-tutorial-modal-2" data-toggle="modal" class="action-btn light-grey tutorial-modal-prev">{{ "tutorial.prev"|trans({}, 'rpe') }}</a>
+                    <a role="button" href="#account-tutorial-modal-4" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade tutorial-modal account-tutorial-modal-4" id="account-tutorial-modal-4">
+        <div class="tutorial-arrow">▲</div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "account.title4"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "account.text4"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a aria-hidden="true" data-dismiss="modal" class="action-btn light-grey tutorial-modal-close">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+                    <a aria-hidden="true" href="#account-tutorial-modal-3" data-toggle="modal" class="action-btn light-grey tutorial-modal-prev">{{ "tutorial.prev"|trans({}, 'rpe') }}</a>
+                    <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

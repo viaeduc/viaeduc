@@ -1,0 +1,29 @@
+{#
+    require:
+    - type ('post')
+    - object (post, comment, group, user, question)
+    - user
+    - style ('link', 'button')
+ #}
+
+{% set pathway = 'report' %}
+
+{% if pathway is defined and object is defined and user is defined %}
+    {% set href = path(pathway, {
+        'mode':'add',
+        'id':object.id,
+        'style': style,
+        'type': type
+    }) %}
+
+    {% if style == 'button' %}
+        <a href="{{ href }}" class="action-btn light-blue icon-megaphone" data-toggle="modal" data-target="#modal-report" title="{{ "ressources.signal.page"|trans({}, 'rpe') }}">{% spaceless %}
+            {# {{ ('action.report.' ~ type)|trans({}, 'rpe') }} #}
+        {% endspaceless %}</a>
+    {% else %}
+        <a href="{{ href }}" class="icon-warning" data-toggle="modal" data-target="#modal-report" title="{{ "ressources.signal.page"|trans({}, 'rpe') }}">{% spaceless %}
+            {# {{ ('action.report.' ~ type)|trans({}, 'rpe') }} #}
+        {% endspaceless %}</a>
+    {% endif %}
+{% endif %}
+

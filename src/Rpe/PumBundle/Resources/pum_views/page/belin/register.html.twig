@@ -1,0 +1,94 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Connexion au Lib\'' %}
+
+{% set page_name_analytics = 'lib/login' %}
+{# {% set nav_section = 'groups-menu' %} #}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{# {% set create_group_tutorial_modal = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/create-group.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    {# <script src="{{ asset('bundles/rpepum/js/rpe.create-groupe.js') }}"></script> #}
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            Lib' : Inscription
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block sidebar %}
+    {# {% include 'pum://includes/common/componants/tips/tip-create-group.html.twig' %} #}
+{% endblock %}
+
+{# FORM #}
+{% block text_row %}
+    {% set attr = attr|merge({'data-validation': 'required', 'data-validation-error-msg': 'Veuillez saisir le login.'}) %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _form_password_row %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div><!--
+        --><div class="form-right">
+            {{ form_widget (form, {'attr' : {'data-validation' : 'strength', 'data-validation-strength' : '1', 'data-validation-error-msg': 'Veuillez choisir un mot de passe (8 caractères avec chiffres et lettres).'}}) }}
+        </div>
+    </li>
+{% endblock %}
+
+{% block  _form_password_confirm_row %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div><!--
+        --><div class="form-right">
+            {{ form_widget (form, {'attr' : {'data-validation' : 'confirmation', 'data-validation-confirm' : 'form[password]', 'data-validation-error-msg': 'Assurez vous d\'avoir écrit le même mot de passe'}}) }}
+        </div>
+    </li>
+{% endblock %}
+
+{% block valider_widget %}
+    <button type="submit" class="submit-relation-btn orange" id="confirmer" name="confirmer">Inscription</button>
+{% endblock %}
+
+
+{% block main_content %}
+    <div class="login-wrapper">
+        <h4 class="title">
+            Inscription au Lib'
+        </h4>
+        {{ macros.alertMessages() }}
+
+        {% if form is defined %}
+            {% form_theme form _self %}
+            {{ form_errors(form) }}
+            {{ form_start(form, {attr: { 'class': 'create-group-form'}}) }}
+                <div class="form-first">
+                    <ul class="form-wrapper">
+                        {{ form_row(form.login) }}
+                        {{ form_row(form.password) }}
+                        {{ form_row(form.password_confirm) }}
+                    </ul>
+
+                    {{ form_row(form._token) }}
+                    {{ block('valider_widget') }}
+                </div>
+            {{ form_end(form, {render_rest: false}) }}
+        {% endif %}
+    </div>
+{% endblock %}
+{% endspaceless %}
+{% block tutorial %}
+{% endblock %}

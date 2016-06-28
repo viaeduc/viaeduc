@@ -1,0 +1,200 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set page_title = 'Question : ' ~ question.name %}
+{% set page_name_analytics = 'question/view' %}
+{% set nav_section = 'profile-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/question.css') }}" media="all" rel="stylesheet" type="text/css" />
+    {# <link href="{{ asset('bundles/rpepum/css/my-profil.css') }}" media="all" rel="stylesheet" type="text/css" /> #}
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.side-componants.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.publications.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.questions.js') }}"></script>
+    {# <script src="{{ asset('bundles/rpepum/js/rpe.my-profil.js') }}"></script> #}
+{% endblock %}
+
+{% block modals %}
+    {# {% include 'pum://includes/common/componants/modals/modal-cover-image.html.twig' %} #}
+    {% include 'pum://includes/common/componants/modals/modal-confirm.html.twig' %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            Question : {{ question.name }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block cover %}
+    {% embed "pum://includes/common/componants/cover-layout.html.twig" %}
+        {% block cover_left_image %}
+            <a href="{{ path('profil', {id: hashEncode(question.author.id)}) }}">
+                {{ macros.show_user_avatar(question.author, 'default', 120, 'profil-image') }}
+            </a>
+        {% endblock %}
+
+        {% block cover_left_information %}
+            {% spaceless %}
+            <h3 class="profil-first-name">{{ question.author.firstname }}</h3>
+            <h3 class="profil-last-name">{{ question.author.lastname }}</h3>
+
+            <span class="post-time timeago" title="{{ question.date|date('c') }}"></span>
+            <!-- ******************************* -->
+            <!-- Edit / Delete - Needs condition -->
+            <!-- ******************************* -->
+            {% if user == question.author %}
+                <a class="edit-button" href="{{ path('edit_question', {'id': question.id}) }}">Editer</a>
+                <a class="edit-button icon-trash js-loadmore js-confirm-modal js-redirect" href="#" data-delete-link="{{ path('delete_question', {'id': question.id}) }}" data-confirm="{{ 'common.action.delete.question_confirm'|trans({}, 'rpe') }}" data-target="{{ path('questions') }}">Supprimer</a>
+            {% endif %}
+            {% endspaceless %}
+        {% endblock %}
+
+        {% block cover_left_extra_information %}
+            {% spaceless %}
+            <ul class="question-infos">
+                <li><span class="question-number">
+	                {% if question.viewed is not null and question.viewed.value != 0 %}
+	                    {{ question.viewed.value }}
+	                {% else %}
+	                    0
+	                {% endif %}
+                </span> {{ "questions.views"|transchoice(question.viewed.value ,{}, 'rpe') }}</li>
+                <li><span class="question-number">{{ question.answers.count }}</span> {{ "questions.answers"|transchoice(question.answers.count, {}, 'rpe') }}</li>
+                {# <li><span class="question-number">{{ question.getOnlySelectedAnswers.count }}</span> {{ "questions.goodanswers"|transchoice(question.getOnlySelectedAnswers.count, {}, 'rpe') }}</li> #}
+            </ul>
+            {% endspaceless %}
+        {% endblock %}
+
+        {% block cover_left_buttons %}
+            {% spaceless %}
+                {# ========================================== #}
+                {# Question non suivie et que l'on a pas créé #}
+                {# ========================================== #}
+                {% if userHasAccess == true %}
+                    {% include 'pum://includes/common/componants/bookmark/buttons.html.twig' with {
+                        'type': 'question',
+                        'object': question,
+                        'style': 'button'
+                    } %}
+
+                    {% include 'pum://includes/common/componants/report/buttons.html.twig' with {
+                        'type': 'question',
+                        'object': question,
+                        'style': 'button'
+                    } %}
+                {% endif %}
+            {% endspaceless %}
+
+        {% endblock %}
+
+        {% block cover_left_image_setting %}
+        {% endblock %}
+
+        {% block cover_right_image_setting %}
+        {% endblock %}
+
+        {% block cover_right %}
+            {% spaceless %}
+            {# ========================================================================= #}
+            {# Placer ici l'intitulé de la question puis si il y en a une la description #}
+            {# ========================================================================= #}
+            <span class="inner-question-title">{{ question.name }}</span>
+            <span class="inner-question-description">{{ question.description|striptags('<a>')|raw }}</span>
+            {% endspaceless %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block sidebar %}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-relation.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-groups.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-notifications.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-author-resource.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-resources.html.twig" with {'resources': profil.getResources()} %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-interests.html.twig" with {'interests': profil.interests} %} #}
+    {% include "pum://includes/common/componants/sidebar/sidebar-questions.html.twig" %}
+    {% include "pum://includes/common/componants/sidebar/sidebar-questions.html.twig" with {'questionsFromAuthor': question.author} %}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-rss.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-agenda.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-quiz.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-quiz-result.html.twig" %} #}
+    {# {% include "pum://includes/common/componants/sidebar/sidebar-my-webpage.html.twig" %} #}
+{% endblock %}
+
+
+{% block main_content %}
+    {% if userHasAccess == true %}
+        {{ macros.modal('report') }}
+        {{ macros.alertMessages() }}
+
+        {# ====================== #}
+        {# Put Question form Here #}
+        {# ====================== #}
+        <div id="js-c-question-{{ question.id }}-1" class="question-post-comment js-autoload" data-autoload="{{ path('create_form_answer', {'question':question.id}) }}"></div>
+
+        {# ====================== #}
+        {# Réponses sélectionnées #}
+        {# ====================== #}
+        {% set excluded = {} %}
+
+        {% for answer in goodAnswers %}
+            {% if loop.first %}
+            <h3 class="selected_answers">{{ "questions.selectedanswer"|transchoice(goodAnswers|length, {}, 'rpe') }}</h3>
+            {% endif %}
+            {% include "pum://includes/common/componants/questions/answer.html.twig" %}
+            {% set excluded = excluded|merge([answer.id]) %}
+        {% endfor %}
+
+        {# =================== #}
+        {# Toutes les réponses #}
+        {# =================== #}
+
+        {% if question.getMainAnswers(excluded).count > 0 %}
+            {% set filter_style = "block" %}
+        {% else %}
+            {% set filter_style = "none" %}
+        {% endif %}
+        <div class="filter_answer" style="display:{{ filter_style }}">
+            <h3 class="all_answers">{{ "questions.allanswers"|trans({}, 'rpe') }}</h3>
+            {% if answerOrder == 'ASC' %}
+                {% set ascSelected = 'selected' %}
+                {% set descSelected = '' %}
+            {% elseif answerOrder == 'DESC'%}
+                {% set ascSelected = '' %}
+                {% set descSelected = 'selected' %}
+            {% endif %}
+
+            <div class="question-filter">
+            Afficher les messages publiés depuis :
+            <select class="question-filter-select" id="question-filter-select">
+                <option {{ ascSelected }} data-loadorder="{{ path('question', {'id':question.id, 'answerOrder': 'ASC'}) }}">Le début</option>
+                <option {{ descSelected }} data-loadorder="{{ path('question', {'id':question.id, 'answerOrder': 'DESC'}) }}">La fin</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="all-answers-wrapper">
+
+            {% for answer in question.getMainAnswers(excluded, {'date': answerOrder}) %}
+                {% include "pum://includes/common/componants/questions/answer.html.twig" %}
+                {{ (loop.last) ? '<hr />' }}
+            {% endfor %}
+
+            {# ====================== #}
+            {# Put Question form Here #}
+            {# ====================== #}
+            <div id="js-c-question-{{ question.id }}-2" style="display:{{ filter_style }}" class="timeline-post-comment js-autoload filter_answer" data-autoload="{{ path('create_form_answer', {'question':question.id}) }}"></div>
+            {% if question.answers.count <= 0%}
+                <div class="question-no-answer">{{ 'questions.noAnswer'|trans({}, 'rpe') }}</div>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="alert text-center">{{ 'questionPage.alert.private_question'|trans({}, 'rpe') }}</div>
+    {% endif %}
+{% endblock %}

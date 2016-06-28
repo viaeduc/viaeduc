@@ -1,0 +1,298 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "layout/_sidebar";
+@import "componants/_breadcrumbs";
+@import "componants/_cover";
+@import "componants/_publications";
+@import "componants/_side-componants";
+@import "componants/_side-componant-authors";
+@import "componants/_side-componant-connections";
+@import "componants/_side-componant-notifications";
+@import "componants/_side-componant-ressources";
+@import "componants/_side-componant-rss";
+@import "componants/_side-componant-vote";
+@import "componants/_side-componant-webpage";
+@import "vendors/_cropbox";
+
+// ------------
+// Specific CSS
+// ------------
+
+// Placement //
+.editor-title {
+    position       : relative;
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    margin         : 0 0 20px 0;
+
+    .title {
+        @include fontSize(20);
+        display        : inline-block;
+        vertical-align : middle;
+        font-family    : $Verdana;
+        color          : $dark-blue-1;
+        text-transform : uppercase;
+        width          : 90%;
+        margin         : 0;
+    }
+
+    .add-title {
+        @include fontSize(14);
+        position    : absolute;
+        top         : 0;
+        right       : 0;
+        margin      : 0;
+        padding     : 0 10px;
+        color       : $white;
+        width       : auto;
+        height      : 20px;
+        line-height : 20px;
+
+    }
+}
+
+.editor-box {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    background     : $light-grey-1;
+    padding        : 20px;
+    border         : 1px solid $light-grey-2;
+
+    h3, h4 {
+        font-family : $Verdana;
+        margin      : 0;
+    }
+}
+
+.product-box-top,
+.product-box-main,
+.product-box-left,
+.product-box-right {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+}
+
+.product-box-left {
+    width : 21.69934640522876%;
+
+    .product-image {
+        width : 100%;
+    }
+}
+
+.product-box-right {
+    width   : 78.3006535948%;
+    padding : 0 0 0 20px;
+}
+
+.product-box-main {
+    padding : 20px 0 0 0;
+}
+
+.extra-infos {
+    margin : 0 0 5px 0;
+
+    label {
+        @include fontSize(12);
+        font-family : $Verdana;
+    }
+
+    &:last-of-type {
+        margin : 0;
+    }
+}
+
+// Styles //
+
+.editor-box {
+    .product-title {
+        @include fontSize(20);
+        color          : $dark-blue-1;
+        text-transform : uppercase;
+    }
+
+    .product-subtitle {
+        @include fontSize(14);
+        color       : $dark-grey-1;
+        font-weight : bold;
+        margin      : 0 0 10px 0;
+    }
+
+    .product-details {
+        @include fontSize(12);
+        display : block;
+        width   : 100%;
+
+        &:last-of-type {
+            margin : 0 0 10px 0;
+        }
+    }
+
+    .product-more-infos,
+    .publish-btn {
+        @include fontSize(14);
+        margin      : 0;
+        padding     : 0.5em 0.25em;
+        line-height : 1em;
+        height      : auto;
+    }
+
+    .product-more-infos {
+        margin  : 0 5px 0 0;
+
+        &:last-of-type {
+            margin : 0 0 0 0;
+        }
+    }
+
+    .publish-btn {
+        float : right;
+    }
+
+    .product-details-title,
+    .product-details-subtitle,
+    .product-details-list {
+        @include fontSize(12);
+        font-family : $Verdana;
+    }
+
+    .product-details-title {
+        text-transform : uppercase;
+        font-weight    : bold;
+    }
+    .product-details-subtitle {
+        text-transform : uppercase;
+        margin         : 0 0 10px 0;
+    }
+
+    .product-details-list {
+        list-style : disc;
+        padding    : 0 0 0 20px;
+    }
+
+    .information-title {
+        @include fontSize(28);
+        font-family : $MissionScript;
+        color       : $dark-blue-1;
+    }
+
+    .information-text {
+        @include fontSize(12);
+        font-family : $Verdana;
+        color       : $dark-grey-1;
+        margin      : 0 0 20px 0;
+
+        &:last-of-type {
+            margin : 0;
+        }
+
+        .inner-link {
+            color : $dark-grey-1;
+
+            &:hover {
+                color : $dark-grey-1;
+            }
+        }
+    }
+
+    .product-extra {
+        margin: 15px 0 0 0;
+    }
+
+    .editor-contact-title {
+        @include fontSize(22);
+        font-family    : $UbuntuCondensed;
+        color          : $dark-blue-1;
+        text-transform : uppercase;
+        margin         : 0 0 20px 0;
+    }
+
+    .editor-form {
+
+        ul li {
+            margin : 0 0 10px 0;
+        }
+
+        .publish-btn {
+            @include fontSize(16);
+            padding     : 0 10px;
+            height      : 40px;
+            line-height : 40px;
+            margin      : 0;
+            float       : right;
+        }
+    }
+
+}
+
+.editor-add {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    overflow       : hidden;
+    height         : auto !important;
+
+    label {
+        @include fontSize(12);
+        font-family : $Verdana;
+        color       : $dark-grey-1;
+    }
+
+    li {
+        margin : 0 0 10px 0;
+
+        &:last-of-type {
+            margin : 0;
+        }
+    }
+
+    .btn-file {
+        @include fontSize(14);
+        width       : auto;
+        padding     : 0 10px;
+        margin      : 0;
+        height      : 35px;
+        line-height : 35px;
+        float       : left;
+    }
+
+    .publish-btn {
+        @include fontSize(16);
+        padding     : 0 10px;
+        height      : 40px;
+        line-height : 40px;
+        margin      : 0;
+        float       : right;
+    }
+}
+
+.sidebar-link {
+    width       : 100%;
+    margin      : 0;
+    height      : 40px;
+    line-height : 40px;
+    padding     : 0;
+}
+
+.product-form {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+}
+
+.modal-body .product-form li {
+    margin: 0 0 15px 0;
+}

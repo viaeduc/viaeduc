@@ -1,0 +1,81 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Liste des ressources' %}
+{% set page_name_analytics = 'resources/' ~ mode %}
+{% set nav_section = 'profile-menu' %}
+
+{# {% set publications_tutorial_enabled = true %} #}
+
+{# This is only set when on page my_drafts #}
+{# {% set publications_draft_tutorial_enabled = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-publications.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body_javascript %}
+{% endblock %}
+
+{% block content %}
+    {{ macros.modal('report') }}
+    {{ macros.modal('share') }}
+
+    <div class="wrapper">
+        <section class="content full">
+            {% embed "pum://includes/common/componants/filter.twig" %}
+            {% block title %}
+                <h2 class="filter-title">{{ ("publications.title." ~ mode)|trans({}, 'rpe') }}{#  <span>(12)</span> #}</h2>
+            {% endblock %}
+            {% block filter %}
+            {% endblock %}
+        {% endembed %}
+          {% block main_content %}{% spaceless %}
+                     {% for publication in pager %}
+				        {% embed "pum://includes/common/componants/cards/card-classic.twig" %}{% spaceless %}
+				            {% block card_class %}{% spaceless %}
+				                {# card-dark-blue #}
+				                {{ (publication.file is null) ? ' no-image' }}
+				            {% endspaceless %}{% endblock %}
+
+				            {#% block card_publisher_image %}
+				                {{ macros.show_user_avatar(publication.author, 'default', 51, '', path('profil', {'id': publication.author.id})) }}
+				            {% endblock card_publisher_image %#}
+
+				            {% block card_publisher_link %}
+				                {{ path('profil', {'id': hashEncode(user.id)}) }}
+				            {% endblock card_publisher_link %}
+
+				            {% block card_publisher_name %}
+				                {{ user.firstname }}
+				                {{ user.lastname }}
+				            {% endblock %}
+
+				            {% block card_title %}
+				                {{ publication.name }}
+				            {% endblock card_title %}
+
+                            {% block card_publication_details %}
+                             Belin style
+                            {% endblock card_publication_details %}
+
+				            {% block card_publication_count %}
+				            {% endblock card_publication_count%}
+
+				            {% block card_image %}
+				                {% if publication.file is not null %}
+				                <div class="card-right">
+				                    <a href="{{ path('publication', {'id': publication.id}) }}">
+				                    </a>
+				                </div>
+				                {% endif %}
+				            {% endblock card_image %}
+
+				            {% block card_stamp %}
+				            {% endblock card_stamp %}
+
+				        {% endspaceless %}{% endembed %}
+				    {% endfor %}
+        {% endspaceless %}{% endblock main_content %}
+        </section>
+    </div>
+{% endblock %}

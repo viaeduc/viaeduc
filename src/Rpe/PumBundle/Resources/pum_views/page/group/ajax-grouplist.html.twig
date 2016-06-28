@@ -1,0 +1,31 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% if pager.count == 0 %}
+        <div class="empty-group-wrapper">
+            <div class="empty-group-left">
+                <img src="{{ asset('bundles/rpepum/images/pictos/empty-group.png') }}">
+            </div>
+            <div class="empty-group-right">
+                <p>Vous ne participez encore à aucun groupe. Les groupes vous permettent d'échanger et de collaborer sur les thèmes ou projets qui vous intéressent.</p>
+                {% if user.isInvited == false %}
+                    <a href="#" class="action-btn icon-eye light-blue">Chercher des groupes</a>
+                    <a href="{{ path('create_group') }}" class="action-btn icon-plus3 orange">Créer un groupe</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+    {% for group in pager %}
+        {% if group.group is defined %}
+            {% set group = group.group %}
+        {% endif %}
+
+        {% include ('pum://includes/common/componants/cards/card-group.html.twig') %}
+    {% endfor %}
+
+    {% if pager.nbPages is defined and pager.currentPage < pager.nbPages %}
+        <li class="full page-loadmore js-loadmore" data-href="{{ path('ajax_grouplist', {mode: mode, page: pager.currentPage + 1}) }}" data-target=".list-general-box">
+            <a href="#" class="read-other">...</a>
+        </li>
+    {% endif %}
+{% endspaceless %}{% endblock %}

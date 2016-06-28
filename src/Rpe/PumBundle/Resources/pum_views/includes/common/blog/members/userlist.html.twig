@@ -1,0 +1,33 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+    <div class="swiper-container swiper-free-mode">
+        <div class="swiper-scrollbar" ></div><!--
+        --><div class="swiper-wrapper">
+            <div class="swiper-slide">
+                {% if users|length %}
+                    {% for userInBlog in users %}
+                        {{ (loop.first) ? '<ul class="friend-list">' }}
+
+                        {% set single_user = userInBlog.user %}
+
+                        {% if single_user.status == 'ACTIVE' %}
+                        <li id="useringroup-{{ single_user.id }}">
+                            <a href="#" class="js-loadmore js-infinite js-load-inner" data-href="{{ path('blog_user_getinfo', {'blog_id': blog.id, 'user_id': single_user.id}) }}" data-target="#portlet_tab2 .administration-right">
+                                {{ macros.show_user_avatar(single_user, 'default', 64, 'image-inline') }}
+                                <div class="details">
+                                    <span>{{ single_user.firstname ~ ' ' ~ single_user.lastname }}</span>
+                                </div>
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {{ (loop.last) ? '</ul>'}}
+                    {% endfor %}
+                {% else %}
+                    <p>Aucun utilisateur.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% set filters = app.request.query.get(facet_key) %}
+
+{% set is_active = '' %}
+{% set encodedValue = '' %}
+{% set trans_type = '' %}
+
+{% if row.from is defined and row.from is not null %}
+    {% set encodedValue = encodedValue ~ 'from' ~ row.from %}
+    {% set trans_type = 1 %}
+{% endif %}
+
+{% if row.to is defined and row.to is not null %}
+    {% if encodedValue != '' %}
+        {% set encodedValue = encodedValue ~ '_to' ~ row.to %}
+        {% set trans_type = 3 %}
+    {% else %}
+        {% set encodedValue = encodedValue ~ 'to' ~ row.to %}
+        {% set trans_type = 2 %}
+    {% endif %}
+{% endif %}
+
+{% set encodedValue = encodedValue|url_encode %}
+
+{% set trans_key = 'search.facet.question.answers.range.type.' ~ trans_type %}
+{% set label = trans_key|trans({'%from%': row.from, '%to%': row.to}, 'rpe') %}
+
+{% if filters is iterable and encodedValue in filters %}
+
+    {% set is_active = 'active' %}
+    {% set href = app.request.query.all %}
+    {% set values = filters|removeFromArray(encodedValue, null) %}
+    {% set href = app.request.query.all|merge({(facet_key): values, p: null }) %}
+
+{% else %}
+
+    {% set is_active = '' %}
+
+    {# {% if filters is null %}
+        {% set values = [encodedValue] %}
+    {% else %}
+        {% set values = filters|merge([encodedValue]) %}
+    {% endif %} #}
+    {% set values = [encodedValue] %}
+
+    {% set href = app.request.query.all|merge({(facet_key): values, p: null }) %}
+
+{% endif %}
+
+{% if row.count > 0 %}
+    <a href="?{{ href|url_encode }}" class="{{ is_active }}">{{ label }} <span>({{ row.count }})</span></a>
+{% endif %}
+

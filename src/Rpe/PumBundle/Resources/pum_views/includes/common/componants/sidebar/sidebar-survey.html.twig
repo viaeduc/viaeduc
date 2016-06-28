@@ -1,0 +1,53 @@
+{% if group.getPresentSurveys.count > 0 %}
+    <div class="side-componant">
+        <div class="padding-wrapper">
+            <h3 class="componant-title">{{ "sidebar.sondage"|trans({}, 'rpe') }}</h3>
+            {% for survey in group.getPresentSurveys %}
+                {% if survey.multiple %}
+                    {% set answerType = 'checkbox' %}
+                {% else %}
+                    {% set answerType = 'radio' %}
+                {% endif %}
+                <div class="componant-wrapper">
+                    <p>{{ survey.question }}</p>
+                    {% if survey.userHasAnswered(user, survey) %}
+                        <ul>
+                            {% set totalUsersAnswers = survey.usersAnswers.count() %}
+
+                            {% for answer in survey.answers %}
+                                {% set answerCount = survey.getUserAnswerCount(answer) %}
+                                <li class="quiz-componant quiz-js">
+                                    <div class="componant-inner-left quiz-answer-stat">
+                                        <span class="answer-bar"><span>{% if answerCount > 0 %}({{ answerCount }}){% endif %}</span></span>
+                                        <span class="answer-number">{% if totalUsersAnswers %}{{ answerCount / totalUsersAnswers * 100|round }}{% else %}0{% endif %}%</span>
+                                    </div><!--
+                                    --><div class="componant-inner-right quiz-answer">
+                                        {{ answer.name }}
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <form action="{{ path('survey_answer', {'id': survey.id}) }}" method="post">
+                            <ul>
+                                {% for answer in survey.answers %}
+                                    <li class="quiz-componant quiz-{{ answerType }}">
+                                        <span class="{{ answerType }}-buttons">
+                                            <input name="vote-answer[]" type="{{ answerType }}" value="{{ answer.id }}" id="answer-{{ loop.index }}"/>
+                                            <label for="answer-{{ loop.index }}">{{ answer.name }}</label>
+                                        </span>
+                                    </li>
+                                {% endfor %}
+
+                                <li class="quiz-componant">
+                                    <input type="submit" value="Envoyer" class="vote-link">
+                                </li>
+                            </ul>
+                        </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        {# <a href="#" class="componant-link">>Voir tous les sondages</a> #}
+    </div>
+{% endif %}

@@ -1,0 +1,92 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Rpe Exceptions v1\n"
+"POT-Creation-Date: 2013-11-22 11:15+0100\n"
+"PO-Revision-Date: 2013-11-22 11:51+0100\n"
+"Last-Translator: \n"
+"Language-Team: Argos\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"Language: FR\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+################################################# Common #####################################################
+msgid "common.small_text"
+msgstr "oups !"
+
+msgid "common.back"
+msgstr "Retour à l'accueil ?"
+
+################################################# HTTP Codes #####################################################
+msgid "common.code.404.message"
+msgstr "La page que vous recherchez ne semble plus être accessible ou ne peut être trouvée. Merci de vérifier son URL (adresse web) ou contactez-nous si vous pensez avoir été redirigé par erreur vers cette page."
+
+msgid "common.code.403.message"
+msgstr "Accès non autorisé"
+
+################################################# Filters #####################################################
+msgid "error.filters.not_found"
+msgstr "Le filtre que vous souhaitez utiliser ne semble pas exister."
+
+################################################# User #####################################################
+msgid "error.user.not_found"
+msgstr "Le profil que vous recherchez ne semble plus être accessible ou ne peut être trouvée. Merci de vérifier son URL (adresse web) ou contactez-nous si vous pensez avoir été redirigé par erreur vers cette page."
+
+################################################# Group #####################################################
+msgid "error.group.not_found"
+msgstr "Le groupe que vous recherchez ne semble plus être accessible ou ne peut être trouvée. Merci de vérifier son URL (adresse web) ou contactez-nous si vous pensez avoir été redirigé par erreur vers cette page."
+
+msgid "error.group.invit_members_denied"
+msgstr "Vous n'êtes pas autorisé à envoyer des invitations à rejoindre ce groupe."
+
+msgid "error.group.manage_access_denied"
+msgstr "Vous n'êtes pas autorisé à modifier ce groupe."
+
+msgid "error.group.create_subgroup_denied"
+msgstr "Vous n'êtes pas autorisé à créer un sous-groupe."
+
+msgid "error.groupwidget.not_found"
+msgstr "Le module du groupe auquel vous essayez d'accéder ne peut pas être trouvé."
+
+################################################# Question #####################################################
+msgid "error.question.not_found"
+msgstr "La question que vous recherchez ne semble plus être accessible ou ne peut être trouvée. Merci de vérifier son URL (adresse web) ou contactez-nous si vous pensez avoir été redirigé par erreur vers cette page."
+
+msgid "error.question.manage_access_denied"
+msgstr "Vous n'êtes pas autorisé à modifier cette question."
+
+################################################# Answer #####################################################
+msgid "error.anwser.not_found"
+msgstr "La réponse que vous recherchez ne semble plus être accessible ou ne peut être trouvée. Merci de vérifier son URL (adresse web) ou contactez-nous si vous pensez avoir été redirigé par erreur vers cette page."
+
+msgid "error.anwser.answer_denied"
+msgstr "Vous n'êtes pas autorisé à répondre à cette question."
+
+################################################# Publication #####################################################
+msgid "error.publication.not_found"
+msgstr "La ressource que vous recherchez ne semble plus être accessible ou ne peut être trouvée. Merci de vérifier son URL (adresse web) ou contactez-nous si vous pensez avoir été redirigé par erreur vers cette page."
+
+msgid "error.publication.manage_access_denied"
+msgstr "Vous n'êtes pas autorisé à modifier cette ressource."
+
+################################################# Comment #####################################################
+msgid "error.comment.not_found"
+msgstr "Le commentaire que vous recherchez ne semble plus être accessible ou ne peut être trouvée. Merci de vérifier son URL (adresse web) ou contactez-nous si vous pensez avoir été redirigé par erreur vers cette page."
+
+msgid "error.comment.comment_denied"
+msgstr "Vous n'êtes pas autorisé à modifier cette ressource."
+
+################################################# Inbox #####################################################
+msgid "error.inbox.not_found"
+msgstr "La conversation que vous recherchez ne semble plus être accessible ou ne peut être trouvée. Merci de vérifier son URL (adresse web) ou contactez-nous si vous pensez avoir été redirigé par erreur vers cette page."
+
+msgid "error.inbox.access_denied"
+msgstr "Vous n'êtes pas autorisé à voir cette conversation."
+
+################################################# Notification #####################################################
+msgid "error.notification.not_found"
+msgstr "La notification que vous recherchez ne semble plus être accessible ou ne peut être trouvée. Merci de vérifier son URL (adresse web) ou contactez-nous si vous pensez avoir été redirigé par erreur vers cette page."

@@ -1,0 +1,175 @@
+// -------
+// Filters
+// -------
+
+// OMG WTF?!!!!!
+// WHY ?
+// Needs to be redone
+
+.container-filtre{
+    display: block;
+    margin-bottom: 30px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid $dark-grey-2;
+    height: 30px;
+    h2{
+        width: auto;
+        margin-top: 0;
+        float: left;
+        margin-bottom: 0;
+        padding-top: 2px;
+        color: $white-font;
+        text-transform: uppercase;
+        @include fontSize(19);
+        font-family: $HelveticaNeue;
+        span{
+            font-style: italic;
+        }
+    }
+    .filtre{
+        display: inline-block;
+        .dropdown{
+            display: inline-block;
+            padding-right: 30px;
+            cursor: pointer;
+            &.icon-down-dir:before{
+                color: $white-font;
+                @include fontSize(10);
+            }
+            a{
+                color: $white-font;
+                text-decoration: none;
+                @include fontSize(12);
+                font-family: $Verdana;
+                .caret{
+                    display: none;
+                }
+            }
+        }
+        .dropdown-menu{
+            background: $background-blue-2;
+            margin: 0;
+            border: 0;
+            border-left: 1px solid $dark-grey-2;
+            border-right: 1px solid $dark-grey-2;
+            border-bottom: 1px solid $dark-grey-2;
+
+            .item {
+                color: $light-grey-font;
+                &:hover{
+                    background: inherit;
+                    color: $white-font;
+                }
+            }
+        }
+    }
+    .search{
+        display: inline-block;
+        padding-top: 7px;
+        padding-bottom: 10px;
+        width: 202px;
+        height: 32px;
+        color: $light-grey-font;
+        @include fontSize(12);
+        font-family: $Verdana;
+    }
+    .list-display{
+        display: inline-block;
+        .icon-th , .icon-th-1 {
+            color: $white-font;
+            text-decoration: none;
+            opacity: 1;
+        }
+        .not-active{
+            color: $dark-grey-font;
+        }
+        .icon-th{
+            @include fontSize(20.2);
+            position: relative;
+            display: inline-block;
+            top: -1px;
+        }
+        .icon-th-1:before{
+            @include fontSize(26);
+        }
+    }
+    ul{
+        width: auto;
+        margin-bottom: 0;
+        float:right;
+        li {
+            width: auto;
+            display: inline-block;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 0;
+            vertical-align: middle;
+            &.publication{
+                margin-right: 0;
+                 .action-btn{
+                     font-family: $Verdana;
+                    @include fontSize(12);
+                    height: auto;
+                    padding: 1px 10px;
+                    text-transform: none;
+                    width: auto;
+                    margin: 0 0 -3px;
+                }
+            }
+        }
+    }
+    .btn-group{
+        margin: 0;
+        width: auto;
+        .btn-default{
+            color: $white-font;
+            background: $background-blue-2;
+            border-width: 0;
+            padding-top: 3px;
+            outline: none!important;
+            &:focus {
+                outline: none!important;
+            }
+            .filter-option.pull-left{
+                left: 0;
+                color: $white-font;
+                font-family: $Verdana;
+                @include fontSize(11);
+                text-decoration: none;
+                text-transform: inherit;
+                overflow: inherit;
+                position: relative;
+                padding-left: 5px;
+            }
+            .caret{
+                left: 0 ;
+                border-top-color:$white-font;
+                top: 13px;
+            }
+        }
+        .dropdown-menu a{
+            height: 24px;
+            &:hover{
+                background: none;
+            }
+            .text{
+                font-family: $Verdana;
+                @include fontSize(12);
+                color: $light-grey-font;
+                &:hover{
+                    color: $white-font;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $portrait-screen) {
+
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .btn-group .btn-default .filter-option.pull-left {
+        @include fontSize(11);
+    }
+}

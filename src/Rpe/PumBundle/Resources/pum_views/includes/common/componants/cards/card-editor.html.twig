@@ -1,0 +1,48 @@
+<!-- Use this block too add color classes or no-image, card-title -->
+<li class="card card-title {% block card_class %}{% endblock %}">
+    <div class="card-left">
+        {% if editor.owner is not null %}
+            <div class="card-publisher">
+                <a href="{{ path('profil', {id : hashEncode(editor.owner.id)}) }}" class="card-publisher-image">
+                    <!-- Profil image block -->
+                    {% block card_publisher_image %}
+                        {{ macros.show_user_avatar(editor.owner, 'relation', 120, null) }}
+                        {# <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="" /> #}
+                    {% endblock %}
+                </a>
+            </div>
+        {% endif %}
+        <a href="{{ path('editor', {id : editor.id}) }}" class="card-title-link">
+            <h2 class="card-title highlight highlight-wrapper">
+                <!-- Card title block -->
+                {% block card_title %}
+                    {{ editor.name|truncate(40, true) }}
+                {% endblock %}
+            </h2>
+        </a>
+    </div><!--
+    --><div class="card-right">
+        <a href="{{ path('editor', {id : editor.id}) }}">
+            <!-- Card image block -->
+            {% block card_image %}
+                {% if editor.cover is not null %}
+                    {{ macros.show_editor_avatar(editor, 'cover', 375, null) }}
+                {% endif %}
+                {# <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" /> #}
+            {% endblock %}
+        </a>
+    </div><!--
+    --><div class="card-bottom">
+        <span class="card-group-details editor-card-details">
+        {% if editor.description is not null %}
+            {{ editor.description| truncate(85, false, '...') }}
+        {% endif %}</span><!--
+        --><div class="card-links">
+            {# <a class="square-btn light-blue fav" href="#"><span class="icon-favorit-item"/></a> #}
+
+{#         {% if editor.owner is not null %}#}
+{#             <span class="author">{{ 'Animé par %name%'|trans({'%name%': '<a href="' ~ path('profil', {id : editor.owner.id}) ~ '" class="author-link">' ~ editor.owner.firstname|e ~ ' ' ~ editor.owner.lastname|e ~ '</a>'}, 'rpe')|raw }} {{ 'le %date%'|trans({'%date%': editor.createDate|localizeddate('none', 'none', app.request.locale, null, 'dd-MM-Y')}, 'rpe') }}</span>#}
+{#         {% endif %}#}
+        </div>
+    </div>
+</li>

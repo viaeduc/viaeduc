@@ -1,0 +1,51 @@
+<!-- Use this block too add color classes or no-image, card-title -->
+<li class="card question no-image">
+    <div class="card-left">
+        <div class="card-publisher">
+            <a href="{{ path('profil', {id : hashEncode(question.author.id)}) }}" class="card-publisher-image">
+                <!-- Profil image block -->
+                {% block card_publisher_image %}
+                    {{ macros.show_user_avatar(question.author, 'avatar', 65, null) }}
+                    {# <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="" /> #}
+                {% endblock %}
+            </a><!--
+            --><div class="card-publisher-info">
+                <!-- Publisher link -->
+                <a href="{{ block('card_publisher_link') }}">
+                    <!-- Name & Role blocks -->
+                    <span class="card-name">{% block card_publisher_name %} {{ question.author.firstname }} {{ question.author.lastname }}{% endblock %}</span>
+                    <span class="card-role">{% block card_publisher_role %}{{ question.author.occupation }}{% endblock %}</span>
+                   {# {% block card_publisher_connect %}<span class="card-connect icon-plus">Voir le profil</span>{% endblock %} #}
+                </a>
+            </div>
+        </div>
+        <a href="{{ path('question', {id : question.id}) }}" class="card-title-link">
+            <h2 class="card-title highlight highlight-wrapper">
+                <!-- Card title block -->
+                {% block card_title %}
+                    {{ question.name|truncate(40, true) }}
+                {% endblock %}
+            </h2>
+        </a>
+    </div>
+    <div class="card-bottom">
+        <span class="card-published">
+            <!-- Discipline de la question -->
+            {% block card_publication_details %}
+                {{ (question.instructedDisciplines)|join(', ')|truncate(50, true) }}
+            {% endblock %}
+        </span>
+
+        <div class="card-links">
+            {% block card_publication_count %}
+                <a class="wall-btn icon-reply light-blue" href="{{ path('question', {'id': question.id}) }}">{{ question.answers.count }}</a>
+                {# <a class="wall-btn icon-thumbs-up light-blue" href="{{ path('question', {'id': question.id}) }}">{{ question.bookmarkby.count }}</a> #}
+                {% include 'pum://includes/common/componants/bookmark/buttons.html.twig' with {
+                    'type': 'question',
+                    'object': question,
+                    'style': 'wall'
+                } %}
+            {% endblock %}
+        </div>
+    </div>
+</li>

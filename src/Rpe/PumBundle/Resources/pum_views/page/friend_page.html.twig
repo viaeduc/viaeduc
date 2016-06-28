@@ -1,0 +1,868 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-profil.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.side-componants.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-profil.js') }}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+	{% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+		{% block this_page %}
+	    	Profil
+	    {% endblock %}
+	{% endembed %}
+{% endblock %}
+
+{% block cover %}
+	{% embed "pum://includes/common/componants/cover-layout.html.twig" %}
+    	{% block cover_left_buttons %}
+			<a class="action-btn orange icon-mail-2" href="#">Message</a>
+			<a class="action-btn light-blue icon-user" href="#">Ajouter en amis</a>
+		{% endblock %}
+
+	{% endembed %}
+{% endblock %}
+
+{# {% block sidebar %}
+    {% include "pum://includes/common/componants/sidebar/sidebar-relation.html.twig" %}
+    {% include "pum://includes/common/componants/sidebar/sidebar-groups.html.twig" %}
+{% endblock %} #}
+
+{% block main_content %}
+
+    <div class="tabbable col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="tab active"> <a data-toggle="tab" href="#portlet_tab1">{{ "profil.last_share"|trans({}, 'rpe') }}</a></li><!--
+            --><li class="tab"> <a data-toggle="tab" href="#portlet_tab2">{{ "profil.profil"|trans({}, 'rpe') }}</a></li><!--
+            --><li class="tab"> <a data-toggle="tab" href="#portlet_tab3">{{ "profil.blog"|trans({}, 'rpe') }}</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="portlet_tab1" class="tab-pane active">
+                <div class="publication-box">
+                    <!-- DETAILS -->
+                    <div class="publication-details">
+                        <span><a href="#">Jean-Luc BERNARD</a> a publié dans le groupe <a href="#">'Evaluation Scolaire 2.0'</a></span>
+                        <span>Publié par <a href="#">Jean-Luc BERNARD</a>,  31-05-2013</span>
+                    </div>
+                    <!-- ARTICLE -->
+                    <div class="publication-article">
+                        <a href="#">
+                            <h4>Evaluation Formative : Cinquième roue du char ou cheval de troie ?</h4>
+                        </a>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum dui et massa tristique ac elementum justo imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus et blandit metus. Nunc ultricies, ligula et imperdiet semper, diam tortor vulputate enim, id tempus turpis lectus ut enim. Donec non lectus odio, nec interdum lectus. Curabitur scelerisque massa quis leo porta non aliquam diam dictum.
+                        </p>
+                    </div>
+                    <!--MENU -->
+                    <div class="publication-menu">
+                        <ul>
+                            <li>
+                                <!-- Like -->
+                                <a href="#"><span class="square-btn icon-heart2 orange"></span></a>
+                                <a href="#">
+                                    <span class="color">8</span>
+                                    <span>Recommandations</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Comment -->
+                                <a href="#" class="comment">
+                                    <span class="square-btn icon-comment orange"></span>
+                                    <span class="color">1</span>
+                                    <span>Commentaire</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Share -->
+                                <a href="#"><span class="square-btn orange"><span class="picto picto-share-item"></span></span></a>
+                                <a href="#">
+                                    <span class="color">7</span>
+                                    <span>Partages</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Add to favs -->
+                                <a href="#">
+                                    <span class="square-btn light-blue"><span class="picto picto-favorit-item"></span></span>
+                                    <span>Ajouter aux favoris</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!--
+                    COMMENTS
+                    --><div class="publication-comments">
+                        <div class="comment">
+                            <div class="image-wrapper">
+                                <a href="#">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                                </a>
+                            </div>
+                            <div class="comment-wrapper">
+                                <a href="#">Denis M.</a>
+                                <span class="date">06-09-2013 - 12:22</span>
+                                <p>
+                                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                                </p>
+
+                                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+                            </span></div>
+                        </div>
+                        <form>
+                            <span class="text-box">
+                                <input placeholder="Ajouter un commentaire..." type="text">
+                            </span>
+                        </form>
+                    </div>
+                </div><!--
+                --><div class="publication-box">
+                    <div class="publication-details">
+                        <span><a href="#">Jean-Luc BERNARD</a> a rejoint le groupe <a href="#">L'urbanisation du monde actuel</a></span>
+                        <span>31-05-2013</span>
+                    </div>
+                </div><!--
+                --><div class="publication-box">
+                    <div class="publication-details">
+                        <span><a href="#">Jean-Luc BERNARD</a> s'est abonné à la page <a href="#">Belin</a></span>
+                        <span>28-05-2013</span>
+                    </div>
+                </div><!--
+                --><div class="publication-box">
+                    <!-- DETAILS -->
+                    <div class="publication-details">
+                        <span><a href="#">Jean-Luc BERNARD</a> a publié dans le groupe <a href="#">'Evaluation Scolaire 2.0'</a></span>
+                        <span>Publié par <a href="#">Jean-Luc BERNARD</a>,  31-05-2013</span>
+                    </div>
+                    <!-- ARTICLE -->
+                    <div class="publication-article">
+                        <a href="#">
+                            <img src="{{ asset('bundles/rpepum/images/tmp/img-peaple.png') }}" alt="">
+                        </a>
+                        <a href="#">
+                            <h4>Evaluation Formative : Cinquième roue du char ou cheval de troie ?</h4>
+                        </a>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum dui et massa tristique ac elementum justo imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus et blandit metus. Nunc ultricies, ligula et imperdiet semper, diam tortor vulputate enim, id tempus turpis lectus ut enim. Donec non lectus odio, nec interdum lectus. Curabitur scelerisque massa quis leo porta non aliquam diam dictum.
+                        </p>
+                    </div>
+                    <!--MENU -->
+                    <div class="publication-menu">
+                        <ul>
+                            <li>
+                                <!-- Like -->
+                                <a href="#"><span class="square-btn icon-heart2 orange"></span></a>
+                                <a href="#">
+                                    <span class="color">8</span>
+                                    <span>Recommandations</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Comment -->
+                                <a href="#" class="comment">
+                                    <span class="square-btn icon-comment orange"></span>
+                                    <span class="color">1</span>
+                                    <span>Commentaire</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Share -->
+                                <a href="#"><span class="square-btn orange"><span class="picto picto-share-item"></span></span></a>
+                                <a href="#">
+                                    <span class="color">7</span>
+                                    <span>Partages</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Add to favs -->
+                                <a href="#">
+                                    <span class="square-btn light-blue"><span class="picto picto-favorit-item"></span></span>
+                                    <span>Ajouter aux favoris</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!--
+                    COMMENTS
+                    --><div class="publication-comments">
+                        <div class="comment">
+                            <div class="image-wrapper">
+                                <a href="#">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                                </a>
+                            </div>
+                            <div class="comment-wrapper">
+                                <a href="#">Denis M.</a>
+                                <span class="date">06-09-2013 - 12:22</span>
+                                <p>
+                                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                                </p>
+                                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+                            </span></div>
+                        </div><!--
+                        --><div class="comment">
+                            <div class="image-wrapper">
+                                <a href="#">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                                </a>
+                            </div>
+                            <div class="comment-wrapper">
+                                <a href="#">Denis M.</a>
+                                <span class="date">06-09-2013 - 12:22</span>
+                                <p>
+                                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                                </p>
+                                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+                            </span></div>
+                        </div><!--
+                        --><div class="comment">
+                            <div class="image-wrapper">
+                                <a href="#">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                                </a>
+                            </div>
+                            <div class="comment-wrapper">
+                                <a href="#">Denis M.</a>
+                                <span class="date">06-09-2013 - 12:22</span>
+                                <p>
+                                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                                </p>
+                                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+                            </span></div>
+                        </div><!--
+                        --><div class="comment">
+                            <a href="#">Voir tous les commentaires (13)<span class="icon-down-dir-1"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane profil-tab profil-tab-content" id="portlet_tab2">
+                <div class="profil-box">
+                    <h2 class="title icon-list">Résumé</h2>
+                    <div class="profil-content">
+                        <p>
+                            Professeur des collèges depuis plus de 15 ans et habitant la région bordelaise, je me suis inscrit sur cette plateforme avec l'objectif de trouver des ressources, mais également pour aider mes collègues enseignants. Passionné d'échecs et de nature, je suis un néophyte de l'usage des réseaux sociaux. N'hésitez pas à m'envoyer des messages pour échanger avec moi.
+                        </p>
+                        <a href="#" class="icon-cog edit-profil"></a>
+                    </div>
+                    <div class="edit-content">
+                        <ul class="complex-form">
+                            <li>
+                                <div class="col-left middle">
+                                    <label>Description :</label>
+                                </div><!--
+                                --><div class="col-middle">
+                                    <span class="text-box">
+                                        <textarea name="placeholderInput"></textarea>
+                                    </span>
+                                </div><!--
+                                --><div class="col-right">
+                                    <span>Visible par :</span><!--
+                                    --><span class="select-box">
+                                        <select class="required" name="selectspecialInput" id="specialInput" style="display: none;">
+                                            <option value="option1">Tous</option>
+                                            <option value="option2">Amis</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="line"></li>
+                            <li class="button-box">
+                                <a role="button" class="action-btn light-grey left edit-close">Annuler</a><!--
+                                --><a role="button" class="action-btn light-blue right edit-accept">Enregistrer</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profil-box grey">
+                    <h2 class="title icon-user">Informations personnelles</h2>
+                    <div class="profil-content">
+                        <ul>
+                            <li class="icon-mail">Email : <a href="#" class="bold">jl.bernard@univ-fcomte.fr</a></li>
+                            <li class="icon-phone">Téléphone : 01 52 35 95 75</li>
+                            <li class="icon-location">Académie de Bordeaux</li>
+                        </ul>
+                        <a href="#" class="icon-cog edit-profil"></a>
+                    </div>
+                    <div class="edit-content">
+                        <ul class="complex-form">
+                            <li>
+                                <div class="col-left middle">
+                                    <label>Email :</label>
+                                </div><!--
+                                --><div class="col-middle">
+                                    <span class="text-box">
+                                        <input type="text" placeholder="jl.bernard@univ-fcomte.fr" name="placeholderInput">
+                                    </span>
+                                </div><!--
+                                --><div class="col-right">
+                                    <span>Visible par :</span><!--
+                                    --><span class="select-box">
+                                        <select class="required" name="selectspecialInput" id="specialInput" style="display: none;">
+                                            <option value="option1">Tous</option>
+                                            <option value="option2">Amis</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-left middle">
+                                    <label>Téléphone :</label>
+                                </div><!--
+                                --><div class="col-middle">
+                                    <span class="text-box">
+                                        <input type="text" placeholder="01 52 35 95 75" name="placeholderInput">
+                                    </span>
+                                </div><!--
+                                --><div class="col-right">
+                                    <span>Visible par :</span><!--
+                                    --><span class="select-box">
+                                        <select class="required" name="selectspecialInput" id="specialInput" style="display: none;">
+                                            <option value="option1">Tous</option>
+                                            <option value="option2">Amis</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-left middle">
+                                    <label>Académie :</label>
+                                </div><!--
+                                --><div class="col-middle">
+                                    <span class="text-box">
+                                        <input type="text" placeholder="Académie de Bordeaux" name="placeholderInput">
+                                    </span>
+                                </div><!--
+                                --><div class="col-right">
+                                    <span>Visible par :</span><!--
+                                    --><span class="select-box">
+                                        <select class="required" name="selectspecialInput" id="specialInput" style="display: none;">
+                                            <option value="option1">Tous</option>
+                                            <option value="option2">Amis</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="line"></li>
+                            <li class="button-box">
+                                <a role="button" class="action-btn light-grey left edit-close">Annuler</a><!--
+                                --><a role="button" class="action-btn light-blue right edit-accept">Enregistrer</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profil-box grey">
+                    <h2 class="title icon-user">Expérience professionnelle</h2>
+                    <div class="profil-content">
+                        <span class="bold">Janvier 2011 : Professeur de philosophie au lycée français Jean Monnet. (Remplacement)</span>
+                        <ul class="dots">
+                            <li>Enseignement de philosophie de l'art et de la religion.</li>
+                            <li>Coaching individuel.</li>
+                            <li>Gestion de groupe</li>
+                        </ul>
+                        <a href="#" class="icon-cog edit-profil"></a>
+                    </div>
+                    <div class="edit-content">
+                        <form>
+                            <ul class="complex-form">
+                                <li class="exp-form">
+                                    <div class="exp-form-left">
+                                        <ul>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Entreprise, Université :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <span class="text-box">
+                                                        <input type="text" placeholder="Ex : Versailles" name="placeholderInput">
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Intitulé du poste :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <span class="text-box">
+                                                        <input type="text" placeholder="Ex : Professeur de philosophie" name="placeholderInput">
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Période :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <div class="inner-right-left">
+                                                        <span class="select-box">
+                                                            <select class="required" name="selectspecialInput" id="specialInput">
+                                                                <option value="option1">2009</option>
+                                                                <option value="option2">2010</option>
+                                                              </select>
+                                                        </span>
+                                                    </div><!--
+                                                    --><div class="inner-right-center">
+                                                        à
+                                                    </div><!--
+                                                    --><div class="inner-right-right">
+                                                        <span class="select-box">
+                                                            <select class="required" name="selectspecialInput" id="specialInput">
+                                                                <option value="option1">2010</option>
+                                                                <option value="option2">2011</option>
+                                                              </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Description :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <span class="text-box">
+                                                        <textarea name="textareaInput"></textarea>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div><!--
+                                    --><div class="exp-form-right">
+                                        <label>Visible par</label>
+                                        <span class="select-box">
+                                            <select class="required" name="selectspecialInput" id="specialInput">
+                                                <option value="option1">Tous</option>
+                                                <option value="option2">Amis</option>
+                                              </select>
+                                        </span>
+                                    </div><!--
+                                    --><div class="exp-form-last">
+                                        <a href="#" class="icon-cancel"></a>
+                                    </div>
+                                </li>
+                                <li class="line"></li>
+                                <li class="button-box">
+                                    <a role="button" class="action-btn light-grey left edit-close">Annuler</a><!--
+                                    --><a role="button" class="action-btn light-blue right edit-accept">Enregistrer</a>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="line"></div>
+                    <div class="profil-content">
+                        <span class="bold">2009/2010 : Chargé de cours à l'IRTS de Lorraine. (septembre)</span>
+                        <ul class="dots">
+                            <li>Formation des Educateurs Jeunes Enfants en philosophie politique et philosophie de l'éducation.</li>
+                        </ul>
+                        <a href="#" class="icon-cog edit-profil"></a>
+                    </div>
+                    <div class="edit-content">
+                        <form>
+                            <ul class="complex-form">
+                                <ul class="complex-form">
+                                <li class="exp-form">
+                                    <div class="exp-form-left">
+                                        <ul>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Entreprise, Université :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <span class="text-box">
+                                                        <input type="text" placeholder="Ex : Versailles" name="placeholderInput">
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Intitulé du poste :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <span class="text-box">
+                                                        <input type="text" placeholder="Ex : Professeur de philosophie" name="placeholderInput">
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Période :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <div class="inner-right-left">
+                                                        <span class="select-box">
+                                                            <select class="required" name="selectspecialInput" id="specialInput">
+                                                                <option value="option1">2009</option>
+                                                                <option value="option2">2010</option>
+                                                              </select>
+                                                        </span>
+                                                    </div><!--
+                                                    --><div class="inner-right-center">
+                                                        à
+                                                    </div><!--
+                                                    --><div class="inner-right-right">
+                                                        <span class="select-box">
+                                                            <select class="required" name="selectspecialInput" id="specialInput">
+                                                                <option value="option1">2010</option>
+                                                                <option value="option2">2011</option>
+                                                              </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Description :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <span class="text-box">
+                                                        <textarea name="textareaInput"></textarea>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div><!--
+                                    --><div class="exp-form-right">
+                                        <label>Visible par</label>
+                                        <span class="select-box">
+                                            <select class="required" name="selectspecialInput" id="specialInput">
+                                                <option value="option1">Tous</option>
+                                                <option value="option2">Amis</option>
+                                              </select>
+                                        </span>
+                                    </div><!--
+                                    --><div class="exp-form-last">
+                                        <a href="#" class="icon-cancel"></a>
+                                    </div>
+                                </li>
+                                <li class="line"></li>
+                                <li class="button-box">
+                                    <a role="button" class="action-btn light-grey left edit-close">Annuler</a><!--
+                                    --><a role="button" class="action-btn light-blue right edit-accept">Enregistrer</a>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="line"></div>
+                    <div class="profil-content">
+                        <span class="bold">Enseignant/chercheur (ATER) à l'Université de Bourgogne (Institut Universitaire de Formation des Maîtres pour professeurs des écoles niveau Master 1 et 2)</span>
+                        <ul class="dots">
+                            <li>Enseignement de philosophie de l'éducation, philosophie politique, philosophie pour enfants, éthique théorique et appliquée, éléments de logique et d'épistémologie, éléments de psychologie cognitive et de pédagogie.</li>
+                            <li>Préparation à l'épreuve orale du concours.</li>
+                            <li>Direction de mémoires professionnels.</li>
+                        </ul>
+                        <a href="#" class="icon-cog edit-profil"></a>
+                    </div>
+                    <div class="edit-content">
+                        <form>
+                            <ul class="complex-form">
+                                <li class="exp-form">
+                                    <div class="exp-form-left">
+                                        <ul>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Entreprise, Université :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <span class="text-box">
+                                                        <input type="text" placeholder="Ex : Versailles" name="placeholderInput">
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Intitulé du poste :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <span class="text-box">
+                                                        <input type="text" placeholder="Ex : Professeur de philosophie" name="placeholderInput">
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Période :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <div class="inner-right-left">
+                                                        <span class="select-box">
+                                                            <select class="required" name="selectspecialInput" id="specialInput">
+                                                                <option value="option1">2009</option>
+                                                                <option value="option2">2010</option>
+                                                              </select>
+                                                        </span>
+                                                    </div><!--
+                                                    --><div class="inner-right-center">
+                                                        à
+                                                    </div><!--
+                                                    --><div class="inner-right-right">
+                                                        <span class="select-box">
+                                                            <select class="required" name="selectspecialInput" id="specialInput">
+                                                                <option value="option1">2010</option>
+                                                                <option value="option2">2011</option>
+                                                              </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="inner-left">
+                                                    <label>Description :</label>
+                                                </div><!--
+                                                --><div class="inner-right">
+                                                    <span class="text-box">
+                                                        <textarea name="textareaInput"></textarea>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div><!--
+                                    --><div class="exp-form-right">
+                                        <label>Visible par</label>
+                                        <span class="select-box">
+                                            <select class="required" name="selectspecialInput" id="specialInput">
+                                                <option value="option1">Tous</option>
+                                                <option value="option2">Amis</option>
+                                              </select>
+                                        </span>
+                                    </div><!--
+                                    --><div class="exp-form-last">
+                                        <a href="#" class="icon-cancel"></a>
+                                    </div>
+                                </li>
+                                <li class="line"></li>
+                                <li class="button-box">
+                                    <a role="button" class="action-btn light-grey left edit-close">Annuler</a><!--
+                                    --><a role="button" class="action-btn light-blue right edit-accept">Enregistrer</a>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+                <div class="profil-box">
+                    <h2 class="title icon-graduation">Formation</h2>
+                    <div class="profil-content">
+                        <span class="bold">2011 : (de février à juin) formation en Neuropsychologie orientée vers la gestion du stress, de la motivation, la prise de décision, la biosystémique, au sein de l'Institut du Neurocognitivism de Bruxelles.</span>
+                        <a href="#" class="icon-cog edit-profil"></a>
+                    </div>
+                    <div class="line"></div>
+                    <div class="profil-content">
+                        <span class="bold">2004/2009 : doctorat</span> d'épistémologie à l'université Paris Diderot, Paris 7 : Wittgenstein et la Métaphysique. (Mention très honorable).
+                        <a href="#" class="icon-cog edit-profil"></a>
+                    </div>
+                    <div class="line"></div>
+                    <div class="profil-content">
+                        <span class="bold">2003/2004 : DEA</span> de philosophie à l'université Nancy 2 (Mention bien) Rédaction d'un mémoire
+                        <a href="#" class="icon-cog edit-profil"></a>
+                    </div>
+                </div>
+                <div class="profil-box">
+                    <h2 class="title icon-sun">loisirs</h2>
+                    <div class="profil-content">
+                        <ul class="dots">
+                            <li>Cuisine, Tango, Vélo (grandes excursions), lecture (histoire, sciences politiques, sciences physiques, économie, littérature) musique (classique), yoga</li>
+                            <li>Soutien scolaire (2007-2009), (2002) tournée théâtrale dans les centres pour enfants handicapés ou en difficultés des Vosges (Ecriture en collaboration, montage et interprétation d'une pièce de théâtre et d'un conte).</li>
+                        </ul>
+                        <a href="#" class="icon-cog edit-profil"></a>
+                    </div>
+                </div>
+            </div>
+            <div id="portlet_tab3" class="tab-pane">
+                <div class="publication-box">
+                    <!-- DETAILS -->
+                    <div class="publication-details">
+                        <span><a href="#">Jean-Luc BERNARD</a> a publié dans le groupe <a href="#">'Evaluation Scolaire 2.0'</a></span>
+                        <span>Publié par <a href="#">Jean-Luc BERNARD</a>,  31-05-2013</span>
+                    </div>
+                    <!-- ARTICLE -->
+                    <div class="publication-article">
+                        <a href="#">
+                            <h4>Evaluation Formative : Cinquième roue du char ou cheval de troie ?</h4>
+                        </a>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum dui et massa tristique ac elementum justo imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus et blandit metus. Nunc ultricies, ligula et imperdiet semper, diam tortor vulputate enim, id tempus turpis lectus ut enim. Donec non lectus odio, nec interdum lectus. Curabitur scelerisque massa quis leo porta non aliquam diam dictum.
+                        </p>
+                    </div>
+                    <!--MENU -->
+                    <div class="publication-menu">
+                        <ul>
+                            <li>
+                                <!-- Like -->
+                                <a href="#"><span class="square-btn icon-heart2 orange"></span></a>
+                                <a href="#">
+                                    <span class="color">8</span>
+                                    <span>Recommandations</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Comment -->
+                                <a href="#" class="comment">
+                                    <span class="square-btn icon-comment orange"></span>
+                                    <span class="color">1</span>
+                                    <span>Commentaire</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Share -->
+                                <a href="#"><span class="square-btn orange"><span class="picto picto-share-item"></span></span></a>
+                                <a href="#">
+                                    <span class="color">7</span>
+                                    <span>Partages</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Add to favs -->
+                                <a href="#">
+                                    <span class="square-btn light-blue"><span class="picto picto-favorit-item"></span></span>
+                                    <span>Ajouter aux favoris</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!--
+                    COMMENTS
+                    --><div class="publication-comments">
+                        <div class="comment">
+                            <div class="image-wrapper">
+                                <a href="#">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                                </a>
+                            </div>
+                            <div class="comment-wrapper">
+                                <a href="#">Denis M.</a>
+                                <span class="date">06-09-2013 - 12:22</span>
+                                <p>
+                                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                                </p>
+
+                                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+                            </span></div>
+                        </div>
+                        <form>
+                            <span class="text-box">
+                                <input placeholder="Ajouter un commentaire..." type="text">
+                            </span>
+                        </form>
+                    </div>
+                </div><!--
+                --><div class="publication-box">
+                    <div class="publication-details">
+                        <span><a href="#">Jean-Luc BERNARD</a> a rejoint le groupe <a href="#">L'urbanisation du monde actuel</a></span>
+                        <span>31-05-2013</span>
+                    </div>
+                </div><!--
+                --><div class="publication-box">
+                    <div class="publication-details">
+                        <span><a href="#">Jean-Luc BERNARD</a> s'est abonné à la page <a href="#">Belin</a></span>
+                        <span>28-05-2013</span>
+                    </div>
+                </div><!--
+                --><div class="publication-box">
+                    <!-- DETAILS -->
+                    <div class="publication-details">
+                        <span><a href="#">Jean-Luc BERNARD</a> a publié dans le groupe <a href="#">'Evaluation Scolaire 2.0'</a></span>
+                        <span>Publié par <a href="#">Jean-Luc BERNARD</a>,  31-05-2013</span>
+                    </div>
+                    <!-- ARTICLE -->
+                    <div class="publication-article">
+                        <a href="#">
+                            <img src="{{ asset('bundles/rpepum/images/tmp/img-peaple.png') }}" alt="">
+                        </a>
+                        <a href="#">
+                            <h4>Evaluation Formative : Cinquième roue du char ou cheval de troie ?</h4>
+                        </a>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum dui et massa tristique ac elementum justo imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus et blandit metus. Nunc ultricies, ligula et imperdiet semper, diam tortor vulputate enim, id tempus turpis lectus ut enim. Donec non lectus odio, nec interdum lectus. Curabitur scelerisque massa quis leo porta non aliquam diam dictum.
+                        </p>
+                    </div>
+                    <!--MENU -->
+                    <div class="publication-menu">
+                        <ul>
+                            <li>
+                                <!-- Like -->
+                                <a href="#"><span class="square-btn icon-heart2 orange"></span></a>
+                                <a href="#">
+                                    <span class="color">8</span>
+                                    <span>Recommandations</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Comment -->
+                                <a href="#" class="comment">
+                                    <span class="square-btn icon-comment orange"></span>
+                                    <span class="color">1</span>
+                                    <span>Commentaire</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Share -->
+                                <a href="#"><span class="square-btn orange"><span class="picto picto-share-item"></span></span></a>
+                                <a href="#">
+                                    <span class="color">7</span>
+                                    <span>Partages</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Add to favs -->
+                                <a href="#">
+                                    <span class="square-btn light-blue"><span class="picto picto-favorit-item"></span></span>
+                                    <span>Ajouter aux favoris</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!--
+                    COMMENTS
+                    --><div class="publication-comments">
+                        <div class="comment">
+                            <div class="image-wrapper">
+                                <a href="#">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                                </a>
+                            </div>
+                            <div class="comment-wrapper">
+                                <a href="#">Denis M.</a>
+                                <span class="date">06-09-2013 - 12:22</span>
+                                <p>
+                                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                                </p>
+                                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+                            </span></div>
+                        </div><!--
+                        --><div class="comment">
+                            <div class="image-wrapper">
+                                <a href="#">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                                </a>
+                            </div>
+                            <div class="comment-wrapper">
+                                <a href="#">Denis M.</a>
+                                <span class="date">06-09-2013 - 12:22</span>
+                                <p>
+                                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                                </p>
+                                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+                            </span></div>
+                        </div><!--
+                        --><div class="comment">
+                            <div class="image-wrapper">
+                                <a href="#">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                                </a>
+                            </div>
+                            <div class="comment-wrapper">
+                                <a href="#">Denis M.</a>
+                                <span class="date">06-09-2013 - 12:22</span>
+                                <p>
+                                    Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                                </p>
+                                <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+                            </span></div>
+                        </div><!--
+                        --><div class="comment">
+                            <a href="#">Voir tous les commentaires (13)<span class="icon-down-dir-1"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

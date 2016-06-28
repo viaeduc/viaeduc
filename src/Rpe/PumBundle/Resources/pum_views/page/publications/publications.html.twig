@@ -1,0 +1,105 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Liste des ressources' %}
+{% set page_name_analytics = 'resources/' ~ mode %}
+{% set nav_section = 'profile-menu' %}
+
+{# {% set publications_tutorial_enabled = true %} #}
+
+{# This is only set when on page my_drafts #}
+{# {% set publications_draft_tutorial_enabled = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-publications.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body_javascript %}
+{% endblock %}
+
+{% block content %}
+    {{ macros.modal('report') }}
+    {{ macros.modal('share') }}
+    <div class="wrapper">
+        <section class="content full">
+            {% embed "pum://includes/common/componants/filter.twig" %}
+            {% block title %}
+                <h2 class="filter-title">{{ ("publications.title." ~ mode)|trans({}, 'rpe') }}{#  <span>(12)</span> #}</h2>
+            {% endblock %}
+            {% block filter %}
+                <div class="filter-right">
+                    <ul class="filter-right-wrapper">
+                        <li class="filter-link">
+                            <a href="{{ path('library') }}" class="filter-btn icon-suitcase">{{ "publishPage.documents"|trans({}, 'rpe') }}</a>
+                        {% for publicationFilter in publicationFilters %}
+                            {% if loop.first %}
+                                <li class="filter-link">
+                                    <select class="filter-select-btn js-select-href">
+                            {% endif %}
+                                <option {{ (mode is not null and mode == publicationFilter) ? 'selected="selected"' }} value="{{ path('publications', {'mode': publicationFilter}) }}">{{ ('publications.filters.' ~ publicationFilter|lower)|trans({}, 'rpe') }}</option>
+                            {% if loop.last %}
+                                    </select>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        <li class="filter-link">
+                            <span id="big" class="picto-big"></span>
+                            <span id="small" class="picto-small opac"></span>
+                        </li>
+                    </ul>
+                </div>
+            {% endblock %}
+        {% endembed %}
+        {% block main_content %}{% spaceless %}
+        <ul class="list-general-box grid effect-2 js-autoload" id="grid" data-autoload="{{ path('ajax_publicationslist', {'mode': mode}) }}">
+            {{ macros.loader() }}
+        </ul>
+        {% endspaceless %}{% endblock main_content %}
+        </section>
+    </div>
+{% endblock %}
+{% block tutorial %}
+    {% if publications_tutorial_enabled is defined %}
+        <script>
+            {% spaceless %}
+                var publications_tutorial_enabled = '{{ publications_tutorial_enabled }}';
+            {% endspaceless %}
+        </script>
+        <div class="modal fade tutorial-modal publications-tutorial-modal-1" id="menu-group-tutorial-modal-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ "publications.title1"|trans({}, 'rpe') }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ "publications.text1"|trans({}, 'rpe') }}
+                    </div>
+                    <div class="modal-footer">
+                        <a role="button" href="#menu-group-tutorial-modal-2" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if publications_draft_tutorial_enabled is defined %}
+        <script>
+            {% spaceless %}
+                var publications_draft_tutorial_enabled = '{{ publications_draft_tutorial_enabled }}';
+            {% endspaceless %}
+        </script>
+        <div class="modal fade tutorial-modal publications-draft-tutorial-modal-1" id="menu-group-tutorial-modal-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ "publicationsDraft.title1"|trans({}, 'rpe') }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ "publicationsDraft.text1"|trans({}, 'rpe') }}
+                    </div>
+                    <div class="modal-footer">
+                        <a role="button" href="#menu-group-tutorial-modal-2" data-toggle="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

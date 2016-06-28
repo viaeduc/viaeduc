@@ -1,0 +1,53 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{# FORM #}
+{% block text_row %}
+    {# {% set id = form.vars.id ~ '_' ~ app.request.get('post') %} #}
+    {{ form_widget(form, { 'id': '' }) }}
+{% endblock %}
+
+{% block submit_widget %}
+    {% spaceless %}
+        {% set class = 'action-btn light-blue btn-submit' %}
+        {% set attr = attr|merge({class: class}) %}
+        {% if folder_id is defined and folder_id is not null %}
+            {% set label = ' ' %}
+            {% set class = 'action-btn light-blue btn-submit icon-checkmark' %}
+            {% set attr = attr|merge({class: class}) %}
+        {% else %}
+            {% set label = 'Créer'|trans({}, 'rpe') %}
+        {% endif %}
+        {{ parent() }}{{ help|default('') }}
+    {% endspaceless %}
+{% endblock submit_widget %}
+
+{% block main_content %}
+{% spaceless %}
+    {% if form is defined and folder is not defined %}
+        {% set folder_id = app.request.get('folder_id') %}
+        {% form_theme form _self %}
+        {{ form_errors(form) }}
+        {{ form_start(form, { action: path('create_form_library_folder', {'folder_id': folder_id}), 'attr': { 'class': ((folder_id != null) ? 'edit-input' : 'add-folder-form') } }) }}
+            {% if folder_id != null %}
+                <button type="button" class="square-btn dark-grey btn-cancel icon-arrow-left7" value="cancel"></button>
+            {% endif %}
+            {{ form_row(form.name) }}
+            {{ form_row(form._token) }}
+            {{ form_row(form.submit, {'folder_id' : folder_id}) }}
+        {{ form_end(form) }}
+    {% elseif folder is defined %}
+        <li id="js-folder_{{ folder.id }}" data-entityid="{{ folder.id }}">
+            <span class="folder-name js-loadmore js-infinite js-load-replace" data-loadtarget="#js-mediainfolder" data-href="{{ path('library', {'folder_id': folder.id}) }}">
+                {{ folder.name }}
+            </span>
+            <form class="edit-input">
+
+            </form>
+            <span class="edit-delete">
+                <span class="edit square-btn light-blue icon-pencil small js-loadmore js-infinite js-load-replace" data-href="{{ path('create_form_library_folder', {'folder_id': folder.id}) }}" data-loadtarget="#js-folder_{{ folder.id }} .edit-input"></span>
+                <span class="delete square-btn light-blue icon-cross small js-loadmore js-confirm-modal js-remove" data-href="{{ path('delete_folder', {'id': folder.id}) }}" data-delete-link="{{ path('delete_folder', {'id': folder.id}) }}" data-confirm="{{ 'library.folder.action.confirm_delete'|trans({}, 'rpe') }}" data-remove-div="#js-folder_{{ folder.id }}" data-disable="Vous ne pouvez pas supprimer ce dossier car il y a des médias associés."></span>
+            </span>
+        </li>
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <services>
+
+
+        <!-- Security -->
+
+        <service id="form.type.rpe_security_login" class="Rpe\PumBundle\Form\Type\Security\LoginType">
+            <tag name="form.type" alias="rpe_security_login" />
+        </service>
+
+        <service id="form.type.rpe_security_register" class="Rpe\PumBundle\Form\Type\Security\RegisterType">
+            <tag name="form.type" alias="rpe_security_register" />
+        </service>
+
+        <service id="form.type.rpe_security_lost_password" class="Rpe\PumBundle\Form\Type\Security\LostPasswordType">
+            <tag name="form.type" alias="rpe_security_lost_password" />
+        </service>
+        
+        <service id="form.type.rpe_security_reset_password" class="Rpe\PumBundle\Form\Type\Security\ResetPasswordType">
+            <tag name="form.type" alias="rpe_security_reset_password" />
+        </service>
+
+		<service id="form.type.rpe_security_change_password" class="Rpe\PumBundle\Form\Type\Security\ChangePasswordType">
+            <tag name="form.type" alias="rpe_security_change_password" />
+        </service>
+
+        <service id="form.type.rpe_security_verify_user" class="Rpe\PumBundle\Form\Type\Security\VerifyUserType">
+            <tag name="form.type" alias="rpe_security_verify_user" />
+        </service>
+        <!-- Custom Fields -->
+
+        <service id="form.type.rpe_my_group" class="Rpe\PumBundle\Form\Type\MyGroupType">
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="rpe_my_group" />
+        </service>
+
+        <service id="form.type.rpe_my_event_group" class="Rpe\PumBundle\Form\Type\MyEventGroupType">
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="rpe_my_event_group" />
+        </service>
+
+        <service id="form.type.rpe_my_question_group" class="Rpe\PumBundle\Form\Type\MyQuestionGroupType">
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="rpe_my_question_group" />
+        </service>
+
+        <service id="form.type.rpe_my_friends" class="Rpe\PumBundle\Form\Type\MyFriendsType">
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="rpe_my_friends" />
+        </service>
+
+        <service id="form.type.rpe_media_type" class="Rpe\PumBundle\Form\Type\RpeMediaType">
+            <tag name="form.type" alias="rpe_media" />
+        </service>
+
+        <service id="form.type.rpe_linked_posts" class="Rpe\PumBundle\Form\Type\LinkedPostsType">
+            <tag name="form.type" alias="rpe_linked_posts" />
+        </service>
+
+        <service id="form.type.rpe_academy" class="Rpe\PumBundle\Form\Type\AcademyType">
+            <tag name="form.type" alias="rpe_academy" />
+        </service>
+
+        <service id="form.type.rpe_my_notifications" class="Rpe\PumBundle\Form\Type\MyNotificationsType">
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="rpe_my_notifications" />
+        </service>
+
+        <service id="form.type.rpe_my_confidentials" class="Rpe\PumBundle\Form\Type\MyConfidentialsType">
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="rpe_my_confidentials" />
+        </service>
+
+        <service id="form.type.rpe_timezone" class="Rpe\PumBundle\Form\Type\RpeTimezoneType">
+            <tag name="form.type" alias="rpe_timezone" />
+        </service>
+
+        <!-- Widget forms -->
+        <service id="form.type.rpe_form_widget_rss" class="Rpe\PumBundle\Form\Type\MyWidget\RssType">
+            <tag name="form.type" alias="rpe_form_widget_rss" />
+        </service>
+
+        <service id="form.type.rpe_form_widget_facebook" class="Rpe\PumBundle\Form\Type\MyWidget\FacebookType">
+            <tag name="form.type" alias="rpe_form_widget_facebook" />
+        </service>
+
+        <service id="form.type.rpe_form_widget_twitter" class="Rpe\PumBundle\Form\Type\MyWidget\TwitterType">
+            <tag name="form.type" alias="rpe_form_widget_twitter" />
+        </service>
+
+        <service id="form.type.rpe_form_groupwidget_rss" class="Rpe\PumBundle\Form\Type\GroupWidget\RssType">
+            <tag name="form.type" alias="rpe_form_groupwidget_rss" />
+        </service>
+
+        <service id="form.type.rpe_form_groupwidget_facebook" class="Rpe\PumBundle\Form\Type\GroupWidget\FacebookType">
+            <tag name="form.type" alias="rpe_form_groupwidget_facebook" />
+        </service>
+
+    </services>
+</container>

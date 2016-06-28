@@ -1,0 +1,840 @@
+{
+    "alias": "external",
+    "name": "external",
+    "seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+    "icon": "earth",
+    "color": "greensea",
+    "objects": [
+        {
+            "alias": "notice",
+            "name": "external_notice",
+            "classname": "Rpe\\PumBundle\\Model\\External\\Notice",
+            "repository_class": "Rpe\\PumBundle\\Repository\\External\\NoticeRepository",
+            "fields": [
+                {
+                    "name": "category",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "notices",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice_category",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "comments",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "notice",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice_comment",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "one-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "commercial_catches",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "create_date",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "disciplines",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "notices",
+                        "is_external": true,
+                        "index_by": null,
+                        "target": "instructed_discipline",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "many-to-many",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "id_beebac",
+                    "type": "integer",
+                    "typeOptions": {
+                        "default": null,
+                        "unique": false,
+                        "min": null,
+                        "max": null,
+                        "bigint": false
+                    }
+                },
+                {
+                    "name": "id_noticia",
+                    "type": "integer",
+                    "typeOptions": {
+                        "default": null,
+                        "unique": false,
+                        "min": null,
+                        "max": null,
+                        "bigint": false
+                    }
+                },
+                {
+                    "name": "is_publishable",
+                    "type": "boolean",
+                    "typeOptions": {
+                        "required": false,
+                        "default": null
+                    }
+                },
+                {
+                    "name": "issn",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "language",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "levels",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "notices",
+                        "is_external": true,
+                        "index_by": null,
+                        "target": "teaching_level",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "many-to-many",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "picture",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "recommendby",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "notice",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_recommend_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "one-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "share_notice",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "target_notice",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_share_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "one-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "shareby",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "original_notice",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_share_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "one-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "source",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "subtitle",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "target_user",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": null,
+                        "is_external": true,
+                        "index_by": null,
+                        "target": "user",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "title",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "update_date",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "url",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": null,
+            "search_enabled": true,
+            "search_fields": [
+                {
+                    "name": "title",
+                    "expression": "this.getTitle()",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "date",
+                    "expression": "this.getFormattedDate('createDate')",
+                    "type": "date",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "visibility",
+                    "expression": "this.getVisibility()",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "visible",
+                    "expression": "this.isVisible()",
+                    "type": "boolean",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "description",
+                    "expression": "this.getDescription()",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "update_date",
+                    "expression": "this.getFormattedDate('updateDate')",
+                    "type": "date",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "levels",
+                    "expression": "this.getArrayFieldname('levels')",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "disciplines",
+                    "expression": "this.getArrayFieldname('disciplines')",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "issn",
+                    "expression": "this.getIssn()",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "notice_category",
+                    "expression": "this.getFieldname('category')",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "name_raw",
+                    "expression": "this.getFormattedSort('title')",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "q",
+                    "expression": "this.getSearchQ()",
+                    "type": "string",
+                    "weight": 3,
+                    "index": "analyzed"
+                },
+                {
+                    "name": "q_bis",
+                    "expression": "this.getSearchQBis()",
+                    "type": "string",
+                    "weight": 2,
+                    "index": "analyzed"
+                },
+                {
+                    "name": "commercial_catches",
+                    "expression": "this.getCommercialCatches()",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "url",
+                    "expression": "this.getUrl()",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "picture",
+                    "expression": "this.getPicture()",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "source",
+                    "expression": "this.getSource()",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                },
+                {
+                    "name": "q_ter",
+                    "expression": "this.getSearchQTer()",
+                    "type": "string",
+                    "weight": 1,
+                    "index": "not_analyzed"
+                }
+            ],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": "notice_category",
+            "name": "external_notice_category",
+            "classname": null,
+            "repository_class": null,
+            "fields": [
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "notices",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "category",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "one-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": null,
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": "notice_comment",
+            "name": "external_notice_comment",
+            "classname": "Rpe\\PumBundle\\Model\\External\\Comment",
+            "repository_class": "Rpe\\PumBundle\\Repository\\External\\CommentRepository",
+            "fields": [
+                {
+                    "name": "children",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "parent",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice_comment",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "one-to-many",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "content",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "date",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "link_preview",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "notice_comments",
+                        "is_external": true,
+                        "index_by": null,
+                        "target": "link_preview",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "notice",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "comments",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "parent",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "children",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice_comment",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "many-to-one",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "recommendby",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "comment",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_recommend_comment",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "one-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "status",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "user",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "notice_comments",
+                        "is_external": true,
+                        "index_by": null,
+                        "target": "user",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": null,
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": "recommend_comment",
+            "name": "external_recommend_comment",
+            "classname": null,
+            "repository_class": "Rpe\\PumBundle\\Repository\\External\\RecommendCommentRepository",
+            "fields": [
+                {
+                    "name": "comment",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "recommendby",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice_comment",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "date",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "text",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "user",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "notice_recommend_comments",
+                        "is_external": true,
+                        "index_by": null,
+                        "target": "user",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": null,
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": "recommend_notice",
+            "name": "external_recommend_notice",
+            "classname": null,
+            "repository_class": "Rpe\\PumBundle\\Repository\\External\\RecommendNoticeRepository",
+            "fields": [
+                {
+                    "name": "content",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "date",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "notice",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "recommendby",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "user",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "recommend_notices",
+                        "is_external": true,
+                        "index_by": null,
+                        "target": "user",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": null,
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": "share_notice",
+            "name": "external_share_notice",
+            "classname": "Rpe\\PumBundle\\Model\\External\\ShareNotice",
+            "repository_class": "Rpe\\PumBundle\\Repository\\External\\ShareNoticeRepository",
+            "fields": [
+                {
+                    "name": "date",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "original_notice",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "shareby",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "source_notice",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": null,
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "target_notice",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "share_notice",
+                        "is_external": false,
+                        "index_by": null,
+                        "target": "external_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": null,
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        }
+    ]
+}

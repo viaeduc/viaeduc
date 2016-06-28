@@ -1,0 +1,42 @@
+{% spaceless %}
+{% if container is defined and container == 'body' %}
+    <script>
+        dataLayer = [{
+            {% if page_name_analytics is defined %}
+                'pageCategory': '{{ page_name_analytics }}'
+            {% endif %}
+        }];
+    </script>
+
+    {% if app.request.host == 'www.viaeduc.fr' %}
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TTRL2B"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TTRL2B');</script>
+        <!-- End Google Tag Manager -->
+    {% elseif app.request.host == 'rpe-pum.rec.sf2.argosit.net' %}
+        <!-- Piwik -->
+        <script type="text/javascript">
+          var _paq = _paq || [];
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            var u="//rpe-pum-piwik.rec.sf2.argosit.net/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', 1]);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          })();
+        </script>
+        <noscript><p><img src="//rpe-pum-piwik.rec.sf2.argosit.net/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+        <!-- End Piwik Code -->
+    {% endif %}
+
+{% else %}
+    {# Analytics in <head> #}
+{% endif %}
+{% endspaceless %}

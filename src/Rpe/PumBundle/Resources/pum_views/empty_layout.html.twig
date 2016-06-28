@@ -1,0 +1,6 @@
+{% set user = app.security.token ? app.security.token.user : null %}
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% use 'pum://form/form.html.twig' %}
+
+{% block main_content '' %}

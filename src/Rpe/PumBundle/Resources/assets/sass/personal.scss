@@ -1,0 +1,34 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "layout/_sidebar";
+@import "componants/_breadcrumbs";
+@import "componants/_cover";
+@import "componants/_publications";
+@import "componants/_side-box";
+@import "componants/_side-link-box";
+@import "componants/_cards";
+
+// ------------
+// Specific CSS
+// ------------
+
+.cover {
+    margin: 0 0 20px 0;
+}
+
+.big-link-container {
+    .side-links {
+        width: 100%;
+        margin: 0 0 2px 0;
+    }
+}

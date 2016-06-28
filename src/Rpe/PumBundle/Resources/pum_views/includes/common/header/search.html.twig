@@ -1,0 +1,158 @@
+{% spaceless %}
+
+{% if pum_var('active_global_search') %}
+	{% set search_type = 'global' %}
+{#     {% if search_type is not defined %}#}
+{#         {% set search_type = 'global' %}#}
+{#     {% endif %}#}
+
+{% else %}
+	{% set search_type = 'post' %}
+{#     {% if search_type is not defined %}#}
+{#         {% set search_type = 'post' %}#}
+{#     {% endif %}#}
+
+    {% set rpe_search_options = {
+    	    'posts': {
+    	        'title': "search.resources"|trans({}, 'rpe'),
+    	        'value' : path('search', {type: 'post'}),
+    	        'search_type' : 'post'
+    	    },
+    	    'groups': {
+    	        'title': "search.groups"|trans({}, 'rpe'),
+    	        'value' : path('search', {type: 'group'}),
+    	        'search_type' : 'group'
+    	    },
+    	    'users': {
+    	        'title': "search.users"|trans({}, 'rpe'),
+    	        'value' : path('search', {type: 'user'}),
+    	        'search_type' : 'user'
+    	    },
+    	    'questions': {
+    	        'title': "search.questions"|trans({}, 'rpe'),
+    	        'value' : path('search', {type: 'question'}),
+    	        'search_type' : 'question'
+    	    }
+
+    	}
+    %}
+
+    {% if pum_var('active_belin') %}
+        {% set rpe_search_options = rpe_search_options|merge({
+            'belin':{
+                'title': "search.belin"|trans({}, 'rpe'),
+                'value' : path('search', {type: 'belin'}),
+                'search_type' : 'belin'
+            }})
+        %}
+    {% endif %}
+{% endif %}
+
+<section class="section-search">
+    <form class="form-search inner" method="get" action="{{ path('search', {type: search_type}) }}">
+        <div class="menu-publish">
+            <a class="light-blue publish-btn icon-pencil" href="{{ path('publish_publications') }}">{{ "search.publish"|trans({}, 'rpe') }}</a>
+        </div>
+        <div class="white-block">
+
+            {# <div class="menu-select">
+                <select id="js-search-filter" class="select-styled">
+                    {% for option in rpe_search_options %}
+                        {% if search_type != option.search_type %}
+                            <option value="{{ option.value }}">{{ option.title }}</option>
+                        {% else %}
+                            <option selected="selected" value="{{ option.value }}">{{ option.title }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <script type="text/javascript">
+                    $('#js-search-filter').parents('form')[0].action = $('#js-search-filter option:selected').val();
+                    $('#js-search-filter').on('change', function(){
+                        $(this).parents('form')[0].action = $(this).val();
+                    });
+                </script>
+            </div> #}
+            <div class="input-search">
+            {# {% if pum_var('active_global_search') != true %}
+                <div class="menu-select">
+                    <select id="js-search-filter" class="select-styled">
+
+                        {% for option in rpe_search_options %}
+                            {% if search_type != option.search_type %}
+                                <option value="{{ option.value }}">{{ option.title }}</option>
+                            {% else %}
+                                <option selected="selected" value="{{ option.value }}">{{ option.title }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <script type="text/javascript">
+                        $('#js-search-filter').parents('form')[0].action = $('#js-search-filter option:selected').val();
+                        $('#js-search-filter').on('change', function(){
+                            $(this).parents('form')[0].action = $(this).val();
+                        });
+                    </script>
+                </div>
+            {% endif %} #}
+
+                <div class="input-search" {{ (pum_var('active_global_search')) }}>
+                    <label for="search" class="hidden"></label>
+                    <div id="hidden_main_search"></div>
+                    {% if pum_var('active_search_suggest') %}
+                        <input value="" type="text" class="resources tm-search" data-ajax-url="{{ path('suggest_search', {type: search_type, q: '__QUERY__'}) }}" name="q" placeholder="Recherchez un contact, un groupe, une ressource..." autocomplete="off" id="search_query">
+                    {% else %}
+                        <input value="" type="text" class="resources tm-search" name="q" placeholder="Recherchez un contact, un groupe, une ressource..." autocomplete="off" id="search_query">
+                    {% endif %}
+                <!-- TEMP BUTTON FOR POPIN -->
+                {# <a href="#" class="action-btn dark-blue temp-search active">Rechercher</a> #}
+                <!-- real btn -->
+                    <input type="submit" class="action-btn dark-blue btn-submit" value="">
+                    <span class="icon-search btn-icon"></span>
+                </div>
+            </div>
+            {% include 'pum://includes/common/header/search_box.html.twig' %}
+        </div>
+    </form>
+    {#<div class="form-publication">
+        <div class="publication-tabs">
+            <ul class="publicaton-tabs-wrapper">
+
+                <li class="publication-tab-link">
+                    <a href="#" class="publication-link active" data-link="ressource">
+                        <span class="icon-book2"></span>
+                        {{ "publish.resources"|trans({}, 'rpe') }}
+                    </a>
+                </li>
+                <li class="publication-tab-link">
+                    <a href="#" class="publication-link" data-link="event">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/publish-folder.png') }}">
+                        <span class="tab-text">{{ "publish.events"|trans({}, 'rpe') }}</span>
+                        <div class="arrow"></div>
+                    </a>
+                </li>
+                 <li class="publication-tab-link">
+                    <a href="#" class="publication-link" data-link="question">
+                        <span class="icon-question"></span>
+                        {{ "publish.question"|trans({}, 'rpe') }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="publication-inner-forms">
+
+            Render post form from controller
+            {{ render(controller('RpePumBundle:Publications:createPublication')) }}
+            {{ render(controller('RpePumBundle:Question:questionCreate', {'type': 'form'})) }}
+
+        </div>
+    </div> #}
+    <!-- temp modal -->
+    <div class="modal fade modal-warning">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <span class="temp-warning">La recherche n'étant pas encore fonctionnelle, vous allez être redirigé vers une page temporaire contenant tous les résultats de votre sélection</span>
+                <a href="#" class="action-btn orange accept-warning">Continuer</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endspaceless %}

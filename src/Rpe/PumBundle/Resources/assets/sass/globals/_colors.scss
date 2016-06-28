@@ -1,0 +1,316 @@
+/* Temporary to sort out the colors */
+
+// #pantone {
+//     & > span {
+//         height: 30px;
+//         min-width: 50px;
+//         display: inline-block;
+//         position: relative;
+//         color: $white;
+//     }
+//     .red-1 { background-color: $red-1}
+//     .red-2 { background-color: $red-2}
+
+//     .orange-1 { background-color: $orange-1}
+//     .orange-2 { background-color: $orange-2}
+
+//     .green-1 { background-color: $green-1}
+//     .green-2 { background-color: $green-2}
+//     .green-3 { background-color: $green-3}
+
+//     .light-blue-1{ background-color: $light-blue-1; }
+//     .light-blue-2{ background-color: $light-blue-2; }
+
+//     .dark-blue-1{ background-color: $dark-blue-1; }
+//     .dark-blue-2{ background-color: $dark-blue-2; }
+
+//     .light-grey-1{ background-color: $light-grey-1; }
+//     .light-grey{ background-color: $light-grey; }
+//     .light-grey-2{ background-color: $light-grey-2; }
+//     .light-grey-3{ background-color: $light-grey-3; }
+
+//     .dark-grey-1 { background-color: $dark-grey-1; }
+//     .dark-grey-2 { background-color: $dark-grey-2; }
+//     .dark-grey-3 { background-color: $dark-grey-3; }
+
+//     .sub-grey-4{ background-color: $sub-grey-4; }
+
+//     .bg-light-blue{ background-color: $bg-light-blue; }
+//     .bg-blue-1{ background-color: $bg-blue-1; }
+//     .bg-blue-2{ background-color: $bg-blue-2; }
+
+//     .dark-blue-3{ background-color: $dark-blue-3; }
+//     .dark-blue-13{ background-color: $dark-blue-13; }
+
+//     .light-black{ background-color: $light-black; }
+// }
+
+// --------------------------------
+// Gradient classes for the buttons
+// --------------------------------
+
+.orange{
+    // @include background-image(linear-gradient(top, $orange-1, $orange-2 ));
+    // @include text-shadow($orange-2 1px 1px 0);
+    background: $orange-1;
+    color: $white-font;
+
+    &:hover{
+        // @include background-image(linear-gradient(top, $orange-2, $orange-1 ));
+        // @include text-shadow($orange-2 1px 1px 0);
+        background: $orange-2;
+        color: $white;
+
+        &:after {
+            color: $orange-1;
+        }
+    }
+    &:after {
+        color: $orange-2;
+    }
+}
+
+.dark-blue{
+    // @include background-image(linear-gradient(top, $dark-blue-1, $dark-blue-2 ));
+    // @include text-shadow($light-blue-2 1px 1px 0);
+    background: $dark-blue-1;
+    color: $white-font;
+
+    &:hover{
+        // @include background-image(linear-gradient(top, $dark-blue-2, $dark-blue-1 ));
+        // @include text-shadow($light-blue-2 1px 1px 0);
+        background: $dark-blue-2;
+        color: $white-font;
+
+        &:after {
+            color: $white-font;
+        }
+    }
+    &:after {
+        color: $white-font;
+        text-shadow: none;
+    }
+}
+
+.light-blue{
+    // @include background-image(linear-gradient(top, $light-blue-1, $light-blue-2 ));
+    // @include text-shadow($light-blue-2 1px 1px 0);
+    background: $light-blue-1;
+    color: $white-font;
+
+    &:hover{
+        // @include background-image(linear-gradient(top, $light-blue-2, $light-blue-1 ));
+        // @include text-shadow($light-blue-2 1px 1px 0);
+        background: $light-blue-2;
+        color: $white-font;
+
+        &:after {
+            color: $light-blue-1;
+        }
+    }
+    &:after {
+        color: $light-blue-2;
+        text-shadow: none;
+    }
+}
+
+.light-grey{
+    // @include background-image(linear-gradient(top, $light-grey-1, $light-grey-2 ));
+    // @include text-shadow(rgba(0,0,0,0.8) 1px 1px 0);
+    background: $light-grey-2;
+    color: $white-font;
+    &:hover{
+        // @include background-image(linear-gradient(top, $light-grey-2, $light-grey-1 ));
+        // @include text-shadow(rgba(0,0,0,0.8) 1px 1px 0);
+        background: $light-grey-3;
+        color: $white-font;
+
+        &:after {
+            color: $light-grey-2 !important;
+        }
+    }
+    &:after {
+        color: $light-grey-3 !important;
+    }
+}
+
+.grey-blue{
+    background: $light-grey-1;
+    color: $white-font;
+    &:hover{
+        background: $light-blue-1;
+        color: $white-font;
+
+        &:after {
+            color: $light-grey-1 !important;
+        }
+    }
+    &:after {
+        color: $light-blue-1 !important;
+    }
+}
+
+.dark-grey{
+    // @include background-image(linear-gradient(top, $dark-grey-1, $dark-grey-3 ));
+    // @include text-shadow(rgba(0,0,0,0.8) 1px 1px 0);
+    background: $dark-grey-1;
+    color: $white;
+    &:hover{
+        // @include background-image(linear-gradient(top, $dark-grey-3, $dark-grey-1 ));
+        // @include text-shadow(rgba(0,0,0,0.8) 1px 1px 0);
+        background: $dark-grey-2;
+        color: $white;
+
+        &:after {
+            color: $dark-grey-1;
+        }
+    }
+    &:after {
+        color: $dark-grey-2;
+        text-shadow: none;
+    }
+}
+
+.red{
+    // @include background-image(linear-gradient(top, $red-1, $red-2 ));
+    // @include text-shadow($red-2 1px 1px 0);
+    background: $red-1;
+    color: $white;
+    &:hover{
+        // @include background-image(linear-gradient(top, $red-2, $red-1 ));
+        // @include text-shadow($red-2 1px 1px 0);
+        background: $red-2;
+        color: $white;
+
+        &:after {
+            color: $red-1;
+        }
+    }
+    &:after {
+        color: $red-2;
+    }
+}
+
+.green{
+    // @include background-image(linear-gradient(top, $red-1, $red-2 ));
+    // @include text-shadow($red-2 1px 1px 0);
+    background: $green-1;
+    color: $white;
+
+    &:hover{
+        // @include background-image(linear-gradient(top, $red-2, $red-1 ));
+        // @include text-shadow($red-2 1px 1px 0);
+        background: $green-2;
+        color: $white;
+
+        &:after {
+            color: $green-1;
+        }
+    }
+    &:after {
+        color: $green-2;
+    }
+}
+
+// .grey-orange{
+//     @include background-image(linear-gradient(top, $dark-grey-1, $dark-grey-2 ));
+//     &:hover,
+//     &:active{
+//         @include background-image(linear-gradient(top, $orange-2, $orange-1 ));
+//     }
+// }
+
+// .red{
+//     @include background-image(linear-gradient(top, $red-1, $red-2 ));
+//     @include text-shadow($red-2 1px 1px 0);
+//     color: $white;
+//     &:hover{
+//         @include background-image(linear-gradient(top, $red-2, $red-1 ));
+//         @include text-shadow($red-2 1px 1px 0);
+//         color: $white;
+
+//         &:after {
+//             color: $red-1;
+//         }
+//     }
+//     &:after {
+//         color: $red-2;
+//     }
+// }
+
+// .green{
+//     @include background-image(linear-gradient(top, $green-1, $green-2 ));
+//     @include text-shadow($green-2 1px 1px 0);
+//     color: $white;
+//     &:hover{
+//         @include background-image(linear-gradient(top, $green-2, $green-1 ));
+//         @include text-shadow($green-2 1px 1px 0);
+//         color: $white;
+
+//         &:after {
+//             color: $green-1;
+//         }
+//     }
+//     &:after {
+//         color: $green-2;
+//         text-shadow: none;
+//     }
+// }
+
+// .alt-blue{
+//     @include background-image(linear-gradient(top, $light-blue-1, $light-blue-2 ));
+//     @include text-shadow($light-blue-2 1px 1px 0);
+//     color: $white;
+//     &:hover{
+//         @include background-image(linear-gradient(top, $light-blue-1, $light-blue-2 ));
+//         @include text-shadow($light-blue-2 1px 1px 0);
+
+//         &:after {
+//             color: $light-blue-1;
+//         }
+//     }
+//     &:after {
+//         color: $light-blue-2;
+//         text-shadow: none;
+//     }
+// }
+
+// .flat-blue{
+//     @include background-image(none);
+//     background-color: $light-blue-2;
+//     @include text-shadow($light-blue-2 1px 1px 0);
+//     color: $white;
+//     &:hover{
+//         @include background-image(none);
+//         @include text-shadow($light-blue-2 1px 1px 0);
+//         background-color: $light-blue-1;
+
+//         &:after {
+//             color: $light-blue-1;
+//         }
+//     }
+//     &:after {
+//         color: $light-blue-2;
+//         text-shadow: none;
+//     }
+// }
+
+// .white {
+//     @include text-shadow(rgba(0,0,0,0.8) 1px 1px 0);
+//     background: none;
+//     background-color: white;
+//     color: $white;
+//     &:hover{
+//         @include text-shadow(rgba(0,0,0,0.8) 1px 1px 0);
+
+//         &:after {
+//             color: $dark-grey-1;
+//         }
+//     }
+//     &:after {
+//         color: $dark-grey-3;
+//         text-shadow: none;
+//     }
+// }
+
+

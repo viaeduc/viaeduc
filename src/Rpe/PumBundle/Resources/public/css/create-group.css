@@ -1,0 +1,391 @@
+/* function to convert px to rem */
+/* line 8, ../../assets/sass/layout/_sidebar.scss */
+.sidebar { width: 32.96%; display: inline-block; vertical-align: top; margin: 0 2.4% 0 0; }
+/* line 14, ../../assets/sass/layout/_sidebar.scss */
+.sidebar.sidebar-right { margin: 0 0 0 2.4%; }
+
+/* line 5, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb { margin-top: 15px; margin-bottom: 15px; }
+/* line 8, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb ul { margin: 0; padding: 0; }
+/* line 12, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: middle; line-height: 15px; margin: 0 1% 0 0; color: #293547; font-family: Verdana, Arial, sans-serif; position: relative; padding-left: 15px; }
+/* line 22, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li .icon-home { color: #293547; font-size: 22px; font-size: 1.375rem; }
+/* line 26, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.home { margin-right: 0; padding-left: 0; }
+/* line 30, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li:first-child a { padding-left: 0; }
+/* line 33, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li a, #breadcrumb li span { width: auto; color: #293547; font-size: 12px; font-size: 0.75rem; font-family: Verdana, Arial, sans-serif; position: relative; }
+/* line 41, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.item-index:before { position: absolute; left: 0; display: block; content: '>'; text-align: center; top: 0; line-height: 15px; font-size: 12px; font-size: 0.75rem; }
+
+/* line 5, ../../assets/sass/componants/_administration-box.scss */
+.administration-box { display: inline-block; width: 100%; border: 1px solid #9a9a9a; }
+/* line 11, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top { position: relative; display: inline-block; vertical-align: top; width: 100%; height: 60px; padding: 2%; background: #9a9a9a; }
+/* line 22, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-toggle .icon-cog { vertical-align: top; }
+/* line 25, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-toggle.active { background: #f47a01; }
+/* line 30, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-menu { -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); position: absolute; right: 2%; background: #FFFFFF; margin: 0; width: 230px; color: #293547; z-index: 1200; padding: 5px 0px; display: none; }
+/* line 43, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-menu.active { display: block; }
+/* line 47, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-menu li { font-size: 15px; font-size: 0.9375rem; font-family: "Ubuntu Condensed", Arial, sans-serif; display: inline-block; vertical-align: top; width: 100%; padding: 5px 20px; }
+/* line 48, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-menu li:before { content: '>'; display: inline-block; vertical-align: top; width: 6%; }
+/* line 62, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-menu li a { display: inline-block; vertical-align: top; height: 100%; width: 94%; color: #293547; }
+/* line 69, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-menu li a:hover { text-decoration: none; }
+/* line 74, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-menu li:hover { color: #14768C; }
+/* line 77, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-menu li:hover:before { color: #14768C; }
+/* line 81, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .invit-dropdown-menu li:hover a { color: #14768C; }
+/* line 90, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top form { display: inline-block; width: 33%; }
+/* line 95, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top input[type="text"] { height: 30px; margin: 0 3.3% 0 0; }
+/* line 100, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .friend-filter { display: inline-block; vertical-align: middle; width: 31.017369727047146%; }
+/* line 106, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .profil-btn { float: right; padding: 0px 5px; margin: 0; height: 30px; line-height: 30px; }
+/* line 113, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .profil-btn span { background-position: 0 center; }
+/* line 118, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .filter-btn { display: inline-block; vertical-align: middle; padding: 0px 10px 0 0; margin: 0 4px 0 0; height: 30px; line-height: 30px; border: 0px solid transparent; }
+/* line 127, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .filter-btn.light-blue { -moz-transition: background-color 0.2s linear; -o-transition: background-color 0.2s linear; -webkit-transition: background-color 0.2s linear; transition: background-color 0.2s linear; background: #14768C; color: #FFFFFF; }
+/* line 132, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .filter-btn.light-blue:hover { -moz-transition: background-color 0.2s linear; -o-transition: background-color 0.2s linear; -webkit-transition: background-color 0.2s linear; transition: background-color 0.2s linear; background: #126A7E; }
+/* line 138, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-top .filter-btn span { font-size: 16px; font-size: 1rem; display: block; height: 100%; width: 100%; line-height: 30px; background-position: 0 center; text-transform: uppercase; }
+/* line 150, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left { position: relative; display: inline-block; vertical-align: top; width: 35%; height: 500px; background: #D7D7D7; overflow-y: auto; }
+/* line 159, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-container { width: 100%; height: 100%; }
+/* line 164, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide { height: 100%; }
+/* line 167, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide p { padding: 20px; }
+/* line 171, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide li { display: inline-block; height: 95px; width: 100%; margin: 0 0 4% 0; }
+/* line 177, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide li a { display: block; height: 100%; width: 100%; padding: 4%; color: #313335; font-family: Verdana, Arial, sans-serif; font-size: 14px; font-size: 0.875rem; }
+/* line 186, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide li a img, .administration-box .administration-left .swiper-slide li a .details { display: inline-block; vertical-align: middle; }
+/* line 192, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide li a img { margin: 0 3% 0 0; width: 64px; }
+/* line 197, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide li a .details { width: 65%; }
+/* line 201, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide li a span { display: block; float: left; clear: left; }
+/* line 206, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide li a span:first-of-type { font-weight: 600; }
+/* line 211, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide li a:hover { text-decoration: none; background: #FAFAFA; }
+/* line 217, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-left .swiper-slide li:last-child { margin: 0; }
+/* line 224, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right { display: inline-block; vertical-align: top; width: 65%; overflow-y: hidden; overflow-x: hidden; padding: 2%; background: #FAFAFA; font-family: Verdana, Arial, sans-serif; font-size: 13px; font-size: 0.8125rem; }
+/* line 235, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-external-search-wrapper { display: inline-block; vertical-align: top; width: 100%; padding: 0 20px; }
+/* line 241, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-external-search-wrapper > p { margin: 0 0 20px 0; }
+/* line 245, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-external-search-wrapper .expanding-wrapper, .administration-box .administration-right .invite-external-search-wrapper .invite-external-email-input { width: 100% !important; }
+/* line 250, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-external-search-wrapper .send-invite-form { margin: 10px 0 0 0 !important; }
+/* line 255, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right img, .administration-box .administration-right .member-info { display: inline-block; vertical-align: top; }
+/* line 261, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right img { margin: 0 2% 0 0; width: 158px; }
+/* line 266, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .member-info { width: 60%; }
+/* line 269, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .member-info span, .administration-box .administration-right .member-info a { float: left; clear: left; }
+/* line 275, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .member-info span.title { font-family: "Ubuntu Condensed", Arial, sans-serif; font-size: 30px; font-size: 1.875rem; margin: 0 0 2% 0; }
+/* line 281, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .member-info a:first-of-type { margin: 10px 0 5px 0; }
+/* line 285, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .member-info a:hover { text-decoration: none; }
+/* line 290, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right p { display: inline-block; vertical-align: top; margin: 10px 0 5% 0; width: 100%; }
+/* line 296, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right p .text { display: block; width: 100%; }
+/* line 302, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links { display: inline-block; vertical-align: top; width: 100%; }
+/* line 307, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links > a, .administration-box .administration-right .links span { font-size: 14px; font-size: 0.875rem; display: inline-block; vertical-align: top; height: 40px; width: auto; padding: 0 10px 0 5px; line-height: 40px; margin: 0 0 10px 0; }
+/* line 318, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links > a:first-of-type, .administration-box .administration-right .links span:first-of-type { padding: 0 10px; }
+/* line 322, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links > a.icon-key, .administration-box .administration-right .links span.icon-key { margin: 0 10px 10px 0; }
+/* line 326, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links > a.light-blue.icon-users.profil-btn, .administration-box .administration-right .links span.light-blue.icon-users.profil-btn { margin-right: 20px; }
+/* line 330, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links > a.accept, .administration-box .administration-right .links > a.reject, .administration-box .administration-right .links span.accept, .administration-box .administration-right .links span.reject { margin-right: 10px; padding: 0 10px; }
+/* line 336, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links #js-profil-buttons { min-width: 150px; overflow: hidden; }
+/* line 340, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links #js-profil-buttons > a { width: 100%; }
+/* line 343, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links #js-profil-buttons > a span { padding: 0px; width: 100%; }
+/* line 350, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links span[id*="js-profil-buttons"] { display: none; }
+/* line 355, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links span[id*="js-profil-buttons"] > a .icon-users.profil-btn { display: inline-block; margin-right: 0; }
+/* line 359, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links span[id*="js-profil-buttons"] > a .red.icon-cross.action-btn { display: none; margin: 0; }
+/* line 368, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links .icon-cross { margin: 0 10px 0 0; }
+/* line 371, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .links .icon-mail { margin: 0 10px; }
+/* line 376, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .view-profil-btn { height: 35px; line-height: 35px; padding: 0px; margin: 0px; }
+/* line 383, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-members-search-wrapper, .administration-box .administration-right .invite-external-search-wrapper { display: inline-block; vertical-align: top; width: 100%; margin: 20px 0 0 0; text-align: center; }
+/* line 391, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-members-search-wrapper .invite-members-search-input, .administration-box .administration-right .invite-members-search-wrapper .invite-external-search-input, .administration-box .administration-right .invite-members-search-wrapper .invite-external-email-input, .administration-box .administration-right .invite-external-search-wrapper .invite-members-search-input, .administration-box .administration-right .invite-external-search-wrapper .invite-external-search-input, .administration-box .administration-right .invite-external-search-wrapper .invite-external-email-input { display: inline-block; vertical-align: top; width: 96.5%; text-align: left; margin: 0 0 10px 0; }
+/* line 401, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-members-search-wrapper .invite-external-message, .administration-box .administration-right .invite-external-search-wrapper .invite-external-message { height: 45px; padding: 11.5px 10px; }
+/* line 406, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-members-search-wrapper .invite-external-search-send, .administration-box .administration-right .invite-external-search-wrapper .invite-external-search-send { display: inline-block; vertical-align: top; margin: 0; }
+/* line 413, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-external-confirm-wrapper { display: inline-block; vertical-align: top; width: 100%; padding: 20px 0; }
+/* line 420, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-external-confirm { display: inline-block; vertical-align: top; width: 100%; text-align: center; font-style: italic; }
+/* line 427, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-external-confirm.top { padding: 20px 0; }
+/* line 432, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list { display: inline-block; vertical-align: top; width: 100%; height: auto; max-height: 450px; overflow-y: auto; padding: 20px 0 70px 0; }
+/* line 441, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list .invite-friend-wrapper { display: inline-block; vertical-align: top; width: 12.5%; text-align: center; margin: 0 0 10px 0; }
+/* line 449, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list .invite-friend-label { cursor: pointer; }
+/* line 453, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list .invite-friend-inner-wrapper { position: relative; display: block; min-width: 75px; max-width: 75px; min-height: 75px; max-height: 75px; overflow: hidden; }
+/* line 463, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list .invite-friend-image, .administration-box .administration-right .invite-friend-list .invite-friend-name-wrapper, .administration-box .administration-right .invite-friend-list .invite-friend-surname, .administration-box .administration-right .invite-friend-list .invite-friend-name { display: block; width: 100%; }
+/* line 471, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list .invite-friend-image { height: 100%; }
+/* line 475, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list .invite-friend-name-wrapper { -moz-transition: background 0.2s linear; -o-transition: background 0.2s linear; -webkit-transition: background 0.2s linear; transition: background 0.2s linear; position: absolute; bottom: 0; left: 0; background: rgba(0, 0, 0, 0.4); }
+/* line 483, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list .invite-friend-surname, .administration-box .administration-right .invite-friend-list .invite-friend-name { float: left; color: #FFFFFF; text-align: left; padding: 3%; line-height: 0.8em; }
+/* line 492, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list .invite-friend-name { font-weight: bold; }
+/* line 497, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list .invite-friend-label:hover .invite-friend-name-wrapper { -moz-transition: background 0.2s linear; -o-transition: background 0.2s linear; -webkit-transition: background 0.2s linear; transition: background 0.2s linear; background: #126A7E; }
+/* line 504, ../../assets/sass/componants/_administration-box.scss */
+.administration-box .administration-right .invite-friend-list .invite-friend-label.active .invite-friend-name-wrapper { -moz-transition: background 0.2s linear; -o-transition: background 0.2s linear; -webkit-transition: background 0.2s linear; transition: background 0.2s linear; background: #126A7E; }
+/* line 513, ../../assets/sass/componants/_administration-box.scss */
+.administration-box.full-admin .administration-left { width: 0px; height: 0px; display: none; }
+/* line 519, ../../assets/sass/componants/_administration-box.scss */
+.administration-box.full-admin .administration-right { position: relative; width: 100%; padding: 0 0 0 0; }
+/* line 524, ../../assets/sass/componants/_administration-box.scss */
+.administration-box.full-admin .administration-right .invite-bottom { position: absolute; display: inline-block; vertical-align: top; bottom: 0px; right: 0; width: 100%; height: 40px; line-height: 40px; background: #FAFAFA; padding: 10px; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
+/* line 539, ../../assets/sass/componants/_administration-box.scss */
+.administration-box.full-admin .administration-right .send-invite-form { width: auto; height: 40px; line-height: 40px; margin: 0; padding: 0 15px; float: right; }
+@media screen and (max-width: 1024px) { /* line 555, ../../assets/sass/componants/_administration-box.scss */
+  .administration-box .details { width: 60%; } }
+
+/* line 1, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box { position: relative; background: #1c2027; color: #FFFFFF; padding: 0 0 20px 0; }
+/* line 7, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box .title { font-size: 30px; font-size: 1.875rem; font-family: "MissionScriptRegular", Arial, sans-serif; padding: 20px 0 0 20px; margin: 0 0 70px 0; }
+/* line 14, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box .bold { font-weight: bold; }
+/* line 18, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box p { font-size: 14px; font-size: 0.875rem; padding: 0 20px; line-height: 1.2rem; }
+/* line 24, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box .talk-bubble { font-size: 22px; font-size: 1.375rem; position: absolute; width: 90%; top: 65px; left: 50%; margin-left: -45%; padding: 20px; background: #FAFAFA; text-align: center; color: #293547; }
+/* line 36, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box .talk-bubble p { font-size: 22px; font-size: 1.375rem; margin: 0; line-height: 1em; }
+/* line 42, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box .talk-bubble .arrow { position: absolute; bottom: -18px; left: 50px; width: 16px; height: 19px; background: url(../images/triangle_blanc.png) no-repeat scroll center top; }
+/* line 52, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box img { width: 100%; margin: 0 0 10px 0; }
+/* line 57, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box ul { padding: 20px; }
+/* line 60, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box ul li { font-size: 14px; font-size: 0.875rem; padding: 0 0 0 40px; margin: 0 0 20px 0; line-height: 1.2rem; }
+/* line 66, ../../assets/sass/componants/_tip-box-create-group.scss */
+.tip-box ul li:before { font-size: 20px; font-size: 1.25rem; position: absolute; left: 20px; margin-top: 2px; padding: 0; color: white; }
+
+/* line 23, ../../assets/sass/create-group.scss */
+.sidebar { margin-bottom: 6%; }
+
+/* line 30, ../../assets/sass/create-group.scss */
+.content .form-first { padding: 10px; background: #D7D7D7; border: 1px solid #9a9a9a; text-align: right; }
+/* line 36, ../../assets/sass/create-group.scss */
+.content .title { font-size: 28px; font-size: 1.75rem; margin: 0 0 20px 0; text-transform: uppercase; }
+/* line 42, ../../assets/sass/create-group.scss */
+.content .small { font-size: 13px; font-size: 0.8125rem; color: #313335; }
+/* line 47, ../../assets/sass/create-group.scss */
+.content .form-wrapper { margin: 0 0 2px 0; color: #313335; margin: 0 0 10px 0; text-align: left; }
+/* line 53, ../../assets/sass/create-group.scss */
+.content .form-wrapper input, .content .form-wrapper textarea, .content .form-wrapper .right-border, .content .form-wrapper .image-border { border: 1px solid #c5c4c4 !important; }
+/* line 60, ../../assets/sass/create-group.scss */
+.content .form-wrapper li { margin: 0 0 10px 0; min-height: 45px; }
+/* line 64, ../../assets/sass/create-group.scss */
+.content .form-wrapper li:last-child { margin: 0; }
+/* line 69, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-left, .content .form-wrapper .form-right { display: inline-block; vertical-align: middle; }
+/* line 75, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-left { font-size: 14px; font-size: 0.875rem; width: 20%; }
+/* line 80, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right { width: 80%; height: 100%; background: #FFFFFF; }
+/* line 86, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right.image-border { border-top: 2px solid #e6e6e6; border-right: 2px solid #e6e6e6; border-bottom: 2px solid #e6e6e6; padding: 5px; }
+/* line 93, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right.right-border { height: 45px; line-height: 45px; border: 2px solid #e6e6e6; padding: 0 10px; }
+/* line 101, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right.select-group .bootstrap-select:not([class*="span"]) { -moz-border-radius: 0px; -webkit-border-radius: 0px; border-radius: 0px; display: inline-block; vertical-align: top; width: 100% !important; height: 100% !important; margin: 0px; }
+/* line 109, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right.select-group .bootstrap-select:not([class*="span"]) ul > li { background: #FFFFFF; }
+/* line 116, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right.form-new-styles ul > li.info-bubble .form-info-bubble { width: 8%; }
+/* line 121, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right.radio-form-right { height: 45px; line-height: 45px; padding: 0 10px; }
+/* line 127, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right img { display: inline-block; margin: 0 5px 0 0; vertical-align: bottom; }
+/* line 133, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right .btn-file { display: inline-block; float: none; width: auto; vertical-align: bottom; }
+/* line 140, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right select { color: #313335; }
+/* line 143, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right .checkbox-buttons { margin: 10px 0 0 0; }
+/* line 146, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right .radio-buttons { margin: 0 10px 0 0; }
+/* line 150, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right .checkbox-buttons > input[type="checkbox"] + label, .content .form-wrapper .form-right .radio-buttons > input[type="radio"] + label { font-size: 13px; font-size: 0.8125rem; }
+/* line 155, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-right .radio-buttons > input[type="radio"] + label { padding: 3px 0 0 25px; }
+/* line 160, ../../assets/sass/create-group.scss */
+.content .form-wrapper .form-info-bubble { width: 8% !important; }
+/* line 164, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white { margin: 0 0 10px 0; background: #FFFFFF; }
+/* line 169, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white li { display: inline-block; padding: 10px; width: 25%; vertical-align: top; }
+/* line 176, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white li:first-child { margin: 0 0 30px 0; width: 100%; height: 32px; line-height: 32px; }
+/* line 182, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white li:first-child p { font-size: 14px; font-size: 0.875rem; display: inline-block; margin: 0; width: auto; color: #313335; vertical-align: middle; text-shadow: 0px 0px transparent; }
+/* line 192, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white li:first-child span { display: inline-block; margin: 0 0 0 10px; vertical-align: middle; }
+/* line 198, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white li:first-child .popover { line-height: 1.2rem; }
+/* line 203, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white .checkbox-buttons { display: block; margin: 0 0 94px 0; }
+/* line 208, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white .checker > input[type="checkbox"] + label { background: url(../images/bg_checkbox.png) left 0px no-repeat; }
+/* line 212, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white .checker > input[type="checkbox"]:checked + label { background: url(../images/bg_checkbox.png) left -21px no-repeat; }
+/* line 216, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white .checker { float: left; margin: 40px 10px 20px 0; }
+/* line 221, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white .image-label { float: left; margin: 0 0 20px 0; }
+/* line 225, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white .image-label.small-image { margin: 0 0 35px 0; }
+/* line 230, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white .information { font-size: 13px; font-size: 0.8125rem; display: block; width: 100%; color: #313335; text-shadow: 0px 0px transparent; }
+/* line 237, ../../assets/sass/create-group.scss */
+.content .form-wrapper.white .information .name { float: left; width: 100%; font-weight: bold; }
+
+/* line 247, ../../assets/sass/create-group.scss */
+.submit-relation-btn { font-size: 18px; font-size: 1.125rem; padding: 5px 10px; display: inline-block; vertical-align: top; }
+
+/* line 256, ../../assets/sass/create-group.scss */
+.big-checkbox > input[type="checkbox"] + label { margin: 40px 0; width: 5px; }
+/* line 260, ../../assets/sass/create-group.scss */
+.big-checkbox > input[type="checkbox"] + label img { margin: -40px 0 0 10px; }
+
+/* line 265, ../../assets/sass/create-group.scss */
+.twitter-typeahead { background: #FAFAFA; }
+
+/* line 271, ../../assets/sass/create-group.scss */
+.administration-box { margin: 0 0 20px 0; }
+
+/* line 275, ../../assets/sass/create-group.scss */
+.administration-box .administration-top input { display: inline-block; float: none; margin: 0; width: 33%; }
+
+/* line 284, ../../assets/sass/create-group.scss */
+.form-second { display: inline-block; }
+
+/* line 288, ../../assets/sass/create-group.scss */
+.special-error { display: inline-block; float: right; padding: 0 0 0 30%; width: 100%; }
+
+/* line 299, ../../assets/sass/create-group.scss */
+.invite-box { display: inline-block; margin: 0 0 20px 0; width: 100%; border: 1px solid #9a9a9a; background: #D7D7D7; vertical-align: top; }
+
+/* line 308, ../../assets/sass/create-group.scss */
+.invite-box-header, .invite-box-content { display: inline-block; width: 100%; vertical-align: top; }
+
+/* line 315, ../../assets/sass/create-group.scss */
+.invite-box-header { font-size: 12px; font-size: 0.75rem; padding: 0 20px; height: 55px; background-color: #9a9a9a; color: #313335; font-family: Verdana, Arial, sans-serif; line-height: 55px; }
+/* line 324, ../../assets/sass/create-group.scss */
+.invite-box-header .text-box { display: inline-block; float: right; margin: 10px 0 0 0; width: 30%; height: 30px; vertical-align: middle; }
+/* line 332, ../../assets/sass/create-group.scss */
+.invite-box-header .text-box input { font-size: 12px; font-size: 0.75rem; height: 30px; color: #313335; font-family: Verdana, Arial, sans-serif; }
+
+/* line 341, ../../assets/sass/create-group.scss */
+.invite-box-content { padding: 20px 20px 10px 20px; }
+/* line 344, ../../assets/sass/create-group.scss */
+.invite-box-content .friend-list { display: inline-block; width: 100%; vertical-align: top; }
+/* line 349, ../../assets/sass/create-group.scss */
+.invite-box-content .friend-list li { display: inline-block; margin: 0 0 10px 0; width: 50%; vertical-align: top; }
+/* line 356, ../../assets/sass/create-group.scss */
+.invite-box-content .friend-list input[type="checkbox"] { display: inline-block; margin: 0 1% 0 0; width: 5%; vertical-align: middle; text-align: center; }
+
+/* line 366, ../../assets/sass/create-group.scss */
+.friend-label { display: inline-block; width: 94%; vertical-align: middle; cursor: pointer; }
+
+/* line 373, ../../assets/sass/create-group.scss */
+.friend-profil-image, .friend-information { display: inline-block; vertical-align: top; }
+
+/* line 379, ../../assets/sass/create-group.scss */
+.friend-profil-image { width: 64px; }
+
+/* line 383, ../../assets/sass/create-group.scss */
+.friend-information { width: 80%; line-height: 1em; }
+
+/* line 388, ../../assets/sass/create-group.scss */
+.friend-name, .friend-role { font-size: 14px; font-size: 0.875rem; display: inline-block; width: 100%; vertical-align: top; padding: 0 0 0 10px; font-family: Verdana, Arial, sans-serif; color: #293547; }
+
+/* line 399, ../../assets/sass/create-group.scss */
+.friend-name { font-weight: bold; }
+
+/* line 403, ../../assets/sass/create-group.scss */
+.friend-role, .profil-role { font-size: 12px; font-size: 0.75rem; padding: 0 0 0 10px; }
+
+/* line 409, ../../assets/sass/create-group.scss */
+.invite-box-content .friend-list .page-loadmore { font-size: 12px; font-size: 0.75rem; display: block; width: 100%; vertical-align: top; height: 40px; margin: 20px 0 0 0; line-height: 40px; background: #9a9a9a; text-align: center; color: #313335; }
+/* line 422, ../../assets/sass/create-group.scss */
+.invite-box-content .friend-list .page-loadmore:hover { color: #313335; text-decoration: none; }
+
+/* line 428, ../../assets/sass/create-group.scss */
+.hidden-info { display: none; visibility: none; opacity: 0; }
+
+/* line 435, ../../assets/sass/create-group.scss */
+.checkbox-buttons > input[type="checkbox"] + label, .checkbox-buttons > input[type="checkbox"]:checked + label { text-transform: none; }
+
+/* line 440, ../../assets/sass/create-group.scss */
+.login-wrapper { display: inline-block; vertical-align: top; width: 100%; margin: 0 auto; text-align: center; }
+/* line 447, ../../assets/sass/create-group.scss */
+.login-wrapper .title, .login-wrapper .create-group-form, .login-wrapper .login-text-wrapper { display: inline-block; vertical-align: middle; width: 80%; text-align: left; }
+
+@media screen and (max-width: 1024px) { /* line 461, ../../assets/sass/create-group.scss */
+  .content .form-wrapper .form-right img { height: 30px; }
+  /* line 465, ../../assets/sass/create-group.scss */
+  .content .form-wrapper .form-right .btn-file { font-size: 12px; font-size: 0.75rem; height: 30px; line-height: 30px; }
+  /* line 473, ../../assets/sass/create-group.scss */
+  .content .form-wrapper.white li { width: 50%; }
+  /* line 480, ../../assets/sass/create-group.scss */
+  .friend-information { width: 76%; } }

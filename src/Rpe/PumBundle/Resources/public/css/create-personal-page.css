@@ -1,0 +1,106 @@
+/* function to convert px to rem */
+/* line 8, ../../assets/sass/layout/_sidebar.scss */
+.sidebar { width: 32.96%; display: inline-block; vertical-align: top; margin: 0 2.4% 0 0; }
+/* line 14, ../../assets/sass/layout/_sidebar.scss */
+.sidebar.sidebar-right { margin: 0 0 0 2.4%; }
+
+/* line 5, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb { margin-top: 15px; margin-bottom: 15px; }
+/* line 8, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb ul { margin: 0; padding: 0; }
+/* line 12, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: middle; line-height: 15px; margin: 0 1% 0 0; color: #293547; font-family: Verdana, Arial, sans-serif; position: relative; padding-left: 15px; }
+/* line 22, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li .icon-home { color: #293547; font-size: 22px; font-size: 1.375rem; }
+/* line 26, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.home { margin-right: 0; padding-left: 0; }
+/* line 30, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li:first-child a { padding-left: 0; }
+/* line 33, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li a, #breadcrumb li span { width: auto; color: #293547; font-size: 12px; font-size: 0.75rem; font-family: Verdana, Arial, sans-serif; position: relative; }
+/* line 41, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.item-index:before { position: absolute; left: 0; display: block; content: '>'; text-align: center; top: 0; line-height: 15px; font-size: 12px; font-size: 0.75rem; }
+
+/* line 1, ../../assets/sass/componants/_tip-box-create-personal-page.scss */
+.tip-box { position: relative; background: #1c2027; color: white; }
+/* line 6, ../../assets/sass/componants/_tip-box-create-personal-page.scss */
+.tip-box .title { font-size: 30px; font-size: 1.875rem; font-family: "MissionScriptRegular", Arial, sans-serif; padding: 20px 0 0 20px; margin: 0 0 70px 0; }
+/* line 13, ../../assets/sass/componants/_tip-box-create-personal-page.scss */
+.tip-box .bold { font-weight: bold; }
+/* line 17, ../../assets/sass/componants/_tip-box-create-personal-page.scss */
+.tip-box .talk-bubble { font-size: 22px; font-size: 1.375rem; position: absolute; width: 90%; top: 65px; left: 50%; margin-left: -45%; padding: 20px; background: #fafafa; text-align: center; color: #293547; }
+/* line 29, ../../assets/sass/componants/_tip-box-create-personal-page.scss */
+.tip-box .talk-bubble p { margin: 0; }
+/* line 33, ../../assets/sass/componants/_tip-box-create-personal-page.scss */
+.tip-box .talk-bubble .arrow { position: absolute; bottom: -18px; left: 50px; width: 16px; height: 19px; background: url(../images/triangle_blanc.png) no-repeat scroll center top; }
+/* line 43, ../../assets/sass/componants/_tip-box-create-personal-page.scss */
+.tip-box img { width: 100%; }
+/* line 47, ../../assets/sass/componants/_tip-box-create-personal-page.scss */
+.tip-box ul { padding: 20px; }
+/* line 50, ../../assets/sass/componants/_tip-box-create-personal-page.scss */
+.tip-box ul li { font-size: 14px; font-size: 0.875rem; padding: 0 0 0 40px; margin: 0 0 20px 0; line-height: 1.2rem; }
+/* line 56, ../../assets/sass/componants/_tip-box-create-personal-page.scss */
+.tip-box ul li:before { font-size: 20px; font-size: 1.25rem; position: absolute; left: 20px; margin-top: 2px; padding: 0; color: white; }
+
+/* line 23, ../../assets/sass/create-personal-page.scss */
+.content .title { font-size: 28px; font-size: 1.75rem; margin: 0 0 20px 0; text-transform: uppercase; }
+/* line 29, ../../assets/sass/create-personal-page.scss */
+.content .small { font-size: 13px; font-size: 0.8125rem; color: #313335; }
+/* line 34, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper { margin: 0 0 2px 0; padding: 20px; border: 1px solid #9a9a9a; background: #d7d7d7; color: #313335; }
+/* line 41, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper li { margin: 0 0 10px 0; }
+/* line 44, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper li:last-child { margin: 0; }
+/* line 50, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper .form-left, .content .form-wrapper .form-right { display: inline-block; vertical-align: middle; }
+/* line 55, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper .form-left { font-size: 14px; font-size: 0.875rem; width: 30%; }
+/* line 60, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper .form-right { width: 70%; }
+/* line 65, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper .form-right img { display: inline-block; margin: 0 5px 0 0; vertical-align: bottom; }
+/* line 71, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper .form-right .btn-file { display: inline-block; float: none; width: auto; vertical-align: bottom; }
+/* line 78, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper .form-right select { color: #313335; }
+/* line 81, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper .form-right .checkbox-buttons { margin: 10px 0 0 0; }
+/* line 84, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper .form-right .radio-buttons { margin: 0 10px 0 0; }
+/* line 89, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper .form-right .checkbox-buttons > input[type="checkbox"] + label, .content .form-wrapper .form-right .radio-buttons > input[type="radio"] + label { font-size: 13px; font-size: 0.8125rem; }
+/* line 93, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper .form-right .radio-buttons > input[type="radio"] + label { padding: 3px 0 0 25px; }
+/* line 98, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white { margin: 0 0 10px 0; background: white; }
+/* line 104, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white li { display: inline-block; padding: 10px; width: 25%; vertical-align: top; }
+/* line 111, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white li:first-child { margin: 0 0 30px 0; width: 100%; height: 32px; line-height: 32px; }
+/* line 117, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white li:first-child p { font-size: 14px; font-size: 0.875rem; display: inline-block; margin: 0; width: auto; color: #313335; vertical-align: middle; text-shadow: 0px 0px transparent; }
+/* line 127, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white li:first-child span { display: inline-block; margin: 0 0 0 10px; vertical-align: middle; }
+/* line 133, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white li:first-child .popover { line-height: 1.2rem; }
+/* line 138, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white .checkbox-buttons { display: block; margin: 0 0 94px 0; }
+/* line 144, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white .checker > input[type="checkbox"] + label { background: url(../images/bg_checkbox.png) left 0px no-repeat; }
+/* line 148, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white .checker > input[type="checkbox"]:checked + label { background: url(../images/bg_checkbox.png) left -21px no-repeat; }
+/* line 152, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white .checker { float: left; margin: 40px 10px 20px 0; }
+/* line 157, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white .image-label { float: left; margin: 0 0 20px 0; }
+/* line 161, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white .image-label.small-image { margin: 0 0 35px 0; }
+/* line 166, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white .information { font-size: 13px; font-size: 0.8125rem; display: block; width: 100%; color: #313335; text-shadow: 0px 0px transparent; }
+/* line 173, ../../assets/sass/create-personal-page.scss */
+.content .form-wrapper.white .information .name { float: left; width: 100%; font-weight: bold; }
+/* line 182, ../../assets/sass/create-personal-page.scss */
+.content .submit { margin: 10px 0 0 0; text-align: right; }
+/* line 186, ../../assets/sass/create-personal-page.scss */
+.content .submit input[type="submit"] { margin: 0; padding: 10px 20px; width: auto; }

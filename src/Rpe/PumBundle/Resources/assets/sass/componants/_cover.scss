@@ -1,0 +1,405 @@
+// -----
+// Cover
+// -----
+
+.cover {
+    // @include background-image(linear-gradient(top, $dark-blue-1, $dark-blue-2 ));
+    background: $background-blue-1;
+    display: inline-block;
+    position: relative;
+    margin: 0 0 20px 0;
+    width: 100%;
+    height: 300px;
+    color: $white-font;
+}
+
+.cover-content {
+    height : 100%;
+}
+
+// Inner positioning
+.cover-left,
+.cover-right {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    height: 100%;
+}
+
+.cover-left {
+    position: relative;
+    width: 33.04%;
+    padding: 20px;
+}
+
+.cover-right {
+    position : relative;
+    width    : 66.96%;
+    overflow : hidden;
+
+    .badge-container {
+        position : absolute;
+        top      : 0;
+        left     : 0;
+        height   : 70px;
+        width    : 100%;
+        padding  : 10px;
+        z-index  : 500;
+
+        > img {
+            display : block;
+            height  : 50px;
+            margin  : 0 0 0 10px;
+            float   : right;
+
+            &:last-of-type {
+                margin : 0;
+            }
+        }
+    }
+}
+
+// Styling
+.cover-owner {
+    display: inline-block;
+    position: relative;
+    height: 120px;
+    width: 100%;
+}
+
+.image-box {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+    width: 31.57894736842105%;
+
+    .profil-image {
+        width: 100%;
+    }
+
+    .profil-image-settings {
+                width: 21px;
+                height: 21px;
+                transition: all 0.2s linear;
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 2px;
+                color: $dark-blue-font;
+                background: rgba(255,255,255,0.5);
+                @include fontSize(12);
+                overflow: hidden;
+
+                &:hover {
+                    transition: all 0.2s linear;
+                    width: 70px;
+                }
+
+                &.active {
+                    transition: all 0.2s linear;
+                    width: 70px;
+                }
+            }
+
+            &:hover {
+                .profil-image-settings {
+                    transition: all 0.2s linear;
+                    opacity: 1;
+                    text-decoration: none;
+                }
+            }
+}
+
+.profil-info {
+    display: inline-block;
+    vertical-align: top;
+    width: 67%;
+    padding: 0 0 0 20px;
+
+    [class*="profil-"]{
+        float: left;
+        clear: left;
+    }
+
+    h3[class*="profil-"] {
+        @include fontSize(20);
+        margin: 0;
+        font-family: $UbuntuCondensed;
+
+        &:last-of-type {
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 0 5px 0;
+        }
+
+        &.editor-title {
+            @include fontSize(20);
+            font-family : $UbuntuCondensed;
+            margin      : 0 0 10px 0;
+        }
+    }
+
+    span[class*="profil-"] {
+        @include fontSize(12);
+        font-family: $Verdana;
+        // color: $dark-grey-1;
+        color: $white;
+
+        &:nth-of-type(2){
+            margin: 0 0 5px 0;
+        }
+
+        &.grey {
+        }
+    }
+}
+
+.profil-tags {
+    display: inline-block;
+    width: 100%;
+    margin: 10px 0 10px 0;
+
+}
+.interest-title {
+    margin: 0;
+    display: inline-block;
+    font-family: $Verdana;
+    @include fontSize(13);
+    color: $dark-grey-1;
+}
+
+.interest-tags {
+    display: inline-block;
+    width  : 100%;
+}
+
+.interest-tag {
+    // @include fontSize(12);
+    // background: $light-grey-3;
+    // color: $dark-blue-font;
+    // color: $dark-grey-1;
+    // text-transform: uppercase;
+    // padding: 5px 10px;
+    // display: inline-block;
+    // float: left;
+    // margin: 0 3px 3px 0;
+    // width  : 100%;
+}
+
+.description {
+    // display: inline-block;
+    display: block;
+    width: 100%;
+    margin: 10px 0 10px 0;
+    @include fontSize(14);
+    // color: $dark-grey-1;
+    color: $white;
+
+    height : 85px;
+    overflow: hidden;
+
+    .description-title {
+        display: inline-block;
+        width: 100%;
+        font-weight: bold;
+    }
+}
+
+.profil-links {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    padding: 0 20px 20px 20px;
+    bottom: 0;
+    width: 100%;
+    // color: $dark-grey-1;
+    color: $white;
+    height: 55px;
+    line-height: 2em;
+
+    > small,
+    > a {
+        @include fontSize(12);
+        display: inline-block;
+        vertical-align: top;
+        height: 20px;
+        line-height: 20px;
+        line-height: 3em;
+
+        &:before {
+            line-height: 1.5em;
+            @include fontSize(12);
+        }
+    }
+
+    a {
+        color: $white;
+    }
+
+    .action-btn {
+        @include fontSize(14);
+        height: 100%;
+        float: left;
+        width: auto;
+        padding: 0 8px;
+        line-height: 35px;
+        margin: 0 3px 0 0;
+
+        &:before {
+            margin-left: 0;
+        }
+    }
+
+    .action-dropdown-wrapper {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 40%;
+
+        .action-dropdown-toggle {
+            display     : block;
+            height      : 35px;
+            width       : 35px;
+            line-height : 35px;
+            text-align  : middle;
+        }
+
+        .action-dropdown-menu {
+            border        : 1px solid $light-grey-2;
+            border-radius : 0px;
+            color         : $dark-grey-1;
+        }
+
+        li {
+            width : 100%;
+        }
+
+        .action-dropdown-link {
+            @include transition(background 0.1s linear);
+            width      : 100%;
+            text-align : left;
+
+            &:hover {
+                @include transition(background 0.1s linear);
+                background : $light-blue-1;
+                color      : $white;
+            }
+        }
+    }
+}
+
+.cover-right {
+    position: relative;
+
+    > img {
+        min-width: 100%;
+    }
+
+    .cover-image-settings {
+        width: 21px;
+        height: 21px;
+        transition: all 0.2s linear;
+        opacity: 0;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        padding: 2px;
+        color: $dark-blue-font;
+        background: rgba(255,255,255,0.5);
+        @include fontSize(12);
+        overflow: hidden;
+
+        &:hover {
+            transition: all 0.2s linear;
+            width: 70px;
+        }
+
+        &.active {
+            transition: all 0.2s linear;
+            width: 70px;
+        }
+    }
+
+    &:hover {
+        .cover-image-settings {
+            transition: all 0.2s linear;
+            opacity: 1;
+            text-decoration: none;
+        }
+    }
+
+    &.active {
+        .icon-cog {
+            opacity: 1;
+        }
+    }
+}
+
+@media screen and (max-width: $landscape-screen-large) {
+    .cover {
+        // height: 350px;
+    }
+}
+
+@media screen and (max-width: $landscape-screen) {
+
+    .cover {
+        // height: 330px;
+    }
+
+    .cover-owner {
+        height: 120px;
+    }
+
+    .profil-info {
+        padding: 0 0 0 35px;
+        width: 59%;
+
+        h3[class*="profil-"] {
+            @include fontSize(13);
+        }
+        span[class*="profil-"] {
+            @include fontSize(10);
+        }
+    }
+
+    .profil-tags .interest-tag {
+        @include fontSize(11);
+        padding: 5px 5px;
+    }
+
+    .profil-links .action-btn {
+        @include fontSize(12);
+        padding: 0 3px;
+    }
+}
+
+
+
+@media screen and (max-width: $portrait-screen) {
+
+    .cover {
+        position: relative;
+        width: 100%;
+        height : auto;
+
+        .cover-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        &:after {
+            content: "";
+            display : block;
+            padding-top : 24%;
+        }
+    }
+
+}

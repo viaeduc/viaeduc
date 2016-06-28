@@ -1,0 +1,44 @@
+{% macro show_user_avatar(user, type, size, image_class, width, height, lazyload) %}
+    {% if type == 'relation' %}
+        <div class="profil-generated">
+            <!-- add link to profil page -->
+            <a href="#">
+            <!-- end -->
+                {% if user.avatar.isImage %}
+                    <img alt="" src="{{ pum_media_url(user.avatar, size) }}" class="{{ image_class }}" />
+                {% endif %}
+            </a>
+        </div>
+    {% else %}
+        {% if user.avatar.isImage %}
+            <img alt="" src="{{ pum_media_url(user.avatar, size) }}" class="{{ image_class }}" />
+        {% endif %}
+    {% endif %}
+
+{% endmacro %}
+
+{% macro waiting_list_title(type, counter) %}
+
+    {% if type == 'incoming' %}
+
+        {% if counter == '0' %}
+            <h2>Pas de demande de relation (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% elseif counter == "1" %}
+            <h2>Demande de relation (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% elseif counter > "1" %}
+            <h2>Demandes de relations (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% endif %}
+
+    {% else %}
+
+        {% if counter == '0' %}
+            <h2>Vos demandes de relations (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% elseif counter == "1" %}
+            <h2>Votre demande de relation (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% elseif counter > "1" %}
+            <h2>Vos demandes de relations (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% endif %}
+
+    {% endif %}
+
+{% endmacro %}

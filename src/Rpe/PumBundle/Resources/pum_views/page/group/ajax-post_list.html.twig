@@ -1,0 +1,38 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% set theme_id = (null != theme) ? theme.id : null %}
+
+    <ul class="library-list" id="js-mediainfolder">
+    {% if posts|length == 0 %}
+        <li class="library-empty">
+            <p>Pour le moment, vous n'avez pas de posts.</p>
+        </li>
+    {% endif %}
+    {% for media in posts %}
+        {% set mediaName = media.name %}
+        <li id="js-media_{{ media.id }}" data-dropurl="{{ path('ajax_move_post_to_theme', {'media_id': media.id, 'theme_id': theme_id}) }}" data-mediaid="{{ media.id }}">
+            <div class="library-content">
+                <div class="move"></div>
+                <div class="picture">
+                    <div class="img">
+                        <i class="glyphicon icon-text"></i>
+                        <div class="ext"></div>
+                    </div>
+                </div>
+                <div class="text">
+                    <div class="name">{{ mediaName|truncate(30, true, '...') }}</div>
+                </div>
+                <div class="edit-delete">
+                    <a href="{{ path('publication-headline', {'id': media.id, 'group':media.publishedGroup.id }) }}" data-toggle="modal" data-target="#modal-share"><span class="edit square-btn light-blue icon-star small"></span></a>
+                    {% if theme_id is not null %}
+                        <span class="delete square-btn light-blue icon-cross small js-loadmore js-confirm-modal js-remove" data-href="{{ path('ajax_move_post_to_theme', {'media_id': media.id, 'theme_id': null}) }}" data-delete-link="{{ path('ajax_move_post_to_theme', {'media_id': media.id, 'theme_id': null}) }}" data-remove-div="#js-media_{{ media.id }}" data-confirm="{{ "groupPage.module.group-theme.remove_theme"|trans({}, 'rpe') }}"></span>
+                    {% endif %}
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+    {{ macros.modal('share') }}
+{% endspaceless %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="modal-label-report">Sous Groupes du groupe {{ group.name }}</h4>
+	</div>
+	<div class="modal-body">
+		{% for subGroup in subGroups %}
+            <a href="{{ path('group', {'id': subGroup.id}) }}">
+                <div class="ressource-left">
+                    {{ macros.show_group_avatar(subGroup, 'default', 93, 'ressource-image') }}
+                </div>
+                <div class="ressource-right parent-group">
+                    <h3 class="ressource-title">{{ subGroup.name }}</h3>
+                </div>
+            </a>
+		{% endfor %}
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	</div>
+{% endblock main_content %}

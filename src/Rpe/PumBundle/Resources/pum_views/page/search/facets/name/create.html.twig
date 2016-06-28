@@ -1,0 +1,10 @@
+{% if facet is defined %}
+    {% for row in facet.rows %}
+        {% include "pum://page/search/facets/name/type/date_histogram.html.twig" with 
+            {
+                '_time'  : row.time,
+                '_count' : row.count 
+            }
+       %}
+    {% endfor %}
+{% endif %}

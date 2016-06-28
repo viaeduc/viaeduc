@@ -1,0 +1,412 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "componants/_breadcrumbs";
+
+// ------------
+// Specific CSS
+// ------------
+
+.app-store-wrapper {
+    padding    : 0 3.2%;
+    border     : $background-grey-2;
+    background : $background-grey-1;
+}
+
+.app-store-title {
+    @include fontSize(24);
+    display        : inline-block;
+    margin         : 0 0 3.2% 0;
+    padding        : 5px 10px;
+    width          : auto;
+    color          : $white;
+    text-transform : uppercase;
+    text-shadow    : 0 0 transparent;
+    font-family    : $UbuntuCondensed;
+
+    span {
+        font-weight : bold;
+    }
+}
+
+// Slider
+
+.app-store-slider {
+    position   : relative;
+    overflow   : hidden;
+    text-align : center;
+
+
+    &:before {
+        position      : absolute;
+        top           : -150px;
+        right         : 0%;
+        width         : 100%;
+        height        : 150px;
+        border-radius : 25%;
+        box-shadow    : -14px 6px 15px #acabab;
+        content       : "";
+    }
+
+    .app-store-slider-content {
+        position : relative;
+        margin   : 0 auto 60px auto;
+        width    : 80%;
+        height   : 210px;
+
+        &:after {
+            position            : absolute;
+            top                 : -20px;
+            left                : 0;
+            display             : block;
+            width               : 100%;
+            height              : 250px;
+            background          : url("../images/border_slide_left.png"), url("../images/border_slide_right.png");
+            background-position : left center, right center;
+            background-repeat   : no-repeat;
+            content             : '';
+        }
+
+        .slider-nav {
+            @include fontSize(50);
+            position    : absolute;
+            top         : 0;
+            display     : block;
+            width       : 30px;
+            height      : 100%;
+            color       : $light-blue-font;
+            line-height : 210px;
+
+            &.prev {
+                left : -40px;
+            }
+
+            &.next {
+                right : -40px;
+            }
+
+            &:hover {
+                text-decoration : none;
+            }
+        }
+
+        .app-container {
+            overflow   : hidden;
+            width      : 100%;
+            height     : 100%;
+            text-align : center;
+
+        }
+
+        .swiper-wrapper {
+            -moz-box-sizing : content-box;
+            box-sizing      : content-box;
+            max-height      : 100%;
+            height          : 100%;
+        }
+
+        .swiper-slide {
+            position : relative;
+            display  : block;
+            float    : left;
+            width    : 430px;
+            height   : 100%;
+        }
+    }
+}
+
+// Slides
+
+.slider-app {
+    position : relative;
+    display  : block;
+    margin   : 0 auto;
+    padding  : 20px 0 0 0;
+    width    : 420px;
+    height   : 100%;
+
+    // Slider div positioning
+
+    .slider-content-top {
+        margin : 0 0 5px 0;
+        width  : 100%;
+    }
+
+    .slider-app-image,
+    .slider-content-left {
+        display        : inline-block;
+        height         : 130px;
+        vertical-align : middle;
+        line-height    : 130px;
+    }
+
+    .slider-app-image {
+        width      : 45%;
+        text-align : center;
+    }
+
+    .slider-content-left {
+        width      : 55%;
+        text-align : left;
+    }
+
+    // Slider text styles
+
+    .bold {
+        font-weight : bold;
+    }
+
+    .slider-title {
+        @include fontSize(30);
+        display        : inline-block;
+        margin         : 0 10px 0 0;
+        vertical-align : middle;
+        font-family    : $MissionScript;
+    }
+
+    .slider-sub-title {
+        @include fontSize(14);
+        display        : inline-block;
+        vertical-align : middle;
+    }
+
+    .slider-list-wrapper {
+        display        : inline-block;
+        margin         : 0;
+        height         : 100px;
+        vertical-align : middle;
+        line-height    : 1rem;
+    }
+
+    .slider-list {
+        @include fontSize(13);
+    }
+
+    .slider-small-title {
+        @include fontSize(14);
+        display        : block;
+        margin         : 0 0 10px 0;
+        text-transform : uppercase;
+        font-weight    : 300;
+    }
+
+    // Cancelling hover style
+
+    &:hover {
+        background      : $background-blue-1;
+        color           : $white;
+        text-decoration : none;
+    }
+}
+
+// Small apps (with scrollbar)
+
+.app-store-small-apps {
+    position       : relative;
+    display        : inline-block;
+    overflow       : hidden;
+    margin         : 0 0 60px 0;
+    width          : 49%;
+    height         : 230px;
+    vertical-align : middle;
+    text-align     : center;
+
+    &:before {
+        position      : absolute;
+        top           : -150px;
+        right         : 0%;
+        width         : 100%;
+        height        : 150px;
+        border-radius : 25%;
+        box-shadow    : -14px 6px 15px #acabab;
+        content       : "";
+    }
+}
+
+.line-wrapper {
+    display        : inline-block;
+    width          : 2%;
+    height         : 230px;
+    vertical-align : middle;
+    text-align     : center;
+
+    .inner-line {
+        display    : inline-block;
+        width      : 1px;
+        height     : 100%;
+        background : $background-grey-1;
+    }
+}
+
+.app-small-wrapper {
+    width  : 100%;
+    height : 100%;
+
+    .swiper-wrapper {
+        -moz-box-sizing : content-box;
+        box-sizing      : content-box;
+        height          : 150px;
+
+        .swiper-slide {
+            display : block;
+            float   : left;
+            width   : 114px;
+            height  : 100%;
+        
+            .small-app-link {
+                display     : block;
+                padding     : 0px 0 0 0;
+                width       : 100%;
+                height      : 100%;
+                color       : $dark-blue-font;
+                font-family : $UbuntuCondensed;
+
+                &:hover {
+                    color           : $dark-blue-font;
+                    text-decoration : none;
+                }
+            }
+
+            .small-app-title {
+                @include fontSize(14);
+                text-transform : uppercase;
+            }
+
+            .small-image {
+                width : 80%;
+            }
+        }
+    }
+
+    .app-small-bottom {
+        height      : 20px;
+        line-height : 20px;
+
+        .swiper-scroll {
+            display        : inline-block;
+            overflow       : hidden;
+            width          : 90%;
+            height         : 10px;
+            border-radius  : 5px;
+            background     : $background-grey-3;
+            vertical-align : middle;
+        }
+
+        .app-small-more {
+            display        : inline-block;
+            width          : 10%;
+            vertical-align : middle;
+            text-align     : center;
+
+            a {
+                @include fontSize(13);
+                color : $light-blue-font;
+
+                &:hover {
+                    color           : $light-blue-font-hover;
+                    text-decoration : none;
+                }
+            }
+        }
+    }
+}
+
+// Most used apps
+
+.app-store-most-used {
+    position   : relative;
+    overflow   : hidden;
+    width      : 100%;
+    text-align : center;
+
+    &:before {
+        position      : absolute;
+        top           : -150px;
+        left          : 50%;
+        margin-left   : -25%;
+        width         : 50%;
+        height        : 150px;
+        border-radius : 25%;
+        box-shadow    : -14px 6px 15px #acabab;
+        content       : "";
+    }
+
+    .app-store-most-used-wrapper {
+        margin : 0 0 40px 0;
+    }
+
+    .app-store-most-used-container {
+        display        : inline-block;
+        margin         : 0 2% 0 0;
+        padding        : 15px;
+        width          : 15%;
+        height         : 245px;
+        vertical-align : top;
+        
+        &:hover {
+            background : $light-blue-2;
+        }
+
+        &:last-of-type {
+            margin : 0;
+        }
+    }
+
+    .app-image {
+        margin : 0 0 15px 0;
+    }
+
+    .most-used-title {
+        @include fontSize(22);
+        margin      : 0;
+        font-weight : lighter;
+        font-family : $UbuntuCondensed;
+    }
+
+    .editor {
+        @include fontSize(14);
+        display     : block;
+        margin      : 0 0 20px 0;
+        padding     : 0 0 0 5px;
+        width       : 100%;
+        text-align  : left;
+        font-family : $UbuntuCondensed; 
+    }
+
+    .price {
+        @include fontSize(14);
+        display        : block;
+        width          : 100%;
+        text-align     : right;
+        text-transform : uppercase;
+        font-weight    : bold;
+    }
+
+    a {
+        color : $white;
+
+        &:hover {
+            color           : $white;
+            text-decoration : none;
+        }
+    }
+}
+
+@media screen and (max-width: $portrait-screen) {
+
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .app-store-most-used .editor {
+        margin : 0;
+    }
+}

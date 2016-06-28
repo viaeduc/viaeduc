@@ -1,0 +1,100 @@
+{% set standalone = standalone|default(false) %}
+{% set ckeditor = ckeditor|default(false) %}
+
+{% if modal == false %}
+<div class="{{ (standalone == true) ? 'standalone' : 'modal' }} modal-library">
+    <div class="modal-dialog">
+        <div class="modal-content">
+{% endif %}
+            <div class="modal-header">
+                <h4 class="modal-title">{{ "modalLibrary.media"|trans({}, 'rpe') }}</h4>
+                {% if ckeditor == false %}
+                    <div class="close-submenu" data-dismiss="modal" aria-hidden="true">{{ "modal.close"|trans({}, 'rpe') }}</div>
+                {% endif %}
+                <a href="#" class="action-btn orange icon-plus3 library-add  file-btn js-loadmore js-infinite js-load-inner start-upload" data-href="{{ path('create_form_library_media') }}" data-loadtarget=".library-right">Ajouter</a>
+            </div>
+            <div class="modal-body">
+                <div class="modal-list-left">
+                    <div class="modal-list-intro">
+                        <span>{{ "modalLibrary.folder"|trans({}, 'rpe') }} /</span>
+                        {% if standalone != true %}
+                        <span class="add_folder_button action-btn orange icon-plus">{{ "modalLibrary.write"|trans({}, 'rpe') }}</span>
+                        <form class="add-folder-form">
+                            <input type="text" placeholder="" class="" name="name" />
+                            <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" />
+                        </form>
+                        {% endif %}
+                    </div>
+                    <!-- Folder list -->
+                    <div class="library-left">
+                        <ul class="library-folder-list">
+                            <!-- Unique ID needed for the drag and drop -->
+                            <li id="js-folder_root" class="{{ (null == folder_id) ? 'selected' }} js-loadmore js-infinite js-load-inner" data-loadtarget=".library-right" data-href="{{ path('library', {'modal': false, 'readonly': true, 'ckeditor': ckeditor}) }}" {#  class="open_modal" #}>
+                                <span class="folder-name">
+                                    {{ "library.root"|trans({}, 'rpe') }}
+                                </span>
+                            </li>
+                            {% for folder in folders %}
+                                <li id="js-folder_{{ folder.id }}" {{ (folder.id == folder_id) ? 'class="selected"' }} data-entityid="{{ folder.id }}" >
+                                    <span class="folder-name js-loadmore js-infinite js-load-inner" data-loadtarget=".library-right" data-href="{{ path('library', {'modal': false, 'folder_id': folder.id, 'readonly': true, 'ckeditor': ckeditor}) }}">
+                                        {{ folder.name }}
+                                    </span>
+                                </li>
+                            {% endfor %}
+                            {% if pum_var('active_belin') %}
+                                <li>
+                                    <span class="folder-name" data-belin>
+                                        Belin
+                                    </span>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="modal-list-right">
+                    <div class="modal-list-intro">
+                        <form class="add_media_form">
+                            <span>{{ 'modalLibrary.medias'|trans({}, 'rpe') }} /</span>
+                            {% if standalone != true %}
+                                <div class="file-upload">
+                                    <ul class="uploaded-files-wrapper">
+                                    </ul>
+                                    <span class="btn-file orange icon-plus">
+                                        <span>{{ 'modalLibrary.add'|trans({}, 'rpe') }}</span>
+                                        <input type="file" name="media" class="rpe-upload" />
+                                    </span>
+                            {% endif %}
+                        </form>
+                        {# <form class="select_form">
+                            <span class="select-box first-select">
+                                <select class="required" name="selectInput">
+                                    <option selected="" value="default">Les plus recents</option>
+                                    <option value="mustard">Tous</option>
+                                    <option value="ketchup">Amis</option>
+                                    <option value="relish">Personne</option>
+                                </select>
+                            </span>
+                        </form> #}
+                    </div>
+
+                    <div class="library-right js-autoload js-load-once" data-autoload="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'modal': false, 'readonly': true, 'ckeditor': ckeditor})) }}">
+                        {{ macros.loader() }}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                {% if standalone != true %}
+                    <div class="modal-footer-left">
+                        <input type="submit" class="action-btn light-grey" name="cancel" value="Annuler" />
+                    </div>
+                    <div class="modal-footer-right">
+                        <input type="submit" class="action-btn orange" name="send" value="Envoyer" />
+                    </div>
+                {% endif %}
+            </div>
+{% if modal == false %}
+        </div>
+    </div>
+</div>
+{% endif %}

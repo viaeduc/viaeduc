@@ -1,0 +1,143 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Liste des groupes' %}
+{% set page_name_analytics = 'groups/' ~ mode %}
+{% set nav_section = 'groups-menu' %}
+
+{# Only on group suggestion page #}
+{# {% set group_suggestion_tutorial_modal = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/groups.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.boxs-loading.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.loadmore.js') }}"></script>
+{% endblock %}
+
+
+{% block main_content %}
+    {% set mode = mode|default('all_groups') %}
+
+    {{ macros.alertMessages() }}
+
+    {% embed "pum://includes/common/componants/filter.twig" %}
+        {% block title %}
+            <h2 class="filter-title">{{ ("groupPage."~mode)|trans({}, 'rpe') }} {# <span>({{ user.acceptedGroups.count }})</span> #}</h2>
+
+            <!-- **************** -->
+            <!-- BOUTONS A METTRE -->
+            <!-- **************** -->
+
+            <!--
+                Super Administrateur / Administrateur :
+                    <a href="#" class="action-btn orange icon-pencil">Editer</a>
+                    <a href="#" class="action-btn orange icon-plus">Inviter</a>
+                    // If multiple super admins
+                    <a href="#" class="action-btn orange icon-cancel">Qutter</a>
+
+                Administrateur :
+                    <a href="#" class="action-btn orange icon-cancel">Qutter</a>
+
+                Membre :
+                    <a href="#" class="action-btn orange icon-cancel">Quitter</a>
+
+                Non Membre :
+                    <a href="#" class="action-btn orange icon-plus">Rejoindre</a>
+                    // If private groupe
+                    <a href="#" class="action-btn orange icon-plus">Demande d'adhésion</a>
+                    <a href="#" class="action-btn orange icon-plus">Inviter</a>
+            -->
+
+
+
+
+        {% endblock %}
+
+        {% block filter %}
+            <div class="filter-right">
+                <ul class="filter-right-wrapper">
+                    {% for groupFilter in groupFilters %}
+                        {% if loop.first %}
+                            <li class="filter-link">
+                                <select class="filter-select-btn js-select-href">
+                        {% endif %}
+                            <option {{ (mode is not null and mode == groupFilter) ? 'selected="selected"' }} value="{{ path('groups', {'mode': groupFilter}) }}">{{ ('groups.filters.' ~ groupFilter|lower)|trans({}, 'rpe') }}</option>
+                            {# <option value="value1">{{ 'groups.created_joined'|trans({}, 'rpe')}}</option>
+                            <option value="value2"{{ 'groups.created'|trans({}, 'rpe')}}</option>
+                            <option value="value4">{{ 'groups.joined'|trans({}, 'rpe')}}</option> #}
+                        {% if loop.last %}
+                                </select>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {# <li class="filter-link">
+                        <select class="select-styled filtre">
+                            <option value="value1">{{ 'groups.most_viewed'|trans({}, 'rpe')}}</option>
+                            <option value="value2">{{ 'groups.less_viewed'|trans({}, 'rpe')}}</option>
+                            <option value="value4">{{ 'groups.most_members'|trans({}, 'rpe')}}</option>
+                            <option value="value5">{{ 'groups.less_members'|trans({}, 'rpe')}}</option>
+                            <option value="value6">{{ 'groups.public_group'|trans({}, 'rpe')}}</option>
+                            <option value="value6">{{ 'groups.private_group'|trans({}, 'rpe')}}</option>
+                        </select>
+                    </li> #}
+                    {# <li class="filter-link">
+                        <!-- web service scolom -->
+                        <select class="select-styled filtre">
+                            <option value="value1">Toutes les disciplines</option>
+                            <option value="value2">Français</option>
+                            <option value="value4">Mathématiques</option>
+                            <option value="value5">Philosophie</option>
+                            <option value="value6">Histoire</option>
+                            <option value="value6">Géographie</option>
+                            <option value="value6">Anglais</option>
+                            <option value="value6">Musique</option>
+                        </select>
+                    </li> #}
+                    {# <li class="filter-link">
+                        <!-- web service scolom -->
+                        <select class="select-styled filtre">
+                            <option value="value1">Tous niveaux confondus</option>
+                            <option value="value2">Seconde</option>
+                            <option value="value4">Première</option>
+                            <option value="value5">Troisième </option>
+                        </select>
+                    </li> #}
+                    <li class="filter-link">
+                        <span id="big" class="picto-big"></span>
+                        <span id="small" class="picto-small opac"></span>
+                    </li>
+                </ul>
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+    <ul class="list-general-box grid effect-2 js-autoload" id="grid" data-autoload="{{ path('ajax_grouplist', {'mode': mode}) }}">{% spaceless %}
+        {{ macros.loader() }}
+    {% endspaceless %}</ul>
+{% endblock %}
+{% block tutorial %}
+    {% if group_suggestion_tutorial_modal is defined %}
+    <script>
+        {% spaceless %}
+            var group_suggestion_tutorial_modal = '{{ group_suggestion_tutorial_modal }}';
+        {% endspaceless %}
+    </script>
+    <div class="modal fade tutorial-modal groups-tutorial-modal-1" id="create-group-tutorial-modal-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "groupSuggestionTutorial.title1"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "groupSuggestionTutorial.text1"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

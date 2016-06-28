@@ -1,0 +1,21 @@
+{% spaceless %}
+<nav id="breadcrumb">
+    <ul>
+        <li class="home">
+            <a class="icon-house" href="{{ path('home') }}"></a>
+        </li>
+        {% block prev_page %}
+            {# <li class="item-index">
+            </li> #}
+        {% endblock %}
+        <li class="item-index">
+            <span class="bold">
+            	{% block this_page %}
+                    Mon Profil
+                {% endblock %}
+            </span>
+        </li>
+
+    </ul>
+</nav>
+{% endspaceless %}

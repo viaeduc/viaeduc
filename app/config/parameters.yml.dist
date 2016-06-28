@@ -1,0 +1,21 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     ~
+    database_user:     ~
+    database_password:
+
+    mailer_transport:  sendmail
+    mailer_host:       ~
+    mailer_port:
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            fr
+    secret:            ~
+
+    etherpad:
+        base_url:      ~
+        api_key:       ~
+        domain_cookie: ~

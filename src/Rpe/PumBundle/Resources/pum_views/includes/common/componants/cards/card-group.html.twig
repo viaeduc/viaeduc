@@ -1,0 +1,68 @@
+<!-- Use this block too add color classes or no-image, card-title -->
+<li class="card card-title {% block card_class %}{% endblock %} {% if group.parent is not null %}sous-group-card{% endif %}">
+    <div class="card-left">
+        {% if group.owner is not null %}
+            <div class="card-publisher">
+                <a href="{{ path('profil', {id : hashEncode(group.owner.id)}) }}" class="card-publisher-image">
+                    <!-- Profil image block -->
+                    {% block card_publisher_image %}
+                        {{ macros.show_user_avatar(group.owner, 'relation', 120, null) }}
+                        {# <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="" /> #}
+                    {% endblock %}
+                </a>
+            </div>
+        {% endif %}
+        <a href="{{ path('group', {id : group.id}) }}" class="card-title-link">
+            <h2 class="card-title highlight highlight-wrapper">
+                <!-- Card title block -->
+                {% block card_title %}
+                    {{ group.name|truncate(40, true) }}
+                {% endblock %}
+            </h2>
+        </a>
+    </div><!--
+    --><div class="card-right">
+        <a href="{{ path('group', {id : group.id}) }}">
+            <!-- Card image block -->
+            {% block card_image %}
+                {% if group.cover is not null %}
+                    {{ macros.show_group_avatar(group, 'cover', 375, null) }}
+                {% elseif group.avatar is not null %}
+                    {{ macros.show_group_avatar(group, 'default', 375, null) }}
+                {% endif %}
+                {# <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" /> #}
+            {% endblock %}
+        </a>
+            {% if group.respire is not null %}
+		        <div class="card-stamp">Respire</div>
+		    {% endif %}
+    </div><!--
+    --><div class="card-bottom">
+        <span class="card-group-details">
+            <!-- Members Numbers -->
+            <a href="#" class="card-group-members">{{ '%count% membre|%count% membres'|transchoice(group.members.count, {'%count%': group.members.count}, 'rpe') }}</a>
+            <!-- Visibility -->
+            {% if group.accesstype is not null %}
+                <span class="card-group-visibility">{{ ('groupPage.group.type_' ~ group.accesstype|lower)|trans({}, 'rpe') }}</span>
+            {% endif %}
+        </span><!--
+        --><div class="card-links">
+            {# <a class="square-btn light-blue fav" href="#"><span class="icon-favorit-item"/></a> #}
+            {% if group.owner is not null %}
+                <span class="author">{{ 'Animé par %name% '|trans({'%name%': '<a href="' ~ path('profil', {id : hashEncode(group.owner.id)}) ~ '" class="author-link">' ~ group.owner.firstname|e ~ ' ' ~ group.owner.lastname|e ~ '</a>'}, 'rpe')|raw }} {# {{ 'le %date%'|trans({'%date%': group.createDate|localizeddate('none', 'none', app.request.locale, null, 'dd-MM-Y')}, 'rpe') }} #}</span>
+            {% endif %}
+            {% if group.parent %}
+                <span class="author">Sous-groupe de <a href="{{ path('group', {id : group.parent.id}) }}">{{ group.parent.name | truncate(20, true, '...') }}</a></span>
+            {% else %}
+                {% if group.subgroups.count %}
+                    <span class="author">{{ '%count% Sous-groupe|%count% Sous-groupes '|transchoice(group.subgroups.count, { '%count%': group.subgroups.count}, 'rpe')|raw }}</span>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <!-- USE THIS FOR PARTNER CARDS -->
+        <!-- <span class="partner-cards-desc">
+            description
+        </span> -->
+    </div>
+</li>

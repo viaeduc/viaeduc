@@ -1,0 +1,85 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{# FORM #}
+{% block text_row %}
+    {# {% set id = form.vars.id ~ '_' ~ app.request.get('post') %} #}
+    {{ form_widget(form, { 'id': '' }) }}
+{% endblock %}
+{#
+{% block _media_media_row %}
+    {% spaceless %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            <span class="action-btn btn-file orange icon-paperclip">
+                <span class="fileupload">{{ "post.add"|trans({}, 'rpe') }}</span>
+                {{ form_widget(form.file) }}
+            </span>
+        </div>
+    </li>
+    {% endspaceless %}
+{% endblock %} #}
+
+{% block _media_media_row %}
+    {% spaceless %}
+    {% import 'pum://macros/macros.html.twig' as macros %}
+
+    <div class="file-upload">
+        <ul class="uploaded-files-wrapper edit">
+            {% if form.vars.value is not null %}
+                <li class="uploaded-element">
+                    {% set ext = form.vars.value.extension|lower %}
+                    {% if form.vars.value.isImage %}
+                        {{ macros.show_image(form.vars.value, 40, 40) }}
+                    {% else %}
+                        <span class="label label-default">{{ ext|upper }}</span>
+                    {% endif %}
+                    <span class="new-file">{{ form.vars.value.getName() }}</span>
+                </li>
+            {% endif %}
+        </ul>
+        <div class="extra-buttons">
+            <span class="action-btn btn-file orange icon-paperclip">
+                <span class="fileupload">{{ "post.edit"|trans({}, 'rpe') }}</span>
+                {{ form_widget(form.name, { attr : { 'style': 'display:none' }}) }}
+                {{ form_widget(form.file, { attr : { 'class': 'rpe-upload preview-image single-upload show-it', 'data-name': 'media[media][file]' }}) }}
+            </span>
+            <!-- BTN envoyer -->
+            <button type="submit" id="media_submit" class="action-btn light-blue btn-submit" disabled="disabled">Envoyer</button>
+        </div>
+    </div>
+    {% endspaceless %}
+{% endblock %}
+
+{# {% block submit_widget %}
+    {% spaceless %}
+        {% set class = 'action-btn light-blue btn-submit' %}
+        {% set attr = attr|merge({class: class}) %}
+        {% set label = 'Envoyer'|trans({}, 'rpe') %}
+        {{ parent() }}{{ help|default('') }}
+    {% endspaceless %}
+{% endblock submit_widget %} #}
+
+{% block main_content %}
+    {% if form is defined %}
+        {% set media_id = app.request.get('media_id') %}
+        {% form_theme form _self %}
+
+        {{ form_errors(form) }}
+        {{ form_start(form, {
+            action: path('create_form_library_media',
+            {
+                'media_id': media_id
+            }
+            ),
+            'attr': {
+                'class': 'edit-input'
+            }
+        }) }}
+            <a data-href="{{ path('library', {'folder_id': folder_id}) }}" class="square-btn dark-grey btn-cancel icon-arrow-left7 js-loadmore js-infinite js-load-inner js-pushstate" data-loadtarget=".library-right"></a>
+            {{ form_rest(form) }}
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}

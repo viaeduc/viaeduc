@@ -1,0 +1,44 @@
+.ressource-source {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    padding: 15px;
+
+    background-color: $light-grey-1;
+    border: 1px solid $light-grey-2;
+}
+
+.ressource-title {
+    @include fontSize(26);
+    font-family: $MissionScript;
+    color: $dark-blue-font;
+    margin: 0 0 15px 0;
+}
+
+.ressource-list-wrapper {
+    @include fontSize(10);
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    padding: 10px;
+    margin: 0 0 1px 0;
+
+    background-color: $white;
+    font-family: $Verdana;
+    color: $dark-grey-font;
+
+    a {
+        transition: color 0.2s linear;
+        color: $light-blue-1;
+
+        &:hover {
+            transition: color 0.2s linear;
+            text-decoration: none;
+            color: $light-blue-2;
+        }
+    }
+}
+
+.side-componant ul {
+    margin: 0 0 1px 0;
+}

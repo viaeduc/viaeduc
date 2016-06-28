@@ -1,0 +1,46 @@
+<!-- Use this block too add color classes or no-image, card-title -->
+<li class="card card-title {% block card_class %}{% endblock %}">
+    <div class="card-left">
+        <div class="card-publisher">
+            <a href="{{ path('profil', {id : hashEncode(blog.owner.id)}) }}" class="card-publisher-image">
+                <!-- Profil image block -->
+                {% block card_publisher_image %}
+                    {{ macros.show_user_avatar(blog.owner, 'relation', 120, null) }}
+                    {# <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="" /> #}
+                {% endblock %}
+            </a>
+        </div>
+        <a href="{{ path('blog', {id : blog.id}) }}" class="card-title-link">
+            <h2 class="card-title highlight highlight-wrapper">
+                <!-- Card title block -->
+                {% block card_title %}
+                    {{ blog.name|truncate(40, true) }}
+                {% endblock %}
+            </h2>
+        </a>
+    </div><!--
+    --><div class="card-right">
+        <a href="{{ path('blog', {id : blog.id}) }}">
+            <!-- Card image block -->
+            {% block card_image %}
+                {% if blog.cover is not null %}
+                    {{ macros.show_blog_avatar(blog, 'cover', 375, null) }}
+                {% endif %}
+                {# <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" /> #}
+            {% endblock %}
+        </a>
+    </div><!--
+    --><div class="card-bottom">
+        <span class="card-group-details">
+            <!-- Visibility -->
+            {% if blog.accesstype is not null %}
+                <span class="card-group-visibility">{{ ('blogPage.blog.type_' ~ blog.accesstype|lower)|trans({}, 'rpe') }}</span>
+            {% endif %}
+        </span><!--
+        --><div class="card-links">
+            {# <a class="square-btn light-blue fav" href="#"><span class="icon-favorit-item"/></a> #}
+
+            <span class="author">{{ 'Animé par %name%'|trans({'%name%': '<a href="' ~ path('profil', {id : hashEncode(blog.owner.id)}) ~ '" class="author-link">' ~ blog.owner.firstname|e ~ ' ' ~ blog.owner.lastname|e ~ '</a>'}, 'rpe')|raw }} {{ 'le %date%'|trans({'%date%': blog.createDate|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'dd-MM-Y')}, 'rpe') }}</span>
+        </div>
+    </div>
+</li>

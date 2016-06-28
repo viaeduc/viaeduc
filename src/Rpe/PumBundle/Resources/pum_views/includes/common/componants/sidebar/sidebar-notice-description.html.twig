@@ -1,0 +1,31 @@
+<div class="ressource-info">
+    {% if notice.picture is not null %}
+        <div class="ressource-image-wrapper">
+            <!-- <div class="box" style="width: 200px; height: 200px; position: absolute; background-color: rgba(0,0,0,0.2)"></div> -->
+            <img alt="" src="{{ notice.picture}}" width='200' />
+        </div>
+    {% endif %}
+    <div class="ressource-description">
+        <div class="ressource-inner-info">
+            {{ 'Catégorie : '}}<span class="bold">{{notice.category|capitalize}}</span>
+        </div>
+        <div class="ressource-inner-info">
+            {{ 'Source : '}}<span class="bold">{{notice.source|capitalize}}</span>
+        </div>
+        <div class="ressource-inner-info">
+            {{ 'Crée le : '}}<span class="bold">{{notice.createDate|date('d/m/Y')}}</span>
+        </div>
+
+        <div class="ressource-inner-info page-desc">{{ notice.subtitle }}</div>
+
+        {% if notice.isPublishable() == true %}
+            {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                'type': 'external_notice',
+                'object': notice,
+                'style': 'link_post'
+            } %}
+
+            <a href="{{ path('notice_share', {'id': notice.id}) }}" class="icon-share ressource-inner-info-link" data-toggle="modal" data-target="#modal-share">Partager (<span id="js-s-c-{{ notice.id }}">{{ notice.shareCount }}</span>)</a>
+        {% endif %}
+    </div>
+</div>

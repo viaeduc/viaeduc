@@ -1,0 +1,31 @@
+{% if row is defined and row is not null %}
+
+    <li data-score="{{ row.score }}" data-stars="{{ row.score|elasticScore }}">
+
+        <a href="{{ path('blog', {id: row.id}) }}" class="search-content-image">
+            {{ macros.show_image_url(row.get('image'), 140) }}
+        </a>
+        <div class="search-results-content">
+            <div class="search-content-top">
+                <span class="search-date">{{ row.get('create')|strToDate }}</span>
+                <a href="{{ path('blog', {id: row.id}) }}" class="search-title">{{ row.getHightlight('name')|striptags('<em>')|raw }}</a>
+                {% if row.getHightlight('description') %}
+                    <div>
+                        {{ row.getHightlight('description')|striptags('<em>')|raw|nl2br }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="search-content-bottom">
+                <div class="search-result-menu">
+{#                     <a href="#" class="search-social-link icon-heart2">#}
+{#                         {{ 'search.members.info'|transchoice(row.get('members'), {}, 'rpe') }}#}
+{#                     </a>#}
+{#                     <span class="search-social-seperator"> - </span>#}
+{#                     <a href="#" class="search-social-link icon-share">{{ 'search.posts.info'|transchoice(row.get('posts'), {}, 'rpe') }}</a>#}
+{#                     <span class="search-social-seperator"> - </span>#}
+                    Blog {{ ('blog.access.' ~ row.get('access')|default('null'))|trans({}, 'rpe') }} crée par <a href="{{path('profil', {'id': hashEncode(row.get('ownerid'))})}}" class="">{{ row.get('ownername') }}</a>
+                </div>
+            </div>
+        </div>
+    </li>
+{% endif %}

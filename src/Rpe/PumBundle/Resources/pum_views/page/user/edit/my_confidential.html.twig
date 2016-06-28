@@ -1,0 +1,90 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Paramètres de confidentialité' %}
+{% set page_name_analytics = 'user/edit/confidential' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-account.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-account.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            Mon compte
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+
+{% block choice_row %}
+    <li class="extra-info">
+        <div class="form-left">
+            <label for="{{ form.vars.id }}">{{ form.vars.label }}</label>
+        </div>
+        <div class="form-right">
+            <span class="select-box tag-box select-box first-select extra-info-input-bootstrap">
+                <select id="{{ form.vars.id }}" name="{{ form.vars.full_name }}">
+{#                     <option value="everybody">Choisissez une confidentialité</option>#}
+                    {% for choice in form.vars.choices %}
+                        <option value="{{ choice.value }}" {% if form.vars.data == choice.value %}selected="selected"{% endif %}>{{ choice.label }}</option>
+                    {% endfor %}
+                </select>
+            </span>
+        </div>
+    </li>
+{% endblock %}
+
+{% block _rpe_my_confidentials_submit_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn orange">{{ "Sauvegarder"|trans() }}</button>
+{% endblock %}
+
+{% block main_content %}
+    {% spaceless %}
+    {% form_theme form _self %}
+
+    <div class="form-inner-wrapper">
+        <div class="container-right box-with-padding">
+            <div class="tabbable tabbable-privacy-settings">
+                <ul class="nav new-tabs">
+                    {% set account_active_menu = 'security_params' %}
+                    {% include 'pum://includes/common/componants/account/menu.html.twig' %}
+                </ul>
+                <div class="tab-content settings">
+                    <div class="tab-pane active" id="portlet_tab1">
+                        {{ form_errors(form) }}
+                        {{ form_start(form, { attr : { class : 'my_confidentials-form-wrapper' }}) }}
+                            <ul class="conf-wrapper">
+                                {{ form_row(form.find_search) }}
+                                {{ form_row(form.view_my_page) }}
+                                {# {{ form_row(form.view_my_resources) }} #}
+                                {{ form_row(form.view_my_relations) }}
+                                {{ form_row(form.view_my_joined_groups) }}
+                                {{ form_row(form.view_my_informations) }}
+                                {{ form_row(form.view_my_formation_and_experiences) }}
+                                {{ form_row(form.view_my_interests) }}
+                                {{ form_row(form.contact_me) }}
+                            </ul>
+							{{ form_row(form.submit) }}
+                            {{ form_row(form._token) }}
+                        {{ form_end(form, {render_rest: false}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% endspaceless %}
+
+{# {% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-profil-image.html.twig' %}
+{% endblock %} #}

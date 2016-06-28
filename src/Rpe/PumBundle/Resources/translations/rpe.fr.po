@@ -1,0 +1,3578 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Rpe v1\n"
+"POT-Creation-Date: 2013-11-22 11:15+0100\n"
+"PO-Revision-Date: 2013-11-22 11:51+0100\n"
+"Last-Translator: \n"
+"Language-Team: Argos\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"Language: FR\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+
+
+################################################# Common #####################################################
+msgid "select.default.empty_value"
+msgstr "Sélectionnez un élément"
+
+################################################# Delete #####################################################
+msgid "common.action.delete.comment"
+msgstr "Supprimer"
+
+msgid "common.action.delete.comment_confirm"
+msgstr "Voulez-vous vraiment supprimer ce commentaire ?"
+
+msgid "common.action.edit.post"
+msgstr "Editer"
+
+msgid "common.action.delete.post"
+msgstr "Supprimer"
+
+msgid "common.action.delete.post_confirm"
+msgstr "Voulez-vous vraiment supprimer ce message ?"
+
+msgid "common.action.delete.resource"
+msgstr "Supprimer"
+
+msgid "common.action.delete.resource_confirm"
+msgstr "Voulez-vous vraiment supprimer cette ressource ?"
+
+msgid "common.action.delete.group"
+msgstr "Supprimer"
+
+msgid "common.action.delete.blog_confirm"
+msgstr "Voulez-vous vraiment supprimer ce blog ? Cette action est définitive."
+
+msgid "common.action.delete.group_confirm"
+msgstr "Voulez-vous vraiment supprimer ce groupe ? Cette action est définitive."
+
+msgid "common.action.delete.product_confirm"
+msgstr "Voulez-vous vraiment supprimer ce produit ? Cette action est définitive."
+
+msgid "common.action.delete.question_confirm"
+msgstr "Voulez-vous vraiment supprimer cette question ? Cette action est définitive."
+
+msgid "common.action.delete.group.success"
+msgstr "Le groupe \"%name%\" a bien été supprimé."
+
+msgid "common.action.delete.blog.success"
+msgstr "Le blog \"%name%\" a bien été supprimé."
+
+msgid "common.action.delete.group.error_owner"
+msgstr "Vous devez être propriétaire du groupe pour pouvoir le supprimer."
+
+msgid "common.action.group.sub.access_error"
+msgstr "Vous devez être membre du groupe \"%name%\" afin de pouvoir accéder à ce sous groupe."
+
+msgid "common.action.delete.group.error_notfound"
+msgstr "Ce groupe n'existe pas."
+
+msgid "common.action.delete.group.error_generic"
+msgstr "Une erreur est survenue pendant la suppression du groupe."
+
+msgid "common.action.delete.question.success"
+msgstr "La question \"%name%\" a bien été supprimée."
+
+msgid "common.action.delete.question.error_owner"
+msgstr "Vous devez être l'auteur de la question pour pouvoir la supprimer."
+
+msgid "common.action.delete.question.error_notfound"
+msgstr "Cette question n'existe pas."
+
+msgid "common.action.delete.question.error_generic"
+msgstr "Une erreur est survenue pendant la suppression de la question."
+
+msgid "common.action.delete.post.success"
+msgstr "La ressource \"%name%\" a bien été supprimée."
+
+msgid "common.action.delete.post.error_owner"
+msgstr "Vous devez être co-auteur ou propriétaire de la ressource pour pouvoir la supprimer."
+
+msgid "common.action.delete.post.error_notfound"
+msgstr "Cette ressource n'existe pas."
+
+msgid "common.action.delete.notice.success"
+msgstr "La notice \"%title%\" a bien été supprimée."
+
+msgid "common.action.delete.notice.error_owner"
+msgstr "Vous devez être propriétaire de la notice pour pouvoir la supprimer."
+
+msgid "common.action.delete.notice.error_notfound"
+msgstr "Cette notice n'existe pas."
+
+################################################# Homepage #####################################################
+
+msgid "homepage.discover_video"
+msgstr "Découvrez le réseau des enseignants en vidéo ! "
+
+msgid "homepage.see_video"
+msgstr "Voir la vidéo"
+
+msgid "homepage.connect_title"
+msgstr "Je me connecte"
+
+msgid "homepage.forgotten_pwd_question"
+msgstr "Mot de passe oublié ?"
+
+msgid "homepage.no_account"
+msgstr "Pas encore membre ?"
+
+msgid "homepage.create_account"
+msgstr "Créez votre compte en quelques clics"
+
+msgid "homepage.forgotten_pwd"
+msgstr "Mot de passe oublié"
+
+msgid "homepage.forgotten_pwd_content_1"
+msgstr ""
+"Pour générer un nouveau mot de passe, entrez votre adresse académique ci-"
+"dessus. Nous vous enverrons un lien par mail. Vous devrez cliquer sur le "
+"lien du message et un nouveau mot de passe vous sera donné."
+
+msgid "homepage.forgotten_pwd_content_2"
+msgstr ""
+"En effet, pour des raisons de sécurité, nous ne renvoyons pas les mots de "
+"passe par email. En cas de problème, l'équipe Support est à votre "
+"disposition."
+
+msgid "homepage.email_adress"
+msgstr "Adresse email"
+
+msgid "homepage.button_cancel"
+msgstr "Fermer"
+
+msgid "homepage.button_send"
+msgstr "envoyer"
+
+msgid "homepage.advert_1"
+msgstr "Rejoignez le <span class=\"bold\">plus important réseau social professionnel</span> dédié aux enseignants"
+
+msgid "homepage.advert_2"
+msgstr "Partagez des <span class=\"bold\">ressources pédagogiques<br />et échangez</span> sur votre expérience"
+
+msgid "homepage.advert_3"
+msgstr "<span class=\"bold\">Créez, débattez, collaborez</span><br>avec vos pairs dans un espace dédié<br> à l'enseignement et à ses métiers"
+
+msgid "homepage.network"
+msgstr "Le Réseau"
+
+msgid "homepage.groups"
+msgstr "Groupes"
+
+msgid "homepage.teacher_signedup"
+msgstr "Enseignants inscrits"
+
+msgid "homepage.active_group"
+msgstr "Groupes de travail actifs"
+
+msgid "homepage.resources"
+msgstr "Les ressources"
+
+msgid "homepage.indexed_resources"
+msgstr "Ressources indexées"
+
+msgid "homepage.new_contribution_per_day"
+msgstr "Nouvelles contributions par jour"
+
+msgid "homepage.services"
+msgstr "Les services"
+
+msgid "homepage.partner_editor"
+msgstr "Fonctionnalités de réseau social"
+
+msgid "homepage.exclusive_tool"
+msgstr "Outils d'animation de communautés"
+
+msgid "homepage.error_login"
+msgstr "Identifiants invalides"
+
+msgid "homepage.disabled_login"
+msgstr "Cet email est déjà enregistré mais n’a pas été activé. Pour recevoir un nouveau lien d’activation dans votre boite mail veuillez cliquer ici :"
+
+msgid "homepage.resend_enable_link"
+msgstr "Renvoyer le lien d'activation"
+
+msgid "homepage.resend_success"
+msgstr "Votre mail de confirmation a été envoyé à: "
+
+msgid "homepage.remember_me"
+msgstr "Se souvenir de moi"
+
+msgid "homepage.resend-enable-link"
+msgstr "Renvoyer le lien d'activation"
+
+################################################# Register Page #####################################################
+
+msgid "register.free_signup"
+msgstr "Inscrivez-vous gratuitement"
+
+msgid "register.signup_description"
+msgstr "Rejoindre Viaeduc, c’est pouvoir échanger avec une communauté de professionnels de l’enseignement et consulter nos ressources pédagogiques en accès libre.
+Inscrivez-vous gratuitement pour : "
+
+msgid "register.signup_info_1"
+msgstr "participer à des groupes et débats thématiques centrés sur l’enseignement"
+
+msgid "register.signup_info_2"
+msgstr "construire des ressources en collaboration avec des collègues"
+
+msgid "register.signup_info_3"
+msgstr "recommander et annoter des ressources afin d’y apporter un éclairage ou une précision"
+
+msgid "register.signup_info_4"
+msgstr "bénéficier de ressources pédagogiques exclusives pour vous aider dans vos recherches"
+
+msgid "register.signup_info_5"
+msgstr "élargir votre réseau de contacts professionnels"
+
+msgid "register.signup_requirement"
+msgstr "* L'inscription à ce site est réservée aux enseignants et aux cadres de l'enseignement"
+
+msgid "register.email_restriction"
+msgstr "Saisissez votre adresse de courriel professionnelle. Elle est nécessaire pour vous permettre de valider votre inscription et vous servira ensuite d'identifiant. Attention, seules les adresses en @ac-[academie].fr, @education.gouv.fr, @cned.fr et @reseau-canope.fr permettent une inscription à Viaéduc. Les autres adresses ne sont pas acceptées."
+
+msgid "register.pwd_restriction"
+msgstr "Utilisez au moins huit caractères. Évitez d'indiquer un mot de passe que vous utilisez déjà sur un autre site ou qui serait trop évident tel que le nom de votre animal."
+
+msgid "register.read_and_accept"
+msgstr "J'ai lu et j'accepte les "
+
+msgid "register.read_and_accept2"
+msgstr "J'ai lu et j'accepte la "
+
+msgid "register.cgu"
+msgstr "conditions générales"
+
+msgid "register.charte"
+msgstr "charte de la plateforme"
+
+msgid "register.required_fields"
+msgstr "Les champs marqués avec un "*" sont obligatoires"
+
+msgid "register.cgu_title"
+msgstr "Conditions générales"
+
+msgid "register.cgu_content"
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent"
+"scelerisque auctor lectus, ut imperdiet ligula commodo vitae. Maecenas"
+"viverra vitae felis non pulvinar. Ut nisl elit, consequat id egestas in,"
+"rhoncus vitae metus. Nulla facilisi. Sed ornare tortor faucibus"
+"condimentum cursus. Suspendisse tincidunt laoreet magna in placerat."
+"Integer vel tristique orci. Morbi sed molestie arcu. Donec pharetra a"
+"ligula nec dapibus. Phasellus vel pretium felis. Praesent elementum arcu"
+"a enim elementum, eu vestibulum eros fringilla. Quisque pharetra nibh"
+"sed magna scelerisque tincidunt. Maecenas consectetur justo ut volutpat"
+"molestie. Fusce fermentum ipsum at elit scelerisque, at sodales sem"
+"vulputate. Nulla facilisi. Sed non dapibus sem. Proin id vehicula nisl."
+"Vestibulum quis lobortis dui, vitae consequat enim. Aenean vitae leo ut"
+"lorem commodo mollis nec a nibh. Morbi elit quam, malesuada et ornare"
+"quis, mattis at felis. Donec et massa quis enim placerat varius."
+"Phasellus rutrum rutrum commodo. Nulla convallis fermentuin id vehicula"
+"nisl. Vestibulum quis lobortis dui, vitae consequat enim. Aenean vitae"
+"leo ut lorem commodo mollis nec a nibh. Morbi elit quam, malesuada et"
+"ornare quis, mattis at felis. Donec et massa quis enim placerat varius."
+"Phasellus rutrum rutrum commodo. Nulla convallis fermentu"
+
+msgid "register.charte_title"
+msgstr "Charte de la plateforme"
+
+msgid "register.charte_content"
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent"
+"scelerisque auctor lectus, ut imperdiet ligula commodo vitae. Maecenas"
+"viverra vitae felis non pulvinar. Ut nisl elit, consequat id egestas in,"
+"rhoncus vitae metus. Nulla facilisi. Sed ornare tortor faucibus"
+"condimentum cursus. Suspendisse tincidunt laoreet magna in placerat."
+"Integer vel tristique orci. Morbi sed molestie arcu. Donec pharetra a"
+"ligula nec dapibus. Phasellus vel pretium felis. Praesent elementum arcu"
+"a enim elementum, eu vestibulum eros fringilla. Quisque pharetra nibh"
+"sed magna scelerisque tincidunt. Maecenas consectetur justo ut volutpat"
+"molestie. Fusce fermentum ipsum at elit scelerisque, at sodales sem"
+"vulputate. Nulla facilisi. Sed non dapibus sem. Proin id vehicula nisl."
+"Vestibulum quis lobortis dui, vitae consequat enim. Aenean vitae leo ut"
+"lorem commodo mollis nec a nibh. Morbi elit quam, malesuada et ornare"
+"quis, mattis at felis. Donec et massa quis enim placerat varius."
+"Phasellus rutrum rutrum commodo. Nulla convallis fermentuin id vehicula"
+"nisl. Vestibulum quis lobortis dui, vitae consequat enim. Aenean vitae"
+"leo ut lorem commodo mollis nec a nibh. Morbi elit quam, malesuada et"
+"ornare quis, mattis at felis. Donec et massa quis enim placerat varius."
+"Phasellus rutrum rutrum commodo. Nulla convallis fermentu"
+
+msgid "register.miss"
+msgstr "Madame"
+
+msgid "register.mister"
+msgstr "Monsieur"
+
+msgid "register.field_sex"
+msgstr "Civilité"
+
+msgid "register.field_lastname"
+msgstr "Nom*"
+
+msgid "register.field_firstname"
+msgstr "Prénom*"
+
+msgid "register.field_occupation"
+msgstr "Activité professionnelle"
+
+msgid "register.field_academy"
+msgstr "Académie*"
+
+msgid "register.field_email_pro"
+msgstr "Email académique"
+
+msgid "register.field_email_pro_confirm"
+msgstr "Email académique (Confirmation)*"
+
+msgid "register.field_password"
+msgstr "Mot de passe*"
+
+msgid "register.field_password_confirm"
+msgstr "Mot de passe (Confirmation)*"
+
+msgid "register.choose_academy"
+msgstr "Sélectionner une académie"
+
+msgid "register.choose_occupation"
+msgstr "Sélectionner une activité professionnelle"
+
+msgid "register.confirm"
+msgstr "Confirmer"
+
+msgid "register.save"
+msgstr "Sauvegarder"
+
+msgid "register.email_domain_unautorized"
+msgstr "Votre email n'est pas autorisé sur le réseau ViaEduc."
+
+msgid "register.email_already_existed"
+msgstr "Votre email existe déjà sur le réseau ViaEduc"
+
+msgid "register.reset_password_error"
+msgstr "L'email saisi n'est pas valide où n'existe pas sur le réseau ViaEduc."
+
+msgid "register.invited.institution_name.label"
+msgstr "Etablissement ou structure"
+
+################################################# Register Success Page #####################################################
+
+msgid "register.confirm_email_subject"
+msgstr "Veuillez confirmer votre inscription sur Viaéduc"
+
+msgid "register.confirm_email"
+msgstr "Confirmation de votre adresse email !"
+
+msgid "register.confirm_email_content1"
+msgstr "Confirmez votre adresse de courriel pour terminer votre inscription."
+
+msgid "register.confirm_email_content2"
+msgstr "Un courriel vous a été envoyé à l’adresse indiquée lors de votre inscription. Rendez-vous sur votre messagerie et cliquez sur le lien de confirmation pour compléter votre inscription et rejoindre la communauté Viaeduc."
+
+msgid "register.confirm_email_content3"
+msgstr "Remarque : ce courriel vous a été envoyé automatiquement et sans délai. Si toutefois il ne vous parvient pas dans les heures qui viennent, contactez le support utilisateurs à l'adresse support@viaeduc.fr en précisant votre adresse d'inscription."
+
+msgid "register.spam"
+msgstr "Si vous ne recevez pas d’e-mail de confirmation, vérifiez vos courriers indésirables ou la saisie de votre adresse mail."
+
+################################################# Register more infos Page #####################################################
+
+msgid "registerMore.validate_message"
+msgstr "Votre inscription a bien été validée"
+
+msgid "registerMore.fill_information1"
+msgstr "Merci, votre inscription est maintenant confirmée."
+
+msgid "registerMore.fill_information2"
+msgstr "L'équipe Viaéduc vous souhaite la bienvenue au sein du réseau professionnel des enseignants."
+
+msgid "registerMore.fill_information3"
+msgstr "Pour débuter avec quelques conseils et découvrir Viaéduc, nous vous invitons à lire cette"
+
+msgid "registerMore.fill_information4"
+msgstr "Prenez ensuite le temps de compléter votre profil avec les informations qui vous sont demandées ci-dessous. Aucune n'est obligatoire mais toutes sont utiles pour vous permettre d'engager et d'enrichir vos liens de travail et de collaboration."
+
+msgid "registerMore.fill_information5"
+msgstr "Vous pourrez à tout moment les modifier ou les enrichir en allant dans les paramètres de votre profil."
+
+msgid "registerMore.disciplines_interests"
+msgstr "Dites-nous quelles disciplines vous enseignez, quels sont vos centres d'intérêts"
+
+msgid "registerMore.teaching"
+msgstr "Dites-nous où vous enseignez, on vous suggérera des relations proches de vous "
+
+msgid "registerMore.describe"
+msgstr "Soyez libre de vous décrire et de parler de vous !"
+
+msgid "registerMore.informations"
+msgstr "Compléter votre"
+
+msgid "registerMore.professionnelles"
+msgstr "profil"
+
+msgid "registerMore.professionnelles_informations"
+msgstr ""
+
+msgid "registerMore.school"
+msgstr "Votre établissement"
+
+msgid "registerMore.school_more"
+msgstr "Inscrivez ici le nom de votre entreprise, université."
+
+msgid "registerMore.taught"
+msgstr "Disciplines enseignées"
+
+msgid "registerMore.taught_more"
+msgstr "Ecrivez la ou les disciplines que vous enseignez."
+
+msgid "registerMore.profil"
+msgstr "Votre profil en quelques mots"
+
+msgid "registerMore.presentation"
+msgstr "Votre présentation permettra aux autres utilisateurs de mieux comprendre votre profil et entrer en contact avec vous plus facilement."
+
+msgid "registerMore.interests"
+msgstr "Centres d'intérêts"
+
+msgid "registerMore.interests_more"
+msgstr "Choisissez les thèmes qui vous intéressent dans le cadre de votre activité professionnelle"
+
+msgid "registerMore.date_of_birth"
+msgstr "Date de naissance"
+
+msgid "registerMore.phone_number"
+msgstr "Numéro de téléphone"
+
+msgid "registerMore.phone_number_more"
+msgstr "Entrez votre numero de téléphone si vous souhaitez être joignable par téléphone par les autres membres du réseau."
+
+msgid "registerMore.web_page"
+msgstr "Site web personnel"
+
+msgid "registerMore.web_page_more"
+msgstr "Inscrivez ici l'adresse de votre site internet personnel ou de votre blog."
+
+msgid "registerMore.profil_image"
+msgstr "Image de profil"
+
+msgid "registerMore.profil_image_more"
+msgstr "Veuillez choisir votre image de profil (C'est l'image qui apparaitra à chaque fois que l'on vous sollicitera)."
+
+msgid "registerMore.change"
+msgstr "Il est possible d'en changer à tout moment."
+
+msgid "registerMore.upload"
+msgstr "Télécharger une image"
+
+msgid "registerMore.email"
+msgstr "Adresse mail professionelle"
+
+msgid "registerMore.email_more"
+msgstr "Vous pouvez utiliser votre adresse personnelle pour recevoir vos notifications."
+
+msgid "registerMore.personal_email"
+msgstr "Utiliser mon adresse mail personnelle"
+
+msgid "registerMore.visibility"
+msgstr "Gérer ma visibilité"
+
+msgid "registerMore.change_image"
+msgstr "Modifier mon image"
+
+msgid "registerMore.visibility"
+msgstr "Gérer ma visibilité"
+
+msgid "registerMore.image_move"
+msgstr "Cliquez sur la photo afin d'obtenir le cadrage qui vous convient"
+
+msgid "registerMore.image_download"
+msgstr "Ajoutez une image"
+
+msgid "registerMore.cancel"
+msgstr "Annuler"
+
+msgid "registerMore.accept"
+msgstr "Enregistrer"
+
+################################################### Homepage Logged #######################################################
+msgid "homepage.logged.widgets.title"
+msgstr "Aujourd'hui dans mon réseau"
+
+msgid "homepage.logged.widget.publish_infos"
+msgstr "Publié%link% <br/> %date% à %hour%"
+
+msgid "homepage.logged.widget.publish_program_infos"
+msgstr "Programmée pour%link% <br/> %date% à %hour%"
+
+msgid "homepage.logged.widget.published_in"
+msgstr " dans "
+
+################################################# Group creation Page #####################################################
+msgid "createGroup.public"
+msgstr "Public"
+
+msgid "createGroup.on_demand"
+msgstr "Sur demande"
+
+msgid "createGroup.on_invitation"
+msgstr "Sur invitation"
+
+msgid "createGroup.add_image"
+msgstr "Logo du groupe"
+
+msgid "createGroup.image_size"
+msgstr "(la taille ne doit pas excéder 4mo)"
+
+msgid "createGroup.upload"
+msgstr "Joindre une photo"
+
+msgid "createGroup.accept_contract"
+msgstr "Je certifie que le logo n'enfreint aucun droit d'auteur, ni les conditions générales d'utilisation."
+
+msgid "createGroup.create_group"
+msgstr "Créer un groupe"
+
+msgid "createGroup.create_sub_group"
+msgstr "Créer un sous groupe de"
+
+msgid "createGroup.invite_users"
+msgstr "Inviter des relations"
+
+msgid "createGroup.view_profil"
+msgstr "Voir le profil"
+
+msgid "createGroup.add_user"
+msgstr "ajouter à ses relations"
+
+msgid "createGroup.ban_user"
+msgstr "bannir"
+
+msgid "createGroup.message_user"
+msgstr "message"
+
+msgid "createGroup.admin_user"
+msgstr "nommer animateur"
+
+msgid "createGroup.invitMembers"
+msgstr "Inviter les membres"
+
+msgid "createGroup.edit"
+msgstr "Modification des informations"
+
+msgid "createGroup.edit_group"
+msgstr "Edition du groupe"
+
+msgid "createGroup.update"
+msgstr "Mettre à jour"
+
+################################################# Group Page #####################################################
+
+msgid "groupPage.headline.no_result"
+msgstr "Ce groupe n'a pas encore de ressource à la une."
+
+msgid "groupPage.page"
+msgstr "Page Groupe : %group%"
+
+msgid "groupPage.own_groups"
+msgstr "Groupes que j'anime"
+
+msgid "groupPage.favorite"
+msgstr "Groupes favoris"
+
+msgid "groupPage.page.subgroup"
+msgstr "Page Groupe : %parent% > %group%"
+
+msgid "groupPage.description"
+msgstr "Description :"
+
+msgid "groupPage.invit_members"
+msgstr "Inviter des membres"
+
+msgid "groupPage.invit_members.nofriends"
+msgstr "Pas de relations disponibles à inviter."
+
+msgid "groupPage.confirmMail.sent"
+msgstr "a été invité avec l'email :"
+
+msgid "groupPage.confirmExternalMail.sent"
+msgstr "Votre invitation pour rejoindre le groupe a été envoyée à :"
+
+msgid "groupPage.confirmExisteMail.sent"
+msgstr "Utilisateur avec ce email existe déjà et votre invitation pour rejoindre le groupe a été envoyée à :"
+
+msgid "groupPage.invitedMail.sent"
+msgstr "Utilisateur avec ce email: %email% existe et a été déjà invité dans le groupe."
+
+msgid "groupPage.invalideEmail.sent"
+msgstr "Cet mail n'est pas valide : "
+
+msgid "groupPage.my_groups"
+msgstr "Mes Groupes"
+
+msgid "groupPage.suggested"
+msgstr "Groupes : Suggestions"
+
+msgid "groupPage.all_groups"
+msgstr "Groupes : Tous"
+
+msgid "groupPage.awaiting"
+msgstr "Groupes : En attente"
+
+msgid "groupPage.invited"
+msgstr "Groupes : Invitations"
+
+msgid "groupPage.public"
+msgstr "Groupes : Publics"
+
+msgid "groupPage.private"
+msgstr "Groupes : Privés"
+
+msgid "groupPage.upload"
+msgstr "Télécharger une image"
+
+msgid "groupPage.invit_members_desc"
+msgstr "Inviter vos relations à rejoindre le groupe"
+
+msgid "groupPage.see_more"
+msgstr "Voir plus..."
+
+msgid "groupPage.alert.private_group"
+msgstr "Ce groupe est privé. Vous devez demander une invitation pour le rejoindre."
+
+msgid "groupPage.animated.by"
+msgstr "Groupe animé par"
+
+msgid "groupPage.alert.invitation_group"
+msgstr "Ce groupe est seulement sur invitation. Vous devez recevoir une invitation pour le rejoindre."
+
+msgid "groupPage.alert.public_group"
+msgstr "Ce groupe est public. Vous devez le rejoindre pour y publier."
+
+msgid "groupPage.group.type_public"
+msgstr "PUBLIC"
+
+msgid "groupPage.group.type_on_demand"
+msgstr "PRIVÉ"
+
+msgid "groupPage.action.request_access"
+msgstr "Demander une invitation"
+
+msgid "groupPage.action.join"
+msgstr "Rejoindre le groupe"
+
+msgid "groupPage.action.quit"
+msgstr "Quitter le groupe"
+
+msgid "groupPage.action.cancel_request"
+msgstr "Annuler la demande d'adhésion"
+
+msgid "groupPage.action.cancel_invitation"
+msgstr "Refuser l'invitation"
+
+msgid "groupPage.action.accept"
+msgstr "Accepter l'invitation"
+
+msgid "groupPage.viewProfil"
+msgstr "Voir le profil"
+
+msgid "groupPage.members.others"
+msgstr "%count% autre|%count% autres"
+
+msgid "groupPage.group.type_public"
+msgstr "PUBLIC"
+
+msgid "groupPage.group.type_on_demand"
+msgstr "PRIVÉ"
+
+msgid "groupPage.action.request_access"
+msgstr "Demander une invitation"
+
+msgid "groupPage.module.agenda"
+msgstr "Agenda"
+
+msgid "groupPage.module.questions"
+msgstr "Questions / Réponses"
+
+msgid "groupPage.module.survey"
+msgstr "Sondages"
+
+msgid "groupPage.module.resource-etherpad"
+msgstr "Contenu collaboratif"
+
+msgid "groupPage.module.group-theme.remove_theme"
+msgstr "Vous êtes sur le point de retirer cette ressource du dossier."
+
+msgid "groupPage.module.themes"
+msgstr "Dossiers thématiques"
+
+msgid "groupPage.module.group-theme"
+msgstr "Dossiers thématiques"
+
+msgid "groupPage.module.group-theme.description"
+msgstr "Ce module permet d'organiser les ressources du groupe en dossiers."
+
+msgid "groupPage.module.resource-etherpad.description"
+msgstr "Ce module permet d'activer la création de ressources collaboratives."
+
+msgid "groupPage.module.group-facebook"
+msgstr "Pages Facebook"
+
+msgid "groupPage.module.group-facebook.description"
+msgstr "Ce module permet d'afficher vos pages facebook préférées. Vous pouvez en créer au maximum %maxWidgets%."
+
+msgid "groupPage.module.group-rss"
+msgstr "Flux Rss"
+
+msgid "groupPage.module.group-rss.parse-error"
+msgstr "Erreur: rss n'est pas valide."
+
+msgid "groupPage.module.group-rss.description"
+msgstr "Ce module permet d'afficher vos flux rss préférés. Vous pouvez en créer au maximum %maxWidgets%."
+
+msgid "groupPage.module.aucun"
+msgstr "Aucun module"
+
+msgid "groupPage.module.position"
+msgstr "Position"
+
+msgid "groupPage.module.activer"
+msgstr "Activer"
+
+msgid "groupPage.module.desactiver"
+msgstr "Désactiver"
+
+msgid "groupPage.module.group-facebook.addBtn"
+msgstr "Ajouter une page"
+
+msgid "groupPage.module.group-facebook.url_placeholder"
+msgstr "Url de la page"
+
+msgid "groupPage.module.group-facebook.name_placeholder"
+msgstr "Nom de la page"
+
+msgid "groupPage.module.group-facebook.list"
+msgstr "Pages créées"
+
+msgid "groupPage.module.group-facebook.tips.title"
+msgstr "Je crée %bold%une page facebook !%/bold%"
+
+msgid "groupPage.module.group-facebook.tips.text"
+msgstr "Renseigner le nom et l'url de votre page Facebook"
+
+msgid "groupPage.module.group-rss.addBtn"
+msgstr "Ajouter un flux"
+
+msgid "groupPage.module.group-rss.url_placeholder"
+msgstr "Url du flux"
+
+msgid "groupPage.module.group-rss.name_placeholder"
+msgstr "Nom du flux"
+
+msgid "groupPage.module.group-rss.list"
+msgstr "Flux configurés"
+
+msgid "groupPage.module.group-rss.tips.title"
+msgstr "Je crée %bold%un flux rss !%/bold%"
+
+msgid "groupPage.module.group-rss.tips.text"
+msgstr "Renseigner le nom et l'url de votre flux rss"
+
+msgid "groupPage.module.limit_error"
+msgstr "Vous avez atteint le nombre de widgets à créer."
+
+msgid "groupPage.module.edit_success"
+msgstr "Votre widget a été bien enregistré."
+
+msgid "groupPage.module.creation_error"
+msgstr "Erreur à la création de votre widget"
+
+msgid "groupPage.group.type_on_invitation"
+msgstr "Invitation"
+
+msgid "groupPage.invit_members.nouserfound"
+msgstr "Aucun membre ne correspond à votre recherche."
+
+msgid "groupPage.invit_extern.title"
+msgstr "Inviter des intervenants"
+
+msgid "groupPage.invit.return"
+msgstr "Retour gestion des membres"
+
+msgid "groupPage.invit.extern.description"
+msgstr "Vous pouvez inviter des personnes ne possédant pas de courriel académique à participer à votre groupe (par ex. partenaires associatifs, des collectivités, du secteur privé ou public hors éducation, etc.). Leur visibilité, leurs contributions et leurs interactions seront limitées au contexte de votre groupe."
+
+msgid "groupPage.label"
+msgstr "Groupe"
+
+msgid "groupPage.changeimage"
+msgstr "Changer d'image"
+
+msgid "groupPage.form.simlemessage"
+msgstr "Simple Message"
+
+msgid "groupPage.create_subgroup"
+msgstr "Créer un sous-groupe"
+
+msgid "groupPage.publishedgroup"
+msgstr "Publié dans"
+
+################################################# Group Administration #####################################################
+
+msgid "groupAdmin.activities"
+msgstr "Fil d'activités"
+
+msgid "groupAdmin.gestion_members"
+msgstr "Gestion des membres"
+
+msgid "groupAdmin.gestion_modules"
+msgstr "Gestion des modules"
+
+msgid "groupAdmin.gestion_modules.actives"
+msgstr "Modules activés"
+
+msgid "groupAdmin.gestion_modules.desactives"
+msgstr "Modules désactivés"
+
+msgid "groupAdmin.gestion_apps"
+msgstr "Gestion des apps"
+
+msgid "groupAdmin.gestion_warnings"
+msgstr "Gestion des signalements"
+
+msgid "groupAdmin.stats"
+msgstr "Statistiques"
+
+msgid "groupAdmin.send_message"
+msgstr "> Envoyer un message aux membres"
+
+msgid "groupAdmin.change_params"
+msgstr "> Modifier les paramètres"
+
+msgid "groupAdmin.change_info"
+msgstr "> Modifier les informations"
+
+msgid "groupAdmin.quit_group"
+msgstr "> Quitter le groupe"
+
+msgid "groupAdmin.delete_group"
+msgstr "> Supprimer le groupe"
+
+msgid "groupAdmin.add_relation"
+msgstr "ajouter à ses relations"
+
+msgid "groupAdmin.ban"
+msgstr "Bannir"
+
+msgid "groupAdmin.message"
+msgstr "Message"
+
+msgid "groupAdmin.admin"
+msgstr "Nommer animateur"
+
+msgid "groupAdmin.view_page"
+msgstr "voir sa page"
+
+msgid "groupAdmin.app_gestion"
+msgstr "Gestion des apps"
+
+msgid "groupAdmin.activated"
+msgstr "Modules activés"
+
+msgid "groupAdmin.not_activated"
+msgstr "Modules désactivés"
+
+msgid "groupAdmin.turn_off"
+msgstr "Désactiver"
+
+msgid "groupAdmin.params"
+msgstr "Paramètres"
+
+msgid "groupAdmin.set_admin"
+msgstr "Nommer animateur"
+
+msgid "groupAdmin.remove_admin"
+msgstr "Retirer le rôle d'animateur"
+
+msgid "groupAdmin.ban_user"
+msgstr "Bannir"
+
+msgid "groupAdmin.unban_user"
+msgstr "Ne plus bannir"
+
+msgid "groupAdmin.accept"
+msgstr "Accepter"
+
+msgid "groupAdmin.reject"
+msgstr "Refuser"
+
+msgid "groupAdmin.stats.month.1"
+msgstr "Janvier"
+
+msgid "groupAdmin.stats.month.2"
+msgstr "Février"
+
+msgid "groupAdmin.stats.month.3"
+msgstr "Mars"
+
+msgid "groupAdmin.stats.month.4"
+msgstr "Avril"
+
+msgid "groupAdmin.stats.month.5"
+msgstr "Mai"
+
+msgid "groupAdmin.stats.month.6"
+msgstr "Juin"
+
+msgid "groupAdmin.stats.month.7"
+msgstr "Juillet"
+
+msgid "groupAdmin.stats.month.8"
+msgstr "Aoùt"
+
+msgid "groupAdmin.stats.month.9"
+msgstr "Septembre"
+
+msgid "groupAdmin.stats.month.10"
+msgstr "Octobre"
+
+msgid "groupAdmin.stats.month.11"
+msgstr "Novembre"
+
+msgid "groupAdmin.stats.month.12"
+msgstr "Décembre"
+
+msgid "group.theme.no_class"
+msgstr "Non classé"
+
+msgid "group.theme.new_theme"
+msgstr "Nouveau dossier"
+
+msgid "group.action.confirm_cancel_text"
+msgstr "Vous vous apprêtez à quitter le groupe: %name%"
+
+msgid "group.action.confirm_cancel_title"
+msgstr "Quitter ce groupe"
+
+############################## Blog admin #################################
+
+msgid "blogAdmin.delete_blog"
+msgstr "> Supprimer le blog"
+
+################################################# GROUPS #####################################################
+
+msgid "groups.all_groups"
+msgstr "Tous mes groupes"
+
+msgid "groups.created_joined"
+msgstr "Groupes animés + rejoints"
+
+msgid "groups.created"
+msgstr "Groupes animés"
+
+msgid "groups.joined"
+msgstr "Groupes rejoints"
+
+msgid "groups.most_viewed"
+msgstr "Les plus consultés"
+
+msgid "groups.less_viewed"
+msgstr "Les moins consultés"
+
+msgid "groups.most_members"
+msgstr "Le plus de membres"
+
+msgid "groups.less_members"
+msgstr "Le moins de membres"
+
+msgid "groups.public_groups"
+msgstr "Groupes publics"
+
+msgid "groups.private_groups"
+msgstr "Groupes privés"
+
+msgid "groups.sidebare.groups"
+msgstr "Groupe(s)"
+
+msgid "groups.sidebare.groups_de_profil"
+msgstr "Groupe(s) de"
+
+msgid "groups.sidebare.groups_de_ressource"
+msgstr "Ressource(s) de"
+
+msgid "groupPage.descriptionTitle"
+msgstr "Description du groupe"
+
+msgid "groupPage.close"
+msgstr "Fermer"
+
+msgid "groupe.access.PUBLIC"
+msgstr "public"
+
+msgid "groupe.access.ON_DEMAND"
+msgstr "privé"
+
+msgid "groupe.access.ON_INVITATION"
+msgstr "sur invitation"
+
+msgid "groupe.access.PRIVATE"
+msgstr "privé"
+
+msgid "groupe.access.null"
+msgstr ""
+
+msgid "blog.access.PUBLIC"
+msgstr "public"
+
+msgid "blog.access.FRIENDS"
+msgstr "privé"
+
+msgid "blog.access.null"
+msgstr ""
+
+################################################# GROUPS FILTERS #####################################################
+
+msgid "groups.filters.all_groups"
+msgstr "Tous les groupes"
+
+msgid "groups.filters.suggested"
+msgstr "Groupes suggérés"
+
+msgid "groups.filters.my_groups"
+msgstr "Mes groupes"
+
+msgid "groups.filters.own_groups"
+msgstr "Groupes que j'anime"
+
+msgid "groups.filters.awaiting"
+msgstr "Groupes en attente"
+
+msgid "groups.filters.invited"
+msgstr "Invitations aux groupes"
+
+msgid "groups.filters.public"
+msgstr "Groupes publics"
+
+msgid "groups.filters.private"
+msgstr "Groupes privés"
+
+msgid "groups.filters.favorite"
+msgstr "Groupes favoris"
+
+################################################# PROFIL #####################################################
+
+msgid "profil.interests"
+msgstr "Intérets"
+
+msgid "profil.edit"
+msgstr "Modifier"
+
+msgid "profil.cancel"
+msgstr "Annuler"
+
+msgid "profil.click_image"
+msgstr "Cliquez sur l'image pour la déplacer"
+
+msgid "profil.change_image"
+msgstr "Changer d'image"
+
+msgid "profil.save"
+msgstr "Enregistrer"
+
+msgid "profil.last_share"
+msgstr "Dernières contributions"
+
+msgid "profil.profil"
+msgstr "Profil"
+
+msgid "profil.blog"
+msgstr "Blog"
+
+msgid "profil.recomend"
+msgstr "Recommandations"
+
+msgid "profil.comment"
+msgstr "Commentaire"
+
+msgid "profil.share"
+msgstr "Partages"
+
+msgid "profil.favorite"
+msgstr "Ajouter aux favoris"
+
+msgid "profil.general"
+msgstr "Général"
+
+msgid "profil.my_general_info"
+msgstr "Général"
+
+msgid "profil.my_main_info"
+msgstr "Profil"
+
+msgid "profil.my_pro_experiences"
+msgstr "Expérience professionnelle"
+
+msgid "profil.my_formation"
+msgstr "Formations"
+
+msgid "profil.security_params"
+msgstr "Confidentialité"
+
+msgid "profil.alert_params"
+msgstr "Notifications"
+
+msgid "profil.invit_users"
+msgstr "Inviter des utilisateurs"
+
+msgid "profil.api_keys"
+msgstr "Clés API"
+
+msgid "profil.add_friend"
+msgstr "Ajouter comme relation"
+
+msgid "profil.confirm_friend_demand"
+msgstr "Accepter la relation"
+
+msgid "profil.friend_sent"
+msgstr "Demande de relation envoyée"
+
+msgid "profil.move_image"
+msgstr "Cliquez sur l'image pour la déplacer"
+
+msgid "profil.change_image"
+msgstr "Cliquez sur l'image pour la déplacer"
+
+msgid "profil.resume"
+msgstr "Résumé"
+
+msgid "profil.personal_info"
+msgstr "Informations personnelles"
+
+msgid "profil.pro_info"
+msgstr "Expérience professionnelle"
+
+msgid "profil.training_info"
+msgstr "Formation"
+
+msgid "profil.fun"
+msgstr "Loisirs"
+
+msgid "profil.confrm_friend_demand"
+msgstr "Accepter la relation"
+
+msgid "profil.action.add"
+msgstr "Ajouter comme relation"
+
+msgid "profil.action.sent"
+msgstr "Demande envoyée"
+
+msgid "profil.action2.sent"
+msgstr "Annuler la demande"
+
+msgid "profil.action.confirm"
+msgstr "Confirmer l'ajout d'une relation"
+
+msgid "profil.action.reject"
+msgstr "Refuser l'ajout d'une relation"
+
+msgid "profil.action.remove"
+msgstr "En relation"
+
+msgid "profil.action2.remove"
+msgstr "Supprimer"
+
+msgid "profil.update_ok"
+msgstr "Votre profil a bien été mis à jour."
+
+msgid "profil.current_mdp_changed"
+msgstr "Votre mot de passe a bien été changé."
+
+msgid "profil.current_mdp_error"
+msgstr "Mot de passe saisie n'est pas valide."
+
+msgid "profil.email_in_use"
+msgstr "L'email saisi est déjà utilisé."
+
+################################################# MY ACCOUNT #####################################################
+
+msgid "account.my_account"
+msgstr "Mon compte"
+
+msgid "account.change_image"
+msgstr "Modifier votre photo"
+
+msgid "account.move_image"
+msgstr "Cliquez sur la photo afin d'obtenir le cadrage qui vous convient"
+
+msgid "account.download_image"
+msgstr "Télécharger une image"
+
+msgid "account.cancel"
+msgstr "Annuler"
+
+msgid "account.delete"
+msgstr "Supprimer"
+
+msgid "account.save"
+msgstr "Enregistrer"
+
+msgid "account.checkuser.modal_intro"
+msgstr "Pour valider les changements, veuillez confirmer avec votre mot de passe actuel"
+
+msgid "account.checkuser.modal_pwd"
+msgstr "Mot de passe"
+
+msgid "account.checkuser.modal_error_pwd"
+msgstr "Le mot de passe saisi ne correspond pas."
+
+msgid "account.checkuser.modal_submit"
+msgstr "Valider"
+
+msgid "account.personal_email"
+msgstr "Vous pouvez recevoir les messages de Viaéduc sur votre adresse personnelle plutôt que sur votre adresse d'inscription, en indiquant ce choix dans l'onglet notifications"
+
+################################################# PROFESSIONAL EXPERIENCES #####################################################
+
+msgid "pro.periode"
+msgstr "Période :"
+
+msgid "pro.formation"
+msgstr "Formation :"
+
+################################################# 404 #####################################################
+
+msgid "404.title"
+msgstr "404"
+
+msgid "404.small_text"
+msgstr "oups !"
+
+msgid "404.main_text"
+msgstr "La page que vous recherchez ne semble plus être accessible ou ne peut être trouvée.
+                Merci de vérifier son URL (adresse web) ou contactez-nous si vous pensez avoir été redirigé par erreur vers cette page."
+
+msgid "404.back"
+msgstr "Retour à l'accueil ?"
+
+################################################# AGENDA #####################################################
+
+msgid "agenda.title"
+msgstr "Mon Agenda"
+
+msgid "agenda.title_group"
+msgstr "Agenda du groupe %group%"
+
+msgid "agenda.create_event"
+msgstr "Créer un évènement"
+
+msgid "agenda.cancel"
+msgstr "Annuler"
+
+msgid "agenda.save"
+msgstr "Créer mon évènement"
+
+msgid "agenda.going"
+msgstr "Participants"
+
+msgid "agenda.accept_event"
+msgstr "Je participe"
+
+msgid "agenda.reject_event"
+msgstr "Je ne participe pas"
+
+msgid "agenda.reject_after_accept_event"
+msgstr "Je ne participe plus"
+
+msgid "agenda.event_from"
+msgstr "Evènement de :"
+
+msgid "agenda.relations"
+msgstr "%count% relation|relations"
+
+msgid "agenda.delete_event"
+msgstr "Supprimer"
+
+msgid "agenda.filters.private"
+msgstr "Privé"
+
+msgid "agenda.filters.public"
+msgstr "Public"
+
+msgid "agenda.filters.all"
+msgstr "Tous"
+
+msgid "agenda.noplace"
+msgstr "L'organisateur n'a pas précisé le lieu de l'événement"
+
+################################################# CREATE PERSONAL PAGE #####################################################
+
+msgid "personalCreate.title"
+msgstr "Create personal page"
+
+msgid "personalCreate.sub_title"
+msgstr "Créer une page personnelle"
+
+msgid "personalCreate.page_title"
+msgstr "Titre de la page personnelle"
+
+msgid "personalCreate.page_desc"
+msgstr "Décrivez votre page personnelle en quelques lignes :"
+
+################################################# FAVORTIE SEARCH #####################################################
+
+msgid "favoriteSearch.title"
+msgstr "Mes recherches favorites"
+
+msgid "favoriteSearch.new_results"
+msgstr "nouveaux résultats"
+
+msgid "favoriteSearch.created"
+msgstr "Créé le"
+
+msgid "favoriteSearch.email_alert"
+msgstr "Alertes mails"
+
+################################################# LEGAL MENTIONS  #####################################################
+
+msgid "legal.title"
+msgstr "Mentions légales"
+
+msgid "legal.text_1"
+msgstr ""Un nouveau cahier d'exercices de Français pour <b>maîtriser l'ensemble du programme de langue de 6e</b>""
+
+msgid "legal.text_2"
+msgstr "45 fiches synthéLorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor vestibulum orci, sed placerat nisi porta eu. Morbi scelerisque ipsum quis elit porttitor, nec bibendum tellus tempus. In id orci ac nibh porttitor hendrerit. Proin quam massa, volutpat sed ipsum in, tristique adipiscing nisi. Fusce facilisis suscipit dictum. Praesent aliquet nunc non odio eleifend scelerisque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc sed odio auctor, aliquam libero at, rutrum neque."
+
+msgid "legal.text_3"
+msgstr "Nullam id facilisis magna. Integer ut tempus eros, quis porta velit. Maecenas imperdiet accumsan eros, eu pretium est blandit nec. Sed aliquam fringilla magna, lobortis elementum quam. Pellentesque purus orci, accumsan et venenatis vel, lobortis vitae erat. Maecenas sodales libero sed lorem venenatis tincidunt. Maecenas sed nisi nec lectus tempor dignissim in cursus nisl. In vulputate massa velit, vitae tempor felis elementum in."
+
+msgid "legal.text_4"
+msgstr "Cras quis tempor turpis. Curabitur venenatis diam sed libero pretium pulvinar. Sed vulputate arcu sit amet mattis varius. Nunc molestie sit amet libero nec sodales. Nulla ipsum dui, gravida sed suscipit at, hendrerit eget odio. Sed metus magna, condimentum nec venenatis sit amet, venenatis id felis.Quisque non mollis odio, non feugiat metus. Praesent elementum mi non magna semper posuere. Proin accumsan, lorem in scelerisque faucibus, massa ipsum interdum nisl, eu mattis erat mauris id augue. Nullam non ante neque. Nam lorem "
+
+################################################# LIBRARY  #####################################################
+
+msgid "library.usedSpace"
+msgstr "utilisés sur 1 Go"
+
+msgid "library.nospace"
+msgstr "Espace disque épuisé!"
+
+msgid "library.title"
+msgstr "Mes documents"
+
+msgid "library.add_media"
+msgstr "Ajouter un document"
+
+msgid "library.folder"
+msgstr "Dossiers"
+
+msgid "library.add"
+msgstr "Ajouter"
+
+msgid "library.root"
+msgstr "/Racine"
+
+msgid "library.my_folder"
+msgstr "Mon folder"
+
+msgid "library.photo"
+msgstr "Photo"
+
+msgid "library.folder.action.confirm_delete"
+msgstr "Voulez-vous vraiment supprimer ce dossier ?"
+
+msgid "library.folder.action.disable_delete"
+msgstr "Vous ne pouvez pas supprimer ce dossier car il y a des médias associés."
+
+msgid "library.media.action.confirm_delete"
+msgstr "{0} Voulez-vous vraiment supprimer ce document ?|{1} Voulez-vous vraiment supprimer ce document ? Celui-ci sera définitivement supprimé de la ressource suivante : <br/>%posts%|]1,Inf] Voulez-vous vraiment supprimer ce document ? Celui-ci sera définitivement supprimé des ressources suivantes : <br/>%posts%"
+
+################################################# MY MESSAGES  #####################################################
+
+msgid "messages.title"
+msgstr "Messages"
+
+msgid "messages.you"
+msgstr "Vous"
+
+msgid "messages.answer"
+msgstr "Répondre ..."
+
+msgid "messages.send"
+msgstr "Envoyer"
+
+msgid "messages.favorite.add_title"
+msgstr "Ajouter cet échange à mes favoris"
+
+################################################# MY NEW MESSAGES  #####################################################
+
+msgid "messagesNew.title"
+msgstr "Ecrire un nouveau message"
+
+msgid "messagesNew.write"
+msgstr "Ecrire un nouveau message"
+
+msgid "messagesNew.back"
+msgstr "Retour aux messages"
+
+msgid "messagesNew.to"
+msgstr "Destinataire(s)"
+
+msgid "messagesNew.your_message"
+msgstr "Votre message"
+
+################################################# MY PUBLICATIONS  #####################################################
+
+msgid "myPublications.title"
+msgstr "Mes publications"
+
+msgid "publications.title.all"
+msgstr "Toutes les publications"
+
+msgid "publications.title.my_belin"
+msgstr "Mes libs"
+
+msgid "publications.title.my_publications"
+msgstr "Ressources"
+
+msgid "publications.title.my_drafts"
+msgstr "Mes brouillons"
+
+msgid "publications.title.draft"
+msgstr "Brouillon"
+
+msgid "publications.no_results.title"
+msgstr "Vous n'avez pas encore publié de ressource."
+
+msgid "publications.no_results.indications"
+msgstr "A tout moment, créez et partagez des ressources avec vos groupes, sur votre mur ou votre blog :"
+
+msgid "publications.no_results.indication1"
+msgstr "insérez du texte enrichi, des images, liens, vidéos, etc. ;"
+
+msgid "publications.no_results.indication2"
+msgstr "joignez des documents issus de votre médiathèque personnelle ;"
+
+msgid "publications.no_results.indication3"
+msgstr "indexez votre publication : discipline, niveau, type de document, mots-clés ;"
+
+msgid "publications.no_results.indication4"
+msgstr "invitez éventuellement des relations à devenir co-auteurs de la ressource."
+
+msgid "publications.no_results.publish"
+msgstr "Publier une ressource"
+
+msgid "resource.like_button.text"
+msgstr "{0} Non encore recommandée|[1,Inf] Recommandée %number% fois"
+
+msgid "resource.share_button.text"
+msgstr "{0} Non encore partagée|[1,Inf] Partagée %number% fois"
+
+msgid "resource.favorite_button.text"
+msgstr "{0} Pas encore en favoris|[1,Inf] En favoris %number% fois"
+
+################################################# PUBLICATIONS FILTERS  #####################################################
+
+msgid "publications.filters.all"
+msgstr "Toutes les publications"
+
+msgid "publications.filters.my_belin"
+msgstr "Belin"
+
+msgid "publications.filters.my_publications"
+msgstr "Ressources"
+
+msgid "publications.filters.my_drafts"
+msgstr "Mes brouillons"
+
+msgid "publications.filters.my_favorites"
+msgstr "Mes favoris"
+
+msgid "publications.button.favorite"
+msgstr "Favori"
+
+msgid "publications.title.my_favorites"
+msgstr "Mes favoris"
+
+################################################# RELATIONS  #####################################################
+
+msgid "relations.all"
+msgstr "Tous les membres"
+
+msgid "relations.my_relations"
+msgstr "Toutes mes relations"
+
+msgid "relations.suggested"
+msgstr "Relations suggérées"
+
+################################################# MY PAGES  #####################################################
+
+msgid "myPages.title"
+msgstr "Tous mes pages"
+
+################################################# FAVORITE PUBLICATIONS  #####################################################
+
+msgid "favoritePublications.title"
+msgstr "MES PUBLICATIONS FAVORITES"
+
+################################################# QUESTIONS #####################################################
+
+msgid "questions.title"
+msgstr "Questions réponses"
+
+msgid "questions.title_group"
+msgstr "Questions réponses du group %group%"
+
+msgid "questions.views"
+msgstr "vue|vues"
+
+msgid "questions.answers"
+msgstr "réponse|réponses"
+
+msgid "questions.goodanswers"
+msgstr "bonne réponse|bonnes réponses"
+
+msgid "questions.follow"
+msgstr "mettre en favori"
+
+msgid "questions.selectedanswer"
+msgstr "Réponse sélectionnée|Réponses sélectionnées"
+
+msgid "questions.allanswers"
+msgstr "Toutes les réponses"
+
+msgid "question.publish.accesstype.public"
+msgstr "Public"
+
+msgid "question.publish.accesstype.friends"
+msgstr "Mes relations"
+
+msgid "question.publish.accesstype.group"
+msgstr "Mes groupes"
+
+msgid "questionPage.alert.private_question"
+msgstr "Cette question est privée."
+
+msgid "questions.noAnswer"
+msgstr "Cette question n'a pas reçu de réponse"
+
+msgid "questions.publishBtn"
+msgstr "Je pose une question !"
+
+
+################################################# RELATIONSHIPS WAITING LIST #####################################################
+
+msgid "relationshipsWaitingList.title"
+msgstr "Relations en attente"
+
+msgid "relationshipsWaitingList.suggestions"
+msgstr "Suggestions"
+
+msgid "relationshipsWaitingList.see_more"
+msgstr "Voir plus"
+
+################################################# RESSOURCES #####################################################
+
+msgid "ressources.joined"
+msgstr "Fichiers joints"
+
+msgid "ressources.last_edit"
+msgstr "Dernière modification:"
+
+msgid "ressources.no_group"
+msgstr "Sur mon profil"
+
+msgid "ressources.edit"
+msgstr "Modifier la ressource"
+
+msgid "ressources.private"
+msgstr "Ressource Privée"
+
+msgid "ressources.private.publishedgroup"
+msgstr "Cette ressource fait partie d'un groupe privé"
+
+msgid "ressources.signal.page"
+msgstr "Signaler cette page"
+
+msgid "ressources.private.howtoaccess"
+msgstr "Pour avoir accès à cette ressource vous devez demander une invitation à ce groupe."
+
+msgid "ressources.private.askinvitation"
+msgstr "Demander une invitation"
+
+msgid "ressources.inaccessible"
+msgstr "Désolé, vous ne pouvez pas accéder à la ressource"
+
+msgid "ressources.inexistant"
+msgstr "Désolé, cette ressource n'existe pas."
+
+msgid "ressources.share"
+msgstr "Partager"
+
+
+################################################# SEARCH RESULTS #####################################################
+
+msgid "searchResults.filter.title"
+msgstr "Votre recherche"
+
+msgid "searchResults.title.filter"
+msgstr "Sur viaéduc"
+
+msgid "searchResults.title"
+msgstr "Votre recherche"
+
+msgid "searchResults.blog"
+msgstr "Blog|Blogs"
+
+msgid "searchResults.complete"
+msgstr "Complétez votre recherche :"
+
+msgid "searchResults.global"
+msgstr "Résultat|Résultats"
+
+msgid "searchResults.post"
+msgstr "Ressource|Ressources"
+
+msgid "searchResults.group"
+msgstr "Groupe|Groupes"
+
+msgid "searchResults.page"
+msgstr "Page|Pages"
+
+msgid "searchResults.user"
+msgstr "Utilisateur|Utilisateurs"
+
+msgid "searchResults.app"
+msgstr "App|Apps"
+
+msgid "searchResults.question"
+msgstr "Question|Questions"
+
+msgid "searchResults.belin"
+msgstr "Belin"
+
+msgid "searchResults.belin.facet"
+msgstr "Unités documentaires Belin"
+
+msgid "searchResults.notice.facet"
+msgstr "Ressources externes"
+
+msgid "searchResults.other"
+msgstr "Autre|Autres"
+
+msgid "searchResults.results"
+msgstr "résultat pour votre recherche|résultats pour votre recherche"
+
+msgid "searchResults.notice"
+msgstr "Notices"
+
+msgid "searchResults.noticia"
+msgstr "Canopé"
+
+msgid "searchResults.beebac"
+msgstr "Beebac"
+
+msgid "search.sort.score"
+msgstr "Pertinence"
+
+msgid "search.sort.alphabetical"
+msgstr "Ordre alphabétique"
+
+msgid "search.sort.date"
+msgstr "Date de création (plus récents d'abord)"
+
+msgid "search.sort.create"
+msgstr "Date de création (plus récents d'abord)"
+
+msgid "search.sort.answer"
+msgstr "Nombre de réponses"
+
+msgid "search.save_search.new"
+msgstr "Recherche de: %search% est bien sauvegardé."
+
+msgid "search.save_search.exist"
+msgstr "Recherche de: %search% a déjà été sauvegardé."
+
+################################################# FOOTER #####################################################
+
+msgid "footer.about"
+msgstr "A propos"
+
+msgid "footer.partners"
+msgstr "Les partenaires"
+
+msgid "footer.map"
+msgstr "Plan du site"
+
+msgid "footer.legal"
+msgstr "Mentions"
+
+msgid "footer.cgu"
+msgstr "CGU"
+
+msgid "footer.charte"
+msgstr "Charte du site"
+
+################################################# SUB FOOTER #####################################################
+
+msgid "subFooter.know"
+msgstr "Les connaissez-vous ?"
+
+msgid "subFooter.connect"
+msgstr "Se connecter"
+
+msgid "subFooter.groups_know"
+msgstr "Les groupes qui vous correspondent"
+
+msgid "subFooter.groups_expertise"
+msgstr "Votre expertise pourrait être utile dans ces groupes, "
+
+msgid "subFooter.join_them"
+msgstr "rejoignez-les !"
+
+msgid "subFooter.join"
+msgstr "Rejoindre"
+
+msgid "subFooter.apps"
+msgstr "Des applications faites pour vous"
+
+msgid "subFooter.apps_desc"
+msgstr "Découvrez des applications faites pour les enseignants qui vous aideront au quotidien"
+
+msgid "subFooter.activate"
+msgstr "Activer"
+
+msgid "subFooter.partenaire"
+msgstr "Découvrez nos partenaires"
+
+################################################# HEADER #####################################################
+
+### CONFIG MENU ###
+
+msgid "menuConfig.personal_general"
+msgstr "Modifier mes infos générales"
+
+msgid "menuConfig.personal_info"
+msgstr "Modifier mes infos personnelles"
+
+msgid "menuConfig.confidential"
+msgstr "Paramètres de confidentialité"
+
+msgid "menuConfig.notifications"
+msgstr "Paramètres de notification"
+
+msgid "menuConfig.following"
+msgstr "Gérer mes abonnements"
+
+msgid "menuConfig.invit"
+msgstr "Inviter des utilisateurs"
+
+msgid "menuConfig.faq_invit"
+msgstr FAQ membres invités"
+
+msgid "menuConfig.help"
+msgstr "Aide"
+
+msgid "menuConfig.agenda"
+msgstr "Agenda"
+
+msgid "menuConfig.disconnect"
+msgstr "Déconnexion"
+
+######################## NOTIFICATIONS ########################
+
+msgid "menuNotifications.title"
+msgstr "Notifications"
+
+msgid "menuNotifications.all"
+msgstr "> Toutes mes notifications"
+
+msgid "notificatonPage.title.email"
+msgstr "Réception des courriels de notification"
+
+msgid "notificatonPage.text0.email"
+msgstr "Je souhaite recevoir mes notifications sur"
+
+msgid "notificatonPage.text1.email"
+msgstr "Mon adresse e-mail professionnelle"
+
+msgid "notificatonPage.text2.email"
+msgstr "Mon adresse e-mail personnelle"
+
+msgid "notificatonPage.title.profil"
+msgstr "Mon Profil"
+
+msgid "notificatonPage.text1.profil"
+msgstr "Lorsqu'un membre publie un message sur votre profil"
+
+msgid "notificatonPage.text2.profil"
+msgstr "Lorsqu'un membre commente une de vos publications"
+
+msgid "notificatonPage.title.ressources"
+msgstr "Mes Ressources"
+
+msgid "notificatonPage.text1.ressources"
+msgstr "Lorsqu'un membre commente une de vos ressources"
+
+msgid "notificatonPage.text2.ressources"
+msgstr "Lorsqu'un membre recommande une de vos ressources"
+
+msgid "notificatonPage.text3.ressources"
+msgstr "Lorsqu'un membre partage une de vos ressources"
+
+msgid "notificatonPage.text4.ressources"
+msgstr "Lorsqu'un co-rédacteur modifie l'une de vos ressources"
+
+msgid "notificatonPage.collaborative.ressources"
+msgstr "Accessibilité d'une ressource collaborative dans un groupe"
+
+msgid "notificatonPage.title.publications"
+msgstr "Mes Publications (commentaires et messages de groupes ou de profils)"
+
+msgid "notificatonPage.text1.publications"
+msgstr "Lorsqu'un membre commente une de vos publications"
+
+msgid "notificatonPage.text2.publications"
+msgstr "Lorsqu'un membre recommande une de vos publications"
+
+msgid "notificatonPage.text3.publications"
+msgstr "Lorsqu'un membre partage une de vos publications"
+
+msgid "notificatonPage.title.questions"
+msgstr "Mes Questions"
+
+msgid "notificatonPage.text1.questions"
+msgstr "Lorsqu'un membre répond à l'une de vos questions"
+
+msgid "notificatonPage.title.groupes"
+msgstr "Mes Groupes"
+
+msgid "notificatonPage.text1.groupes"
+msgstr "Lorsqu'un membre publie dans l'un de vos groupes"
+
+msgid "notificatonPage.text2.groupes"
+msgstr "Lorsqu'un membre publie un message dans l'un de vos groupes"
+
+msgid "notification.reception.infos"
+msgstr "Vous pouvez recevoir les messages de Viaéduc sur votre adresse personnelle plutôt que sur votre adresse académique"
+
+######################## MESSAGES ########################
+
+msgid "menuMessages.title"
+msgstr "Messagerie"
+
+msgid "menuMessages.all"
+msgstr "> Voir ma Messagerie"
+
+######################## SEARCH ########################
+
+msgid "search.publish"
+msgstr "publier une ressource"
+
+msgid "search.resources"
+msgstr "Ressources"
+
+msgid "search.groups"
+msgstr "Groupes"
+
+msgid "search.users"
+msgstr "Utilisateurs"
+
+msgid "search.questions"
+msgstr "Questions"
+
+msgid "search.belin"
+msgstr "Belin"
+
+######################## PUBLISH ########################
+
+msgid "publish.simple_message"
+msgstr "Message Simple"
+
+msgid "publish.tab.event"
+msgstr "Evènements"
+
+msgid "publish.tab.question"
+msgstr "Questions"
+
+msgid "publish.send"
+msgstr "Questions"
+
+msgid "publish.tab.ressource"
+msgstr "Ressource"
+
+######################## SUB MENU ########################
+
+msgid "subMenu.close"
+msgstr "Fermer le menu"
+
+######################## (MIDDLE) MENU ########################
+
+msgid "rightMenu.all_tips"
+msgstr "Tous les conseils"
+
+## APPS
+
+msgid "menuApps.first"
+msgstr "À la une"
+
+msgid "menuApps.more"
+msgstr "En savoir plus sur cette App"
+
+msgid "menuApps.suggestions"
+msgstr "Suggestion d'apps'"
+
+msgid "menuApps.published_by"
+msgstr "Publié par"
+
+## CONTENT MIDDLE
+
+msgid "menuMiddle.events"
+msgstr "Évènements à venir"
+
+msgid "menuMiddle.questions"
+msgstr "Questions / réponses"
+
+msgid "menuMiddle.answer"
+msgstr "réponses"
+
+msgid "menuMiddle.resources"
+msgstr "Dernières Ressources"
+
+msgid "menuMiddle.last_contributons"
+msgstr "Mes dernières contributions"
+
+## GROUPS MIDDLE
+
+msgid "menuMiddleGroups.suggestion_groups"
+msgstr "Suggestion de groupes"
+
+msgid "menuMiddleGroups.active_groups"
+msgstr "Groupes actifs"
+
+msgid "menuMiddleGroups.suggestion_pages"
+msgstr "Suggestion de pages"
+
+## RELATION MIDDLE
+
+msgid "menuMiddleRelation.know"
+msgstr "Les connaissez-vous?"
+
+######################## POST ########################
+
+msgid "post.add"
+msgstr "Ajouter"
+
+msgid "post.edit"
+msgstr "Modifier"
+
+msgid "post.indexation"
+msgstr "Indexation de la ressource"
+
+msgid "post.optional"
+msgstr "(optionnel)"
+
+msgid "post.library_from"
+msgstr "Mes documents"
+
+msgid "post.library_selectin"
+msgstr "Sélectionner dans mes documents"
+
+msgid "post.medias_or"
+msgstr "ou"
+
+msgid "post.publish.medias"
+msgstr "Fichiers joints"
+
+msgid "post.publish.submit.draft"
+msgstr "Enregistrer dans mes brouillons"
+
+msgid "post.publish.submit.publish"
+msgstr "Publier"
+
+msgid "post.publish.submit.current"
+msgstr "Remplacer la version courante"
+
+msgid "post.publish.submit.save"
+msgstr "Enregistrer"
+
+######################## POST VERSIONS ########################
+msgid "post.versions.advice.title"
+msgstr "Conseils d'utilisation"
+
+msgid "post.versions.advice.subtitle"
+msgstr "Je crée %bold%une ressource !%/bold%"
+
+msgid "post.versions.advice.list"
+msgstr "Chaque fois que vous enregistrez, si votre dernière version date de plus de 10 minutes, une nouvelle version apparaît ici dans une liste. Vous pouvez ensuite visualiser les versions précédentes en cliquant sur la version voulue."
+
+msgid "post.versions.title"
+msgstr "Versions"
+
+msgid "post.versions.author"
+msgstr "par %name%"
+
+######################## QUESTION POST ########################
+msgid "post.question.advice.title"
+msgstr "Conseils d'utilisation"
+
+msgid "post.question.advice.subtitle"
+msgstr "Je pose %bold%une question !%/bold%"
+
+msgid "post.question.advice.list"
+msgstr "Type public = tout le monde voit votre question | Type mes relations = seuls mes contacts voient ma question | Type mes groupes = seuls les membres de mes groupes voient ma question"
+
+######################## EVENT POST ########################
+msgid "post.event.advice.title"
+msgstr "Conseils d'utilisation"
+
+msgid "post.event.advice.subtitle"
+msgstr "Je crée %bold%un évènement !%/bold%"
+
+msgid "post.event.advice.list"
+msgstr "Invitation publique = tout le monde peut être invité  à l’évènement | Invitation privée = définissez ensuite dans le champs "participants" quels contacts vous informez ou invitez. "
+
+######################## (TOP) MESSAGES ########################
+
+msgid "messagesTop.write"
+msgstr "Ecrire un nouveau message"
+
+msgid "messagesTop.manage"
+msgstr "Gérer mes listes de diffusion"
+
+######################## MODALS ########################
+
+msgid "modal.close"
+msgstr "Fermer la fenêtre"
+
+## DIFFUSION LIST
+
+msgid "modalDiffusion.build"
+msgstr "Construire une liste de diffusion"
+
+msgid "modalDiffusion.add_title"
+msgstr "Ajouter des membres à votre liste de diffusion"
+
+msgid "modalDiffusion.add"
+msgstr "Ajouter à la liste"
+
+msgid "modalDiffusion.delete"
+msgstr "Supprimer de la liste"
+
+msgid "modalDiffusion.name"
+msgstr "Nom de la liste"
+
+## LIBRARY
+
+msgid "modalLibrary.media"
+msgstr "Mes documents"
+
+msgid "modalLibrary.folder"
+msgstr "Dossiers"
+
+msgid "modalLibrary.medias"
+msgstr "Dossiers"
+
+msgid "modalLibrary.add"
+msgstr "Ajouter"
+
+msgid "modalLibrary.root"
+msgstr "/Racine"
+
+msgid "modalLibrary.media.insert"
+msgstr "Insérer"
+
+msgid "modalLibrary.media.select"
+msgstr "Sélectionner"
+
+## PROFIL IMAGE
+
+msgid "modalImage.edit"
+msgstr "Modifier votre photo"
+
+msgid "modalImage.click"
+msgstr "Cliquez sur la photo afin d'obtenir le cadrage qui vous convient "
+
+msgid "modalImage.download"
+msgstr "Telecharger une image"
+
+msgid "modalImage.cancel"
+msgstr "Annuler"
+
+msgid "modalImage.save"
+msgstr "Enregistrer"
+
+## QUESTION
+
+msgid "modalQuestion.title"
+msgstr "Poster une question"
+
+msgid "modalQuestion.resume"
+msgstr "Résumez votre question avec des mots simples (200 caractères)"
+
+msgid "modalQuestion.cat"
+msgstr "Catégorie"
+
+msgid "modalQuestion.keyword"
+msgstr "Mots clés"
+
+msgid "modalQuestion.notification"
+msgstr "Notifier"
+
+msgid "modalQuestion.limit"
+msgstr "Limiter la visibilité de ma question aux groupes et personnes renseignées ci dessous"
+
+msgid "modalQuestion.delete"
+msgstr "Effacer et recommencer"
+
+msgid "modalQuestion.ask"
+msgstr "Poster ma question"
+
+## TUTORIAL
+
+msgid "modalTutorial.skip"
+msgstr "Passer le didacticiel"
+
+msgid "modalTutorial.next"
+msgstr "Suivant"
+
+msgid "modalTutorial.access"
+msgstr "Accéder au site"
+
+msgid "modalTutorial.welcome"
+msgstr "Bienvenue ..."
+
+msgid "modalTutorial.intro"
+msgstr "... Sur le premier réseau social des enseignants. Vous pouvez commencer à créer le réseau qui poussera l'exercice de votre fonction vers l'excellence."
+
+msgid "modalTutorial.first_title"
+msgstr "Menu (1/3)"
+
+msgid "modalTutorial.first_text"
+msgstr "Le menu comprend toutes les entrées dont vous aurez besoin pour naviger sur la plateforme. Vous pouvez accéder à toutes les pages en un minimum de clics et observer facilement les les nouvelles notifications et messages"
+
+msgid "modalTutorial.second_title"
+msgstr "Barre d'outils (2/3)"
+
+msgid "modalTutorial.second_text"
+msgstr "- La barre de publication vous permet de publier une ressource, une message un évènement ou une question rapidement depuis n'importe quelle page. - Grâce à la zone de recherche vous pourrez trouver les informations que vous souhaittez sur les ressources, les membres de la plateforme, les questions / réponses, les groupes et les pages. Il permet en outre d'accéder à la recherche avancée et àvos recherches favorites"
+
+msgid "modalTutorial.third_title"
+msgstr "Fil d'actualité (3/3)"
+
+msgid "modalTutorial.third_text"
+msgstr "Le fil d'actualité affiche toutes les ressources suceptibles de vous intéresser. En remplissant les informations de votre profil, en développant vos relations et en rejoignant des groupes vous pourrez avoir des informations plus complètes et intéressantes."
+
+######################## SIDEBAR ########################
+
+msgid "sidebar.rss"
+msgstr "Flux RSS"
+
+msgid "sidebar.ressources"
+msgstr "Ressources"
+
+msgid "sidebar.discipline"
+msgstr "Discipline et niveau"
+
+msgid "sidebar.sources"
+msgstr "Sources et droit d'auteur"
+
+msgid "sidebar.relations"
+msgstr "Relations"
+
+msgid "sidebar.common"
+msgstr "en commun"
+
+msgid "sidebar.admin"
+msgstr "Animateurs"
+
+msgid "sidebar.sondage"
+msgstr "Sondage à la une !"
+
+msgid "sidebar.questions"
+msgstr "Questions-réponses"
+
+msgid "sidebar.last_questions"
+msgstr "Dernières questions"
+
+msgid "sidebar.author_questions"
+msgstr "Du même auteur"
+
+msgid "sidebar.group_questions"
+msgstr "Questions du groupe"
+
+msgid "sidebar.notifications"
+msgstr "Notifications"
+
+msgid "sidebar.web_page"
+msgstr "My webpage !"
+
+msgid "sidebar.web_page_desc"
+msgstr "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, architecto, non quam itaque repellendus sunt consectetur quo at illo ratione vel voluptatibus incidunt mollitia qui provident cumque delectus ipsum ea?"
+
+msgid "sidebar.interests"
+msgstr "Intérets"
+
+msgid "sidebar.groups"
+msgstr "Groupes"
+
+msgid "sidebar.authors"
+msgstr "Auteurs de la ressource"
+
+msgid "sidebar.members"
+msgstr "Membres du groupe"
+
+msgid "sidebar.event.see"
+msgstr "Agenda du groupe"
+
+######################## RECOMMEND ########################
+
+msgid "action.recommend.post.add"
+msgstr "Recommander (%count%)"
+
+msgid "action.recommend.post.remove"
+msgstr "Ne plus recommander (%count%)"
+
+msgid "action.recommend.comment.add"
+msgstr "Recommander (%count%)"
+
+msgid "action.recommend.comment.remove"
+msgstr "Ne plus recommander (%count%)"
+
+msgid "action.recommend.user.add"
+msgstr "Recommander (%count%)"
+
+msgid "action.recommend.user.remove"
+msgstr "Ne plus recommander (%count%)"
+
+msgid "action.recommend.external_notice.add"
+msgstr "Recommander (%count%)"
+
+msgid "action.recommend.external_notice.remove"
+msgstr "Ne plus recommander (%count%)"
+
+######################## BOOKMARK ########################
+
+msgid "action.bookmark.question.remove"
+msgstr "Enlever des favoris (%count%)"
+
+msgid "action.bookmark.question.add"
+msgstr "Ajouter aux favoris (%count%)"
+
+msgid "action.bookmark.group.remove"
+msgstr "Enlever des favoris (%count%)"
+
+msgid "action.bookmark.group.add"
+msgstr "Ajouter aux favoris (%count%)"
+
+msgid "action.bookmark.post.remove"
+msgstr "Enlever des favoris (%count%)"
+
+msgid "action.bookmark.post.add"
+msgstr "Ajouter aux favoris (%count%)"
+
+msgid "action.bookmark.subscription.editor.add"
+msgstr "Suivre (%count%)"
+
+msgid "action.bookmark.subscription.editor.remove"
+msgstr "Ne plus suivre (%count%)"
+
+msgid "action.bookmark.subscription.blog.add"
+msgstr "Suivre (%count%)"
+
+msgid "action.bookmark.subscription.blog.remove"
+msgstr "Ne plus suivre (%count%)"
+
+######################## REPORT ########################
+
+msgid "action.report.post"
+msgstr "Signaler"
+
+msgid "action.report.comment"
+msgstr "Signaler"
+
+msgid "action.report.group"
+msgstr "Signaler"
+
+msgid "action.report.question"
+msgstr "Signaler"
+
+######################## Headline ########################
+
+msgid "action.headline.added"
+msgstr "Retirer de l'onglet \"à la une\""
+
+msgid "action.headline.added.result"
+msgstr "Cette publication a été ajoutée à l'onglet \"à la une\"."
+
+msgid "action.headline.removed"
+msgstr "Ajouter à l'onglet \"à la une\""
+
+msgid "action.headline.removed.result"
+msgstr "Cette publication a été retirée de l'onglet \"à la une\"."
+
+msgid "action.headline.title"
+msgstr "À la une"
+
+msgid "action.fdiscussion.add"
+msgstr "Suivre cette discussion"
+
+msgid "dashboard.discussion_favorite"
+msgstr "Mes discussions en cours"
+
+msgid "dashboard.discussion_favorite.link"
+msgstr "Voir tous les discussions en cours"
+
+msgid "messages.fdiscussion.add_title"
+msgstr "Suivre cette discussion"
+
+msgid "messages.fdiscussion.description"
+msgstr "Cette discussion apparaîtra dans le widget \"Mes discussions en cours\" de votre tableau de bord."
+
+msgid "messages.fdiscussion.delete"
+msgstr "Etes-vous sûr(e) de ne plus vouloir suivre cette discussion ?"
+
+msgid "messages.fdiscussion.delete_button"
+msgstr "Ne plus suivre"
+
+######################## FRIENDS ######################
+msgid "action.friend-list"
+msgstr "Amis"
+
+######################## SHARE ########################
+
+msgid "action.share.publication"
+msgstr "Partager cette publication"
+
+msgid "action.share.notice"
+msgstr "Partager cette Notice"
+
+msgid "share.share"
+msgstr "Partager"
+
+msgid "share.failed"
+msgstr "Nous rencontrons des problèmes avec votre partage, veuillez réessayer ultérieurement"
+
+msgid "share.NotFailed"
+msgstr "Votre partage a été ajouté avec succes"
+
+msgid "share.MyProfil"
+msgstr "Mon profile"
+
+######################## TIPS ########################
+
+msgid "tips.using"
+msgstr "Conseils d'utilisation"
+
+msgid "tips.why_title"
+msgstr "ANIMER UN BLOG"
+
+msgid "tips.why_desc_one"
+msgstr "Ouvrez un blog personnel autour d'un sujet, d'une pratique ou d'un centre d'intérêt"
+
+msgid "tips.why_desc_two"
+msgstr "Définissez qui pourra lire et commenter vos billets : toute la communauté Viaéduc (public), l'ensemble de vos contacts ou seulement une partie d'entre eux (restreint)."
+
+msgid "tips.groups_title"
+msgstr "CONSTRUIRE & ANIMER DES GROUPES"
+
+msgid "tips.groups_main_one"
+msgstr "Construisez un groupe autour d'un projet, d'une pratique ou d'un centre d'intérêt."
+
+msgid "tips.groups_main_two"
+msgstr "Définissez le niveau de confidentialité de votre groupe, "public", "privé" ou "sur invitation :"
+
+msgid "tips.groups_desc_one"
+msgstr "public : tout membre de Viaéduc peut adhérer de lui-même au groupe, pour voir ses contenus et y participer."
+
+msgid "tips.groups_desc_two"
+msgstr "privé : il faut demander une adhésion à l'animateur du groupe pour voir ses contenus et y participer."
+
+msgid "tips.groups_desc_three"
+msgstr "sur invitation : le groupe se construit uniquement sur invitations envoyées par l'animateur. Les demandes d'adhésion ne sont pas possibles. Notez qu'un groupe sur invitation n'est pas visible dans le moteur de recherche ou dans l'annuaire des groupes. Seuls ses membres en voient l'existence."
+
+msgid "tips.groups_main_three"
+msgstr "Dans la cas d'une création de sous-groupe, les accès à ce sous-groupe sont relatifs au groupe parent. Ainsi un sous-groupe public dans un groupe sur invitation ne sera visible et accessible qu'aux membres de ce groupe. Un sous-groupe privé dans un groupe public nécessitera l'approbation de l'animateur pour y participer."
+
+msgid "tips.groups_main_four"
+msgstr "Invitez des collègues à rejoindre votre communauté, puis animez, partagez, créez."
+
+################ MESSAGES ################
+
+msgid "messages.no_message_side"
+msgstr "Vous n'avez pas encore de message."
+
+msgid "messages.no_message_main_text"
+msgstr "Vous n'avez pas encore de message,"
+
+msgid "messages.no_message_main_link"
+msgstr "écrivez un nouveau message"
+
+msgid "messages.view"
+msgstr "Voir ma messagerie"
+
+################ INVITATION ################
+
+msgid "invitation.email_subject"
+msgstr "Invitation au réseau professionnel Viaeduc"
+
+msgid "invitation.group.email_subject"
+msgstr "Vous êtes invité à participer au groupe %name% sur Viaeduc"
+
+msgid "invitation.blog.email_subject"
+msgstr "Vous êtes invité à découvrir le blog %name% sur Viaeduc"
+
+################ SEARCH ################
+
+msgid "search.warning"
+msgstr "Erreur : "
+
+msgid "search.failed"
+msgstr "Nous rencontrons des problèmes avec la recherche, veuillez réessayer ultérieurement"
+
+msgid "search.results"
+msgstr "résultat pour votre recherche|résultats pour votre recherche"
+
+msgid "search.user.register_date"
+msgstr "Inscrit le "
+
+msgid "search.facet.user.sex"
+msgstr "Civilité"
+
+msgid "search.facet.user.occupation"
+msgstr "Métiers"
+
+msgid "search.facet.user.academy"
+msgstr "Académies"
+
+msgid "search.facet.belin.category"
+msgstr "Catégories"
+
+msgid "search.facet.user.interests"
+msgstr "Centres d'intérêts"
+
+msgid "search.facet.user.instructed_disciplines"
+msgstr "Disciplines"
+
+msgid "search.facet.user.teaching_levels"
+msgstr "Niveaux d'enseignement"
+
+msgid "search.facet.user.date"
+msgstr "Date d'inscription"
+
+msgid "search.facet.post.disciplines"
+msgstr "Disciplines"
+
+msgid "search.facet.post.teaching_levels"
+msgstr "Niveaux d'enseignement"
+
+msgid "search.facet.post.date"
+msgstr "Date de création (plus récents d'abord)"
+
+msgid "search.facet.post.language"
+msgstr "Langue"
+
+msgid "search.facet.group.access"
+msgstr "Type"
+
+msgid "search.facet.group.date"
+msgstr "Date de création (plus récents d'abord)"
+
+msgid "search.facet.group.interests"
+msgstr "Centres d'intérêts"
+
+msgid "search.facet.group.instructed_disciplines"
+msgstr "Disciplines"
+
+msgid "search.facet.group.teaching_levels"
+msgstr "Niveaux d'enseignement"
+
+msgid "search.facet.global.date"
+msgstr "Date de création (plus récents d'abord)"
+
+msgid "search.group.type.public"
+msgstr "Public"
+
+msgid "search.group.type.on_demand"
+msgstr "Privé"
+
+msgid "search.group.type.on_invitation"
+msgstr "Sur invitation"
+
+msgid "search.facet.question.question_access"
+msgstr "Type"
+
+msgid "search.facet.question.keywords"
+msgstr "Mots-clés"
+
+msgid "search.facet.question.instructed_disciplines"
+msgstr "Disciplines"
+
+msgid "search.facet.question.date"
+msgstr "Date de création (plus récents d'abord)"
+
+msgid "search.facet.question.answers"
+msgstr "Nombre de réponses"
+
+msgid "search.facet.question.answers.range.type.1"
+msgstr "A partir de %from%"
+
+msgid "search.facet.question.answers.range.type.2"
+msgstr "Plus de %to%"
+
+msgid "search.facet.question.answers.range.type.3"
+msgstr "Entre %from% et %to%"
+
+msgid "search.question.type.public"
+msgstr "Publique"
+
+msgid "search.question.type.friends"
+msgstr "Privée"
+
+msgid "search.question.type.group"
+msgstr "Groupe"
+
+msgid "search.members.info"
+msgstr "%count% membre|%count% membres"
+
+msgid "search.posts.info"
+msgstr "%count% publication|%count% publications"
+
+msgid "search.recommends.info"
+msgstr "%count% recommandation|%count% recommandations"
+
+msgid "search.shares.info"
+msgstr "%count% partage|%count% partages"
+
+msgid "search.answers.info"
+msgstr "%count% réponse|%count% réponses"
+
+msgid "search.facet.belin.type"
+msgstr "Type de document"
+
+msgid "search.facet.belin.matiere"
+msgstr "Matière"
+
+msgid "search.facet.belin.niveau"
+msgstr "Niveau"
+
+msgid "search.facet.notice.source"
+msgstr "Sources"
+
+msgid "search.facet.notice.levels"
+msgstr "Niveaux"
+
+msgid "search.facet.notice.disciplines"
+msgstr "Liste des Disciplines"
+
+msgid "search.facet.notice.notice_category"
+msgstr "Catégories"
+
+msgid "search.facet.notice.date"
+msgstr "Date de création (plus récents d'abord)"
+
+msgid "search.notice.create_date"
+msgstr "Crée le "
+
+msgid "search.facet.blog.access"
+msgstr "Type"
+
+msgid "search.blog.type.public"
+msgstr "Public"
+
+msgid "search.blog.type.friends"
+msgstr "Relations"
+
+msgid "search.facet.blog.date"
+msgstr "Date de création (plus récents d'abord)"
+
+################ ADMIN ################
+
+msgid "admin.stats.grouptype.public"
+msgstr "Public"
+
+msgid "admin.stats.grouptype.private"
+msgstr "Privé"
+
+msgid "admin.stats.grouptype.hidden"
+msgstr "Invisible"
+
+################################################# Page Editor #####################################################
+
+msgid "createEditor.add_image"
+msgstr "Ajouter une image"
+
+msgid "createProduct.create"
+msgstr "Ajouter un produit"
+
+msgid "createProduct.edit"
+msgstr "Editer un produit"
+
+msgid "createeEitor.image_size"
+msgstr "(la taille ne doit pas excéder 4mo)"
+
+msgid "createEditor.add_image"
+msgstr "Ajouter une image"
+
+msgid "editorPage.upload"
+msgstr "Télécharger une image"
+
+msgid "createEditor.create_editor"
+msgstr "Créer une page partenaire"
+
+msgid "createEditor.edit_editor"
+msgstr "Edition d'une page partenaire"
+
+msgid "createProduct.edit"
+msgstr "Edition d'un produit"
+
+msgid "createEditor.update"
+msgstr "Mettre à jour"
+
+msgid "createEditor.edit"
+msgstr "Modification des informations"
+
+msgid "createEditor.contact.subject"
+msgstr "Message d'un utilisateur de viaéduc: %subject%"
+
+msgid "editor.product.type"
+msgstr "Type: %type%"
+
+msgid "editorPage.alert.public_editor"
+msgstr ""
+
+################################################# Page Blog #####################################################
+
+msgid "blog.create_title"
+msgstr "Créer mon blog"
+
+msgid "blog.update_title"
+msgstr "Mettre à jour mon blog"
+
+msgid "blog.update"
+msgstr "Mettre à jour"
+
+msgid "blog.create"
+msgstr "Créer mon blog"
+
+msgid "blog.update"
+msgstr "Mettre à jour"
+
+msgid "blogs.filters.all_blogs"
+msgstr "Tous les blogs"
+
+msgid "blogs.filters.followed"
+msgstr "Mes blogs favoris"
+
+msgid "blogs.filters.public"
+msgstr "Blogs publiques"
+
+msgid "blogs.filters.private"
+msgstr "Blogs privés"
+
+msgid "blogPage.all_blogs"
+msgstr "Tous les blogs"
+
+msgid "blogPage.followed"
+msgstr "Mes blogs favoris"
+
+msgid "blogPage.public"
+msgstr "Blogs publiques"
+
+msgid "blogPage.private"
+msgstr "Blogs privés"
+
+msgid "blogPage.blog.type_public"
+msgstr "PUBLIC"
+
+msgid "blogPage.blog.type_friends"
+msgstr "PRIVÉ"
+
+msgid "blogPage.alert.private_blog"
+msgstr ""
+
+msgid "blogPage.user.added"
+msgstr "Une notification a été envoyée aux membres sélectionnés."
+
+################################################# Page Blog #####################################################
+
+msgid "editors.filters.all_editors"
+msgstr "Toutes les pages partenaires"
+
+msgid "editors.filters.followed"
+msgstr "Mes pages partenaires favorites"
+
+msgid "editorPage.all_editors"
+msgstr "Toutes les pages partenaires"
+
+msgid "editorPage.followed"
+msgstr "Mes pages partenaires favorites"
+
+msgid "blogPage.all_blogs"
+msgstr "Tous les blogs"
+
+msgid "blogPage.followed"
+msgstr "Mes blogs"
+
+################################################# TUTORIALS #####################################################
+
+msgid "tutorial.close"
+msgstr "Fermer"
+
+msgid "tutorial.ajouter"
+msgstr "Ajouter"
+
+msgid "tutorial.prev"
+msgstr "Précédent"
+
+msgid "tutorial.next"
+msgstr "Continuer"
+
+msgid "tutorial.passVisit"
+msgstr "Passez la visite"
+
+msgid "tutorial.follow"
+msgstr "Suivez le guide"
+
+msgid "mainTutorial.title1"
+msgstr "Bienvenue..."
+
+msgid "mainTutorial.text1"
+msgstr "...sur le premier réseau social des enseignants ! Vous pouvez dès maintenant partager et échanger afin de faire de ce lieu une plateforme d’excellence et de collaboration dédiée à l’enseignement."
+
+msgid "mainTutorial.title2"
+msgstr "Menu"
+
+msgid "mainTutorial.text2"
+msgstr "Le menu comprend l’essentiel des éléments de navigation dont vous aurez besoin : accédez à toutes les rubriques du réseau, consultez vos notifications et vos messages en quelques clics ! "
+
+msgid "mainTutorial.title3"
+msgstr "Barre d’outils"
+
+msgid "mainTutorial.text3"
+msgstr "Utilisez la zone de recherche pour trouver la bonne information, les bonnes ressources, les bonnes réponses. Recherchez également des membres, des groupes ou des pages précises du réseau. Accédez à la recherche avancée ainsi qu’à vos recherches favorites, pour une navigation centrée sur vos besoins et vos activités."
+
+msgid "mainTutorial.title4"
+msgstr "Fil d’actualité"
+
+msgid "mainTutorial.text4"
+msgstr "Toutes les publications susceptibles de vous intéresser apparaissent dans votre fil d’actualité. Afin que les contenus diffusés correspondent au mieux à votre profil, nous vous invitons à compléter vos informations personnelles de façon détaillée. Développez vos relations et rejoignez des groupes : votre fil d’actualité gagnera en pertinence."
+
+msgid "profilMenu.title1"
+msgstr "Voir votre profil"
+
+msgid "profilMenu.text1"
+msgstr "Cliquez ici pour accéder à votre profil public. Vous pourrez ainsi identifier les éléments que vous désirez mettre en avant ou ajouter à l’intention des autres membres du réseau."
+
+msgid "profilMenu.title2"
+msgstr "Editer votre profil"
+
+msgid "profilMenu.text2"
+msgstr "Actualisez, complétez les informations de votre profil public en éditant les différentes rubriques proposées. Plus votre profil sera complet, plus nos suggestions seront adaptées à vos besoins."
+
+msgid "profilMenu.title3"
+msgstr "Résumé de votre profil"
+
+msgid "profilMenu.text3"
+msgstr "Cet espace résume les activités de votre profil : contenus publiés, nombre de relations, nombre de groupes dont vous êtes membre. Il permet aux autres utilisateurs d’en savoir plus sur votre activité sur le réseau. Plus vous êtes actif, plus il est facile aux autres membres de vous identifier et d’entrer en relation avec vous !"
+
+msgid "profil.title1"
+msgstr "Personnalisez votre page"
+
+msgid "profil.text1"
+msgstr "Ajoutez une photo de vous ou une image de votre choix pour personnaliser votre profil et permettre aux autres membres de vous identifier plus facilement. Différenciez-vous ainsi des autres membres de Viaeduc !"
+
+msgid "profil.title2"
+msgstr "Consultez vos relations"
+
+msgid "profil.text2"
+msgstr "Toutes vos relations sont visibles ici. Cette rubrique permet aux visiteurs de votre profil d’identifier des relations communes."
+
+msgid "profil.title3"
+msgstr "Répertoriez vos groupes"
+
+msgid "profil.text3"
+msgstr "Les groupes dont vous êtes membre peuvent être consultés ici. Cela permet aux autres membres d’identifier vos centres d’intérêts et vos activités sur le réseau."
+
+msgid "profil.title4"
+msgstr "Classez vos ressources"
+
+msgid "profil.text4"
+msgstr "Les contenus et les articles que vous partagez sont répertoriés ici, du plus récent au plus ancien."
+
+msgid "profil.title5"
+msgstr "Partagez des contenus"
+
+msgid "profil.text5"
+msgstr "Une actualité, un article, une question à partager ? Publiez-les directement ici. Vos contenus apparaissent sur votre profil et le fil d’actualité  de vos relations."
+
+msgid "account.title1"
+msgstr "Construisez votre identité Viaeduc"
+
+msgid "account.text1"
+msgstr "Apportez des informations complémentaires à votre profil, comme vos expériences professionnelles et vos formations, et renforcez la crédibilité de votre profil sur le réseau."
+
+msgid "account.title2"
+msgstr "Paramétre votre visiblité"
+
+msgid "account.text2"
+msgstr "Sélectionnez les contenus et les éléments de votre profil que vous souhaitez rendre accessibles à l’ensemble ou à une partie de vos relations Viaeduc."
+
+msgid "account.title3"
+msgstr "Choisissez vos alertes"
+
+msgid "account.text3"
+msgstr "Sélectionnez le type d’événement ou d’actualité du réseau sur lesquels vous souhaitez être alerté instantanément grâce à une notification. Vous pouvez choisir de recevoir vos alertes sur votre boîte mail afin d’être informé au plus vite des actualités de votre réseau."
+
+msgid "account.title4"
+msgstr "Invitez des professionnels"
+
+msgid "account.text4"
+msgstr "Vous connaissez des experts et professionnels de l’enseignement qui ne possèdent pas d’adresse académique ? Invitez-les à rejoindre gratuitement Viaeduc !"
+
+msgid "publishRessource.title1"
+msgstr "Publiez des contenus"
+
+msgid "publishRessource.text1"
+msgstr "3 types de contenus distincts sont proposés. Choisissez la ressource pour soumettre un article, un dossier. Si vous une interrogation sur un usage ou une pratique, optez pour la question. Enfin créez un événement pour mobiliser votre communauté sur le réseau comme dans votre ville !"
+
+msgid "publishRessource.title2"
+msgstr "Mettez-y les formes !"
+
+msgid "publishRessource.text2"
+msgstr "Mettez votre ressource en valeur en utilisant les multiples options de mise en forme proposées. Ajoutez des images tirées de vos ressources personnelles et constituez vos documents en ligne, afin de retrouver l'ensemble de vos fichiers en un clic."
+
+msgid "publishRessource.title3"
+msgstr "Qualifiez vos ressources"
+
+msgid "publishRessource.text3"
+msgstr "Optimisez la lecture de vos publications en précisant leurs contenus. Remplissez ces champs pour que votre ressource capte plus facilement lʼattention des utilisateurs concernés ! Déterminez également le lieu où votre ressource doit apparaitre : sur votre profil ou dans un groupe"
+
+msgid "publishRessource.title4"
+msgstr "Indexez votre ressource (optionnel)"
+
+msgid "publishRessource.text4"
+msgstr "Qualifiez davantage vos contenus afin qu'il soit indexé par Viaeduc. Choisissez les mots clés les plus adaptés à votre publication, précisez le type de documents, ses droits d'auteur, et la langue dans laquelle il est rédigé, pour des contenus faciles à retrouver."
+
+msgid "publishQuestion.title1"
+msgstr "Posez vos questions, obtenez des reponses"
+
+msgid "publishQuestion.text1"
+msgstr "Lorsque vous publiez une question, celle-ci bénéficie dʼune page dédiée sur laquelle votre communauté pourra répondre, commenter, interagir autour de la problématique à laquelle vous êtes confronté."
+
+msgid "publishEvent.title1"
+msgstr "Invitez vos relations"
+
+msgid "publishEvent.text1"
+msgstr "Créez et annoncez un événement réel ou en ligne. Vous pouvez convier un groupe ou l'ensemble de vos relations Viaeduc, en remplissant les champs
+"participants" ou en sélectionnant parmi les options proposées dans
+"Invitation". Retrouvez tous les événements auxquels vous participez dans la rubrique : Mes contenus > Mon Agenda."
+
+msgid "contentMenu.title1"
+msgstr "Vos contenus"
+
+msgid "contentMenu.text1"
+msgstr "Classez et répertoriez l’ensemble de vos publications sur le réseau, ainsi que vos contenus en cours de rédaction."
+
+msgid "contentMenu.title2"
+msgstr "Vos événements"
+
+msgid "contentMenu.text2"
+msgstr "Invitation, débat, travaux de groupe sur le réseau : tous vos rendez-vous sont répertoriés dans cet espace, qui vous donne la possibilité de créer vos propres événements et d’y convier vos relations."
+
+msgid "contentMenu.title3"
+msgstr "Vos questions, nos réponses"
+
+msgid "contentMenu.text3"
+msgstr "Retrouvez ici toutes les questions publiées par vous et les autres utilisateurs du réseau, ainsi que toutes les réponses associées. Découvrez ainsi des astuces, des débats et des membres qui partagent votre vision et vos interrogations sur l’enseignement."
+
+msgid "contentMenu.title4"
+msgstr "Vos médias"
+
+msgid "contentMenu.text4"
+msgstr "Images, fichiers : rendez-vous dans votre espace « Mes documents » pour retrouver et organiser tous les médias associés à vos contenus."
+
+msgid "publications.title1"
+msgstr "Mes publicatoins"
+
+msgid "publications.text1"
+msgstr "Toutes vos publications seront classées par ordre chronologique et disponibles sur cette page."
+
+msgid "publicationsDraft.title1"
+msgstr "Mes ebauches"
+
+msgid "publicationsDraft.text1"
+msgstr "Besoin de sauvegarder un article incomplet ? Enregistrez une ébauche ! Retrouvez l’ensemble de vos brouillons d’articles sur cette page."
+
+msgid "mediaTutorial.title1"
+msgstr "Organisez vos médias"
+
+msgid "mediaTutorial.text1"
+msgstr "Retrouvez l'ensemble de vos médias (images, vidéos, documents) dans votre espace mes documents. Ajoutez des fichiers directement à vos documents. Constituez facilement des dossiers pour les classer par matières, sujets ou types de documents."
+
+msgid "questionTutorial.title1"
+msgstr "Vos questions, nos réponses"
+
+msgid "questionTutorial.text1"
+msgstr "Toutes vos questions sont répertoriées dans cet encart, qu'elles soient publiques ou privées. Retrouvez également les questions publiques posées par les autres utilisateurs du réseau."
+
+msgid "menuGroupTutorial.title1"
+msgstr "Vos groupes"
+
+msgid "menuGroupTutorial.text1"
+msgstr "Tous les groupes dont vous êtes membres sont répertoriés ici. Triez et rangez vos communautés, conservez vos demandes en attente : gérez vos groupes de façon claire et organisée."
+
+msgid "menuGroupTutorial.title2"
+msgstr "Nos suggestions"
+
+msgid "menuGroupTutorial.text2"
+msgstr "Nous vous suggérons des groupes susceptibles de vous intéresser, en nous basant sur les informations fournies sur votre page : plus votre profil est détaillé, plus ces suggestions seront pertinentes."
+
+msgid "createGroupTutorial.title1"
+msgstr "Créez vos communautés"
+
+msgid "createGroupTutorial.text1"
+msgstr "Imaginez et organisez vos propres groupes de discussion, privés comme publics, en trois clics. Vous êtes libre de créer votre communauté autour d’un sujet, d’une expertise ou d’une problématique de l’enseignement."
+
+msgid "groupSuggestionTutorial.title1"
+msgstr "Intégrez des groupes qui vous ressemblent"
+
+msgid "groupSuggestionTutorial.text1"
+msgstr "Viaeduc vous suggère une sélection de groupes susceptibles de correspondre à vos attentes. Afin d'obtenir des propositions en phase avec votre personnalité et votre métier, nous vous invitons à compléter votre profil de la façon la plus précise possible."
+
+msgid "groupTutorial.title1"
+msgstr "Participez a un groupe de travail"
+
+msgid "groupTutorial.text1"
+msgstr "Cette page vous permet de connaitre tous les membres du groupe et d'échanger avec eux via son fil d'actualité. Si vous êtes animateur, utilisez l'onglet "Gestion des membres" pour inviter de nouveaux enseignants à rejoindre la communauté."
+
+msgid "relationMenuTutorial.title1"
+msgstr "Trouvez vos contacts"
+
+msgid "relationMenuTutorial.text1"
+msgstr "Toutes vos relations Viaeduc sont consultables dans cet espace. Vos contacts les plus récents apparaissent les premiers."
+
+msgid "waitingTutorial.title1"
+msgstr "Gerez vos contacts"
+
+msgid "waitingTutorial.text1"
+msgstr "Cette page répertorie vos relations en attente : les membres du réseau dont vous n'avez pas encore accepté l'invitation. Des suggestions de relations vous sont également proposées. Elles sont basées sur les informations de votre profil : plus elles sont exhaustives, plus les propositions sont en phase avec votre vision."
+
+msgid "searchTutorial.title1"
+msgstr "Explorez viaeduc en quelques clics"
+
+msgid "searchTutorial.text1"
+msgstr "Utilisez les filtres du moteur de recherche et trouvez ce que vous cherchez en quelques clics sur l'ensemble du réseau Viaeduc : contacts, groupes, événements, explorez le réseau par disciplines ou niveaux d'enseignements !"
+
+msgid "searchTutorial.title2"
+msgstr "Utilisez les filtres pour preciser vos recherches"
+
+msgid "searchTutorial.text2"
+msgstr "Le moteur de recherche Viaeduc vous propose des filtres à sélectionner, par discipline ou niveau d'enseignement. Sélectionnez les critères qui correspondent à vos attentes, pour des résultats de recherche précis. Enfin, utilisez les onglets pour les trier par type : ressources, groupes, utilisateurs, questions..."
+
+msgid "searchTutorial.title3"
+msgstr "Obtenez des résultats"
+
+msgid "searchTutorial.text3"
+msgstr "Les résultats de vos recherches sont classés par pertinence : les premières réponses affichées sont celles qui réunissent la pluplart de vos critères de recherche."
+
+msgid "inboxTutorial.title1"
+msgstr "Lancez une discussion privée"
+
+msgid "inboxTutorial.text1"
+msgstr "La messagerie vous permet d’échanger avec un ou plusieurs membres du réseau de manière strictement privée."
+
+################################################# CARDS #####################################################
+
+msgid "card.suggest-empty"
+msgstr "Pas de suggestions pour le moment"
+
+msgid "card1.title"
+msgstr "Découvrez votre profil"
+
+msgid "card1.text"
+msgstr "Complétez les informations de votre profil pour entrer en relation avec des professionnels qui vous ressemblent et recevoir les notifications qui vous intéressent."
+
+msgid "card1.button"
+msgstr "Découvrez votre profil"
+
+msgid "card2.title"
+msgstr "Rejoindre des groupes"
+
+msgid "card2.text"
+msgstr "échangez, partagez avec des professionnels réunis autour de vos centres d’intérêts et formez des communautés pour réinventer le travail collaboratif autour de vos métiers."
+
+msgid "card2.button"
+msgstr "Découvrez les groupes"
+
+msgid "card3.title"
+msgstr "Partagez une ressource"
+
+msgid "card3.text"
+msgstr "Créez des contenus variés et publiez des informations, des astuces, des questions que vous souhaitez partager avec les autres professionnels du réseau Viaeduc !"
+
+msgid "card3.button"
+msgstr "Créez un contenu"
+
+msgid "card4.title"
+msgstr "Soyez connecté !"
+
+msgid "card4.text"
+msgstr "Entrez en contact avec les membres de votre réseau qui partagent vos centres d’intérêts, votre vision, votre métier."
+
+msgid "card4.button"
+msgstr "Entrez en relation"
+
+msgid "card5.title"
+msgstr "Faites une recherche"
+
+msgid "card5.text"
+msgstr "Utilisez le moteur de recherche et trouvez facilement les ressources, les groupes, les questions et les utilisateurs en phase avec vos besoins."
+
+msgid "card5.button"
+msgstr "Lancez une recherche"
+
+msgid "card6.title"
+msgstr "Pour bien débuter"
+
+msgid "card6.text"
+msgstr "Personnalisez votre expérience : Complétez votre profil, publiez des contenus, rejoignez des groupes, entrez en relation avec d'autres enseignants."
+
+msgid "card6.button"
+msgstr "Suivez le guide !"
+
+msgid "searchFilter"
+msgstr "Trier les résultats par :"
+
+msgid "card_suggestion.title1"
+msgstr "Viaéduc"
+
+msgid "card_suggestion.title2"
+msgstr "vous suggère"
+
+msgid "card_recommend_title"
+msgstr "Nombre de recommandations"
+
+msgid "group_add_favorite"
+msgstr "Ajouter à mes groupes favoris"
+
+msgid "card_like_title"
+msgstr "Nombre de likes"
+
+msgid "card_comments_title"
+msgstr "Nombre de commentaires"
+
+################################################# BELIN #####################################################
+
+msgid "belin.sso.login.success"
+msgstr "Connexion réussi."
+
+msgid "belin.sso.login.error"
+msgstr "Echec de connextion. Veuillez vous inscrire sur le lien d'inscription dessous."
+
+msgid "belin.sso.register.success"
+msgstr "Réussi d'inscription."
+
+msgid "belin.sso.register.error"
+msgstr "Echec d'inscription."
+
+msgid "infolist.occupation"
+msgstr "Liste des activités professionnelles"
+
+msgid "infolist.instructed_discipline"
+msgstr "Liste des Disciplines"
+
+msgid "infolist.teaching_level"
+msgstr "Liste des niveaux d'enseignements"
+
+msgid "infolist.interest"
+msgstr "Liste des centres d'intérêts"
+
+################################################# MAIL RESPIRE #####################################################
+
+msgid "respire.confirm_disable"
+msgstr "Votre compte est désactivé"
+
+msgid "register.confirm_disable_content"
+msgstr "Vous venez de désactiver votre compte"
+
+msgid "register.spam"
+msgstr ""
+
+#################################invitations##########
+msgid "invitation.cannotasinvited"
+msgstr "You cannot invit as invited user"
+
+msgid "invitation.mail.invalid"
+msgstr "Invalid email"
+
+msgid "invitation.mail.existed"
+msgstr "Nous n'avons pas envoyé votre invitation à l'adresse %email% car cette personne est déjà membre de Viaéduc."
+
+msgid "invitation.mail.plusquedix"
+msgstr "Vous pouvez inviter jusqu'à 10 personnes en même temps."
+
+##########################SIDEBARS TEST############################
+msgid "sidebar.members.see"
+msgstr "%count% membre|%count% membres"
+
+msgid "sidebar.subGroups.see"
+msgstr "%count% sous groupe|%count% sous groupes"
+
+msgid "sidebar.resources.see"
+msgstr "%count% ressource|%count% ressources"
+
+msgid "publish.top.title"
+msgstr "Publier une ressource"
+
+msgid "question.top.title"
+msgstr "Publier une question"
+
+msgid "event.top.title"
+msgstr "Créer un évènement"
+
+##################### PAGE RESSOURCE ##################
+
+msgid "publishPage.documents"
+msgstr "Mes Documents"
+
+### PAGE EXPERIENCES ###
+
+msgid "add.experience"
+msgstr "Ajouter une expérience"
+
+##################### ADVANCED SEARCH ##################
+
+msgid "advancedSearch.searchContent"
+msgstr "Recherchez du contenu avec :"
+
+msgid "advancedSearch.allWords"
+msgstr "Tous les mots suivants :"
+
+msgid "advancedSearch.importantWords"
+msgstr "Saisissez les mots importants"
+
+msgid "advancedSearch.exactExpression"
+msgstr "Cette expression exacte :"
+
+msgid "advancedSearch.expression"
+msgstr "Saisissez l'expression"
+
+msgid "advancedSearch.oneWord"
+msgstr "L'un des mots suivants :"
+
+msgid "advancedSearch.multipleWords"
+msgstr "Saisissez un ou plusieurs mots"
+
+msgid "advancedSearch.noWords"
+msgstr "Aucun des mots suivants :"
+
+msgid "advancedSearch.excludedWords"
+msgstr "Saisissez les mots à exclure"
+
+msgid "advancedSearch.search"
+msgstr "Rechercher"
+
+##################### calendar ##################
+
+msgid "calendar.today"
+msgstr "Aujourd'hui"
+
+msgid "calendar.month"
+msgstr "mois"
+
+msgid "calendar.week"
+msgstr "semaine"
+
+msgid "calendar.day"
+msgstr "jour"
+
+msgid "calendar.more"
+msgstr "autres"
+
+msgid "calendar.from"
+msgstr "du"
+
+msgid "calendar.to"
+msgstr "au"
+
+##################### DASHBOARD ##################
+
+msgid "dashboard.posts_bookmark"
+msgstr "Mes ressources favorites"
+
+msgid "dashboard.blogs_bookmark"
+msgstr "Mes blogs favoris"
+
+msgid "dashboard.groups_bookmark"
+msgstr "Mes groupes favoris"
+
+msgid "dashboard.agenda"
+msgstr "Mon agenda"
+
+msgid "dashboard.suggesting_friendship"
+msgstr "Relations suggérées"
+
+msgid "dashboard.awaiting_frienship"
+msgstr "Mes relations en attente"
+
+msgid "dashboard.my_groups"
+msgstr "Mes groupes"
+
+msgid "dashboard.last_groups"
+msgstr "Derniers groupes créés"
+
+msgid "dashboard.news"
+msgstr "Mes actualités"
+
+msgid "dashboard.drafts"
+msgstr "Mes brouillons"
+
+msgid "dashboard.popular_posts"
+msgstr "Ressources actives"
+
+msgid "dashboard.suggested_posts"
+msgstr "Viaéduc infos"
+
+msgid "dashboard.facebook"
+msgstr "Bibliomaniacs"
+
+msgid "dashboard.posts_bookmark.description"
+msgstr "Ce widget affiche mes ressources favorites"
+
+msgid "dashboard.blogs_bookmark.description"
+msgstr "Ce widget affiche la liste des blogs que vous suivez"
+
+msgid "dashboard.groups_bookmark.description"
+msgstr "Ce widget affiche mes groupes favoris"
+
+msgid "dashboard.agenda.description"
+msgstr "Ce widget affiche vos prochaines évènements"
+
+msgid "dashboard.suggesting_friendship.description"
+msgstr "Ce widget affiche des suggestion de relation"
+
+msgid "dashboard.awaiting_frienship.description"
+msgstr "Ce widget affiche des relations en attente de votre part"
+
+msgid "dashboard.my_groups.description"
+msgstr "Ce widget affiche la liste des groupes auquels vous faites partie"
+
+msgid "dashboard.last_groups.description"
+msgstr "Ce widget affiche les derniers groupes créés"
+
+msgid "dashboard.news.description"
+msgstr "Ce widget affiche vos dernières actualités ViaEduc"
+
+msgid "dashboard.drafts.description"
+msgstr "Ce widget affiche vos derniers brouillons"
+
+msgid "dashboard.popular_posts.description"
+msgstr "Ce widget affiche les dernières ressources populaires"
+
+msgid "dashboard.rss.description"
+msgstr "Ce widget affiche le flux RSS d'un site externe"
+
+msgid "dashboard.facebook.description"
+msgstr "Ce widget affiche un fil d'actualité d'une page facebook"
+
+msgid "dashboard.suggested_posts.description"
+msgstr "Ce widget affiche suggestions et actualités sur la vie de Viaéduc et de sa communauté"
+
+msgid "dashboard.rss.title"
+msgstr "Nouveau flux RSS libre"
+
+msgid "dashboard.facebook.title"
+msgstr "Nouvelle page Facebook"
+
+msgid "dashboard.rss.aide"
+msgstr "Entrez ici le nom et l'url du flux RSS"
+
+msgid "dashboard.facebook.aide"
+msgstr "Entrez ici l'url de votre page Facebook"
+
+msgid "dashboard.rss.name_placeholder"
+msgstr "Nom du flux"
+
+msgid "dashboard.facebook.name_placeholder"
+msgstr "Nom de la page"
+
+msgid "dashboard.rss.url_placeholder"
+msgstr "Url RSS"
+
+msgid "dashboard.facebook.url_placeholder"
+msgstr "Url de la page"
+
+msgid "dashboard.posts_bookmark.empty"
+msgstr "Vous n'avez pas encore ajouté de ressources à vos favoris"
+
+msgid "dashboard.blogs_bookmark.empty"
+msgstr "Vous ne suivez aucun blog"
+
+msgid "dashboard.groups_bookmark.empty"
+msgstr "Vous n'avez pas de groupes favoris"
+
+msgid "dashboard.agenda.empty"
+msgstr "Votre agenda ne contient pas encore d'événement"
+
+msgid "dashboard.suggesting_friendship.empty"
+msgstr "Vous n'avez pas d'amis"
+
+msgid "dashboard.awaiting_frienship.empty"
+msgstr "Vous n'avez pas  de relation en attente"
+
+msgid "dashboard.my_groups.empty"
+msgstr "Vous ne faites pour l'instant partie d'aucun groupe"
+
+msgid "dashboard.last_groups.empty"
+msgstr ""
+
+msgid "dashboard.news.empty"
+msgstr "Vous n'avez pas d'actualités récentes"
+
+msgid "dashboard.drafts.empty"
+msgstr "Vous n'avez pas encore créé de brouillon"
+
+msgid "dashboard.popular_posts.empty"
+msgstr "Vous n'avez encore rien publié"
+
+
+msgid "dashboard.activate"
+msgstr "Activer"
+
+msgid "dashboard.desactivate"
+msgstr "Désactiver"
+
+msgid "dashboard.delete"
+msgstr "Supprimer"
+
+msgid "dashboard.config"
+msgstr "Paramètres"
+
+msgid "dashboard.widget.position"
+msgstr "Position du module :"
+
+msgid "dashboard.position"
+msgstr "Position "
+
+msgid "dashboard.widgets.create"
+msgstr "Création de widgets"
+
+msgid "dashboard.widgets.add"
+msgstr "Ajouter"
+
+msgid "dashboard.widgets.activated"
+msgstr "Widgets activés"
+
+msgid "dashboard.widgets.desactivated"
+msgstr "Widgets désactivés"
+
+msgid "dashboard.blogs_bookmark.link"
+msgstr "Voir tous mes blogs favoris"
+
+msgid "dashboard.groups_bookmark.link"
+msgstr "Voir tous mes groupes favoris"
+
+msgid "dashboard.my_groups.link"
+msgstr "Voir tous mes groupes"
+
+msgid "dashboard.agenda.link"
+msgstr "Voir mon agenda"
+
+msgid "dashboard.posts_bookmark.link"
+msgstr "Voir toutes mes ressources favorites"
+
+msgid "dashboard.drafts.link"
+msgstr "Voir tous mes brouillons"
+
+msgid "dashboard.last_groups.link"
+msgstr "Voir tous les derniers groupes créés"
+
+msgid "dashboard.suggesting_friendship.link"
+msgstr "Voir toutes les suggestions d'amis"
+
+msgid "dashboard.rss.link"
+msgstr "Aller sur le site"
+
+msgid "dashboard.news.link"
+msgstr "Voir mes actualités"
+
+msgid "dashboard.awaiting_frienship.link"
+msgstr "Voir mes relations en attente"
+
+msgid "dashboard.title"
+msgstr "Mon tableau de bord"
+
+msgid "dashboard.title2"
+msgstr "Mon tableau de bord"
+
+msgid "dashboard.settings"
+msgstr "Configurer mes widgets"
+
+msgid "dashboard.settings.back"
+msgstr "Retour"
+
+msgid "dashboard.inactiv"
+msgstr "Le dashboard est désactivé"
+
+msgid "dashboard.suggested_post.link"
+msgstr "Voir toutes les actus"
+
+##################### CHARTE ##################
+
+msgid "charte.viaeduc.title"
+msgstr "Charte de Viaéduc"
+
+msgid "charte.viaeduc.description"
+msgstr "Viaéduc est un réseau social professionnel, destiné aux enseignants et plus généralement aux professionnels de l’éducation. C’est un espace indépendant, opéré par le GIP RPE."
+
+msgid "charte.viaeduc.ambition"
+msgstr "L'ambition de Viaéduc est d’offrir à ses membres un espace de liberté et de développement professionnel pour échanger entre pairs sur les pratiques professionnelles, partager des ressources éducatives, collaborer et co-construire au sein de communautés de travail de nouvelles pratiques et de nouvelles ressources. Viaéduc est un espace professionnel respectueux de l'École dans laquelle il s'inscrit et respectueux de la liberté pédagogique de chacun."
+
+msgid "charte.viaeduc.philosophy"
+msgstr "Viaéduc est un réseau social construit sur le libre engagement, la confiance, l'interaction et la créativité. Chacun est à la fois pair et expert à égalité avec tous les membres de la communauté et participe sous sa propre responsabilité. Chacun est libre d'accepter ou de refuser sollicitations ou interactions avec d'autres membres de Viaéduc. La contribution et l'échange se fondent sur le consentement et le dialogue. Les échanges sur Viaéduc se font en dehors de tout positionnement hiérarchique, statutaire ou partisan."
+
+msgid "charte.viaeduc.accept"
+msgstr "En vous inscrivant sur Viaéduc, vous acceptez, sans restriction ni réserve la présente charte, les conditions générales d’utilisation et la politique de confidentialité."
+
+msgid "charte.users.title"
+msgstr "Engagements des utilisateurs"
+
+msgid "charte.users.description"
+msgstr "En publiant sur Viaéduc, vous vous engagez à être responsable des contenus (textes, images, liens, documents joints, etc.) que vous déposez. Les contributions sont directement publiées sans contrôle préalable."
+
+msgid "charte.users.rules"
+msgstr "En complément des règles de conduite précisées dans les conditions générales d’utilisation, vous vous engagez à :"
+
+msgid "charte.users.rule1"
+msgstr "ne pas publier de contributions contraires aux lois, à l’ordre public ou aux bonnes mœurs ; "
+msgid "charte.users.rule2"
+msgstr "ne pas publier de publicité ou exercer d’activité commerciale ;"
+
+msgid "charte.users.rule3"
+msgstr "respecter les droits d'auteur et de propriété intellectuelle des contenus que vous publiez ou partagez ;"
+
+msgid "charte.users.rule4"
+msgstr "respecter le travail et les opinions de chacun ;"
+
+msgid "charte.users.rule5"
+msgstr "ne pas tenir de propos violents, vulgaires, diffamatoires, ou injurieux ;"
+
+msgid "charte.users.rule6"
+msgstr "respecter les données de profil et contributions des autres utilisateurs ;"
+
+msgid "charte.users.rule7"
+msgstr "utiliser un langage correct et compréhensible."
+
+msgid "charte.users.modos"
+msgstr "Les modérateurs se réservent le droit de retirer toute contribution qu’ils estimeraient déplacée, inappropriée ou contraire à la présente charte, ou susceptible de porter préjudice directement ou non à des tiers. En particulier, les contenus illégaux, qui ne respectent pas les droits d’auteurs et de propriété intellectuelle, qui ne sont pas en relation avec les thèmes de l’éducation ou qui sont contradictoires avec les objectifs de Viaéduc ou la présente charte ne sont pas autorisés."
+
+msgid "charte.engagements.title"
+msgstr "Engagements de Viaéduc"
+
+msgid "charte.engagements.description"
+msgstr "En complément des règles de conduite précisées dans les conditions générales d’utilisation, le GIP RPE, s'engage à :"
+
+msgid "charte.engagements.engagement1"
+msgstr "respecter la confidentialité des données personnelles enregistrées par les utilisateurs ;"
+
+msgid "charte.engagements.engagement2"
+msgstr "garantir que les auteurs de données et ressources déposées pourront les modifier ou supprimer ;"
+
+msgid "charte.engagements.engagement3"
+msgstr "respecter la propriété et les droits d'auteur et de propriété intellectuelle des ressources et contributions créées sur Viaéduc ;"
+
+msgid "charte.engagements.engagement4"
+msgstr "répondre aux demandes d'information, aide et conseils concernant les accès et usages de Viaéduc."
+
+msgid "charte.privacy.title"
+msgstr "Confidentialité"
+
+msgid "charte.privacy.description"
+msgstr "En aucun cas les données déposées (informations de profil, coordonnées, documents, publications, ressources, échanges) ne seront cédées à des tiers ou ne feront l'objet d'une utilisation dans un autre contexte que celui de Viaéduc. Les contributions restent la propriété de leurs auteurs qui seuls peuvent décider comment et avec qui les partager."
+
+##################### Edition avec Etherpad ##################
+msgid "pad.post.inaccessible"
+msgstr "Désolé, cette ressource n'est pas accessible"
+
+msgid "pad.new_content"
+msgstr "Nouveau Contenu"
+
+msgid "pad.access_edition"
+msgstr "Editer le contenu"
+
+msgid "pad.access_edition_closed"
+msgstr "L'édition de cette ressource est terminée"
+
+msgid "pad.access_closed.text"
+msgstr "Cochez cette case si cette ressource est terminée. Vous ne pourrez plus éditer cette ressource avec l’outil d’édition collaborative."
+
+msgid "pad.mail.voir_ressource"
+msgstr "Voir le document"
+
+msgid "pad.mail.resource_create"
+msgstr "<p>%s %s a créé le document <b>%s</b> sur le groupe %s. Ce contenu est collaboratif : vous pouvez participer à son édition.</p>"
+
+msgid "pad.mail.resource_close"
+msgstr "<p>%s %s a clôturé l'édition du document <b>%s</b>.</p>"
+
+msgid "pad.mail.resource_reopen"
+msgstr "<p>%s %s a rouvert le document <b>%s</b> sur le groupe %s pour édition.</p>"
+
+msgid "pad.edition"
+msgstr "Edition"
+
+msgid "pad.create.notification"
+msgstr "a créé la ressource collaborative"
+
+msgid "pad.close.notification"
+msgstr "a fermé l'édition la ressource collaborative"
+
+msgid "pad.reopen.notification"
+msgstr "a réouvert l'édition de la ressource collaborative"
+
+##################### Translations communes ##################
+msgid "common.module.parameters"
+msgstr "Paramètres"
+
+msgid "common.module.position"
+msgstr "Position du module"
+
+msgid "common.annuler"
+msgstr "Annuler"
+
+msgid "common.valider"
+msgstr "Valider"
+
+msgid "common.confirmer"
+msgstr "Confirmer"
+
+msgid "common.titre"
+msgstr "Titre"
+
+msgid "common.mails.footer.mesnotifications"
+msgstr "mes notifications"
+
+msgid "common.mails.footer.gerermail"
+msgstr "Pour gérer les e-mails que nous vous envoyons, rendez-vous dans les "
+
+msgid "common.mails.footer.parametrecompte"
+msgstr "paramètres de votre compte"
+
+msgid "common.mails.footer.legal"
+msgstr "Conformément à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée en 2004, vous bénéficiez d'un droit d'accès et de rectification aux informations qui vous concernent sur"
+
+msgid "common.field.fuseau_horaire"
+msgstr "Fuseau horaire"
+
+msgid "register.field_sex"
+msgstr "Sexe"
+
+msgid "social.user.sex.Madame"
+msgstr "Madame"
+
+msgid "social.user.sex.Monsieur"
+msgstr "Monsieur"

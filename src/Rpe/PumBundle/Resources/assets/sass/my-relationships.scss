@@ -1,0 +1,279 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+@import "componants/_forms";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "componants/_filter";
+
+// ------------
+// Specific CSS
+// ------------
+
+.relation-container {
+    width: 100%;
+}
+
+.relation-box {
+    display: inline-block;
+    vertical-align: top;
+
+    width: 11.20%;
+    margin: 0 1.17% 0 0;
+
+    &:last-child {
+        margin: 0;
+    }
+
+    > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .profil-image,
+    .profil-name,
+    .profil-role {
+        width: 100%;
+    }
+
+    .profil-name {
+        @include fontSize(18);
+        font-family: $UbuntuCondensed;
+        color: $white-font;
+    }
+
+    .profil-role {
+        @include fontSize(14);
+        color: $light-grey-font;
+        line-height: 1em;
+    }
+}
+
+// Starting
+
+.relation-popin {
+    display: none;
+    width: 100%;
+    background: $background-blue-2;
+    margin: 20px 0;
+    overflow: hidden;
+
+    .profil-generated {
+        display: inline-block;
+        vertical-align: top;
+        height: 300px;
+        width: 300px;
+    }
+
+    .initials {
+        @include fontSize(120);
+        line-height: 300px;
+    }
+}
+
+.profil-image,
+.information {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.profil-image {
+    width: 300px;
+    height: 300px;
+}
+
+.information {
+    width: 74%;
+    float: right;
+    padding: 20px;
+}
+
+.information-header {
+    height: 100px;
+
+    color: $white;
+}
+
+.information-title {
+    @include fontSize(24);
+    font-family: $UbuntuCondensed;
+    margin: 0 0 10px 0;
+}
+
+.information-role,
+.information-location {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    @include fontSize(12);
+    font-family: $Verdana;
+    line-height: 1em;
+}
+
+.information-header-left,
+.information-header-right {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+}
+
+.mail {
+    transition: color 0.2s linear;
+    color: $light-blue-1;
+    margin: 0 0 0 5px;
+
+    &:hover {
+        transition: color 0.2s linear;
+        color: $light-blue-2;
+    }
+}
+
+.mail::before,
+.telephone::before {
+    color: $light-grey-2;
+}
+
+.telephone {
+    color: $light-grey-2;
+    margin: 0 0 0 5px;
+}
+
+.information-header-right {
+    text-align: right;
+}
+
+.information-body {
+    color: $light-grey-font;
+    height: 110px;
+}
+
+.information-footer {
+    height: 50px;
+    text-align: right;
+
+    .action-btn {
+        width   : auto;
+    }
+
+    .dual-action-btn {
+        float: none;
+    }
+}
+
+.profil-btn {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 2.5%;
+}
+
+a.close-popin {
+    @include transition(background, 0.2s, linear);
+    display : inline-block;
+    vertical-align : middle;
+    padding : 0px 5px;
+    margin : 0 0 0 5px;
+    color : $white;
+    background : $light-blue-1;
+
+    &:hover {
+        @include transition(background, 0.2s, linear);
+        background : $light-blue-2;
+        text-decoration : none;
+    }
+}
+
+
+// Ending
+
+.filter-link .search {
+    height: 30px;
+}
+
+// Empty //
+
+.empty-relations-wrapper {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    text-align     : center;
+    padding        : 5% 0 0 0;
+
+    .empty-relations-inner-wrapper {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 50%;
+        text-align     : left;
+        color          : $white;
+
+        > ul,
+        > ul li {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 100%;
+        }
+
+        > ul li {
+            margin : 0 0 70px 0;
+
+            .img-wrapper {
+                display        : inline-block;
+                vertical-align : top;
+                width          : 35px;
+                margin         : 0 15px 0 0;
+            }
+        }
+
+        .action-btn {
+            @include fontSize(20);
+            height      : 50px;
+            line-height : 50px;
+            margin      : 0 0 10px 5%;
+            padding     : 0 15px;
+            width       : auto;
+            float       : left;
+            clear       : both;
+
+            &:last-of-type {
+                margin : 0 0 0 5%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1225px) {
+    .information {
+        width : 69%;
+    }
+
+    .profil-btn {
+        height: 50px !important;
+    }
+}
+@media screen and (min-width: 900px) and (max-width: 1220px){
+    .information {
+        width : 65%;
+    }
+}
+@media screen and (max-width: $portrait-screen) {
+    .profil-btn {
+        height: 50px !important;
+    }
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .profil-btn {
+        height: 50px !important;
+    }
+}

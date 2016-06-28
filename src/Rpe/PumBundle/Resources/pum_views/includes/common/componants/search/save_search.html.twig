@@ -1,0 +1,16 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+	<div class="modal-header">
+	</div>
+	<div class="modal-body">
+        {% if new == true %}
+            <p>{{ ("search.save_search.new"|trans({'%search%': '<b>' ~ search.keyword ~ '</b>'}, 'rpe'))|raw }}</p>
+        {% else %}
+            <p>{{ ("search.save_search.exist"|trans({'%search%': '<b>' ~ search.keyword ~ '</b>'}, 'rpe'))|raw }}</p>
+        {% endif %}
+	</div>
+	<div class="modal-footer">
+	   <button type="button" class="btn btn-default js-loadmore" data-dismiss="modal" data-refresh="#posts-headline">Ok</button>
+	</div>
+{% endblock main_content %}

@@ -1,0 +1,36 @@
+//    ______  ____            __        ____
+//   / ____ \/ __/___  ____  / /_      / __/___ _________
+//  / / __ `/ /_/ __ \/ __ \/ __/_____/ /_/ __ `/ ___/ _ \
+// / / /_/ / __/ /_/ / / / / /_/_____/ __/ /_/ / /__/  __/
+// \ \__,_/_/  \____/_/ /_/\__/     /_/  \__,_/\___/\___/
+//  \____/
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+
+// Mission Script
+@font-face {
+    font-family: 'MissionScriptRegular';
+    src: url('../fonts/mission-script.eot');
+    src: url('../fonts/mission-script.eot') format('embedded-opentype'),
+         url('../fonts/mission-script.woff') format('woff'),
+         url('../fonts/mission-script.ttf') format('truetype'),
+         url('../fonts/mission-script.svg#MissionScriptRegular') format('svg');
+}
+
+    #logo a{
+        color: $white-font;
+        text-decoration: none;
+        text-transform: none;
+        font: 1.7em $MissionScript ;
+    }
+
+    .sub-menu {
+        .sub-left h3 { }
+        .sub-right { width: $sub-right; }
+    }
+
+
+.menu-subtitle {
+    @extend .menu-title;
+    font-size: 1.1em;
+}

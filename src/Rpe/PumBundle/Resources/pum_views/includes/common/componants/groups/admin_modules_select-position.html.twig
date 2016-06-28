@@ -1,0 +1,12 @@
+<select class="module-position" name="module-position" data-href="{{ path('group_module_position', {'group_id': group.id, 'module': groupModule}) }}">
+    {% set moduleSlotIn = group.getModuleSlotIn(groupModule) %}
+
+    {% for index in 1..7 %}
+        {% set moduleInSlotIndex = group.getModuleInSlot(index) %}
+
+        <option value="{{ index }}" {% if moduleInSlotIndex %}disabled="disabled"{% endif %} {% if moduleSlotIn == index %}selected="selected"{% endif %} data-module="{{ moduleInSlotIndex }}">
+            {{ 'groupPage.module.position'|trans({}, 'rpe') }} {{ index }} : {% if moduleInSlotIndex %}{{ ('groupPage.module.' ~ moduleInSlotIndex)|trans({}, 'rpe') }}{% else %}{{ 'groupPage.module.aucun'|trans({}, 'rpe') }}{% endif %}
+        </option>
+    {% endfor %}
+</select>
+

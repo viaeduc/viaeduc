@@ -1,0 +1,249 @@
+/* function to convert px to rem */
+/* line 8, ../../assets/sass/layout/_sidebar.scss */
+.sidebar { width: 32.96%; display: inline-block; vertical-align: top; margin: 0 2.4% 0 0; }
+/* line 14, ../../assets/sass/layout/_sidebar.scss */
+.sidebar.sidebar-right { margin: 0 0 0 2.4%; }
+
+/* jquery.Jcrop.css v0.9.12 - MIT License */
+/* The outer-most container in a typical Jcrop instance If you are having difficulty with formatting related to styles on a parent element, place any fixes here or in a like selector
+ You can also style this element if you want to add a border, etc A better method for styling can be seen below with .jcrop-light (Add a class to the holder and style elements for that extended class)
+*/
+/* line 11, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-holder { direction: ltr; text-align: left; margin: 0 auto 20px auto; width: 300px; }
+
+/* Selection Border */
+/* line 20, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline, .jcrop-hline { background: white url("images/Jcrop.gif"); font-size: 0; position: absolute; }
+
+/* line 25, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline { height: 100%; width: 1px !important; }
+
+/* line 29, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-vline.right { right: 0; }
+
+/* line 32, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-hline { height: 1px !important; width: 100%; }
+
+/* line 36, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-hline.bottom { bottom: 0; }
+
+/* Invisible click targets */
+/* line 40, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-tracker { height: 100%; width: 100%; /* "turn off" link highlight */ -webkit-tap-highlight-color: transparent; /* disable callout, image save panel */ -webkit-touch-callout: none; /* disable cut copy paste */ -webkit-user-select: none; }
+
+/* Selection Handles */
+/* line 51, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle { background-color: #333333; border: 1px #eeeeee solid; width: 7px; height: 7px; font-size: 1px; }
+
+/* line 58, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-n { left: 50%; margin-left: -4px; margin-top: -4px; top: 0; }
+
+/* line 64, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-s { bottom: 0; left: 50%; margin-bottom: -4px; margin-left: -4px; }
+
+/* line 70, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-e { margin-right: -4px; margin-top: -4px; right: 0; top: 50%; }
+
+/* line 76, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-w { left: 0; margin-left: -4px; margin-top: -4px; top: 50%; }
+
+/* line 82, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-nw { left: 0; margin-left: -4px; margin-top: -4px; top: 0; }
+
+/* line 88, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-ne { margin-right: -4px; margin-top: -4px; right: 0; top: 0; }
+
+/* line 94, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-se { bottom: 0; margin-bottom: -4px; margin-right: -4px; right: 0; }
+
+/* line 100, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-handle.ord-sw { bottom: 0; left: 0; margin-bottom: -4px; margin-left: -4px; }
+
+/* Dragbars */
+/* line 108, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-n, .jcrop-dragbar.ord-s { height: 7px; width: 100%; }
+
+/* line 113, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-e, .jcrop-dragbar.ord-w { height: 100%; width: 7px; }
+
+/* line 117, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-n { margin-top: -4px; }
+
+/* line 120, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-s { bottom: 0; margin-bottom: -4px; }
+
+/* line 124, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-e { margin-right: -4px; right: 0; }
+
+/* line 128, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dragbar.ord-w { margin-left: -4px; }
+
+/* The "jcrop-light" class/extension */
+/* line 133, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-light .jcrop-vline, .jcrop-light .jcrop-hline { background: #ffffff; filter: alpha(opacity=70) !important; opacity: 0.7 !important; }
+
+/* line 138, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-light .jcrop-handle { -moz-border-radius: 3px; -webkit-border-radius: 3px; background-color: #000000; border-color: #ffffff; border-radius: 3px; }
+
+/* The "jcrop-dark" class/extension */
+/* line 147, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dark .jcrop-vline, .jcrop-dark .jcrop-hline { background: #000000; filter: alpha(opacity=70) !important; opacity: 0.7 !important; }
+
+/* line 152, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-dark .jcrop-handle { -moz-border-radius: 3px; -webkit-border-radius: 3px; background-color: #ffffff; border-color: #000000; border-radius: 3px; }
+
+/* Simple macro to turn off the antlines */
+/* line 161, ../../assets/sass/vendors/_jcrop.scss */
+.solid-line .jcrop-vline, .solid-line .jcrop-hline { background: #ffffff; }
+
+/* Fix for twitter bootstrap et al. */
+/* line 166, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-holder img, img.jcrop-preview { max-width: none; }
+
+/* line 169, ../../assets/sass/vendors/_jcrop.scss */
+.jcrop-keymgr { opacity: 0; }
+
+/* line 173, ../../assets/sass/vendors/_jcrop.scss */
+.modal-content { border-radius: 0px; }
+
+/* line 177, ../../assets/sass/vendors/_jcrop.scss */
+.modal-header { padding: 20px 20px 10px 20px; }
+
+/* line 181, ../../assets/sass/vendors/_jcrop.scss */
+.modal-body { padding: 10px 20px; }
+
+/* line 185, ../../assets/sass/vendors/_jcrop.scss */
+.modal-title { font-size: 30px; font-size: 1.875rem; font-family: "MissionScriptRegular", Arial, sans-serif; text-transform: none; }
+
+/* line 191, ../../assets/sass/vendors/_jcrop.scss */
+.modal-inner-wrapper { padding: 20px; background: #d7d7d7; border: 1px solid #9a9a9a; color: #313335; text-align: center; }
+
+/* line 199, ../../assets/sass/vendors/_jcrop.scss */
+.inner-description { margin: 0 0 20px 0; }
+
+/* line 203, ../../assets/sass/vendors/_jcrop.scss */
+.image-crop { margin: 0 auto 20px auto; }
+
+/* line 207, ../../assets/sass/vendors/_jcrop.scss */
+.fileupload .thumbnail { background-color: transparent; border: 0px solid transparent; border-radius: 0px; padding: 0px; margin: 0px; width: 100%; }
+
+/* line 216, ../../assets/sass/vendors/_jcrop.scss */
+.thumbnail > img { max-width: 300px; }
+
+/* line 220, ../../assets/sass/vendors/_jcrop.scss */
+.btn-file { display: inline-block; float: none; width: 300px; color: white; border-radius: 0; border: 0px solid transparent; }
+/* line 228, ../../assets/sass/vendors/_jcrop.scss */
+.btn-file:hover { color: white; }
+
+/* line 5, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb { margin-top: 15px; margin-bottom: 15px; }
+/* line 8, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb ul { margin: 0; padding: 0; }
+/* line 12, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: middle; line-height: 15px; margin: 0 1% 0 0; color: #293547; font-family: Verdana, Arial, sans-serif; position: relative; padding-left: 15px; }
+/* line 22, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li .icon-home { color: #293547; font-size: 22px; font-size: 1.375rem; }
+/* line 26, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.home { margin-right: 0; padding-left: 0; }
+/* line 30, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li:first-child a { padding-left: 0; }
+/* line 33, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li a, #breadcrumb li span { width: auto; color: #293547; font-size: 12px; font-size: 0.75rem; font-family: Verdana, Arial, sans-serif; position: relative; }
+/* line 41, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.item-index:before { position: absolute; left: 0; display: block; content: '>'; text-align: center; top: 0; line-height: 15px; font-size: 12px; font-size: 0.75rem; }
+
+/* line 6, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list { display: inline-block; width: 100%; font-family: Verdana, Arial, sans-serif; }
+/* line 11, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list .swiper-container { width: 100%; height: 500px; overflow-y: auto; position: relative; }
+/* line 17, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list .swiper-scrollbar { width: 8px; }
+/* line 21, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul { margin: 0; }
+/* line 24, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul > li { background: #efefef; position: relative; margin: 0 0 2px 0; padding: 4% 8%; cursor: pointer; height: 100px; font-size: 0px; font-size: 0rem; }
+/* line 33, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul > li.not-read { background: #fcf2ec; }
+/* line 36, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul > li.not-read .not-read-label { font-family: "Ubuntu Condensed", Arial, sans-serif; font-size: 12px; font-size: 0.75rem; background: #ff7f00; color: white; position: absolute; top: 13%; right: 0; display: inline-block; text-transform: uppercase; padding: 0 3px; }
+/* line 49, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul > li:hover { background: #e2e2e2; }
+/* line 52, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul > li.not-read:hover { background: #ebe2dc; }
+/* line 55, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul > li.answered:before { font-family: "icomoon"; content: '\e60b'; font-size: 12px; font-size: 0.75rem; z-index: 10; position: absolute; top: 50%; margin-top: -2%; left: 3%; }
+/* line 66, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul > li .messages-list-details { display: inline-block; vertical-align: top; width: 80%; padding: 0 0 0 3%; color: #293547; font-size: 12px; font-size: 0.75rem; line-height: 1.1em; }
+/* line 75, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul > li .messages-list-details .name { display: inline-block; color: #293547; margin: 0 0 1% 0; font-weight: bold; }
+/* line 81, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul > li .messages-list-details .date { color: #313335; font-size: 11px; font-size: 0.6875rem; margin: 0 0 3% 0; display: block; }
+/* line 87, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list ul > li .messages-list-details .text { display: block; color: #313335; font-size: 11px; font-size: 0.6875rem; }
+/* line 95, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list .more-messages { display: inline-block; background: #e2e2e2; text-align: center; cursor: pointer; font-size: 20px; font-size: 1.25rem; line-height: 35px; height: 35px; width: 100%; color: #293547; }
+/* line 106, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list .more-messages:hover { background: #fcf2ec; color: #293547; text-decoration: none; }
+/* line 118, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list.opaque { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50); opacity: 0.5; }
+/* line 120, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list.opaque .swiper-scrollbar { display: none; }
+/* line 123, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list.opaque ul > li { cursor: default; }
+/* line 126, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list.opaque ul > li:hover { background: #efefef; }
+/* line 129, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list.opaque ul > li.not-read:hover { background: #fcf2ec; }
+/* line 133, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list.opaque .more-messages { cursor: default; }
+/* line 135, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list.opaque .more-messages:hover { background: #e2e2e2; }
+/* line 141, ../../assets/sass/componants/_side-messages-list.scss */
+.messages-list .no-messages-list { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: middle; width: 100%; height: 100%; line-height: 74px; color: #7a7b7d; font-style: italic; text-align: center; }
+
+/* line 154, ../../assets/sass/componants/_side-messages-list.scss */
+.stack-images { display: inline-block; vertical-align: top; height: 64px; width: 64px; position: relative; }
+/* line 162, ../../assets/sass/componants/_side-messages-list.scss */
+.stack-images > img { height: 64px; width: 64px; border: 3px solid white; -webkit-box-shadow: 0 -2px 10px 0 rgba(50, 50, 50, 0.3); }
+/* line 170, ../../assets/sass/componants/_side-messages-list.scss */
+.stack-images.stacked:before { content: ''; display: block; height: 64px; width: 64px; position: absolute; z-index: 1; background: blue; top: -3px; left: -3px; border: 3px solid white; -webkit-box-shadow: 0 -2px 10px 0 rgba(50, 50, 50, 0.3); }
+/* line 186, ../../assets/sass/componants/_side-messages-list.scss */
+.stack-images.stacked:after { content: ''; display: block; height: 64px; width: 64px; position: absolute; z-index: 2; background: red; top: 0px; left: 0px; border: 3px solid white; -webkit-box-shadow: 0 -2px 10px 0 rgba(50, 50, 50, 0.3); }
+/* line 202, ../../assets/sass/componants/_side-messages-list.scss */
+.stack-images.stacked > img { position: absolute; height: 64px; width: 64px; z-index: 3; top: 3px; left: 3px; border: 3px solid white; -webkit-box-shadow: 0 -2px 10px 0 rgba(50, 50, 50, 0.3); }
+
+/* line 32, ../../assets/sass/my-new-message.scss */
+.content.full { margin: 0 0 20px 0; }
+
+/* line 37, ../../assets/sass/my-new-message.scss */
+.intro { margin: 0 0 10px; font-size: 0px; font-size: 0rem; }
+/* line 41, ../../assets/sass/my-new-message.scss */
+.intro .intro-left { display: inline-block; width: 70%; vertical-align: top; }
+/* line 46, ../../assets/sass/my-new-message.scss */
+.intro .intro-right { display: inline-block; width: 30%; text-align: right; vertical-align: top; }
+/* line 52, ../../assets/sass/my-new-message.scss */
+.intro h2 { font-family: "Ubuntu Condensed", Arial, sans-serif; font-size: 27px; font-size: 1.6875rem; color: #293547; margin: 0 0 20px 0; display: inline-block; line-height: 0.7; }
+/* line 60, ../../assets/sass/my-new-message.scss */
+.intro .action-btn { margin: 0; padding: 9px 9px; width: auto; height: 32px; font-size: 14px; font-size: 0.875rem; }
+
+/* line 71, ../../assets/sass/my-new-message.scss */
+.new-message-container ul { margin: 0; background: #d7d7d7; border: 1px solid #9a9a9a; padding: 20px; color: #313335; }
+/* line 78, ../../assets/sass/my-new-message.scss */
+.new-message-container ul > li { font-size: 0px; font-size: 0rem; margin: 0 0 10px 0; }
+/* line 82, ../../assets/sass/my-new-message.scss */
+.new-message-container ul > li:last-of-type { margin: 0 0 0 0; text-align: right; }
+/* line 86, ../../assets/sass/my-new-message.scss */
+.new-message-container ul > li .form-left { display: inline-block; vertical-align: middle; width: 30%; font-size: 14px; font-size: 0.875rem; text-align: left; }
+/* line 93, ../../assets/sass/my-new-message.scss */
+.new-message-container ul > li .form-right { display: inline-block; vertical-align: middle; width: 70%; }
+/* line 99, ../../assets/sass/my-new-message.scss */
+.new-message-container ul > li.textarea .form-left, .new-message-container ul > li.textarea .form-right { vertical-align: top; }
+/* line 102, ../../assets/sass/my-new-message.scss */
+.new-message-container ul > li .action-btn { margin: 0; padding: 10px 20px; width: auto; }
+/* line 107, ../../assets/sass/my-new-message.scss */
+.new-message-container ul > li input[type="text"] { background: white !important; }
+
+@media screen and (max-width: 1024px) { /* line 117, ../../assets/sass/my-new-message.scss */
+  .intro .intro-left { width: 50%; }
+  /* line 120, ../../assets/sass/my-new-message.scss */
+  .intro .intro-right { width: 50%; } }

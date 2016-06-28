@@ -1,0 +1,25 @@
+# Global
+/bin/
+/vendor/*
+/composer.phar
+/composer.lock
+/src/Pum/Bundle/AppBundle/Resources/public/vendor
+
+# App
+**/bootstrap.php.cache
+bootstrap.php.cache
+app/cache/**
+app/logs/**
+**/parameters.yml
+
+# Web
+web/bundles
+web/css
+web/js
+web/medias
+
+# Sass
+*.sass-cache*
+*compass_app_log.txt
+*.ignore
+*.php~

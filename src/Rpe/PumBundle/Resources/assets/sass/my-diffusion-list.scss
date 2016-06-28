@@ -1,0 +1,338 @@
+$msg-list-grey-1             : #efefef;
+$msg-list-grey-2             : #e2e2e2;
+$msg-list-grey-3             : #fcf2ec;
+$msg-list-grey-4             : #ebe2dc;
+
+
+//------------------------------------------------------------------------------------
+
+
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "layout/_sidebar";
+@import "vendors/_jcrop";
+@import "componants/_breadcrumbs";
+@import "componants/_tip-box-diffusion-list";
+
+
+// ------------
+// Specific CSS
+// ------------
+
+.content.full{
+    margin: 0 0 20px 0;
+}
+
+
+.intro{
+    margin:0 0 10px;
+    @include fontSize(0);
+    
+    .intro-left{
+        display: inline-block;
+        width: 70%;
+        vertical-align: top;
+    }
+    .intro-right{
+        display: inline-block;
+        width: 30%;
+        text-align: right;
+        vertical-align: top;
+    }
+    h2{
+        font-family: $UbuntuCondensed;
+        @include fontSize(27);
+        color: $dark-blue-font;
+        margin: 0 0 20px 0;
+        display: inline-block;
+        line-height: 0.7;
+    }
+    .action-btn{
+        margin: 0;
+        padding: 9px 9px;
+        width: auto;
+        height: 32px;
+        @include fontSize(14);
+    }
+}
+
+
+.diffusion-list{
+    ul{
+        margin: 0;
+    }
+    ul > li {
+        border: 1px solid $light-grey-2;
+        margin: 0 0 10px 0;
+        padding: 20px;
+        @include fontSize(0);
+        
+        > div{
+            display: inline-block;
+            vertical-align: middle;
+            @include fontSize(12);
+            font-family: $Verdana;
+        }
+        
+        
+        .list-left{
+            width: 43%;
+            padding: 0 5% 0 0;
+            
+            
+            
+            span{
+                display: block;
+                color: $dark-grey-font;
+                
+                + span{
+                    color: $dark-grey-font;
+                }
+            }
+
+        }
+        .list-middle{
+            width: 43%;
+            padding: 0 5% 0 0;
+
+            div{
+                @include fontSize(0);
+                
+                
+                img{
+                    display: inline-block;
+                    width: 15%;
+                    padding: 0 2px 0 0;
+                } 
+            }
+            a{
+                color: $dark-grey-font;
+            }
+            
+        }
+        .list-right{
+            width: 14%;
+            text-align: right;
+            
+            
+            .square-btn {
+                margin: 0;
+            }
+        } 
+    }
+}
+
+
+
+.modal {
+    margin: 0 auto;
+    
+    .modal-dialog {
+        width: 950px;
+    }
+    .modal-content {
+        border-radius: 0px;
+    }
+    
+    .modal-title {
+        @include fontSize(30);
+        font-family: $MissionScript;
+    }
+    
+    .close-submenu{
+        font-family: $UbuntuCondensed;
+        
+        &:after {
+            right: -5px;
+        } 
+    }
+    
+    .modal-body {
+        font-family: $Verdana;
+        color: $dark-grey-font;
+        @include fontSize(0);
+        padding: 0 15px;
+        
+        .modal-list-left{
+            vertical-align: top;
+            display: inline-block;
+            width: 60%;
+            margin:0 5% 0 0;
+            @include fontSize(12);
+            border: 1px solid $light-grey-2;
+            position: relative;
+            
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 49%;
+                right: -36px;
+                width: 23px;
+                height: 22px;
+                background: url("../images/pictos/double_arrow.png");
+                background-position: left center;
+                background-repeat: no-repeat;
+            }
+        }
+
+        .modal-list-right{
+            vertical-align: top;
+            display: inline-block;
+            width: 35%;
+            @include fontSize(12);
+            border: 1px solid $light-grey-2;
+        }
+        //intro
+        .modal-list-intro{
+            padding: 10px;
+            background: $msg-list-grey-3;
+            @include fontSize(0);
+            
+            .form-left{
+                vertical-align: middle;
+                display: inline-block;
+                @include fontSize(12);
+                width: 60%;
+            }
+            .form-right{
+                vertical-align: middle;
+                display: inline-block;
+                @include fontSize(12);
+                width: 40%;
+            }
+            input[type="text"]{
+               background: $white !important;
+            }
+            .twitter-typeahead {
+                display: block !important;
+            }
+        }
+        
+        //swippers content
+        .swiper-container{
+            width: 100%;
+            height: 270px;
+            overflow: hidden;
+            position: relative;
+        }
+        .swiper-scrollbar {
+            width: 8px;
+        }
+        
+        ul{
+            margin: 0;
+        }
+        ul > li {
+            background: $msg-list-grey-1;
+            position: relative;
+            padding: 8px;
+            height: 90px;
+            @include fontSize(0);
+            
+            &:hover{
+                background: $msg-list-grey-3;
+            }
+            
+            img {
+                display: inline-block;
+                height: auto;
+                width: 25%;
+            }
+            .messages-list-details {
+                display: inline-block;
+                vertical-align: top;
+                position: relative;
+                width: 75%;
+                height: 100%;
+                padding: 0 0 0 3%;
+                color: $dark-blue-font;
+                @include fontSize(12);
+                line-height: 1.1em;
+
+                a {
+                    display: inline-block;
+                    color: $dark-blue-font;
+                    margin: 0 0 1% 0;
+                    font-weight: bold;
+                }
+                .fonction {
+                    color: $dark-grey-font;
+                    @include fontSize(11);
+                    margin: 0 0 3% 0;
+                    display: block;
+                }
+                .delete,.add{
+                    position: absolute;
+                    left: 3%;
+                    bottom: 0;
+                }
+            }
+        }  
+        //specific
+        .modal-list-left{
+            ul{
+                @include fontSize(0);
+            }
+            ul > li {
+                display: inline-block;
+                width: 50%;
+                
+                img{
+                    width: 29%;
+                }
+                .messages-list-details {
+                    width: 71%;
+                }
+            }
+        }
+        
+        .modal-list-right{
+            .modal-list-intro{
+                .form-left{
+                    width: 50%;
+                }
+                .form-right{
+                    width: 50%;
+                }
+            }
+        }
+    }
+    .modal-footer {
+        border: 0;
+        padding: 0 15px 15px 15px;
+        @include fontSize(0);
+        
+        .modal-footer-left,.modal-footer-right{
+            display: inline-block;
+            width: 50%;
+        }
+        .modal-footer-left{
+            text-align:left;
+        }
+        .action-btn{
+            margin: 0;
+            padding: 10px 20px;
+            width: auto;
+        }
+        
+    }
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .modal {
+        .modal-dialog {
+            width: 760px;
+        }
+    }
+}

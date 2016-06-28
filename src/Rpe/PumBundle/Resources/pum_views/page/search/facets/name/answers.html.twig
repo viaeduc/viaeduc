@@ -1,0 +1,9 @@
+{% if facet is defined %}
+    {% for row in facet.rows %}
+        {% include "pum://page/search/facets/name/type/range.html.twig" with 
+            {
+                'row' : row
+            }
+        %}
+    {% endfor %}
+{% endif %}

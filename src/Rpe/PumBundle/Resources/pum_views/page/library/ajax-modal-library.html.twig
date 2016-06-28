@@ -1,0 +1,15 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% set page_title = 'Ma Médiathèque' %}
+{% set page_name_analytics = 'library/ajax/view' %}
+{# {% set nav_section = 'ressources-menu' %} #}
+
+{% set standalone = app.request.get('standalone', true) %}
+{% set ckeditor = app.request.get('ckeditor', true) %}
+{% set modal = app.request.get('modal', false) %}
+
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% block main_content %}{% spaceless %}
+    {% include 'pum://includes/common/componants/modals/modal-library.html.twig' with {'standalone': standalone, 'ckeditor': ckeditor, 'modal': modal} %}
+{% endspaceless %}{% endblock %}

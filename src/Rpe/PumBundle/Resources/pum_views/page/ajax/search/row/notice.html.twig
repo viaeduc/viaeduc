@@ -1,0 +1,33 @@
+{% if row is defined and row is not null %}
+    <li data-score="{{ row.score }}" data-stars="{{ row.score|elasticScore }}">
+        {% if row.get('picture') is not null %}
+            <a href="{{ path('notice', {id: row.id}) }}" class="search-content-image">
+                <img src="{{ row.get('picture') }}">
+            </a>
+        {% endif %}
+        <div class="search-results-content">
+            <div class="search-content-top noborder user-result">
+                <span class="search-date">{{ 'search.notice.create_date'|trans({}, 'rpe') }}{{ row.get('date')|strToDate }}</span>
+{#                 {% if row.get('source') == 'noticia' %}#}
+                <a href="{{ path('notice', {id: row.id}) }}" class="search-title" target="_self">{{ row.getHightlight('title')|striptags('<em>')|raw }}</a>
+                {% if row.get('commercial_catches') %}
+                    <div>
+                        {{ row.get('commercial_catches')|striptags('<em>')|raw|nl2br }}
+                    </div>
+                {% elseif row.get('description') %}
+                    <div>
+                        {{ row.get('description')|striptags('<em>')|raw|nl2br }}
+                    </div>
+                {% endif %}
+                {% if row.get('notice_category') %}
+                    <span>{{ row.get('notice_category')|raw|nl2br }}</span>
+                {% endif %}
+                {% if row.get('disciplines') %}
+                    <span>
+                        {{ macros.show_array_as_string(row.get('disciplines'), ' - ') }}
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    </li>
+{% endif %}

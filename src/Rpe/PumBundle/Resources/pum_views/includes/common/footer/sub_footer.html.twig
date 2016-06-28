@@ -1,0 +1,29 @@
+{# REMOVE "wide" class on footer-suggestion when Applications is ready #}
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{# {% if suggested_groups|length > 0 and suggested_relations|length > 0 %} #}
+{% spaceless %}
+<div class="sub-footer-wrapper">
+    <div class="footer-suggestion connaisance">
+        <a href="{{ path('relations', {'mode': 'suggested'}) }}">
+            <span class="round-icon small white"><img src="{{ asset('bundles/rpepum/images/user_gray.png') }}" alt="" /></span>{{ "subFooter.know"|trans({}, 'rpe') }}
+        </a>
+    </div>
+    {% if user.isInvited == false %}
+        <div class="footer-suggestion groupes">
+            <a href="{{ path('groups', {'mode': 'suggested'}) }}">
+                <span class="round-icon small white"><img src="{{ asset('bundles/rpepum/images/group_gray.png') }}" alt="" /></span>{{ "subFooter.groups_know"|trans({}, 'rpe') }}
+            </a>
+        </div>
+    {% endif %}
+    {% if pum_var('active_editors') %}
+    	<div class="footer-suggestion partners">
+            <a href="{{ path('editors') }}">
+                <span class="round-icon small white"><img src="{{ asset('bundles/rpepum/images/group_partner.png') }}" alt="" /></span>{{ "subFooter.partenaire"|trans({}, 'rpe') }}
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endspaceless %}
+{% endblock main_content %}

@@ -1,0 +1,105 @@
+// -----------------
+// Compass utilities
+// -----------------
+
+@import "compass";
+@import "compass/reset";
+@import "compass/utilities";
+@import "compass/css3";
+
+// -------------------
+// Always import these
+// -------------------
+
+@import "globals/_vars";
+@import "globals/_mixin";
+@import "globals/_colors";
+@import "globals/_animations";
+@import "globals/_font";
+@import "globals/_icomoon";
+@import "globals/_general";
+@import "vendors/_bootstrap";
+@import "vendors/_bootstrap-fileupload";
+@import "vendors/_bootstrap-select";
+@import "vendors/_datetimepicker";
+@import "vendors/_datepicker";
+@import "componants/_buttons";
+@import "layout/_general";
+@import "layout/_header";
+@import "layout/_main_nav";
+@import "layout/_search";
+@import "layout/_search-autocomplete";
+@import "componants/_forms";
+@import "layout/_footer";
+@import "layout/_content";
+
+// On your specific scss page, import what you need below :
+
+// -------------------------------------------
+// External imports, import only what you need
+// -------------------------------------------
+
+// --------------
+// Layout Imports
+// --------------
+
+.charte-page {
+    display        : inline-block;
+    vertical-align : top;
+    padding        : 20px;
+    text-align     : center;
+    width          : 100%;
+
+    .charte-wrapper {
+        display        : inline-block;
+        vertical-align : top;
+        max-width      : 1000px;
+        padding        : 0 100px;
+        text-align     : left;
+    }
+
+
+    .modal-title {
+        @include fontSize(30);
+        display        : inline-block;
+        vertical-align : top;
+        font-family    : $MissionScript;
+        margin         : 0 0 20px 0;
+        max-width      : 100%;
+        text-align     : left;
+    }
+
+    .gray-wrapper {
+        display        : inline-block;
+        vertical-align : top;
+        padding        : 20px;
+        background     : $light-grey-1;
+        border         : 1px solid $light-grey-2;
+        font-family    : $Verdana;
+        max-width      : 100%;
+        text-align     : left;
+
+
+        > h3 {
+            @include fontSize(24);
+
+            &:first-of-type {
+                margin : 0 0 10px 0;
+            }
+        }
+
+        > p,
+        > ul {
+            @include fontSize(12);
+        }
+
+        ul {
+            list-style : disc;
+            padding    : 0 0 0 20px;
+        }
+    }
+}
+
+.small-header {
+    text-align : center;
+}

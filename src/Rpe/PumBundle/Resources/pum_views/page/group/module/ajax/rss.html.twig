@@ -1,0 +1,23 @@
+{% if data == false %}
+	<li class="module-card-data">
+        <div class="module-card-inner-data">
+            <h4 class="module-card-title">
+                <a>{{ "groupPage.module.group-rss.parse-error"|trans({}, 'rpe') }}</a>
+            </h4>
+        </div>
+    </li>
+{% else %}
+	{% for item in data.items %}
+        <li class="module-card-data">
+            {% if item.image is defined %}
+                <a class="module-card-data-image-link" href="{{ item.link }}"><img class="module-card-data-image" src="{{ item.image.url }}"></a>
+            {% endif %}
+            <div class="module-card-inner-data">
+                <h4 class="module-card-title">
+                    <a href="{{ item.link }}">{{ item.title }}</a>
+                </h4>
+                <span class="module-card-text">{{ item.description|truncate(80, true) }}</a></span>
+            </div>
+        </li>
+    {% endfor %}
+{% endif %}

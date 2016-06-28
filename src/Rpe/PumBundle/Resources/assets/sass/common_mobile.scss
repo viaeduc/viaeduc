@@ -1,0 +1,305 @@
+// -----------------
+// Compass utilities
+// -----------------
+
+@import "compass";
+@import "compass/reset";
+@import "compass/utilities";
+@import "compass/css3";
+
+// -------------------
+// Always import these
+// -------------------
+
+@import "globals/_vars";
+@import "globals/_mixin";
+@import "globals/_colors";
+@import "globals/_animations";
+@import "globals/_font";
+// @import "globals/_fontello";
+@import "globals/_icomoon";
+@import "globals/_general";
+@import "vendors/_bootstrap";
+@import "vendors/_bootstrap-fileupload";
+@import "vendors/_bootstrap-select";
+@import "vendors/_datetimepicker";
+// @import "vendors/_datepicker";
+// @import "vendors/_pushmenu";
+@import "componants/_buttons";
+@import "layout/_general";
+@import "layout/_header";
+@import "layout/_main_nav";
+@import "layout/_search";
+@import "componants/_forms";
+@import "layout/_footer";
+@import "layout/_content";
+@import "layout/_mobile_general";
+
+// On your specific scss page, import what you need below :
+
+// -------------------------------------------
+// External imports, import only what you need
+// -------------------------------------------
+
+// @import "vendors/_bootstrap-fileupload";
+// @import "vendors/_bootstrap-select";
+// @import "vendors/_datepicker";
+// @import "vendors/_idangerous.swiper";
+// @import "vendors/_jcrop";
+// @import "vendors/_video-js";
+
+// --------------
+// Layout Imports
+// --------------
+
+
+// @import "layout/_filter";
+// @import "layout/_sidebar";
+
+// ---------------------------------------
+// Componant imports, import what you need
+// ---------------------------------------
+
+// @import "componants/_forms";
+// If you use forms, make sure you import _bootstrap-fileupload, _bootstrap-select & _datepicker
+
+// @import "componants/_cards";
+// @import "componants/_cover";
+// @import "componants/_publications";
+// @import "componants/_content-link-box";
+// @import "componants/_administration-box";
+// @import "componants/_side-box";
+// @import "componants/_side-link-box";
+
+// Forcing font-size tu users
+html {
+    @include fontSize(16);
+}
+
+.mobile-portrait {
+    position   : fixed;
+    display    : table;
+    top        : 0;
+    left       : 0;
+    height     : 100%;
+    width      : 100%;
+    background : $background-blue-1;
+    z-index    : 100000;
+    text-align : center;
+
+    .mobile-center {
+        display        : table-cell;
+        vertical-align : middle;
+    }
+
+    img,
+    h3,
+    .turnaround-logo {
+        display : block;
+        margin  : 0 auto;
+    }
+
+    .turnaround-logo {
+        width  : 135px;
+        height : 44px;
+    }
+
+    .turnaround-title {
+        font-family : $Verdana;
+        font-weight : thin;
+        color       : $white;
+    }
+}
+
+.wrapper {
+    margin: 0 0 48px 0;
+}
+
+footer {
+    bottom: -50px;
+}
+
+// Styles
+
+.bold {
+    font-weight : bold;
+}
+
+//Modal styles
+.modal-backdrop {
+    z-index: -1 !important;
+}
+.modal {
+    top        : 0%;
+    overflow-y : inherit;
+    outline    : none;
+}
+.modal-header {
+    border-bottom : 0 none ;
+}
+.modal-body {
+     padding : 0px  5.1% 5.1% 5.1%;
+
+    .modal-title {
+        @include fontSize(30);
+        margin-bottom : 2%;
+        color         : $dark-blue-font;
+        font-family   : $MissionScript;
+    }
+
+    .modal-content {
+        border-radius : 0 ;
+    }
+
+    .body-gray {
+        padding    : 20px;
+        border     : 1px solid #e7e7e7;
+        background : #f3f3f3;
+
+        .small-label {
+            color : #939393 ;
+        }
+
+        &.scroll-pane{
+            padding : 0;
+        }
+
+        p {
+            @include fontSize(12);
+            margin-bottom : 3.9%;
+            color         : $dark-grey-font;
+            font-family   : $Verdana;
+            line-height   : 1.3em;
+        }
+
+        label{
+            @include fontSize(12);
+        }
+
+        input{
+            margin-left : 0.5%;
+            width       : 78%;
+            height      : 31px;
+
+            &.clear-text{
+                padding-top    : 6px;
+                padding-bottom : 8px;
+            }
+        }
+    }
+    .button-password{
+        margin-top : 3.2%;
+
+        a{
+            padding : 3%;
+            width   : 19%;
+        }
+    }
+}
+
+
+.swiper-scrollbar {
+    position   : absolute;
+    top        : 0;
+    right      : 0;
+    z-index    : 1;
+    width      : 2%;
+    height     : 100%;
+    background : $background-grey-1;
+    cursor     : pointer;
+}
+
+.swiper-scrollbar-drag {
+    position      : relative;
+    width         : 100%;
+    height        : 100%;
+    border-radius : 10px;
+    background    : $background-grey-2;
+    cursor        : pointer;
+}
+
+.small-header {
+    min-height : 80px;
+}
+
+.profil-generated-link {
+    color : $white;
+
+    &:hover {
+        color           : $white;
+        text-decoration : none;
+    }
+
+}
+
+.profil-generated {
+    @include fontSize(58);
+    position    : relative;
+    width       : 120px;
+    height      : 120px;
+    font-family : $UbuntuCondensed;
+    line-height : 120px;
+
+    > a {
+        display : block;
+        width   : 100%;
+        height  : 100%;
+        color   : $white;
+
+        &:hover {
+            color           : $white;
+            text-decoration : none;
+        }
+    }
+
+    .initials {
+        position   : absolute;
+        top        : 0;
+        left       : 0;
+        z-index    : 11;
+        width      : 100%;
+        height     : 100%;
+        text-align : center;
+    }
+
+    .generated-image {
+        position : absolute;
+        top      : 0;
+        left     : 0;
+        z-index  : 10;
+        width    : 100%;
+        height   : 100%;
+    }
+}
+
+.logo-home {
+    margin: 0 12px;
+}
+
+.not-available {
+    position : relative;
+    opacity  : 0.4;
+    cursor   : pointer;
+
+    &:before {
+        @include fontSize(12);
+        position         : absolute;
+        top              : -40px;
+        left             : 50%;
+        display          : none;
+        margin-left      : -90px;
+        padding          : 10px;
+        width            : 180px;
+        background-color : rgba(0,0,0,0.8);
+        color            : $white;
+        content          : "Bientôt disponible";
+        font-family      : $Verdana;
+        line-height      : 1em;
+    }
+
+    &:hover {
+        &:before{
+            display : block;
+        }
+    }
+}

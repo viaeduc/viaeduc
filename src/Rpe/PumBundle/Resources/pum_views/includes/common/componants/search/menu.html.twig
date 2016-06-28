@@ -1,0 +1,93 @@
+{% for key, value in app.request.query.all %}
+    {% if app.request.query.get(key) == '' %}
+        {{ app.request.query.set(key, null) }}
+    {% endif %}
+{% endfor %}
+
+{% set _queries = {
+    q: app.request.query.get('q'),
+    q_all: app.request.query.get('q_all'),
+    q_expr: app.request.query.get('q_expr'),
+    q_one: app.request.query.get('q_one'),
+    q_exclude: app.request.query.get('q_exclude')}
+%}
+
+{% set rpe_account_menus = {} %}
+
+ {% if pum_var('active_global_search') %}
+    {% set rpe_account_menus = rpe_account_menus|merge({
+        'global': {
+            'title': 'searchResults.global'|transchoice(post_count, {}, 'rpe'),
+            'href' : path(path_name, _queries|merge({type: 'global'})),
+            'count' : global_count
+        }})
+    %}
+{% endif %}
+
+{% set rpe_account_menus = rpe_account_menus|merge({
+    'post': {
+        'title': 'searchResults.post'|transchoice(post_count, {}, 'rpe'),
+        'href' : path(path_name, _queries|merge({type: 'post'})),
+        'count' : post_count
+    },
+    'group': {
+        'title': 'searchResults.group'|transchoice(group_count, {}, 'rpe'),
+        'href' : path(path_name, _queries|merge({type: 'group'})),
+        'count' : group_count
+    },
+    'user': {
+        'title': 'searchResults.user'|transchoice(user_count, {}, 'rpe'),
+        'href' : path(path_name, _queries|merge({type: 'user'})),
+        'count' : user_count
+    },
+    'question': {
+        'title': 'searchResults.question'|transchoice(question_count, {}, 'rpe'),
+        'href' : path(path_name, _queries|merge({type: 'question'})),
+        'count' : question_count
+    }
+}) %}
+
+{% if pum_var('active_belin') %}
+    {% set rpe_account_menus = rpe_account_menus|merge({
+        'belin': {
+            'title': 'searchResults.belin'|transchoice(question_count, {}, 'rpe'),
+            'href' : path('search', _queries|merge({type: 'belin'})),
+            'count' : belin_count
+        }})
+    %}
+{% endif %}
+
+
+{# {% set unsupport = {
+    'pages': {
+        'title': 'searchResults.pages'|transchoice(0, {}, 'rpe'),
+        'href' : path('my_training'),
+        'count' : 0
+    },
+    'apps': {
+        'title': 'searchResults.apps'|transchoice(0, {}, 'rpe'),
+        'href' : path('my_notifications'),
+        'count' : 0
+    },
+    'questions': {
+        'title': 'searchResults.questions'|transchoice(0, {}, 'rpe'),
+        'href' : path('my_invitations'),
+        'count' : 0
+    }
+} %} #}
+
+{# MENU #}
+{% set search_type = search_type|default('post') %}
+
+{% for key, menu in rpe_account_menus %}
+
+    {% if key != search_type %}
+        <li>
+            <a href="{{ menu.href }}" class="change-search-link"><span>{{ menu.count }}</span> {{ menu.title }}</a>
+        </li>
+    {% else %}
+        <li class="active">
+            <a href="#" class="change-search-link"><span>{{ result.total }}</span> {{ menu.title }}</a>
+        </li>
+    {% endif %}
+{% endfor %}

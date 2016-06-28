@@ -1,0 +1,192 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+// @import "globals/_cover";
+// @import "layout/_filter";
+
+@import "layout/_sidebar";
+@import "componants/_breadcrumbs";
+@import "componants/_cover";
+@import "componants/_publications";
+@import "componants/_side-componants";
+@import "componants/_side-componant-authors";
+@import "componants/_side-componant-connections";
+@import "componants/_side-componant-notifications";
+@import "componants/_side-componant-ressources";
+@import "componants/_side-componant-rss";
+@import "componants/_side-componant-vote";
+@import "componants/_side-componant-webpage";
+
+
+// ------------------------
+//  Specific question page
+// ------------------------
+
+.comment-info{
+    width: 80%;
+}
+
+// Cover
+
+.cover {
+    min-height : 300px;
+    height     : auto;
+}
+
+.cover-content {
+    min-height : 300px;
+
+    .cover-left {
+        min-height : inherit;
+    }
+
+    .cover-right {
+        padding     : 20px;
+        min-height  : inherit;
+        border-left : 1px solid #32363c;
+    }
+
+    .post-time {
+        @include fontSize(12);
+        display        : inline-block;
+        width          : 100%;
+        vertical-align : top;
+        color          : $light-grey-font;
+    }
+
+    .image-box {
+        margin : 0 0 10px 0;
+    }
+
+    .question-infos {
+        font-family : $UbuntuCondensed;
+
+        li:first-child {
+            margin-top: 10px;
+        }
+    }
+
+    .question-number {
+        @include fontSize(14);
+        display        : inline-block;
+        vertical-align : top;
+        background     : $white;
+        padding        : 2px 4px;
+        color          : $dark-blue-font;
+        min-width      : 20px;
+        text-align     : center;
+        margin         : 0 5px 5px 0;
+    }
+
+    .inner-question-title,
+    .inner-question-description {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+    }
+
+    .inner-question-title {
+        @include fontSize(26);
+        position       : relative;
+        top            : -0.2em; // Line-height - 1em;
+        font-family    : $UbuntuCondensed;
+        line-height    : 1.2em;
+        margin         : 0 0 10px 0;
+    }
+
+    .inner-question-description {
+        @include fontSize(14);
+        line-height    : 1.6em;
+        font-family    : $Verdana;
+    }
+}
+
+.icon-trophy {
+    position : relative;
+
+    .counter-text {
+        position    : absolute;
+        bottom      : -20px;
+        left        : 50%;
+        margin-left : -17.5px;
+        width       : 35px;
+        color       : $light-grey-font;
+    }
+}
+
+.question-post-comment{
+    padding: 20px 20px 40px 20px;
+    margin-top: -25px;
+}
+
+.edit-button {
+    @include fontSize(11);
+    @include transition(color 0.2s linear);
+    font-family : $Verdana;
+    margin      : 0 5px 0 0;
+    color       : $light-blue-1;
+
+    &:hover {
+        @include transition(color 0.2s linear);
+        color           : $light-blue-2;
+        text-decoration : none;
+    }
+
+    &.delete {
+        margin : 0;
+
+        &:hover {
+            color : $red-1;
+        }
+    }
+}
+
+.question-filter {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    height         : 35px;
+    line-height    : 35px;
+    padding        : 0 0 10px 0;
+    margin         : 0 0 10px 0;
+    text-align     : right;
+
+    .question-filter-select {
+        width      : 100px;
+        text-align : left;
+        border-radius : 0px;
+        -webkit-border-radius : 0px;
+    }
+}
+
+.question-no-answer {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    padding        : 20px;
+    font-style     : italic;
+    text-align     : center;
+}
+
+.question-form .mini-btn {
+    @include transition(all 0.3s linear);
+    padding : 0;
+    height  : 30px;
+    width   : 30px;
+    margin  : 5px 0 0 0;
+
+    &.bigger-btn {
+        @include transition(all 0.3s linear);
+        width   : auto;
+        padding : 0 0.5em 0 0;
+    }
+}

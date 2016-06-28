@@ -1,0 +1,12 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% if page is defined %}
+        <h2 class="faq-main-title"><span class="inner-title">{{ page.title }}</span></h2>
+
+        {% for content in page.contents %}
+            <h4 class="faq-main-inner-title">{{ content.title }}</h4>
+            {{ content.content|raw }}
+        {% endfor %}
+    {% endif %}
+{% endspaceless %}{% endblock %}

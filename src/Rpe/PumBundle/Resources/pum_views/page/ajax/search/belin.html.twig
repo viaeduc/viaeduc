@@ -1,0 +1,73 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+    {% if result is defined %}
+        <div class="search-filter-box search-filter-belin" style="display:none">
+            {% include "pum://page/search/facets/belinfacets.html.twig"  with {'facets': result.facets } %}
+        </div>
+        <div id="belin_count_hidden" style="display:none">{{ result.total }}</div>
+        {% for find in result.results %}
+            {% set class = "" %}
+            {% if find.right == '' or find.right == false %}
+                {% set class = "grey" %}
+            {% endif %}
+            {% if belin_user is not defined or belin_user is null %}
+                {# if belin sso not connected, resource link to login page before see resource #}
+                {% set detail_link = path('lib_login_page', { 'resource': find.DetailPageURL|url_encode }) %}
+            {% else %}
+                {% set detail_link = path('display_content_belin', { 'url': find.DetailPageURL|url_encode }) %}
+
+            {% endif %}
+
+            <li class="{{ class }}">
+            {% if find.right == '' or find.right == false %}
+                <div class="search-content-image">
+                    <a href="{{ detail_link }}" class="search-content-image">
+                        <img src="{{ find.ThumbImageUrl }}" width="{{ find.ThumbImageUrl }}"></img>
+                    </a>
+                </div>
+                <div class="search-results-content belin-results">
+                    <div class="search-content-top noborder belin-content">
+                        <span class="search-date">{{ find.category }}</span>
+                        <span class="search-title"><a href="{{ detail_link }}" class="search-title">{{ find.Title|striptags('<em>')|raw }}<a></a></span>
+                        <div class="belin-data">
+                            {{find.Subtitle}}
+                        </div>
+                        <div class="belin-data">
+                           {{find.Contenu}}
+                        </div>
+                        <div class="belin-data">
+                            {{find.Type}}
+                        </div>
+                        <div class="belin-data extra-info">
+                            Ressource issue d'un manuel Belin pour lequel vous ne disposez pas de licence d'accès
+                        </div>
+                    </div>
+               </div>
+             {% else %}
+                <a href="{{ detail_link }}" class="search-content-image">
+                    <img src="{{ find.ThumbImageUrl }}" width="{{ find.ThumbImageUrl }}"></img>
+                </a>
+                <div class="search-results-content belin-results">
+                    <div class="search-content-top noborder belin-content">
+                        <span class="search-date">{{ find.category }}</span>
+                        <a href="{{ detail_link }}" class="search-title">{{ find.Title|striptags('<em>')|raw }}</a>
+                        <div>
+                            {{find.Subtitle}}
+                        </div>
+                        <div>
+                            {{find.Contenu}}
+                        </div>
+                        <div>
+                            {{find.Type}}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            </li>
+        {% endfor %}
+        {% include "pum://page/ajax/search/load_more.html.twig" %}
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

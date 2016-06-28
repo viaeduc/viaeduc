@@ -1,0 +1,335 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Mes notifications' %}
+{% set page_name_analytics = 'user/edit/notifications' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-account.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-account.js') }}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            Mon compte
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block _rpe_my_notifications_submit_row %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn orange">{{ "Sauvegarder"|trans() }}</button>
+{% endblock %}
+
+{% block _rpe_my_notifications_mail_address_pro_row %}
+    {% if form.vars.data == true %}
+        {% set pro_checked = "checked" %}
+        {% set perso_checked = "" %}
+    {% else %}
+        {% set pro_checked = "" %}
+        {% set perso_checked = "checked" %}
+    {% endif %}
+    
+    {% set disabled = '' %}
+    {% if form.vars.disabled == true %}
+        {% set disabled = 'disabled' %}
+    {% endif %}
+    <h3 class="notif-title">{{ "notificatonPage.title.email"|trans({}, 'rpe') }}</h3>
+    <div class="check-form">
+        <li class="extra-info first">
+            <span class="radio-buttons">
+                {{ "notificatonPage.text0.email"|trans({}, 'rpe') }}
+            </span>
+        </li>
+        <li class="extra-info">
+            <span class="radio-buttons {{ disabled }}">
+                <input name="rpe_my_notifications[mail_address_pro]" type="radio" value="1" id="radio_email_pro_1" {{ pro_checked }} {{ disabled }}/>
+                <label for="radio_email_pro_1">{{ "notificatonPage.text1.email"|trans({}, 'rpe') }}</label>
+            </span>
+        </li>
+        <li class="extra-info">
+            <span class="radio-buttons {{ disabled }}">
+                <input name="rpe_my_notifications[mail_address_pro]" type="radio" value="0" id="radio_email_pro_0" {{ perso_checked }} {{ disabled }}/>
+                <label for="radio_email_pro_0">{{ "notificatonPage.text2.email"|trans({}, 'rpe') }}</label>
+            </span>
+        </li>
+        <p>{{ "notification.reception.infos"|trans({}, 'rpe') }}</p>
+    </div>
+{% endblock %}
+
+{% block main_content %}
+    {% form_theme form _self %}
+
+    {% spaceless %}
+    <div class="form-inner-wrapper">
+        <div class="container-right box-with-padding">
+            <div class="tabbable tabbable-privacy-settings">
+                <ul class="nav new-tabs">
+                    {% set account_active_menu = 'personaalert_paramsl_data' %}
+                    {% include 'pum://includes/common/componants/account/menu.html.twig' %}
+                </ul>
+                <div class="tab-content settings">
+                    <div class="tab-pane active" id="portlet_tab1">
+                        {{ form_errors(form) }}
+                        {{ form_start(form, { attr : { class : 'my_notifications-form-wrapper' }}) }}
+                            <ul class="conf-wrapper">
+                                {# <h3 class="main-notif-title">Vous souhaitez recevoir une notification sur la plateforme</h3> #}
+                                {{ form_row(form.mail_address_pro) }}
+
+                                <h3 class="notif-title">{{ "notificatonPage.title.profil"|trans({}, 'rpe') }}</h3>
+                                <div class="check-form">
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons">
+                                            {{ "notificatonPage.text1.profil"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_mycontent_someone_publish) }}
+                                            {{ form_label(form.mail_mycontent_someone_publish) }}
+                                        </span>
+                                    </li> 
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mycontent_someone_publish) }}
+                                            {{ form_label(form.mycontent_someone_publish) }}
+                                        </span>
+                                    </li>
+                                    {#
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons">
+                                            {{ "notificatonPage.text2.profil"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_mycontent_someone_publish_resource) }}
+                                            {{ form_label(form.mail_mycontent_someone_publish_resource) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mycontent_someone_publish_resource) }}
+                                            {{ form_label(form.mycontent_someone_publish_resource) }}
+                                        </span>
+                                    </li>
+                                    #}
+                                </div>
+                                <h3 class="notif-title">{{ "notificatonPage.title.ressources"|trans({}, 'rpe') }}</h3>
+                                <div class="check-form">
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons">
+                                            {{ "notificatonPage.text1.ressources"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_mycontent_someone_comment_resource) }}
+                                            {{ form_label(form.mail_mycontent_someone_comment_resource) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mycontent_someone_comment_resource) }}
+                                            {{ form_label(form.mycontent_someone_comment_resource) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons">
+                                            {{ "notificatonPage.text2.ressources"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_mycontent_someone_recommend_resource) }}
+                                            {{ form_label(form.mail_mycontent_someone_recommend_resource) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                           {{ form_widget(form.mycontent_someone_recommend_resource) }}
+                                            {{ form_label(form.mycontent_someone_recommend_resource) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons">
+                                            {{ "notificatonPage.text3.ressources"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_mycontent_someone_share_resource) }}
+                                            {{ form_label(form.mail_mycontent_someone_share_resource) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mycontent_someone_share_resource) }}
+                                            {{ form_label(form.mycontent_someone_share_resource) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons first">
+                                            {{ "notificatonPage.text4.ressources"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_mycontent_coredactor_edit_resource) }}
+                                            {{ form_label(form.mail_mycontent_coredactor_edit_resource) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mycontent_coredactor_edit_resource) }}
+                                            {{ form_label(form.mycontent_coredactor_edit_resource) }}
+                                        </span>
+                                    </li>
+                                    <!-- ressources etherpad -->
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons first">
+                                            {{ "notificatonPage.collaborative.ressources"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_collaborative_resource_access) }}
+                                            {{ form_label(form.mail_collaborative_resource_access) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.collaborative_resource_access) }}
+                                            {{ form_label(form.collaborative_resource_access) }}
+                                        </span>
+                                    </li>
+                                </div>
+                                <h3 class="notif-title">{{ "notificatonPage.title.publications"|trans({}, 'rpe') }}</h3>
+                                <div class="check-form">
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons first">
+                                            {{ "notificatonPage.text1.publications"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_mycontent_someone_comment) }}
+                                            {{ form_label(form.mail_mycontent_someone_comment) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mycontent_someone_comment) }}
+                                            {{ form_label(form.mycontent_someone_comment) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons first">
+                                            {{ "notificatonPage.text2.publications"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_mycontent_someone_recommend) }}
+                                            {{ form_label(form.mail_mycontent_someone_recommend) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mycontent_someone_recommend) }}
+                                            {{ form_label(form.mycontent_someone_recommend) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons first">
+                                            {{ "notificatonPage.text3.publications"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_mycontent_someone_share) }}
+                                            {{ form_label(form.mail_mycontent_someone_share) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mycontent_someone_share) }}
+                                            {{ form_label(form.mycontent_someone_share) }}
+                                        </span>
+                                    </li>
+                                </div>
+                                <h3 class="notif-title">{{ "notificatonPage.title.questions"|trans({}, 'rpe') }}</h3>
+                                <div class="check-form">
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons">
+                                            {{ "notificatonPage.text1.questions"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_mycontent_someone_answer) }}
+                                            {{ form_label(form.mail_mycontent_someone_answer) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mycontent_someone_answer) }}
+                                            {{ form_label(form.mycontent_someone_answer) }}
+                                        </span>
+                                    </li>
+                                </div>
+                                <h3 class="notif-title">{{ "notificatonPage.title.groupes"|trans({}, 'rpe') }}</h3>
+                                <div class="check-form">
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons">
+                                            {{ "notificatonPage.text1.groupes"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_group_someone_publish) }}
+                                            {{ form_label(form.mail_group_someone_publish) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.group_someone_publish) }}
+                                            {{ form_label(form.group_someone_publish) }}
+                                        </span>
+                                    </li>
+                                    <!-- second line -->
+                                    <li class="extra-info first">
+                                        <span class="checkbox-buttons">
+                                            {{ "notificatonPage.text2.groupes"|trans({}, 'rpe') }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.mail_group_someone_publish_msg) }}
+                                            {{ form_label(form.mail_group_someone_publish_msg) }}
+                                        </span>
+                                    </li>
+                                    <li class="extra-info">
+                                        <span class="checkbox-buttons">
+                                            {{ form_widget(form.group_someone_publish_msg) }}
+                                            {{ form_label(form.group_someone_publish_msg) }}
+                                        </span>
+                                    </li>
+                                    <!-- third line -->
+                                </div>
+                            </ul>
+
+                            {{ form_row(form.submit) }}
+                            {{ form_row(form._token) }}
+                        {{ form_end(form, {render_rest: false}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endspaceless %}
+{% endblock %}

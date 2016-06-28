@@ -1,0 +1,211 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+    {% spaceless %}
+
+         <!-- SLIDER CARD -->
+        {% if pum_var('suggested_posts') is not null and pum_var('suggested_posts') and (page is not defined or page <= 1) %}
+            {% if suggestedPost|length %}
+                <li class="card slider-card owl-carousel">
+                    {% for suggest in suggestedPost %}
+                        <div class="slide">
+                            <div class="slider-card-title">
+                                <a href="{{ suggest.linkUrl|default('#') }}" class="slider-card-article-title">{{ suggest.title|truncate(40, true, '...') }}</a>
+                            </div>
+                            <div class="slider-card-container">
+                                <div class="slider-card-inner-left">
+                                    <a href="{{ suggest.linkUrl|default('#') }}" class="slider-card-main-image-link">
+                                        {{ macros.show_image(suggest.file, 200, 'slider-card-main-image') }}
+                                    </a>
+                                </div>
+                                <div class="slider-card-inner-right">
+                                    <div class="slider-card-description">
+                                       <a href="{{ suggest.linkUrl|default('#') }}">{{ suggest.text|truncate(125, true, '...') }}</a>
+                                    </div>
+                                    <div class="slider-card-link">
+                                        <a href="{{ suggest.linkUrl|default('#') }}">{{ suggest.linkName|truncate(40, true, '...') }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   {% endfor %}
+                </li>
+            {% endif %} 
+        {% endif %}
+        <!-- END SLIDER CARD -->
+
+
+        {% if posts|length == 0 %}
+            <!-- ADMIN CARDS -->
+            {% if user.getMeta('user.discover.profil') == false %}
+                <div class="card admin-card profil">
+                    <a href="{{ path('discover', {type: 'profil', redirect: 0}) }}" class="admin-card-delete icon-cross"></a>
+                    <a href="{{ path('discover', {type: 'profil'}) }}" class="admin-card-title">{{ "card1.title"|trans({}, 'rpe') }}</a>
+                    <div class="admin-card-details">
+                        <span class="admin-card-descripton">{{ "card1.text"|trans({}, 'rpe') }}</span>
+                        <a href="{{ path('discover', {type: 'profil'}) }}" class="action-btn orange">{{ "card1.button"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            {% endif %}
+            {% if user.getMeta('user.discover.rejoin_group') == false %}
+                <div class="card admin-card groups">
+                    <a href="{{ path('discover', {type: 'rejoin_group', redirect: 0}) }}" class="admin-card-delete icon-cross"></a>
+                    <a href="{{ path('discover', {type: 'rejoin_group'}) }}" class="admin-card-title">{{ "card2.title"|trans({}, 'rpe') }}</a>
+                    <div class="admin-card-details">
+                        <span class="admin-card-descripton">{{ "card2.text"|trans({}, 'rpe') }}</span>
+                        <a href="{{ path('discover', {type: 'rejoin_group'}) }}" class="action-btn orange">{{ "card2.button"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            {% endif %}
+            {% if user.getMeta('user.discover.share_post') == false %}
+                <div class="card admin-card ressource">
+                    <a href="{{ path('discover', {type: 'share_post', redirect: 0}) }}" class="admin-card-delete icon-cross"></a>
+                    <a href="{{ path('discover', {type: 'share_post'}) }}" class="admin-card-title">{{ "card3.title"|trans({}, 'rpe') }}</a>
+                    <div class="admin-card-details">
+                        <span class="admin-card-descripton">{{ "card3.text"|trans({}, 'rpe') }}</span>
+                        <a href="{{ path('discover', {type: 'share_post'}) }}" class="action-btn orange">{{ "card3.button"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            {% endif %}
+            {% if user.getMeta('user.discover.complete_profil') == false %}
+                <div class="card admin-card friends">
+                    <a href="{{ path('discover', {type: 'complete_profil', redirect: 0}) }}" class="admin-card-delete icon-cross"></a>
+                    <a href="{{ path('discover', {type: 'complete_profil'}) }}" class="admin-card-title">{{ "card4.title"|trans({}, 'rpe') }}</a>
+                    <div class="admin-card-details">
+                        <span class="admin-card-descripton">{{ "card4.text"|trans({}, 'rpe') }}</span>
+                        <a href="{{ path('discover', {type: 'complete_profil'}) }}" class="action-btn orange">{{ "card4.button"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            {% endif %}
+            {% if user.getMeta('user.discover.search') == false %}
+                <div class="card admin-card search">
+                    <a href="{{ path('discover', {type: 'search', redirect: 0}) }}" class="admin-card-delete icon-cross"></a>
+                    <a href="{{ path('discover', {type: 'search'}) }}" class="admin-card-title">{{ "card5.title"|trans({}, 'rpe') }}</a>
+                    <div class="admin-card-details">
+                        <span class="admin-card-descripton">{{ "card5.text"|trans({}, 'rpe') }}</span>
+                        <a href="{{ path('discover', {type: 'search'}) }}" class="action-btn orange">{{ "card5.button"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            {% endif %}
+            {% if user.getMeta('user.discover.start') == false %}
+                <div class="card admin-card start">
+                    <a href="{{ path('discover', {type: 'start', redirect: 0}) }}" class="admin-card-delete icon-cross"></a>
+                    <a href="{{ path('discover', {type: 'start'}) }}" class="admin-card-title">{{ "card6.title"|trans({}, 'rpe') }}</a>
+                    <div class="admin-card-details">
+                        <span class="admin-card-descripton">{{ "card6.text"|trans({}, 'rpe') }}</span>
+                        <a href="{{ path('discover', {type: 'start'}) }}" class="action-btn orange">{{ "card6.button"|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        {# {% for post in posts %}
+            {% embed "pum://includes/common/componants/cards/card-classic.twig" %}
+                {% block card_class %}
+                    {% if post.get('author_avatar') is empty %}
+                        card-title
+                    {% endif %}
+                    {% if post.get('group_name') is empty or post.get('group_avatar') is empty %}
+                         no-image
+                    {% endif %}
+                {% endblock %}
+                {% block card_publisher_image %}
+                    {% if post.get('author_avatar') %}
+                        <img src="{{ pum_media_url(post.get('author_avatar'), true, 41) }}" />
+                    {% endif %}
+                {% endblock %}
+                {% block card_publisher_link %}
+
+                {% endblock %}
+                {% block card_publisher_name %}{{ post.get('author_name') }}{% endblock %}
+                {% block card_publisher_role %}{{ post.get('author_occupation') }}{% endblock %}
+                {% block card_title %}{{ post.id }}-{{ post.get('name') }}{% endblock %}
+                {% block card_image %}
+                    {% if post.get('group_avatar') %}
+                        <img src="{{ pum_media_url(post.get('group_avatar'), true, 374) }}" />
+                    {% endif %}
+                {% endblock %}
+                {% block card_publication_details %}
+                    {% if post.get('group_name') %}
+                        {{ "Publié dans "|trans({}, 'rpe')}}<a href="{{ path('group', {'id': post.get('group_id')}) }}">"{{ post.get('group_name') }}"</a> le {{ post.get('create_date')|date("d/m/Y") }} à {{ post.get('create_date')|date("H\\hi") }}
+                    {% endif %}
+                {% endblock %}
+            {% endembed %}
+        {% endfor %} #}
+        {% set counter = 0 %}
+
+        {% for post in posts %}
+            {% embed "pum://includes/common/componants/cards/card-classic.twig" %}
+                {% block card_class %}
+                    {% if post.author.avatar is empty %}
+                        card-title
+                    {% endif %}
+                    {% if post.file is empty %}
+                         no-image
+                    {% endif %}
+                    {% if post.broadcast == true %}
+                         card-dark-blue
+                    {% endif %}
+                    {# card-dark-blue card-grey #}
+                {% endblock %}
+                {% block card_publisher_image %}{{ pum_view_media(post.author, 'avatar', null, {'width': 65}) }}{% endblock %}
+                {% block card_publisher_link %}
+                    {# {{ path('publication', {'id': post.id}) }} #}
+                    {{ path('profil', {'id': hashEncode(post.author.id)}) }}
+                {% endblock %}
+                {% block card_publisher_name %}{{ post.author.firstname }} {{ post.author.lastname }}{% endblock %}
+                {% block card_publisher_role %}{{ post.author.occupation }}{% endblock %}
+                {% block card_publication_link %}
+                    {{ path('publication', {'id': post.id}) }}
+                {% endblock card_publication_link %}
+                {% block card_title %}{{ post.name }}{% endblock %}
+                {% block card_image %}
+                    <div class="card-right">
+                        <a href="{{ block('card_publication_link') }}">
+                            <!-- Card image block -->
+                            {{ macros.show_post_media(post, 'default', 200, 'card-image') }}
+                        </a>
+                    </div>
+                {% endblock %}
+                {% block card_publication_details %}
+                    {# %link% = ' dans ' + link #}
+                    {# Publié %link% le %date% à %hour% #}
+                    {% if post.publishedGroup %}
+                        {% set published_in_link = '<a href="' ~ path('group', {'id': post.publishedGroup.id}) ~ ' "> <span class="normal-card-text"> dans</span> "' ~ post.publishedGroup.name ~ '"</a>' %}
+                    {% elseif post.pages.count > 0 %}
+                        {% set published_in_link = '' %}
+                    {% endif %}
+                    {% if post.publishDate is not null %}
+                        {{ 'homepage.logged.widget.publish_program_infos'|trans({
+                            '%link%': published_in_link|default(''),
+                            '%date%': post.publishDate|date("d/m/Y", app.session.get('user.timezone')),
+                            '%hour%': post.publishDate|date("H\\hi", app.session.get('user.timezone'))
+                        }, 'rpe')|raw }}
+                    {% else %}
+                        {{ 'homepage.logged.widget.publish_infos'|trans({
+                            '%link%': published_in_link|default(''),
+                            '%date%': post.updateDate|date("d/m/Y", app.session.get('user.timezone')),
+                            '%hour%': post.updateDate|date("H\\hi", app.session.get('user.timezone'))
+                        }, 'rpe')|raw }}
+                    {% endif %}
+                {% endblock %}
+                {% block card_publication_count %}
+
+                    {# <a class="wall-btn icon-heart orange" href="#"> {{ post.recommendby.count }}</a> #}
+                    {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                        'type': 'post',
+                        'object': post,
+                        'style': 'button'
+                    } %}
+                    <a class="wall-btn icon-comment orange" title="{{ "card_comments_title"|trans({}, 'rpe') }}"  href="{{ path('publication', {'id': post.id}) ~ '#to-timeline-comments' }}">{{ post.comments.count }}</a>
+                {% endblock %}
+            {% endembed %}
+        {% endfor %}
+
+        {% if posts|length > 0 and posts.nbPages is defined and posts.currentPage < posts.nbPages %}
+            <li class="full page-loadmore js-loadmore" data-href="{{ path('ajax_homelist', {page: posts.currentPage + 1}) }}" data-target="#grid">
+                <a href="#" class="read-other">...</a>
+            </li>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}

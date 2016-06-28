@@ -1,0 +1,105 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+
+{% set page_title = 'Questions / Reponses' %}
+{# {% set page_name_analytics = 'questions/' ~ mode %} #}
+{% set nav_section = 'profile-menu' %}
+
+{# {% set question_page_tutorial_modal = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/questions.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body_javascript %}
+    {# <script src="{{ asset('bundles/rpepum/js/box-loading.js') }}"></script> #}
+    <script src="{{ asset('bundles/rpepum/js/rpe.questions.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.loadmore.js') }}"></script>
+{% endblock %}
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-question-page.html.twig' %}
+{% endblock %}
+
+
+{% block main_content %}
+    {{ macros.modal('report') }}
+
+    {{ macros.alertMessages() }}
+
+    {% set mode = mode|default('all_questions') %}
+
+{% spaceless %}
+    {% embed "pum://includes/common/componants/filter.html.twig" %}
+        {% block title %}
+            {% if group is defined %}
+                <h2 class="filter-title">{{ "questions.title_group"|trans({'%group%': group.name}, 'rpe') }}</h2>
+            {% else %}
+                <h2 class="filter-title">{{ "questions.title"|trans({}, 'rpe') }}</h2>
+            {% endif %}
+        {% endblock %}
+        {% block filter %}
+            {% if user.isInvited == false %}
+                <div class="filter-right">
+                    <ul class="filter-right-wrapper">
+                        <li class="filter-link">
+                            <a href="{{ path('publish_question') }}" class="filter-btn icon-pencil">{{ "questions.publishBtn"|trans({}, 'rpe') }}</a>
+                        </li>
+                        <li class="filter-link">
+                            <select class="filter-select-btn js-select-href">
+                                <option {{ (mode is not null and mode == 'all_questions') ? 'selected="selected"' }} value="{{ path('questions', {'mode': 'all_questions'}) }}">Tous les questions</option>
+                                <option {{ (mode is not null and mode == 'friends_questions') ? 'selected="selected"' }} value="{{ path('questions', {'mode': 'friends_questions'}) }}">Questions de mes amis</option>
+                                <option {{ (mode is not null and mode == 'groups_questions') ? 'selected="selected"' }} value="{{ path('questions', {'mode': 'groups_questions'}) }}">Questions de mes groupes</option>
+                                <option {{ (mode is not null and mode == 'my_questions') ? 'selected="selected"' }} value="{{ path('questions', {'mode': 'my_questions'}) }}">Mes questions</option>
+                            </select>
+                        </li>
+                        <li class="filter-link">
+                            <span id="big" class="picto-big"></span>
+                            <span id="small" class="picto-small opac"></span>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+
+    {% if group is defined %}
+        <ul class="list-general-box grid effect-2 js-autoload" id="grid" data-autoload="{{ path('ajax_questionlist', {'group_id': group.id}) }}">
+            {% spaceless %}
+                {{ macros.loader() }}
+            {% endspaceless %}
+        </ul>
+    {% else %}
+        <ul class="list-general-box grid effect-2 js-autoload" id="grid" data-autoload="{{ path('ajax_questionlist', {'mode': mode}) }}">
+            {% spaceless %}
+                {{ macros.loader() }}
+            {% endspaceless %}
+        </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock %}
+
+{% block tutorial %}
+    {% if question_page_tutorial_modal is defined %}
+    <script>
+        {% spaceless %}
+            var question_page_tutorial_modal = '{{ question_page_tutorial_modal }}';
+        {% endspaceless %}
+    </script>
+    <div class="modal fade tutorial-modal question-page-tutorial-modal-1" id="question-page-tutorial-modal-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "questionTutorial.title1"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "questionTutorial.text1"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

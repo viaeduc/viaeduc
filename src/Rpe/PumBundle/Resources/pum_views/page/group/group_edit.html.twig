@@ -1,0 +1,431 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% if mode == 'create' %}
+    {% set page_title = 'Créer un groupe' %}
+{% else %}
+    {% set page_title = 'Editer un groupe' %}
+{% endif %}
+
+{% set page_name_analytics = 'group/' ~ mode|default('form') %}
+{% set nav_section = 'groups-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{# {% set create_group_tutorial_modal = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/create-group.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.create-groupe.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            {% if mode == 'create' %}
+                {% if parent %}
+                    Page groupe : {{ "createGroup.create_sub_group"|trans({}, 'rpe') ~ ' : ' ~ parent.name }}
+                {% else %}
+                    Page groupe : {{ "createGroup.create_group"|trans({}, 'rpe') }}
+                {% endif %}
+            {% else %}
+                Page groupe : {{ "createGroup.edit"|trans({}, 'rpe') }}
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'pum://includes/common/componants/tips/tip-create-group.html.twig' %}
+{% endblock %}
+
+{# FORM #}
+{% block text_row %}
+    {% set attr = attr|merge({'data-validation': 'required', 'data-validation-error-msg': 'Veuillez saisir le titre du groupe.'}) %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _group_description_row %}
+    {# {% set type = 'html' %} #}
+    {% set attr = attr|merge({'data-validation': 'required', 'data-validation-error-msg': 'Veuillez saisir la description du groupe.'}) %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _group_picture_row %}
+    {% import 'pum://macros/macros.html.twig' as rpe_macros %}
+    <li>
+        <div class="form-left">
+            <label for="group-image">{{ "createGroup.add_image"|trans({}, 'rpe') }}<br>
+                <span class="small">{{ "createGroup.image_size"|trans({}, 'rpe') }}</span></label>
+        </div><!--
+        --><div class="form-right image-border">
+            {% if form.vars.value.id is not defined %}
+                <img src="{{ asset('bundles/rpepum/images/image_upload_groupe.jpg') }}" alt="">
+            {% else %}
+                {{ rpe_macros.show_image(form.vars.value, 85) }}
+             {% endif %}
+            <span class="btn-file dark-grey">
+                <span class="button-text">{{ "groupPage.upload"|trans({}, 'rpe') }}</span>
+                <span class="picto-upload"></span>
+                {{ form_row(form.file) }}
+            </span>
+            <span class="checkbox-buttons">
+                {% set checked = '' %}
+                {% if form.vars.data is not null %}
+                    {% set checked = 'checked' %}
+                {% endif %}
+                <input name="checkInput" type="checkbox" value="check-one" class="{{ checked }}" id="check-one" {{ checked }}/>
+                <label for="check-one" class="check-error">{{ "createGroup.accept_contract"|trans({}, 'rpe') }}</label>
+            </span>
+        </div>
+    </li>
+{% endblock %}
+
+{% block _group_picture_file_row %}
+    <input type="file" class="input-upload" {{ block('widget_attributes') }}>
+{% endblock %}
+
+{% block _group_instructedDisciplines_row %}
+    {% set attr = attr|merge({class: 'disciplines tm-input tm-tag extra-info-input'}) %}
+    {% set span_second_widget_class = 'first-tag-list tag-list grey' %}
+	{% set info_list_id = 'instructed_discipline' %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _group_teachingLevels_row %}
+    {% set attr = attr|merge({class: 'niveau tm-input tm-tag extra-info-input'}) %}
+    {% set span_second_widget_class = 'second-tag-list tag-list grey' %}
+    {% set info_list_id = 'teaching_level' %}
+
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _group_interests_row %}
+    {% set attr = attr|merge({class: 'interest tm-input tm-tag extra-info-input'}) %}
+    {% set span_second_widget_class = 'third-tag-list tag-list grey' %}
+    {% set info_list_id = 'interest' %}
+    
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _group_accesstype_row %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div><!--
+        --><div class="form-right type-error right-border">
+            {% for child in form %}
+                <span class="radio-buttons">
+                    {{ form_widget(child) }}
+                    {{ form_label(child) }}
+                </span>
+            {% endfor %}
+        </div>
+    </li>
+{% endblock %}
+
+{% block _group_authorisedToInvite_row %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div><!--
+        --><div class="form-right">
+            <span class="checkbox-buttons">
+                {{ form_widget(form) }}
+                <label for="{{ form.vars.id }}"></label>
+            </span>
+        </div>
+    </li>
+{% endblock %}
+
+{% block _group_subgroupLevel_row %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div><!--
+        --><div class="form-right type-error image-border select-group">
+            <select name="{{ form.vars.full_name }}">
+                <option value="2" {% if form.vars.value == 2 %}selected="selected"{% endif %}>Administrateur</option>
+                <option value="3" {% if form.vars.value == 3 %}selected="selected"{% endif %}>Modérateur</option>
+                <option value="4" {% if form.vars.value == 4 %}selected="selected"{% endif %}>Tout le monde</option>
+            </select>
+        </div>
+    </li>
+{% endblock %}
+
+{% block valider_widget %}
+    {% if mode == 'create' %}
+        <button type="submit" class="submit-relation-btn orange" id="confirmer" name="confirmer">{{ "createGroup.create_group"|trans({}, 'rpe') }}</button>
+    {% else %}
+        <button type="submit" class="submit-relation-btn orange" id="confirmer" name="confirmer">{{ "createGroup.update"|trans({}, 'rpe') }}</button>
+    {% endif %}
+{% endblock %}
+
+
+{% block main_content %}
+    {{ macros.modal('teaching_level', 'modal-info-list') }}
+    {{ macros.modal('instructed_discipline', 'modal-info-list') }}
+    {{ macros.modal('interest', 'modal-info-list') }}
+    {% form_theme form _self %}
+
+    <h4 class="title">
+        {% if mode == 'create' %}
+            {% if parent %}
+                {{ "createGroup.create_sub_group"|trans({}, 'rpe') ~ ' : ' ~ parent.name }}
+            {% else %}
+                {{ "createGroup.create_group"|trans({}, 'rpe') }}
+            {% endif %}
+        {% else %}
+            {{ "createGroup.edit_group"|trans({}, 'rpe') ~ ' : ' ~ group.name }}
+        {% endif %}
+    </h4>
+
+    {% if user.isInvited == true %}
+        <div class="forbidden">
+            Vous ne pouvez pas créer de groupe en tant qu'invité
+        </div>
+    {% else %}
+        {{ form_errors(form) }}
+        {{ form_start(form, {attr: { 'class': 'create-group-form new-form-styles'}}) }}
+            <div class="form-first">
+                <ul class="form-wrapper">
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.picture) }}
+                </ul>
+                <ul class="form-wrapper">
+                    {{ form_row(form.instructedDisciplines) }}
+                    {{ form_row(form.teachingLevels) }}
+                    {{ form_row(form.interests) }}
+                </ul>
+                <ul class="form-wrapper">
+                    {{ form_row(form.accesstype) }}
+                    {# {{ form_row(form.authorisedToInvite) }} #}
+
+                    {% if parent is null and mode == 'edit' %}
+                        {{ form_row(form.subgroupLevel) }}
+                    {% endif %}
+                </ul>
+                {# <ul class="form-wrapper white">
+                    <li>
+                        <p>Cliquez sur les modules que vous souahitez activer :</p>
+                        <span class="picto-infos-help grey-orange round-icon medium infos" data-toggle="popover" data-placement="right" data-content="Seules sont acceptées les adresses professionnelles en @academie.fr (par exemple @ac-amiens.fr, @ac-besancon.fr, etc." data-original-title="" title=""></span>
+                    </li>
+                    <li>
+                        <span class="checkbox-buttons big-checkbox">
+                            <input type="checkbox" id="agenda" value="check1">
+                            <label for="agenda">
+                                <img class="image-inline" alt="" src="{{ asset('bundles/rpepum/images/image_calendar.png') }}">
+                            </label>
+                        </span>
+                        <span class="information">
+                            <span class="name">Agenda</span> Le module d'agenda permet d'échanger d'activer des évènements pour les membres de votre groupe.
+                        </span>
+                    </li><!--
+                    --><li>
+                        <span class="checkbox-buttons big-checkbox">
+                            <input type="checkbox" id="question" value="check1">
+                            <label for="question">
+                                <img class="image-inline" alt="" src="{{ asset('bundles/rpepum/images/image_question.png') }}">
+                            </label>
+                        </span>
+                        <span class="information">
+                            <span class="name bold"> Questions/réponses</span> Le module de questions/réponses permet  de poser des questions à votre groupe et d'y répondre.
+                        </span>
+                    </li><!--
+                    --><li>
+                        <span class="checkbox-buttons big-checkbox">
+                            <input type="checkbox" id="sondage" value="check1">
+                            <label for="sondage">
+                                <img class="image-inline" alt="" src="{{ asset('bundles/rpepum/images/image_sondage.png') }}">
+                            </label>
+                        </span>
+                        <span class="information">
+                            <span class="name bold"> Sondage</span> Grâce au module de sonde vous pourrez récolter l'avis des membres de votre groupe.
+                        </span>
+                    </li><!--
+                    --><li>
+                        <span class="checkbox-buttons big-checkbox">
+                            <input type="checkbox" id="rss" value="check1">
+                            <label for="rss">
+                                <img class="image-inline" alt="" src="{{ asset('bundles/rpepum/images/image_rss.png') }}">
+                            </label>
+                        </span>
+                        <span class="information">
+                            <span class="name bold"> Agrégation de flux</span> Ajoutez et affichez différents flux dans la barre d'outil de votre groupe. Il est possible de paramétrer ce module afin d'obtenir les flux que vous désirez.
+                        </span>
+                    </li>
+                </ul> #}
+                {# <a class="submit-relation-btn orange next-step">{{ "Suivant"|trans({}, 'rpe')}}</a> #}
+
+                {{ form_row(form._token) }}
+                {{ block('valider_widget') }}
+            </div>
+
+            {# <div class="form-second">
+                <div class="administration-box">
+                    <!-- TOP -->
+                    <div class="administration-top">
+                        <input type="text" placeholder="Recherche...">
+                        <a class="profil-btn orange" data-toggle="modal" href="#popin_relation"><span class="picto-add-users">{{ "createGroup.invite_users"|trans({}, 'rpe') }}</span></a>
+                    </div><!--
+                        LEFT
+                    --><div class="administration-left">
+                        <div class="swiper-container swiper-free-mode">
+                                <div class="swiper-scrollbar" ></div><!--
+                                --><div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" class="image-inline" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}">
+                                                    <div class="details">
+                                                        <span>Jean Patrick Leroux</span>
+                                                        <span>Insituteur CE1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" class="image-inline" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}">
+                                                    <div class="details">
+                                                        <span>Jean Patrick Leroux</span>
+                                                        <span>Insituteur CE1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" class="image-inline" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}">
+                                                    <div class="details">
+                                                        <span>Jean Patrick Leroux</span>
+                                                        <span>Insituteur CE1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" class="image-inline" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}">
+                                                    <div class="details">
+                                                        <span>Jean Patrick Leroux</span>
+                                                        <span>Insituteur CE1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" class="image-inline" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}">
+                                                    <div class="details">
+                                                        <span>Jean Patrick Leroux</span>
+                                                        <span>Insituteur CE1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" class="image-inline" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}">
+                                                    <div class="details">
+                                                        <span>Jean Patrick Leroux</span>
+                                                        <span>Insituteur CE1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" class="image-inline" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}">
+                                                    <div class="details">
+                                                        <span>Jean Patrick Leroux</span>
+                                                        <span>Insituteur CE1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" class="image-inline" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}">
+                                                    <div class="details">
+                                                        <span>Jean Patrick Leroux</span>
+                                                        <span>Insituteur CE1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" class="image-inline" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}">
+                                                    <div class="details">
+                                                        <span>Jean Patrick Leroux</span>
+                                                        <span>Insituteur CE1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" class="image-inline" src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}">
+                                                    <div class="details">
+                                                        <span>Jean Patrick Leroux</span>
+                                                        <span>Insituteur CE1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--
+                        RIGHT
+                    --><div class="administration-right">
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img_melanie.png') }}">
+                        <div class="member-info">
+                            <span class="title">Mélanie Mansa</span>
+                            <span>Professeur de collège</span>
+                            <span>Bordeaux, France</span>
+                            <a href="#">12 amis en commun</a>
+                            <a class="mail icon-mail" href="#">jl.bernard@univ-fcomte.fr</a>
+                            <span class="number icon-phone">01 52 35 95 75</span>
+                        </div>
+                        <p>
+                            Professeur des collèges depuis plus de 15 ans et habitant la région bordelaise, plateforme avec l'objectif de trouver des ressources, mais également pour aider mes collègues enseignants. Passionné d'échecs et de nature, je suis un néophyte de l'usage des réseaux sociaux. N'hésitez pas à m'envoyer des messages pour échanger avec moi.
+                            <a href="#">{{ "createGroup.view_profil"|trans({}, 'rpe') }}</a>.
+                        </p>
+                        <div class="links">
+                            <a class="profil-btn icon-user-add light-blue relation_ask" href="#" data-url="{{ path('ask_relation', {'relationId': 3}) }}">ajouter à ses relations</a>
+                            <a class="profil-btn icon-cancel light-blue" href="#">{{ "createGroup.ban_user"|trans({}, 'rpe') }}</a>
+                            <a class="profil-btn icon-mail light-blue" href="#">{{ "createGroup.message_user"|trans({}, 'rpe') }}</a>
+                            <a class="profil-btn light-blue" href="#"><span class="picto-key">{{ "createGroup.admin_user"|trans({}, 'rpe') }}</span></a>
+                            <a class="profil-btn icon-user light-blue" href="#">{{ "createGroup.view_profil"|trans({}, 'rpe') }}</a>
+                        </div>
+                    </div>
+                </div>
+                {{ block('valider_widget') }}
+            </div> #}
+        {{ form_end(form, {render_rest: false}) }}
+    {% endif %}
+{% endblock %}
+{% endspaceless %}
+{% block tutorial %}
+    {% if create_group_tutorial_modal is defined %}
+    <script>
+        {% spaceless %}
+            var create_group_tutorial_modal = '{{ create_group_tutorial_modal }}';
+        {% endspaceless %}
+    </script>
+    <div class="modal fade tutorial-modal create-group-tutorial-modal-1" id="create-group-tutorial-modal-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "createGroupTutorial.title1"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "createGroupTutorial.text1"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		{% set title = "infolist." ~ idInfo %}
+		<h4 class="modal-title">{{ title |trans({}, 'rpe') }}</h4>
+	</div>
+	<div class="modal-body">
+
+        {% if form is not null %}
+            {{ form_start(form, { 'attr': { 'class': 'push-tag-form' } }) }}
+        		<div class="info-bubble-hover">
+        			<ul>
+        				{% for item in infoList %}
+                            <li class="bold">
+                               {# <input name="{{ form.vars.id }}[]" type="checkbox" value="{{ item.id }}" data-tag-id="{{ item.id }}" class=""> #}
+                                {{ item.name }}
+                            </li>
+                            {% if item.children|length > 0 %}
+                                {% for child in item.children %}
+                                	{{ (loop.first) ? '<ul class="children-list">' }}
+                                    	<li>
+                                    	   {# <input name="{{ form.vars.id }}[]" type="checkbox" value="{{ item.id }}" data-tag-id="{{ item.id }}" class=""> #}
+                                    	   {{ child.name }}
+                                    	</li>
+                                    {{ (loop.last) ? '</ul>' }}
+                                {% endfor %}
+                            {% endif %}
+        				{% endfor %}
+        			</ul>
+        		</div>
+        		<div class="modal-footer">
+            		<a role="button" data-dismiss="modal" class="action-btn light-blue">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+            		{#<a role="button" class="action-btn orange">{{ "tutorial.ajouter"|trans({}, 'rpe') }}</a>#}
+            	</div>
+    		{{ form_end(form, {'render_rest': false}) }}
+        {% else %}
+            <div class="info-bubble-hover">
+    			<ul>
+    				{% for item in infoList %}
+                        <li class="bold">{{ item.name }}</li>
+                        {% if item.children|length > 0 %}
+                            {% for child in item.children %}
+                            	{{ (loop.first) ? '<ul class="children-list">' }}
+                                	<li>{{ child.name }}</li>
+                                {{ (loop.last) ? '</ul>' }}
+                            {% endfor %}
+                        {% endif %}
+    				{% endfor %}
+    			</ul>
+    		</div>
+    		<div class="modal-footer">
+        		<a role="button" data-dismiss="modal" class="action-btn light-blue">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+        	</div>
+        {% endif %}
+	</div>
+{% endblock main_content %}

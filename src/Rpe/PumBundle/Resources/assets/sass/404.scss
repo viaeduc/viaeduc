@@ -1,0 +1,119 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+
+// ------------
+// Specific CSS
+// ------------
+
+.footer-nav {
+    margin : 0;
+}
+
+.content {
+    position        : relative;
+    background      : url('../images/404_bg.jpg') no-repeat center center;
+    background-size : cover;
+}
+
+.canvas-draw {
+    position :absolute;
+    top      : 0;
+    left     : 0;
+    z-index  : 15;
+    display  : block;
+}
+
+.canvas-content {
+    position    : absolute;
+    bottom      : 0%;
+    left        : 50%;
+    margin-left : -350px;
+    width       : 700px;
+    height      : 540px;
+    background  : url('../images/404_lines.png') no-repeat 15% 0%;
+
+    .canvas-title,
+    .canvas-small-title {
+        color       : $white;
+        font-family : $MissionScript;
+    }
+
+    .canvas-title {
+        @include fontSize(200);
+        position : absolute;
+        top      : 0;
+        left     : 23%;
+    }
+
+    .canvas-small-title {
+        @include fontSize(50);
+        position          : absolute;
+        top               : 0;
+        left              : 5%;
+        @include transform( rotate(-20deg) );
+    }
+
+    .canvas-text {
+        @include fontSize(14);
+        position    : absolute;
+        bottom      : 25%;
+        left        : 0%;
+        width       : 350px;
+        color       : $white;
+        text-align  : right;
+        font-weight : bold;
+        font-family : $Verdana;
+        opacity     : 0;
+
+        // Animation
+        transition  : opacity 0.3s linear 0.5s;
+    }
+
+    .canvas-image {
+        position : absolute;
+        right    : 0;
+        bottom   : 0;
+        overflow : hidden;
+        width    : 100%;
+        height   : 405px;
+    }
+
+    .image-kid {
+        position   : absolute;
+        right      : 0;
+        bottom     : -405px;
+        z-index    : 17;
+        transition : bottom 0.7s linear 1s;
+    }
+
+    .back-btn {
+        @include fontSize(22);
+        position         : absolute;
+        right            : 28%;
+        bottom           : 12%;
+        z-index          : 16;
+        margin           : 0;
+        padding          : 0px 0px 0px 0px;
+        width            : 0px;
+        line-height      : 1.2em;
+        opacity          : 0;
+        @include transition( padding-left 0.4s linear 1.7s,
+                           padding-right 0.4s linear 1.7s,
+                           width 0.4s linear 1.7s,
+                           opacity 0.4s linear 1.7s );
+        transform-origin : 50% 100%;
+    }
+
+    .arrow {
+        position : absolute;
+        right    : 75%;
+        bottom   : 2%;
+        width    : 20px;
+    }
+}

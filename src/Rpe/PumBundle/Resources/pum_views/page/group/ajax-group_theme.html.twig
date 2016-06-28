@@ -1,0 +1,88 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/library.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/rpepum/css/modal-library.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.ui.touch.js') }}"></script>
+
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.ui.widget.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/tmpl.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/load-image.all.min.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.blueimp-gallery.min.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.fileupload.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.fileupload-process.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.fileupload-validate.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.fileupload-ui.js') }}"></script>
+
+    <script src="{{ asset('bundles/rpepum/js/rpe.modal-library.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.library.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.common.js') }}"></script>
+{% endblock %}
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-confirm.html.twig' %}
+{% endblock %}
+
+{% block main_content %}
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="modal-label-group">Membres du groupe {{ group.name }}</h4>
+	</div>
+	<div class="modal-body">
+		<div class="library">
+            <!-- Top block with the media folder breadcrumb and add folder button-->
+            <div class="library-top">
+                <div class="library-sidebar-wrapper">
+                    <h3 class="library-title black">{{ "library.folder"|trans({}, 'rpe') }} /</h3>
+                    <a class="add-folder-button action-btn orange icon-plus js-loadmore js-infinite js-load-replace" data-href="{{ path('create_form_library_folder') }}" data-loadtarget="form.add-folder-form">{{ "library.add"|trans({}, 'rpe') }}</a>
+                    <div class="add-folder-form-wrapper">
+                        <form class="add-folder-form"><span class="loader"></span></form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Folder list -->
+            <div class="library-left">
+                <ul class="library-folder-list">
+                    <!-- Unique ID needed for the drag and drop -->
+                    <li id="js-folder_root" class="{{ (null == folder_id) ? 'selected' }} js-loadmore js-infinite js-load-inner js-pushstate" data-loadtarget=".library-right" data-href="{{ path('library') }}" {#  class="open_modal" #}>
+                        <span class="folder-name">
+                            {{ "library.root"|trans({}, 'rpe') }}
+                        </span>
+                    </li>
+                    {% for folder in folders %}
+                        <li id="js-folder_{{ folder.id }}" {{ (folder.id == folder_id) ? 'class="selected"' }} data-entityid="{{ folder.id }}" >
+                            <span class="folder-name js-loadmore js-infinite js-load-inner js-pushstate" data-loadtarget=".library-right" data-href="{{ path('library', {'folder_id': folder.id}) }}">
+                                {{ folder.name }}
+                            </span>
+                            <form class="edit-input">
+                                {{ macros.loader() }}
+                            </form>
+                            <span class="edit-delete">
+                                {% set disable_class = '' %}
+                                {% if folder.medias.count > 0 %}
+                                    {% set disable_class = 'disable-delete' %}
+                                {% endif %}
+                                <span class="edit square-btn light-blue icon-pencil small js-loadmore js-infinite js-load-replace" data-href="{{ path('create_form_library_folder', {'folder_id': folder.id}) }}" data-loadtarget="#js-folder_{{ folder.id }} .edit-input"></span>
+                                <span class="delete square-btn light-blue icon-cross small js-loadmore js-confirm-modal js-remove {{ disable_class }}" data-href="{{ path('delete_folder', {'id': folder.id}) }}" data-delete-link="{{ path('delete_folder', {'id': folder.id}) }}" data-remove-div="#js-folder_{{ folder.id }}" data-confirm="{{ 'library.folder.action.confirm_delete'|trans({}, 'rpe') }}" data-disable="{{ 'library.folder.action.disable_delete'|trans({}, 'rpe') }}"></span>
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Ajax autoloaded and refreshed content -->
+            <div class="library-right js-autoload js-load-once" data-autoload="{{ path('library', {'folder_id': folder_id}) }}">
+                {{ macros.loader() }}
+            </div>
+        </div>
+	</div>
+	<div class="modal-footer">
+		<a role="button" data-dismiss="modal" class="action-btn light-blue">{{ "tutorial.close"|trans({}, 'rpe') }}</a>
+	</div>
+{% endblock main_content %}

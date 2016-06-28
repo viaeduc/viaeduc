@@ -1,0 +1,53 @@
+{# <!-- Use this block too add color classes or no-image, card-title --> #}
+<li class="card {% block card_class %}{% endblock %}">
+    <div class="card-left">
+        <div class="card-publisher">
+            <a href="{% block card_publisher_link -%}#{%- endblock %}" class="card-publisher-image">
+                <!-- Profil image block -->
+                {% block card_publisher_image -%}
+                    <img src="{{- asset('bundles/rpepum/images/tmp/photo-profil_small.png') -}}" alt="">
+                {%- endblock %}
+            </a><!--
+            --><div class="card-publisher-info">
+                <!-- Publisher link -->
+                <a href="{{- block('card_publisher_link') -}}">
+                    <!-- Name & Role blocks -->
+                    <span class="card-name">{% block card_publisher_name %}Jean Patrick Leroux{% endblock %}</span>
+                    <span class="card-role">{% block card_publisher_role -%}Instituteur DE1{%- endblock %}</span>
+                    {# {% block card_publisher_connect %}<span class="card-connect icon-plus">Voir le profil</span>{% endblock %} #}
+                </a>
+            </div>
+        </div>
+        <a href="{% block card_publication_link -%}#{%- endblock %}" class="card-title-link">
+            <h2 class="card-title highlight highlight-wrapper">
+                <!-- Card title block -->
+                {% block card_title -%}
+                    Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)
+                {%- endblock %}
+            </h2>
+        </a>
+    </div><!--
+    -->{% block card_image -%}<div class="card-right">
+        <a href="{{- block('card_publication_link') -}}">
+            <!-- Card image block -->
+            <img src="{{- asset('bundles/rpepum/images/tmp/teacher_math.jpg') -}}" alt="">
+        </a>
+    </div>{%- endblock %}<!--
+    --><div class="card-bottom">
+        <span class="card-published">
+            <!-- published information blocks -->
+            {% block card_publication_details -%}
+                Publié<a href="#"> <span class="normal-card-text">dans</span> "Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+            {%- endblock %}
+        </span><!--
+        --><div class="card-links">
+            {% block card_publication_count -%}
+                <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                <a class="wall-btn icon-comment orange" href="#">512</a>
+            {%- endblock %}
+        </div>
+    </div>
+    {% block card_stamp -%}
+        {# <div class="card-stamp">Contributeur</div> #}
+    {%- endblock %}
+</li>

@@ -1,0 +1,289 @@
+// -------------------- //
+// GENERAL MODAL STYLES //
+// -------------------- //
+.modal {
+    top           : 18%;
+    overflow-y    : inherit;
+    outline       : none;
+    margin        : 0 auto;
+    border-radius : 0px;
+}
+
+.modal-content {
+    border-radius : 0px;
+}
+
+.modal-header {
+    border-bottom : 0 none;
+}
+
+.modal-body {
+     padding : 0px  5.1% 0 5.1%;
+
+    .modal-title {
+        @include fontSize(30);
+        margin-bottom : 2%;
+        color         : $dark-blue-font;
+        font-family   : $MissionScript;
+    }
+
+    .body-gray {
+        padding    : 20px;
+        border     : 1px solid #e7e7e7;
+        background : white;
+
+        p {
+            padding     : 10px;
+            line-height : 1.4em;
+            margin      : 0;
+        }
+
+        .small-label {
+            color : #939393 ;
+        }
+
+        .small-popin-wrapper {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 100%;
+        }
+
+        .small-label,
+        .small-input {
+            display        : inline-block;
+            vertical-align : top;
+            height         : 30px;
+            line-height    : 30px;
+        }
+
+        .small-label {
+            background : $form-grey-1;
+            width      : 20%;
+            text-align : center;
+        }
+        
+        .form-error-email:not(:empty) {
+            @include fontSize(12);
+            color: $red-1;
+        }
+
+        .form-error-email:not(:empty) + .small-label {
+            background : $red-1;
+            color: $white;
+        }
+
+        .small-input {
+            width  : 80%;
+            margin : 0;
+            border : 2px solid $form-grey-1;
+        }
+
+        .form-error-email:not(:empty) + .small-label + .small-input {
+            border-color : $red-1;
+        }
+
+        &.scroll-pane{
+            padding : 0;
+        }
+
+        p {
+            @include fontSize(12);
+            margin-bottom : 3.9%;
+            color         : $dark-grey-font;
+            font-family   : $Verdana;
+            line-height   : 1.3em;
+        }
+
+        label{
+            @include fontSize(12);
+        }
+
+        input{
+            margin-left : 0.5%;
+            width       : 78%;
+            height      : 31px;
+
+            &.clear-text{
+                padding : 0 10px;
+            }
+        }
+    }
+
+    .button-password{
+        padding        : 10px 0;
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+        text-align     : right;
+
+        button,
+        a {
+            margin : 0;
+        }
+
+        a {
+            margin : 0 5px 0 0;
+        }
+
+        button {
+            display        : inline-block;
+            vertical-align : middle;
+        }
+    }
+}
+
+.modal-footer {
+    border-top : 0px solid transparent;
+    padding    : 5.1%;
+    margin     : 0;
+
+    .action-btn {
+        width       : auto;
+        height      : 45px;
+        line-height : 45px;
+        padding     : 0 0.5em;
+        margin      : 0;
+
+        &.cancel-button {
+            background : $light-grey-1;
+        }
+
+        &.accept-button {
+            background : $orange-1;
+        }
+    }
+}
+
+/* **************************************** */
+/*         New Modals | 19/09/2014          */
+/* use class .modal-rpe to apply new styles */
+/* **************************************** */
+
+// Structure //
+.modal-rpe {
+	/* if you don't use .modal-rpe, the styles won't be applied */
+	top   : 5%;
+
+	.modal-dialog {
+		width : 800px; // All modals should be the same size
+	}
+
+	.modal-content {
+		@include border-radius(0px 0px); // Removing border-radius from bootstrap modals
+	}
+
+	.modal-header,
+	.modal-body,
+	.modal-footer {
+		display        : inline-block;
+		vertical-align : top;
+		width          : 100%;
+		border         : 0px;
+	}
+
+	.modal-header,
+	.modal-footer {
+		padding : 1.875%; // 15px
+	}
+
+	.modal-body {
+		padding    : 2.5% !important; // 20px
+		min-height : 130px !important;
+		max-height : 580px !important;
+		overflow-y : auto !important;
+	}
+}
+
+// Specific modals //
+
+.modal-ressource-body { // Used on : profil.html.twig & group.html.twig (sidebar)
+
+	.modal-ressource-list {
+		display        : inline-block;
+		vertical-align : top;
+		width          : 100%;
+	}
+
+	.modal-ressource-wrapper {
+		display        : inline-block;
+		vertical-align : top;
+		width          : 50%;
+		height         : 100px;
+		padding        : 0 1.3531799729364005%; // 0px 10px
+		margin         : 0 0 10px 0;
+		overflow       : hidden;
+	}
+
+	.modal-ressource-left,
+	.modal-ressource-right {
+		display        : inline-block;
+		vertical-align : top;
+		line-height    : 100px;
+	}
+
+	.modal-ressource-left {
+		width : 26.285714285714285%;
+	}
+
+	.modal-ressource-right {
+		width : 73.7142857143%;
+		padding : 0 0 0 5.813953488372093%;
+	}
+
+	.modal-ressource-title {
+		@include fontSize(16);
+		display        : inline-block;
+		vertical-align : middle;
+		color          : $light-blue-1;
+		margin         : 0;
+		line-height    : 1em;
+	}
+}
+
+.modal-grouplist-body {
+	// Used on : profil.html.twig & group.html.twig (sidebar)
+
+	.modal-connections-wrapper {
+		display        : inline-block;
+		vertical-align : top;
+		width          : 100%;
+	}
+
+	.modal-connections-componant {
+		position       : relative;
+		display        : inline-block;
+		vertical-align : top;
+		width          : 11.5%;
+		margin-right   : 5px;
+		// padding     : 0 20px;
+	}
+
+	.modal-connections-profil-image {
+
+	}
+
+	.modal-connections-name {
+		@include transition(background 0.2s linear);
+		position   : absolute;
+		bottom     : 0;
+		left       : 0;
+		background : rgba(0,0,0,0.4);
+		padding    : 2px;
+		width      : 100%;
+	}
+
+	.modal-connections-link:hover{
+		.modal-connections-name {
+			@include transition(background 0.2s linear);
+			background : #14768c;
+		}
+	}
+
+	.modal-connections-firstname {
+		@include fontSize(11);
+		font-family : $UbuntuCondensed;
+		color       : $white;
+		float       : left;
+	}
+
+}

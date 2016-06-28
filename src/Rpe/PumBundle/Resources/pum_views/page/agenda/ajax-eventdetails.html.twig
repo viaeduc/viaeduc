@@ -1,0 +1,90 @@
+{% extends "pum://empty_layout.html.twig" %}
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% block main_content %}
+    {% set startDate = event.startDate %}
+    {% set endDate = event.endDate %}
+    
+    {% set multipleDay = 0 %}
+    
+    {% if startDate|date('Ymd') != endDate|date('Ymd') %}
+       {% set multipleDay = 1 %}
+    {% endif %}
+    
+    <div class="month-date-event">
+        <div class="event-main">
+            <div class="event-main-header">
+                <span class="event-main-date">
+                    {% if multipleDay %}
+                        du <span class="bold">{{ startDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'cccc d LLLL Y')|capitalize }}</span> à {{ startDate|date("H:i")|localizeddate('none', 'none', app.request.locale, event.timezone, 'HH:mm') }} au <span class="bold">{{ endDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'cccc d LLLL Y')|capitalize }}</span> à {{ endDate|date("H:i")|localizeddate('none', 'none', app.request.locale, event.timezone, 'HH:mm') }}
+                    {% else %}
+                        <span class="bold">{{ startDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'cccc d LLLL Y')|capitalize }}</span> - {{ startDate|date("H:i")|localizeddate('none', 'none', app.request.locale, event.timezone, 'HH:mm') }} - {{ endDate|date("H:i")|localizeddate('none', 'none', app.request.locale, event.timezone, 'HH:mm') }}
+                    {% endif %}
+                </span>
+            </div>
+            <div class="event-main-content">
+                {% set ownerGroup = event.ownerGroup %}
+                {% set ownerUser = event.ownerUser %}
+                
+                <div class="event-content-top">
+                    <div class="event-main-left">
+                        {% if ownerGroup %}
+                            {{ macros.show_group_avatar(ownerGroup, 'default', 40, 'agenda-card-image') }}
+                        {% elseif ownerUser %}
+                            {{ macros.show_user_avatar(ownerUser, 'avatar', 40, 'agenda-card-image') }}
+                        {% endif %}
+                    </div><!--
+                    --><div class="event-main-right">
+                        {% if ownerGroup %}
+                            <span class="event-heading">{{ "agenda.event_from"|trans({}, 'rpe') }} {{ ownerGroup.name }} (créé par {{ ownerUser.firstname }} {{ ownerUser.lastname }})</span>
+                        {% elseif ownerUser %}
+                            <span class="event-heading">{{ "agenda.event_from"|trans({}, 'rpe') }} {{ ownerUser.firstname }} {{ ownerUser.lastname }}</span>
+                        {% endif %}
+                        
+                        <span class="event-title">{{ event.title }}</span>
+                    </div>
+                </div>
+                <div class="event-content-main">
+                    <h4 class="event-big-title">
+                        {{ event.description }}
+                    </h4>
+                    <span class="event-text">
+                        {{ event.text|raw }}
+                    </span>
+                </div>
+            </div>
+            <div class="event-main-footer">
+                {% include 'pum://includes/common/componants/events/buttons-rsvp.html.twig' with {
+                    'user': user, 
+                    'event': event, 
+                    'style': 'multiple'
+                } %}
+                
+                {% if event.ownerUser == user %}
+                   <a href="{{ path('edit_event', {'id': event.id}) }}" class="btn-agenda light-blue">Modifier</a>
+                   <a href="{{ path('delete_event', {'id': event.id}) }}" class="btn-agenda red" >{{ "agenda.delete_event"|trans({}, 'rpe') }}</a>
+                {% else %}
+                    <a href="{{ path('inbox', {'recipient_id': event.ownerUser.id}) }}" class="btn-agenda light-blue">Envoyer un message</a>
+                {% endif %}
+            </div>
+        </div>{% spaceless %}
+        <div class="event-left">
+            <div class="event-going js-autoload" data-autoload="{{ path('ajax_event_participantlist', {'id': event.id}) }}">
+                {{ macros.loader() }}
+            </div>
+            <div class="event-map">
+                {% if event.place is not null %}
+                    <div class="image-map">
+                        {{ macros.gmap(event.placeAddress, event.place.lat, event.place.lng, 'orange', 320, 140, 15) }}
+                    </div>
+                    <div class="map-infos">
+                        <a href="#" class="map-icon icon-location orange"></a>
+                        <span class="map-text">{{ event.placeName}} - <a href="https://www.google.fr/maps/place/{{ event.placeAddress }}" target="_blank">{{ event.placeAddress}}</a></span>
+                    </div>
+                {% else %}
+                    <div class="map-noplace">{{ "agenda.noplace"|trans({}, 'rpe') }}</div>
+                {% endif %}
+            </div>
+        </div>{% endspaceless %}
+    </div>
+{% endblock %}

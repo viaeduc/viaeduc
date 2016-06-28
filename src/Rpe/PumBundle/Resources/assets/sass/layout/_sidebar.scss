@@ -1,0 +1,25 @@
+// -------
+// Sidebar
+// -------
+
+// ------
+// New code, needs to be tested
+
+.sidebar {
+    width: 32.96%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 2.4% 0 0;
+
+    &.sidebar-right {
+        margin: 0 0 0 2.4%;
+    }
+
+    @media screen and (max-width: $portrait-screen) {
+
+    }
+
+    @media screen and (max-width: $landscape-screen) {
+
+    }
+}

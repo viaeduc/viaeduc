@@ -1,0 +1,53 @@
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% spaceless %}
+<h4 class="tab-title">{{ 'Gestion des membres'|trans({}, 'rpe') }}</h4>
+<div class="administration-box">
+    <!-- TOP -->
+    <div class="administration-top">
+        <input class="friend-filter" type="text" placeholder="Recherche...">
+        <a class="filter-btn light-blue js-loadmore js-infinite js-load-inner" data-target=".administration-box .administration-left" href="{{ path('group_userlist', {'group_id': group.id}) }}"><span class="icon-bolt">Tous</span></a>
+        <a class="filter-btn light-blue js-loadmore js-infinite js-load-inner" data-target=".administration-box .administration-left" href="{{ path('group_userlist', {'group_id': group.id, 'status': 5}) }}"><span class="icon-bolt">Demandes</span></a>
+        <a class="filter-btn light-blue js-loadmore js-infinite js-load-inner" data-target=".administration-box .administration-left" href="{{ path('group_userlist', {'group_id': group.id, 'status': 6}) }}"><span class="icon-bolt">Invitations</span></a>
+        <a href="#" class="profil-btn orange invit-dropdown-toggle"><span class="icon-cog">{{ 'INVITER'|trans({}, 'rpe') }}</span></a>
+        <ul class="invit-dropdown-menu">
+            <li>
+                <a href="{{ path('invite_relation', {id:group.id, scope:"relation"}) }}" data-target="#portlet_tab3" class="invite-dropdown-link js-loadmore js-infinite js-load-inner">des relations</a>
+            </li>
+            <li>
+                <a href="{{ path('invite_relation', {id:group.id, scope:"internal"}) }}" data-target="#portlet_tab3" class="invite-dropdown-link js-loadmore js-infinite js-load-inner">des membres de viaéduc</a>
+            </li>
+            {% if pum_var('active_invitation_externe') %}
+                <li>
+                    <a href="{{ path('invite_external', {id_group:group.id}) }}" data-target="#portlet_tab3" class="invite-dropdown-link js-loadmore js-infinite js-load-inner">des membres intervenants</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div><!--
+        LEFT
+    --><div class="administration-left">
+            <div class="swiper-container swiper-free-mode">
+                <div class="swiper-scrollbar" ></div><!--
+                --><div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        {% for member in members %}                        
+                            {{ (loop.first) ? '<ul class="friend-list">' }}
+                            {#% set single_user = members %#}
+                            <li id="useringroup-{{ member.id }}">
+                                <a href="#" class="js-loadmore js-infinite js-load-inner" data-href="{{ path('group_user_getinfo', {'group_id': group.id, 'user_id': member.id}) }}" data-target="#portlet_tab3 .administration-right">
+                                    {{ macros.show_user_avatar_url(member, 'default', 64, 'image-inline') }}
+                                    <div class="details">
+                                        <span>{{ member.firstname ~ ' ' ~ member.lastname }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                            {{ (loop.last) ? '</ul>'}}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div><!--
+        RIGHT
+    --><div class="administration-right"></div>
+</div>
+{% endspaceless %}

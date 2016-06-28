@@ -1,0 +1,159 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "layout/_sidebar";
+
+// ------------
+// Specific CSS
+// ------------
+
+.faq-sidebar-tip {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    padding        : 20px;
+    margin         : 0 0 10px 0;
+    background     : $background-blue-1;
+    color          : $white;
+}
+
+.faq-sidebar-title {
+    @include fontSize(24);
+    position       : relative;
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    margin         : 0 0 30px 0;
+    height         : 60px;
+    line-height    : 60px;
+    text-align     : center;
+    background     : $white;
+    font-family    : $UbuntuCondensed;
+    text-transform : uppercase;
+    color          : $dark-blue-1;
+
+    .arrow {
+        position: absolute;
+        bottom: -18px;
+        left: 50px;
+        width: 16px;
+        height: 19px;
+        background: url(../images/triangle_blanc.png) no-repeat scroll center top;
+    }
+
+    .bold {
+        font-weight : bold;
+    }
+}
+
+.faq-sidebar-text {
+    @include fontSize(12);
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    margin         : 0 0 10px 0;
+    font-family    : $Verdana;
+
+    &:last-of-type {
+        margin : 0;
+    }
+
+    .bold {
+        text-transform : uppercase;
+        font-weight    : bold;
+    }
+}
+
+.faq-sidebar-menu {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+
+    .faq-sidebar-link {
+        // @include transition(background-color 0.2s linear);
+        // @include transition(color 0.2s linear);
+        display          : block;
+        width            : 100%;
+        height           : 40px;
+        line-height      : 40px;
+        padding          : 0 20px;
+        background-color : $light-grey-1;
+        color            : $dark-blue-1;
+        border-bottom    : 1px solid $white;
+
+        &.active {
+            background-color : $orange-1;
+            color            : $white;
+        }
+
+        &:hover {
+            // @include transition(background-color 0.2s linear);
+            // @include transition(color 0.2s linear);
+            background-color : $dark-blue-1;
+            color            : $white;
+            text-decoration  : none;
+
+            &.active {
+                background-color : $orange-1;
+            }
+        }
+    }
+}
+
+.faq-main-title {
+  @include fontSize(30);
+  position       : relative;
+  display        : inline-block;
+  vertical-align : top;
+  width          : 100%;
+  height         : 55px;
+  font-family    : $MissionScript;
+  color          : $dark-blue-1;
+  margin         : 0 0 10px 0;
+
+  &:before {
+    content    : '';
+    position   : absolute;
+    display    : block;
+    width      : 100%;
+    top        : 50%;
+    left       : 0;
+    margin-top : -2.5px;
+    height     : 1px;
+    background : $dark-blue-1;
+    z-index    : 101;
+  }
+
+  .inner-title {
+    position   : absolute;
+    padding    : 10px 20px 20px 0;
+    background : $white;
+    z-index    : 102;
+  }
+}
+
+.faq-main-inner-title {
+    @include fontSize(18);
+    color       : $dark-blue-1;
+    margin      : 0 0 10px 0;
+    font-family : $Verdana;
+}
+
+.faq-main-list > li {
+    padding    : 0 0 0 25px;
+    margin     : 0 0 5px 0;
+    background : url(../images/icon-talk.png) no-repeat 0 4px;
+
+    &:last-of-type {
+        margin : 0 0 20px 0;
+    }
+}

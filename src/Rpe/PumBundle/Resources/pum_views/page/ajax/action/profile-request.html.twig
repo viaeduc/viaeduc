@@ -1,0 +1,10 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% if user is defined %}
+        {% include 'pum://includes/common/componants/profile/buttons.html.twig' with {
+            'id': id|default(app.request.get('id')),
+            'relation_detail': relation_detail|default(app.request.get('relation_detail'))
+        } %}
+    {% endif %}
+{% endspaceless %}{% endblock %}

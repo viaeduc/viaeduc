@@ -1,0 +1,125 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {# {{ dump(pager.getNbResults) }} #}
+    {% if pager.getNbResults() == 0 %}
+        <div class="empty-publications-wrapper">
+            <div class="empty-publications-inner-wrapper">
+                <p>{{ "publications.no_results.title"|trans({}, 'rpe') }}</p>
+                <p>{{ "publications.no_results.indications"|trans({}, 'rpe') }}</p>
+                <ul>
+                    <li>{{ "publications.no_results.indication1"|trans({}, 'rpe') }}</li>
+                    <li>{{ "publications.no_results.indication2"|trans({}, 'rpe') }}</li>
+                    <li>{{ "publications.no_results.indication3"|trans({}, 'rpe') }}</li>
+                    <li>{{ "publications.no_results.indication4"|trans({}, 'rpe') }}</li>
+                </ul>
+                <a href="{{ path('publish_publications') }}" class="action-btn light-blue icon-pencil">{{ "publications.no_results.publish"|trans({}, 'rpe') }}</a>
+
+            </div>
+        </div>
+    {% endif %}
+    {% for publication in pager %}
+        {% embed "pum://includes/common/componants/cards/card-classic.twig" %}{% spaceless %}
+            {% block card_class %}{% spaceless %}
+                {# card-dark-blue #}
+                {{ (publication.file is null) ? ' no-image' }}
+                {{ (publication.status == 'DRAFTING') ? ' card-grey' }}
+            {% endspaceless %}{% endblock %}
+
+            {% block card_publisher_image %}
+                {{ macros.show_user_avatar(publication.author, 'default', 51, '', path('profil', {'id': hashEncode(publication.author.id)})) }}
+            {% endblock card_publisher_image %}
+
+            {% block card_publisher_link %}
+                {{ path('profil', {'id': hashEncode(publication.author.id)}) }}
+            {% endblock card_publisher_link %}
+
+            {% block card_publisher_name %}
+                {{ publication.author.firstname }}
+                {{ publication.author.lastname }}
+            {% endblock %}
+
+            {% block card_publisher_role %}
+                {{ publication.author.occupation }}
+            {% endblock card_publisher_role %}
+
+            {% block card_publication_link %}
+                {{ path('publication', {'id': publication.id}) }}
+            {% endblock card_publication_link %}
+
+            {% if user == publication.author %}
+                {% block card_publisher_connect %}{% endblock %}
+            {% endif %}
+
+            {% block card_title %}
+            	{% if publication.name %}
+            		{{ publication.name }}
+            	{% else %}
+            		{% set favDiscussion = pum_repository('social_favorite_discussion').getFavorite(user, publication) %}
+            		{% if favDiscussion is not null %}
+            			{{ favDiscussion.title }}
+            		{% endif %}
+            	{% endif %}
+                
+            {% endblock card_title %}
+
+            {% block card_image %}
+                {% if publication.file is not null %}
+                <div class="card-right">
+                    <a href="{{ path('publication', {'id': publication.id}) }}">
+                        {{ macros.show_post_media(publication, 'default', 0, '', 200) }}
+                    </a>
+                </div>
+                {% endif %}
+            {% endblock card_image %}
+
+            {% block card_publication_details %}
+                {# %link% = ' dans ' + link #}
+                {# Publié %link% le %date% à %hour% #}
+                {% if publication.publishedGroup %}
+                    {% set published_in_link = 'homepage.logged.widget.published_in'|trans({}, 'rpe') ~ '<a href="' ~ path('group', {'id': publication.publishedGroup.id}) ~ '">"' ~ publication.publishedGroup.name ~ '"</a>' %}
+                {% elseif publication.pages.count > 0 %}
+                    {% set published_in_link = '' %}
+                {% endif %}
+                {% if publication.publishDate is not null and publication.publishDate > date() %}
+                    {{ 'homepage.logged.widget.publish_program_infos'|trans({
+                        '%link%': published_in_link|default(''),
+                        '%date%': publication.publishDate|date("d/m/Y", app.session.get('user.timezone')),
+                        '%hour%': publication.publishDate|date("H\\hi", app.session.get('user.timezone'))
+                    }, 'rpe')|raw }}
+                {% else %}
+                    {{ 'homepage.logged.widget.publish_infos'|trans({
+                        '%link%': published_in_link|default(''),
+                        '%date%': publication.updateDate|date("d/m/Y", app.session.get('user.timezone')),
+                        '%hour%': publication.updateDate|date("H\\hi", app.session.get('user.timezone'))
+                    }, 'rpe')|raw }}
+                {% endif %}
+            {% endblock %}
+            {% block card_publication_count %}
+                {# <a class="wall-btn icon-heart2 orange" href="#"> {{ publication.recommendby.count }}</a> #}
+                {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                    'type': 'post',
+                    'object': publication,
+                    'style': 'button'
+                } %}
+                <a class="wall-btn icon-comment light-blue" href="#" title="Nombre de commentaires">{{ publication.comments.count }}</a>
+            {% endblock %}
+            {% block card_stamp %}
+                {% if mode != 'all' %}
+                    {% if publication.author == user or publication.isCoAuthor(user) %}
+                        <div class="card-stamp orange">{{ 'Contributeur'|trans({}, 'rpe') }}</div>
+                    {% elseif publication.status == 'DRAFTING' %}
+                        <div class="card-stamp dark-blue">{{ "publications.title.draft"|trans({}, 'rpe') }}</div>
+                    {% endif %}
+                {% endif %}
+            {% endblock card_stamp %}
+
+        {% endspaceless %}{% endembed %}
+    {% endfor %}
+
+    {% if pager.nbPages is defined and pager.currentPage < pager.nbPages %}
+        <li class="full page-loadmore js-loadmore js-load-replace" data-href="{{ path('ajax_publicationslist', {mode: mode, page: pager.currentPage + 1}) }}">
+            <a href="#" class="read-other">...</a>
+        </li>
+    {% endif %}
+{% endspaceless %}{% endblock %}

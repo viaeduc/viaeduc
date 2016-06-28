@@ -1,0 +1,391 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set page_title = (editor.name is defined) ? editor.name : 'Page du editor' %}
+{% set page_name_analytics = 'editor/view' %}
+{% set nav_section = 'profile-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/group-administration.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/rpepum/css/editor-page.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script type="text/javascript">
+        var CKEDITOR_BASEPATH = '{{ asset("bundles/rpepum//ckeditor/") }}';
+    </script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.cropbox.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.side-componants.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.group.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.editor.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.publications.js') }}"></script>
+    {% if app.request.get('tab') == 'product' %}
+        <script>
+            $(document).ready(function ($) {
+                $('ul.nav-tabs li').eq(1).find('a').trigger('click');
+            });
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% spaceless %}
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-confirm.html.twig' %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            Editor
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block cover %}
+    {% embed "pum://includes/common/componants/cover-layout.html.twig" %}
+        {% block cover_left_image %}
+            {% if userHasAccess == true and form_picture is not null %}
+	            <div class="edit-profil-image">
+	            {{ form_errors(form_picture) }}
+	            {{ form_start(form_picture, {attr: {class: 'edit-profil-image'}}) }}
+	                {{ macros.show_editor_avatar(editor, 'default', 120, 'profile-image crop-box', '117', '117') }}
+	                <input type="file" class="profil-image-input hidden-input" name="picture[picture][file]">
+	                <a href="#" class="action-btn light-blue edit-profil-link">Changer d'image</a>
+	                <div class="results">
+	                    {{ form_row(form_picture.x, {attr: {class: 'cropX'}}) }}
+	                    {{ form_row(form_picture.y, {attr: {class: 'cropY'}}) }}
+	                    {{ form_row(form_picture.w, {attr: {class: 'cropW'}}) }}
+	                    {{ form_row(form_picture.h, {attr: {class: 'cropH'}}) }}
+	                    {{ form_row(form_picture._token) }}
+	                </div>
+	                <a href="#" class="action-btn orange confirm-profil-image-change">Confirmer</a>
+	            {{ form_end(form_picture, {render_rest: false}) }}
+	            </div>
+            {% else %}
+	           {{ macros.show_editor_avatar(editor, 'default', 120, 'profile-image crop-box', '117', '117') }}
+            {% endif %}
+        {% endblock %}
+
+        {% block cover_left_information %}
+            <h3 class="profil-title editor-title">{{ editor.name }}</h3>
+            <h3 class="profil-last-name">{{ editor.name }}</h3>
+            <span class="profil-role">{{ editor.email }}</span>
+            <span class="profil-role">{{ editor.website }}</span>
+        {% endblock %}
+
+        {% block cover_left_extra_information %}
+            <p class="description">{{ editor.description|truncate(210, true, ' ...') }}</p>
+        {% endblock %}
+        {% block cover_left_buttons %}
+            {# ---------------------------------------------------------- #}
+            {# Il faut mettre les boutons : envoyer un message, s'abonner #}
+            {# ---------------------------------------------------------- #}
+
+            {% include 'pum://includes/common/componants/bookmark/buttons.html.twig' with {
+                'type': 'editor',
+                'object': editor,
+                'style': 'link'
+            } %}
+
+            {# Un editeur peux poster des ressoruces, il faudrais donc afficher le nombre de personnes qui le suivent et le nombre de ressources publiées. #}
+            {#
+                <small class="membres icon-user">20</small> -
+                <small class="messages icon-newspaper">30</small>
+            #}
+            <small class="messages icon-newspaper">{{ editor.resources.count }}</small>
+
+            {# {% if userInEditor is defined and userInEditor is not null %}
+                <a href="#" class="action-btn orange">Editer</a>
+            {% endif %} #}
+        {% endblock %}
+
+        {% block cover_right %}
+            {% if form_cover is not null %}
+                {{ form_errors(form_cover) }}
+                {{ form_start(form_cover, {attr: {class: 'edit-profil-image cover'}}) }}
+                    {{ macros.show_editor_avatar(editor, 'cover', 837, 'cover-image crop-box', '837', '300', '0', '0') }}
+                    <input type="file" class="profil-image-input hidden-input" name="cover[cover][file]">
+                    <a href="#" class="action-btn light-blue edit-profil-link">Changer d'image</a>
+                    <div class="results">
+                        {{ form_row(form_cover.x, {attr: {class: 'cropX'}}) }}
+                        {{ form_row(form_cover.y, {attr: {class: 'cropY'}}) }}
+                        {{ form_row(form_cover.w, {attr: {class: 'cropW'}}) }}
+                        {{ form_row(form_cover.h, {attr: {class: 'cropH'}}) }}
+                        {{ form_row(form_cover._token) }}
+                    </div>
+                    <a href="#" class="action-btn orange confirm-profil-image-change">Confirmer</a>
+                {{ form_end(form_cover, {render_rest: false}) }}
+            {% else %}
+                {{ macros.show_editor_avatar(editor, 'cover', 837, 'cover-image crop-box', '837', '300', '0', '0') }}
+            {% endif %}
+        {% endblock cover_right %}
+    {% endembed %}
+{% endblock %}
+
+{% block sidebar %}
+    {# afficher les derniers membres du page #}
+    {% if editor.getResources.count != 0 %}
+        {% include "pum://includes/common/componants/sidebar/sidebar-resources.html.twig" with {'resources': editor.getResources()} %}
+    {% else  %}
+        <div class="side-componant grey">
+            <div class="padding-wrapper">
+                <h3 class="componant-title">{{ "sidebar.ressources"|trans({}, 'rpe') }}</h3>
+                <div class="componant-wrapper">
+                    <p>Les contenus et les articles que vous créez ou co-créez sont repertoriés ici.</p>
+                    <a href="{{ path('publish_publications') }}" class="action-btn sidebar-link orange">Créer une ressource maintenant</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{# BEGIN FORM THEME FOR POST #}
+{% block _post_content_row %}
+        <label class="hidden" for="simple-message">{{ "groupPage.form.simlemessage"|trans({}, 'rpe') }}</label>
+        <span class="text-box">
+            <textarea {{ block('widget_attributes') }} required data-link-ajax="{{ path('link_preview') }}" class="linkpreview simple-message-input expanding"></textarea>
+        </span>
+{% endblock %}
+{% block _post_file_row %}
+        <div class="extra-message-info">
+        <div class="message-add-image">
+            <ul class="uploaded-files-wrapper text-light">
+                {% for subform in form %}
+                    {% for subsubform in subform %}
+                        <li class="uploaded-element">
+                            {% for subsubsubform in subsubform %}
+                                {{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                            {% endfor %}
+                            <span class="new-file">{{ subsubform.vars.value.getName() }}</span>
+                            <a href="#" class="remove-upload">x</a>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+            <span class="action-btn btn-file orange icon-paperclip post-file-btn">
+                {{ form_widget(form.file, {'attr' : {'class': 'rpe-upload single-upload show-it'}}) }}
+            </span>
+            {{ block('valider_widget') }}
+        </div>
+
+       {#<div class="message-add-image file-upload">
+            <ul class="uploaded-files-wrapper">
+                {% for subform in form %}
+                    {% for subsubform in subform %}
+                        <li class="uploaded-element">
+                            {% for subsubsubform in subsubform %}
+                                {{ form_widget(subsubsubform, {required:false, attr: {'style': 'display:none'}}) }}
+                            {% endfor %}
+                            <span class="new-file">{{ subsubform.vars.value.getName() }}</span>
+                            <a href="#" class="remove-upload">x</a>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+            <span class="action-btn btn-file orange icon-paperclip">
+                <span class="fileupload">{{ "post.add"|trans({}, 'rpe') }}</span>
+                <!-- <input type="file" id="pum_object_file_file" class="rpe-upload"> -->
+                {{ form_widget(form.file, null, {'attr': {'class': 'rpe-upload'}}) }}
+                <!-- <input type="file" class="rpe-upload" id="post_file_file" name="post[file][file]"> -->
+            </span>
+            {{ block('valider_widget') }}
+        </div>#}
+
+    </div>
+{% endblock %}
+{% block valider_widget %}
+    <button type="submit" class="action-btn light-blue send-link icon-paperplane post-message-btn" name="confirmer"></button>
+{% endblock %}
+{# END FORM THEME FOR POST #}
+
+{# BEGIN FORM THEME FOR PRODUCT #}
+{% block _product_title_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+{% block _product_subtitle_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+{% block _product_type_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+{% block _product_linkmore_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _product_content_row %}
+    <li>
+	    <div class="form-left">
+            <label for="product_content">{{ form_label(form) }}</label>
+        </div>
+        <div class="form-right">
+            <label class="hidden" for="simple-message">Simple Message</label>
+	        <span class="text-box">
+	            <textarea {{ block('widget_attributes') }} required class="simple-message-input"></textarea>
+	        </span>
+        </div>
+    </li>
+{% endblock %}
+
+{% block _product_picture_row %}
+    {% import 'pum://macros/macros.html.twig' as rpe_macros %}
+    <li>
+	    <div class="form-left">
+            <label for="product_picture">Illustration</label>
+        </div>
+        <div class="form-right">
+            <span class="action-btn btn-file orange icon-paperclip">
+                <span class="fileupload">Ajouter</span>
+                {{ form_row(form.file) }}
+            </span>
+        </div>
+    </li>
+{% endblock %}
+
+{% block _product_submit_draft_row %}
+    <button type="submit" name="{{ form.vars.full_name }}" class="action-btn publish-btn full orange">Enregistrer sans publier</button>
+{% endblock %}
+
+{% block _product_submit_row %}
+    <button type="submit" name="{{ form.vars.full_name }}" class="action-btn publish-btn green">Envoyer</button>
+{% endblock %}
+
+{% block _product_picture_file_row %}
+    <input type="file" class="rpe-upload single-upload" name="product[picture][file]" />
+{% endblock %}
+{# END FORM THEME FOR PRODUCT #}
+
+{# BEGIN FORM THEME FOR CONTACT #}
+{% block _contact_name_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+{% block _contact_firstname_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+{% block _contact_mailfrom_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+{% block _contact_subject_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+{% block _contact_content_row %}
+    <li>
+	    <div class="form-left">
+            <label for="contact_content">{{ form_label(form) }}</label>
+        </div>
+        <div class="form-right">
+            <label class="hidden" for="simple-message">Simple Message</label>
+	        <span class="text-box">
+	            <textarea {{ block('widget_attributes') }} required class="simple-message-input"></textarea>
+	        </span>
+        </div>
+    </li>
+{% endblock %}
+
+{# END FORM THEME FOR CONTACT #}
+
+{% block main_content %}
+    {{ macros.modal('product') }}
+    {% form_theme form _self %}
+    <ul class="nav nav-tabs">
+        <li class="tab active"><a data-toggle="tab" href="#portlet_tab1">Dernières publications du partenaire</a></li>
+        <li class="tab"><a data-toggle="tab" href="#portlet_tab2">Produits</a></li>
+        <li class="tab"><a data-toggle="tab" href="#portlet_tab3">Informations</a></li>
+        <li class="tab"><a data-toggle="tab" href="#portlet_tab4">Contact</a></li>
+        {% if userInEditor is not null and userInEditor.isOwner %}
+            <li class="tab"><a href="{{ path('edit_editor', {'id': editor.id}) }}" class="icon-cog">Editer</a></li>
+        {% endif %}
+    </ul>
+
+    <div class="tab-content">
+        <!-- Fil d'activités -->
+        <div id="portlet_tab1" class="tab-pane active">
+            {# flux d'actualité classique, type groupe ou page profil #}
+            {# {% include "pum://includes/common/componants/publications/publications.html.twig" %} #}
+            {% if userInEditor is defined and userInEditor is not null %}
+                {% include "pum://includes/common/componants/publish.html.twig" %}
+            {% else %}
+                <div class="alert text-center">{{ 'editorPage.alert.public_editor'|trans({}, 'rpe') }}</div>
+            {% endif %}
+
+            <div id="posts-content">
+                {% for post in editor.posts %}
+                    {% include "pum://includes/common/componants/publications/publications.html.twig" %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- produits -->
+        <div id="portlet_tab2" class="tab-pane">
+            {% if form_product is not null %}
+                <div class="editor-title">
+                    <h2 class="title">Ajouter un produit</h2>
+                    <a href="#" class="add-title editor-add-link action-btn light-blue">Ajouter un produit</a>
+                </div>
+                {% form_theme form_product _self %}
+                {{ form_errors(form_product) }}
+                {{ form_start(form_product) }}
+                    <div class="editor-add">
+                        <ul>
+                            {{ form_row(form_product.title) }}
+			                {{ form_row(form_product.subtitle) }}
+			                {{ form_row(form_product.type) }}
+			                {{ form_row(form_product.linkmore) }}
+			                {{ form_row(form_product.picture) }}
+			                {{ form_row(form_product.content) }}
+                            <li>
+                                <div class="form-left"></div>
+                                <div class="form-right">
+                                    {{ form_row(form_product.submit) }}        
+			                        {{ form_row(form_product.submit_draft) }}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                {{ form_end(form_product, {render_rest: true}) }}
+			{% else %}
+                <div class="alert text-center">{{ 'editorPage.alert.public_editor'|trans({}, 'rpe') }}</div>
+            {% endif %}
+
+            {% for product in products %}
+                {% include "pum://includes/common/componants/products/products.html.twig" %}
+            {% endfor %}
+        </div>
+        <!-- Informations -->
+        <div id="portlet_tab3" class="tab-pane">
+            <div class="editor-box">
+                <h3 class="information-title">Nom de la page</h3>
+                <p class="information-text">{{ editor.name }}</p>
+
+                <h3 class="information-title">Date de création</h3>
+                <p class="information-text">{{ editor.createDate|date('d-m-Y') }}</p>
+
+                <h3 class="information-title">Description</h3>
+                <p class="information-text">{{ editor.description }}</p>
+
+                <h3 class="information-title">Liens (blog, site...)</h3>
+                <p class="information-text"><a href="{{ editor.website }}" class="inner-link" target="_blank">{{ editor.website }}</a></p>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div id="portlet_tab4" class="tab-pane">
+            <div class="editor-box">
+                <h3 class="editor-contact-title">Contacter le partenaire</h3>
+                {% form_theme form_contact _self %}
+                {{ form_errors(form_contact) }}
+                {{ form_start(form_contact, {attr: {class: 'editor-form'}}) }}
+	               <ul>
+                        {{ form_row(form_contact.name) }}
+		                {{ form_row(form_contact.firstname) }}
+		                {{ form_row(form_contact.mailfrom) }}
+		                {{ form_row(form_contact.subject) }}
+		                {{ form_row(form_contact.content) }}
+	                    {{ block('submit_block') }}
+	               </ul>
+                {{ form_end(form_contact, {render_rest: true}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% endspaceless %}

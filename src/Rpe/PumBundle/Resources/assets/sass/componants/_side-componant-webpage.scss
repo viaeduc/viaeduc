@@ -1,0 +1,30 @@
+// --
+// My Webpage
+.componant-date {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    margin: 0 0 1% 0;
+    padding: 5px 15px;
+
+    background: rgba(0,0,0,0.2);
+
+    text-align: center;
+    color: $dark-grey-font;
+    @include fontSize(10);
+    font-weight: bold;
+
+    //Animation
+    position: relative;
+    left: 10px;
+    opacity: 0;
+
+    > span {
+        font-weight: normal;
+    }
+
+    &:hover {
+        background: rgba(0,0,0,0.3);
+        color: $white-font;
+    }
+}

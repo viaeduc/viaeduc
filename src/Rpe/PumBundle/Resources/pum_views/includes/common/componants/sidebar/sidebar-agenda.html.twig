@@ -1,0 +1,26 @@
+{% if group.getCurrentEvents()|length %}
+    <div class="side-componant">
+        <div class="padding-wrapper">
+            <h3 class="componant-title">Agenda</h3>
+            <ul>
+                {% for event in group.getCurrentEvents()|slice(0, 3) %}
+                    <li class="agenda-componant">
+                        <div class="agenda-date">
+                            <a href="{{ path('agenda_event', {'event_id': event.id}) }}">
+                                <span class="date-month">{{ event.startDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'd')|capitalize }}</span>
+                                <span class="date-month">{{ event.startDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'LLLL')|capitalize|truncate(3, false, '') }}</span>
+                            </a>
+                        </div><!--
+                        --><div class="agenda-info">
+                            <a href="{{ path('agenda_event', {'event_id': event.id}) }}" class="agenda-title">{{ event.title }}</a>
+                            {% if event.placeName %}
+                                <a href="{{ path('agenda_event', {'event_id': event.id}) }}" class="agenda-location">à {{ event.placeName }}</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{{ path('agenda_group', {'group_id': group.id}) }}" class="componant-link">{{ 'sidebar.event.see'|transchoice(group.getCurrentEvents()|length, {}, 'rpe') }}</a>
+    </div>
+{% endif %}

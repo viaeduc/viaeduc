@@ -1,0 +1,19 @@
+{% extends "pum://empty_layout.html.twig" %}
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% block main_content %}
+    
+    {% spaceless %}
+        <div class="month-title">
+            <a href="{{ path('ajax_eventlist', {'year': previousMonth|date('Y'), 'month': previousMonth|date('n')}) }}" class="month-prev js-loadmore js-infinite js-load-inner" data-target=".event-wrapper"><</a>
+            <h4 class="month-title"><span>{{ currentMonth|localizeddate('none', 'none', app.request.locale, event.timezone, 'LLLL') }}</span> {{ currentMonth|date('Y') }}</h4>
+            <a href="{{ path('ajax_eventlist', {'year': nextMonth|date('Y'), 'month': nextMonth|date('n')}) }}" class="month-next js-loadmore js-infinite js-load-inner" data-target=".event-wrapper">></a>
+        </div>
+    {% endspaceless %}
+    
+    <div class="month-cards">
+        {% for event in events %}
+     	    {% include 'pum://page/agenda/card-event.html.twig' %}
+        {% endfor %}
+    </div>
+{% endblock %}

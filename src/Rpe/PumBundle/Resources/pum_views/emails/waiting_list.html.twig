@@ -1,0 +1,279 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+{% set actor = pum_entity(notification.actorType, notification.actorId) %}
+{% set target = pum_entity(notification.targetType, notification.targetId) %}
+{% if notification.isTypeRelationRequest %}
+    {% set friend = pum_repository('friend').getRelation(actor, contact) %}
+{% endif %}
+
+{% if app.request is not null and app.request.schemeAndHttpHost %}
+    {% set base_url = app.request.schemeAndHttpHost %}
+{% else %}
+    {% set base_url = schemeAndHttpHost %}
+{% endif %}
+{% set cont = 'Rpe\\PumBundle\\Controller\\GroupController::' %}
+
+<div class="wrapper" style="width:530px; margin:0 auto; font-family: arial, sans-serif;">
+    <!-- ========= -->
+    <!-- SMALL TOP -->
+    <!-- ========= -->
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr height="50" style="height:50px;">
+            <td width="530" style="background-color:#fff; color:#000; height: 50px; width:530px; text-align:center; font-size:11px;">
+                Si cet email ne s'affiche pas correctement, <a href="{{ base_url }}{{ path('mail_notification_request', {'notification_id': notification.id, 'contact_id': contact.id}) }}" style="color:#259aae; text-decoration:none;">accédez à sa version en ligne.</a>
+            </td>
+        </tr>
+    </table>
+    <!-- ====== -->
+    <!-- HEADER -->
+    <!-- ====== -->
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr height="80" style="height:80px; background-color:#1d2129;">
+            <td width="530" style="width:530px;">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr height="24" style="height:24px;">
+                        <td width="530" style="width:530px;"></td>
+                    </tr>
+                    <tr height="32" style="height:32px;">
+                        <td width="530" style="width:530px;">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tr height="32" style="height:32px;">
+                                    <td width="20" style="width:20px">
+                                        <!-- padding -->
+                                    </td>
+                                    <td width="154" style="width:154px;">
+                                        <!-- LOGO -->
+                                        <a href="{{ base_url }}{{ path('home') }}">
+                                            <img src="{{ base_url }}{{ asset('bundles/rpepum/images/email/01-logo.jpg') }}" style="display:block; border:none;" />
+                                        </a>
+                                    </td>
+                                    <td width="234" style="width:234px">
+                                        <!-- whitespace -->
+                                    </td>
+                                    <td width="70" style="width:70px; text-align: left;">
+                                        <!-- LINK -->
+                                        <a href="{{ base_url }}{{ path('profil', {'id': hashEncode(contact.id)}) }}" style="color:#259aae; text-decoration:none; font-size:12px;">
+                                            Mon profil
+                                        </a>
+                                    </td>
+                                    <td width="32" style="width:32px">
+                                        <!-- PROFIL PIC -->
+                                        <a href="{{ base_url }}{{ path('profil', {'id': hashEncode(contact.id)}) }}">
+                                            {{ macros.show_user_avatar(contact, 'relation', 32, null) }}
+                                        </a>
+                                    </td>
+                                    <td width="20" style="width:20px">
+                                        <!-- padding -->
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr height="24" style="height:24px;">
+                        <td width="530" style="width:530px;"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- ===== -->
+    <!-- TITLE -->
+    <!-- ===== -->
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr height="80" style="height:80px;">
+            <td width="530" style="width:530px; background-color:#374860;">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr height="20" style="height:20px;">
+                        <td width="530" style="width:530px;"></td>
+                    </tr>
+                    <tr height="40" style="height:40px;">
+                        <td width="530" style="width:530px;font-family:Verdana, sans-serif;font-size:18px;color:#ffffff;padding-left:25px;">
+                            Vous avez une nouvelle invitation
+                        </td>
+                    </tr>
+                    <tr height="20" style="height:20px;">
+                        <td width="530" style="width:530px;"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- ======= -->
+    <!-- CONTENT -->
+    <!-- ======= -->
+    <table border="0" cellpadding="0" cellspacing="0">
+         <td width="530" style="width:530px; background-color:#374860;">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="2" style="width:2px;"></td>
+                    <td width="526" style="width:526px; background-color:#ffffff;">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr height="20" style="height:20px;">
+                                <td width="20" style="width:20px;"></td>
+                                <td width="486" style="width:486px;"></td>
+                                <td width="20" style="width:20px;"></td>
+                            </tr>
+                            <tr>
+                                <td width="20" style="width:20px;"></td>
+                                <td width="486" style="width:486px;">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr height="64" style="height:64px;">
+                                            <td width="64" style="width:64px;">
+                                                <!-- img -->
+                                                {% if notification.isTypeRelationRequest %}
+                                                    {{ macros.show_user_avatar(actor, 'relation', 64, null) }}
+                                                {% elseif notification.isTypeEventInvitation %}
+                                                    {% set ownerGroup = target.ownerGroup %}
+                                                    {% set ownerUser = target.ownerUser %}
+
+                                                    {% if ownerGroup %}
+                                                        {{ macros.show_group_avatar(ownerGroup, 'default', 64, null) }}
+                                                    {% elseif ownerUser %}
+                                                        {{ macros.show_user_avatar(ownerUser, 'avatar', 64, null) }}
+                                                    {% endif %}
+                                                {% elseif notification.isTypeJoinRequest %}
+                                                    {{ macros.show_user_avatar(actor, 'relation', 64, null) }}
+                                                {% elseif notification.isTypeJoinInvite %}
+                                                    {% if notification.targetType == 'group' %}
+                                                        {{ macros.show_group_avatar(target, 'default', 64, null) }}
+                                                    {% elseif notification.targetType == 'blog' %}
+                                                        {{ macros.show_blog_avatar(target, 'cover', 64, null) }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+                                            <td width="6" style="width:6px;"></td>
+                                            <td width="150" style="width:150px;font-family:Verdana, sans-serif; vertical-align: top; ">
+                                                <!-- name -->
+                                                {% if notification.isTypeRelationRequest %}
+                                                    <a href="{{ base_url }}{{ path('profil', {'id': hashEncode(actor.id)}) }}" style="display:block; float:left; clear:both; font-size:12px; font-weight:bold; color:#37485f; text-decoration:none;">{{ actor.fullname }}</a>
+                                                    {% if actor.occupation %}
+                                                        <span style="display:block; float:left; clear:both; font-size:10px; color:#565656;">{{ actor.occupation.name }}</span>
+                                                    {% endif %}
+                                                {% elseif notification.isTypeEventInvitation %}
+                                                    <a href="{{ base_url }}{{ path('profil', {'id': hashEncode(actor.id)}) }}" style="display:block; float:left; clear:both; font-size:12px; font-weight:bold; color:#37485f; text-decoration:none;">{{ target.title }}</a>
+
+                                                    {% set ownerGroup = target.ownerGroup %}
+                                                    {% set ownerUser = target.ownerUser %}
+
+                                                    {% if ownerGroup %}
+                                                        <span style="display:block; float:left; clear:both; font-size:10px; color:#565656;">{{ "agenda.event_from"|trans({}, 'rpe') }} {{ ownerGroup.name }} (créé par {{ ownerUser.firstname }} {{ ownerUser.lastname }})</span>
+                                                    {% elseif ownerUser %}
+                                                        <span style="display:block; float:left; clear:both; font-size:10px; color:#565656;">{{ "agenda.event_from"|trans({}, 'rpe') }} {{ ownerUser.firstname }} {{ ownerUser.lastname }}</span>
+                                                    {% endif %}
+                                                {% elseif notification.isTypeJoinRequest %}
+                                                    <a href="{{ base_url }}{{ path('group', {'id': target.id}) }}" style="display:block; float:left; clear:both; font-size:12px; font-weight:bold; color:#37485f; text-decoration:none;">{{ target.name }}</a>
+                                                    <span style="display:block; float:left; clear:both; font-size:10px; color:#565656;">{{ target.description }}</span>
+                                                {% elseif notification.isTypeJoinInvite %}
+                                                    <a href="{{ base_url }}{{ path(notification.targetType, {'id': target.id}) }}" style="display:block; float:left; clear:both; font-size:12px; font-weight:bold; color:#37485f; text-decoration:none;">{{ target.name }}</a>
+                                                    <span style="display:block; float:left; clear:both; font-size:10px; color:#565656;">{{ target.description }}</span>
+                                                {% elseif notification.isTypeCoAuthor %}
+                                                    <a href="{{ base_url }}{{ path('publication', {'id': target.id}) }}" style="display:block; float:left; clear:both; font-size:12px; font-weight:bold; color:#37485f; text-decoration:none;">{{ target.name }}</a>
+                                                {% elseif notification.isTypeEditPublication %}
+                                                    <a href="{{ base_url }}{{ path('publication', {'id': target.id}) }}" style="display:block; float:left; clear:both; font-size:12px; font-weight:bold; color:#37485f; text-decoration:none;">{{ target.name }}</a>
+                                                {% endif %}
+                                            </td>
+                                            <td width="6" style="width:6px;"></td>
+                                            <td width="204" style="width:204px; vertical-align:top;background:#f3f3f3;">
+                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                    <tr height="5" style="height:5px;">
+                                                        <td width="5" style="width:5px;"></td>
+                                                        <td width="194" style="width:194px;"></td>
+                                                        <td width="5" style="width:5px;"></td>
+                                                    </tr>
+                                                    <tr height="54" style="height:54px;">
+                                                        <td width="5" style="width:5px;"></td>
+                                                        <td width="194" style="width:194px;font-size:11px;color:#6F7277">
+                                                            <a href="{{ base_url }}{{ path('profil', {'id': hashEncode(actor.id)}) }}" style="font-weight:bold; color:#37485f; text-decoration:none;">{{ actor.fullname }}</a>
+
+                                                            {% if notification.isTypeRelationRequest %}
+                                                                souhaite vous ajouter à <strong>sa liste de relations</strong>
+                                                            {% elseif notification.isTypeEventInvitation %}
+                                                                vous invite à l'évènement <strong>{{ target.title }}</strong>
+                                                            {% elseif notification.isTypeJoinRequest %}
+                                                                souhaite rejoindre votre groupe <strong>{{ target.name }}</strong>
+                                                            {% elseif notification.isTypeJoinInvite %}
+                                                                {% if notification.targetType == 'group' %}
+                                                                    vous invite à rejoindre le groupe <strong>{{ target.name }}</strong>
+                                                                {% elseif notification.targetType == 'blog' %}
+                                                                    vous invite à venir découvrir son blog <strong>{{ target.name }}</strong>
+                                                                {% endif %}
+                                                            {% elseif notification.isTypeCoAuthor %}
+                                                                vous invite à co créer le ressource <strong>{{ target.name }}</strong>
+                                                            {% elseif notification.isTypeEditPublication %}
+                                                                a édité votre ressource <strong>{{ target.name }}</strong>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td width="5" style="width:5px;"></td>
+                                                    </tr>
+                                                    <tr height="5" style="height:5px;">
+                                                        <td width="5" style="width:5px;"></td>
+                                                        <td width="194" style="width:194px;"></td>
+                                                        <td width="5" style="width:5px;"></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td width="6" style="width:6px;"></td>
+                                            <td width="40" style="width:40px; text-align:center;">
+                                                <!-- add button -->
+
+                                                {% if notification.isTypeRelationRequest and friend is not null %}
+                                                    <a href="{{ base_url }}{{ path('relation_accept') }}?id={{ friend.id }}" style="display:block; width:29px; height:29px; margin:0 auto;"><img src="{{ base_url }}{{ asset('bundles/rpepum/images/email/05-add.jpg') }}" style="display:block; border:none;"></a>
+                                                {% elseif notification.isTypeEventInvitation %}
+                                                    <a href="{{ base_url }}{{ path('ajax_event_rsvp', {'id': target.id, 'answer': 'accept', 'style': 'mail'}) }}" style="display:block; width:29px; height:29px; margin:0 auto;"><img src="{{ base_url }}{{ asset('bundles/rpepum/images/email/05-add.jpg') }}" style="display:block; border:none;"></a>
+                                                {% elseif notification.isTypeJoinRequest %}
+                                                    <a href="{{ base_url }}{{ path('group_action_manage_request', {
+                                                        'action': constant(cont~'ACTION_ACCEPT'),
+                                                        'member_id': actor.id,
+                                                        'group_id': target.id
+                                                    }) }}" style="display:block; width:29px; height:29px; margin:0 auto;"><img src="{{ base_url }}{{ asset('bundles/rpepum/images/email/05-add.jpg') }}" style="display:block; border:none;"></a>
+                                                {% elseif notification.isTypeJoinInvite %}
+                                                    {% if notification.targetType == 'group' %}
+                                                        <a href="{{ base_url }}{{ path('group_action_request', {'id': target.id, 'mode': 'accept'}) }}" style="display:block; width:29px; height:29px; margin:0 auto;"><img src="{{ base_url }}{{ asset('bundles/rpepum/images/email/05-add.jpg') }}" style="display:block; border:none;"></a>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="20" style="width:20px;"></td>
+                            </tr>
+                            <tr height="20" style="height:20px;">
+                                <td width="20" style="width:20px;"></td>
+                                <td width="516" style="width:516px;"></td>
+                                <td width="20" style="width:20px;"></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="2" style="width:2px;"></td>
+                </tr>
+            </table>
+        </td>
+    </table>
+    <!-- ====== -->
+    <!-- FOOTER -->
+    <!-- ====== -->
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr height="50" style="height:50px; background-color:#242a33;">
+            <td width="530" style="width:530px;">
+            </td>
+        </tr>
+    </table>
+    <!-- ===== -->
+    <!-- LEGAL -->
+    <!-- ===== -->
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr height="100" style="height:100px;">
+            <td width="530" style="width:530px; font-family:arial, sans-serif; font-size:11px; color:#000; text-align:center;">
+                <a href="{{ base_url ~ path('login') ~ '#popin_forget_password'}}" style="color:#259aae; text-decoration:none; font-weight:bold;">Vous avez oublié votre mot de passe ?</a><br />
+                Pour gérer les e-mails que nous vous envoyons, rendez-vous dans les <a href="{{ base_url ~ path('my_notifications') }}" style="color:#000000; text-decoration:none;">paramètres de votre compte</a>.<br>
+                {# Conformément à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée en 2004, vous bénéficiez d'un droit
+                d'accès et de rectification aux informations qui vous concernent, que vous pouvez exercer en nous
+                adressant votre demande à <a href="#" style="color:#000000; text-decoration:none;">newsletter@blocmarque.fr</a>. #}
+            </td>
+        </tr>
+    </table>
+</div>
+{% endspaceless %}
+{% endblock %}

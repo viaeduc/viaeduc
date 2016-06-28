@@ -1,0 +1,64 @@
+
+{% extends "pum://empty_layout.html.twig" %}
+
+
+{# FORM #}
+{% block _message_content_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block submit_widget %}
+    {% spaceless %}
+        {% set class = 'mini-btn light-blue pull-right' %}
+        {% set attr = attr|merge({class: class}) %}
+        {% set label = 'Envoyer'|trans({}, 'rpe') %}
+        {{ parent() }}{{ help|default('') }}
+    {% endspaceless %}
+{% endblock submit_widget %}
+
+{% block valider_widget %}
+    <li><input type="submit" value="{{ "messages.send"|trans({}, 'rpe') }}" name="" class="action-btn light-blue" /></li>
+{% endblock %}
+
+{% block main_content %}
+    <!-- **************************************************************** -->
+    <!-- * Each LI is a message, CSS applies grey - white every each LI * -->
+    <!-- *            The reply textarea is in the last LI              * -->
+    <!-- **************************************************************** -->
+    <div class="intro">
+        {% set recipients = discussion.recipients(user) %}
+        <h2>{{ "messages.you"|trans({}, 'rpe') }}{% if  recipients.count > 1 %},{% endif %}{{ macros.show_recipients(recipients) }}</h2>
+    </div>
+    <div class="main-message-container">
+        <ul>
+            {% for message in discussion.getMessagesBy({}, {'date': 'asc'}) %}
+                {% include "pum://includes/common/componants/messages/messages-single.html.twig" %}
+            {% endfor %}
+
+            <li class="discution-bloc">
+                {% form_theme form _self %}
+
+                {{ form_errors(form) }}
+
+                {{ form_start(form, { 'action': path('ajax_discussion', {id: discussion.id}) , 'attr': { 'class': 'discution-form' } }) }}
+
+                    <ul>
+                        {{ form_rest(form) }}
+                        {# {{ block('valider_widget') }}  #}
+                    </ul>
+                {{ form_end(form) }}
+
+                {# <form class="respond-message">
+                    <ul>
+                        <li>
+                            <textarea name="publishMessage" placeholder="{{ "messages.answer"|trans({}, 'rpe') }}"></textarea>
+                        </li>
+                        <li>
+                            <input type="submit" value="{{ "messages.send"|trans({}, 'rpe') }}" name="" class="action-btn light-blue" />
+                        </li>
+                    </ul>
+                </form> #}
+            </li>
+        </ul>
+    </div>
+{% endblock %}

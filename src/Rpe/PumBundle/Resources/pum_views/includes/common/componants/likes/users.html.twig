@@ -1,0 +1,19 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+    <ul>
+    	{% set remaining_recommends = recommends|length %}
+    	
+        {% for recommend in recommends|slice(0,3) %}
+            <li>{{ recommend.user.fullname }}</li>
+            
+    		{% set remaining_recommends = remaining_recommends - 1 %}
+        {% endfor %}
+        
+        {% if remaining_recommends %}
+            <li>{{ '+ %count% autre|autres'|transchoice(remaining_recommends, {'%count%': remaining_recommends}, 'rpe') }}</li>
+        {% endif %}
+    </ul>
+{% endspaceless %}
+{% endblock %}

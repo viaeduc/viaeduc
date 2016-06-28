@@ -1,0 +1,40 @@
+{# <form action="#" name="comment" class="comment-form" >
+    <span class="text-box "> <input placeholder="Ajouter un commentaire..." type="text"  value=""/> </span>
+    <div class=""/>
+</form> #}
+
+{% extends "pum://empty_layout.html.twig" %}
+
+{# PATH to use #}
+
+{# FORM #}
+{% block text_row %}
+    <span class="text-box">
+        {# {% set id = form.vars.id ~ '_' ~ app.request.get('post') %} #}
+        {{ form_widget(form, {'attr': {'class': 'linkpreview expanding', 'data-link-ajax': path('link_preview'), 'required': 'required', 'data-validation': 'required', 'data-validation-error-msg': 'Merci de saisir un message.'}}) }}
+    </span>
+{% endblock %}
+
+{% block submit_widget %}
+    {% spaceless %}
+        {% set class = 'mini-btn light-blue pull-right icon-comment' %}
+        {% set attr = attr|merge({class: class}) %}
+        {% set label = ' '|trans({}, 'rpe') %}
+        {{ parent() }}{{ help|default('') }}
+    {% endspaceless %}
+{% endblock submit_widget %}
+
+{% block main_content %}
+    {% if ((app.request.get('question') is not null)) %}
+        {% set formActionPath = 'create_form_answer' %}
+    {% else %}
+        {% set formActionPath = 'create_form_comment' %}
+    {% endif %}
+
+    {% form_theme form _self %}
+
+    {{ form_errors(form) }}
+    {{ form_start(form, { action: path(formActionPath), 'attr': { 'class': 'comment-form question-form' } }) }}
+        {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,197 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/app-page.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/idangerous.swiper.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/idangerous.swiper.scrollbar-2.3.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.app-page.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+	{% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+		{% block this_page %}
+	    	Page d'application
+	    {% endblock %}
+	{% endembed %}
+{% endblock %}
+
+
+{% block sidebar %}
+    <div class="sidebar-box application-box">
+        <h3 class="sidebar-title">Application</h3><!--
+        --><div class="title-line"></div>
+        <h4 class="sidebar-sub-title">Défi bac quizz anglais <span>| Créé par <span class="bold">Bordas</span></span></h4>
+        <div class="sidebar-main-info">
+            <img src="{{ asset('bundles/rpepum/images/tmp/image_app.png') }}" class="sidebar-app-image"><!--
+            --><div class="main-info-wrapper">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="square-btn icon-user-pair orange"></span>
+                            <span class="info"><span class="number">1830</span> Utilisateurs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="square-btn icon-heart2 orange"></span>
+                            <span class="info"><span class="number">10</span> Recommandations</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="square-btn icon-comment orange"></span>
+                            <span class="info"><span class="number">19</span> Commentaires</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <span class="bold">Description :</span>
+        <p class="main-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, ad, fuga, neque incidunt ex id eligendi amet unde ea perferendis aliquam eaque officia atque praesentium obcaecati quas in velit quam.
+        </p>
+        <div class="sidebar-bottom">
+            <span class="price">0,99 €</span>
+            <a href="#" class="action-btn orange">Acheter</a>
+        </div>
+    </div>
+    <div class="sidebar-box">
+        <h3>Caractéristiques</h3>
+        <div class="sidebar-wrapper">
+            <ul class="app-description">
+                <li><span class="bold">Discipline :</span> Anglais</li>
+                <li><span class="bold">Niveau d'enseignement :</span> Terminal</li>
+                <li><span class="bold">Date de mise en ligne :</span> 13/06/13</li>
+                <li><span class="bold">Configuration :</span> 13/06/13</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sidebar-box">
+        <ul class="big-link-container">
+            <li class="side-links">
+                <a href="#">
+                    <div class="image-wrapper">
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img_studyrama.png') }}">
+                    </div><!--
+                    --><div class="data">
+                        <span>studyrama</span>
+                        <p>
+                            Actualité de l'orientation et de l'emploi etudiant
+                        </p>
+                    </div><!--
+                    --><span class="icon-right-dir"></span>
+                </a>
+            </li>
+             <li class="side-links">
+                <a href="#">
+                    <div class="image-wrapper">
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img_studyrama.png') }}">
+                    </div><!--
+                    --><div class="data">
+                        <span>studyrama</span>
+                        <p>
+                            Actualité de l'orientation et de l'emploi etudiant
+                        </p>
+                    </div><!--
+                    --><span class="icon-right-dir"></span>
+                </a>
+            </li>
+             <li class="side-links bg-orange">
+                <a href="#">
+                    <div class="image-wrapper">
+                        <img alt="" src="{{ asset('bundles/rpepum/images/tmp/img_studyrama.png') }}">
+                    </div><!--
+                    --><div class="data">
+                        <span>studyrama</span>
+                        <p>
+                            Actualité de l'orientation et de l'emploi etudiant
+                        </p>
+                    </div><!--
+                    --><span class="icon-right-dir"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block main_content %}
+    <div class="preview-slider">
+        <!-- ******************** -->
+        <!-- HERE GOES THE SLIDER -->
+        <!-- ******************** -->
+        <div class="app-preview">
+            <!-- TAG THESE IMAGES IN THE DATA ATTRIBUTE -->
+            <!-- TAG THESE IMAGES IN THE DATA ATTRIBUTE -->
+            <!-- TAG THESE IMAGES IN THE DATA ATTRIBUTE -->
+            <a href="#" class="slider-image" data-slide="0"><img src="http://webtaj.com/images/barneydelaney-landscape-graphy-and_317534.jpg" alt=""></a><!--
+            --><a href="#" class="slider-image" data-slide="1"><img src="{{ asset('bundles/rpepum/images/tmp/img_slider_top.jpg') }}" alt=""></a><!--
+            --><a href="#" class="slider-image" data-slide="2"><img src="{{ asset('bundles/rpepum/images/tmp/img_slider_top.jpg') }}" alt=""></a><!--
+            --><a href="#" class="slider-arrow first-arrow">></a>
+        </div>
+        <div class="app-slider">
+            <a href="#" class="slider-arrow prev-arrow"><</a><!--
+            --><div class="app-slider-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="http://webtaj.com/images/barneydelaney-landscape-graphy-and_317534.jpg" alt>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/img_slider_top.jpg') }}" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/img_slider_top.jpg') }}" alt="">
+                    </div>
+                </div>
+            </div><!--
+            --><a href="#" class="slider-arrow next-arrow">></a>
+            <a href="#" class="close-slider"></a>
+        </div>
+    </div>
+    <div class="publication-box">
+        <!-- ARTICLE -->
+        <div class="publication-article">
+            <h4>Plus d'informations</h4>
+            <p>
+                Des synthèse de cours du programme de l'année sont proposées sur des fiches recto/verso détachables, pour réviser efficacement. <span class="bold">Numérotée et classée</span>, chaque fiche est structurée en 2 ou 3 <span class="bold">parties composées en courts paragraphes</span>.
+
+                Les contenus sont valorisés par une maquette claire, aérée et colorée qui permet une mémorisation. + des définitions des notions essentielles et des fiches conseils pour bien préparer le bac. De plus, pour l'achat d'un ouvrage de la collection, sur www.defibac.fr, <span class="bold">l'élève accède au service inédit Questions-Réponses en ligne</span> : des professeurs qualifiés répondent le jour-même à toutes les questions posées par les élèves, dans toutes les matières.
+
+                Ce service est proposé en partenariat avec le site de soutien scolaire à domicile Bordas.com.
+            </p>
+        </div>
+    </div>
+    <div class="publication-box">
+        <div class="publication-article article-title">
+            <h4>CE QUE LES UTILISATEURS EN PENSENT <span class="small">(19 commentaires)</span></h4>
+        </div>
+        <div class="publication-comments">
+            <div class="comment">
+                <div class="image-wrapper">
+                    <a href="#">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/img-comment.png') }}" alt="">
+                    </a>
+                </div>
+                <div class="comment-wrapper">
+                    <a href="#">Denis M.</a>
+                    <span class="date">06-09-2013 - 12:22</span>
+                    <p>
+                        Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari.
+                    </p>
+
+                    <span class="like"><a href="#" class="icon-heart2">3</a> | <a href="#" class="icon-export"></a>
+                </span></div>
+            </div>
+            <form>
+                <span class="text-box">
+                    <input placeholder="Ajouter un commentaire..." type="text">
+                </span>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% endspaceless %}

@@ -1,0 +1,19 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ------------
+// Specific CSS
+// ------------
+
+h2 {
+    // color:$light-font;
+}
+
+span {
+    padding: 5px 10px;
+}

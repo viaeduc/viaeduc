@@ -1,0 +1,83 @@
+security:
+    encoders:
+        Pum\Bundle\AppBundle\Entity\User: sha256
+        Pum\Core\Extension\Security\PumUserInterface: sha256
+        Pum\Core\Extension\Security\PumPasswordInterface: sha256
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        doctrine:
+            entity:
+                class: Pum\Bundle\AppBundle\Entity\User
+        pum: { id: "pum.user_provider" }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  ^/pum-login$
+            security: false
+
+        secured_area:
+            pattern:    ^/(woodwork|project-admin|pum-login-check|pum-logout|config)(/?|$)
+            provider: doctrine
+            form_login:
+                check_path: app_security_loginCheck
+                login_path: app_security_login
+                always_use_default_target_path: false
+                default_target_path:            ww_homepage
+
+            logout:
+                path:   app_security_logout
+                target: ww_homepage
+                invalidate_session: false # we don't destroy session on logout, because of a PHP bug - http://bit.ly/16mL2oX
+
+            remember_me:
+                key:      %secret%
+                lifetime: 31536000
+                path:     /
+                domain:   ~
+
+        api:
+            pattern:  ^/api
+            security: false
+
+        front_login:
+            pattern: ^\/(login|charte|page\/sample-page|page\/(.*)|faq\/public(.*)|faq\/invite(.*)|reset-password\/(.*)|register|register\/(.*)\/(.*)|resend-enable-link\/(.*)|register_success|user\/confirmation\/(.*)\/(.*))$
+            security: false
+
+        mail_links:
+            pattern: ^\/(mail-contact-editor|mail-invitation-group|mail-reset-password|mail-notification-yournews|mail-register|mail-respire-activate|mail-respire-confirme|sso-login|invited-register)
+            security: false
+
+        front_secured_area:
+            pattern: ^/
+            provider: pum
+            anonymous: false
+            form_login:
+                check_path: login_check
+                login_path: login
+                always_use_default_target_path: false
+                default_target_path:            home
+                #failure_handler: rpe.login.failure_handler
+                success_handler: rpe.login.success_handler
+
+            logout:
+                path: logout
+                target: login
+                success_handler: rpe.logout.success_handler
+                invalidate_session: false # we don't destroy session on logout, because of a PHP bug - http://bit.ly/16mL2oX
+
+            remember_me:
+                key:      %secret%
+                lifetime: 31536000
+                path:     /
+                domain:   ~
+
+    access_control:
+        - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }

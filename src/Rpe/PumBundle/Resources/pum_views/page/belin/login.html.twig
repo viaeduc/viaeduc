@@ -1,0 +1,94 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Connexion au Lib\'' %}
+
+{% set page_name_analytics = 'lib/login' %}
+{# {% set nav_section = 'groups-menu' %} #}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{# {% set create_group_tutorial_modal = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/create-group.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    {# <script src="{{ asset('bundles/rpepum/js/rpe.create-groupe.js') }}"></script> #}
+{% endblock %}
+
+{% spaceless %}
+
+{% block breadcrumb %}
+    {% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+        {% block this_page %}
+            Lib' : Connexion
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{# FORM #}
+{% block text_row %}
+    {% set attr = attr|merge({'data-validation': 'required', 'data-validation-error-msg': 'Veuillez saisir le login.'}) %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block  _form_password_row %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div><!--
+        --><div class="form-right">
+            {{ form_widget (form, {'attr' : {'data-validation' : 'required', 'data-validation-error-msg': 'Veuillez saisir le mot de passe.'}}) }}
+        </div>
+    </li>
+{% endblock %}
+
+{% block valider_widget %}
+    <button type="submit" class="submit-relation-btn orange" id="confirmer" name="confirmer">Connexion</button>
+    <a href="{{ path('lib_register_page') }}" class="submit-relation-btn orange" >Inscription</a>
+{% endblock %}
+
+{% block main_content %}
+    <div class="login-wrapper">
+        <h4 class="title">
+            Connexion au Lib'
+        </h4>
+        {{ macros.alertMessages() }}
+        <div class="login-text-wrapper">
+            <p>
+                Cette ressource est disponible dans un manuel numérique Lib’ des éditions Belin.
+            </p>
+            <p>
+                Si vous disposez d’un compte et d’une licence pour ce manuel, vous pouvez y accéder directement depuis ViaEduc après avoir renseigné une première fois vos identifiants Lib’ dans la fenêtre ci-dessous. Par la suite, l’identification sera automatiquement faite dans Viaeduc.
+            </p>
+            <p>
+                Si vous n’avez pas de compte Lib’ au sein de votre établissement, des licences peuvent être acquise sur le site du KNE.
+            </p>
+        </div>
+
+        {% if auth_belin is defined %}
+            <a href="{{ belin_app }}?auth={{ auth_belin }}" class="profil-btn light-blue" target="_blank">Aller sur le Lib'</a>
+            <a href="{{ path('lib_loginout_page', {'auth' : auth_belin}) }}" class="submit-relation-btn orange">Déconnecter mon compte Lib'</a>
+        {% endif %}
+
+        {% if form is defined %}
+            {% form_theme form _self %}
+            {{ form_errors(form) }}
+            {{ form_start(form, {attr: { 'class': 'create-group-form'}}) }}
+                <div class="form-first">
+                    <ul class="form-wrapper">
+                        {{ form_row(form.login) }}
+                        {{ form_row(form.password) }}
+                    </ul>
+
+                    {{ form_row(form._token) }}
+                    {{ block('valider_widget') }}
+                </div>
+            {{ form_end(form, {render_rest: false}) }}
+        {% endif %}
+    </div>
+{% endblock %}
+{% endspaceless %}
+{% block tutorial %}
+{% endblock %}

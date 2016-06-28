@@ -1,0 +1,38 @@
+<li class="module-card">
+    <div class="module-card-header">
+        {% set transkey = "dashboard." ~ widget.type %}
+        <h3 class="module-card-title">{{ transkey|trans({}, 'rpe') }}</h3>
+    </div>
+    <div class="module-card-content">
+        {% set items = pum_repository('rpe_suggested_post').getSuggestedPosts(null, 3) %}
+        {% if items|length %}
+            <ul class="module-card-data-wrapper smaller">{# add "smaller" class to this ul to add a 4th element #}
+                {% for suggest in items %}
+                    <li class="module-card-data">
+                        <a  class="module-card-data-image-link" href="{{ suggest.linkUrl|default('#') }}">
+                            {{ macros.show_image(suggest.file, 200, 'module-card-data-image') }}
+                        </a>
+                        <div class="module-card-inner-data">
+                            <h4 class="module-card-title">
+                                <a href="{{ suggest.linkUrl|default('#') }}">{{ suggest.title|truncate(40, true, '...') }}</a>
+                            </h4>
+                            <span class="module-card-text">{{ suggest.text|truncate(100, true)  }}</span>
+                            <span class="module-card-text">
+                                <a href="{{ suggest.linkUrl|default('#') }}">{{ suggest.linkName|truncate(40, true, '...') }}</a>
+                            </span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <span class="module-card-empty">
+                {{ "card.suggest-empty"|trans({}, 'rpe') }}
+            </span>
+        {% endif %}
+    </div>
+    <div class="module-card-footer">
+        {% if items|length >= 3 %}
+			<a href="{{ path('profil', {'id': hashEncode(pum_var('id_profil_viaeduc'))}) }}" class="module-card-link">{{ "dashboard.suggested_post.link"|trans({}, 'rpe') }}</a>
+        {% endif %}
+    </div>
+</li>

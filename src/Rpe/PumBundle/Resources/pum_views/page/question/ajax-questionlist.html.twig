@@ -1,0 +1,16 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% for question in pager %}
+        {% include ('pum://includes/common/componants/cards/card-question.html.twig') with {'question': question} %}
+        {# {% embed "pum://includes/common/componants/cards/card-classic.twig" %}{% spaceless %}
+        
+        {% endspaceless %}{% endembed %} #}
+    {% endfor %}
+
+    {% if pager.nbPages is defined and pager.currentPage < pager.nbPages %}
+        <li class="full page-loadmore js-loadmore" data-href="{{ path('ajax_questionlist', {mode: mode, group: group, page: pager.currentPage + 1}) }}" data-target=".list-general-box">
+            <a href="#" class="read-other">...</a>
+        </li>
+    {% endif %}
+{% endspaceless %}{% endblock %}

@@ -1,0 +1,25 @@
+<div class="messages-list {{ opacity }}">
+    <div class="swiper-container">
+        <div class="swiper-scrollbar"></div>
+        <!-- **************************************************************** -->
+        <!-- * Each LI is a message, CSS applies grey - white every each LI * -->
+        <!-- *            The reply textarea is in the last LI              * -->
+        <!-- *         Add the class "stacked" for stacked images           * -->
+        <!-- **************************************************************** -->
+        <div class="swiper-wrapper">
+            {% if user.discussions.count > 0 %}
+                <ul class="swiper-slide list-general-box grid effect-2 js-autoload js-load-inner" id="grid" data-autoload="{{ path('ajax_discussionlist', {active: discussion_id}) }}">{% spaceless %}
+                    {{ macros.loader() }}
+                {% endspaceless %}</ul>
+            {% else %}
+                <ul class="messages-side-container">
+                    <li>
+                        <div class="no-messages-list">
+                            {{ "messages.no_message_side"|trans({}, 'rpe') }}
+                        </div>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>

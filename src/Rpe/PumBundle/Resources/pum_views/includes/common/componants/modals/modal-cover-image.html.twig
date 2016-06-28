@@ -1,0 +1,28 @@
+<div class="modal fade modal-first modal-image edit_cover">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/" class="edit-cover-profil" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "modalImage.edit"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-inner-wrapper">
+                        <p class="inner-description">{{ "modalImage.click"|trans({}, 'rpe') }}</p>
+                        <div class="body-update-photo fileupload fileupload-new" data-provides="fileupload">
+                            <div class="image-crop fileupload-preview thumbnail">
+                            </div>
+                            <span class="btn btn-file dark-grey">
+                                <span class="fileupload">{{ "modalImage.download"|trans({}, 'rpe') }}</span>
+                                <input name="image_file" type="file" class="uploadit">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a role="button" class="action-btn light-grey left close-modal">{{ "modalImage.cancel"|trans({}, 'rpe') }}</a><!--
+                    --><a role="button" class="action-btn light-blue accept-profil">{{ "modalImage.save"|trans({}, 'rpe') }}</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

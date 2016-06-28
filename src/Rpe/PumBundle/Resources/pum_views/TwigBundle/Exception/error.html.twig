@@ -1,0 +1,51 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Page non trouvée' %}
+{% set page_name_analytics = 'error/404' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/index-not-logged.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/rpepum/css/404.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.404.js') }}"></script>
+{% endblock %}
+
+{% block header %}
+    {% include "pum://includes/common/minimal_header.html.twig" %}
+{% endblock %}
+
+{% block content %}
+    <div class="content full">
+        <canvas class="canvas-draw" id="canvas_draw">
+        </canvas>
+        <div class="canvas-content">
+            <h1 class="canvas-title">
+                {{ status_code }}
+            </h1>
+            <h2 class="canvas-small-title">
+                {{ "common.small_text"|trans({}, 'rpe_exceptions') }}
+            </h2>
+            <p class="canvas-text">
+                {% set message_trans = exception.message|trans({}, 'rpe_exceptions') %}
+                {% if exception.message is not empty and exception.message != message_trans %}
+                    {{ exception.message|trans({}, 'rpe_exceptions') }}
+                {% else %}
+                    {% set message_key = 'common.code.' ~ status_code ~ '.message' %}
+                    {% if (message_key|trans({}, 'rpe_exceptions') != message_key) %}
+                        <!-- {{ exception.message }} -->
+                        {{ message_key|trans({}, 'rpe_exceptions') }}
+                    {% else %}
+                        <!-- {{ exception.message }} -->
+                        {{ status_message }}
+                    {% endif %}
+                {% endif %}
+            </p>
+            <div class="canvas-image">
+                <img src="{{ asset('bundles/rpepum/images/404_image.png') }}" class="image-kid">
+                <a href="/" class="action-btn light-blue back-btn">{{ "common.back"|trans({}, 'rpe_exceptions') }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,571 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/groups.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.boxs-loading.js') }}"></script>
+{% endblock %}
+
+
+{% block main_content %}
+
+    {% embed "pum://includes/common/componants/filter.twig" %}
+        {% block title %}
+            <h2 class="filter-title">{{ "myPages.title"|trans({}, 'rpe') }} <span>(126)</span></h2>
+        {% endblock %}
+
+        {% block filter %}
+            <div class="filter-right">
+                <ul class="filter-right-wrapper">
+                    <li class="filter-link">
+                        <select class="select-styled filtre">
+                            <option value="value1">{{ 'groups.created_joined'|trans({}, 'rpe')}}</option>
+                            <option value="value2"{{ 'groups.created'|trans({}, 'rpe')}}</option>
+                            <option value="value4">{{ 'groups.joined'|trans({}, 'rpe')}}</option>
+                        </select>
+                    </li>
+                    <li class="filter-link">
+                        <select class="select-styled filtre">
+                            <option value="value1">{{ 'groups.most_viewed'|trans({}, 'rpe')}}</option>
+                            <option value="value2">{{ 'groups.less_viewed'|trans({}, 'rpe')}}</option>
+                            <option value="value4">{{ 'groups.most_members'|trans({}, 'rpe')}}</option>
+                            <option value="value5">{{ 'groups.less_members'|trans({}, 'rpe')}}</option>
+                            <option value="value6">{{ 'groups.public_group'|trans({}, 'rpe')}}</option>
+                            <option value="value6">{{ 'groups.private_group'|trans({}, 'rpe')}}</option>
+                        </select>
+                    </li>
+                    <li class="filter-link">
+                        <!-- web service scolom -->
+                        <select class="select-styled filtre">
+                            <option value="value1">Toutes les disciplines</option>
+                            <option value="value2">Français</option>
+                            <option value="value4">Mathématiques</option>
+                            <option value="value5">Philosophie</option>
+                            <option value="value6">Histoire</option>
+                            <option value="value6">Géographie</option>
+                            <option value="value6">Anglais</option>
+                            <option value="value6">Musique</option>
+                        </select>
+                    </li>
+                    <li class="filter-link">
+                        <!-- web service scolom -->
+                        <select class="select-styled filtre">
+                            <option value="value1">Tous niveaux confondus</option>
+                            <option value="value2">Seconde</option>
+                            <option value="value4">Première</option>
+                            <option value="value5">Troisième </option>
+                        </select>
+                    </li>
+                    <li class="filter-link">
+                        <span id="big" class="picto-big"></span>
+                        <span id="small" class="picto-small opac"></span>
+                    </li>
+                </ul>
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+
+
+    <ul class="list-general-box grid effect-2" id="grid">
+        <li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card card-grey">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Evaluation des connaissances en chimie pour des étudiants entrant à l'université (vidéo)</h2>
+                </a>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/teacher_math.jpg') }}" alt="" class="card-image">
+                </a>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    Publié dans <a href="#">"Cours et Exo pour le collège"</a> le 17/07/2013 à 17h24
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <a href="#" class="read-other">...</a>
+
+{% endblock %}

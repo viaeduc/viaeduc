@@ -1,0 +1,186 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/dashboard.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.dashboard.js') }}"></script>
+{% endblock %}
+
+{% import _self as forms %}
+
+{% block content %}
+    <div class="wrapper">
+        {% spaceless %}
+        {% embed "pum://includes/common/componants/filter.twig" %}
+        {% block title %}
+            <h2 class="filter-title">Gestion de l'accueil personnalisé</h2>
+        {% endblock %}
+        {% block filter %}
+            <div class="filter-right">
+                <ul class="filter-right-wrapper">
+                    <li class="filter-link">
+                        <a class="light-blue icon-arrow-left action-btn dashboard-params" href="{{ path('dashboard') }}">
+                            {{ "dashboard.settings.back"|trans({}, 'rpe') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        {% endblock %}
+        {% endembed %}
+
+        <!--
+            Image file names :
+
+            actualites.png
+            agenda.png
+            blogs.png
+            brouillon.png
+            groupes.png
+            relations.png
+            rss.png
+            twitter.png
+
+        -->
+        <section class="content full dark">
+            <div class="dashboard-settings-wrapper">
+                <div class="dashboard-settings-header">
+                    <h3 class="dashboard-title">{{ "dashboard.widgets.activated"|trans({}, 'rpe') }}</h3>
+                </div>
+
+                {% for widget in active_widgets %}
+                    {{ forms.show_widget_form(widget, active_widgets|length) }}
+                {% endfor %}
+            </div>
+
+            <div class="dashboard-settings-wrapper">
+                <div class="dashboard-settings-header not-active">
+                    <h3 class="dashboard-title">{{ "dashboard.widgets.desactivated"|trans({}, 'rpe') }}</h3>
+                </div>
+
+                {% for widget in inactive_widgets %}
+                    {{ forms.show_widget_form(widget, inactive_widgets|length) }}
+                {% endfor %}
+            </div>
+
+            <div class="dashboard-settings-wrapper">
+                <div class="dashboard-settings-header not-active">
+                    <h3 class="dashboard-title">{{ "dashboard.widgets.create"|trans({}, 'rpe') }}</h3>
+                </div>
+                {{ forms.add_widget_form(form_widget_rss, 'rss') }}
+                {{ forms.add_widget_form(form_widget_facebook, 'facebook') }}
+            </div>
+        </section>
+        {% endspaceless %}
+    </div>
+{% endblock %}
+
+
+{% macro show_widget_form(widget, count) %}
+    {% set images = {
+        'posts_bookmark': 'actualites',
+        'blogs_bookmark': 'blogs',
+        'groups_bookmark': 'groupes',
+        'agenda': 'agenda',
+        'suggesting_friendship': 'relations',
+        'awaiting_frienship': 'relations',
+        'discussion_favorite': 'actualites',
+        'my_groups': 'groupes',
+        'last_groups': 'groupes',
+        'news' : 'actualites',
+        'drafts' : 'brouillon',
+        'popular_posts' : 'actualites',
+        'rss' : 'rss',
+        'facebook' : 'facebook',
+    }  %}
+    {% if pum_var('suggested_posts') is not null and pum_var('suggested_posts') %}
+        {% set images = images|merge({'suggested_posts': 'actualites'}) %}
+    {% endif %}
+
+    <div class="dashboard-settings-content">
+        <div class="dashboard-settings-widget">
+            <div class="dashboard-settings-widget-left">
+                <img class="dashboard-settings-image" src="{{ asset('bundles/rpepum/images/pictos-dashboard/' ~ images[widget.type] ~ '.png') }}">
+            </div>
+            <div class="dashboard-settings-widget-center">
+                <div class="dashboard-settings-widget-text-wrapper">
+                    <h4 class="dashboard-settings-widget-title">{{ widget.name }}</h4>
+                    {% set descriptionkey = "dashboard." ~ widget.type ~ ".description" %}
+                    <span class="dashboard-settings-widget-text">{{ descriptionkey|trans({}, 'rpe') }}</span>
+                </div>
+            </div>
+            <div class="dashboard-settings-widget-right">
+                {% if widget.active %}
+                	{% if widget.canDisable %}
+                    	<a href="{{ path('dashboard-desactive-widget', {id: widget.id}) }}" class="action-btn orange icon-plus3">{{ "dashboard.desactivate"|trans({}, 'rpe') }}</a>
+                   	{% endif %}
+                    <a href="#" class="action-btn light-blue icon-cog dashboard-param-btn">{{ "dashboard.config"|trans({}, 'rpe') }}</a>
+                {% else %}
+	                {% if widget.canDelete %}
+    	                <a href="{{ path('dashboard-delete-widget', {id: widget.id}) }}" class="action-btn orange icon-minus3">{{ "dashboard.delete"|trans({}, 'rpe') }}</a>
+        	        {% endif %}
+        	    {% endif %}
+                {% if widget.active == 0 %}
+                    <a href="{{ path('dashboard-active-widget', {id: widget.id}) }}" class="action-btn orange icon-plus3">{{ "dashboard.activate"|trans({}, 'rpe') }}</a>
+                {% endif %}
+            </div>
+
+            {% if widget.active %}
+                <div class="dashboard-settings-options">
+                    <div class="dashboard-position-wrapper">
+                        <form class="dashboard-position-form">
+                            <label class="dashboard-position-select-label" for="dashboard-position-select">{{ "dashboard.widget.position"|trans({}, 'rpe') }}</label>
+                            <select name="dashboard-position-select" class="dashboard-position-select widget-position-select">
+                                {% for i in 1..count %}
+                                    {% if i != widget.position %}
+                                        <option class="dashboard-goto" data-href="{{ path('dashboard-position-widget', {id: widget.id, pos: i}) }}">{{ "dashboard.position"|trans({}, 'rpe') }} {{ i }}</option>
+                                    {% else %}
+                                        <option selected="selected">{{ "dashboard.position"|trans({}, 'rpe') }} {{ i }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro add_widget_form(widget, type) %}
+    {% set key = "dashboard." ~ type ~ ".name_placeholder" %}{% set namePlaceholder = key|trans({}, 'rpe') %}
+    {% set key = "dashboard." ~ type ~ ".url_placeholder" %}{% set urlPlaceholder = key|trans({}, 'rpe') %}
+
+    <div class="dashboard-settings-content">
+        <div class="dashboard-settings-widget">
+            <div class="dashboard-settings-widget-left">
+                <img class="dashboard-settings-image" src="{{ asset('bundles/rpepum/images/pictos-dashboard/' ~ type ~ '.png') }}">
+            </div>
+            <div class="dashboard-settings-widget-center">
+                <div class="dashboard-settings-widget-text-wrapper">
+                    <h4 class="dashboard-settings-widget-title">{% set key="dashboard." ~ type ~ ".title" %}{{ key|trans({}, 'rpe') }}</h4>
+                    <span class="dashboard-settings-widget-text">{% set key="dashboard." ~ type ~ ".description" %}{{ key|trans({}, 'rpe') }}</span>
+                </div>
+            </div>
+            <div class="dashboard-settings-widget-right">
+                <a href="#" class="action-btn light-blue icon-cog dashboard-param-btn">{{ "dashboard.config"|trans({}, 'rpe') }}</a>
+            </div>
+            <div class="dashboard-settings-options">
+                <a href="#" class="action-btn light-blue add-dashboard-item">{{ "dashboard.widgets.add"|trans({}, 'rpe') }}</a>
+                <div class="dashboard-add-item-wrapper">
+                    <span class="dashboard-add-item-description">{% set key="dashboard." ~ type ~ ".aide" %}{{ key|trans({}, 'rpe') }}</span>
+                    {{ form_start(widget, { attr: { class: 'dashboard-add-item-form' }} ) }}
+                        <span class="loader hide"></span>
+                        {{ form_widget(widget.type) }}
+                        {{ form_widget(widget.name, { attr:{ class: 'dashboard-add-item-input', placeholder: namePlaceholder } }) }}
+                        {{ form_errors(widget.content, { attr:{ class: 'dashboard-add-item-input error' }}) }}
+                        {{ form_widget(widget.content, { attr:{ class: 'dashboard-add-item-input', placeholder: urlPlaceholder } }) }}
+                        {{ form_widget(widget.valider, { attr:{ class: 'action-btn orange dashboard-add-item-btn' } }) }}
+                        {{ form_row(widget._token) }}
+                    {{ form_end(widget, { render_rest: false }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

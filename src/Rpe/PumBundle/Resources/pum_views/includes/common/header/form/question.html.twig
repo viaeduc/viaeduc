@@ -1,0 +1,80 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block _question_keywords_row %}
+    {% spaceless %}
+    {{ block('rpepum_form_text_row') }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block _question_instructedDisciplines_row %}
+    {% spaceless %}
+    {% set attr = attr|merge({class: 'disciplines tm-input extra-info-input'}) %}
+    {% set span_second_widget_class = 'first-tag-list tag-list' %}
+    {% set ajax_url = path('create_question') %}
+    {% set info_list_id = 'instructed_disciplines' %}
+    {{ block('rpepum_object_entity_row') }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block _question_accesstype_row %}
+    {% spaceless %}
+    <li>
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right type-error">
+            {% for child in form %}
+             {% if child.vars.value != 'ON_INVITATION' %}
+                <span class="radio-buttons">
+                    {{ form_widget(child) }}
+                    {{ form_label(child) }}
+                </span>
+             {% endif %}
+            {% endfor %}
+        </div>
+    </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _question_submit_row %}
+{% spaceless %}
+    <button type="submit" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" class="action-btn light-blue">{{ "Envoyer"|trans() }}</button>
+{% endspaceless %}
+{% endblock %}
+
+{% block main_content %}
+    {{ macros.modal('instructed_disciplines', 'modal-info-list') }}
+    {% spaceless %}
+{% form_theme question_form _self %}
+
+<div class="publication-inner-form-wrapper question" data-tab="question">
+    {{ form_errors(question_form) }}
+    {{ form_start(question_form, { attr : { class : 'question-publish' } , action: path('create_question')}) }}
+        <div class="inner-padding">
+            <ul>
+                <li>
+                    {{ form_label(question_form.name, null, {'label_attr': { 'class' : 'hidden'}} ) }}
+                    <span class="select-box">
+                        {{ form_widget(question_form.name) }}
+                    </span>
+                </li>
+                <li>
+                    {{ form_label(question_form.description, null, {'label_attr': { 'class' : 'hidden'}} ) }}
+                    <span class="select-box">
+                        {{ form_widget(question_form.description) }}
+                    </span>
+                </li>
+                {{ form_row(question_form.instructedDisciplines) }}
+                {{ form_row(question_form.keywords) }}
+                {{ form_row(question_form.accesstype) }}
+            </ul>
+        </div>
+        <div class="inner-padding right-align">
+            {{ form_end(question_form) }}
+        </div>
+    {{ form_row(question_form._token) }}
+
+
+</div>
+    {% endspaceless %}
+{% endblock main_content %}

@@ -1,0 +1,41 @@
+<li class="module-card">
+    <div class="module-card-header">
+        {% set transkey = "dashboard." ~ widget.type %}
+        <h3 class="module-card-title">{{ transkey|trans({}, 'rpe') }}</h3>
+    </div>
+    <div class="module-card-content">
+        {% set nbItems, classSmaller = 3, '' %}
+        {% if nbItems > 3 %}
+            {% set classSmaller = 'smaller' %}
+        {% endif %}
+        {% set items = user.acceptedGroups({date: 'desc'}, nbItems) %}
+        {% if items|length %}
+            <ul class="module-card-data-wrapper {{ classSmaller }}">
+                {% for userGroup in items %}
+                    {% if userGroup.group is not null %}
+                        <li class="module-card-data">
+                            <a class="module-card-data-image-link" href="{{ path('group', {'id': userGroup.group.id}) }}">
+                                {{ macros.show_image(userGroup.group.cover, 85, 'module-card-data-image') }}
+                            </a>
+                            <div class="module-card-inner-data">
+                                <h4 class="module-card-title">
+                                    <a href="{{ path('group', {'id': userGroup.group.id}) }}">{{ userGroup.group.name|truncate(40, true)   }}</a>
+                                </h4>
+                                <span class="module-card-text">{{ userGroup.group.description|truncate(100, true)  }}</span>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <span class="module-card-empty">
+                {% set transkey = "dashboard." ~ widget.type ~ ".empty" %}{{ transkey|trans({}, 'rpe') }}
+            </span>
+        {% endif %}
+    </div>
+    <div class="module-card-footer">
+        {% if items|length %}
+            <a href="{{ path('groups', {'mode': 'my_groups'}) }}" class="module-card-link">{{ "dashboard.my_groups.link"|trans({}, 'rpe') }}</a>
+        {% endif %}
+    </div>
+</li>

@@ -1,0 +1,37 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+    {% spaceless %}
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="modal-label-report">{{ "groups.sidebare.groups_de_profil"|trans({}, 'rpe') }} {{ profil.firstname ~ ' ' ~ profil.lastname }}</h4>
+	</div>
+	<div class="modal-body modal-grouplist-body">
+        <ul>
+            {% for group in groups %}
+                {% if loop.first %}
+                    <ul class="modal-connections-wrapper">
+                {% endif %}
+                <li class="modal-connections-componant group-js">
+                    <a href="{{ path('group', {'id': group.id}) }}" class="modal-connections-link">
+                        {% if group.picture_id is not null and isImage(group.picture_mime) %}
+                            {{ macros.show_group_avatar_url(group, 'default', 120, 'modal-connections-profil-image') }}
+                        {% endif %}
+                        <div class="modal-connections-name">
+                            <span class="modal-connections-firstname">{{ group.name|truncate(50) }}</span>
+                            {# <span class="connections-lastname">Leroux</span> #}
+                        </div>
+                    </a>
+                </li>
+                {% if loop.last  %}
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </div>
+        </ul>
+	</div>
+	<div class="modal-footer">
+		<a role="button" data-dismiss="modal" class="action-btn light-blue">Ok</a>
+	</div>
+    {% endspaceless %}
+{% endblock main_content %}

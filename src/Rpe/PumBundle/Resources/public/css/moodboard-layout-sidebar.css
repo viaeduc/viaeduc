@@ -1,0 +1,14 @@
+/* function to convert px to rem */
+/* line 8, ../../assets/sass/layout/_sidebar.scss */
+.sidebar { width: 32.96%; display: inline-block; vertical-align: top; margin: 0 2.4% 0 0; }
+/* line 14, ../../assets/sass/layout/_sidebar.scss */
+.sidebar.sidebar-right { margin: 0 0 0 2.4%; }
+
+/* line 20, ../../assets/sass/moodboard-layout-sidebar.scss */
+.sidebar, .content { min-height: 500px; }
+
+/* line 24, ../../assets/sass/moodboard-layout-sidebar.scss */
+.content { background: #9a9a9a; }
+
+/* line 28, ../../assets/sass/moodboard-layout-sidebar.scss */
+.sidebar { background: #d7d7d7; }

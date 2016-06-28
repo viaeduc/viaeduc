@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Viaeduc - Maintenance</title>
+	<meta name="author" content="name">
+	<meta name="description" content="Maintenance Viaéduc">
+	<style>
+		/* http://meyerweb.com/eric/tools/css/reset/
+		   v2.0 | 20110126
+		   License: none (public domain)
+		*/
+
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed,
+		figure, figcaption, footer, header, hgroup,
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure,
+		footer, header, hgroup, menu, nav, section {
+			display: block;
+		}
+		body {
+			line-height: 1;
+		}
+		ol, ul {
+			list-style: none;
+		}
+		blockquote, q {
+			quotes: none;
+		}
+		blockquote:before, blockquote:after,
+		q:before, q:after {
+			content: '';
+			content: none;
+		}
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		* {
+			-webkit-box-sizing: border-box;
+		     -moz-box-sizing: border-box;
+		          box-sizing: border-box;
+		}
+
+		html,
+		body {
+			background: #1c2027;
+			height: 100%;
+			width: 100%;
+		}
+
+		.wrapper {
+			display: table;
+			height: 100%;
+			width: 100%;
+			line-height: 100%;
+			padding: 0 50px;
+		}
+
+		.wrapper .content {
+			font-size: 16px;
+			display: table-cell;
+			text-align: center;
+		    vertical-align: middle;
+		    color: white;
+		    font-family: Arial, sans-serif;
+		    line-height: 1.2em;
+		}
+
+		.wrapper .content img {
+			margin: 0 0 20px 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="content">
+			<img src="data:image/png;base64,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" alt="Viaeduc" />
+			<p>
+				Le site est actuellement en maintenance. Il sera à nouveau disponible très prochainement.
+			</p>
+		</div>
+	</div>
+</body>
+</html>

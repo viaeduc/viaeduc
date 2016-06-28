@@ -1,0 +1,183 @@
+/* function to convert px to rem */
+/* line 24, ../../assets/sass/modal-library.scss */
+.modal-library { margin: 0 auto; }
+/* line 27, ../../assets/sass/modal-library.scss */
+.modal-library .modal-dialog { width: 950px; }
+/* line 30, ../../assets/sass/modal-library.scss */
+.modal-library.standalone .modal-dialog { width: 950px; padding: 0; }
+/* line 34, ../../assets/sass/modal-library.scss */
+.modal-library.standalone .modal-dialog .modal-content { min-height: 480px; }
+/* line 38, ../../assets/sass/modal-library.scss */
+.modal-library .modal-content { border-radius: 0px; }
+/* line 42, ../../assets/sass/modal-library.scss */
+.modal-library .modal-title { font-size: 30px; font-size: 1.875rem; font-family: "MissionScriptRegular", Arial, sans-serif; }
+/* line 47, ../../assets/sass/modal-library.scss */
+.modal-library .close-submenu { font-family: "Ubuntu Condensed", Arial, sans-serif; }
+/* line 50, ../../assets/sass/modal-library.scss */
+.modal-library .close-submenu:after { right: -5px; }
+/* line 57, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body { font-family: Verdana, Arial, sans-serif; color: #313335; font-size: 0px; font-size: 0rem; padding: 0 15px; }
+/* line 63, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left { border: 1px solid #aaaaaa; vertical-align: top; display: inline-block; width: 25%; margin: 0 5% 0 0; font-size: 12px; font-size: 0.75rem; position: relative; }
+/* line 72, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left .modal-list-intro { color: white; font-family: "Ubuntu Condensed", Arial, sans-serif; margin: 0; padding: 10px; background: #aaaaaa; font-size: 18px; font-size: 1.125rem; }
+/* line 80, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left .modal-list-intro .add_folder_button { display: inline-block; text-align: left; width: 100%; font-size: 18px; font-size: 1.125rem; }
+/* line 86, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left .modal-list-intro .add_folder_form { display: none; font-size: 0px; font-size: 0rem; margin: 10px 0 0 0; }
+/* line 91, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left .modal-list-intro .add_folder_form input[type="text"] { display: inline-block; font-size: 13px; font-size: 0.8125rem; height: 46px; width: 80%; }
+/* line 97, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left .modal-list-intro .add_folder_form input[type="submit"] { display: inline-block; font-size: 13px; font-size: 0.8125rem; height: 46px; margin: 0; padding: 0; width: 20%; }
+/* line 106, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left .modal-list-intro .action-btn { font-size: 13px; font-size: 0.8125rem; height: 32px; margin: 0 0 0 5px; padding: 9px 6px 7px 4px; width: auto; }
+/* line 116, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left.add .add_folder_form { display: block; }
+/* line 123, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left .swiper-container { width: 100%; height: 270px; overflow: hidden; position: relative; }
+/* line 129, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left .swiper-scrollbar { width: 8px; }
+/* line 133, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left ul { margin: 0; }
+/* line 136, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left ul li { background: #e2e2e2; margin: 0 0 1px 0; padding: 10px; cursor: pointer; position: relative; font-size: 0px; font-size: 0rem; min-height: 46px; }
+/* line 145, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left ul li span.folder-name { background: url(../images/pictos/folder.png) no-repeat 0 50%; padding: 0 0 0 40px; width: 80%; display: inline-block; vertical-align: middle; font-family: "Ubuntu Condensed", Arial, sans-serif; font-size: 16px; font-size: 1rem; }
+/* line 155, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left ul li .edit-delete { display: none; visibility: hidden; }
+/* line 160, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left ul li:last-of-type { margin: 0; }
+/* line 163, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left ul li:first-of-type span.folder_name { background: none; padding: 0; }
+/* line 167, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left ul li:hover { background: white; }
+/* line 171, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left ul li:hover span.edit_delete { display: inline-block; }
+/* line 177, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left ul li.selected { background: #e18d40; position: relative; color: white; cursor: default; }
+/* line 190, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left.drag ul li.drop_hover { background: white; }
+/* line 194, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-left.drag ul li span.edit_delete { display: none !important; }
+/* line 203, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right { border: 1px solid #C1C1C1; vertical-align: top; display: inline-block; width: 70%; font-size: 12px; font-size: 0.75rem; }
+/* line 210, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .modal-list-intro { font-size: 0px; font-size: 0rem; color: white; font-family: "Ubuntu Condensed", Arial, sans-serif; margin: 0; padding: 10px; background: #aaaaaa; }
+/* line 219, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .modal-list-intro .add_media_form { display: inline-block; text-align: left; width: 60%; font-size: 18px; font-size: 1.125rem; }
+/* line 225, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .modal-list-intro .select_form { display: inline-block; text-align: right; width: 40%; font-size: 18px; font-size: 1.125rem; }
+/* line 232, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .modal-list-intro .btn-file { font-family: "Ubuntu Condensed", Arial, sans-serif; font-size: 13px; font-size: 0.8125rem; overflow: hidden; float: none; display: inline-block; height: 32px; line-height: 1em; margin: 0 0 0 5px; padding: 9px 6px 7px 4px; width: auto; text-transform: uppercase; }
+/* line 245, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .modal-list-intro .btn-file span { font-size: 13px; font-size: 0.8125rem; padding: 0; }
+/* line 250, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .modal-list-intro .select-box { width: 100%; display: inline-block; }
+/* line 254, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .modal-list-intro .select-box .btn-group { height: 32px; }
+/* line 257, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .modal-list-intro .select-box .btn-group .btn { line-height: 1.2; }
+/* line 261, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .modal-list-intro .select-box .btn-group .dropdown-toggle { height: 32px; }
+/* line 265, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .modal-list-intro .select-box .dropdown-menu { padding: 0 !important; text-align: left; }
+/* line 273, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .swiper-container { width: 100%; height: 270px; overflow: hidden; position: relative; }
+/* line 282, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right .swiper-scrollbar { width: 8px; }
+/* line 286, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right ul { margin: 0; }
+/* line 290, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li { border-bottom: 1px solid #C1C1C1; background: #e2e2e2; margin: 0 0 1px 0; font-size: 0px; font-size: 0rem; position: relative; }
+/* line 297, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li:hover { background: white; }
+/* line 300, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li:last-of-type { border-bottom: none; }
+/* line 304, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content { display: block; position: relative; }
+/* line 308, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div { vertical-align: middle; display: table-cell; font-family: Arial; }
+/* line 313, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.move { width: 8%; background: white url(../images/pictos/move.png) no-repeat 50% 50%; text-align: center; }
+/* line 318, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.move:hover { cursor: move; }
+/* line 322, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.picture { width: 8%; padding: 10px; }
+/* line 326, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.picture .img { width: 100%; height: auto; position: relative; }
+/* line 331, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.picture img { width: 100%; height: auto; min-width: 52px; }
+/* line 336, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.picture .ext { position: absolute; right: 0; bottom: 0; background: #aaaaaa; padding: 1px 2px; color: white; font-size: 9px; font-size: 0.5625rem; }
+/* line 346, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.text { width: 46%; padding: 5px; font-size: 0px; font-size: 0rem; }
+/* line 351, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.text .name { width: 50%; font-weight: bold; display: inline-block; font-size: 11px; font-size: 0.6875rem; vertical-align: middle; padding: 0 5px 0 0; }
+/* line 359, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.text .comment { width: 50%; display: inline-block; font-size: 11px; font-size: 0.6875rem; vertical-align: middle; padding: 0 0 0 5px; }
+/* line 367, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.directory { width: 24%; padding: 5px; font-size: 11px; font-size: 0.6875rem; }
+/* line 379, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right.drag li:hover { background: #e2e2e2; }
+/* line 382, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right.drag li.empty { background: #46494f; }
+/* line 387, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right.drag li.drag_selected .dark_layer { position: absolute; width: 25%; height: 100%; z-index: 100; background-color: #000000; opacity: 0.6; content: ''; }
+/* line 404, ../../assets/sass/modal-library.scss */
+.modal-library .modal-footer { border: 0; padding: 0 15px 15px 15px; font-size: 0px; font-size: 0rem; }
+/* line 409, ../../assets/sass/modal-library.scss */
+.modal-library .modal-footer .modal-footer-left, .modal-library .modal-footer .modal-footer-right { display: inline-block; width: 50%; }
+/* line 413, ../../assets/sass/modal-library.scss */
+.modal-library .modal-footer .modal-footer-left { text-align: left; }
+/* line 416, ../../assets/sass/modal-library.scss */
+.modal-library .modal-footer .action-btn { margin: 0; padding: 10px 20px; width: auto; }
+/* line 425, ../../assets/sass/modal-library.scss */
+.modal-library .library_left { width: 100%; padding: 0; }
+/* line 430, ../../assets/sass/modal-library.scss */
+.modal-library .library_right { width: 100%; }
+/* line 434, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content { padding: 0 20px; }
+/* line 438, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.picture { display: inline-block; vertical-align: middle; width: 15%; }
+/* line 444, ../../assets/sass/modal-library.scss */
+.modal-library .modal-body .modal-list-right li .li_content > div.text { display: inline-block; vertical-align: middle; width: 70%; }
+/* line 450, ../../assets/sass/modal-library.scss */
+.modal-library .action-btn.small { font-size: 11px; font-size: 0.6875rem; display: inline-block; vertical-align: middle; width: 15%; }
+/* line 456, ../../assets/sass/modal-library.scss */
+.modal-library .action-btn.small.disabled { background: #d7d7d7; cursor: default; }
+/* line 464, ../../assets/sass/modal-library.scss */
+.modal-library .library-left { width: 100%; }
+/* line 469, ../../assets/sass/modal-library.scss */
+.modal-library .library-right, .modal-library .library-list { display: inline-block; vertical-align: top; width: 100%; padding: 10px; }
+/* line 475, ../../assets/sass/modal-library.scss */
+.modal-library .library-right .square-btn, .modal-library .library-list .square-btn { margin: 0 0 10px 0; }
+/* line 479, ../../assets/sass/modal-library.scss */
+.modal-library .library-right .square-btn + input, .modal-library .library-list .square-btn + input { margin-bottom: 10px; }
+/* line 483, ../../assets/sass/modal-library.scss */
+.modal-library .library-right .btn-file, .modal-library .library-list .btn-file { float: left; margin: 10px 0 0 0; font-size: 0.875rem; }
+/* line 489, ../../assets/sass/modal-library.scss */
+.modal-library .library-right #media_submit, .modal-library .library-list #media_submit { float: right; margin: 10px 0 0 0; }
+/* line 493, ../../assets/sass/modal-library.scss */
+.modal-library .library-right #media_submit[disabled], .modal-library .library-list #media_submit[disabled] { background: #d7d7d7; }
+/* line 499, ../../assets/sass/modal-library.scss */
+.modal-library .library-content { height: 45px; }
+/* line 504, ../../assets/sass/modal-library.scss */
+.modal-library .library-content .picture, .modal-library .library-content .text, .modal-library .library-content .action-btn { display: inline-block; vertical-align: middle; height: 45px; line-height: 45px; }
+/* line 512, ../../assets/sass/modal-library.scss */
+.modal-library .library-content .picture, .modal-library .library-content .img { height: 45px; width: auto; }
+/* line 516, ../../assets/sass/modal-library.scss */
+.modal-library .library-content .picture .icon-text, .modal-library .library-content .img .icon-text { padding: 3px 0; }
+/* line 520, ../../assets/sass/modal-library.scss */
+.modal-library .library-content .picture .ext, .modal-library .library-content .img .ext { line-height: 15px; }
+/* line 524, ../../assets/sass/modal-library.scss */
+.modal-library .library-content .picture > img, .modal-library .library-content .img > img { width: auto; height: 100%; }
+/* line 530, ../../assets/sass/modal-library.scss */
+.modal-library .library-content .picture { width: 20%; text-align: center; }
+/* line 535, ../../assets/sass/modal-library.scss */
+.modal-library .library-content .text { width: 60%; padding: 0 10px; }
+/* line 540, ../../assets/sass/modal-library.scss */
+.modal-library .library-content .text .name, .modal-library .library-content .text .comment { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: middle; width: 50%; line-height: 1em; }
+/* line 548, ../../assets/sass/modal-library.scss */
+.modal-library .library-content .text .name { font-weight: bold; }
+/* line 553, ../../assets/sass/modal-library.scss */
+.modal-library .library-content .action-btn { width: 20%; margin: 0; padding: 0; }

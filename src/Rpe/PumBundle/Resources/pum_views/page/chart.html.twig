@@ -1,0 +1,296 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/chart.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/chart.min.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.group-stats.js') }}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+
+{% endblock %}
+
+{% block sidebar %}
+
+<!--
+
+        <div class="percentage-counter" data-elements="2" data-stat-first="55" data-stat-second="45">
+            <div class="percentage-bar">
+                <div class="percentage-number"></div>
+                <div class="result-text">Lorem</div>
+            </div>
+            <div class="percentage-bar">
+                <div class="percentage-number"></div>
+                <div class="result-text">Lorem</div>
+            </div>
+        </div>
+        <div class="percentage-counter" data-elements="3" data-stat-first="55" data-stat-second="35" data-stat-third="10">
+            <div class="percentage-bar">
+                <div class="percentage-number"></div>
+                <div class="result-text">Lorem</div>
+            </div>
+            <div class="percentage-bar">
+                <div class="percentage-number"></div>
+                <div class="result-text">Lorem</div>
+            </div>
+            <div class="percentage-bar">
+                <div class="percentage-number"></div>
+                <div class="result-text">Lorem</div>
+            </div>
+        </div>
+
+        <canvas class="rpe-chart doughnut-chart" data-chart-name="main-info-doughnut" data-chart-type="doughnut" data-chart-data="{{ asset('bundles/rpepum/js/data-chart-test-doughtnut.json') }}" data-chart-height="170" data-chart-width="170"></canvas>
+
+        <canvas class="rpe-chart line-chart" data-chart-name="main-info-line" data-chart-type="line" data-chart-data="{{ asset('bundles/rpepum/js/data-chart-test-line.json') }}" data-chart-height="500" data-chart-width="300"></canvas>
+
+        <canvas class="rpe-chart bar-chart" data-chart-name="main-info-bar" data-chart-type="bar" data-chart-data="{{ asset('bundles/rpepum/js/data-chart-test-bar.json') }}" data-chart-height="500" data-chart-width="300"></canvas> -->
+{% endblock %}
+
+{% block main_content %}
+    <div class="chart-wrapper">
+        <div class="tabbable col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="tab active"> <a data-toggle="tab" href="#portlet_tab1">Informations sur les membres</a></li><!--
+            --><li class="tab"> <a data-toggle="tab" href="#portlet_tab2">Informations sur les ressources</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="portlet_tab1" class="tab-pane active">
+                <!-- Exemple Démographie -->
+                <div class="chart-left">
+                    <ul class="chart-nav">
+                        <li><a href="#" class="action-btn light-blue active">Démographie</a></li>
+                        <li><a href="#" class="action-btn light-blue">Croissance</a></li>
+                        <li><a href="#" class="action-btn light-blue">Publications</a></li>
+                    </ul>
+                    <div class="sex-stat">
+                        <div class="percentage-counter" data-elements="2" data-stat-first="55" data-stat-second="45">
+                            <div class="percentage-bar">
+                                <div class="percentage-number"></div>
+                                <div class="result-text">Hommes</div>
+                            </div>
+                            <div class="percentage-bar">
+                                <div class="percentage-number"></div>
+                                <div class="result-text">Femmes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--
+                --><div class="chart-right">
+                    <div class="chart-inner">
+                        <div class="chart-inner-left">
+                        <canvas class="rpe-chart doughnut-chart" data-chart-name="main-info-doughnut" data-chart-type="doughnut" data-chart-data="{{ asset('bundles/rpepum/js/data-chart-test-doughtnut.json') }}" data-chart-height="170" data-chart-width="170"></canvas>
+                        </div><!--
+                        --><div class="chart-inner-right">
+                            <div class="stat-box">
+                                <div class="stat-head">
+                                    Disciplines enseignées
+                                </div>
+                                <ul class="stat-list">
+                                    <li>
+                                        <span class="stat-color orange"></span>
+                                        <span class="stat-title">Discipline 1</span>
+                                        <span class="stat-percentage">64.14%</span>
+                                    </li>
+                                    <li>
+                                        <span class="stat-color dark-blue"></span>
+                                        <span class="stat-title">Discipline 2</span>
+                                        <span class="stat-percentage">10.34%</span>
+                                    </li>
+                                    <li>
+                                        <span class="stat-color grey"></span>
+                                        <span class="stat-title">Discipline 3</span>
+                                        <span class="stat-percentage">5.60%</span>
+                                    </li>
+                                    <li>
+                                        <span class="stat-color light-blue"></span>
+                                        <span class="stat-title">Discipline 4</span>
+                                        <span class="stat-percentage">14.52%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-inner">
+                        <div class="chart-inner-left">
+                            <canvas class="rpe-chart doughnut-chart" data-chart-name="main-info-doughnut" data-chart-type="doughnut" data-chart-data="{{ asset('bundles/rpepum/js/data-chart-test-doughtnut.json') }}" data-chart-height="170" data-chart-width="170"></canvas>
+                        </div><!--
+                        --><div class="chart-inner-right">
+                            <div class="stat-box">
+                                <div class="stat-head">
+                                    Disciplines enseignées
+                                </div>
+                                <ul class="stat-list">
+                                    <li>
+                                        <span class="stat-color orange"></span>
+                                        <span class="stat-title">Discipline 1</span>
+                                        <span class="stat-percentage">64.14%</span>
+                                    </li>
+                                    <li>
+                                        <span class="stat-color dark-blue"></span>
+                                        <span class="stat-title">Discipline 2</span>
+                                        <span class="stat-percentage">10.34%</span>
+                                    </li>
+                                    <li>
+                                        <span class="stat-color grey"></span>
+                                        <span class="stat-title">Discipline 3</span>
+                                        <span class="stat-percentage">5.60%</span>
+                                    </li>
+                                    <li>
+                                        <span class="stat-color light-blue"></span>
+                                        <span class="stat-title">Discipline 4</span>
+                                        <span class="stat-percentage">14.52%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-inner">
+                        <div class="chart-inner-left">
+                            <canvas class="rpe-chart doughnut-chart" data-chart-name="main-info-doughnut" data-chart-type="doughnut" data-chart-data="{{ asset('bundles/rpepum/js/data-chart-test-doughtnut.json') }}" data-chart-height="170" data-chart-width="170"></canvas>
+                        </div><!--
+                        --><div class="chart-inner-right">
+                            <div class="stat-box">
+                                <div class="stat-head">
+                                    Disciplines enseignées
+                                </div>
+                                <ul class="stat-list">
+                                    <li>
+                                        <span class="stat-color orange"></span>
+                                        <span class="stat-title">Discipline 1</span>
+                                        <span class="stat-percentage">64.14%</span>
+                                    </li>
+                                    <li>
+                                        <span class="stat-color dark-blue"></span>
+                                        <span class="stat-title">Discipline 2</span>
+                                        <span class="stat-percentage">10.34%</span>
+                                    </li>
+                                    <li>
+                                        <span class="stat-color grey"></span>
+                                        <span class="stat-title">Discipline 3</span>
+                                        <span class="stat-percentage">5.60%</span>
+                                    </li>
+                                    <li>
+                                        <span class="stat-color light-blue"></span>
+                                        <span class="stat-title">Discipline 4</span>
+                                        <span class="stat-percentage">14.52%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exemple Croissance -->
+                {# <div class="chart-left">
+                    <ul class="chart-nav">
+                        <li><a href="#" class="action-btn light-blue">Démographie</a></li>
+                        <li><a href="#" class="action-btn light-blue active">Croissance</a></li>
+                        <li><a href="#" class="action-btn light-blue">Publications</a></li>
+                    </ul>
+                </div><!--
+                --><div class="chart-right">
+                    <div class="chart-inner">
+                        <div class="chart-inner-wrapper">
+                            <div class="chart-title">Membres dans le groupe</div>
+                            <canvas class="rpe-chart line-chart" data-chart-name="main-info-line" data-chart-type="line" data-chart-data="{{ asset('bundles/rpepum/js/data-chart-test-line.json') }}" data-chart-height="500" data-chart-width="300"></canvas>
+                        </div>
+                        <div class="chart-title">Les plus actifs</div>
+                        <ul class="member-list">
+                            <li>
+                                <a href="">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/avatar.jpg') }}" class="member-image">
+                                    <div class="member-info">
+                                        <span class="bold">Laure <span class="upper-case">Bouleau</span></span>
+                                        <span>Professeur de Français</span>
+                                    </div>
+                                </a>
+                            </li><!--
+                            --><li>
+                                <a href="">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/avatar.jpg') }}" class="member-image">
+                                    <div class="member-info">
+                                        <span class="bold">Laure <span class="upper-case">Bouleau</span></span>
+                                        <span>Professeur de Français</span>
+                                    </div>
+                                </a>
+                            </li><!--
+                            --><li>
+                                <a href="">
+                                    <img src="{{ asset('bundles/rpepum/images/tmp/avatar.jpg') }}" class="member-image"><!--
+                                    --><div class="member-info">
+                                        <span class="bold">Laure <span class="upper-case">Bouleau</span></span>
+                                        <span>Professeur de Français</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /!\ Here we added margin & padding class to percentage counter div /!\ -->
+                        <div class="percentage-counter padding margin" data-elements="2" data-stat-first="55" data-stat-second="45">
+                            <div class="percentage-bar">
+                                <div class="percentage-number"></div>
+                                <div class="result-text">Publications</div>
+                            </div>
+                            <div class="percentage-bar">
+                                <div class="percentage-number"></div>
+                                <div class="result-text">Partages</div>
+                            </div>
+                        </div>
+                    </div>
+                </div> #}
+
+                <!-- Exemple Publications -->
+                {# <div class="chart-left">
+                    <ul class="chart-nav">
+                        <li><a href="#" class="action-btn light-blue">Démographie</a></li>
+                        <li><a href="#" class="action-btn light-blue">Croissance</a></li>
+                        <li><a href="#" class="action-btn light-blue active">Publications</a></li>
+                    </ul>
+                    <ul class="chart-stat-list">
+                        <li>
+                            <div class="stat-number">14</div>
+                            <div class="stat-text">Commentaires moyens par publication</div>
+                        </li>
+                        <li>
+                            <div class="stat-number">25</div>
+                            <div class="stat-text">Partages moyens par publication</div>
+                        </li>
+                        <li>
+                            <div class="stat-number">69</div>
+                            <div class="stat-text">Recommandations moyens par publication</div>
+                        </li>
+                    </ul>
+                </div><!--
+                --><div class="chart-right">
+                    <div class="chart-inner">
+                        <div class="chart-inner-wrapper">
+                            <div class="chart-title">Rythme des publications</div>
+                            <canvas class="rpe-chart bar-chart" data-chart-name="main-info-bar" data-chart-type="bar" data-chart-data="{{ asset('bundles/rpepum/js/data-chart-test-bar.json') }}" data-chart-height="500" data-chart-width="300"></canvas>
+
+                            <div class="chart-title">Rythme des commentaires</div>
+                            <canvas class="rpe-chart bar-chart" data-chart-name="main-info-bar" data-chart-type="bar" data-chart-data="{{ asset('bundles/rpepum/js/data-chart-test-bar.json') }}" data-chart-height="500" data-chart-width="300"></canvas>
+                        </div>
+                        <!-- /!\ This has a margin-top & padding class /!\ -->
+                        <div class="percentage-counter padding margin-top" data-elements="2" data-stat-first="55" data-stat-second="45">
+                            <div class="percentage-bar">
+                                <div class="percentage-number"></div>
+                                <div class="result-text">Publications</div>
+                            </div>
+                            <div class="percentage-bar">
+                                <div class="percentage-number"></div>
+                                <div class="result-text">Partages</div>
+                            </div>
+                        </div>
+                    </div>
+                </div> #}
+            </div>
+            <div class="tab-pane profil-tab profil-tab-content" id="portlet_tab2">
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

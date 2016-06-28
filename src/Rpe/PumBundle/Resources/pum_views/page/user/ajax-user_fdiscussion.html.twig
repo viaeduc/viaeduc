@@ -1,0 +1,22 @@
+{% extends "pum://empty_layout.html.twig" %}
+{% block main_content %}
+	<script src="{{ asset('bundles/rpepum/js/rpe.common.js') }}"></script>
+	<script src="{{ asset('bundles/rpepum/js/rpe.fdiscussion.js') }}"></script>
+	<div class="modal-header">
+		<h4 class="modal-title">{{ "messages.fdiscussion.add_title"|trans({}, 'rpe') }}</h4>
+		
+	</div>
+    <div class="modal-body">
+    	<p>{{ "messages.fdiscussion.description"|trans({}, 'rpe') }}</p>
+        {{ form_errors(form_favorite) }}
+        {{ form_start(form_favorite, { 'action': path('favorite-discussion', {'id': post.id}), 'attr': { 'id': 'favdis_form', 'class': 'fav-discussion-form', 'data-replace-el': '#fav-discussion-' ~ post.id }}) }}
+            <label for="new-etherpad-title">{{ "common.titre"|trans({}, 'rpe') }}</label>
+            {{ form_widget(form_favorite.title, { attr: {class: 'fav-discussion-input', 'data-validation': 'required', 'data-validation-error-msg': 'Veuillez remplir ce champ.'} }) }}
+            {{ form_rest(form_favorite) }}
+        {{ form_end(form_favorite) }}
+    </div>
+    <div class="modal-footer">
+        <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-close" id="cancelFavDisBtn">{{ "common.annuler"|trans({}, 'rpe') }}</a>
+        <a role="button" class="action-btn orange tutorial-modal-next" id="submitFavDisBtn">{{ "common.valider"|trans({}, 'rpe') }}</a>
+    </div>
+{% endblock main_content %}

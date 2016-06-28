@@ -1,0 +1,50 @@
+// ----------------
+// Forced imports
+// ----------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ------------
+// Specific CSS
+// ------------
+
+.content {
+
+    .moodboard-box {
+        float: left;
+        width: 32%;
+        margin: 0 2% 0 0;
+
+        &:last-child {
+            margin: 0;
+        }
+    }
+
+    h2,
+    a {
+        float: left;
+        clear: left;
+    }
+
+
+    h2 {
+        // color: $light-font;
+        margin: 0 0 20px 0;
+    }
+
+    a {
+        padding: 10px 20px;
+        margin: 0 10px 10px 0;
+        background: $light-grey-1;
+
+        &:hover {
+            background: $light-grey-2;
+        }
+
+        &:last-child {
+            margin: 0;
+        }
+    }
+}

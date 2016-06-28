@@ -1,0 +1,11 @@
+{% if facets is defined %}
+    {% for key,row in facets.category.type %}
+        {% include "pum://page/search/facets/name/type/term.html.twig" with 
+            {
+                '_label' : key,
+                '_value' : key,
+                '_count' : 'Nb type find' 
+            }
+        %}
+        {% endfor %}
+{% endif %}

@@ -1,0 +1,401 @@
+{% block main_nav %}
+<nav id="main_nav" class="mp-menu main-nav">
+    <div class="mp-level">
+        <div class="toggle-sidebar menu-item mp-back">
+            <span class="toggle-sidebar-icon"></span>
+        </div>
+
+        {% set cont = 'Rpe\\PumBundle\\Model\\Social\\User::' %}
+        {# MAIN NAV CONTENT #}
+        {% if user.isEditor == false %}
+            {% set meta_blog = user.getMeta(constant(cont~'META_HAS_BLOG')) %}
+            {% if meta_blog == null or meta_blog.value != 1 %}
+                {% set profil_menu =  {
+                        'label': 'Mes Contributions',
+                        'submenu': {
+                            'title': 'Mes Contributions',
+                            'nav':[
+                                {
+                                    'route': 'publications',
+                                    'label': 'Mes Brouillons',
+                                    'routeparams': {
+                                        'mode': 'my_drafts'
+                                    }
+                                },
+                                {
+                                    'route': 'publications',
+                                    'label': 'Ressources',
+                                    'routeparams': {
+                                        'mode': 'my_publications'
+                                    }
+                                },
+                                {
+									'route': 'create-blog',
+                                    'label': 'Créer mon blog'
+                                },
+                                {
+                                    'route': 'questions',
+                                    'label': 'Questions / Réponses'
+                                },
+                                {
+                                    'route': 'library',
+                                    'label': 'Mes documents'
+                                },
+                                {
+                                    'route': 'publications',
+                                    'label': 'Mes favoris',
+                                    'routeparams': {
+                                        'mode': 'my_favorites'
+                                    }
+                                },
+                            ],
+                            'clickload': 'submenu_profile',
+                            'rightarea': 'advices'
+                        }
+                    }
+                %}
+            {% else %}
+                {% set profil_menu =  {
+                        'label': 'Mes Contributions',
+                        'submenu': {
+                            'title': 'Mes Contributions',
+                            'nav':[
+                                {
+                                    'route': 'publications',
+                                    'label': 'Mes Brouillons',
+                                    'routeparams': {
+                                        'mode': 'my_drafts'
+                                    }
+                                },
+                                {
+                                    'route': 'publications',
+                                    'label': 'Ressources',
+                                    'routeparams': {
+                                        'mode': 'my_publications'
+                                    }
+                                },
+                                {
+                                    'route': 'blog',
+                                    'label': 'Voir mon blog',
+                                    'routeparams': {
+                                        'id': user.blog.id
+                                    }
+                                },
+                                {
+                                    'route': 'questions',
+                                    'label': 'Questions / Réponses'
+                                },
+                                {
+                                    'route': 'library',
+                                    'label': 'Mes documents'
+                                },
+                                {
+                                    'route': 'publications',
+                                    'label': 'Mes favoris',
+                                    'routeparams': {
+                                        'mode': 'my_favorites'
+                                    }
+                                },
+                            ],
+                            'clickload': 'submenu_profile',
+                            'rightarea': 'advices'
+                        }
+                    }
+                %}
+            {% endif %}
+        {% else %}
+            {% if user.getMeta(constant('META_HAS_EDITOR', user)) == null or user.editor is null%}
+                {% set profil_menu =  {
+                        'label': 'Ma page partenaire',
+                        'submenu': {
+                            'title': 'Ma page partenaire',
+                            'nav':[
+                                {
+                                    'route': 'create-editor',
+                                    'label': 'Créer ma page partenaire'
+                                }
+                            ],
+                            'clickload': 'submenu_profile',
+                            'rightarea': 'advices'
+                        }
+                    }
+                %}
+                {# old editor :
+
+                    {
+                        'route': 'editors',
+                        'label': 'Toutes les pages partenaires'
+                    },
+                    {
+                        'route': 'blogs',
+                        'label': 'Tous les blogs'
+                    }
+
+                    {
+                        'route': 'editors',
+                        'label': 'Toutes les pages partenaires'
+                    },
+                    {
+                        'route': 'blogs',
+                        'label': 'Tous les blogs'
+                    }
+
+                #}
+            {% else %}
+                {% set profil_menu =  {
+                        'label': 'Ma page partenaire',
+                        'submenu': {
+                            'title': 'Ma page partenaire',
+                            'nav':[
+                                {
+                                    'route': 'editor',
+                                    'label': 'Voir ma page partenaire',
+                                    'routeparams': {
+                                        'id': user.editor.id
+                                    }
+                                }
+                            ],
+                            'clickload': 'submenu_profile',
+                            'rightarea': 'advices'
+                        }
+                    }
+                %}
+            {% endif %}
+        {% endif %}
+
+        {% if user.isInvited == false %}
+            {% set group_menu =  {
+                    'label': 'Groupes',
+                    'submenu': {
+                        'title': 'Groupes',
+                        'nav': [
+                            {
+                                'route': 'groups',
+                                'label': 'Mes groupes',
+                                'routeparams': {
+                                    'mode': 'my_groups'
+                                }
+                            },
+                            {
+                                'route': 'create_group',
+                                'label': 'Créer un groupe'
+                            },
+                            {
+                                'route': 'groups',
+                                'label': 'Suggestion de groupes',
+                                'routeparams': {
+                                    'mode': 'suggested'
+                                }
+                            },
+                            {
+                                'route': 'groups',
+                                'label': 'Groupes favoris',
+                                'routeparams': {
+                                    'mode': 'favorite'
+                                }
+                            }
+                        ],
+                        'disabled': {
+                            'pages': 'Voir mes pages',
+                            'pages_suggestions': 'Suggestions de pages'
+                        },
+                        'clickload': 'submenu_groups',
+                        'rightarea': 'advices'
+                    }
+                }
+            %}
+            {% set relation_menu = {
+                    'label': 'Relations',
+                    'submenu': {
+                        'title': 'Relations',
+                        'nav': [
+                            {
+                                'route': 'relations',
+                                'label': 'Mes relations',
+                                'routeparams': {
+                                    'mode': 'my_relations'
+                                }
+                            },
+                            {
+                                'route': 'relation_pending',
+                                'label': 'Mes relations en attente'
+                            },
+                            {
+                                'route': 'relations',
+                                'label': 'Relations suggérées',
+                                'routeparams': {
+                                    'mode': 'suggested'
+                                }
+                            },
+                            {
+                                '_route': 'my_invitation  s',
+                                'label': 'Inviter des utilisateurs'
+                            }
+                        ],
+                        'clickload': 'submenu_relation',
+                        'rightarea': 'advices'
+                    }
+                }
+            %}
+        {% else %}
+            {% set group_menu =  {
+                    'label': 'Groupes',
+                    'submenu': {
+                        'title': 'Groupes',
+                        'nav': [
+                            {
+                                'route': 'groups',
+                                'label': 'Mes groupes',
+                                'routeparams': {
+                                    'mode': 'my_groups'
+                                }
+                            },
+                            {
+                                'route': 'groups',
+                                'label': 'Groupes favoris',
+                                'routeparams': {
+                                    'mode': 'favorite'
+                                }
+                            }
+                        ],
+                        'disabled': {
+                            'pages': 'Voir mes pages',
+                            'pages_suggestions': 'Suggestions de pages'
+                        },
+                        'clickload': 'submenu_groups',
+                        'rightarea': 'advices'
+                    }
+                }
+            %}
+            {% set relation_menu = {
+                    'label': 'Relations',
+                    'submenu': {
+                        'title': 'Relations',
+                        'nav': [
+                            {
+                                'route': 'relations',
+                                'label': 'Mes relations',
+                                'routeparams': {
+                                    'mode': 'my_relations'
+                                }
+                            },
+                            {
+                                'route': 'relation_pending',
+                                'label': 'Mes relations en attente'
+                            },
+                            {
+                                'route': 'relations',
+                                'label': 'Relations suggérées',
+                                'routeparams': {
+                                    'mode': 'suggested'
+                                }
+                            }
+                        ],
+                        'clickload': 'submenu_relation',
+                        'rightarea': 'advices'
+                    }
+                }
+            %}
+            {% set new_profil = [] %}
+            {% for v in profil_menu.submenu.nav %}
+                   {% if v.route not in ['create-blog', 'blog', 'blogs', 'questions'] %}
+                        {% set new_profil = new_profil|merge([v]) %}
+                   {% endif %}
+            {% endfor %}
+            {% set profil_menu =  {
+                        'label': 'Mes Contributions',
+                        'submenu': {
+                            'title': 'Mes Contributions',
+                            'nav': new_profil}
+                }
+            %}
+        {% endif %}
+        {% set rpe_main_nav = {
+            'home': {
+                'label': 'Accueil'
+            },
+            'profile-menu': profil_menu,
+            'groups-menu': group_menu,
+            'relation-menu': relation_menu
+        } %}
+
+        {% for nav_key, nav_item in rpe_main_nav %}
+            {% spaceless %}
+            {{ (loop.first) ? '<ul class="menu-list">' }}
+                <li class="menu-item">
+                    {% if nav_item.submenu is defined %}
+                        <a href="#" data-target="{{ nav_key }}"{{ (nav_key == nav_section|default('')) ? ' class="current"' }}>{{ nav_item.label }}</a>
+                        {% include "pum://includes/common/header/menu/submenu.html.twig" %}
+                    {% else %}
+                        <a href="{{ path(nav_key) }}"{{ (nav_key == nav_section|default('')) ? ' class="current"' }}>{{ nav_item.label|trans({}, 'rpe') }}</a>
+                    {% endif %}
+                </li>
+            {{ (loop.last) ? '</ul>' }}
+            {% endspaceless %}
+        {% endfor %}
+
+        {#
+            'apps-menu': {
+                'label': 'Mes apps',
+                'submenu': {
+                    'title': 'Mes apps',
+                    'nav': {
+                        'my_apps': 'Mes apps',
+                        'app_store': 'Magasin d\'apps',
+                        'app_editors': 'Les partenaires'
+                    },
+                    'clickload': 'submenu-apps',
+                    'rightarea': 'advices'
+                }
+            },
+        #}
+
+        {#
+
+
+            'my_account': {
+                'label': 'Mon Compte',
+                'submenu': {
+                    'title': 'Mon Compte',
+                    'nav': [
+                        {
+                            'label': 'Modifier mes infos générales',
+                            'route': 'my_account'
+                        },
+                        {
+                            'label': 'Modifier mes infos personnelles',
+                            'route': 'my_account',
+                            'routeparams': {
+                                'mode': 'addition'
+                            }
+                        },
+                        {
+                            'label': 'Paramètres de confidentialité',
+                            'route': 'my_confidential'
+                        },
+                        {
+                            'label': 'Paramètres de notification',
+                            'route': 'my_notifications'
+                        },
+                        {
+                            'label': 'Agenda',
+                            'route': 'agenda'
+                        },
+                        {
+                            'label': 'Inviter des utilisateurs',
+                            'route': 'my_invitations'
+                        }
+                    ],
+                    'clickload': 'submenu_relation'
+                }
+            },
+
+            'logout' : {
+                'label': 'Déconnexion'
+            }
+
+        #}
+
+    </div>
+</nav>
+{% endblock %}

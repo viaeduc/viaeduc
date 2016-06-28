@@ -1,0 +1,27 @@
+{% if facets is defined %}
+    {% for facet_key,facet in facets %}
+        <div class="search-filter-title">
+            {% set trans_key = 'search.facet.' ~ search_type ~ '.' ~ facet_key %}
+            <a href="#" class="search-filter-toggle icon-arrow-down7">{{ trans_key|trans({}, 'rpe') }}</a>
+        </div>
+        <div class="search-filter-links">
+            {% set filters = app.request.query.get(facet_key) %}
+            
+            {% if filters == null %}
+                <a class="select_all active" href="#">Tous <span></span></a>
+            {% else %}
+                <a class="select_all " href="?{{ app.request.query.all|merge({(facet_key): null })|sort|url_encode }}">Tous <span></span></a>
+            {% endif %}
+            
+            {% for type in facet.terms %}
+                {% set is_active = '' %}
+                {% set href = app.request.query.all|merge({(facet_key): type.value}) %}
+                {% if app.request.query.get(facet_key) == type.value %}
+                    {% set is_active = 'active' %}
+                    {% set href = app.request.query.all|merge({(facet_key): null}) %}
+                {% endif %}
+                <a href="?{{ href|url_encode }}" class="{{ is_active }}">{{ type.term }}<span>({{ type.count }})</span></a>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,772 @@
+// -----------------
+// Compass utilities
+// -----------------
+
+@import "compass";
+@import "compass/reset";
+@import "compass/utilities";
+@import "compass/css3";
+
+// -------------------
+// Always import these
+// -------------------
+
+@import "globals/_vars";
+@import "globals/_mixin";
+@import "globals/_colors";
+@import "globals/_animations";
+@import "globals/_font";
+@import "globals/_icomoon";
+@import "globals/_general";
+@import "vendors/_bootstrap";
+@import "vendors/_bootstrap-fileupload";
+@import "vendors/_bootstrap-select";
+@import "vendors/_datetimepicker";
+@import "vendors/_datepicker";
+@import "componants/_buttons";
+@import "layout/_general";
+@import "layout/_header";
+@import "layout/_main_nav";
+@import "layout/_search";
+@import "layout/_search-autocomplete";
+@import "componants/_forms";
+@import "componants/_modals";
+@import "layout/_footer";
+@import "layout/_content";
+@import "componants/_general";
+
+// On your specific scss page, import what you need below :
+
+// -------------------------------------------
+// External imports, import only what you need
+// -------------------------------------------
+
+// @import "vendors/_bootstrap-fileupload";
+// @import "vendors/_bootstrap-select";
+// @import "vendors/_datepicker";
+// @import "vendors/_idangerous.swiper";
+// @import "vendors/_jcrop";
+// @import "vendors/_video-js";
+
+// --------------
+// Layout Imports
+// --------------
+
+// @import "layout/_filter";
+// @import "layout/_sidebar";
+
+// ---------------------------------------
+// Componant imports, import what you need
+// ---------------------------------------
+
+// @import "componants/_forms";
+// If you use forms, make sure you import _bootstrap-fileupload, _bootstrap-select & _datepicker
+
+// @import "componants/_cards";
+// @import "componants/_cover";
+// @import "componants/_publications";
+// @import "componants/_content-link-box";
+// @import "componants/_administration-box";
+// @import "componants/_side-box";
+// @import "componants/_side-link-box";
+
+// ------------------- //
+// COMPATABILITY MODAL //
+// ------------------- //
+
+.cookie-notice {
+    @include fontSize(12);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    height: 0;
+    overflow: hidden;
+
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    text-align: center;
+    color: $white;
+    padding: 5px 0;
+    background: #14768C;
+
+    z-index: 9999;
+
+    display: none;
+
+    transition: height 1s linear;
+
+    &.active {
+        transition: height 1s linear;
+        height: auto;
+        display: block;
+    }
+
+    a {
+        font-weight: bold;
+        color: $white;
+        text-decoration: underline;
+    }
+
+    .cookie-notice-close {
+        float: right;
+        text-decoration: none;
+    }
+}
+
+.modal-compatability {
+    width   : 740px !important; // Bootstrap, sorry
+
+    .modal-content {
+        padding : 20px !important;
+    }
+}
+
+.compatability-title,
+.compatability-explanation,
+.compatability-links {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+}
+
+.compatability-title {
+    @include fontSize(28);
+    font-family   : $MissionScript;
+    padding       : 0 0 5px 0;
+    margin        : 0 0 10px 0;
+    border-bottom : 1px solid $light-grey-2;
+}
+
+.compatability-explanation {
+    margin : 0 0 5px 0;
+
+    &.bold {
+        font-weight : bold;
+        margin      : 0 0 10px 0;
+    }
+}
+
+.compatability-links {
+    padding : 0 25px;
+}
+
+.compatability-link-wrapper {
+    display        : inline-block;
+    vertical-align : middle;
+    width          : 130px;
+    height         : 130px;
+    margin         : 0 27px 0 0;
+
+    > a {
+        display : block;
+        height  : 100%;
+        width   : 100%;
+
+        > img {
+            display : block;
+            width   : 100%;
+            height  : 100%;
+        }
+    }
+
+    &:last-of-type {
+        margin : 0;
+    }
+}
+
+.compatability-link {
+    display : block !important;
+    width   : 30% !important;
+    margin  : 10px auto 0 auto !important;
+}
+
+// ----------- //
+// LOGIN MODAL //
+// ----------- //
+
+.modal-login {
+    width   : 740px !important; // Bootstrap, sorry
+
+    .modal-content {
+        padding : 20px !important;
+    }
+
+    .modal-header {
+        padding : 0;
+    }
+
+    .modal-body {
+        padding : 0;
+    }
+
+    ul {
+        list-style : none;
+
+        li {
+            display        : inline-block;
+            vertical-align : top;
+            width          : 100%;
+            margin         : 0 0 10px 0;
+
+            &:last-of-type {
+                margin : 0;
+            }
+        }
+    }
+
+    .modal-title {
+        @include fontSize(24);
+        font-family : $MissionScript;
+        margin      : 0 0 10px 0;
+    }
+
+    .forget {
+        @include fontSize(11);
+        color  : $dark-grey-font;
+        margin : 0 0 0 10px;
+    }
+
+    button {
+        margin         : 0;
+        float          : right;
+    }
+}
+
+#modal-relations {
+    .modal-body {
+        a {
+            position       : relative;
+            display        : inline-block;
+            vertical-align : top;
+            height         : 85px;
+            width          : 85px;
+
+            img {
+                display : block;
+                height  : 100%;
+                    width   : 100%;
+            }
+
+            .profil-name {
+                @include fontSize(12);
+                @include transition(background 0.2s linear);
+                position    : absolute;
+                width       : 100%;
+                bottom      : 0;
+                left        : 0;
+                padding     : 2%;
+                font-family : $UbuntuCondensed;
+                background  : rgba(0,0,0,0.4);
+                color       : $white;
+
+                .profil-name {
+                    padding : 1%;
+                }
+
+                span {
+                    display     : block;
+                    float       : left;
+                    clear       : left;
+                    line-height : 1em;
+                }
+
+                .last-name {
+                    text-transform : uppercase;
+                    font-weight    : bold;
+                }
+            }
+
+            &:hover {
+                .profil-name {
+                    @include transition(background 0.2s linear);
+                    background : $light-blue-2;
+                    color      : $white;
+                }
+            }
+        }
+    }
+}
+
+// ----------- //
+// FORM ERRORS //
+// ----------- //
+
+.help-block {
+    @include fontSize(12);
+    text-transform : none;
+    color          : $red-1;
+    margin         : 5px 0 0 0;
+}
+
+// -------- //
+// TUTORIAL //
+// -------- //
+
+// Important used to be sure of override //
+.tutorial-modal {
+    width : 365px !important;
+
+    .modal-dialog {
+        width : 100% !important;
+    }
+
+    .modal-title {
+        @include fontSize(26);
+        font-family : $MissionScript !important;
+    }
+
+    .modal-footer {
+        height  : auto !important;
+        padding : 20px !important;
+    }
+}
+
+.tutorial-show {
+    position : relative !important;
+    z-index  : 1036 !important;
+}
+
+.tutorial-hide {
+    position : relative;
+
+    &:after {
+        content    : '';
+        display    : block;
+        position   : absolute;
+        top        : 0;
+        left       : 0;
+        height     : 100%;
+        width      : 100%;
+        background : rgba(0,0,0,0.5);
+    }
+}
+
+.tutorial-arrow {
+    @include transition(opacity 10s linear);
+    @include fontSize(24);
+    position : absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -10px;
+    height: 20px;
+    width: 20px;
+    color: $white;
+    text-align : center;
+    text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.4);
+    opacity: 1;
+}
+
+.modal .modal-footer .tutorial-modal-close,
+.modal .modal-footer .tutorial-modal-prev,
+.modal .modal-footer .tutorial-modal-next {
+    line-height : 40px;
+    width       : auto;
+}
+
+.modal .modal-footer .tutorial-modal-close {
+    margin : 0 10px 0 0;
+}
+
+.modal .modal-footer .tutorial-modal-close,
+.modal .modal-footer .tutorial-modal-prev {
+    float : left;
+}
+
+.modal .modal-footer .tutorial-modal-next {
+    float : right;
+}
+
+// Tutorial positions //
+.main-tutorial-2 {
+    top  : 7%;
+}
+
+.main-tutorial-3 {
+    top  : 15%;
+}
+
+.main-tutorial-4 {
+    top  : 0%;
+
+    .tutorial-arrow {
+        top : 320px;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+.menu-profil-tutorial-modal-1 {
+    top  : 18%;
+    left : -57%;
+}
+
+.menu-profil-tutorial-modal-2 {
+    top  : 22%;
+    left : -57%;
+}
+
+.menu-profil-tutorial-modal-3 {
+    top  : 34%;
+    left : -5%;
+}
+
+.menu-content-tutorial-modal-1 {
+    top  : 17.5%;
+    left : -51%;
+}
+
+.menu-content-tutorial-modal-2 {
+    top  : 25%;
+    left : -51%;
+}
+
+.menu-content-tutorial-modal-3 {
+    top  : 29%;
+    left : -51%;
+}
+
+.menu-content-tutorial-modal-4 {
+    top  : 33%;
+    left : -51%;
+}
+
+.menu-group-tutorial-modal-1 {
+    left : -54%;
+}
+
+.menu-group-tutorial-modal-2 {
+    top  : 30%;
+    left : -20%;
+}
+
+.profil-tutorial-modal-1 {
+    top  : 40%;
+    left : -50%;
+}
+
+.profil-tutorial-modal-2 {
+    top  : 27%;
+    left : -50%;
+
+    .tutorial-arrow {
+        top : 280px;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+.profil-tutorial-modal-3 {
+    top  : 35%;
+    left : -50%;
+
+    .tutorial-arrow {
+        top : 300px;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+.profil-tutorial-modal-4 {
+    top  : 38%;
+    left : 25%;
+
+    .tutorial-arrow {
+        top : 275px;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+.profil-tutorial-modal-5 {
+    top  : 22%;
+    left : 25%;
+
+    .tutorial-arrow {
+        top : 300px;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+.account-tutorial-modal-1 {
+    top : 32%;
+}
+
+.account-tutorial-modal-2 {
+    top  : 37%;
+    left : -48%;
+}
+
+.account-tutorial-modal-3 {
+    top  : 37%;
+}
+
+.account-tutorial-modal-4 {
+    top  : 37%;
+    left : 48%;
+}
+
+.publish-tutorial-modal-1 {
+    top  : 28%;
+    left : -54%;
+}
+
+.publish-tutorial-modal-2 {
+    top  : 0%;
+    left : -25%;
+
+    .tutorial-arrow {
+        top : 319px;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+.publish-tutorial-modal-3 {
+    top      : 35%;
+    left     : 48%;
+    overflow : visible;
+
+    .tutorial-arrow {
+        top  : 27%;
+        left : -4px;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+}
+
+.publish-tutorial-modal-4 {
+    top  : 42%;
+    left : -25%;
+
+    .tutorial-arrow {
+        top : 340px;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+.search-tutorial-modal-1,
+.search-tutorial-modal-2 {
+    top : 24%;
+}
+
+.search-tutorial-modal-2 {
+    .tutorial-arrow {
+        top  : 23%;
+        left : 1px;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+}
+.search-tutorial-modal-3 {
+    top      : 23%;
+    left     : -50%;
+    overflow : hidden;
+
+    .tutorial-arrow {
+        top   : 19%;
+        left  : 100%;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+}
+
+.modal-info-list .modal-body {
+    height     : 300px;
+    max-height : 300px;
+    overflow-y : scroll;
+}
+
+.belinPlugin{
+	   background-color : #37485f;
+	   margin           : 0 0 5px 0;
+	   padding          : 10px;
+	   color            : #FFFFFF;
+	   overflow         : hidden;
+}
+.blocImage{
+        display: block;
+        float: left;
+        margin-right: 10px;
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+
+        img{
+        	width: 100%;
+   	        min-height: 100%;
+        }
+}
+.preventA{
+	color: $dark-blue-1;
+	text-decoration: none;
+}
+.preventA:hover{
+    color: $dark-blue-1;
+	text-decoration: none;
+}
+
+#modal-share {
+    .modal-body .expanding-wrapper {
+        border : 1px solid $light-grey-2;
+
+        textarea,
+        pre {
+            border : 0px solid transparent !important;
+        }
+    }
+
+    .modal-footer button {
+        @include border-radius(0px);
+    }
+
+    .modal-footer .btn-default {
+        background : $light-grey-2;
+        color      : $white;
+    }
+
+    .modal-footer .btn-primary {
+        background : $light-blue-2;
+        color      : $white;
+    }
+}
+
+// --
+// Modal, redoing bootstraps styling
+
+// For showing elements
+.show-smaller {
+    position : relative;
+    z-index  : 1035;
+}
+
+.show {
+    position : relative;
+    z-index  : 1036;
+}
+
+.show-footer {
+    position : fixed;
+    z-index  : 1036;
+}
+
+.menu-click-wrapper {
+    position : absolute;
+    width    : 100%;
+    height   : 100%;
+    top      : 0px;
+    left     : 0px;
+    z-index  : 980;
+}
+
+// Responsive videojs //
+
+.videocontent {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    background     : #000;
+    text-align     : center;
+}
+
+.video-js {
+    display        : inline-block;
+    vertical-align : top;
+    padding-top    : 56%;
+    width          : 100%;
+    max-width      : 640px;
+}
+
+.vjs-fullscreen {
+    padding-top : 0px;
+}
+
+.vjs-default-skin .vjs-big-play-button {
+    left   : 40%;
+    top    : 40%;
+    width  : 20%;
+    height : 20%;
+}
+
+.alert {
+    @include fontSize(12);
+    height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+}
+
+.pad-wrapper-iframe .action-btn {
+    float  : right;
+    margin : 20px 0;
+
+    &.light-blue {
+        margin: 53px 0 0 0;
+        height: auto;
+        line-height: 1em;
+        padding: 0;
+        text-align: left;
+        text-decoration: underline;
+        background: transparent;
+        text-align: right;
+        padding: 0 10px 0 0;
+    }
+}
+
+.pad-wrapper-iframe .pad-iframe {
+    width: 100%;
+    min-height: 600px;
+    background-color: $white;
+}
+
+.etherpad-title {
+    display: inline-block;
+    vertical-align: middle;
+    width: 70%;
+    @include fontSize(26);
+    margin: 25px 0;
+    color: $white;
+}
+
+.etherpad-title:before {
+    content:'';
+    display: inline-block;
+    vertical-align: middle;
+    height: 24px;
+    width: 24px;
+    margin: 0 10px 0 0;
+    background: url("../images/pictos/book_white.png") no-repeat center center;
+}

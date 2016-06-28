@@ -1,0 +1,162 @@
+{% extends "pum://layout.html.twig" %}
+
+{% set page_title = '' %}
+{% set page_name_analytics = 'homepage' %}
+{% set noMobileMenu = 'true' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/index-not-logged.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.index-not-logged.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    {% spaceless %}
+    {% include "pum://includes/common/minimal_header.html.twig" %}
+    <div class="wrapper">
+        <!-- ********************* -->
+        <!-- Here goes the content -->
+        <!-- ********************* -->
+        <section class="content full relog-page">
+            <section class="section-up">
+                <div class="video-intro">
+                    <div class="video-launcher active">
+                        <div class="title-video">Je ne suis pas inscrit à viaeduc</div>
+                        <div class="start-video">
+                            <img src="{{ asset('bundles/rpepum/images/bg_img_relog.jpg') }}" alt="">
+                            <!-- text -->
+                            <p class="relog-no-acount">Vous n'avez pas de compte ?</p>
+
+                            <!-- < /!\ needs route /!\ -->
+                            <a href="{{path('register', {sso: info_sso})}}" class="action-btn orange relog-link">Créer-le dès maintenant</a>
+                        </div>
+                    </div>
+                    <div class="shadow active"></div>
+                    <div class="shadow"></div>
+                </div>
+                <div class="connect">
+                    <h3 class="title-connect">Je suis inscrit à viaeduc</h3>
+                    <!-- this needs taging -->
+                    {% if error %}
+                        {% if error.type == 'disabled' %}
+                            <div class="login-error">{{ 'homepage.disabled_login'|trans({}, 'rpe')}}
+                                <a href="{{ path('resend_enable_link', {'email': error.lastlogin}) }}" class="info-bubble-link" data-toggle="modal" data-target="#resend-enable-link">{{ 'homepage.resend_enable_link'|trans({}, 'rpe')}}</a>
+                            </div>
+                        {% else %}
+                            <div class="login-error">{{ 'homepage.error_login'|trans({}, 'rpe')}}</div>
+                        {% endif %}
+                    {% endif %}
+
+                    {{ form_start(form, {action: path('login_check', {sso: info_sso}), attr: { 'class': 'login-form'}}) }}
+                    {% for row in form %}
+                        <!-- ul -->
+                        {{ (loop.first) ? '<ul>' }}
+                        <li class="{{ (row.vars.name == '_remember_me') ? 'information' }}">
+                            {% if row.vars.attr.placeholder is defined %}
+                                {{ form_row(row, { label: false }) }}
+                            {% else %}
+                                {{ form_row(row) }}
+                                {% if row.vars.name == '_remember_me' %}
+                                    <a data-toggle="modal" href="#popin_forget_password" class="forget">{{ 'homepage.forgotten_pwd_question'|trans({}, 'rpe')}}</a>
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                        {{ (loop.last) ? '</ul>' }}
+                    {% endfor %}
+                    {{ form_end(form) }}
+                    </ul>
+                    <div class="register">
+                        <span class="signup">{{ 'homepage.no_account'|trans({}, 'rpe')}}</span>
+                        <a href="{{ path('register', {sso: info_sso}) }}" class="">{{ 'homepage.create_account'|trans({}, 'rpe')}}</a>
+                    </div>
+                </div>
+
+            </section>
+            <div class="forget-password">
+                <div class="modal fade no-reload" id="resend-enable-link"><div class="modal-dialog"><div class="modal-content"></div></div></div>
+                <div class="modal fade no-reload" id="popin_forget_password">
+                        <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4 class="modal-title">{{ 'homepage.forgotten_pwd'|trans({}, 'rpe')}}</h4>
+                                        {{ form_start(lost_pwd_form, {action: path('login'), attr: { 'class': 'pass-forgotten-form'}}) }}
+                                            <fieldset>
+                                                <div class="body-gray">
+                                                    <p>{{ 'homepage.forgotten_pwd_content_1'|trans({}, 'rpe')}}</p>
+                                                    <p>{{ 'homepage.forgotten_pwd_content_2'|trans({}, 'rpe')}}</p>
+                                                    <div class="small-popin-wrapper">
+                                                        <label class="small-label" for="email">{{ 'homepage.email_adress'|trans({}, 'rpe')}}</label>
+                                                        {{ form_widget(lost_pwd_form.email) }}
+                                                        {% if lost_pwd_form.email.vars.errors is defined %}
+                                                            <div class="form-error-email">{{ form_errors(lost_pwd_form.email) }}</div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="button-password">
+                                                    <a class="action-btn dark-grey" data-dismiss="modal" aria-hidden="true">{{ 'homepage.button_cancel'|trans({}, 'rpe')}}</a>
+                                                    {{ form_widget(lost_pwd_form.Confirmer, {'label' : 'homepage.button_send'|trans(), 'attr' : {'class' : 'action-btn orange right'}}) }}
+                                                </div>
+                                            </fieldset>
+                                            {{ form_widget(lost_pwd_form._token) }}
+                                        {{ form_end(lost_pwd_form, {'render_rest': false}) }}
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                #}
+            </div>
+        </section>
+    </div>
+    <footer>
+        <nav class="footer-nav">
+            <ul class="footer-list">
+            {% if exception is defined %}
+                {% set footerLinks = [] %}
+            {% else %}
+                {% set footerLinks = pum_entities('area', {'identifier': 'footer-notlogged'}) %}
+            {% endif %}
+            {% for footer in footerLinks %}
+                {% for page in footer.pages %}
+                    {% if page.redirectUrl is not empty %}
+                        <li class="footer-item"><a href="{{ page.redirectUrl }}">{{ page.title }}</a></li>
+                    {% else %}
+                        <li class="footer-item"><a href="{{ path('cms_page', {'seo': page.objectSlug}) }}">{{ page.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+            {% else %}
+                <li class="footer-item"><a class="not-available" href="#">{{ "footer.about"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="not-available" href="#">{{ "footer.partners"|trans({}, 'rpe') }}</a></li>
+                {# <li class="footer-item"><a class="not-available" href="#">{{ "footer.map"|trans({}, 'rpe') }}</a></li> #}
+                <li class="footer-item"><a class="not-available" href="#">{{ "footer.legal"|trans({}, 'rpe') }}</a></li>
+                {# <li class="footer-item"><a class="" href="{{ path('faq') }}">{{ "footer.faq"|trans({}, 'rpe') }}</a></li> #}
+                <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+            {% endfor %}
+            </ul>
+        </nav>
+    </footer>
+    {% endspaceless %}
+{% endblock %}
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-compatability.html.twig' %}
+{% endblock %}
+
+{% block main_nav %}
+{% endblock %}
+
+{% block notifs_all %}
+{% endblock %}
+
+{% block notifs_msg %}
+{% endblock %}

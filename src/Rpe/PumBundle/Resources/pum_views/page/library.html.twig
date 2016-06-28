@@ -1,0 +1,296 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/library.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/rpepum/css/modal-library.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.ui.touch.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.library.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.modal-library.js') }}"></script>
+{% endblock %}
+
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-library.html.twig' %}
+{% endblock %}
+
+{% block main_content %}
+    {% embed "pum://includes/common/componants/filter.twig" %}
+        {% block title %}
+            <h2 class="filter-title">{{ "library.title"|trans({}, 'rpe') }} <span>(45)</span></h2>
+        {% endblock %}
+
+        {% block filter %}
+            <div class="filter-right">
+                <ul class="filter-right-wrapper">
+                    <li class="filter-link">
+                        <select class="select-styled filtre">
+                            <option value="value1">Les plus récents</option>
+                            <option value="value2">Les plus récents</option>
+                            <option value="value4">Les plus récents</option>
+                        </select>
+                    </li>
+                    <li class="filter-link">
+                        <select class="select-styled filtre">
+                            <option value="value1">Tous les formats</option>
+                            <option value="value2">Tous les formats</option>
+                        </select>
+                    </li>
+                    <li class="filter-link">
+                        <span id="big" class="picto-big opac"></span>
+                        <span id="small" class="picto-small"></span>
+                    </li>
+                    <li class="filter-link">
+                        <span class="btn-file light-blue">
+                            <span>{{ "library.add_media"|trans({}, 'rpe') }}</span>
+                            <input type="file" name="media" />
+                        </span>
+                    </li>
+
+                </ul>
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+
+
+
+    <div class="library">
+
+        <div class="library_top">
+            <span>{{ "library.folder"|trans({}, 'rpe') }} /</span>
+            <span class="add_folder_button action-btn orange icon-plus">{{ "library.add"|trans({}, 'rpe') }}</span>
+            <form class="add-folder-form">
+                <input type="text" placeholder="" class="" name="name" />
+                <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" />
+            </form>
+        </div>
+
+        <div class="library_left">
+            <ul>
+                <li id="folder_0" class="open_modal">
+                    <span class="folder_name">{{ "library.root"|trans({}, 'rpe') }}</span>
+                </li>
+                <li id="folder_1">
+                    <span class="folder_name">{{ "library.my_folder"|trans({}, 'rpe') }} a</span>
+                    <form class="edit_input">
+                        <input type="text" placeholder="Mon folder a" class="" name="folder_name">
+                        <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                    </form>
+                    <span class="edit_delete">
+                        <span class="edit square-btn light-blue icon-pencil small"></span>
+                        <span class="delete square-btn light-blue icon-cancel small"></span>
+                    </span>
+                </li>
+                <li id="folder_2">
+                    <span class="folder_name">{{ "library.my_folder"|trans({}, 'rpe') }} b</span>
+                    <form class="edit_input">
+                        <input type="text" placeholder="Mon folder b" class="" name="folder_name">
+                        <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                    </form>
+                    <span class="edit_delete">
+                        <span class="edit square-btn light-blue icon-pencil small"></span>
+                        <span class="delete square-btn light-blue icon-cancel small"></span>
+                    </span>
+                </li>
+                <li id="folder_3" class="selected">
+                    <span class="folder_name">{{ "library.my_folder"|trans({}, 'rpe') }} c</span>
+                    <form class="edit_input">
+                        <input type="text" placeholder="Mon folder c" class="" name="folder_name">
+                        <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                    </form>
+                    <span class="edit_delete">
+                        <span class="edit square-btn light-blue icon-pencil small"></span>
+                        <span class="delete square-btn light-blue icon-cancel small"></span>
+                    </span>
+                </li>
+                <li id="folder_4">
+                    <span class="folder_name">{{ "library.my_folder"|trans({}, 'rpe') }} d</span>
+                    <form class="edit_input">
+                        <input type="text" placeholder="Mon folder d" class="" name="folder_name">
+                        <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                    </form>
+                    <span class="edit_delete">
+                        <span class="edit square-btn light-blue icon-pencil small"></span>
+                        <span class="delete square-btn light-blue icon-cancel small"></span>
+                    </span>
+                </li>
+                <li id="folder_5">
+                    <span class="folder_name">{{ "library.my_folder"|trans({}, 'rpe') }} fdgf  fdg fdgdfg dfgdfg fdgdfgd fdgdgdfg fgfd g fdgdfg dfgdf g</span>
+                    <form class="edit_input">
+                        <input type="text" placeholder="Mon folder fdgf  fdg fdgdfg dfgdfg fdgdfgd fdgdgdfg fgfd g fdgdfg dfgdf g" class="" name="folder_name">
+                        <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                    </form>
+                    <span class="edit_delete">
+                        <span class="edit square-btn light-blue icon-pencil small"></span>
+                        <span class="delete square-btn light-blue icon-cancel small"></span>
+                    </span>
+                </li>
+
+            </ul>
+
+
+        </div>
+        <div class="library_right">
+            <ul>
+                <li id="media_7452">
+                    <div class="li_content">
+                        <div class="move"></div>
+                        <div class="picture">
+                            <div class="img">
+                                <div class="ext">.JPG</div>
+                                <img alt="" src="{{ asset('bundles/rpepum/images/tmp/a.jpg') }}" />
+                            </div>
+                        </div>
+                        <div class="text">
+                            <div class="name">Photo de truc</div>
+                            <div class="comment">Une superbe photo à la plage de truc</div>
+                            <form class="edit_input">
+                                <input type="text" placeholder="Photo de truc" class="" name="name" />
+                                <input type="text" placeholder="Une superbe photo à la plage de truc" class="" name="comment" />
+                                <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                            </form>
+                        </div>
+                        <div class="directory">/Collège Saint Bernard</div>
+                        <div class="edit_delete">
+                            <span class="edit square-btn light-blue icon-pencil small"></span>
+                            <span class="delete square-btn light-blue icon-cancel small"></span>
+                        </div>
+                    </div>
+                </li>
+                <li id="media_7456">
+                    <div class="li_content">
+                        <div class="move"></div>
+                        <div class="picture">
+                            <div class="img">
+                                <div class="ext">.PDF</div>
+                                <img alt="" src="{{ asset('bundles/rpepum/images/tmp/file.png') }}" />
+                            </div>
+                        </div>
+                        <div class="text">
+                            <div class="name">Photo de truc</div>
+                            <div class="comment">Une superbe photo à la plage de truc</div>
+                            <form class="edit_input">
+                                <input type="text" placeholder="Photo de truc" class="" name="name" />
+                                <input type="text" placeholder="Une superbe photo à la plage de truc" class="" name="comment" />
+                                <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                            </form>
+                        </div>
+                        <div class="directory">/Collège Saint Bernard</div>
+                        <div class="edit_delete">
+                            <span class="edit square-btn light-blue icon-pencil small"></span>
+                            <span class="delete square-btn light-blue icon-cancel small"></span>
+                        </div>
+                    </div>
+                </li>
+                <li id="media_6532">
+                    <div class="li_content">
+                        <div class="move"></div>
+                        <div class="picture">
+                            <div class="img">
+                                <div class="ext">.JPG</div>
+                                <img alt="" src="{{ asset('bundles/rpepum/images/tmp/a.jpg') }}" />
+                            </div>
+                        </div>
+                        <div class="text">
+                            <div class="name">Une superbe photo à la plage de truc</div>
+                            <div class="comment">Une superbe photo à la plage de truc Une superbe photo à la plage de truc</div>
+                            <form class="edit_input">
+                                <input type="text" placeholder="Photo de truc" class="" name="name" />
+                                <input type="text" placeholder="Une superbe photo à la plage de truc" class="" name="comment" />
+                                <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                            </form>
+                        </div>
+                        <div class="directory">/Collège Saint Bernard</div>
+                        <div class="edit_delete">
+                            <span class="edit square-btn light-blue icon-pencil small"></span>
+                            <span class="delete square-btn light-blue icon-cancel small"></span>
+                        </div>
+                    </div>
+                </li>
+                <li id="media_7152">
+                    <div class="li_content">
+                        <div class="move"></div>
+                        <div class="picture">
+                            <div class="img">
+                                <div class="ext">.JPG</div>
+                                <img alt="" src="{{ asset('bundles/rpepum/images/tmp/a.jpg') }}" />
+                            </div>
+                        </div>
+                        <div class="text">
+                            <div class="name">{{ "library.photo"|trans({}, 'rpe') }} de truc</div>
+                            <div class="comment">Une superbe photo à la plage de truc</div>
+                            <form class="edit_input">
+                                <input type="text" placeholder="Photo de truc" class="" name="name" />
+                                <input type="text" placeholder="Une superbe photo à la plage de truc" class="" name="comment" />
+                                <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                            </form>
+                        </div>
+                        <div class="directory">/Collège Saint Bernard Collège Saint</div>
+                        <div class="edit_delete">
+                            <span class="edit square-btn light-blue icon-pencil small"></span>
+                            <span class="delete square-btn light-blue icon-cancel small"></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul>
+                <li id="media_4785">
+                    <div class="li_content">
+                        <div class="move"></div>
+                        <div class="picture">
+                            <div class="img">
+                                <div class="ext">.JPG</div>
+                                <img alt="" src="{{ asset('bundles/rpepum/images/tmp/a_2.jpg') }}" />
+                            </div>
+                        </div>
+                        <div class="text">
+                            <div class="name">{{ "library.photo"|trans({}, 'rpe') }} de truc</div>
+                            <div class="comment">Une superbe photo à la plage de truc</div>
+                            <form class="edit_input">
+                                <input type="text" placeholder="Photo de truc" class="" name="name" />
+                                <input type="text" placeholder="Une superbe photo à la plage de truc" class="" name="comment" />
+                                <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                            </form>
+                        </div>
+                        <div class="directory">/Collège Saint Bernard</div>
+                        <div class="edit_delete">
+                            <span class="edit square-btn light-blue icon-pencil small"></span>
+                            <span class="delete square-btn light-blue icon-cancel small"></span>
+                        </div>
+                    </div>
+                </li>
+                <li id="media_4578">
+                    <div class="li_content">
+                        <div class="move"></div>
+                        <div class="picture">
+                            <div class="img">
+                                <div class="ext">.JPG</div>
+                                <img alt="" src="{{ asset('bundles/rpepum/images/tmp/a_3.jpg') }}" />
+                            </div>
+                        </div>
+                        <div class="text">
+                            <div class="name">{{ "library.photo"|trans({}, 'rpe') }} de truc</div>
+                            <div class="comment">Une superbe photo à la plage de truc</div>
+                            <form class="edit_input">
+                                <input type="text" placeholder="Photo de truc" class="" name="name" />
+                                <input type="text" placeholder="Une superbe photo à la plage de truc" class="" name="comment" />
+                                <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                            </form>
+                        </div>
+                        <div class="directory">/Collège Saint Bernard</div>
+                        <div class="edit_delete">
+                            <span class="edit square-btn light-blue icon-pencil small"></span>
+                            <span class="delete square-btn light-blue icon-cancel small"></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="empty"></li>
+                <li class="empty"></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

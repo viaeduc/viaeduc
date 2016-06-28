@@ -1,0 +1,25 @@
+{% set filters = app.request.query.get(facet_key) %}
+
+{% set encodedValue = _value|default(_label)|url_encode %}
+
+{% if filters is iterable and encodedValue in filters %}
+
+    {% set is_active = 'active' %}
+    {% set href = app.request.query.all %}
+    {% set values = filters|removeFromArray(encodedValue, null) %}
+    {% set href = app.request.query.all|merge({(facet_key): values, p: null }) %}
+
+{% else %}
+
+    {% set is_active = '' %}
+
+    {% if filters is null %}
+        {% set values = [encodedValue] %}
+    {% else %}
+        {% set values = filters|merge([encodedValue]) %}
+    {% endif %}
+
+    {% set href = app.request.query.all|merge({(facet_key): values, p: null }) %}
+{% endif %}
+
+<a href="?{{ href|url_encode }}" class="{{ is_active }}">{{ _label }}<span>({{ _count }})</span></a>

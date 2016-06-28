@@ -1,0 +1,47 @@
+<li class="module-card">
+    <div class="module-card-header">
+        {% set transkey = "dashboard." ~ widget.type %}
+        <h3 class="module-card-title">{{ transkey|trans({}, 'rpe') }}</h3>
+    </div>
+    <div class="module-card-content">
+        {% set items = user.getMyEvents({date: 'desc'}, 4) %}
+        {% if items|length %}
+            <ul class="module-card-data-wrapper smaller">{# add "smaller" class to this ul to add a 4th element #}
+                {% for event in items %}
+                    {% if event.event is not null %}
+                        {% set event = event.event %}
+                        <li class="module-card-data">
+                            <a  class="module-card-data-image-link" href="{{ path('agenda_event', {'event_id': event.id}) }}">
+                                <img class="module-card-data-image" src="{{ asset('bundles/rpepum/images/pictos-dashboard/agenda.png') }}">
+                            </a>
+                            <div class="module-card-inner-data">
+                                <h4 class="module-card-title">
+                                    <a href="{{ path('agenda_event', {'event_id': event.id}) }}">{{ event.title }}</a>
+                                </h4>
+                                <span class="module-card-text">{{ event.description|truncate(50, true)  }}</span>
+                                <span class="module-card-text">
+                                    <a>{{ event.startDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'd MMMM Y H:mm') }}</a> -
+                                    {% if event.startDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'YMMdd') 
+                                         == event.endDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'YMMdd') %}
+                                        <a>{{ event.endDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'H:mm') }}</a>     
+                                    {% else %}
+                                        <a>{{ event.endDate|localizeddate('none', 'none', app.request.locale, event.timezone, 'd MMMM Y H:mm') }}</a>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </li>
+                     {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <span class="module-card-empty">
+                {% set transkey = "dashboard." ~ widget.type ~ ".empty" %}{{ transkey|trans({}, 'rpe') }}
+            </span>
+        {% endif %}
+    </div>
+    <div class="module-card-footer">
+        {% if items|length %}
+            <a href="{{ path('agenda') }}" class="module-card-link">{{ "dashboard.agenda.link"|trans({}, 'rpe') }}</a>
+        {% endif %}
+    </div>
+</li>

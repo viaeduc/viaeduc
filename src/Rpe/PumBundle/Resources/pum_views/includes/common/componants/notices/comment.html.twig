@@ -1,0 +1,104 @@
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% spaceless %}
+<div id="js-comment-{{ comment.id }}" class="timeline-comment{{ (comment.parent is not null) ? ' sub-comment' }}">
+
+    <!-- Image commentateur -->
+    {# <div class="image-wrapper">
+        <a href="{{ path('profil', {id: comment.user.id}) }}"> <!-- Lien vers page de profile de la personne --> #}
+            {{ macros.show_user_avatar(comment.user, 'default', 67, 'comment-profil-image') }}
+        {# </a>
+    </div> #}
+    <div class="comment-info">
+        <!-- Prénom et nom deu commentateur -->
+        <a href="{{ path('profil', {id: hashEncode(comment.user.id)}) }}" class="comment-author">{{ comment.user.firstname ~ ' ' ~ comment.user.lastname }}</a>
+        <!-- Texte du commentaire -->
+        <p class="comment-text">
+            {{ comment.content|striptags('<a>')|raw|nl2br }}
+        </p>
+
+        {% if comment.linkPreview is not null %}
+            {% include "pum://page/linkpreview/index.html.twig" with {'link' : comment.linkPreview} %}
+        {% endif %}
+
+        <!-- Les data-xxxxx sont utilisés pour générer des noms uniques et passer les params pour l'enregistrement des commentaires -->
+        <div class="comment-menu">
+            <!-- Actions: Liker Commenter -->
+            {# <a href="#" class="icon-heart">{{ comment.recommendby.count }}</a> #}
+            {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                'type': 'external_notice_comment',
+                'object': comment,
+                'style': 'link_counter'
+            } %}
+
+             {# | <a href="{{ url('create_form_comment') }}" class="icon-export comment-this" data-comment-id="{{ comment.id }}" data-post-id="{{ post.id }}"></a> #}
+            {% if comment.children.count %}
+                <a href="#" class="icon-comment">{{ comment.children.count }}</a>
+            {% endif %}
+            {% if comment.parent is null %}
+                <a href="#js-c-com-{{ comment.id }}" class="icon-reply js-loadmore js-once" data-href="{{ path('create_form_comment', {'notice':notice.id, 'comment': comment.id}) }}" data-target="#js-c-com-{{ comment.id }}">{{ 'Répondre'|trans({}, 'rpe') }}</a>
+            {% endif %}
+
+            {# Delete #}
+            {% if user == comment.user %}
+                <a href="#" data-delete-link="{{ path('delete_notice_comment', {'id': comment.id}) }}" class="icon-trash js-loadmore js-confirm-modal js-remove" data-confirm="{{ 'common.action.delete.comment_confirm'|trans({}, 'rpe')|e('html') }}" data-remove-div="#js-comment-{{ comment.id }}" data-target="#js-comment-{{ comment.id }}, [id^=js-subcomment-{{ comment.id }}">{{ 'common.action.delete.comment'|trans({}, 'rpe') }}</a>
+            {% endif %}
+
+            {% include 'pum://includes/common/componants/report/buttons.html.twig' with {
+                'type': 'comment',
+                'object': comment,
+                'style': 'link'
+            } %}
+            <!-- Date et heure de commentaire -->
+            <a class="comment-time timeago" title="{{ comment.date|date('c') }}"></a>
+        </div>
+
+        <div id="js-c-com-{{ comment.id }}" class="timeline-post-comment"></div>
+    </div>
+
+</div>
+{% if comment.children.count %}
+    <div class="sub-comments-wrapper">
+    {% for sub_comment in comment.children %}
+        <div id="js-subcomment-{{ comment.id }}-{{ sub_comment.id }}" class="timeline-comment sub-comment">
+            <!-- Image commentateur -->
+            {{ macros.show_user_avatar(sub_comment.user, 'default', 44, 'comment-profil-image') }}
+            <div class="comment-info">
+                <!-- Prénom et nom deu commentateur -->
+                <a href="{{ path('profil', {id: hashEncode(sub_comment.user.id)}) }}" class="comment-author">{{ sub_comment.user.firstname ~ ' ' ~ sub_comment.user.lastname }}</a>
+                <!-- Texte du commentaire -->
+                <p class="comment-text">
+                    {{ sub_comment.content|striptags('<a>')|raw|nl2br }}
+                </p>
+
+                {% if sub_comment.linkPreview is not null %}
+                    {% include "pum://page/linkpreview/index.html.twig" with {'link' : sub_comment.linkPreview} %}
+                {% endif %}
+
+                <!-- Les data-xxxxx sont utilisés pour générer des noms uniques et passer les params pour l'enregistrement des commentaires -->
+                <div class="comment-menu">
+                    <!-- Actions: Liker Commenter -->
+
+                    {# <a href="#" class="icon-heart">{{ sub_comment.recommendby.count }}</a> #}
+                    {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                        'type': 'external_notice_comment',
+                        'object': sub_comment,
+                        'style': 'link_counter'
+                    } %}
+                    {# <a href="#" class="icon-heart">{{ sub_comment.recommendby.count }}</a> | <a href="{{ url('create_form_comment') }}" class="icon-export comment-this" data-comment-id="{{ comment.id }}" data-post-id="{{ post.id }}"></a> #}
+                    {# <a href="#" class="icon-pencil-1">{{ 'Répondre'|trans({}, 'rpe') }}</a> #}
+                    {# Delete #}
+                    {% if user == sub_comment.user %}
+                        <a href="#" data-delete-link="{{ path('delete_notice_comment', {'id': sub_comment.id}) }}" class="icon-trash js-loadmore js-confirm-modal js-remove" data-confirm="{{ 'common.action.delete.comment_confirm'|trans({}, 'rpe')|e('html') }}" data-remove-div="#js-subcomment-{{ sub_comment.parent.id }}-{{ sub_comment.id }}" data-target="#js-subcomment-{{ sub_comment.parent.id }}-{{ sub_comment.id }}">{{ 'common.action.delete.comment'|trans({}, 'rpe') }}</a>
+                    {% endif %}
+
+                    <!-- Date et heure de commentaire -->
+                    <a href="#" class="comment-time timeago" title="{{ sub_comment.date|date('c') }}"></a>
+                </div>
+                {# <div id="js-c-scom-{{ sub_comment.id }}" class="timeline-post-comment"></div> #}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}
+{% endspaceless %}

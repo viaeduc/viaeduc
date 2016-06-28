@@ -1,0 +1,108 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% if mode == 'create' %}
+    {% set page_title = 'Créer un produit' %}
+{% else %}
+    {% set page_title = 'Editer un produit ' %}
+{% endif %}
+
+{% set page_name_analytics = 'product/' ~ mode|default('form') %}
+{% set nav_section = 'profile-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/create-group.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.editor.js') }}"></script>
+{% endblock %}
+{% spaceless %}
+
+{# BEGIN FORM THEME FOR PRODUCT #}
+{% block _product_title_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+{% block _product_subtitle_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+{% block _product_type_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+{% block _product_linkmore_row %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _product_content_row %}
+    {% set type = 'html' %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _product_picture_row %}
+    {% import 'pum://macros/macros.html.twig' as rpe_macros %}
+    <li>
+	    <div class="form-left">
+            <label for="editor-image">{{ "createEditor.add_image"|trans({}, 'rpe') }}<br>
+            <span class="small">{{ "createeEitor.image_size"|trans({}, 'rpe') }}</span></label>
+        </div>
+        <div class="form-right">
+            {% if form.vars.value.id is not defined %}
+                <img src="{{ asset('bundles/rpepum/images/image_upload_groupe.jpg') }}" alt="">
+            {% else %}
+                {{ rpe_macros.show_image(form.vars.value, 85) }}
+             {% endif %}
+            <span class="btn-file dark-grey">
+                <span class="button-text">{{ "editorPage.upload"|trans({}, 'rpe') }}</span>
+                <span class="picto-upload"></span>
+                {{ form_row(form.file) }}
+            </span>
+        </div>
+    </li>
+{% endblock %}
+{% block _product_picture_file_row %}
+    <input type="file" class="rpe-upload single-upload" name="product[picture][file]" />
+{% endblock %}
+
+{% block valider_widget %}
+    {% if mode == 'create' %}
+        <button type="submit" class="submit-relation-btn orange" id="confirmer" name="confirmer">{{ "createEditor.create_editor"|trans({}, 'rpe') }}</button>
+    {% else %}
+        <button type="submit" class="submit-relation-btn orange" id="confirmer" name="confirmer">{{ "createEditor.update"|trans({}, 'rpe') }}</button>
+    {% endif %}
+{% endblock %}
+{# END FORM THEME FOR PRODUCT #}
+
+{% block main_content %}
+    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="modal-label-relations">
+		    {% if mode == 'create' %}
+                {{ "createEditor.create_editor"|trans({}, 'rpe') }}
+            {% else %}
+                {{ "createProduct.edit"|trans({}, 'rpe') ~ ' : ' ~ editor.name }}
+            {% endif %}
+		</h4>
+	</div>
+	<div class="modal-body">
+		{% form_theme form _self %}
+        {{ form_errors(form) }}
+        {{ form_start(form) }}
+            <div class="form-first">
+                <ul class="form-wrapper">
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.subtitle) }}
+                    {{ form_row(form.type) }}
+                    {{ form_row(form.linkmore) }}
+                    {{ form_row(form.picture) }}
+                    {{ form_row(form.content) }}
+                </ul>
+                {{ form_row(form._token) }}
+                {{ block('valider_widget') }}
+            </div>
+        {{ form_end(form, {render_rest: false}) }}
+	</div>
+{# 	<div class="modal-footer">#}
+{# 		<a role="button" data-dismiss="modal" class="action-btn light-blue">{{ "tutorial.next"|trans({}, 'rpe') }}</a>#}
+{# 	</div>#}
+{% endblock %}
+{% endspaceless %}

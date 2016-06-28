@@ -1,0 +1,51 @@
+{% import 'pum://macros/macros.html.twig' as macros %}
+
+{% spaceless %}
+<h4 class="tab-title">{{ 'Gestion des membres'|trans({}, 'rpe') }}</h4>
+<div class="administration-box">
+    <!-- TOP -->
+    <div class="administration-top">
+        <input class="friend-filter" type="text" placeholder="Recherche...">
+
+        <a href="#" class="profil-btn orange invit-dropdown-toggle"><span class="icon-cog">{{ 'INVITER'|trans({}, 'rpe') }}</span></a>
+        <ul class="invit-dropdown-menu">
+            <li>
+                <a href="{{ path('invite_relation_blog', {id:blog.id, scope:"relation"}) }}" data-target="#portlet_tab2" class="invite-dropdown-link js-loadmore js-infinite js-load-inner">des relations</a>
+            </li>
+            <li>
+                <a href="{{ path('invite_relation_blog', {id:blog.id, scope:"internal"}) }}" data-target="#portlet_tab2" class="invite-dropdown-link js-loadmore js-infinite js-load-inner">des membres de viaéduc</a>
+            </li>
+            {% if pum_var('active_invitation_externe') %}
+                <li>
+                    <a href="{{ path('invite_external_blog', {id_blog:blog.id}) }}" data-target="#portlet_tab2" class="invite-dropdown-link js-loadmore js-infinite js-load-inner">des membres externes</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div><!--
+        LEFT
+    --><div class="administration-left">
+            <div class="swiper-container swiper-free-mode">
+                <div class="swiper-scrollbar" ></div><!--
+                --><div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        {% for member in members %}
+                            {{ (loop.first) ? '<ul class="friend-list">' }}
+                            {#% set single_user = members %#}
+                            <li id="userinblog-{{ member.id }}">
+                                <a href="#" class="js-loadmore js-infinite js-load-inner" data-href="{{ path('blog_user_getinfo', {'blog_id': blog.id, 'user_id': member.id}) }}" data-target="#portlet_tab2 .administration-right">
+                                    {{ macros.show_user_avatar_url(member, 'default', 64, 'image-inline') }}
+                                    <div class="details">
+                                        <span>{{ member.firstname ~ ' ' ~ member.lastname }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                            {{ (loop.last) ? '</ul>'}}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div><!--
+        RIGHT
+    --><div class="administration-right"></div>
+</div>
+{% endspaceless %}

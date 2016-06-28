@@ -1,0 +1,201 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "layout/_sidebar";
+@import "componants/_breadcrumbs";
+@import "componants/_side-box";
+@import "componants/_side-componants";
+@import "componants/_side-componant-connections";
+
+// ------------
+// Specific CSS
+// ------------
+
+h2 {
+    margin: 0 0 20px 0;
+    line-height: 1.0em;
+    text-transform: uppercase;
+
+    &:last-of-type {
+        margin: 20px 0;
+    }
+}
+
+.content {
+    min-height: 600px;
+
+    &.full {
+        min-height: 0;
+    }
+}
+
+.waiting-list-container {
+    display: table;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $background-grey-2;
+    margin: 0 0 10px 0;
+
+    &:last-child {
+        margin: 0;
+    }
+
+    .waiting-list-left,
+    .waiting-list-center,
+    .waiting-list-right {
+        display: table-cell;
+        padding: 10px 5px;
+    }
+
+    .waiting-list-left {
+        width: 65%;
+        vertical-align: middle;
+    }
+
+    .waiting-list-center {
+        @include fontSize(14);
+        width: 20%;
+        vertical-align: middle;
+        padding: 10px;
+        text-align: center;
+
+        .image-list {
+            width: 100%;
+            margin: 0 0 5px 0;
+
+            > li {
+                display: inline-block;
+                width: 33.3333333333%;
+                vertical-align: middle;
+                float: left;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        a {
+            transition: color 0.2s linear;
+            color: $light-blue-1;
+
+            &:hover {
+                transition: color 0.2s linear;
+                color: $light-blue-2;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .waiting-list-right {
+        width: 15%;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .image,
+    .main-information {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .image {
+        width: 65px;
+        height: 65px;
+        margin: 0 5% 0 0;
+    }
+
+    .main-information {
+        width: 65%;
+        font-family: $Verdana;
+        @include fontSize(12);
+
+        .name,
+        .role {
+            float: left;
+            clear: left;
+        }
+
+        .name {
+            color: $dark-blue-font;
+            font-weight: bold;
+        }
+    }
+
+    .message {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0;
+        @include fontSize(12);
+    }
+
+    .action {
+        transition: all 0.2s linear;
+        display: inline-block;
+        height: 35px;
+        line-height: 35px;
+        width: 35px;
+        color: $light-grey-font;
+        border: 1px solid $light-grey-font;
+        text-align: center;
+        margin-right: .3em;
+        border-radius: 3px;
+
+        &:before {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            vertical-align: baseline;
+            @include fontSize(35);
+        }
+
+        &:hover {
+            transition: all 0.2s linear;
+            text-decoration: none;
+        }
+
+        &.icon-checkmark:hover {
+            color: $light-blue-1;
+            border: 1px solid $light-blue-1;
+        }
+
+        &.icon-cross:hover {
+            color: $red-1;
+            border: 1px solid $red-1;
+        }
+    }
+}
+
+@media screen and (max-width: $portrait-screen) {
+
+}
+
+@media screen and (max-width: $landscape-screen) {
+    .waiting-list-container {
+        .waiting-list-left {
+            width: 40%;
+        }
+
+        .waiting-list-center {
+            width: 45%;
+        }
+
+        .waiting-list-right {
+            width: 15%;
+        }
+    }
+}
+
+form {
+    display: inline-block;
+}

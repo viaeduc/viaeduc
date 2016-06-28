@@ -1,0 +1,33 @@
+// --
+// Flux RSS
+.rss-componant {
+    display: inline-block;
+    width: 100%;
+    padding: 2.5%;
+    margin: 0 0 10px 0;
+    background: rgba(255,255,255,0.1);
+
+    // Animation
+    position: relative;
+    top: -10px;
+    opacity: 0;
+    
+    > a {
+        width: 100%;
+        height: 100%;
+
+        @include fontSize(10);
+        font-family: $Verdana;
+        color: $white-font;
+    }
+
+    .rss-page,
+    .rss-date {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .rss-date {
+        color: $dark-grey-font;
+    }
+}

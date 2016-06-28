@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NOMENCLATURE SYSTEM "Dtd-Nomenclature.dtd">
+<NOMENCLATURE>
+    <TERME>
+        <INTITULE>a pour aperçu</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-023</ID>
+        <DF>Type (relation)</DF>
+        <NA>Renvoie vers une démonstration, un extrait, une présentation de la ressource.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>a pour logo</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-022</ID>
+        <DF>Type (relation)</DF>
+        <NA>Un logo est une image représentant une marque, un organisme (le logo d'une maison d'édition par exemple).</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>a pour vignette</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-021</ID>
+        <DF>Type (relation)</DF>
+        <NA>Une vignette est un visuel, une imagette représentant la ressource (sa couverture, sa 4ème de couverture...).</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>conforme à</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/conformsTo</ID>
+        <DF>Type (relation)</DF>
+        <NA>Une référence à une norme établie à laquelle la ressource est conforme.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>conforme à</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-020</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>contient</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/haspart</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite est une partie physique ou logique de la ressource référencée (parent/enfant, hiérarchique par nature).</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>contient</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-011</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>contient une référence à</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/references</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite est référencée, citée ou sinon désignée par la ressource référencée. Cette relation peut servir à lier une critique de la ressource à la ressource, une satire d'un discours à l'original, etc. Une vignette ou une référence bibliographique rentrent dans cette catégorie.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>contient une référence à</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-013</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est associé à</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-001</ID>
+        <DF>Type (relation)</DF>
+        <NA>Le LOMFR propose d'employer une relation générique "est associé à" dans le cas où aucune des relations spécialisées proposées ne pouvait être utilisée..</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est basé sur</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/isbasedon</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource cible tire son origine, en tout ou en partie, de la ressource décrite. A utiliser pour toute révision, correction, modification, etc. qui n'est pas couverte par "a comme version" ou "a comme autre format".</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>est basé sur</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-019</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est l'aperçu de</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-024</ID>
+        <DF>Type (relation)</DF>
+        <NA>Désigne une démonstration, un extrait, une présentation de la ressource.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est la base de</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/isbasisfor</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource cible tire son origine, en tout ou en partie, de la ressource décrite. A utiliser pour toute révision, correction, modification, etc. qui n'est pas couverte par "a comme version" ou "a comme autre format".</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>est la base de</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-018</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est la localisation de</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-002</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite peut se définir comme étant le l'emplacement (physique ou non) d'autres ressources.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est la traduction de</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-016</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite a le même contenu intellectuel que la ressource référencée mais elle est présentée dans une autre langue.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est référencé par</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/isreferencedby</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite est référencée, citée ou sinon désignée par la ressource référencée. Cette relation peut servir à lier une critique de la ressource à la ressource, une satire d'un discours à l'original, etc. Une vignette ou une référence bibliographique rentrent dans cette catégorie.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>est référencé par</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-012</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est remplacé par</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/isReplacedBy</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite est supplantée, déplacée ou remplacée par la ressource référencée. S'utilise lorsque l'on souhaite préserver des versions successives (au sens de mise à jour) d'une même ressource.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>est remplacé par</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-006</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est requis par</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/isrequiredby</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite nécessite la ressource référencée physiquement ou logiquement pour assurer sa fonction, sa transmission ou distribution ou la cohérence de son contenu. Par exemple une annexe par rapport à un contenu, les consignes d'un exercice et le formulaire...</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>est requis par</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-008</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est une partie de</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/ispartof</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite est une partie physique ou logique de la ressource référencée (parent/enfant, hiérarchique par nature).</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>est une partie de</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-010</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est une version de</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/isversionof</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite est une version, une édition ou une adaptation de la ressource référencée. Les changements de version impliquent des changements importants dans le contenu plutôt que des différences dans le format.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>est une version de</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-004</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>est un format de</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/isformatof</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite a le même contenu intellectuel que la ressource référencée mais elle est présentée dans un autre format (autre présentation ou autre format informatique).</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>est un format de</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-014</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>existe dans un format</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/hasformat</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite a le même contenu intellectuel que la ressource référencée mais elle est présentée dans un autre format (autre présentation ou autre format informatique).</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>existe dans un format</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-015</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>existe en une autre version</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/hasversion</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite est une version, une édition ou une adaptation de la ressource référencée. Les changements de version impliquent des changements importants dans le contenu plutôt que des différences dans le format.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>existe en une autre version</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-005</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>fait l'objet d'une localisation</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-003</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite fait partie d'un lieu qu'il va s'agir de décrire dans le champ suivant.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>fait l'objet d'une traduction</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-017</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite a le même contenu intellectuel que la ressource référencée mais elle est présentée dans une autre langue.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>remplace</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/replaces</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite est supplantée, déplacée ou remplacée par la ressource référencée. S'utilise lorsque l'on souhaite préserver des versions successives (au sens de mise à jour) d'une même ressource.</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>remplace</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-007</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+    <TERME>
+        <INTITULE>requiert</INTITULE>
+        <ID>http://data.education.fr/voc/scolomfr/requires</ID>
+        <DF>Type (relation)</DF>
+        <NA>La ressource décrite nécessite la ressource référencée physiquement ou logiquement pour assurer sa fonction, sa transmission ou distribution ou la cohérence de son contenu. Par exemple une annexe par rapport à un contenu, les consignes d'un exercice et le formulaire...</NA>
+        <ORIGINE>scolomfr-voc-009</ORIGINE>
+        <TERME_TE>
+            <INTITULE>requiert</INTITULE>
+            <ID>http://data.education.fr/voc/scolomfr/scolomfr-voc-009-num-009</ID>
+            <ORIGINE>scolomfr-voc-009</ORIGINE>
+            <LANGUE>Français</LANGUE>
+        </TERME_TE>
+        <LANGUE>Français</LANGUE>
+    </TERME>
+</NOMENCLATURE>

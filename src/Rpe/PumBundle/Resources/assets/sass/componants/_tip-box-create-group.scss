@@ -1,0 +1,76 @@
+.tip-box {
+    position: relative;
+    background: $background-blue-1;
+    color: $white-font;
+    padding: 0 0 20px 0;
+
+    .title {
+        @include fontSize(30);
+        font-family: $MissionScript;
+        padding: 20px 0 0 20px;
+        margin: 0 0 70px 0;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    p {
+        @include fontSize(14);
+        padding     : 0 20px;
+        line-height : 1.2rem;;
+    }
+
+    .talk-bubble {
+        @include fontSize(22);
+        position: absolute;
+        width: 90%;
+        top: 65px;
+        left: 50%;
+        margin-left: -45%;
+        padding: 20px;
+        background: $background-white;
+        text-align: center;
+        color: $dark-blue-font;
+
+        p {
+            @include fontSize(22);
+            margin: 0;
+            line-height : 1em;;
+        }
+
+        .arrow {
+            position: absolute;
+            bottom: -18px;
+            left: 50px;
+            width: 16px;
+            height: 19px;
+            background: url(../images/triangle_blanc.png) no-repeat scroll center top;
+        }
+    }
+
+    img {
+        width: 100%;
+        margin: 0 0 10px 0;
+    }
+
+    ul {
+        padding: 20px;
+
+        li {
+            @include fontSize(14);
+            padding: 0 0 0 40px;
+            margin: 0 0 20px 0;
+            line-height: 1.2rem;;
+
+            &:before {
+                @include fontSize(20);
+                position: absolute;
+                left: 20px;
+                margin-top: 2px;
+                padding: 0;
+                color: white;
+            }
+        }
+    }
+}

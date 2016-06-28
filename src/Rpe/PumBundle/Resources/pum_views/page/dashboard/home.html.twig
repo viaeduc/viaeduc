@@ -1,0 +1,57 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/dashboard.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    {% if pum_var('dashboard_active') %}
+        <script src="{{ asset('bundles/rpepum/js/rpe.home_filter.js') }}"></script>
+    {% endif %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.dashboard.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        {% embed "pum://includes/common/componants/filter.twig" %}
+        {% block title %}
+            <a href="{{ path('home') }}" class="filter-title" id="filter_home">{{ "homepage.logged.widgets.title"|trans({}, 'rpe') }}</a> 
+            / <a href="{{ path('dashboard') }}" class="filter-title active" id="filter_dashboard">{{ "dashboard.title"|trans({}, 'rpe') }}</a>
+        {% endblock %}
+        {% block filter %}
+            <div class="filter-right">
+                <ul class="filter-right-wrapper">
+                    <li class="filter-link">
+                        <a class="light-blue icon-cog action-btn dashboard-params" href="{{ path('dashboard-settings') }}">
+                            {{ "dashboard.settings"|trans({}, 'rpe') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        {% endblock %}
+        {% endembed %}
+
+        <div class="actions">
+
+        </div>
+
+        <section class="content full">
+            <ul class="dashboard-modules-wrapper">
+                {% for widget in activeWidgets %}
+                    {% include 'pum://page/dashboard/widgets/' ~ widget.type ~ '.html.twig'  %}
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+{% endblock %}
+
+{% block body_javascript %}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}

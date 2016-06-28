@@ -1,0 +1,330 @@
+{% macro show_user_avatar(user, type, size, image_class, data_width, data_height, data_top, data_left, url, lazyload) %}
+    {% if app.request is not null and app.request.schemeAndHttpHost %}
+        {% set base_url = app.request.schemeAndHttpHost %}
+    {% else %}
+        {% set base_url = schemeAndHttpHost %}
+    {% endif %}
+    {% if user.avatar is not null %}
+        {% if type == 'relation' %}
+            <div class="profil-generated">
+                <!-- add link to profil page -->
+                <a href="{{ base_url }}{{ url|default(path('profil', {'id':  hashEncode(user.id)})) }}">
+                <!-- end -->
+                    {% if user.avatar.isImage %}
+                        <img alt="" src="{{ base_url }}{{ pum_media_url(user.avatar, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" width="{{ data_width }}" height="{{ data_height }}" {% if lazyload == true %} data-original="{{ base_url }}{{ pum_media_url(user.avatar, size) }}"{% endif %} />
+                    {% endif %}
+                </a>
+            </div>
+        {% elseif type == 'cover' %}
+            {% if user.cover is not null %}
+                {% if user.cover.isImage %}
+                    <img alt="" src="{{ base_url }}{{ pum_media_url(user.cover, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" data-top="{{ data_top }}" data-left="{{ data_left }}" width="{{ data_width }}" height="{{ data_height }}" {% if lazyload == true %} data-original="{{ base_url }}{{ pum_media_url(user.avatar, size) }}"{% endif %} />
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if user.avatar.isImage %}
+                <img alt="" src="{{ base_url }}{{ pum_media_url(user.avatar, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" width="{{ data_width }}" height="{{ data_height }}" {% if lazyload == true %} data-original="{{ base_url }}{{ pum_media_url(user.avatar, size) }}"{% endif %} />
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro show_user_avatar_url(user, type, size, image_class, data_width, data_height, data_top, data_left, url) %}
+    {% if app.request is not null and app.request.schemeAndHttpHost %}
+        {% set base_url = app.request.schemeAndHttpHost %}
+    {% else %}
+        {% set base_url = schemeAndHttpHost %}
+    {% endif %}
+    {% if user.avatar_id is defined %}
+        {% if type == 'relation' %}
+            <div class="profil-generated">
+                <!-- add link to profil page -->
+                <a href="{{ base_url }}{{ url|default(path('profil', {'id': hashEncode(user.id)})) }}">
+                <!-- end -->
+                    {% if (user.avatar_mime)|isImage %}
+                        <img alt="" src="{{ base_url }}{{ pum_media_url_by_id(user.avatar_id, true, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+                    {% endif %}
+                </a>
+            </div>
+        {% elseif type == 'cover' %}
+            {% if user.cover_id is defined %}
+                {% if (user.cover_mime)|isImage %}
+                    <img alt="" src="{{ base_url }}{{ pum_media_url_by_id(user.cover_id, true, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" data-top="{{ data_top }}" data-left="{{ data_left }}" />
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if (user.avatar_mime)|isImage %}
+                <img alt="" src="{{ base_url }}{{ pum_media_url_by_id(user.avatar_id, true, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro show_image(media, size, image_class, alt) %}
+    {% if media is not null and media.isImage %}
+        <img alt="{{ alt }}" src="{{ pum_media_url(media, size) }}" class="{{ image_class }}" />
+    {% endif %}
+{% endmacro %}
+
+{% macro show_image_url(url, size, image_class, alt) %}
+    {% if url|isImage %}
+        <img alt="{{ alt }}" src="{{ pum_media_url_by_id(url, true, size) }}" class="{{ image_class }}" />
+    {% endif %}
+{% endmacro %}
+
+{% macro show_group_avatar(group, type, size, image_class, data_width, data_height) %}
+    {% if app.request is not null and app.request.schemeAndHttpHost %}
+        {% set base_url = app.request.schemeAndHttpHost %}
+    {% else %}
+        {% set base_url = schemeAndHttpHost %}
+    {% endif %}
+    {% if type == 'cover' %}
+        {% if group.cover is not null %}
+            {% if group.cover.isImage %}
+                <img src="{{ base_url }}{{ pum_media_url(group.cover, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+            {% endif %}
+        {% else %}
+            <img src="{{ base_url }}{{ asset('bundles/rpepum/images/tmp/img_sago.jpg') }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+        {% endif %}
+    {% else %}
+        {% if group.picture is not null %}
+            {% if group.picture.isImage %}
+                <img alt="" src="{{ base_url }}{{ pum_media_url(group.picture, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+            {% endif %}
+        {% else %}
+             <img alt="" src="" width="{{ size }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro show_group_avatar_url(group, type, size, image_class, data_width, data_height) %}
+    {% if app.request is not null and app.request.schemeAndHttpHost %}
+        {% set base_url = app.request.schemeAndHttpHost %}
+    {% else %}
+        {% set base_url = schemeAndHttpHost %}
+    {% endif %}
+    {% if type == 'cover' %}
+        {% if group.cover_id is defined %}
+            {% if (group.cover_mime)|isImage %}
+                <img src="{{ base_url }}{{ pum_media_url_by_id(group.cover_id, true, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+            {% endif %}
+        {% else %}
+            <img src="{{ base_url }}{{ asset('bundles/rpepum/images/tmp/img_sago.jpg') }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+        {% endif %}
+    {% else %}
+        {% if group.picture_id is defined %}
+            {% if (group.picture_mime)|isImage %}
+                <img alt="" src="{{ base_url }}{{ pum_media_url_by_id(group.picture_id, true, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+            {% endif %}
+        {% else %}
+             <img alt="" src="" width="{{ size }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro show_editor_avatar(editor, type, size, image_class, data_width, data_height) %}
+    {% if type == 'cover' %}
+        {% if editor.cover is not null %}
+            {% if editor.cover.isImage %}
+                <img src="{{ pum_media_url(editor.cover, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+            {% endif %}
+        {% else %}
+            <img src="{{ asset('bundles/rpepum/images/tmp/img_sago.jpg') }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+        {% endif %}
+    {% else %}
+        {% if editor.picture is not null %}
+            {% if editor.picture.isImage %}
+                <img alt="" src="{{ pum_media_url(editor.picture, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+            {% endif %}
+        {% else %}
+             <img alt="" src="" width="{{ size }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro show_product_avatar(product, type, size, image_class, data_width, data_height) %}
+    {% if product.picture is not null %}
+        {% if product.picture.isImage %}
+            <img alt="" src="{{ pum_media_url(product.picture, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+        {% endif %}
+    {% else %}
+         <img alt="" src="" width="{{ size }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+    {% endif %}
+{% endmacro %}
+
+{% macro show_post_media(post, type, size, image_class, height = 0) %}
+    {% if type == 'cover' %}
+        {% if post.coverimage is not null %}
+            {% if post.coverimage.isImage %}
+                <img alt="" src="{{ pum_media_url(post.coverimage, size, height) }}" class="{{ image_class }}" />
+            {% endif %}
+        {% endif %}
+    {% elseif post.file is not null %}
+        {% if post.file.isImage %}
+            <img alt="" src="{{ pum_media_url(post.file, size, height) }}" class="{{ image_class }}" />
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro show_post_media_url(post, type, size, image_class, height = 0) %}
+    {% if type == 'cover' %}
+        {% if post.coverimage_id %}
+            {% if (post.coverimage_mime)|isImage %}
+                <img alt="" src="{{ pum_media_url_by_id(post.coverimage_id, true, size) }}" class="{{ image_class }}" />
+            {% endif %}
+        {% endif %}
+    {% elseif post.file_id %}
+        {% if (post.file_mime)|isImage %}
+            <img alt="" src="{{ pum_media_url_by_id(post.file_id, true, size) }}" class="{{ image_class }}" />
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro show_blog_avatar(blog, type, size, image_class, data_width, data_height) %}
+    {% if type == 'cover' %}
+        {% if blog.cover is not null %}
+            {% if blog.cover.isImage %}
+                <img src="{{ pum_media_url(blog.cover, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+            {% endif %}
+        {% else %}
+            <img src="{{ asset('bundles/rpepum/images/tmp/img_sago.jpg') }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+        {% endif %}
+    {% else %}
+        {% if blog.picture is not null %}
+            {% if blog.picture.isImage %}
+                <img alt="" src="{{ pum_media_url(blog.picture, size) }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+            {% endif %}
+        {% else %}
+             <img alt="" src="" width="{{ size }}" class="{{ image_class }}" data-width="{{ data_width }}" data-height="{{ data_height }}" />
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro waiting_list_title(type, counter) %}
+
+    {% if type == 'incoming' %}
+        {% if counter == '0' %}
+            <h2>Demande de relation en attente (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% elseif counter == "1" %}
+            <h2>Demande de relation en attente (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% elseif counter > "1" %}
+            <h2>Demandes de relations en attente (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% endif %}
+    {% else %}
+        {% if counter == '0' %}
+            <h2>Vos demandes de relations (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% elseif counter == "1" %}
+            <h2>Votre demande de relation (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% elseif counter > "1" %}
+            <h2>Vos demandes de relations (<span id="ask_count">{{ counter }}</span>)</h2>
+        {% endif %}
+    {% endif %}
+
+{% endmacro %}
+
+{% macro author_fullname(author) %}
+{% spaceless %}
+    {{ (author.firstname)|e }} {{ (author.lastname)|e }}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro loader() %}
+    <span class="loader"></span>
+{% endmacro %}
+
+{% macro show_recipients(recipients, counter) %}
+    {% set counter = counter|default(3) %}
+    {% set more = recipients.count - counter %}
+    {% for recipient in recipients|slice(0, counter) %}
+{#         {{ dump(loop.first, loop.last, loop.index, loop.length, counter, more) }}#}
+        {% if loop.last == false %}
+            {% if loop.index == (loop.length - 1) %}
+                <span>{{ recipient.user.firstname|title }} </span>
+            {% else %}
+                <span>{{ recipient.user.firstname|title }}</span>,
+             {% endif %}
+        {% else %}
+            {% if loop.length < counter %}
+                {% if more >= 1 %}
+                    , <span>{{ recipient.user.firstname|title }}</span> et
+                {% else %}
+                    et <span>{{ recipient.user.firstname|title }}</span>
+                {% endif %}
+            {% else %}
+                {% if more == 0 %}
+                    et <span>{{ recipient.user.firstname|title }}</span>
+                {% else %}
+                    , <span>{{ recipient.user.firstname|title }}</span>
+                {% endif %}
+             {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if more > 1 %}
+        et <span>{{ more }} autres</span>
+    {% elseif more == 1 %}
+        et <span>{{ more }} autre</span>
+    {% endif %}
+{% endmacro %}
+
+{% macro modal(id, class='', href) %}
+    <div class="modal fade modal-rpe {{ class }}" id="modal-{{ id }}" tabindex="-1" role="dialog" aria-labelledby="modal-{{ id }}-label" aria-hidden="true" data-href="{{ href }}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            {{ _self.loader() }}
+        </div>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro show_array_as_string(array, separator=', ') %}
+    {% spaceless %}
+        {% for single in array %}
+            {{ single }}
+            {% if loop.last == false %}
+                {{ separator }}
+            {% endif %}
+        {% endfor %}
+    {% endspaceless %}
+{% endmacro %}
+
+{% macro gmap(address, lat, lon, marker_color, width, height, zoom) %}
+    {% spaceless %}
+        <a href="https://www.google.fr/maps/place/{{ address }}" target="_blank">
+            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ address }}&amp;zoom={{ zoom }}&amp;size={{ width }}x{{ height }}&amp;markers=color:{{ marker_color }}%7C{{ lat }},{{ lon }}&amp;sensor=true" width="{{ width }}" height="{{ height }}" />
+        </a>
+    {% endspaceless %}
+{% endmacro %}
+
+{# Confirmation message #}
+{% macro alertMessages() %}
+    {% set formMessages = {
+        danger: app.session.flashbag.get('message_error'),
+        warning: app.session.flashbag.get('message_warning'),
+        success: app.session.flashbag.get('message_success'),
+        info: app.session.flashbag.get('message_info')
+    } %}
+
+    {% for typeMessage,listMessages in formMessages %}
+        {% if listMessages|length > 0 %}
+            <div class="alert alert-dismissable alert-{{ typeMessage }}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <ul>
+                    {% for singleMessage in listMessages %}
+                        <li>{{ singleMessage }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{# Download link #}
+{% macro downloadFile(id, type, token) %}
+    {# Look at downloadController to see what type to use #}
+    {{ path('media_download', {
+        'id'        : id,
+        'objetType' : type,
+        'token'     : token
+    }) }}
+{% endmacro %}

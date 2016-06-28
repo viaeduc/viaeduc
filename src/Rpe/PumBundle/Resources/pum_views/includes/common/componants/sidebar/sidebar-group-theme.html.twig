@@ -1,0 +1,34 @@
+{% set isAdmin = user.isGroupAdmin(group) %}
+{% if isAdmin or group.themes|length %}
+    <div class="side-componant grey">
+        <div class="padding-wrapper">
+            <h3 class="componant-title">
+                {{ "groupPage.module.themes"|trans({}, 'rpe') }}
+                <span class="title-small">
+    {#                 <a href="{{ path('ajax_group_resourcepadlist', {'id': group.id}) }}" class="title-link" data-toggle="modal" data-target="#modal-resources">#}
+    {#                     / {{ resourcesCount }}#}
+    {#                 </a>#}
+                </span>
+            </h3>
+            <div class="componant-wrapper">
+                {% if group.themes|length %}
+                <ul>
+                    {% for theme in group.themes %}
+                        <li class="ressource-wrapper sous-groupe">
+                            <a class="ressource-wrapper-link" href="">
+                                <h3 class="ressource-title">
+                                        <a href="{{ path('ajax_theme_postlist', {'theme_id': theme.id}) }}" data-toggle="modal" data-target="#modal-members">{{ theme.name }}</a>            
+                                </h3>    
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% elseif user.isGroupAdmin(group) %}
+                    <a href="{{ path('group-theme', {'id': group.id}) }}" class="icon-plus full">{{ "group.theme.new_theme"|trans({}, 'rpe') }}</a>
+                {% endif %}
+            </div>
+        </div>
+        
+    {#     <a href="#" class="add-etherpad icon-plus" data-toggle="modal" data-target="#new-etherpad-modal">{{ "pad.new_content"|trans({}, 'rpe') }}</a>#}
+    </div>
+{% endif %}   

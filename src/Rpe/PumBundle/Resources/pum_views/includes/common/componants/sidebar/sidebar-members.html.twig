@@ -1,0 +1,42 @@
+{% if group is defined %}
+    {% set members_limit = 8 %}
+    {% set membersLength = members|length %}
+    <div class="side-componant grey">
+        <div class="padding-wrapper">
+            <h3 class="componant-title">
+                {{ "sidebar.members"|trans({}, 'rpe') }}
+
+                <span class="title-small">/ <a href="{{ path('ajax_group_memberlist', {'id': group.id}) }}" class="going-friends" data-toggle="modal" data-target="#modal-members">{{ 'sidebar.members.see'|transchoice(membersLength, {}, 'rpe') }}</a>
+                    {# {% if profil_is_current == false %}
+                        {% set common_relation_count = common_relation|length %}
+                        {% if common_relation_count > 0 %}
+                            ( <a href="#" class="title-link">{{ common_relation_count }} {{ "sidebar.common"|trans({}, 'rpe') }}</a> )
+                        {% endif %}
+                    {% endif %} #}
+                </span>
+            </h3>
+            <div class="componant-wrapper">
+                <ul class="connections-wrapper">
+                    {% for member in members|slice(0,8) %}
+                        {#% set member = member.user %#}
+
+                        <li class="connections-componant relation-js">
+                            <a href="{{ path('profil', {id : hashEncode(member.id) }) }}" class="connections-link">
+                                {{ macros.show_user_avatar_url(member, 'default', 120, 'connections-profil-image') }}
+
+                                <div class="connections-name">
+                                    <span class="connections-firstname">{{ member.firstname }}</span>
+                                    <span class="connections-lastname">{{ member.lastname }}</span>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        {% if membersLength > members_limit %}
+{#             <a href="{{ path('ajax_group_memberlist', {'id': group.id}) }}" class="componant-link" data-toggle="modal" data-target="#modal-members">{{ 'sidebar.members.see'|transchoice(row.get('membersLength'), {}, 'rpe') }}</a>#}
+        {% endif %}
+    </div>
+{% endif %}

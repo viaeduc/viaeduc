@@ -1,0 +1,177 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Mes documents' %}
+{% set page_name_analytics = 'library/view' %}
+{# {% set nav_section = 'ressources-menu' %} #}
+
+{# {% set media_tutorial_modal = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/library.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/rpepum/css/modal-library.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/external/ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.ui.touch.js') }}"></script>
+
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.ui.widget.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/tmpl.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/load-image.all.min.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.blueimp-gallery.min.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.fileupload.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.fileupload-process.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.fileupload-validate.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/jquery.fileupload-ui.js') }}"></script>
+
+    <script src="{{ asset('bundles/rpepum/js/rpe.modal-library.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.library.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.common.js') }}"></script>
+{% endblock %}
+
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-confirm.html.twig' %}
+{% endblock %}
+
+{% block main_content %}
+{% spaceless %}
+    <!-- ========== -->
+    <!-- Filter Bar -->
+    <!-- ========== -->
+    {% embed "pum://includes/common/componants/filter.twig" %}
+        {% block title %}
+            <h2 class="filter-title">{{ "library.title"|trans({}, 'rpe') }}{#  <span>(45)</span> #}</h2>
+        {% endblock %}
+
+        {% block filter %}
+            <div class="filter-right">
+                <ul class="filter-right-wrapper">
+                    {# <li class="filter-link">
+                        <select class="select-styled filtre">
+                            <option value="value1">Les plus récents</option>
+                            <option value="value2">Les plus récents</option>
+                            <option value="value4">Les plus récents</option>
+                        </select>
+                    </li>
+                    <li class="filter-link">
+                        <select class="select-styled filtre">
+                            <option value="value1">Tous les formats</option>
+                            <option value="value2">Tous les formats</option>
+                        </select>
+                    </li> #}
+                    <li class="filter-link">
+                        <a id="js-addmedia" class="filter-btn file-btn js-loadmore js-infinite js-load-inner start-upload" data-href="{{ path('create_form_library_media') }}" data-loadtarget=".library-right">
+                            {{ "library.add_media"|trans({}, 'rpe') }}
+                            {# <input type="file" name="media" /> #}
+                        </a>
+                    </li>
+                    <li class="filter-link">
+                        <span id="big" class="picto-big opac"></span>
+                        <span id="small" class="picto-small"></span>
+                    </li>
+                </ul>
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+    <div class="library">
+        <!-- Top block with the media folder breadcrumb and add folder button-->
+        <div class="library-top">
+            <!-- new percentage bar -->
+            <div class="library-percentage-wrapper">
+                <!-- the server needs to send a text like : usedspace (percentage%) -->
+                <p class="library-percentage-stats">{{ disk_quota_m  }} Mo ({{ disk_quota_p }}%) {{ "library.usedSpace"|trans({}, 'rpe') }}</p>
+                <!-- use the data-attribute "percentage", it requires the percentage of used space (the javascript will change the width of the bar) -->
+                <div class="library-percentage-bar" data-percentage="{{ disk_quota_p }}">
+                    <div class="library-percentage-used"></div>
+                </div>
+            </div>
+            <div class="library-sidebar-wrapper">
+                <h3 class="library-title">{{ "library.folder"|trans({}, 'rpe') }} /</h3>
+                <a class="add-folder-button action-btn orange icon-plus js-loadmore js-infinite js-load-replace" data-href="{{ path('create_form_library_folder') }}" data-loadtarget="form.add-folder-form">{{ "library.add"|trans({}, 'rpe') }}</a>
+                <div class="add-folder-form-wrapper">
+                    <form class="add-folder-form"><span class="loader"></span></form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Folder list -->
+        <div class="library-left">
+            <ul class="library-folder-list">
+                <!-- Unique ID needed for the drag and drop -->
+                <li id="js-folder_root" class="{{ (null == folder_id) ? 'selected' }} js-loadmore js-infinite js-load-inner js-pushstate" data-loadtarget=".library-right" data-href="{{ path('library') }}" {#  class="open_modal" #}>
+                    <span class="folder-name">
+                        {{ "library.root"|trans({}, 'rpe') }}
+                    </span>
+                </li>
+                {% for folder in folders %}
+                    <li id="js-folder_{{ folder.id }}" {{ (folder.id == folder_id) ? 'class="selected"' }} data-entityid="{{ folder.id }}" >
+                        <span class="folder-name js-loadmore js-infinite js-load-inner js-pushstate" data-loadtarget=".library-right" data-href="{{ path('library', {'folder_id': folder.id}) }}">
+                            {{ folder.name }}
+                        </span>
+                        <form class="edit-input">
+                            {{ macros.loader() }}
+                        </form>
+                        <span class="edit-delete">
+                            {% set disable_class = '' %}
+                            {% if folder.medias.count > 0 %}
+                                {% set disable_class = 'disable-delete' %}
+                            {% endif %}
+                            <span class="edit square-btn light-blue icon-pencil small js-loadmore js-infinite js-load-replace" data-href="{{ path('create_form_library_folder', {'folder_id': folder.id}) }}" data-loadtarget="#js-folder_{{ folder.id }} .edit-input"></span>
+                            <span class="delete square-btn light-blue icon-cross small js-loadmore js-confirm-modal js-remove {{ disable_class }}" data-href="{{ path('delete_folder', {'id': folder.id}) }}" data-delete-link="{{ path('delete_folder', {'id': folder.id}) }}" data-remove-div="#js-folder_{{ folder.id }}" data-confirm="{{ 'library.folder.action.confirm_delete'|trans({}, 'rpe') }}" data-disable="{{ 'library.folder.action.disable_delete'|trans({}, 'rpe') }}"></span>
+                        </span>
+                    </li>
+                {% endfor %}
+{#                 {% if pum_var('active_belin') %}#}
+{#                     <li>#}
+{#                         <span class="folder-name" data-belin>#}
+{#                             Belin#}
+{#                         </span>#}
+{#                     </li>#}
+{#                 {% endif %}#}
+            </ul>
+        </div>
+        {% if pum_var('active_belin') %}
+            {#
+            <div class="library_belin" style="display: none;">
+                <!-- WIDGET BELIN -->
+                <div class="widget_belin">
+                    <script charset="utf-8" type="text/javascript" src="{{ pum_var('belin_sso_api') ~ '/widget/js/launch.js?width=700px&height=350&ws='~ pum_var('belin_sso_api') ~ '&url=http://www.libtheque.fr&logo=' ~ pum_var('belin_sso_api') ~ '/widget/lib_icn_32.png&cible=viaeduc&method=myFunction&user_matiere=&user_niveau='}}"></script><noscript><A HREF="http://www.libtheque.fr/index.php">Libtheque</A></noscript>
+                </div>
+            </div>
+            #}
+        {% endif %}
+
+        <!-- Ajax autoloaded and refreshed content -->
+        <div class="library-right js-autoload js-load-once" data-autoload="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">
+            {{ macros.loader() }}
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock %}
+{% block tutorial %}
+    {% if media_tutorial_modal is defined %}
+    <script>
+        {% spaceless %}
+            var media_tutorial_modal = '{{ media_tutorial_modal }}';
+        {% endspaceless %}
+    </script>
+    <div class="modal fade tutorial-modal media-tutorial-modal-1" id="media-tutorial-modal-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "mediaTutorial.title1"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "mediaTutorial.text1"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

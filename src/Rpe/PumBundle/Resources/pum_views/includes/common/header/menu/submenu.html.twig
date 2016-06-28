@@ -1,0 +1,25 @@
+{% spaceless %}
+<div class="sub-menu mp-level" data-menu="{{ nav_key }}">
+    <div class="sub-menu-wrapper">
+
+        <!-- Left Block with navigation level 2 -->
+        {% include "pum://includes/common/header/menu/left_menu.html.twig" %}
+
+        <!-- Groups / Persons / Content Suggestion and/or Favs -->
+        <!-- Include specific submenu -->
+        {% if nav_item.submenu.clickload is defined %}
+            {% spaceless %}
+            <div class="sub-middle" data-clickload="{{ path(nav_item.submenu.clickload) }}">
+                {{ macros.loader() }}
+            </div>
+            {% endspaceless %}
+        {% endif %}
+
+        <!-- Advices go here -->
+        {% include "pum://includes/common/header/menu/right_menu.html.twig" %}
+
+        <!-- Close button -->
+        {# <div class="close-submenu">{{ "subMenu.close"|trans({}, 'rpe') }}</div> #}
+    </div>
+</div>
+{% endspaceless %}

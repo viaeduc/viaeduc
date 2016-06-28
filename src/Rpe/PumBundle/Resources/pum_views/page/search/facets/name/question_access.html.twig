@@ -1,0 +1,12 @@
+{% if facet is defined %}
+    {% for row in facet.rows %}
+        {% set access_trans_key = 'search.question.type.' ~ row.term|lower %}
+        {% include "pum://page/search/facets/name/type/term.html.twig" with
+            {
+                '_label' : access_trans_key|trans({}, 'rpe'),
+                '_value' : row.term,
+                '_count' : row.count
+            }
+        %}
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,98 @@
+// -----------
+// PUBLISH BOX
+// -----------
+
+// Positionning
+.publish-box {
+	width: 100%;
+	background: #20242c;
+
+	padding: 20px;
+}
+
+.publish-links {
+	margin: 0 0 20px 0;
+}
+
+.publish-events {
+	height: 55px;
+	@include background-image(linear-gradient(top, #2f353e, #23272e ));
+	padding: 10px 20px;
+	margin: 0 0 20px 0;
+
+	text-align: right;
+}
+
+// Styling & Positionning
+
+.publish-link {
+	position: relative;
+	display: inline-block;
+	vertical-align: bottom;
+	width: 75px;
+	text-align: center;
+	margin: 0 10px 0 0;
+
+	font-family: $UbuntuCondensed;
+	@include fontSize(12);
+	color: $white;
+
+	opacity: 0.3;
+
+	.publish-icon {
+		margin: 0 0 5px 0;
+	}
+
+	&.active {
+		opacity: 1;
+	}
+
+	&.active:before {
+		content: '';
+		position: absolute;
+		bottom:-21px;
+		left: 50%;
+		margin-left: -10px;
+		width: 0; 
+		height: 0; 
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		
+		border-bottom: 10px solid $white;
+	}
+
+	&:hover {
+		color: white;;
+		text-decoration: none;
+	}
+
+	&:last-of-type {
+		margin: 0;
+	}
+}
+
+.publish-form {
+	ul li {
+		margin: 0 0 10px 0;
+	}
+
+	label {
+		display: none;
+	}
+
+	&.ressource {
+		display: none;
+	}
+}
+
+.publish-events .action-btn {
+	height: 35px;
+	line-height: 35px;
+	padding: 0 15px;
+
+	margin: 0 10px 0 0;
+
+	&:last-of-type {
+		margin: 0;
+	}
+}

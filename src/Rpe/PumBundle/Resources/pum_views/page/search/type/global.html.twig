@@ -1,0 +1,76 @@
+{#
+    --------------------------------------
+    This search menu is now in the sidebar
+    --------------------------------------
+
+    <nav class="search-tab-wrapper">
+        <ul>
+            {% include 'pum://includes/common/componants/search/menu.html.twig' %}
+        </ul>
+    </nav>
+#}
+
+{% if result is not null %}
+    <div class="tab-content">
+        {% include "pum://page/search/advanced_search.html.twig" %}
+
+        <!-- FIRST TAB CONTENT -->
+        <!-- Search result title -->
+        <div class="inner-search-menu">
+            <h3 class="search-results-title"><span>{{ result.total }}</span> {{ 'search.results'|transchoice(result.total, {}, 'rpe') }}
+                {% if app.request.get('q') %}
+                    <span>"{{ app.request.get('q') }}"</span>
+                {% endif %}
+                <a href="{{ path('search-save', {'type': search_type, 'path_name': path_name, 'q': app.request.get('q') }) }}" class="rpe-save-search" data-toggle="modal" data-target="#modal-savesearch">
+                    <img src="{{ asset('bundles/rpepum/images/pictos/picto-save.png') }}" class="picto-search-save" />
+                </a>
+            </h3>
+            <div class="search-select">
+                <a href="#" class="advanced-search-link {{ path_name }}">Recherche Avancée</a>
+            </div>
+        </div>
+        <div class="filter-div">
+            <a href="{{ path('search_favorites') }}" class="view-favorite-searches">Voir mes favoris</a>
+            <p>{{ "searchFilter"|trans({}, 'rpe') }}</p>
+            <span class="select-box">
+                <select id="sort_select">
+                    {% set sorts = {
+                        'score': {
+                            'title': "search.sort.score"|trans({}, 'rpe'),
+                            'selected' : null,
+                            'params': {sort: null, sortby: null }
+                        },
+                        'name': {
+                            'title': "search.sort.alphabetical"|trans({}, 'rpe'),
+                            'selected' : 'name',
+                            'params': {sort: 'name', sortby: null}
+                        },
+                        'date': {
+                            'title': "search.sort.date"|trans({}, 'rpe'),
+                            'selected' : 'date',
+                            'params': {sort: 'date', sortby: 'desc' }
+                        }
+                    } %}
+
+                    {% for opt in sorts %}
+                        {% if opt.selected == app.request.query.get('sort') %}
+                            <option selected="selected" value="?{{ app.request.query.all|merge(opt.params)|sort|url_encode }}">{{ opt.title }}</option>
+                        {% else %}
+                            <option value="?{{ app.request.query.all|merge(opt.params)|sort|url_encode }}">{{ opt.title }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </span>
+        </div>
+        {% if result.isFailed %}
+            <div class="alert">
+              <a class="close" data-dismiss="alert">×</a>
+              <strong>{{ 'search.warning'|trans({}, 'rpe') }}</strong> {{ 'search.failed'|trans({}, 'rpe') }}.
+            </div>
+        {% else %}
+            <ul class="search-result-list">
+                {% include "pum://page/ajax/search/" ~ search_type ~ ".html.twig" %}
+            </ul>
+        {% endif %}
+    </div>
+{% endif %}

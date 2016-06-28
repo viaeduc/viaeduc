@@ -1,0 +1,47 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/charte.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block main_content %}
+        <div class="charte-page">
+            <div class="charte-wrapper">
+	            <h4 class="modal-title">{{ 'register.charte_title'|trans({}, 'rpe')}}</h4>
+	            <div class="gray-wrapper">
+					<h3>{{ 'charte.viaeduc.title'|trans({}, 'rpe')}}</h3>
+					<p>{{ 'charte.viaeduc.description'|trans({}, 'rpe')}}</p>
+					<p>{{ 'charte.viaeduc.ambition'|trans({}, 'rpe')}}</p>
+					<p>{{ 'charte.viaeduc.philosophy'|trans({}, 'rpe')}}</p>
+					<p><strong>{{ 'charte.viaeduc.accept'|trans({}, 'rpe')}}</strong></p>
+
+					<h3>{{ 'charte.users.title'|trans({}, 'rpe')}}</h3>
+					<p>{{ 'charte.users.description'|trans({}, 'rpe')}}</p>
+					<p>{{ 'charte.users.rules'|trans({}, 'rpe')}}</p>
+					<ul>
+						<li>{{ 'charte.users.rule1'|trans({}, 'rpe')}}</li>
+						<li>{{ 'charte.users.rule2'|trans({}, 'rpe')}}</li>
+						<li>{{ 'charte.users.rule3'|trans({}, 'rpe')}}</li>
+						<li>{{ 'charte.users.rule4'|trans({}, 'rpe')}}</li>
+						<li>{{ 'charte.users.rule5'|trans({}, 'rpe')}}</li>
+						<li>{{ 'charte.users.rule6'|trans({}, 'rpe')}}</li>
+						<li>{{ 'charte.users.rule7'|trans({}, 'rpe')}}</li>
+					</ul>
+					<p>{{ 'charte.users.modos'|trans({}, 'rpe')}}</p>
+					<h3>{{ 'charte.engagements.title'|trans({}, 'rpe')}}</h3>
+					<p>{{ 'charte.engagements.description'|trans({}, 'rpe')}}</p>
+					<ul>
+						<li>{{ 'charte.engagements.engagement1'|trans({}, 'rpe')}}</li>
+						<li>{{ 'charte.engagements.engagement2'|trans({}, 'rpe')}}</li>
+						<li>{{ 'charte.engagements.engagement3'|trans({}, 'rpe')}}</li>
+						<li>{{ 'charte.engagements.engagement4'|trans({}, 'rpe')}}</li>
+					</ul>
+
+				 	<h3>{{ 'charte.privacy.title'|trans({}, 'rpe')}}</h3>
+				 	<p>{{ 'charte.privacy.description'|trans({}, 'rpe')}}</p>
+	          	</div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,837 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-apps.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% spaceless %}
+
+{% block main_content %}
+    <div class="container-filtre">
+        <form action="/" method="post">
+            <h2>MES APPLICATIONS <span>(126)</span></h2>
+            <ul class="part right">
+             <li>
+                <div class="selector" style="display: none; width: 203px;"><span style="width: 203px; -webkit-user-select: none;">Les plus consultés</span><select class="select-styled filtre" style="display: none;">
+                    <option value="value1">Les plus consultés</option>
+                    <option value="value2">Les moins consultés</option>
+                    <option value="value4">Les plus récentes</option>
+                    <option value="value4">Les moins récentes</option>
+                    <option value="value4">Publication créée par moi</option>
+                    <option value="value4">Publication co-créé</option>
+                    <option value="value4">Uniquement les brouillons</option>
+                    <option value="value4">Uniquement les mises en ligne</option>
+                </select></div><div class="btn-group bootstrap-select select-styled filtre"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><div class="filter-option pull-left">Les plus consultés</div>&nbsp;<div class="caret"></div></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li rel="0" class="selected"><a tabindex="0" class="" style=""><span class="text">Les plus consultés</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="1"><a tabindex="0" class="" style=""><span class="text">Les moins consultés</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="2"><a tabindex="0" class="" style=""><span class="text">Les plus récentes</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="3"><a tabindex="0" class="" style=""><span class="text">Les moins récentes</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="4"><a tabindex="0" class="" style=""><span class="text">Publication créée par moi</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="5"><a tabindex="0" class="" style=""><span class="text">Publication co-créé</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="6"><a tabindex="0" class="" style=""><span class="text">Uniquement les brouillons</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="7"><a tabindex="0" class="" style=""><span class="text">Uniquement les mises en ligne</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li></ul></div></div>
+              </li>
+              <li>
+                <div class="selector" style="display: none; width: 150px;"><span style="width: 150px; -webkit-user-select: none;">Toutes les disciplines</span><select class="select-styled filtre" style="display: none;">
+                    <option value="value1">Toutes les disciplines</option>
+                    <option value="value2">Français</option>
+                    <option value="value4">Mathématiques</option>
+                    <option value="value5">Philosophie</option>
+                    <option value="value6">Histoire</option>
+                    <option value="value6">Géographie</option>
+                    <option value="value6">Anglais</option>
+                    <option value="value6">Musique</option>
+                </select></div><div class="btn-group bootstrap-select select-styled filtre"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><div class="filter-option pull-left">Toutes les disciplines</div>&nbsp;<div class="caret"></div></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li rel="0" class="selected"><a tabindex="0" class="" style=""><span class="text">Toutes les disciplines</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="1"><a tabindex="0" class="" style=""><span class="text">Français</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="2"><a tabindex="0" class="" style=""><span class="text">Mathématiques</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="3"><a tabindex="0" class="" style=""><span class="text">Philosophie</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="4"><a tabindex="0" class="" style=""><span class="text">Histoire</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="5"><a tabindex="0" class="" style=""><span class="text">Géographie</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="6"><a tabindex="0" class="" style=""><span class="text">Anglais</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="7"><a tabindex="0" class="" style=""><span class="text">Musique</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li></ul></div></div>
+              </li>
+              <li>
+                <div class="selector" style="display: none; width: 163px;"><span style="width: 163px; -webkit-user-select: none;">Tous niveaux confondus</span><select class="select-styled filtre" style="display: none;">
+                    <option value="value1">Tous niveaux confondus</option>
+                    <option value="value2">Seconde</option>
+                    <option value="value4">Première</option>
+                    <option value="value5">Troisième </option>
+                </select></div><div class="btn-group bootstrap-select select-styled filtre"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><div class="filter-option pull-left">Tous niveaux confondus</div>&nbsp;<div class="caret"></div></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li rel="0" class="selected"><a tabindex="0" class="" style=""><span class="text">Tous niveaux confondus</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="1"><a tabindex="0" class="" style=""><span class="text">Seconde</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="2"><a tabindex="0" class="" style=""><span class="text">Première</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="3"><a tabindex="0" class="" style=""><span class="text">Troisième </span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li></ul></div></div>
+              </li>
+              <li class="list-display">
+                <span id="big" class="picto-big opac"></span>
+                <span id="small" class="picto-small"></span>
+            </li>
+            </ul>
+        </form>
+    </div>
+    <ul class="list-general-box grid effect-2" id="grid">
+        <li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li><!--
+        --><li class="card app-card card-small">
+            <div class="card-left">
+                <div class="card-publisher">
+                    <a href="#" class="card-publisher-image">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" alt="">
+                    </a><!--
+                    --><div class="card-publisher-info">
+                        <a href="#">
+                            <span class="card-name">Jean Patrick Leroux</span>
+                            <span class="card-role">Instituteur DE1</span>
+                            <span class="card-connect icon-plus">Se connecter</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="card-title-link">
+                    <h2 class="card-title highlight highlight-wrapper">Quizz app</h2>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, debitis, aut, unde, corporis numquam dicta quibusdam perferendis quaerat eos natus necessitatibus error expedita
+                    </p>
+                </a>
+                <span class="card-editor">Par <a href="#">Belin</a> - <a href="www.editions-belin.com">www.editions-belin.com</a></span>
+            </div><!--
+            --><div class="card-right">
+                <a href="#">
+                    <img src="{{ asset('bundles/rpepum/images/tmp/img_apps_big.png') }}" alt="" class="card-image">
+                </a>
+                <ul class="card-rating">
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                    <li class="card-star">
+                        <a href="#">
+                            <img alt="" src="{{ asset('bundles/rpepum/images/star_orange.png') }}">
+                        </a>
+                    </li>
+                </ul>
+                <span class="card-votes">Noté 136 fois</span>
+            </div><!--
+            --><div class="card-bottom">
+                <span class="card-published">
+                    <a href="#" class="square-btn icon-comment light-blue"></a><a href="#" class="add-favorites">Ajouter aux favoris</a>
+                </span><!--
+                --><div class="card-links">
+                    <a class="wall-btn icon-heart2 orange" href="#">52</a>
+                    <a class="wall-btn icon-comment orange" href="#">512</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+{% endblock %}
+
+{% endspaceless %}

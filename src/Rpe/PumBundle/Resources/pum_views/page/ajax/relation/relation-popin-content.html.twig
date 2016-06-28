@@ -1,0 +1,48 @@
+{% import 'pum://macros/macros.html.twig' as macros %}
+{% spaceless %}
+
+{{ macros.show_user_avatar(friend, 'relation', 300, 'generated-image', path('profil', {id : hashEncode(friend.id)})) }}<!--
+--><div class="information">
+    <div class="information-header">
+        <div class="information-header-left">
+            <h4 class="information-title">{{ friend.firstname ~ ' ' ~ friend.lastname }}</h4>
+            {% if friend.occupation is not null %}
+                <span class="information-role">{{ friend.occupation.name }}</span>
+            {% endif %}
+            {% if friend.academy is not null %}
+                <span class="information-location">{{ friend.academy.name }}</span>
+            {% endif %}
+        </div><!--
+        --><div class="information-header-right">
+            <div class="information-contact">
+                {# {% if friend.emailPro is not empty %}
+                     <a href="mailto:{{ friend.emailPro }}" class="mail icon-mail-1">{{ friend.emailPro }}</a>
+                {% endif %} #}
+
+                {# {% if friend.phone is not empty %}
+                    <span class="telephone icon-phone">{{ friend.phone }}</span>
+                {% endif %} #}
+                <a href="#" class="close-popin">x</a>
+            </div>
+        </div>
+    </div>
+    <div class="information-body">
+        {{ friend.profile|truncate(530) }}
+    </div>
+    <div class="information-footer">
+        <div class="buttons">
+            {% if showContact %}
+                <a class="profil-btn light-blue right" href="{{ path('inbox' , {'recipient_id': friend.id } )}}">{{ 'Envoyer un message'|trans({}, 'rpe') }}</a>
+            {% endif %}
+            {% include 'pum://includes/common/componants/profile/buttons.html.twig' with {
+                'id': friend.id,
+                'relation_detail': relation_detail|default(null),
+                'style': 'action_button',
+                'class': 'test-class'
+            } %}
+            <a class="profil-btn orange right" href="{{ path('profil', {id : hashEncode(friend.id)}) }}">{{ 'VOIR SON PROFIL'|trans({}, 'rpe') }}</a>
+        </div>
+    </div>
+</div>
+
+{% endspaceless %}

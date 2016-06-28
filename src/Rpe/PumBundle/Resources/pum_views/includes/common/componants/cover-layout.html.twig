@@ -1,0 +1,71 @@
+<div class="cover">
+    <div class="cover-content">
+        <div class="cover-left">
+            <!-- Left part of cover, use if you need to replace all content -->
+            {% block cover_left %}
+                {% spaceless %}
+                <div class="cover-owner">
+                    <div class="image-box">
+                        <!-- Img setting -->
+                        {# {% block cover_left_image_setting '' %} #}
+                        <!-- Use this if you need to replace profil image -->
+                        {% block cover_left_image %}
+                            <img src="{{ asset('bundles/rpepum/images/tmp/photo-profil_small.png') }}" class="profil-image" alt="" cropwidth="117" cropheight="117">
+                        {% endblock %}
+                    </div>
+                    <div class="profil-info">
+                        <!-- Use this to replace the information, group covers for example -->
+                        {% block cover_left_information %}
+                            {% spaceless %}
+                            <h3 class="profil-first-name">Jean Luc</h3>
+                            <h3 class="profil-last-name">Bernard</h3>
+                            <span class="profil-role">Professeur des collèges</span>
+                            <span class="profil-class grey">Histoire Géographie, pâte à sel</span>
+                            <span class="profil-city">Bordeaux - France</span>
+                            <span class="profil-school grey">Lycée Jules Ferry</span>
+                            {% endspaceless %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <!-- Use this to replace the tags by something else, group description for example -->
+                {% block cover_left_extra_information %}
+                <div class="profil-tags">
+                    <h4 class="interest-title">Intérets</h4>
+                    <ul>
+                        <li class="interest-tag">Thalès</li>
+                        <li class="interest-tag">Collège</li>
+                        <li class="interest-tag">Français</li>
+                        <li class="interest-tag">Brevet</li>
+                        <li class="interest-tag">Brevet</li>
+                        <li class="interest-tag">Théorème</li>
+                        <li class="interest-tag">Maths</li>
+                        <li class="interest-tag">Théorème</li>
+                        <li class="interest-tag">Maths</li>
+                    </ul>
+                </div>
+                {% endblock %}
+                <div class="profil-links">
+                    <!-- Needed to replace links depending on cover status -->
+                	{% block cover_left_buttons %}
+                    	{# <a href="{{ path('edit_profil') }}" class="action-btn orange icon-pencil">Editer mon profil</a> #}
+                    {% endblock %}
+                </div>
+                {% endspaceless %}
+    		{% endblock %}
+    	</div><!--
+    	--><div class="cover-right">
+            <!-- use this for badges -->
+            {% if (group.respire is defined and group.respire is not null) or (group.badges is defined and group.badges.count > 0) %}
+	            <div class="badge-container">
+	                <img src="{{ asset('bundles/rpepum/images/logo_respire.jpg') }}">
+	            </div>
+            {% endif %}
+            <!-- Img setting -->
+            {% block cover_right_image_setting '' %}
+            <!-- Use this if you need to replace the cover image with something else, for example profil admin -->
+    		{% block cover_right %}
+    			<img src="{{ asset('bundles/rpepum/images/tmp/img_sago.jpg') }}" class="cover-image draggable">
+    		{% endblock %}
+    	</div>
+    </div>
+</div>

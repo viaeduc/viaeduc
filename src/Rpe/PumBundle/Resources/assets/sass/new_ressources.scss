@@ -1,0 +1,894 @@
+$ressource-light-blue: #e7f1f3;
+$ressource-grey : #efefef;
+$ressource-text-color : #58585a;
+
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------------
+// Specific imports
+// ----------------------
+
+@import "layout/_sidebar";
+@import "componants/_publications";
+@import "componants/_forms";
+@import "componants/_breadcrumbs";
+@import "componants/_side-componants";
+@import "componants/_side-componant-resource-link";
+@import "componants/_side-componant-resource-description";
+@import "componants/_side-componant-resource-list";
+@import "componants/_side-componant-authors";
+@import "componants/_side-componant-connections";
+@import "componants/_side-componant-notifications";
+@import "componants/_side-componant-ressources";
+@import "componants/_side-componant-rss";
+@import "componants/_side-componant-vote";
+@import "componants/_side-componant-webpage";
+
+// --- //
+// NEW //
+// --- //
+
+
+// Publication Tabs //
+
+.publications-tab-wrapper {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+
+    ul {
+        margin : 0;
+    }
+
+    li {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 85px;
+        height         : 75px;
+        line-height    : 75px;
+        margin         : 0 1px 0 0;
+
+        &:last-child {
+            margin : 0;
+        }
+
+        > a {
+            @include fontSize(14);
+            font-family : $UbuntuCondensed;
+            color       : $dark-grey-font;
+            display     : block;
+            width       : 100%;
+            height      : 100%;
+            background  : $light-grey-2;
+            text-align  : center;
+
+            &:hover {
+                background      : $ressource-grey;
+                text-decoration : none;
+            }
+
+            &.active {
+                background : $ressource-grey;
+            }
+
+            .publication-tab {
+                position : relative;
+                display  : block;
+                width    : 100%;
+                height   : 100%;
+                padding  : 20px 0 0 0;
+
+                &:before {
+                    content     : '';
+                    position    : absolute;
+                    display     : block;
+                    width       : 30px;
+                    height      : 30px;
+                    top         : 15px;
+                    left        : 50%;
+                    margin-left : -15px;
+                }
+
+                &.ressource-tab:before {
+                    background : url('../images/tab_ressource.png') no-repeat;
+                }
+
+                &.ressource-tab.active:before {
+                    background-image : url('../images/tab_ressource_active.png');
+                }
+
+                &.event-tab:before {
+                    background : url('../images/tab_event.png') no-repeat;
+                }
+
+                &.event-tab.active:before {
+                    background : url('../images/tab_event_active.png') no-repeat;
+                }
+
+                &.question-tab:before {
+                    background : url('../images/tab_question.png') no-repeat;
+                }
+
+                &.question-tab.active:before {
+                    background : url('../images/tab_question_active.png') no-repeat;
+                }
+            }
+        }
+    }
+}
+
+// Form //
+
+.ressource-edit-form-wrapper {
+    // background : $background-blue-2;
+    text-align : right;
+    padding    : 0 0 20px 0;
+    margin-bottom: 6%;
+
+    .draft-btn,
+    .publish-btn {
+        height      : 30px;
+        line-height : 30px;
+        margin      : 20px 20px 0 0;
+        padding     : 0 0.5em;
+        width       : auto;
+    }
+}
+
+.ressource-edit-wrapper {
+    // General Styling
+
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    background     : $ressource-grey;
+    padding        : 20px;
+    text-align     : left;
+    margin         : 0;
+
+    > li {
+        margin : 0 0 15px 0;
+
+        .form-left {
+            @include fontSize(12);
+            font-family    : $Verdana;
+            color          : $ressource-text-color;
+            vertical-align : middle;
+
+            &.top-align {
+                vertical-align : top;
+            }
+
+            label,
+            span {
+                display        : inline-block;
+                vertical-align : top;
+                width          : 100%;
+            }
+
+            span {
+                @include fontSize(10);
+            }
+        }
+
+        &:last-of-type {
+            margin : 0;
+        }
+    }
+
+    &.indexation-list-wrapper {
+        @include transition(all 0.2s linear);
+        background : $background-blue-1;
+        padding    : 0 20px 20px 20px;
+
+        .radio-buttons > input[type="radio"] + label, .checkbox-buttons > input[type="checkbox"] + label {
+            @include fontSize(12);
+            text-transform : uppercase;
+            padding : 3px 0 0 25px;
+        }
+
+        &.active {
+            @include transition(all 0.2s linear);
+        }
+
+        > li .form-left {
+            color : $white;
+        }
+
+        .row-list {
+            width: 50%;
+            display: inline-block;
+            vertical-align: top;
+
+            .radio-buttons,
+            .checkbox-buttons {
+                display: block;
+                margin-bottom:10px;
+
+                input {
+                    margin-right: 5px;
+                    margin-top: 0;
+                    vertical-align: middle;
+                }
+
+                input[type="checkbox"] + label {
+                    padding : 5px 0 0 25px;
+                }
+
+                label {
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    // Inner elements
+    .btn-file {
+        @include fontSize(15);
+        width       : 100px;
+        height      : 30px;
+        line-height : 30px;
+        float       : none;
+        margin      : 0;
+        padding     : 0 0.5em 0 0;
+
+        &.btn-file-multiple {
+            display: inline-block;
+            width: auto;
+        }
+    }
+
+    .uploaded-files-wrapper {
+        vertical-align : top;
+        width          : 100%;
+        margin         : 0 0 10px 0;
+        display        : none;
+    }
+
+    .date,
+    .time {
+        display : inline-block;
+        vertical-align : middle;
+        width : 47%;
+    }
+
+    .date {
+        margin : 0 6% 0 0;
+    }
+
+    .bootstrap-select.btn-group {
+        margin : 0;
+    }
+
+    .btn {
+        border-radius : 0px;
+        width         : 100%;
+    }
+}
+
+ .open-indexation {
+    position       : relative;
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    height         : 45px;
+    line-height    : 45px;
+    background     : $background-blue-1;
+    color          : $white;
+    text-align     : left;
+    padding        : 0 0 0 20px;
+
+    &:hover,
+    &:focus {
+        text-decoration : none;
+        color           : $white;
+    }
+}
+
+.arrow-right {
+    &:before {
+        content    : '';
+        position   : absolute;
+        top        : 50%;
+        margin-top : -11.5px;
+        right      : 20px;
+        height     : 23px;
+        width      : 12px;
+        background : url('../images/ressource_arrow.png') no-repeat;
+    }
+}
+
+.arrow-down {
+    &:before {
+        content    : '';
+        position   : absolute;
+        top        : 50%;
+        margin-top : -6px;
+        height     : 12px;
+        width      : 23px;
+        right      : 20px;
+        background : url('../images/ressource_arrow_down.png') no-repeat;
+    }
+}
+
+// Ressource tip sidebar //
+
+.post-ressource-tip {
+    display    : inline-block;
+    width      : 100%;
+    padding    : 4.854368932038835%;
+    background : $dark-blue-1;
+    color      : $white;
+
+    .tip-title,
+    .tip-main-text,
+    .tip-list-wrapper {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+    }
+
+    .tip-title {
+        @include fontSize(28);
+        font-family : $MissionScript;
+        margin      : 0 0 20px 0;
+    }
+
+    .tip-main-text {
+        @include fontSize(26);
+        position       : relative;
+        font-family    : $UbuntuCondensed;
+        background     : $white;
+        color          : $dark-blue-font;
+        text-transform : uppercase;
+        text-align     : center;
+        letter-spacing : -0.5px;
+        padding        : 10px;
+        line-height    : 1em;
+        margin         : 0 0 40px 0;
+
+        &:before {
+            content  : '';
+            display  : block;
+            position : absolute;
+            bottom   : -20px;
+            left     : 40px;
+
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+            border-width: 0 20px 20px 0;
+            border-color: transparent #ffffff transparent transparent;
+        }
+    }
+
+    .tip-list-wrapper > li {
+        @include fontSize(12);
+        position    : relative;
+        padding     : 0 0 0 30px;
+        margin      : 0 0 10px 0;
+        line-height : 1.2em;
+        font-family : $Verdana;
+
+
+        &:before {
+            content     : '';
+            display     : block;
+            position    : absolute;
+            top         : 15px;
+            left        : 10px;
+            margin-left : -3px;
+
+            width        : 0px;
+            height       : 0px;
+            border-style : solid;
+            border-width : 0 6px 6px 0;
+            border-color : transparent #ffffff transparent transparent;
+        }
+
+        &:after {
+            content    : '';
+            display    : block;
+            position   : absolute;
+            left       : 0;
+            top        : 0;
+            width      : 20px;
+            height     : 15px;
+            background : $white;
+        }
+
+        &:last-child {
+            margin : 0;
+        }
+    }
+}
+
+// Form sidebar //
+
+.sidebar-version-compare {
+    @include fontSize(14);
+
+    li {
+        padding: 0 0 3px 0;
+    }
+
+    abbr[title]{
+        border-bottom : 0px solid transparent;
+    }
+
+    a {
+        color       : $light-blue-1;
+        &:hover {
+            color           : $light-blue-2;
+        }
+    }
+
+    .checkbox-input,
+    .label-wrapper {
+        display        : inline-block;
+        vertical-align : middle;
+    }
+
+    .checkbox-input {
+        width : 5%;
+    }
+
+    .label-wrapper {
+        width  : 95%;
+        cursor : pointer;
+
+        &:hover {
+            .version-title {
+                color           : $light-blue-2;
+                text-decoration : underline;
+            }
+        }
+    }
+
+    .version-number {
+        @include fontSize(12);
+
+        display      : inline-block;
+        min-width    : 24px;
+        margin-right : 8px;
+
+        text-align   : right;
+        color        : $dark-grey-1;
+        font-weight  : bold;
+    }
+
+    .version-title {
+        @include fontSize(15);
+        color       : $light-blue-1;
+        font-weight : bold;
+
+        abbr {
+            cursor: pointer;
+        }
+
+        &.current {
+            color           : $dark-grey-1;
+            cursor          : default;
+            text-decoration : none;
+
+            abbr {
+                cursor: default;
+            }
+        }
+    }
+
+    .sidebar-sub-text {
+        @include fontSize(10);
+        margin : 0;
+    }
+
+    .error-text-version {
+        @include fontSize(10);
+        color   : $red-1;
+        display : none;
+        margin  : 0;
+        width   : 100%;
+    }
+
+    .compare-btn {
+        height      : 30px;
+        line-height : 30px;
+        padding     : 0 0.5em;
+        margin      : 10px 0 0 0;
+        width       : auto;
+        color       : $white;
+
+        display     : none;
+
+        &:hover {
+            color : $white;
+        }
+    }
+}
+
+// Form extras //
+
+.done-compare-wrapper {
+    @include fontSize(10);
+    display : none;
+    vertical-align : top;
+    line-height : 1em;
+}
+
+.inner-color-wrapper {
+    height : 50px;
+    line-height : 30px;
+    padding : 10px 20px;
+    color : $white;
+    background : $background-blue-1;
+
+    > p {
+        display : inline-block;
+        vertical-align : middle;
+        width : 70%;
+        font-weight : bold;
+        line-height : 1em;
+        margin : 0;
+    }
+
+    > a {
+        display : inline-block;
+        vertical-align : middle;
+        width : 30%;
+        margin : 0;
+        padding : 0;
+        height : 30px;
+        line-height : 30px;
+    }
+}
+
+.compare-text {
+    width : 100%;
+    margin : 0 0 5px 0;
+}
+
+.green-text {
+    color : $green-1;
+}
+
+.red-text {
+    color : $red-1;
+    text-decoration : line-through;
+}
+
+// Ressource //
+
+.ressource-compare-versions,
+.ressource-title,
+.ressource-content,
+.ressource-attached-files {
+    @include fontSize(12);
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    margin         : 0 0 20px 0;
+    color          : $ressource-text-color;
+    font-family    : $Verdana;
+
+    blockquote {
+        font-style : italic;
+        margin: 20px 20px 20px 40px;
+    }
+    blockquote p{
+        font-size : 1em;
+        color : $black;
+    }
+    blockquote li {
+        color : $black;
+    }
+   em {
+        font-style: italic;
+   }
+   b, strong {
+    font-weight: bold;
+   }
+   u {
+    text-decoration: underline;
+   }
+}
+
+.ressource-attached-files {
+    margin : 0;
+}
+
+.ressource-compare-versions {
+    padding    : 10px;
+    background : $light-grey-1;
+    border     : $light-grey-2;
+}
+
+.ressource-header-wrapper {
+    position      : relative;
+    min-height    : 40px;
+    line-height   : 40px;
+    padding       : 0 0 10px 0;
+    margin        : 0 0 10px 0;
+    border-bottom : 1px solid $light-grey-2;
+}
+
+.ressource-title {
+    @include fontSize(26);
+
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    line-height: 1em;
+    width : 100%;
+
+    text-transform: uppercase;
+    font-family: $UbuntuCondensed;
+    color: $dark-blue-font;
+
+    &:before {
+        content:'';
+        display: inline-block;
+        vertical-align: top;
+        width: 24px;
+        height: 24px;
+        background: url('../images/pictos/book.png') no-repeat center center;
+        margin: 0 6px 0 0;
+    }
+}
+
+.action-link {
+    @include fontSize(13);
+    margin-top      : -10px;
+    margin-left     : 5px;
+    height          : 22px;
+    text-decoration : none;
+    font-family     : $Verdana;
+    line-height     : 1em;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.publish-link {
+    color       : $orange-1;
+    font-weight : bold;
+
+    &:hover {
+        color: $orange-2;
+    }
+}
+
+.attached-files-title {
+    @include fontSize(24);
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    margin         : 0 0 5px 0;
+    padding        : 10px;
+    background     : $light-grey-1;
+    border         : $light-grey-2;
+
+    font-family    : $MissionScript;
+    color          : $dark-blue-font;
+}
+
+.uploaded-files-wrapper li {
+    padding       : 0 0 5px 0;
+    margin        : 0 0 5px 0;
+    border-bottom : 1px solid $light-grey-2;
+
+    a {
+        display        : inline-block;
+        vertical-align : top;
+        width          : 100%;
+        height         : 30px;
+        line-height    : 30px;
+    }
+
+    img {
+        display        : inline-block;
+        vertical-align : middle;
+        height         : 100%;
+        margin         : 0 10px 0 0;
+    }
+
+    span {
+        display        : inline-block;
+        vertical-align : middle;
+    }
+}
+
+.radio-buttons > input[type="radio"] + label,
+.radio-buttons > input[type="radio"]:checked + label {
+    text-transform : none;
+}
+
+// ----------------- //
+// PRIVATE RESSOURCE //
+// ----------------- //
+
+.private-ressource-wrapper {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    padding        : 20px;
+    background     : $background-blue-1;
+    color          : $white;
+}
+
+
+.private-ressource-left,
+.private-ressource-right {
+    display        : inline-block;
+    vertical-align : top;
+}
+
+.private-ressource-left {
+    width : 19.53125%;
+}
+
+.private-ressource-right {
+    width      : 80.46875%;
+    padding    : 0 0 0 20px;
+}
+
+.private-ressource-image {
+    width : 100%;
+}
+
+.private-ressource-title {
+    @include fontSize(28);
+    display     : block;
+    width       : 100%;
+    font-family : $MissionScript;
+    margin      : 0 0 20px 0;
+}
+
+.private-ressource-text {
+    @include fontSize(12);
+    display     : block;
+    width       : 100%;
+    font-family : $Verdana;
+
+    &:last-of-type {
+        margin: 0 0 20px 0;
+    }
+}
+
+.private-ressource-btn {
+    width       : auto;
+    height      : 40px;
+    line-height : 40px;
+    margin      : 0;
+    padding     : 0 0.5em;
+}
+
+.question-form {
+    .radio-buttons > .checkbox-inline {
+        @include fontSize(14);
+    }
+
+    .radio-buttons > .checkbox-inline {
+        @include fontSize(14);
+    }
+}
+
+// Etherpad form //
+
+.etherpad-content {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    background: $white;
+
+    .etherpad-inner-content {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        padding: 10px;
+
+        strong {
+            font-weight: bold;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        u {
+            text-decoration: underline;
+        }
+
+        s {
+            text-decoration: line-through;
+        }
+
+        .number {
+            list-style-type : decimal;
+            padding-left    : 20px;
+        }
+
+        .bullet {
+            list-style-type : disc;
+            padding-left    : 15px;
+        }
+    }
+
+    .etherpad-inner-link {
+        @include fontSize(13);
+        @include transition(color 0.2s linear);
+        display: inline-block;
+        vertical-align: top;
+        width: auto;
+        text-decoration: underline;
+        color: $light-blue-1;
+        margin: 0 15px 20px 0;
+
+        &:hover{
+            @include transition(color 0.2s linear);
+            color: $light-blue-2;
+        }
+
+        &:last-of-type {
+            margin: 0 0 20px 0;
+        }
+    }
+}
+
+.etherpad-author {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+
+    .etherpad-author-form {
+        display: inline-block;
+        vertical-align: middle;
+        width: 90%;
+        line-height: 1em;
+
+        .checkbox-buttons,
+        .etherpad-author-extra {
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+            text-align: left;
+        }
+
+        .etherpad-author-extra {
+            @include fontSize(12);
+            color: $light-grey-2;
+        }
+    }
+
+    .etherpad-author-form-help {
+        display: inline-block;
+        vertical-align: middle;
+        width: 10%;
+        text-align: right;
+
+        .ehterpad-author-help-btn {
+            @include transition(background 0.2s linear);
+            display: inline-block;
+            vertical-align: middle;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            background: $dark-blue-1;
+            color: $white;
+            text-align: center;
+
+            &:hover {
+                @include transition(background 0.2s linear);
+                background: $dark-blue-2;
+            }
+        }
+    }
+}

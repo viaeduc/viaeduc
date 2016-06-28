@@ -1,0 +1,54 @@
+{% if row is defined and row is not null %}
+
+
+
+    {% set respire_class = "" %}
+    {% set respire_footer = "" %}
+
+
+    <li data-score="{{ row.score }}" data-stars="{{ row.score|elasticScore }}" class="{{ respire_class }}">
+        <a href="{{ path('profil', {id: hashEncode(row.id)}) }}" class="search-content-image">
+            {{ macros.show_image_url(row.get('image'), 140) }}
+        </a>
+        <div class="search-results-content">
+            <div class="search-content-top noborder user-result">
+                <span class="search-date">{{ 'search.user.register_date'|trans({}, 'rpe') }}{{ row.get('date')|strToDate }}</span>
+                <a href="{{ path('profil', {id: hashEncode(row.id)}) }}" class="search-title">{{ row.getHightlight('fullname')|striptags('<em>')|raw }}</a>
+                {% if row.get('instructed_disciplines') %}
+                    <span>
+                        {{ macros.show_array_as_string(row.get('instructed_disciplines'), ' - ') }}
+                    </span>
+                {% endif %}
+                {% if row.get('occupation') %}
+                    <span>{{ row.get('occupation') }}</span>
+                {% endif %}
+                {% if row.get('academy') %}
+                    <span>{{ row.get('academy') }}</span>
+                {% endif %}
+                {% if row.get('school') %}
+                    <span>{{ row.get('school') }}</span>
+                {% endif %}
+            </div>
+            {#
+            {% if row.get('is_respire') == true %}
+            <div class="search-content-bottom {{ respire_footer }}">
+                <img src="{{ asset('bundles/rpepum/images/logo_respire.jpg') }}" class="respire-image" />
+
+                <div class="search-friend-list">
+                    <a href="#" class="search-friend-link"><img src="../test.png" class="search-friend-image"></a>
+                    <a href="#" class="search-friend-link"><img src="../test.png" class="search-friend-image"></a>
+                    <a href="#" class="search-friend-link"><img src="../test.png" class="search-friend-image"></a>
+                    <a href="#" class="search-friend-more">+ 3 autres auteurs</a>
+                </div>
+                <div class="search-result-menu">
+                    <a href="#" class="search-social-link icon-heart2">130 Recommandations</a>
+                    <span class="search-social-seperator"> - </span>
+                    <a href="#" class="search-social-link icon-share">18 Partages</a>
+                </div>
+
+            </div>
+            {% endif %}
+            #}
+        </div>
+    </li>
+{% endif %}

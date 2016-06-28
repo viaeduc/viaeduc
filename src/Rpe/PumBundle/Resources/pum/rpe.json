@@ -1,0 +1,1120 @@
+{
+    "alias": null,
+    "name": "rpe",
+    "seed": "bb48885a785d389ac0fb3bc40e619042",
+    "icon": "library",
+    "color": "amethyst",
+    "objects": [
+        {
+            "alias": null,
+            "name": "media",
+            "classname": "Rpe\\PumBundle\\Model\\Rpe\\Media",
+            "repository_class": "Rpe\\PumBundle\\Repository\\Rpe\\MediaRepository",
+            "fields": [
+                {
+                    "name": "date",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "folder",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "medias",
+                        "is_external": false,
+                        "target": "folder",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "media",
+                    "type": "media",
+                    "typeOptions": {
+                        "type": "file",
+                        "maxsize_value": null,
+                        "maxsize_unit": "k",
+                        "required": false
+                    }
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "post_versions",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "medias",
+                        "is_external": true,
+                        "target": "post_version",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "posts",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "medias",
+                        "is_external": true,
+                        "target": "post",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "respire",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "media",
+                        "is_external": false,
+                        "target": "respire_migration",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "one-to-one",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "status",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "type",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "user",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "medias",
+                        "is_external": true,
+                        "target": "user",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": "instructed_discipline",
+            "name": "instructed_discipline",
+            "classname": null,
+            "repository_class": "Rpe\\PumBundle\\Repository\\Rpe\\InstructedDisciplineRepository",
+            "fields": [
+                {
+                    "name": "children",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "parent",
+                        "is_external": false,
+                        "target": "instructed_discipline",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "one-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": 255,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "notices",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "disciplines",
+                        "is_external": true,
+                        "index_by": null,
+                        "target": "external_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "many-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "parent",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "children",
+                        "is_external": false,
+                        "target": "instructed_discipline",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "sequence",
+                    "type": "integer",
+                    "typeOptions": {
+                        "default": null,
+                        "unique": false,
+                        "min": null,
+                        "max": null,
+                        "bigint": false
+                    }
+                },
+                {
+                    "name": "users",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "instructed_disciplines",
+                        "is_external": true,
+                        "target": "user",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": "teaching_level",
+            "name": "teaching_level",
+            "classname": null,
+            "repository_class": "Rpe\\PumBundle\\Repository\\Rpe\\TeachingLevelRepository",
+            "fields": [
+                {
+                    "name": "children",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "parent",
+                        "is_external": false,
+                        "target": "teaching_level",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "one-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "notices",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "levels",
+                        "is_external": true,
+                        "index_by": null,
+                        "target": "external_notice",
+                        "target_beam": "external",
+                        "target_beam_seed": "be576daec6aa2a1b0af6e8248cd14b5f",
+                        "type": "many-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "parent",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "children",
+                        "is_external": false,
+                        "target": "teaching_level",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "sequence",
+                    "type": "integer",
+                    "typeOptions": {
+                        "default": null,
+                        "unique": false,
+                        "min": null,
+                        "max": null,
+                        "bigint": false
+                    }
+                },
+                {
+                    "name": "users",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "teaching_levels",
+                        "is_external": true,
+                        "target": "user",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": null,
+            "name": "document_type",
+            "classname": null,
+            "repository_class": null,
+            "fields": [
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": null,
+            "name": "relation_type",
+            "classname": null,
+            "repository_class": null,
+            "fields": [
+                {
+                    "name": "description",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false
+                    }
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": null,
+            "name": "academy",
+            "classname": null,
+            "repository_class": null,
+            "fields": [
+                {
+                    "name": "allowed_email",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": true
+                    }
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": true
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": "occupation",
+            "name": "occupation",
+            "classname": null,
+            "repository_class": "Rpe\\PumBundle\\Repository\\Rpe\\OccupationRepository",
+            "fields": [
+                {
+                    "name": "children",
+                    "type": "relation",
+                    "typeOptions": {
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "target": "occupation",
+                        "inversed_by": "parent",
+                        "type": "one-to-many",
+                        "is_external": null,
+                        "is_sleeping": null,
+                        "owning": null,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "group_name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "parent",
+                    "type": "relation",
+                    "typeOptions": {
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "target": "occupation",
+                        "inversed_by": "children",
+                        "type": "many-to-one",
+                        "is_external": null,
+                        "is_sleeping": null,
+                        "owning": "1",
+                        "required": false
+                    }
+                },
+                {
+                    "name": "sequence",
+                    "type": "integer",
+                    "typeOptions": {
+                        "default": null,
+                        "unique": false,
+                        "min": null,
+                        "max": null,
+                        "bigint": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": null,
+            "name": "keyword",
+            "classname": null,
+            "repository_class": null,
+            "fields": [
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": null,
+            "name": "counter",
+            "classname": "Rpe\\PumBundle\\Model\\Rpe\\Counter",
+            "repository_class": null,
+            "fields": [
+                {
+                    "name": "value",
+                    "type": "integer",
+                    "typeOptions": {
+                        "unique": false,
+                        "min": null,
+                        "max": null
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": null,
+            "name": "folder",
+            "classname": "Rpe\\PumBundle\\Model\\Rpe\\Folder",
+            "repository_class": "Rpe\\PumBundle\\Repository\\Rpe\\FolderRepository",
+            "fields": [
+                {
+                    "name": "children",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "parent",
+                        "is_external": false,
+                        "target": "folder",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "one-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "medias",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "folder",
+                        "is_external": false,
+                        "target": "media",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "one-to-many",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "parent",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "children",
+                        "is_external": false,
+                        "target": "folder",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "respire",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "folder",
+                        "is_external": false,
+                        "target": "respire_migration",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "one-to-one",
+                        "owning": false,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "sequence",
+                    "type": "integer",
+                    "typeOptions": {
+                        "unique": false,
+                        "min": null,
+                        "max": null
+                    }
+                },
+                {
+                    "name": "type",
+                    "type": "choice",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "choices": {
+                            "RESOURCE": "RESOURCE",
+                            "MEDIA": "MEDIA"
+                        }
+                    }
+                },
+                {
+                    "name": "user",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "folders",
+                        "is_external": true,
+                        "target": "user",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "many-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": "email_domain",
+            "name": "email_domain",
+            "classname": null,
+            "repository_class": null,
+            "fields": [
+                {
+                    "name": "domain",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "type",
+                    "type": "choice",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "choices": {
+                            "DOMAIN": "DOMAIN",
+                            "ENTITY": "ENTITY"
+                        }
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": null,
+            "name": "respire_migration",
+            "classname": "Rpe\\PumBundle\\Model\\Rpe\\RespireMigration",
+            "repository_class": "Rpe\\PumBundle\\Repository\\Rpe\\RespireMigrationRepository",
+            "fields": [
+                {
+                    "name": "answer",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "respire",
+                        "is_external": true,
+                        "target": "answer",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "one-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "comment",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "respire",
+                        "is_external": true,
+                        "target": "comment",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "one-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "event",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "respire",
+                        "is_external": true,
+                        "target": "event",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "one-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "folder",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "respire",
+                        "is_external": false,
+                        "target": "folder",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "one-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "group",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "respire",
+                        "is_external": true,
+                        "target": "group",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "one-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "media",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "respire",
+                        "is_external": false,
+                        "target": "media",
+                        "target_beam": "rpe",
+                        "target_beam_seed": "bb48885a785d389ac0fb3bc40e619042",
+                        "type": "one-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "post",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "respire",
+                        "is_external": true,
+                        "target": "post",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "one-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "question",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "respire",
+                        "is_external": true,
+                        "target": "question",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "one-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "respire_id",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "status",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "type",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "user",
+                    "type": "relation",
+                    "typeOptions": {
+                        "inversed_by": "respire",
+                        "is_external": true,
+                        "target": "user",
+                        "target_beam": "social",
+                        "target_beam_seed": "b2d27d312b3311f41b12c64c07c9d538",
+                        "type": "one-to-one",
+                        "owning": true,
+                        "is_sleeping": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": "",
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        },
+        {
+            "alias": "suggested_post",
+            "name": "rpe_suggested_post",
+            "classname": null,
+            "repository_class": "Rpe\\PumBundle\\Repository\\Rpe\\SuggestedPostRepository",
+            "fields": [
+                {
+                    "name": "creation_date",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "end_date",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "file",
+                    "type": "media",
+                    "typeOptions": {
+                        "type": "image",
+                        "maxsize_value": null,
+                        "maxsize_unit": "k",
+                        "required": false
+                    }
+                },
+                {
+                    "name": "link_name",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "link_url",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "start_date",
+                    "type": "datetime",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "restriction": null
+                    }
+                },
+                {
+                    "name": "status",
+                    "type": "choice",
+                    "typeOptions": {
+                        "unique": false,
+                        "required": false,
+                        "choices": {
+                            "published": "published",
+                            "drafted": "drafted",
+                            "archived": "archived"
+                        }
+                    }
+                },
+                {
+                    "name": "text",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": true,
+                        "unique": false,
+                        "required": false
+                    }
+                },
+                {
+                    "name": "title",
+                    "type": "text",
+                    "typeOptions": {
+                        "max_length": null,
+                        "min_length": null,
+                        "multilines": false,
+                        "unique": false,
+                        "required": false
+                    }
+                }
+            ],
+            "seo_enabled": false,
+            "seo_field": null,
+            "seo_order": null,
+            "security_user_enabled": false,
+            "security_username_field": null,
+            "security_password_field": null,
+            "seo_template": null,
+            "search_enabled": false,
+            "search_fields": [],
+            "tree_enabled": false,
+            "tree_options": null
+        }
+    ]
+}

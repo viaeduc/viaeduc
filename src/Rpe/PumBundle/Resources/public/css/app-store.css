@@ -1,0 +1,136 @@
+/* function to convert px to rem */
+/* line 5, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb { margin-top: 15px; margin-bottom: 15px; }
+/* line 8, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb ul { margin: 0; padding: 0; }
+/* line 12, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li { font-size: 12px; font-size: 0.75rem; display: inline-block; vertical-align: middle; line-height: 15px; margin: 0 1% 0 0; color: #293547; font-family: Verdana, Arial, sans-serif; position: relative; padding-left: 15px; }
+/* line 22, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li .icon-home { color: #293547; font-size: 22px; font-size: 1.375rem; }
+/* line 26, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.home { margin-right: 0; padding-left: 0; }
+/* line 30, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li:first-child a { padding-left: 0; }
+/* line 33, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li a, #breadcrumb li span { width: auto; color: #293547; font-size: 12px; font-size: 0.75rem; font-family: Verdana, Arial, sans-serif; position: relative; }
+/* line 41, ../../assets/sass/componants/_breadcrumbs.scss */
+#breadcrumb li.item-index:before { position: absolute; left: 0; display: block; content: '>'; text-align: center; top: 0; line-height: 15px; font-size: 12px; font-size: 0.75rem; }
+
+/* line 19, ../../assets/sass/app-store.scss */
+.app-store-wrapper { padding: 0 3.2%; border: #6f7277; background: #d7d7d7; }
+
+/* line 25, ../../assets/sass/app-store.scss */
+.app-store-title { font-size: 24px; font-size: 1.5rem; display: inline-block; margin: 0 0 3.2% 0; padding: 5px 10px; width: auto; color: white; text-transform: uppercase; text-shadow: 0 0 transparent; font-family: "Ubuntu Condensed", Arial, sans-serif; }
+/* line 36, ../../assets/sass/app-store.scss */
+.app-store-title span { font-weight: bold; }
+
+/* line 43, ../../assets/sass/app-store.scss */
+.app-store-slider { position: relative; overflow: hidden; text-align: center; }
+/* line 49, ../../assets/sass/app-store.scss */
+.app-store-slider:before { position: absolute; top: -150px; right: 0%; width: 100%; height: 150px; border-radius: 25%; box-shadow: -14px 6px 15px #acabab; content: ""; }
+/* line 60, ../../assets/sass/app-store.scss */
+.app-store-slider .app-store-slider-content { position: relative; margin: 0 auto 60px auto; width: 80%; height: 210px; }
+/* line 66, ../../assets/sass/app-store.scss */
+.app-store-slider .app-store-slider-content:after { position: absolute; top: -20px; left: 0; display: block; width: 100%; height: 250px; background: url("../images/border_slide_left.png"), url("../images/border_slide_right.png"); background-position: left center, right center; background-repeat: no-repeat; content: ''; }
+/* line 79, ../../assets/sass/app-store.scss */
+.app-store-slider .app-store-slider-content .slider-nav { font-size: 50px; font-size: 3.125rem; position: absolute; top: 0; display: block; width: 30px; height: 100%; color: #14768c; line-height: 210px; }
+/* line 89, ../../assets/sass/app-store.scss */
+.app-store-slider .app-store-slider-content .slider-nav.prev { left: -40px; }
+/* line 93, ../../assets/sass/app-store.scss */
+.app-store-slider .app-store-slider-content .slider-nav.next { right: -40px; }
+/* line 97, ../../assets/sass/app-store.scss */
+.app-store-slider .app-store-slider-content .slider-nav:hover { text-decoration: none; }
+/* line 102, ../../assets/sass/app-store.scss */
+.app-store-slider .app-store-slider-content .app-container { overflow: hidden; width: 100%; height: 100%; text-align: center; }
+/* line 110, ../../assets/sass/app-store.scss */
+.app-store-slider .app-store-slider-content .swiper-wrapper { -moz-box-sizing: content-box; box-sizing: content-box; max-height: 100%; height: 100%; }
+/* line 117, ../../assets/sass/app-store.scss */
+.app-store-slider .app-store-slider-content .swiper-slide { position: relative; display: block; float: left; width: 430px; height: 100%; }
+
+/* line 129, ../../assets/sass/app-store.scss */
+.slider-app { position: relative; display: block; margin: 0 auto; padding: 20px 0 0 0; width: 420px; height: 100%; }
+/* line 139, ../../assets/sass/app-store.scss */
+.slider-app .slider-content-top { margin: 0 0 5px 0; width: 100%; }
+/* line 145, ../../assets/sass/app-store.scss */
+.slider-app .slider-app-image, .slider-app .slider-content-left { display: inline-block; height: 130px; vertical-align: middle; line-height: 130px; }
+/* line 152, ../../assets/sass/app-store.scss */
+.slider-app .slider-app-image { width: 45%; text-align: center; }
+/* line 157, ../../assets/sass/app-store.scss */
+.slider-app .slider-content-left { width: 55%; text-align: left; }
+/* line 164, ../../assets/sass/app-store.scss */
+.slider-app .bold { font-weight: bold; }
+/* line 168, ../../assets/sass/app-store.scss */
+.slider-app .slider-title { font-size: 30px; font-size: 1.875rem; display: inline-block; margin: 0 10px 0 0; vertical-align: middle; font-family: "MissionScriptRegular", Arial, sans-serif; }
+/* line 176, ../../assets/sass/app-store.scss */
+.slider-app .slider-sub-title { font-size: 14px; font-size: 0.875rem; display: inline-block; vertical-align: middle; }
+/* line 182, ../../assets/sass/app-store.scss */
+.slider-app .slider-list-wrapper { display: inline-block; margin: 0; height: 100px; vertical-align: middle; line-height: 1rem; }
+/* line 190, ../../assets/sass/app-store.scss */
+.slider-app .slider-list { font-size: 13px; font-size: 0.8125rem; }
+/* line 194, ../../assets/sass/app-store.scss */
+.slider-app .slider-small-title { font-size: 14px; font-size: 0.875rem; display: block; margin: 0 0 10px 0; text-transform: uppercase; font-weight: 300; }
+/* line 204, ../../assets/sass/app-store.scss */
+.slider-app:hover { background: #1c2027; color: white; text-decoration: none; }
+
+/* line 213, ../../assets/sass/app-store.scss */
+.app-store-small-apps { position: relative; display: inline-block; overflow: hidden; margin: 0 0 60px 0; width: 49%; height: 230px; vertical-align: middle; text-align: center; }
+/* line 223, ../../assets/sass/app-store.scss */
+.app-store-small-apps:before { position: absolute; top: -150px; right: 0%; width: 100%; height: 150px; border-radius: 25%; box-shadow: -14px 6px 15px #acabab; content: ""; }
+
+/* line 235, ../../assets/sass/app-store.scss */
+.line-wrapper { display: inline-block; width: 2%; height: 230px; vertical-align: middle; text-align: center; }
+/* line 242, ../../assets/sass/app-store.scss */
+.line-wrapper .inner-line { display: inline-block; width: 1px; height: 100%; background: #d7d7d7; }
+
+/* line 250, ../../assets/sass/app-store.scss */
+.app-small-wrapper { width: 100%; height: 100%; }
+/* line 254, ../../assets/sass/app-store.scss */
+.app-small-wrapper .swiper-wrapper { -moz-box-sizing: content-box; box-sizing: content-box; height: 150px; }
+/* line 259, ../../assets/sass/app-store.scss */
+.app-small-wrapper .swiper-wrapper .swiper-slide { display: block; float: left; width: 114px; height: 100%; }
+/* line 265, ../../assets/sass/app-store.scss */
+.app-small-wrapper .swiper-wrapper .swiper-slide .small-app-link { display: block; padding: 0px 0 0 0; width: 100%; height: 100%; color: #293547; font-family: "Ubuntu Condensed", Arial, sans-serif; }
+/* line 273, ../../assets/sass/app-store.scss */
+.app-small-wrapper .swiper-wrapper .swiper-slide .small-app-link:hover { color: #293547; text-decoration: none; }
+/* line 279, ../../assets/sass/app-store.scss */
+.app-small-wrapper .swiper-wrapper .swiper-slide .small-app-title { font-size: 14px; font-size: 0.875rem; text-transform: uppercase; }
+/* line 284, ../../assets/sass/app-store.scss */
+.app-small-wrapper .swiper-wrapper .swiper-slide .small-image { width: 80%; }
+/* line 290, ../../assets/sass/app-store.scss */
+.app-small-wrapper .app-small-bottom { height: 20px; line-height: 20px; }
+/* line 294, ../../assets/sass/app-store.scss */
+.app-small-wrapper .app-small-bottom .swiper-scroll { display: inline-block; overflow: hidden; width: 90%; height: 10px; border-radius: 5px; background: #63666b; vertical-align: middle; }
+/* line 304, ../../assets/sass/app-store.scss */
+.app-small-wrapper .app-small-bottom .app-small-more { display: inline-block; width: 10%; vertical-align: middle; text-align: center; }
+/* line 310, ../../assets/sass/app-store.scss */
+.app-small-wrapper .app-small-bottom .app-small-more a { font-size: 13px; font-size: 0.8125rem; color: #14768c; }
+/* line 314, ../../assets/sass/app-store.scss */
+.app-small-wrapper .app-small-bottom .app-small-more a:hover { color: #126a7e; text-decoration: none; }
+
+/* line 325, ../../assets/sass/app-store.scss */
+.app-store-most-used { position: relative; overflow: hidden; width: 100%; text-align: center; }
+/* line 331, ../../assets/sass/app-store.scss */
+.app-store-most-used:before { position: absolute; top: -150px; left: 50%; margin-left: -25%; width: 50%; height: 150px; border-radius: 25%; box-shadow: -14px 6px 15px #acabab; content: ""; }
+/* line 343, ../../assets/sass/app-store.scss */
+.app-store-most-used .app-store-most-used-wrapper { margin: 0 0 40px 0; }
+/* line 347, ../../assets/sass/app-store.scss */
+.app-store-most-used .app-store-most-used-container { display: inline-block; margin: 0 2% 0 0; padding: 15px; width: 15%; height: 245px; vertical-align: top; }
+/* line 355, ../../assets/sass/app-store.scss */
+.app-store-most-used .app-store-most-used-container:hover { background: #126a7e; }
+/* line 359, ../../assets/sass/app-store.scss */
+.app-store-most-used .app-store-most-used-container:last-of-type { margin: 0; }
+/* line 364, ../../assets/sass/app-store.scss */
+.app-store-most-used .app-image { margin: 0 0 15px 0; }
+/* line 368, ../../assets/sass/app-store.scss */
+.app-store-most-used .most-used-title { font-size: 22px; font-size: 1.375rem; margin: 0; font-weight: lighter; font-family: "Ubuntu Condensed", Arial, sans-serif; }
+/* line 375, ../../assets/sass/app-store.scss */
+.app-store-most-used .editor { font-size: 14px; font-size: 0.875rem; display: block; margin: 0 0 20px 0; padding: 0 0 0 5px; width: 100%; text-align: left; font-family: "Ubuntu Condensed", Arial, sans-serif; }
+/* line 385, ../../assets/sass/app-store.scss */
+.app-store-most-used .price { font-size: 14px; font-size: 0.875rem; display: block; width: 100%; text-align: right; text-transform: uppercase; font-weight: bold; }
+/* line 394, ../../assets/sass/app-store.scss */
+.app-store-most-used a { color: white; }
+/* line 397, ../../assets/sass/app-store.scss */
+.app-store-most-used a:hover { color: white; text-decoration: none; }
+
+@media screen and (max-width: 1024px) { /* line 409, ../../assets/sass/app-store.scss */
+  .app-store-most-used .editor { margin: 0; } }

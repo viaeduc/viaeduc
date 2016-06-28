@@ -1,0 +1,361 @@
+{% extends "pum://layout.html.twig" %}
+
+{% set page_title = 'Inscription' %}
+{% set page_name_analytics = 'register/step1' %}
+{% set noMobileMenu = 'true' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/sign_up_main.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.form-first.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{# form #}
+{% block _sex_row %}
+{% spaceless %}
+    <div class="form-left">
+        {{ form_label(form, 'register.field_sex') }}
+    </div>
+    <div class="form-right white-background">
+        {% for choice in form.vars.choices %}
+            {% set checked = '' %}
+            <span class="radio-buttons">
+                {% if choice.value == form.vars.data %}
+                    {% set checked = 'checked=""' %}
+                {% endif %}
+                <input name="sex" type="radio" value="{{ choice.value }}" id="radio-{{ choice.value }}" {{ (loop.first) ? ' data-validation="required"' : '' }} {{ (loop.first) ? 'data-validation-error-msg="Veuillez choisir votre sexe."': ''}} {{ checked }}/>
+                <label for="radio-{{ choice.value }}">{{ choice.label|trans({}, 'rpe')}}</label>
+                {# Only one input needs the data-valdation #}
+            </span>
+        {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock %}
+
+{% block text_row %}
+    {% set attr = attr|merge({class: 'extra-info-input first-letter-upper','data-validation': 'required', 'data-validation-error-msg': 'Veuillez remplir ce champ.'}) %}
+    {% set row_li_class = 'extra-info' %}
+    {{ block('rpepum_form_text_row') }}
+{% endblock %}
+
+{% block _occupation_row %}
+    {% set error_block = true %}
+    {% set error_block_class = 'occupation-error' %}
+    {% set attr = attr|merge({class: 'teaching teaching-input tm-input tm-tag extra-info-input','data-validation': 'required', 'data-validation-error-msg': 'Veuillez choisir votre activité professionnelle.'})%}
+    {% set row_li_class = 'extra-info' %}
+    {% set span_widget_class = 'select-box first-select extra-info-input-bootstrap' %}
+    {% set empty_value = 'register.choose_occupation'|trans({}, 'rpe') %}
+    {% set top_margin = false %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _academy_row %}
+    {% set error_block = true %}
+    {% set error_block_class = 'academy-error' %}
+    {% set attr = attr|merge({class: 'teaching teaching-input tm-input tm-tag extra-info-input','data-validation': 'required',  'data-validation-error-msg': 'Veuillez choisir votre académie.'})  %}
+    {% set row_li_class = 'extra-info' %}
+    {% set span_widget_class = 'select-box first-select extra-info-input-bootstrap' %}
+    {% set empty_value = 'register.choose_academy'|trans({}, 'rpe') %}
+    {% set top_margin = false %}
+    {{ block('rpepum_object_entity_row') }}
+{% endblock %}
+
+{% block _emailPro_row %}
+    {% set class_extra = (info is defined and info == false) ? '' : 'extra-info-input' %}
+    {% set attr = attr|merge({class: class_extra,'data-validation': 'email', 'data-validation-error-msg': 'Merci de rentrer un e-mail valide (example : monadresse@ac-versailles.fr).'}) %}
+    {% set row_li_class = 'extra-info' %}
+    {% set help_text = 'register.email_restriction'|trans({}, 'rpe') %}
+    {{ block('rpepum_form_text_row') }}
+
+{% endblock %}
+
+{# {% block _password_row %}.
+    {% set attr = attr|merge({'data-validation': 'required'}) %}
+    {{ form_widget(form, {'attr' : {'class' : 'extra-info-input'}}) }}
+{% endblock %} #}
+
+{% block _password_row %}
+    <li class="extra-info">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            {{ form_widget (form.single, {'attr' : {'class' : 'extra-info-input', 'data-validation' : 'strength', 'data-validation-strength' : '1', 'data-validation-error-msg': 'Veuillez choisir un mot de passe (8 caractères avec chiffres et lettres).'}}) }}
+        </div>
+    </li>
+    {#
+    {% set attr = attr|merge({'data-validation': 'required'}) %}
+    {{ form_label(form) }}
+    {{ form_widget (form, {'attr' : {'class' : 'extra-info-input', 'data-validation' : 'strength', 'data-validation-strength' : '1', 'data-validation-error-msg': 'Veuillez choisir un mot de passe (8 caractères avec chiffres et lettres).'}}) }}
+    #}
+{% endblock %}
+
+{% block _cgu_row %}
+    <span class="checkbox-buttons general-conditions">
+        <input name="cgu" type="checkbox" value="check-one" id="check-one" data-validation="required" data-validation-error-msg= "Veuillez accepter les condition générales." />
+        <label for="check-one">{{ 'register.read_and_accept'|trans({}, 'rpe')}}
+{#             <a data-toggle="modal" data-target="#popin_regle" href="/page/cgu">{{ 'register.cgu'|trans({}, 'rpe')}}</a>#}
+            <a target="_blank" href="/page/cgu">{{ 'register.cgu'|trans({}, 'rpe')}}</a>
+        </label>
+    </span>
+{% endblock %}
+
+{% block _charte_row %}
+    <span class="checkbox-buttons convention">
+        <input name="charte" type="checkbox" value="check-two" id="check-two" data-validation="required" data-validation-error-msg= "Veuillez accepter la chartre de la plateforme."/>
+        <label for="check-two">{{ 'register.read_and_accept2'|trans({}, 'rpe')}}
+        <a data-toggle="modal" href="#popin_charte">{{ 'register.charte'|trans({}, 'rpe')}}</a>
+        </label>
+    </span>
+{% endblock %}
+
+{% block _timezone_row %}
+    <span class="select-box">
+        <li class="extra-info">
+            <div class="form-left">
+                {{ form_label(form) }}
+            </div><!--
+            --><div class="form-right">
+                {{ form_widget(form, {'attr' : {'class' : 'extra-info-input'} }) }}
+            </div>
+            <div class="timezone-error"></div>
+        </li>
+    </span>
+{% endblock %}
+
+
+{% block content %}
+{% form_theme form _self %}
+
+    {% include "pum://includes/common/minimal_header.html.twig" %}
+    <div class="wrapper">
+        <!-- ********************* -->
+        <!-- Here goes the content -->
+        <!-- ********************* -->
+        <section class="content full">
+            <section class="content-step">
+                <!-- Content step -->
+
+                <div class="main-information-img">
+                    <img src="{{ asset('bundles/rpepum/images/bg_ecran_professeurs.png') }}" alt="">
+                </div>
+
+                <div class="main-information">
+                    <!-- Bloc right informations-->
+                    <h2 class="main-white-title">{{ 'register.free_signup'|trans({}, 'rpe')}}</h2>
+                    <!--White title-->
+                    <div class="box-orange">
+                        <p>
+                            {{ 'register.signup_description'|trans({}, 'rpe')}}
+                        </p>
+                    </div>
+                    <!-- Liste informations step 1 -->
+                    <ul class="liste-infos">
+                        <li class="icon-right-dir">
+                            {{ 'register.signup_info_1'|trans({}, 'rpe')}}
+                        </li>
+                        <li class="icon-right-dir">
+                            {{ 'register.signup_info_2'|trans({}, 'rpe')}}
+                        </li>
+                        <li class="icon-right-dir">
+                            {{ 'register.signup_info_3'|trans({}, 'rpe')}}
+                        </li>
+                        <li class="icon-right-dir">
+                            {{ 'register.signup_info_4'|trans({}, 'rpe')}}
+                        </li>
+                        <li class="icon-right-dir">
+                            {{ 'register.signup_info_5'|trans({}, 'rpe')}}
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="section-form">
+                <!-- Section form -->
+                <!-- Form step 1 -->
+
+                {# {{ form(form, {action: path('register')}) }} #}
+
+                {{ form_start(form, {attr: { 'class': 'register-form'}}) }}
+                    <div class="form-errors">
+                        {{ form_errors(form) }}
+
+                        {% for row in form %}
+                            {% if row.vars.errors is defined %}
+                                {{ form_errors(row) }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-wrapper">
+                        <p class="reserved">{{ 'register.signup_requirement'|trans({}, 'rpe')}}</p>
+                        <ul>
+                            <li class="filed-col extra-info civilite">
+                                {{ form_row(form.sex) }}
+                            </li>
+
+                            <li class="filed-col extra-info">
+                                <ul>
+                                    {{ form_row(form.lastname) }}
+                                    {{ form_row(form.firstname) }}
+                                    {{ form_row(form.occupation) }}
+                                    {{ form_row(form.timezone) }}
+                                </ul>
+                            </li>
+
+                            <li class="filed-col extra-info">
+                                <ul>
+                                    {% if form.offsetExists('academy') %}
+                                        {{ form_row(form.academy) }}
+                                        {{ form_row(form.emailPro) }}
+                                    {% else %}
+                                        {{ form_row(form.emailPro, {'label': 'Email*', 'info': false}) }}
+                                    {% endif %}
+                                    {{ form_row(form.password) }}
+                                    <li class="conditions-right">
+                                        <div class="form-left">
+                                        </div><!--
+                                        --><div class="form-right">
+                                            {{ form_row(form.cgu) }}
+                                            {{ form_row(form.charte) }}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="bottom-form">
+                        <li class="left">
+                            <p>{{ 'register.required_fields'|trans({}, 'rpe')}}</p>
+                        </li>
+                       <li>
+                            {{ form_widget(form.Confirmer, {'label' : 'register.confirm'|trans(), 'attr' : {'class' : 'confirm-btn orange'}}) }}
+                        </li>
+                    </ul>
+                    {{ form_widget(form._token) }}
+                {{ form_end(form, {'render_rest': false}) }}
+
+                <!-- End form -->
+                <!-- Popin form -->
+                <div class="modal fade" id="popin_warning">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <h4 class="modal-title">Attention</h4>
+                                <div class="body-gray scroll-pane">
+                                    <p>
+                                    Vous vous apprêtez à vous inscrire sur le réseau professionnel des enseignants. Cette plateforme est aujourd’hui en période d’expérimentation, les services et contenus éditoriaux proposés sont pour le moment restreints. En vous inscrivant vous vous engagez à respecter la charte d’utilisation de l’expérimentation. Pour en savoir plus, veuillez contacter Canopé de votre académie.
+                                    </p>
+                                    <a href="../" class="action-btn orange refuse-warning">Je ne souhaite plus m’inscrire.</a>
+                                    <a href="#" class="action-btn light-blue accept-warning">Oui, j’ai bien compris qu’il s’agit d’une expérimentation.</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade no-reload" id="popin_regle">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+                            </div>
+                            <div class="modal-body ">
+                                <h4 class="modal-title">{{ 'register.cgu_title'|trans({}, 'rpe')}}</h4>
+                                <div class="body-gray scroll-pane">
+                                    <p>{{ 'register.cgu_content'|trans({}, 'rpe')}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade modal-charte-wrapper no-reload" id="popin_charte">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <h4 class="modal-title">{{ 'register.charte_title'|trans({}, 'rpe')}}</h4>
+                                <div class="body-gray scroll-pane">
+                                    <div class="modal-charte">
+                                        <p>{{ 'charte.viaeduc.description'|trans({}, 'rpe')}}</p>
+                                        <p>{{ 'charte.viaeduc.ambition'|trans({}, 'rpe')}}</p>
+                                        <p>{{ 'charte.viaeduc.philosophy'|trans({}, 'rpe')}}</p>
+                                        <p><strong>{{ 'charte.viaeduc.accept'|trans({}, 'rpe')}}</strong></p>
+
+                                        <h3>{{ 'charte.users.title'|trans({}, 'rpe')}}</h3>
+                                        <p>{{ 'charte.users.description'|trans({}, 'rpe')}}</p>
+                                        <p>{{ 'charte.users.rules'|trans({}, 'rpe')}}</p>
+                                        <ul>
+                                            <li>{{ 'charte.users.rule1'|trans({}, 'rpe')}}</li>
+                                            <li>{{ 'charte.users.rule2'|trans({}, 'rpe')}}</li>
+                                            <li>{{ 'charte.users.rule3'|trans({}, 'rpe')}}</li>
+                                            <li>{{ 'charte.users.rule4'|trans({}, 'rpe')}}</li>
+                                            <li>{{ 'charte.users.rule5'|trans({}, 'rpe')}}</li>
+                                            <li>{{ 'charte.users.rule6'|trans({}, 'rpe')}}</li>
+                                            <li>{{ 'charte.users.rule7'|trans({}, 'rpe')}}</li>
+                                        </ul>
+                                        <p>{{ 'charte.users.modos'|trans({}, 'rpe')}}</p>
+                                        <h3>{{ 'charte.engagements.title'|trans({}, 'rpe')}}</h3>
+                                        <p>{{ 'charte.engagements.description'|trans({}, 'rpe')}}</p>
+                                        <ul>
+                                            <li>{{ 'charte.engagements.engagement1'|trans({}, 'rpe')}}</li>
+                                            <li>{{ 'charte.engagements.engagement2'|trans({}, 'rpe')}}</li>
+                                            <li>{{ 'charte.engagements.engagement3'|trans({}, 'rpe')}}</li>
+                                            <li>{{ 'charte.engagements.engagement4'|trans({}, 'rpe')}}</li>
+                                        </ul>
+
+                                        <h3>{{ 'charte.privacy.title'|trans({}, 'rpe')}}</h3>
+                                        <p>{{ 'charte.privacy.description'|trans({}, 'rpe')}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+    <footer>
+        <nav class="footer-nav">
+            <ul class="footer-list">
+            {% if exception is defined %}
+                {% set footerLinks = [] %}
+            {% else %}
+                {% set footerLinks = pum_entities('area', {'identifier': 'footer-notlogged'}) %}
+            {% endif %}
+            {% for footer in footerLinks %}
+                {% for page in footer.pages %}
+                    {% if page.redirectUrl is not empty %}
+                        <li class="footer-item"><a href="{{ page.redirectUrl }}">{{ page.title }}</a></li>
+                    {% else %}
+                        <li class="footer-item"><a href="{{ path('cms_page', {'seo': page.objectSlug}) }}">{{ page.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+            {% else %}
+                {# <li class="footer-item"><a class="not-available" href="#">{{ "footer.about"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="not-available" href="#">{{ "footer.partners"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="not-available" href="#">{{ "footer.legal"|trans({}, 'rpe') }}</a></li> #}
+                <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+            {% endfor %}
+            </ul>
+        </nav>
+    </footer>
+{% endblock %}
+
+{% block main_nav %}
+<!-- emptying blocks used on connected page -->
+{% endblock %}
+
+{% block notifs_all %}
+{% endblock %}
+
+{% block notifs_msg %}
+{% endblock %}

@@ -1,0 +1,522 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/agenda.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.agenda.js') }}"></script>
+{% endblock %}
+
+{% block main_content %}
+	{% embed "pum://includes/common/componants/filter.twig" %}
+        {% block title %}
+            <h2 class="filter-title">{{ "agenda.title"|trans({}, 'rpe') }}</h2>
+        {% endblock %}
+        {% block filter %}
+            <div class="filter-right">
+                <ul class="filter-right-wrapper">
+                    <li class="filter-link">
+                    	<a href="#" class="action-btn light-blue create-event-toggle">{{ "agenda.create_event"|trans({}, 'rpe') }}</a>
+                        <div class="create-event">
+                            <a href="#" class="arrow-close">^</a>
+                            <form class="create-event-form">
+                                <div class="create-event-wrapper">
+                                    <ul>
+                                        <li class="extra-info">
+                                            <div class="form-left">
+                                                <label for="titleInput">Titre</label>
+                                            </div><!--
+                                            --><div class="form-right">
+                                                <input type="text" id="titleInput" name="titleInput" placeholder="">
+                                            </div>
+                                        </li>
+                                        <li class="extra-info">
+                                            <div class="form-left">
+                                                <label for="startDate">Début</label>
+                                            </div><!--
+                                            --><div class="form-right">
+                                                <div class="input-append date calendar-datepicker" data-date-format="dd/mm/yyyy" id="startDate">
+                                                    <input readonly="" size="" value="" type="text" id="startDate" name="startDate">
+                                                    <span class="add-on dark-grey square-btn icon-calendar"></span>
+                                                </div><!--
+                                                --><div class="time">
+                                                    <select class="select-time" id="startTime" name="startTime">
+                                                        <option value="">Heure de début</option>
+                                                        <option value="1">8h00</option>
+                                                        <option value="2">9h00</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="extra-info">
+                                            <div class="form-left">
+                                                <label for="endDateInput">Fin</label>
+                                            </div><!--
+                                            --><div class="form-right">
+                                                <div class="input-append date calendar-datepicker" data-date-format="dd/mm/yyyy" id="startDate">
+                                                    <input readonly="" size="" value="" type="text" id="endDateInput" name="endDateInput">
+                                                    <span class="add-on dark-grey square-btn icon-calendar"></span>
+                                                </div><!--
+                                                --><div class="time">
+                                                    <select class="select-time" id="endTime" name="endTime">
+                                                        <option value="">Heure de fin</option>
+                                                        <option value="1">18h00</option>
+                                                        <option value="2">19h00</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="extra-info">
+                                            <div class="form-left">
+                                                <label for="locationInput">Lieu</label>
+                                            </div><!--
+                                            --><div class="form-right">
+                                                <input type="text" id="locationInput" name="locationInput" placeholder="">
+                                            </div>
+                                        </li>
+                                        <li class="extra-info">
+                                            <div class="form-left">
+                                                <label for="addressInput">Adresse</label>
+                                            </div><!--
+                                            --><div class="form-right">
+                                                <input type="text" id="addressInput" name="addressInput" placeholder="">
+                                            </div>
+                                        </li>
+                                        <li class="extra-info">
+                                            <div class="form-left top">
+                                                <label for="descriptionInput">Description</label>
+                                            </div><!--
+                                            --><div class="form-right">
+                                                <span class="text-box">
+                                                    <textarea id="descriptionInput" name="descriptionInput"></textarea>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li class="extra-info">
+                                            <div class="form-left">
+                                                <label for="publishIn">Publier dans</label>
+                                            </div><!--
+                                            --><div class="form-right">
+                                                <select class="select-time" id="enpublishIndTime" name="publishIn">
+                                                    <option value="">Choisir un groupe</option>
+                                                    <option value="1">Histoire de la révolution russe</option>
+                                                    <option value="2">Histoire de la révolution française</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li class="extra-info">
+                                            <div class="form-left">
+                                                <label for="invitationInput">Invitation</label>
+                                            </div><!--
+                                            --><div class="form-right">
+                                                <select class="select-time" id="invitationInput" name="invitationInput">
+                                                    <option value="">Libre</option>
+                                                    <option value="1">Privé</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li class="extra-info">
+                                            <div class="form-left">
+                                                <label for="joiningInput">Participants</label>
+                                            </div><!--
+                                            --><div class="form-right">
+                                                <input type="text" id="joiningInput" name="joiningInput" placeholder="">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                            <a href="#" class="action-btn event-btn light-grey cancel-event-link">{{ "agenda.cancel"|trans({}, 'rpe') }}</a>
+                            <a href="#" class="action-btn event-btn orange create-event-link">{{ "agenda.save"|trans({}, 'rpe') }}</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        {% endblock %}
+    {% endembed %}
+    <div class="month-title">
+        <a href="#" class="month-prev">&lsaquo;</a><!--
+        --><h4 class="month-title"><span>Septembre</span> 2013</h4><!--
+        --><a href="#" class="month-next">&rsaquo;</a>
+    </div>
+    <div class="month-cards">
+        <!-- FIRST CARDS -->
+        <div class="month-date-card event-waiting agenda-click" data-agenda-row="first" data-agenda-event="first">
+            <div class="card-date">
+                <div class="card-inner-left">
+                    12 <span class="month">mai</span>
+                </div><!--
+                --><div class="card-inner-right">
+                    <span class="day">Sam.</date>
+                </div>
+            </div>
+            <div class="card-time">
+                <div class="card-inner-left">
+                    14:00 - 18:00
+                </div><!--
+                --><div class="card-inner-right">
+
+                </div>
+            </div>
+            <div class="card-content">
+                Mise en commun de la documentation Physique Chimie 4ème Techno
+            </div>
+            <div class="card-footer">
+                <img src="{{ asset('bundles/rpepum/images/tmp/agenda-group.jpg') }}" class="agenda-card-image">
+                <span class="card-footer-text">évènement de : Enseigner à Paris dans l’enseignement supérieur</span>
+            </div>
+        </div>
+        <div class="month-date-card event-validated agenda-click" data-agenda-row="first" data-agenda-event="second">
+            <div class="card-date">
+                <div class="card-inner-left">
+                    12 <span class="month">mai</span>
+                </div><!--
+                --><div class="card-inner-right">
+                    <span class="day">Sam.</date>
+                </div>
+            </div>
+            <div class="card-time">
+                <div class="card-inner-left">
+                    14:00 - 18:00
+                </div><!--
+                --><div class="card-inner-right">
+
+                </div>
+            </div>
+            <div class="card-content">
+                Mise en commun de la documentation Physique Chimie 4ème Techno
+            </div>
+            <div class="card-footer">
+                <img src="{{ asset('bundles/rpepum/images/tmp/agenda-group.jpg') }}" class="agenda-card-image">
+                <span class="card-footer-text">évènement de : Enseigner à Paris dans l’enseignement supérieur</span>
+            </div>
+        </div>
+        <div class="month-date-card event-editor agenda-click" data-agenda-row="first" data-agenda-event="third">
+            <div class="card-date">
+                <div class="card-inner-left">
+                    12 <span class="month">mai</span>
+                </div><!--
+                --><div class="card-inner-right">
+                    <span class="day">Sam.</date>
+                </div>
+            </div>
+            <div class="card-time">
+                <div class="card-inner-left">
+                    14:00 - 18:00
+                </div><!--
+                --><div class="card-inner-right">
+
+                </div>
+            </div>
+            <div class="card-content">
+                Mise en commun de la documentation Physique Chimie 4ème Techno
+            </div>
+            <div class="card-footer">
+                <img src="{{ asset('bundles/rpepum/images/tmp/agenda-group.jpg') }}" class="agenda-card-image">
+                <span class="card-footer-text">évènement de : Enseigner à Paris dans l’enseignement supérieur</span>
+            </div>
+        </div>
+        <div class="month-date-card event-refused agenda-click" data-agenda-row="first" data-agenda-event="fourth">
+            <div class="card-date">
+                <div class="card-inner-left">
+                    12 <span class="month">mai</span>
+                </div><!--
+                --><div class="card-inner-right">
+                    <span class="day">Sam.</date>
+                </div>
+            </div>
+            <div class="card-time">
+                <div class="card-inner-left">
+                    14:00 - 18:00
+                </div><!--
+                --><div class="card-inner-right">
+
+                </div>
+            </div>
+            <div class="card-content">
+                Mise en commun de la documentation Physique Chimie 4ème Techno
+            </div>
+            <div class="card-footer">
+                <img src="{{ asset('bundles/rpepum/images/tmp/agenda-group.jpg') }}" class="agenda-card-image">
+                <span class="card-footer-text">évènement de : Enseigner à Paris dans l’enseignement supérieur</span>
+            </div>
+        </div>
+
+        <!-- FIRST ROW -->
+        <div class="agenda-row first-row">
+            <div class="month-date-event" data-agenda-event="first">
+                <div class="event-main">
+                    <div class="event-main-header">
+                        <span class="event-main-date">
+                            <span class="bold">Samedi 12 Mais 2013</span> - 14:00 - 18:00
+                        </span>
+                    </div>
+                    <div class="event-main-content">
+                        <div class="event-content-top">
+                            <div class="event-main-left">
+                                <img src="{{ asset('bundles/rpepum/images/tmp/agenda-group.jpg') }}" class="event-image">
+                            </div><!--
+                            --><div class="event-main-right">
+                                <span class="event-heading">{{ "agenda.event_from"|trans({}, 'rpe') }}</span>
+                                <span class="event-title">Enseigner à Paris dans l'enseignement supérieur</span>
+                            </div>
+                        </div>
+                        <div class="event-content-main">
+                            <h4 class="event-big-title">
+                                Mise en commun de la documentation Physique Chimie 4ème Techno
+                            </h4>
+                            <span class="event-text">
+                                Cette mise en commun est organisée par la proviseur Madame Chombier.<br>
+                                Merci de nous avertir de votre abscence dans les plus brefs délais.<br>
+                                Votre présence est obligatoire à cette réunion si vous faites parti du corps enseignant scientifique du domaine physique / chimie dans le parcours Scientifique. Votre présence est obligatoire à cette réunion si vous faites parti du corps enseignant scientifique.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="event-main-footer">
+                        <a href="#" class="btn-agenda orange">Je participe</a>
+                        <a href="#" class="btn-agenda dark-grey">Je ne participe pas</a>
+                        <a href="#" class="btn-agenda light-blue">Envoyer un message</a>
+                    </div>
+                </div><!--
+                --><div class="event-left">
+                    <div class="event-going">
+                        <div class="event-going-top">
+                            <span class="going-title">{{ "agenda.going"|trans({}, 'rpe') }}</span><!--
+                            --><span class="going-list"><a href="#" class="going-friends">18 relations</a> / 182</span>
+                        </div>
+                        <div class="event-going-main">
+                            <a href="#">
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_george.jpg') }}">
+                                <div class="profil-name">
+                                    <span>Anne Laure</span>
+                                    <span class="last-name">Leroy</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_george.jpg') }}">
+                                <div class="profil-name">
+                                    <span>Anne Laure</span>
+                                    <span class="last-name">Leroy</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_george.jpg') }}">
+                                <div class="profil-name">
+                                    <span>Anne Laure</span>
+                                    <span class="last-name">Leroy</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="event-going-bottom">
+                            <a href="#" class="btn-agenda btn-full event-going orange">{{ "agenda.accept_event"|trans({}, 'rpe') }}</a>
+                        </div>
+                    </div><!--
+                    --><div class="event-map">
+                        <div class="image-map">
+                            <img src="{{ asset('bundles/rpepum/images/tmp/map.jpg') }}">
+                        </div>
+                        <div class="map-infos">
+                            <a href="#" class="map-icon icon-location orange"></a>
+                            <span class="map-text">Lycée Gaston Bachelard - Salle de réunion
+                            10 rue de L’abbaye Créteil - 75001 Saint André les Vergers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECOND CARDS (multiple days) -->
+        <div class="month-date-card event-waiting agenda-click" data-agenda-row="second" data-agenda-event="first">
+            <div class="card-date multiple-days">
+                <div class="card-inner-left">
+                    du 12 <span class="month">mai</span>
+                </div><!--
+                --><div class="card-inner-right">
+                    au 14 <span class="month">mai</span>
+                </div>
+            </div>
+            <div class="card-time multiple-days">
+                <div class="card-inner-left">
+                    14:00
+                </div><!--
+                --><div class="card-inner-right">
+                    18:00
+                </div>
+            </div>
+            <div class="card-content">
+                Mise en commun de la documentation Physique Chimie 4ème Techno
+            </div>
+            <div class="card-footer">
+                <img src="{{ asset('bundles/rpepum/images/tmp/agenda-group.jpg') }}" class="agenda-card-image">
+                <span class="card-footer-text">évènement de : Enseigner à Paris dans l’enseignement supérieur</span>
+            </div>
+        </div>
+        <div class="month-date-card event-validated agenda-click" data-agenda-row="second" data-agenda-event="second">
+            <div class="card-date multiple-days">
+                <div class="card-inner-left">
+                    du 12 <span class="month">mai</span>
+                </div><!--
+                --><div class="card-inner-right">
+                    au 14 <span class="month">mai</span>
+                </div>
+            </div>
+            <div class="card-time multiple-days">
+                <div class="card-inner-left">
+                    14:00
+                </div><!--
+                --><div class="card-inner-right">
+                    18:00
+                </div>
+            </div>
+            <div class="card-content">
+                Mise en commun de la documentation Physique Chimie 4ème Techno
+            </div>
+            <div class="card-footer">
+                <span class="card-footer-text">évènement personnel</span>
+            </div>
+        </div>
+        <div class="month-date-card event-editor agenda-click" data-agenda-row="second" data-agenda-event="third">
+            <div class="card-date multiple-days">
+                <div class="card-inner-left">
+                    du 12 <span class="month">mai</span>
+                </div><!--
+                --><div class="card-inner-right">
+                    au 14 <span class="month">mai</span>
+                </div>
+            </div>
+            <div class="card-time multiple-days">
+                <div class="card-inner-left">
+                    14:00
+                </div><!--
+                --><div class="card-inner-right">
+                    18:00
+                </div>
+            </div>
+            <div class="card-content">
+                Mise en commun de la documentation Physique Chimie 4ème Techno
+            </div>
+            <div class="card-footer">
+                <img src="{{ asset('bundles/rpepum/images/tmp/agenda-group.jpg') }}" class="agenda-card-image">
+                <span class="card-footer-text">évènement de : Enseigner à Paris dans l’enseignement supérieur</span>
+            </div>
+        </div>
+        <div class="month-date-card event-refused agenda-click" data-agenda-row="second" data-agenda-event="fourth">
+            <div class="card-date multiple-days">
+                <div class="card-inner-left">
+                    du 12 <span class="month">mai</span>
+                </div><!--
+                --><div class="card-inner-right">
+                    au 14 <span class="month">mai</span>
+                </div>
+            </div>
+            <div class="card-time multiple-days">
+                <div class="card-inner-left">
+                    14:00
+                </div><!--
+                --><div class="card-inner-right">
+                    18:00
+                </div>
+            </div>
+            <div class="card-content">
+                Mise en commun de la documentation Physique Chimie 4ème Techno
+            </div>
+            <div class="card-footer">
+                <img src="{{ asset('bundles/rpepum/images/tmp/agenda-group.jpg') }}" class="agenda-card-image">
+                <span class="card-footer-text">évènement de : Enseigner à Paris dans l’enseignement supérieur</span>
+            </div>
+        </div>
+
+        <!-- Second row -->
+        <div class="agenda-row second-row">
+            <div class="month-date-event" data-agenda-event="first">
+                <div class="event-main">
+                    <div class="event-main-header">
+                        <span class="event-main-date">
+                            <span class="bold">Samedi 12 Mais 2013</span> - 14:00 - 18:00
+                        </span>
+                    </div>
+                    <div class="event-main-content">
+                        <div class="event-content-top">
+                            <div class="event-main-left">
+                                <img src="{{ asset('bundles/rpepum/images/tmp/agenda-group.jpg') }}" class="event-image">
+                            </div><!--
+                            --><div class="event-main-right">
+                                <span class="event-heading">{{ "agenda.event_from"|trans({}, 'rpe') }}</span>
+                                <span class="event-title">Enseigner à Paris dans l'enseignement supérieur</span>
+                            </div>
+                        </div>
+                        <div class="event-content-main">
+                            <h4 class="event-big-title">
+                                Mise en commun de la documentation Physique Chimie 4ème Techno
+                            </h4>
+                            <span class="event-text">
+                                Cette mise en commun est organisée par la proviseur Madame Chombier.<br>
+                                Merci de nous avertir de votre abscence dans les plus brefs délais.<br>
+                                Votre présence est obligatoire à cette réunion si vous faites parti du corps enseignant scientifique du domaine physique / chimie dans le parcours Scientifique. Votre présence est obligatoire à cette réunion si vous faites parti du corps enseignant scientifique.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="event-main-footer">
+                        <a href="#" class="btn-agenda orange">Je participe</a>
+                        <a href="#" class="btn-agenda dark-grey">Je ne participe pas</a>
+                        <a href="#" class="btn-agenda light-blue">Envoyer un message</a>
+                    </div>
+                </div><!--
+                --><div class="event-left">
+                    <div class="event-going">
+                        <div class="event-going-top">
+                            <span class="going-title">Participants</span><!--
+                            --><span class="going-list"><a href="#" class="going-friends">18 relations</a> / 182</span>
+                        </div>
+                        <div class="event-going-main">
+                            <a href="#">
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_george.jpg') }}">
+                                <div class="profil-name">
+                                    <span>Anne Laure</span>
+                                    <span class="last-name">Leroy</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_george.jpg') }}">
+                                <div class="profil-name">
+                                    <span>Anne Laure</span>
+                                    <span class="last-name">Leroy</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <img src="{{ asset('bundles/rpepum/images/tmp/img_george.jpg') }}">
+                                <div class="profil-name">
+                                    <span>Anne Laure</span>
+                                    <span class="last-name">Leroy</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="event-going-bottom">
+                            <a href="#" class="btn-agenda btn-full event-going orange">Je participe</a>
+                        </div>
+                    </div><!--
+                    --><div class="event-map">
+                        <div class="image-map">
+                            <img src="{{ asset('bundles/rpepum/images/tmp/map.jpg') }}">
+                        </div>
+                        <div class="map-infos">
+                            <a href="#" class="map-icon icon-location orange"></a>
+                            <span class="map-text">Lycée Gaston Bachelard - Salle de réunion
+                            10 rue de L’abbaye Créteil - 75001 Saint André les Vergers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-date-card">
+        </div>
+        <div class="month-date-card">
+        </div>
+        <div class="month-date-card">
+        </div>
+        <div class="month-date-card">
+        </div>
+    </div>
+{% endblock %}

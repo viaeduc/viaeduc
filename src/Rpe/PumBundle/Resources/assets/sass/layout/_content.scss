@@ -1,0 +1,25 @@
+// -------
+// Content
+// -------
+
+//
+// New code, needs to be tested
+
+.content {
+    width: 64.64%;
+    display: inline-block;
+    vertical-align: top;
+
+    // Full class for when there is no sidebar
+    &.full {
+        width: 100%;
+    }
+
+    @media screen and (max-width: $portrait-screen) {
+
+    }
+
+    @media screen and (max-width: $landscape-screen) {
+
+    }
+}

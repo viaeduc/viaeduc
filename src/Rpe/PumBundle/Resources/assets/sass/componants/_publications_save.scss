@@ -1,0 +1,433 @@
+// ------------- //
+// TIMELINE POST //
+// ------------- //
+
+$timeline-blue-1 : #37485f;
+$timeline-blue-2 : #1E2F46;
+
+// POSITIONING
+
+.timeline-post {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    font-family    : $Verdana;
+    color          : $dark-grey-font;
+    padding        : 0 0 20px 0;
+    margin         : 0 0 20px 0;
+    border-bottom  : 1px solid $light-grey-2;
+
+    &:last-of-type {
+        border-bottom : 0px solid transparent;
+        padding       : 0;
+        margin        : 0;
+    }
+}
+
+.timeline-post-author,
+.timeline-post-content {
+    display        : inline-block;
+    vertical-align : top;
+}
+
+.timeline-post-author {
+    width  : 8.415841584158%;
+    margin : 0 2.475247524752% 0 0;
+
+    .timeline-author-link {
+        display : block;
+        width   : 100%;
+
+        > img {
+            width : 100%;
+        }
+    }
+}
+
+.timeline-post-content {
+    width : 89.0196078431%;
+}
+
+.timeline-content-top,
+.timeline-content-main,
+.timeline-content-links {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+}
+
+.timeline-ressource-image {
+    display        : inline-block;
+    vertical-align : top;
+}
+
+.timeline-ressource-content {
+    display        : inline-block;
+    vertical-align : middle;
+}
+
+.timeline-extra {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    margin         : 0 0 2px 0;
+
+    &:last-of-type {
+        margin : 0;
+    }
+}
+
+.timeline-comments {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+}
+
+.comment-profil-image,
+.comment-info {
+    display        : inline-block;
+    vertical-align : top;
+}
+
+// STYLING
+
+// Content top
+
+.timeline-content-top {
+    @include fontSize(12);
+    line-height : 1em;
+}
+
+.author-profil {
+    transition  : color 0.2s linear;
+    color       : $dark-blue-1;
+    font-weight : bold;
+
+    &:hover {
+        transition      : color 0.2s linear;
+        text-decoration : none;
+        color           : $dark-blue-2;
+    }
+}
+
+.published-location {
+    transition  : color 0.2s linear;
+    color       : $light-blue-1;
+    font-weight : bold;
+
+    &:hover {
+        transition      : color 0.2s linear;
+        text-decoration : none;
+        color           : $light-blue-2;
+    }
+}
+
+// Content main
+
+.timeline-content-main {
+    @include fontSize(13);
+    padding     : 5px 0 10px 0;
+    line-height : 1em;
+
+    &.timeline-ressource {
+        transition       : background-color 0.2s linear;
+        position         : relative;
+        background-color : $timeline-blue-1;
+        padding          : 0;
+        margin           : 0 0 5px 0;
+
+        a.link-wrapper {
+            display : block;
+            height  : 100%;
+            width   : 100%;
+        }
+
+        &:hover {
+            transition       : background-color 0.2s linear;
+            background-color : $timeline-blue-2;
+        }
+    }
+}
+
+.timeline-ressource-image {
+    position : absolute;
+    top      : 0;
+    left     : 0;
+    height   : 100%;
+    width    : 19.498607242339833%;
+    overflow : hidden;
+
+    > img {
+        display : block;
+        height  : 100%;
+    }
+}
+
+.timeline-ressource-content {
+    height  : 100%;
+    width   : 80.5013928%;
+    margin  : 0 0 0 19.498607242339833%;
+    padding : 20px;
+    color   : $white;
+}
+
+.ressource-title {
+    @include fontSize(22);
+    margin         : 0 0 10px 0;
+    text-transform : uppercase;
+}
+
+.ressource-text {
+    @include fontSize(13);
+    line-height : 1.4em;
+}
+
+.post-text {
+    width : 100%;
+}
+
+.post-image {
+    float     : left;
+    max-width : 100%;
+}
+
+.shared-link {
+    transition       : background-color 0.2s linear;
+    display          : inline-block;
+    vertical-align   : top;
+    width            : 100%;
+    background-color : $light-grey-1;
+    border           : 1px solid $light-grey-2;
+    padding          : 2.785515320334262%;
+
+    &:hover {
+        transition       : background-color 0.2s linear;
+        background-color : $light-grey-2;
+        text-decoration  : none;
+    }
+}
+
+.shared-link-image,
+.shared-link-info {
+    display        : inline-block;
+    vertical-align : middle;
+}
+
+.shared-link-image {
+    width  : 20%;
+    margin : 0 2.785515320334262% 0 0;
+}
+
+.shared-link-info {
+    width : 77.2144846797%;
+}
+
+.shared-link-title,
+.shared-link-link,
+.shared-link-text {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    line-height    : 1em;
+}
+
+.shared-link-title {
+    @include fontSize(13);
+    font-family : $Verdana;
+    font-weight : bold;
+    color       : $dark-blue-1;
+    margin      : 0;
+}
+
+.shared-link-link {
+    @include fontSize(11);
+    color  : $light-blue-1;
+    margin : 0 0 10px 0;
+}
+
+.shared-link-text {
+    @include fontSize(12);
+    color       : $dark-grey-font;
+    line-height : 1.3em;
+}
+
+.timeline-content-main {
+    .uploaded-files-wrapper {
+        margin: 0;
+
+        li {
+            padding       : 0;
+            margin        : 0;
+
+            a {
+                display        : inline-block;
+                vertical-align : top;
+                width          : 100%;
+                height         : 30px;
+                line-height    : 30px;
+            }
+
+            img {
+                display        : inline-block;
+                vertical-align : middle;
+                height         : 100%;
+                margin         : 0 10px 0 0;
+            }
+
+            span {
+                display        : inline-block;
+                vertical-align : middle;
+            }
+        }
+    }
+}
+
+// Content links
+
+.timeline-content-links a {
+    @include fontSize(11);
+    display        : inline-block;
+    vertical-align : top;
+    transition     : color 0.2s linear;
+    color          : $light-blue-2;
+    margin         : 0 2.785515320334262% 0 0;
+
+    &:before {
+        padding: 0 3px;
+    }
+
+    &:hover{
+        transition      : color 0.2s linear;
+        color           : $light-blue-1;
+        text-decoration : underline;
+    }
+
+    &.post-time {
+        color  : $light-grey-1;
+        margin : 0;
+        float  : right;
+
+        &:hover {
+            color           : $light-grey-2;
+            text-decoration : underline;
+        }
+    }
+}
+
+.timeline-extra {
+    @include fontSize(10);
+    padding    : 10px;
+    background : $light-grey-1;
+    color      : $dark-grey-font;
+
+    [class*='icon-'] {
+        color : $light-blue-2;
+    }
+}
+
+.more-comments {
+    @include fontSize(13);
+    display    : block;
+    width      : 100%;
+    height     : 100%;
+    transition : color 0.2s linear;
+    color      : $light-blue-2;
+
+    &:hover {
+        transition      : color 0.2s linear;
+        color           : $light-blue-1;
+        text-decoration : none;
+    }
+}
+
+.timeline-comment {
+    padding          : 10px;
+    background-color : $light-grey-1;
+
+    &:nth-child(even) {
+        background-color : $light-grey-2;
+    }
+
+    &.sub-comment {
+        padding-left : 6.96378830084%;
+
+    }
+
+    .timeline-post-comment {
+        margin : 10px 0 0 0;
+    }
+
+}
+
+.question-post-comment {
+    background: $light-grey-1;
+}
+
+.comment-profil-image {
+    width  : 5.571030640668524%;
+    margin : 0 1.392757660167131% 0 0;
+}
+
+.comment-info {
+    @include fontSize(12);
+    width       : 93.0362116992%;
+    font-family : $Verdana;
+    line-height : 1em;
+}
+
+.comment-author {
+    display     : block;
+    transition  : color 0.2s linear;
+    color       : $light-blue-1;
+    font-weight : bold;
+    margin      : 0 0 5px 0;
+
+    &:hover {
+        transition      : color 0.2s linear;
+        text-decoration : none;
+        color           : $light-blue-2;
+    }
+}
+
+.comment-text {
+    color  : $dark-grey-font;
+    margin : 0 0 5px 0;
+}
+
+.comment-menu {
+    display        : inline-block;
+    veritcal-align : top;
+    width          : 100%;
+
+    a {
+        transition : color 0.2s linear;
+        color      : $light-blue-2;
+        margin     : 0 10px 0 0;
+
+        &:before {
+            padding: 0 3px;
+        }
+
+        &:hover {
+            transition      : color 0.2s linear;
+            color           : $light-blue-1;
+            text-decoration : none;
+        }
+
+        &.comment-time {
+            color  : $dark-grey-font;
+            margin : 0;
+
+            &:hover {
+                color : $dark-grey-font;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $landscape-screen) {
+
+}
+@media screen and (max-width: $portrait-screen) {
+
+}

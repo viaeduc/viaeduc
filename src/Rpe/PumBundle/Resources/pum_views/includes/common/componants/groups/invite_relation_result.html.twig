@@ -1,0 +1,34 @@
+{% spaceless %}
+    {% if invited is defined %}
+        {% for invite in invited %}
+            {{ (loop.first) ? '<ul class="invite-external-confirm-wrapper">' }}
+                <li class="invite-external-confirm">{{ invite.firstname }} {{ invite.lastname }} {{ "groupPage.confirmMail.sent"|trans({}, 'rpe') }} {{ invite.emailpro }}</li>
+            {{ (loop.last) ? '</ul>' }}
+        {% endfor %}
+    {% endif %}
+
+    <!-- for email external sent -->
+    {% if userExternal is defined and userExternal|length %}
+    	<div class="invite-external-confirm">
+    		<p>{{ "groupPage.confirmExternalMail.sent"|trans({}, 'rpe') }} {{ userExternal|join(', ') }}</p>
+    	</div>
+    {% endif %}
+    
+    {% if userExist is defined and userExist|length %}
+    	<div class="invite-external-confirm">
+    		<p>{{ "groupPage.confirmExisteMail.sent"|trans({}, 'rpe') }} {{ userExist|join(', ') }}</p>
+    	</div>
+    {% endif %}
+    
+    {% if userInvited is defined and userInvited|length %}
+    	<div class="invite-external-confirm">
+    		<p>{{ "groupPage.invitedMail.sent"|trans({'%email%': userInvited|join(', ')}, 'rpe') }}</p>
+    	</div>
+    {% endif %}
+    
+    {% if userInvalid is defined and userInvalid|length %}
+    	<div class="invite-external-confirm">
+    		<p>{{ "groupPage.invalideEmail.sent"|trans({}, 'rpe') }} {{ userInvalid|join(', ') }}</p>
+    	</div>
+    {% endif %}
+{% endspaceless %}

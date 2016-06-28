@@ -1,0 +1,22 @@
+<div class="side-componant">
+    <div class="padding-wrapper">
+        <h3 class="componant-title">Groupe Principal</span></h3>
+        <div class="componant-wrapper">
+            <ul>
+                <li class="ressource-wrapper sous-groupe">
+                    <a class="ressource-wrapper-link" href="{{ path('group', {'id': group.parent.id}) }}">
+                        <div class="ressource-left">
+                            <div class="ressource-size-container"></div>
+                            <div class="ressource-content-container">
+                                {{ macros.show_group_avatar(group.parent, 'default', 93, 'ressource-image') }}
+                            </div>
+                        </div>
+                        <div class="ressource-right parent-group">
+                            <h3 class="ressource-title">{{ group.parent.name }}</h3>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

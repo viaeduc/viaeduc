@@ -1,0 +1,129 @@
+{% extends "pum://layout.html.twig" %}
+
+{% set page_title = 'Inscription' %}
+{% set page_name_analytics = 'register/step1' %}
+{% set noMobileMenu = 'true' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/sign_up_main.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.form-first.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+
+{% block content %}
+
+
+    {% include "pum://includes/common/minimal_header.html.twig" %}
+    <div class="wrapper">
+        <!-- ********************* -->
+        <!-- Here goes the content -->
+        <!-- ********************* -->
+        <section class="content full">
+            <section class="content-step">
+                <!-- Content step -->
+
+                <div class="main-information-img">
+                    <img src="{{ asset('bundles/rpepum/images/bg_ecran_professeurs.png') }}" alt="">
+                </div>
+
+                <div class="main-information">
+                    <!-- Bloc right informations-->
+                    <h2 class="main-white-title">Contactez-nous</h2>
+                    <!--White title-->
+                    <div class="box-orange">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias molestiae, laudantium, voluptatem pariatur vitae sed enim illum id eos, maxime sunt aspernatur dolorem impedit aperiam debitis assumenda praesentium ullam quis.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="section-form">
+                    <div class="form-wrapper">
+                        <p class="reserved">{{ 'register.signup_requirement'|trans({}, 'rpe')}}</p>
+                        <ul>
+                            <li class="filed-col extra-info">
+                                <ul>
+                                    <li class="extra-info">
+                                        <div class="form-left">
+                                            <label for="input-name">Nom</label>
+                                        </div>
+                                        <div class="form-right">
+                                            <input type="text" name="input-name" />
+                                        </div>
+                                    </li>
+                                    <li class="extra-info">
+                                        <div class="form-left">
+                                            <label for="input-first-name">Prénom</label>
+                                        </div>
+                                        <div class="form-right">
+                                            <input type="text" name="input-first-name" />
+                                        </div>
+                                    </li>
+                                    <li class="extra-info">
+                                        <div class="form-left">
+                                            <label for="input-first-mail">Adresse Mail</label>
+                                        </div>
+                                        <div class="form-right">
+                                            <input type="text" name="input-first-mail" />
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="filed-col extra-info">
+                                <ul>
+                                    <li class="extra-info">
+                                        <div class="form-left">
+                                            <label for="input-name">Sujet</label>
+                                        </div>
+                                        <div class="form-right">
+                                            <span class="select-box">
+                                                <select>
+                                                    <option>Sujet 1</option>
+                                                    <option>Sujet 2</option>
+                                                    <option>Sujet 3</option>
+                                                    <option>Sujet 4</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="extra-info">
+                                        <div class="form-left">
+                                            <label for="input-first-name">Message</label>
+                                        </div>
+                                        <div class="form-right">
+                                            <span class="select-box">
+                                                <textarea class="contact-textarea"></textarea>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="bottom-form">
+                        <li class="left">
+
+                        </li>
+                       <li>
+                            <button type="submit" id="Confirmer" name="Confirmer" class="confirm-btn orange">Confirmer</button>
+                        </li>
+                    </ul>
+            </section>
+        </section>
+    </div>
+    <footer>
+        <nav class="footer-nav">
+            <ul class="footer-list">
+                <li class="footer-item"><a href="#">A propos</a></li>
+                <li class="footer-item"><a href="#">Les partenaires</a></li>
+                <li class="footer-item"><a href="#">Plan du site</a></li>
+                <li class="footer-item"><a href="#">Mentions</a></li>
+                <li class="footer-item"><a class="" href="/page/cgu">{{ "footer.cgu"|trans({}, 'rpe') }}</a></li>
+                <li class="footer-item"><a class="" href="{{ path('charte') }}">{{ "footer.charte"|trans({}, 'rpe') }}</a></li>
+            </ul>
+        </nav>
+    </footer>
+{% endblock %}

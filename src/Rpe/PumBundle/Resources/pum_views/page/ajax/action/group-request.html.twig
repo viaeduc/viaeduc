@@ -1,0 +1,7 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% if group is defined and userInGroup is defined and user is defined %}
+        {% include 'pum://includes/common/componants/groups/buttons.html.twig' with {'group':group, 'userInGroup': userInGroup, 'style': style|default(null)} %}
+    {% endif %}
+{% endspaceless %}{% endblock %}

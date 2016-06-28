@@ -1,0 +1,49 @@
+{% if questionsFromAuthor is defined %}
+    {% set lastQuestionsList = questionsFromAuthor.getOtherQuestions(question.id, {'id': 'DESC'}, '3') %}
+    {% set lastQuestionsCount = lastQuestionsList.count %}
+    {% set lastQuestionsTitle = 'sidebar.author_questions' %}
+{% elseif group is defined %}
+    {% set lastQuestionsList = group.questions|slice(0,3) %}
+    {% set lastQuestionsCount = lastQuestionsList|length %}
+    {% set lastQuestionsTitle = 'sidebar.group_questions' %}
+{% else %}
+    {% set lastQuestionsCount = (lastQuestionsList|default({}))|length %}
+    {% set lastQuestionsTitle = 'sidebar.last_questions' %}
+{% endif %}
+
+{% if lastQuestionsList is defined and lastQuestionsCount > 0 %}
+<div class="side-componant">
+    <div class="padding-wrapper">
+        <h3 class="componant-title">{{ lastQuestionsTitle|trans({}, 'rpe') }}</h3>
+        {% for lastQuestionItem in lastQuestionsList %}
+            {{ (loop.first) ? '<ul>' }}
+
+            <li class="question-componant">
+                <div class="question-left">
+                    <a href="{{ path('question', {'id': lastQuestionItem.id}) }}">?</a>
+                </div><!--
+                --><div class="question-center">
+                    <a href="{{ path('question', {'id': lastQuestionItem.id}) }}" class="question-title">
+                        {{ lastQuestionItem.name }}
+                    </a>
+                </div><!--
+                --><div class="question-right">
+                    <a href="{{ path('question', {'id': lastQuestionItem.id}) }}" class="answer-link">
+                        <img src="{{ asset('bundles/rpepum/images/answer.png') }}" class="answer-image">
+                        <span class="answer-text"><span class="answer-number">{{ lastQuestionItem.answers.count }}</span> {{ "questions.answers"|transchoice(lastQuestionItem.answers.count, {}, 'rpe') }}</span>
+                    </a>
+                </div>
+            </li>
+            
+            {{ (loop.last) ? '</ul>' }}
+        {% endfor %}
+    </div>
+    {% if questionsFromAuthor is not defined %}
+        {% if group is defined %}
+            <a href="{{ path('questions_group', {'group_id': group.id}) }}" class="componant-link">{{ '> Voir toutes les questions réponses'|trans({}, 'rpe') }}</a>
+        {% else %}
+            <a href="{{ path('questions') }}" class="componant-link">{{ '> Voir toutes les questions réponses'|trans({}, 'rpe') }}</a>
+        {% endif %}
+    {% endif %}
+</div>
+{% endif %}

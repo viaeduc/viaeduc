@@ -1,0 +1,129 @@
+{% extends "pum://page/layout_simple_col.html.twig" %}
+
+{% set page_title = 'Relations' %}
+{% set page_name_analytics = 'user/relations' %}
+{% set nav_section = 'relation-menu' %}
+
+{# {% set tutorial_relation_enabled = true %} #}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/my-relationships.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.my-relationships.js') }}"></script>
+{% endblock %}
+
+{% spaceless %}
+
+{% block main_content %}
+    {% set mode = mode|default(constant('Rpe\\PumBundle\\Controller\\RelationController::LISTMODE_ALLRELATIONS')) %}
+
+    {% embed "pum://includes/common/componants/filter.twig" %}
+        {% block title %}
+            <h2 class="filter-title">{{ ("relations."~mode)|trans({}, 'rpe') }} {# <span>({{ user.acceptedFriends.count }})</span> #}</h2>
+        {% endblock %}
+
+        {% block filter %}
+
+            <div class="filter-right">
+                <form>
+                <ul class="filter-right-wrapper">
+                    {# <li class="filter-link">
+                        <select class="select-styled filtre">
+                            <option value="value1">{{ 'groups.most_viewed'|trans({}, 'rpe')}}</option>
+                            <option value="value2">{{ 'groups.less_viewed'|trans({}, 'rpe')}}</option>
+                            <option value="value4">{{ 'groups.most_members'|trans({}, 'rpe')}}</option>
+                            <option value="value5">{{ 'groups.less_members'|trans({}, 'rpe')}}</option>
+                            <option value="value6">{{ 'groups.public_group'|trans({}, 'rpe')}}</option>
+                            <option value="value6">{{ 'groups.private_group'|trans({}, 'rpe')}}</option>
+                        </select>
+                    </li> #}
+                    {# <li class="filter-link">
+                        <!-- web service scolom -->
+                        <select class="select-styled filtre">
+                            <option value="value1" data-href="1.html">Toutes les disciplines</option>
+                            <option value="value2" data-href="2.html">Français</option>
+                            <option value="value4" data-href="3.html">Mathématiques</option>
+                            <option value="value5" data-href="4.html">Philosophie</option>
+                            <option value="value6" data-href="5.html">Histoire</option>
+                            <option value="value6" data-href="6.html">Géographie</option>
+                            <option value="value6" data-href="7.html">Anglais</option>
+                            <option value="value6" data-href="8.html">Musique</option>
+                        </select>
+                    </li> #}
+                    {# <li class="filter-link">
+                        <!-- web service scolom -->
+                        <select class="select-styled filtre">
+                            <option value="value1" data-href="9.html">Tous niveaux confondus</option>
+                            <option value="value2" data-href="10.html">Seconde</option>
+                            <option value="value4" data-href="11.html">Première</option>
+                            <option value="value5" data-href="12.html">Troisième </option>
+                        </select>
+                    </li> #}
+                    {# <li class="filter-link">
+                        <label class="hidden" for="search">Recherche rapide ...</label>
+                        <input class="search" id="search" type="text" placeholder="Recherche rapide ..." name="">
+                    </li> #}
+                </ul>
+                </form>
+            </div>
+
+        {% endblock %}
+    {% endembed %}
+    <div class="relation-container">
+        <div id="relationslist" class="js-autoload" data-autoload="{{ path('ajax_relationslist', {'mode': mode}) }}" data-async="false">
+            {{ macros.loader() }}
+        </div>
+    </div>
+    <div class="relation-container" style="display:none">
+        {% set counter = 0 %}
+
+        {% for friend in user.acceptedFriends %}
+            {% if friend.friend is not null %}
+                {% set counter = counter+1 %}
+
+                {% if counter == 1 %}
+                    <ul data-href="{{ path('relation_detail') }}" class="user-row">
+                {% endif %}
+                        <li class="relation-box" data-id="{{ friend.id }}">
+                            {{ macros.show_user_avatar(friend.friend, 'relation', 120, 'generated-image lazyload', 120, 120, '', '', '', true) }}
+                            <span class="profil-name">{{ friend.friend.firstname ~ ' ' ~ friend.friend.lastname }}</span>
+                            {# {% if friend.friend.occupation is not null %}
+                                <span class="profil-role">{{ friend.friend.occupation.name }}</span>
+                            {% endif %} #}
+                        </li>
+                {% if counter is divisibleby(8) or loop.last == true %}
+                        <div class="relation-popin"></div>
+                    </ul>
+                    {% set counter = 0 %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block tutorial %}
+    {% if tutorial_relation_enabled is defined %}
+        <script>
+            {% spaceless %}
+                var tutorial_relation_enabled = '{{ tutorial_relation_enabled }}';
+            {% endspaceless %}
+        </script>
+        <div class="modal fade tutorial-modal menu-relation-tutorial-modal-1" id="menu-relation-tutorial-modal-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "relationMenuTutorial.title1"|trans({}, 'rpe') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ "relationMenuTutorial.text1"|trans({}, 'rpe') }}
+                </div>
+                <div class="modal-footer">
+                    <a role="button" data-dismiss="modal" class="action-btn light-blue tutorial-modal-next">{{ "tutorial.next"|trans({}, 'rpe') }}</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    {% endif %}
+{% endblock %}
+{% endspaceless %}

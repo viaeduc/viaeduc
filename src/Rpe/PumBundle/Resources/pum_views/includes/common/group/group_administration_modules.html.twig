@@ -1,0 +1,13 @@
+<div class="modules-wrapper">
+    <h3 class="modules-title">{{ "groupAdmin.gestion_modules"|trans({}, 'rpe') }}</h3>
+    <div class="modules-activated">{{ "groupAdmin.gestion_modules.actives"|trans({}, 'rpe') }}</div>
+    <div class="modules-not-activated">{{ "groupAdmin.gestion_modules.desactives"|trans({}, 'rpe') }}</div>
+
+    {% for index in 1..7 %}
+        {% set moduleInSlot = group.getModuleInSlot(index) %}
+
+        {% if moduleInSlot %}
+            {% include "pum://includes/common/group/modules/" ~ moduleInSlot ~ ".html.twig" with {'group': group} %}
+        {% endif %}
+    {% endfor %}
+</div>

@@ -1,0 +1,54 @@
+{% if editForm is defined and editForm %}
+    {% set myLayout = "pum://page/publish/publish.html.twig" %}
+{% else %}
+    {% set myLayout = "pum://empty_layout.html.twig" %}
+{% endif %}
+{% extends myLayout %}
+
+{% set page_title = 'Edition de widget' %}
+
+{% set groupModule = 'group-' ~ widget.type %}
+
+
+{% block main_content %}
+{% spaceless %}
+    <!-- Add group widget form -->
+    {{ macros.alertMessages() }}
+    {{ form_errors(widgetForm) }}
+    {{ form_start(widgetForm, { action: path(app.request.attributes.get('_route'), {'groupId': group.id, 'type': widget.type, 'widgetId': widget.id}), attr: { class: '' }} ) }}
+        {{ form_widget(widgetForm.type) }}
+        <ul class="ressource-edit-wrapper">
+            <li>
+                <span class="select-box">
+                    {{ form_widget(widgetForm.name, { attr:{ class: '', placeholder: ("groupPage.module."~groupModule~".name_placeholder")|trans({}, 'rpe') } }) }}
+                </span>
+            </li>
+            <li>
+                <span class="select-box">
+                    {{ form_widget(widgetForm.content, { attr:{ class: '', placeholder: ("groupPage.module."~groupModule~".url_placeholder")|trans({}, 'rpe') } }) }}
+                </span>
+            </li>
+        </ul>
+        {{ form_widget(widgetForm.valider, { attr:{ class: 'action-btn orange publish-btn' } }) }}
+        {{ form_row(widgetForm._token) }}
+    {{ form_end(widgetForm, { render_rest: false }) }}
+{% endspaceless %}
+{% endblock %}
+
+{% if editForm is defined and editForm %}
+    {% block sidebar %}
+    {% spaceless %}
+        <!-- Tips ! -->
+        <div class="post-ressource-tip">
+            <h3 class="tip-title">{{ 'tips.using'|trans({}, 'rpe') }}</h3>
+            <span class="tip-main-text">{{ ('groupPage.module.'~groupModule~'.tips.title')|trans({'%bold%': '<span class="bold">','%/bold%':'</span>'}, 'rpe')|raw }}</span></span>
+            <ul class="tip-list-wrapper">
+                {% set advices = ('groupPage.module.'~groupModule~'.tips.text')|trans({}, 'rpe')|split('|') %}
+                {% for advice in advices %}
+                    <li>{{ advice }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endspaceless %}
+    {% endblock %}
+{% endif %}

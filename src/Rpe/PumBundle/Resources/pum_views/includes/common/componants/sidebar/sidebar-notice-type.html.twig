@@ -1,0 +1,21 @@
+{% if notice.disciplines|length > 0 or notice.levels|length > 0 %}
+    <div class="side-componant grey">
+        <div class="padding-wrapper">
+            <h4 class="componant-title">{{ "sidebar.discipline"|trans({}, 'rpe') }}</h4>
+            <ul class="componant-wrapper">
+                {% for item in notice.disciplines %}
+                    <li class="resource-type">{{ item.name }}</li>
+                {% else %}
+                    <li class='resource-type'>Aucune disciplines</li>
+                {% endfor %}
+            </ul>
+            <ul class="componant-wrapper">
+                {% for item in notice.levels %}
+                    <li class="resource-type">{{ item.name|capitalize }}</li>
+                {% else %}
+                    <li class='resource-type'>Aucun niveaux</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

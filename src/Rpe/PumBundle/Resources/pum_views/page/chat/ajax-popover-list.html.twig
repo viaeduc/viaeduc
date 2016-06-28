@@ -1,0 +1,59 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}
+{% spaceless %}
+    {% for discussion in discussions %}
+        {% set recipients                = discussion.recipients(user) %}
+        {% set lastMessage               = discussion.lastMessage %}
+        {% set lastMessageFromRecipients = discussion.lastMessageFromRecipients(user) %}
+
+        {% if lastMessageFromRecipients is not null %}
+            {% set lastResponder = lastMessageFromRecipients.author %}
+        {% else %}
+            {% set lastResponder = recipients.first ? recipients.first.user : null %}
+        {% endif %}
+
+        {% set stacked = '' %}
+        {% if recipients.count > 1 %}
+            {% set stacked = 'stacked' %}
+        {% endif %}
+
+        {% if lastMessage.author == user %}
+            {% set discussion_status = 'answered' %}
+        {% elseif discussion.isReadDiscussionBy(user) %}
+            {% set discussion_status = 'not-read' %}
+        {% else %}
+            {% set discussion_status = '' %}
+        {% endif %}
+
+		{% if lastResponder %}
+        <li class="notif-item {{ discussion_status }}">
+            <a href="{{ path('discussion', {id: discussion.id}) }}">
+                {% if discussion_status == 'not-read' %}
+                    <div class="not-read-label">non lu</div>
+                {% endif %}
+                <div class="avatar {{ stacked }}">
+                    {{ macros.show_image(lastResponder.avatar, 40) }}
+                </div>
+                <div class="text">
+                    <div class="date">{{ discussion.updateDate|localizeddate('none', 'none', app.request.locale, app.session.get('user.timezone'), 'dd-MM-Y • HH:mm') }}</div>
+
+                    {% if recipients.count == 1 %}
+                        <span class="name">{{ lastResponder.firstname|title }}</span>
+                    {% else %}
+                        <span class="name">
+                            {{ macros.show_recipients(recipients) }}
+                        </span>
+                    {% endif %}
+
+                    <div class="message-extract">{{ lastMessage.content|truncate(30, true, '') }}</div>
+                    {# <a href="#" class="close">x</a> #}
+                </div>
+            </a>
+        </li>
+        {% endif %}
+    {% endfor %}
+    
+    {# <a class="to-inbox-link" href="{{ path('inbox') }}">{{ "menuMessages.all"|trans({}, 'rpe') }}</a> #}
+{% endspaceless %}
+{% endblock %}

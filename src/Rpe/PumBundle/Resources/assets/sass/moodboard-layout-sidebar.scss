@@ -1,0 +1,30 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "layout/_sidebar";
+
+// ------------
+// Specific CSS
+// ------------
+
+.sidebar,
+.content {
+    min-height: 500px;
+}
+
+.content {
+    background: $light-grey-2;
+}
+
+.sidebar {
+    background: $light-grey-1;
+}

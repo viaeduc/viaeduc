@@ -1,0 +1,9 @@
+{% spaceless %}
+    {% if link is not null and link.video %}
+        <div class="link_preview_video">
+            {{ link.videoCode|raw }}
+        </div>
+    {% else %}
+        Preview indisponible
+    {% endif %}
+{% endspaceless %}

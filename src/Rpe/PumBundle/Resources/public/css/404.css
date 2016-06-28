@@ -1,0 +1,28 @@
+/* function to convert px to rem */
+/* line 14, ../../assets/sass/404.scss */
+.footer-nav { margin: 0; }
+
+/* line 18, ../../assets/sass/404.scss */
+.content { position: relative; background: url("../images/404_bg.jpg") no-repeat center center; background-size: cover; }
+
+/* line 24, ../../assets/sass/404.scss */
+.canvas-draw { position: absolute; top: 0; left: 0; z-index: 15; display: block; }
+
+/* line 32, ../../assets/sass/404.scss */
+.canvas-content { position: absolute; bottom: 0%; left: 50%; margin-left: -350px; width: 700px; height: 540px; background: url("../images/404_lines.png") no-repeat 15% 0%; }
+/* line 42, ../../assets/sass/404.scss */
+.canvas-content .canvas-title, .canvas-content .canvas-small-title { color: white; font-family: "MissionScriptRegular", Arial, sans-serif; }
+/* line 47, ../../assets/sass/404.scss */
+.canvas-content .canvas-title { font-size: 200px; font-size: 12.5rem; position: absolute; top: 0; left: 23%; }
+/* line 54, ../../assets/sass/404.scss */
+.canvas-content .canvas-small-title { font-size: 50px; font-size: 3.125rem; position: absolute; top: 0; left: 5%; -webkit-transform: rotate(-20deg); -moz-transform: rotate(-20deg); -ms-transform: rotate(-20deg); -o-transform: rotate(-20deg); transform: rotate(-20deg); }
+/* line 62, ../../assets/sass/404.scss */
+.canvas-content .canvas-text { font-size: 14px; font-size: 0.875rem; position: absolute; bottom: 25%; left: 0%; width: 350px; color: white; text-align: right; font-weight: bold; font-family: Verdana, Arial, sans-serif; opacity: 0; transition: opacity 0.3s linear 0.5s; }
+/* line 78, ../../assets/sass/404.scss */
+.canvas-content .canvas-image { position: absolute; right: 0; bottom: 0; overflow: hidden; width: 100%; height: 405px; }
+/* line 87, ../../assets/sass/404.scss */
+.canvas-content .image-kid { position: absolute; right: 0; bottom: -405px; z-index: 17; transition: bottom 0.7s linear 1s; }
+/* line 95, ../../assets/sass/404.scss */
+.canvas-content .back-btn { font-size: 22px; font-size: 1.375rem; position: absolute; right: 28%; bottom: 12%; z-index: 16; margin: 0; padding: 0px 0px 0px 0px; width: 0px; line-height: 1.2em; opacity: 0; -webkit-transition: padding-left 0.4s linear, padding-right 0.4s linear, width 0.4s linear, opacity 0.4s linear; -webkit-transition-delay: 1.7s, 1.7s, 1.7s, 1.7s; -moz-transition: padding-left 0.4s linear 1.7s, padding-right 0.4s linear 1.7s, width 0.4s linear 1.7s, opacity 0.4s linear 1.7s; -o-transition: padding-left 0.4s linear 1.7s, padding-right 0.4s linear 1.7s, width 0.4s linear 1.7s, opacity 0.4s linear 1.7s; transition: padding-left 0.4s linear 1.7s, padding-right 0.4s linear 1.7s, width 0.4s linear 1.7s, opacity 0.4s linear 1.7s; transform-origin: 50% 100%; }
+/* line 113, ../../assets/sass/404.scss */
+.canvas-content .arrow { position: absolute; right: 75%; bottom: 2%; width: 20px; }

@@ -1,0 +1,35 @@
+{% spaceless %}
+    {% if link is not null %}
+        <div class="link_preview">
+            <div href="{{ link.url }}" class="shared-link">
+                {% if link.video == false %}
+                    <a target="_blank" href="{{ link.url }}">
+                        {% if link.preview is not null %}
+                            {% if link.preview.isImage %}
+                                <img src="{{ pum_media_url(link.preview, 150) }}" class="shared-link-image" />
+                            {% endif %}
+                        {% elseif link.firstImage is not null %}
+                            <img src="{{ link.firstImage }}" class="shared-link-image">
+                        {% endif %}
+                    </a>
+                {% else %}
+                    <a class="video-play" title="Video" data-target="#modal-report" data-toggle="modal" href="{{ path('link_preview_video', {id: link.id}) }}">
+                        {% if link.preview is not null %}
+                            {% if link.preview.isImage %}
+                                <img src="{{ pum_media_url(link.preview, 150) }}" class="shared-link-image" />
+                            {% endif %}
+                        {% elseif link.firstImage is not null %}
+                            <img src="{{ link.firstImage }}">
+                        {% endif %}
+                    </a>
+                {% endif %}
+                <!--
+                --><div class="shared-link-info">
+                    <h4 class="shared-link-title"><a target="_blank" href="{{ link.url }}">{{ link.title }}</a></h4>
+                    <span class="shared-link-link">{{ link.canonicalUrl }}</span>
+                    <span class="shared-link-text">{{ link.description }}</span>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endspaceless %}

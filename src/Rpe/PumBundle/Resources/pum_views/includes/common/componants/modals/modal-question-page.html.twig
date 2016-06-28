@@ -1,0 +1,74 @@
+<div class="modal fade modal-first" id="popin_question_post">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{ "modalQuestion.title"|trans({}, 'rpe') }}</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="form-wrapper">
+                    <li>
+                        <div class="form-left">
+                            <label>{{ "modalQuestion.resume"|trans({}, 'rpe') }}</label>
+                        </div><!--
+                        --><div class="form-right">
+                            <span class="text-box">
+                                <input type="text" name="questionName" placeholder="Pourquoi le ciel est bleu ?">
+                            </span>
+                            <span class="text-box">
+                                <textarea cols="72" id="profil" rows="12" name="questionText" placeholder="Explicitez et précisez votre question"></textarea>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-left">
+                            <label>{{ "modalQuestion.cat"|trans({}, 'rpe') }}</label>
+                        </div><!--
+                        --><div class="form-right">
+                            <span class="select-box first-select">
+                                <select class="required" name="selectInput">
+                                    <option selected="" value="default">Selectionner un element</option>
+                                    <option value="mustard">Mustard</option>
+                                    <option value="ketchup">Ketchup</option>
+                                    <option value="relish">Relish</option>
+                                  </select>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-left">
+                            <label>{{ "modalQuestion.keywords"|trans({}, 'rpe') }}</label>
+                        </div><!--
+                        --><div class="form-right">
+                           <span class="text-box">
+                                <input type="text" name="keywords" placeholder="Exemple: mot1, super mot2, encore un mot">
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-left">
+                            <label>{{ "modalQuestion.notification"|trans({}, 'rpe') }}</label>
+                        </div><!--
+                        --><div class="form-right">
+                           <span class="text-box">
+                                <input type="text" name="metion" placeholder="Ex: Grishka Bogdanov">
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-right">
+                           <span class="checkbox-buttons">
+                                <input name="checkInput" type="checkbox" value="check-one" id="check-one"/>
+                                <label for="check-one">{{ "modalQuestion.limit"|trans({}, 'rpe') }}</label>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <a role="button" class="action-btn light-grey small left">{{ "modalQuestion.delete"|trans({}, 'rpe') }}</a><!--
+                --><a role="button" class="action-btn orange small">{{ "modalQuestion.ask"|trans({}, 'rpe') }}</a>
+            </div>
+        </div>
+    </div>
+</div>

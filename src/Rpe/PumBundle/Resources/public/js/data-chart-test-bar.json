@@ -1,0 +1,10 @@
+{
+    "labels" : ["January","February","March","April","May","June","July"],
+    "datasets" : [
+        {
+            "fillColor" : "#1995aa",
+            "strokeColor" : "#1995aa",
+            "data" : [28,48,40,19,96,27,100]
+        }
+    ]
+}

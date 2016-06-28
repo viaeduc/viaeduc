@@ -1,0 +1,49 @@
+<li class="module-card">
+    <div class="module-card-header">
+        {% set transkey = "dashboard." ~ widget.type %}
+        <h3 class="module-card-title">{{ transkey|trans({}, 'rpe') }}</h3>
+    </div>
+    <div class="module-card-content">
+        {% set items = user.favoriteDiscussionsBy({}, {date: 'desc'}, 4) %}
+        {% if items|length %}
+            <ul class="module-card-data-wrapper smaller">
+                {% for bookmark in items %}
+                    {% set post = bookmark.discussion %}
+                    <li class="module-card-data">
+                        {% if post.resource %}
+                            <a class="module-card-data-image-link" href="{{ path('publication', {'id': post.id}) }}">
+                                {{ macros.show_image(post.file, 85, 'module-card-data-image') }}
+                            </a>
+                        {% else %}
+                            {% if post.publishedGroup %}
+                                <a class="module-card-data-image-link" href="{{ path('group', {'id': post.publishedGroup.id}) }}">
+                                    {{ macros.show_image(post.publishedGroup.picture, 85, 'module-card-data-image') }}
+                                </a>
+                            {% endif %}
+                            
+                            {% if post.isTypeWall and post.targetUser %}
+                                <a class="module-card-data-image-link" href="{{ path('profil', {'id': hashEncode(post.targetUser.id)}) }}">
+                                    {{ macros.show_image(post.targetUser.avatar, 85, 'module-card-data-image') }}
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                        <div class="module-card-inner-data">
+                            <h4 class="module-card-title">
+                                <a href="{{ path('publication', {'id': post.id}) }}">{{ bookmark.title|truncate(80, true) }}</a>
+                            </h4>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <span class="module-card-empty">
+                {% set transkey = "dashboard." ~ widget.type ~ ".empty" %}{{ transkey|trans({}, 'rpe') }}
+            </span>
+        {% endif %}
+    </div>
+    <div class="module-card-footer">
+        {% if items|length %}
+			<a href="{{ path('publications', {mode: 'my_discussions'}) }}" class="module-card-link">{{ "dashboard.discussion_favorite.link"|trans({}, 'rpe') }}</a>
+        {% endif %}
+    </div>
+</li>

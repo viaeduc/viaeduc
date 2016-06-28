@@ -1,0 +1,277 @@
+{% extends "pum://page/layout_double_col.html.twig" %}
+
+{% set page_title = (post.name is defined and post.name is not empty) ? post.name|pum_ucfirst : 'Ressource' %}
+{% set page_name_analytics = 'resource/view' %}
+{% set nav_section = 'profile-menu' %}
+
+{% set global_wrapper_class = 'bg-white' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/rpepum/css/new_ressources.css') }}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header_javascript %}
+    <script src="{{ asset('bundles/rpepum/js/rpe.side-componants.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/external/draggable.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.publications.js') }}"></script>
+    <script src="{{ asset('bundles/rpepum/js/rpe.ressource.js') }}"></script>
+{% endblock %}
+
+{% block modals %}
+    {% include 'pum://includes/common/componants/modals/modal-confirm.html.twig' %}
+{% endblock %}
+
+{% if post is not null %}
+    {% if post.publishedGroup is not null %}
+        {% set userIsInGroup = user.isInGroup(post.publishedGroup) %}
+        {% set groupIsPublic = post.publishedGroup.public %}
+    {% elseif post.publishedBlog is not null %}
+        {% if post.publishedBlog.isPrivate %}
+            {% set userIsInBlog = user.isInBlog(post.publishedBlog) %}
+        {% else %}
+            {% set authorIsFriend = user.isFriend(post.author) %}
+        {% endif %}
+    {% else %}
+        {% set authorIsFriend = user.isFriend(post.author) %}
+        {# friendsCoAuthors is defined in action from controller #}
+    {% endif %}
+{% endif %}
+
+{% if post is not null 
+    and (post.author == user or userIsInGroup|default(false) or userIsInBlog|default(false) 
+        or authorIsFriend|default(false) or friendsCoAuthors|default(false) 
+        or groupIsPublic|default(false) or (post.isTypeWall and post.author and post.author.isPublic)) %}
+    {% set hasRight = true %}
+{% else %}
+    {% set hasRight = false %}
+{% endif %}
+
+{% spaceless %}
+    {% block breadcrumb %}
+        {% if post is not null %}
+        	{% embed "pum://includes/common/componants/breadcrumb.html.twig" %}
+                {% block prev_page %}
+                    {% if post.publishedGroup is not null %}
+                        <li class="item-index">
+                            {{ 'Groupe : %name%'|trans({'%name%': '<a href="' ~ path('group', {'id': post.publishedGroup.id}) ~ '">' ~ post.publishedGroup.name|e ~ '</a>'}, 'rpe')|truncate(100, true)|raw }}
+                        </li>
+                    {% elseif post.publishedBlog is not null %}
+                        <li class="item-index">
+                            {{ 'Blog : %name%'|trans({'%name%': '<a href="' ~ path('blog', {'id': post.publishedBlog.id}) ~ '">' ~ post.publishedBlog.name|e ~ '</a>'}, 'rpe')|truncate(100, true)|raw }}
+                        </li>
+                    {% elseif post.publishedEditor is not null %}
+                        <li class="item-index">
+                            {{ 'Page : %name%'|trans({'%name%': '<a href="' ~ path('editor', {'id': post.publishedEditor.id}) ~ '">' ~ post.publishedEditor.name|e ~ '</a>'}, 'rpe')|truncate(100, true)|raw }}
+                        </li>
+                    {% endif %}
+                {% endblock %}
+        		{% block this_page %}
+        	    	{{ post.name|pum_ucfirst|truncate(100, true) }}
+        	    {% endblock %}
+        	{% endembed %}
+        {% endif %}
+    {% endblock %}
+
+    {% block sidebar %}
+        {% if post is not null %}
+            {% if post.publishedGroup is not null  %}
+                {# This button goes back to the group page, or profil page, depending on where the user comes from #}
+                {% include "pum://includes/common/componants/sidebar/sidebar-resource-link.html.twig" with {'group': post.publishedGroup} %}
+            {% elseif post.publishedEditor is not null  %}
+                {# This button goes back to the group page, or profil page, depending on where the user comes from #}
+                {% include "pum://includes/common/componants/sidebar/sidebar-resource-link.html.twig" with {'editor': post.publishedEditor} %}
+            {% endif %}
+            {% include "pum://includes/common/componants/sidebar/sidebar-resource-description.html.twig" with {'hasRight': hasRight} %}
+            {% include "pum://includes/common/componants/sidebar/sidebar-author-resource.html.twig" %}
+            {% include "pum://includes/common/componants/sidebar/sidebar-resource-type.html.twig" %}
+            {# {% include "pum://includes/common/componants/sidebar/sidebar-resource-list.html.twig" %} #}
+        {% endif %}
+        <!-- sources -->
+    {% endblock %}
+
+    {% block main_content %}
+        {{ macros.modal('report') }}
+        {{ macros.modal('share') }}
+        
+        {% if post.resource != true %}
+            {{ macros.modal('fdiscussion') }}
+        {% endif %}
+
+        {% if hasRight == true %}
+        	{% set favDiscussion = pum_repository('social_favorite_discussion').getFavorite(user, post) %}
+            <div class="ressource-header-wrapper clearfix">
+                <h3 class="ressource-title pull-left">
+                	{% if post.name %}
+                		{{ post.name }}
+                	{% else %}
+                		{% if favDiscussion %}
+                			{{ favDiscussion.title }}	
+                		{% endif %}
+                	{% endif %}
+				</h3>
+                {% set post_is_collaborative = post.isCollaborative() %}
+                {% if post.author == user or post.isCoAuthor(user) or post_is_collaborative %}
+                    {# Publish button #}
+                    {% if post.status == 'DRAFTING' and (post.author == user or not post_is_collaborative) %}
+                        <a href="{{ path('publication_publish', {'id': post.id}) }}" class="action-link publish-link icon-publish pull-right">{{ 'Publier'|trans({}, 'rpe') }}</a>
+                    {% endif %}
+                    {# Delete button #}
+                    {% if post.author == user or not post_is_collaborative %}
+                        {% set redirect_link =  post_is_collaborative ? path('group', {'id': post.publishedGroup.id }) : path('home') %}
+                        <a href="#" data-delete-link="{{ path('delete_post', {'id': post.id}) }}" data-confirm="{{ 'common.action.delete.resource_confirm'|trans({}, 'rpe')|e('html') }}" data-target="{{ redirect_link }}" class="action-link icon-trash pull-right js-loadmore js-confirm-modal js-redirect">{{ 'common.action.delete.post'|trans({}, 'rpe') }}</a>
+                    {% endif %}
+                    {# Edit button #}
+                    {% if post.author == user or post.isCoAuthor(user) or (post_is_collaborative and not post.padIsClosed()) %}
+                        <a href="{{ path('publication_edit', {'id': post.id}) }}" class="action-link icon-cog pull-right">{{ 'common.action.edit.post'|trans({}, 'rpe') }}</a>
+                    {% endif %}
+                {% endif %}
+                
+                {% if post.resource != true %}
+        			{% include 'pum://page/user/ajax-user_fdiscussion_button.html.twig' with {
+            		    'user' : user,
+            		    'post' : pum_repository('post').find(post.id),
+            		    'button_class' : "action-link pull-right"
+                    } %}
+        		{% endif %}
+            </div>
+
+            <!-- Here goes the user WYSIWYG code -->
+            <div class="ressource-content">
+                {{ post.content|raw }}
+            </div>
+
+            {% for media in post.medias %}
+                {% if loop.first %}
+                    <div class="ressource-attached-files">
+                        <div class="attached-files-title-wrapper">
+                            <h4 class="attached-title">{{ "ressources.joined"|trans({}, 'rpe') }}</h4>
+                        </div>
+                        <ul class="uploaded-files-wrapper">
+                {% endif %}
+                    <li class="uploaded-file">
+                        {% set ext = media.media.extension|lower %}
+                        <a href="{{ macros.downloadFile(media.id, 'media', media.media.token) }}" target="_blank" class="attached-files-image-link">
+                            {% if media.media.isImage %}
+                                {{ macros.show_image(media.media, 40, 40) }}
+                            {% else %}
+                                <span class="label label-default">{{ ext|upper }}</span>
+                            {% endif %}
+                            {{ (media.name is not null) ? media.name : media.media.name }}
+                        </a>
+                        {% if  "video" in media.media.getMime %}
+                            <div class="videocontent">
+                                <video class="video-js vjs-default-skin" height="auto" width="auto" data-setup='{ "controls": true, "autoplay": false, "preload": "auto" }'>
+                                    <source src="{{ media.media.mediaUrl(storage) }}" type='video/mp4' />
+                                </video>
+                            </div>
+                        {% endif %}
+                    </li>
+                {% if loop.last %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            {# no displaying of the illustration
+            {% if post.file  %}
+                <div class="ressource-attached-files">
+                    <div class="attached-files-title-wrapper">
+                        <h4 class="attached-title">{{ "ressources.joined"|trans({}, 'rpe') }}</h4>
+                    </div>
+                    <ul class="uploaded-files-wrapper">
+                        <li class="uploaded-file">
+                            {% set ext = post.file.extension|lower %}
+                            <a href="{{ macros.downloadFile(post.id, 'post', post.file.token) }}" target="_blank" class="attached-files-image-link">
+                                {% if post.file.isImage %}
+                                    {{ macros.show_image(post.file, 40, 40) }}
+                                {% else %}
+                                    <span class="label label-default">{{ ext|upper }}</span>
+                                {% endif %}
+                                {{ post.file.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %} #}
+            <!-- Attached files -->
+            {# <div class="attached-files">
+                        <h4 class="attached-title">{{ "ressources.joined"|trans({}, 'rpe') }}</h4>
+                        <ul>
+                    <li class="uploaded-file"><a href="#"><img src="{{ asset('bundles/rpepum/images/tmp/a.jpg') }}">Pompon.jpg</a></li>
+                    <li class="uploaded-file"><a href="#"><img src="{{ asset('bundles/rpepum/images/tmp/a.jpg') }}">Pompon.jpg</a></li>
+                </ul>
+            </div> #}
+
+            <!-- details -->
+            <div class="ressource-details">
+                <span class="last-edit"></span>
+
+                {# <a href="#" class="signal-ressource icon-minus-circled">Signaler un abus</a> #}
+            </div>
+            
+            {% if post.isVisible(false) == true %}
+                <div class="timeline-content-links">
+                    {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+                        'type': 'post',
+                        'object': post,
+                        'style': 'link'
+                    } %}
+
+                    <a href="#js-c-post-{{ post.id }}" class="icon-comment" title="{{ "card_recommend_title"|trans({}, 'rpe') }}" data-target="#js-c-post-{{ post.id }}">{{ 'Commenter (%count%)'|transchoice(post.comments.count, {'%count%': post.comments.count}, 'rpe') }}</a>
+
+                    {% set group = null %}
+                    {% if post.publishedGroup is not null %}
+                        {% set group = pum_entity('group', {id: post.publishedGroup.id}) %}
+                    {% endif %}
+                    {% if post.publishedGroup is null or (post.publishedGroup is not null and post.publishedGroup.isSecret == false) %}
+                        <a href="{{ path('publication_share', {'id': post.id}) }}" class="icon-share" data-toggle="modal" data-target="#modal-share">{{ 'ressources.share'|trans({}, 'rpe') }} (<span id="js-s-c-{{ post.id }}">{{ post.shareCount }}</span>)</a>
+                    {% endif %}
+                    
+                    {% if post.resource %}
+                        {% include 'pum://includes/common/componants/bookmark/buttons.html.twig' with {
+                            'type': 'post',
+                            'object': post,
+                            'style': 'link'
+                        } %}
+                    {% endif %}
+
+                    {# Delete #}
+                    {% if user == post.author or user == post.targetUser %}
+                        <a href="#" data-delete-link="{{ path('delete_post', {'id': post.id}) }}" class="icon-trash js-loadmore js-confirm-modal js-redirect" data-confirm="{{ 'common.action.delete.resource_confirm'|trans({}, 'rpe')|e('html') }}" data-target="{{ path('home') }}">{{ 'common.action.delete.post'|trans({}, 'rpe') }}</a>
+                    {% endif %}
+                    <a class="post-time timeago" title="{{ post.updateDate|date('c') }}"></a>
+                </div>
+
+                <!-- Menu -->
+                <div class="publication-box">
+                    <!--MENU -->
+                    <div id="to-timeline-comments" class="timeline-comments">
+                        {% for comment in post.mainComments %}
+                            {% include "pum://includes/common/componants/publications/comment.html.twig" %}
+                        {% endfor %}
+                        <div id="js-c-post-{{ post.id }}" class="timeline-post-comment js-autoload" data-autoload="{{ path('create_form_comment', {'post':post.id}) }}"></div>
+                    </div>
+                </div>
+        {% endif %}
+        {% elseif post is null %}
+            <p>{{ 'ressources.inexistant'|trans({}, 'rpe') }}</p>
+        {% else %}
+            {% if post.publishedGroup is not null %}
+                <div class="private-ressource-wrapper">
+                    <div class="private-ressource-left">
+                        <a href="{{ path('group', {'id': post.publishedGroup.id}) }}"><img src="{{ asset('bundles/rpepum/images/tmp/private-group.jpg') }}" class="private-ressource-image" /></a>
+                    </div>
+                    <div class="private-ressource-right">
+                        <h3 class="private-ressource-title">{{ 'ressources.private'|trans({}, 'rpe') }}</h3>
+                        <span class="private-ressource-text">{{ 'ressources.private.publishedgroup'|trans({}, 'rpe') }} "{{ post.publishedGroup.name|e }}".</span>
+                        <span class="private-ressource-text">{{ 'ressources.private.howtoaccess'|trans({}, 'rpe') }}</span>
+                        <a href="{{ path('group', {'id': post.publishedGroup.id}) }}" class="action-btn light-blue private-ressource-btn">{{ 'ressources.private.askinvitation'|trans({}, 'rpe') }}</a>
+                    </div>
+                </div>
+{#                 <p>{{ 'Cette ressource appartient à un groupe privé, pour y accéder vous devez vous inscrire au groupe suivant : %name%'|trans({'%name%': '<a href="' ~ path('group', {'id': post.publishedGroup.id}) ~ '">' ~ post.publishedGroup.name|e ~ '</a>'}, 'rpe')|raw }}</p> #}
+            {% else %}
+                <p>{{ 'ressources.inaccessible'|trans({}, 'rpe') }}</p>
+            {% endif %}
+        {% endif %}
+    {% endblock %}
+{% endspaceless %}

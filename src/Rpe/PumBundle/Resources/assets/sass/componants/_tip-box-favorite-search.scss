@@ -1,0 +1,19 @@
+.tip-box {
+    width: 100%;
+    padding: 10px;
+    background: $background-blue-1;
+    text-align: center;
+    
+    .tip-box-title{
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        @include fontSize(32);
+        font-family: $MissionScript;
+        color: $white-font;
+        margin:0 0 5px 0;
+    }
+    img {
+        width: 100%;
+    }
+}

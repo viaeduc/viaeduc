@@ -1,0 +1,168 @@
+// --------------
+// Forced imports
+// --------------
+
+@import "compass/css3";
+@import "globals/_vars";
+@import "globals/_mixin";
+
+// ----------------
+// Specific imports
+// ----------------
+
+@import "globals/_animations";
+@import "componants/_cards";
+@import "globals/_animations";
+@import "componants/_filter";
+// @import "layout/_mobile_general";
+
+
+// ------------
+// Specific CSS
+// ------------
+
+.filter-link {
+    [class*="-btn"] {
+        float : right;
+    }
+
+    .input-append {
+        display : block;
+        float   : left;
+        width   : 43%;
+        height  : 30px;
+        margin  : 0 10px 0 0;
+
+        .add-on {
+            height      : 30px;
+            width       : 30px;
+            line-height : 15px;
+        }
+    }
+}
+
+.filter .bootstrap-select:not([class*="span"]) {
+    margin : 0 10px 0 0;
+}
+
+.stat-wrapper {
+    @include fontSize(14);
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+    font-family    : $Verdana;
+    color          : $white;
+
+    .filter {
+        border : 0px solid transparent;
+    }
+}
+
+.stat-inner {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 33.3333333333%;
+    padding        : 20px;
+}
+
+.stat-title-wrapper,
+.stat-data-wrapper {
+    display        : inline-block;
+    vertical-align : top;
+    width          : 100%;
+}
+
+.stat-data-wrapper {
+    margin : 0 0 5px 0;
+}
+
+.stat-title-wrapper {
+    height        : 35px;
+    line-height   : 35px;
+    padding       : 0 0 5px 0;
+    margin        : 0 0 10px 0;
+    border-bottom : solid 1px $light-grey-2;
+
+    .stat-title,
+    .bootstrap-select.btn-group {
+        display        : inline-block;
+        vertical-align : middle;
+        margin         : 0;
+    }
+
+    .stat-title {
+        float : left;
+    }
+
+    .btn-default {
+        background : transparent;
+        border     : 0px;
+        color      : $white;
+    }
+
+    .bootstrap-select .btn:focus {
+        outline            : 0px transparent !important;
+        color              : $white;
+        background         : transparent;
+    }
+
+    .btn-group.open .dropdown-toggle {
+        -webkit-box-shadow : 0px transparent;
+        box-shadow         : 0px transparent;
+    }
+
+    .dropdown-menu {
+        background : $background-blue-1;
+    }
+
+    .dropdown-menu > li > a {
+        color : $white;
+
+        &:hover {
+            background : transparent;
+        }
+    }
+
+    .bootstrap-select.btn-group .btn .caret {
+        border-top-color : $white;
+    }
+
+    .bootstrap-select.btn-group .btn .filter-option {
+        text-align : right;
+    }
+
+    .bootstrap-select.btn-group {
+        width : 110px;
+        float : right;
+    }
+
+}
+
+.stat-title {
+    @include fontSize(26);
+    margin      : 0;
+    font-family : $MissionScript;
+}
+
+.stat-icon,
+.stat-number,
+.stat-text {
+    display        : inline-block;
+    vertical-align : middle;
+}
+
+.stat-icon,
+.stat-number {
+    margin : 0 10px 0 0;
+}
+
+.stat-icon {
+    @include fontSize(26);
+    line-height : 54px;
+    color       : $orange-1;
+    text-align  : center;
+}
+
+.stat-number {
+    font-weight : bold;
+}

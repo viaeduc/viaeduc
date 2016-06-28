@@ -1,0 +1,112 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% set folder_id = (null != folder) ? folder.id : null %}
+    {% set readonly = app.request.get('readonly', false) %}
+    {% set ckeditor = app.request.get('ckeditor', false) %}
+
+    <ul class="library-list" id="js-mediainfolder">
+    {% if medias.count == 0 %}
+        <li class="library-empty">
+            <p>Pour le moment, vous n'avez pas de documents.</p>
+            <p>Cliquez ici pour ajouter un document</p>
+            <a href="#" class="action-btn orange icon-plus3 library-add  file-btn js-loadmore js-infinite js-load-inner start-upload" data-href="{{ path('create_form_library_media', {'folder_id': folder_id}) }}" data-loadtarget=".library-right">Ajouter</a>
+            <p>Votre espace de stockage est limité à 1 Go. La taille unitaire de chaque fichier est limitée à xx Mo.</p>
+            <p>Tous les formats de fichiers courants sont acceptés : .doc, .xls, .odt, .jpg, .png, .zip, etc.</p>
+        </li>
+    {% endif %}
+    {% for media in medias %}
+        {% set mediaName = media.name %}
+        {% if mediaName is empty and media.media is not null %}
+            {% set mediaName = media.media.name %}
+        {% endif %}
+        <li id="js-media_{{ media.id }}" data-dropurl="{{ path('ajax_move_media_to_folder', {'media_id': media.id}) }}" data-mediaid="{{ media.id }}">
+            <div class="library-content">
+                {% if readonly != true %}
+                    <div class="move"></div>
+                {% endif %}
+                <div class="picture">
+                    <div class="img">
+                        {% if media.media is not null and media.media.isImage %}
+                            <img alt="{{ mediaName }}" src="{{ pum_media_url(media.media, 416) }}" />
+                        {% else %}
+                            <i class="glyphicon icon-text"></i>
+                        {% endif %}
+                        <div class="ext">{% if media.media is not null %}{{ media.media.extension }}{% endif %}</div>
+                    </div>
+                </div>
+                <div class="text">
+                    <div class="name">{{ mediaName|truncate(30, true, '...') }}</div>
+                    <div class="comment">{{ media.description| truncate(30, true, '...') }}</div>
+                    {# form #}
+                    {# <form class="edit-input"> #}
+                        {# {{ macros.loader() }} #}
+                        {# <input type="text" placeholder="Photo de truc" class="" name="name" />
+                        <input type="text" placeholder="Une superbe photo à la plage de truc" class="" name="comment" />
+                        <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" > #}
+                    {#</form>#}
+
+                </div>
+
+                {# Directory #}
+
+                {% if readonly != true %}
+                <div class="edit-delete">
+                    {% if media.media is not null %}
+                        <a href="{{ macros.downloadFile(media.id, 'media', media.media.token) }}" target="_blank" class="download-doc-link square-btn light-blue  small icon-arrow-down"></a>
+                    {% endif %}
+                    <span class="edit square-btn light-blue icon-pencil small js-loadmore js-infinite js-load-inner" data-href="{{ path('create_form_library_media', {'media_id': media.id, 'folder_id': folder_id }) }}" data-loadtarget=".library-right"></span>
+                    {% set mediaPostList = '' %}
+                    {% if media.posts.count > 0 %}
+                        {% for post in media.posts %}
+                            {% set mediaPostList = mediaPostList ~ '\n-' ~ post.name ~ ((loop.last == false) ? ', ') %}
+                        {% endfor %}
+                    {% endif %}
+                    <span class="delete square-btn light-blue icon-cross small js-loadmore js-confirm-modal js-remove" data-href="{{ path('delete_media', {'id': media.id}) }}" data-delete-link="{{ path('delete_media', {'id': media.id}) }}" data-remove-div="#js-media_{{ media.id }}" data-confirm="{{ 'library.media.action.confirm_delete'|transchoice(media.posts.count, {'%posts%': mediaPostList}, 'rpe') }}"></span>
+                </div>
+                {% elseif readonly == true and ckeditor == false %}
+                    <a class="action-btn light-blue small js-select-media" data-media_id="{{ media.id }}" data-media_name="{{ mediaName }}" data-media_library_text="{{ 'post.library_from'|trans({}, 'rpe') }}">{{ 'modalLibrary.media.select'|trans({}, 'rpe') }}</a>
+                {% elseif readonly == true and ckeditor == true %}
+                    {% if media.media is not null %}
+                        <a class="action-btn light-blue small js-ckeditor-callfunction" data-ckeditor-fileurl="{{ pum_media_url(media.media, 416) }}">{{ 'modalLibrary.media.insert'|trans({}, 'rpe') }}</a>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+    {# <li id="media_7452"> <!-- Unique ID needed for draga and drop -->
+        <div class="library-content">
+            <div class="move"></div>
+            <div class="picture">
+                <div class="img">
+                    <div class="ext">.JPG</div>
+                    <img alt="" src="{{ asset('bundles/rpepum/images/tmp/a.jpg') }}" />
+                </div>
+            </div>
+            <div class="text">
+                <div class="name">Photo de truc</div>
+                <div class="comment">Une superbe photo à la plage de truc</div>
+                <form class="edit-input">
+                    <input type="text" placeholder="Photo de truc" class="" name="name" />
+                    <input type="text" placeholder="Une superbe photo à la plage de truc" class="" name="comment" />
+                    <input type="submit" name="submit" class="action-btn light-blue btn-submit" value="ok" >
+                </form>
+            </div>
+            <div class="directory">/Collège Saint Bernard</div>
+            <div class="edit-delete">
+                <span class="edit square-btn light-blue icon-pencil small"></span>
+                <span class="delete square-btn orange icon-cross small"></span>
+            </div>
+        </div>
+    </li> #}
+    <script type="text/javascript">
+        {% if null != folder %}
+            {% set media_form_params = {'folder_id': folder.id} %}
+        {% endif %}
+
+        $('#js-addmedia').attr('data-href', '{{ path('create_form_library_media', media_form_params|default({})) }}');
+    </script>
+{% endspaceless %}
+{% endblock %}

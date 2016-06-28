@@ -1,0 +1,12 @@
+{
+    "labels" : ["January","February","March","April","May","June","July"],
+    "datasets" : [
+        {
+            "fillColor" : "rgba(25,149,170,0.6)",
+            "strokeColor" : "#1995aa",
+            "pointColor" : "#1995aa",
+            "pointStrokeColor" : "#1995aa",
+            "data" : [28,48,40,19,96,27,100]
+        }
+    ]
+}

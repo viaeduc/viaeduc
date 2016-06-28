@@ -1,0 +1,41 @@
+{% extends "pum://page/layout.html.twig" %}
+
+{% block content %}
+    {% spaceless %}
+    <div class="wrapper">
+        <ul class="search-autocomplete-wrapper">
+            <li class="search-autocomplete-element">
+                <div class="search-autocomplete-left">
+                    <a href="#" class="search-autocomplete-image-link">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" class="search-autocomplete-image">
+                    </a>
+                </div>
+                <div class="search-autocomplete-right">
+                    <a href="#" class="search-autocomplete-title">Title text, question, ressource, name, etc</a>
+                    <a href="#" class="search-autocomplete-extra">Used if needed, number of members in groupes, number of friends, etc</a>
+                </div>
+                <div class="search-autocomplete-last">
+                    <a href="#" class="icon-plus3 search-autocomplete-btn"></a>
+                </div>
+            </li>
+            <li class="search-autocomplete-element">
+                <div class="search-autocomplete-left">
+                    <a href="#" class="search-autocomplete-image-link">
+                        <img src="{{ asset('bundles/rpepum/images/tmp/img-jean.png') }}" class="search-autocomplete-image">
+                    </a>
+                </div>
+                <div class="search-autocomplete-right">
+                    <a href="#" class="search-autocomplete-title">Title text, question, ressource, name, etc</a>
+                    <a href="#" class="search-autocomplete-extra">Used if needed, number of members in groupes, number of friends, etc</a>
+                </div>
+                <div class="search-autocomplete-last">
+                    <a href="#" class="icon-plus3 search-autocomplete-btn"></a>
+                </div>
+            </li>
+            <li class="search-autocomplete-element">
+                <a href="#" class="all-results">Voir les 255 résultats</a>
+            </li>
+        </ul>
+    </div>
+    {% endspaceless %}
+{% endblock %}

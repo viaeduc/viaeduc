@@ -1,0 +1,11 @@
+{% extends "pum://empty_layout.html.twig" %}
+
+{% block main_content %}{% spaceless %}
+    {% if object is defined and user is defined %}
+        {% include 'pum://includes/common/componants/likes/buttons.html.twig' with {
+        	'type': type|default(app.request.get('type')),
+            'object': object,
+            'style': style|default(app.request.get('style'))
+        } %}
+    {% endif %}
+{% endspaceless %}{% endblock %}

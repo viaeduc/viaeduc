@@ -1,0 +1,221 @@
+{% use "form_div_layout.html.twig" %}
+
+{# Widgets #}
+{% block submit_widget %}
+    {% spaceless %}
+        {% if attr.class is defined %}
+            {% set class = attr.class %}
+        {% else %}
+            {% set class = 'action-btn light-blue' %}
+        {% endif %}
+        {% set attr = attr|merge({class: class}) %}
+        {{ parent() }}{{ help|default('') }}
+    {% endspaceless %}
+{% endblock submit_widget %}
+
+{% block rpepum_object_entity_row %}
+{% spaceless %}
+    {% set validation  = validation|default('') %}
+    {% set errorMessage = errorMessage|default('') %}
+    {% set error_block = error_block|default(false) %}
+    {% set error_block_class = error_block_class|default('') %}
+    {% set required = required|default('') %}
+    {% set empty_value = empty_value|default('select.default.empty_value'|trans({}, 'rpe')) %}
+    {% set ajax = ajax|default(false) %}
+    {% set row_li_class = row_li_class|default('') %}
+    {# {% set span_second_widget_class = span_second_widget_class|default('first-tag-list tag-list') %} #}
+    {% set span_widget_class = 'select-box tag-box ' ~ span_widget_class|default('') %}
+    {% set uniqid_prefix = (form.parent.vars.id|default('')|replace({'-':'_'}) ~ form.parent.vars.attr.class|default('')|replace({'-':'_'}) ~ '_pajaxobj_' ~ name)|lower %}
+
+    {% if top_margin is defined and top_margin %}
+        {% set top_margin = 'top margin' %}
+    {% else %}
+        {% set top_margin = '' %}
+    {% endif %}
+
+    {% if force_ajax_url is defined %}
+        {% set ajax     = true %}
+    {% endif %}
+
+    {% if info_list_id is defined and info_list_id != '' %}
+        {% set row_li_class = row_li_class ~ ' info-bubble' %}
+    {% endif %}
+    <li class="{{ row_li_class }}">
+        <div class="form-left {{ top_margin }}">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right">
+            {% if ajax %}
+                {% if force_ajax_url is defined %}
+                    {% set ajax_url = force_ajax_url %}
+                {% else %}
+                    {% set ajax_url = ajax_url|default('') ~ '?_pum_list=' ~ ajax_id %}
+                {% endif %}
+                <span class="{{ span_widget_class }}">
+                    {% set store_name = full_name %}
+                    {% set attr = attr|merge({'data-ajax-url': ajax_url, 'data-ajax-target':'#' ~ uniqid_prefix, 'data-ajax-target-list': '#' ~ uniqid_prefix ~ '_second', 'data-storename': store_name}) %}
+                    {% set full_name  = '' %}
+
+                    <input type="text" {{ block('widget_attributes') }} />
+                    <span id="{{ uniqid_prefix }}">
+
+
+                        {% if custom_choices is defined %}
+                            {% for item in value %}
+                                <input class="item" item-value="{{ custom_choices[item] }}" item-id="{{ item }}" type="hidden" name="{{ store_name }}" value="{{ item }}" />
+                            {% endfor %}
+                        {% else %}
+                            {% for item in value %}
+                                <input class="item" item-value="{{ choices[item].label }}" item-id="{{ item }}" type="hidden" name="{{ store_name }}" value="{{ item }}"/>
+                            {% endfor %}
+                        {% endif %}
+                    </span>
+                </span>
+            {% else %}
+                <span class="{{ span_widget_class }}">
+                    {% if multiple is defined and multiple == false %}
+                        <select class="{{ required }}" {{ block('widget_attributes') }}>
+                            <option value="">{{ empty_value }}</option>
+
+                            {% for choice in form.vars.choices %}
+                                {% if form.vars.data is null or form.vars.data.id is not defined or form.vars.data.id != choice.value %}
+                                    <option value="{{ choice.value }}">{{ choice.label }}</option>
+                                {% else %}
+                                    <option selected="selected" value="{{ choice.value }}">{{ choice.label }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    {% else %}
+                        {{ block('choice_widget') }}
+                    {% endif %}
+                </span>
+            {% endif %}
+
+            {% if span_second_widget_class is defined %}
+                <span id="{{ uniqid_prefix ~ '_second' }}" class="{{ span_second_widget_class }}"></span>
+            {% endif %}
+        </div>
+
+        {% if info_list_id is defined and info_list_id != '' %}
+            <div class="form-info-bubble">
+                <a href="{{ path('ajax_profil_infolist', {'id': info_list_id}) }}" class="info-bubble-link" data-toggle="modal" data-target="#modal-{{ info_list_id }}">?</a>
+            </div>
+        {% endif %}
+
+        {% if help is not empty %}
+            <div class="extra">
+                <span class="icon-info">{{ help }}</span>
+            </div>
+        {% endif %}
+
+        {% if error_block %}
+            <div class="{{ error_block_class }}">
+            </div>
+        {% endif %}
+    </li>
+{% endspaceless %}
+{% endblock %}
+
+{% block rpepum_form_text_row %}
+{% spaceless %}
+    {% set type  = type|default('text') %}
+    {% set validation  = validation|default('') %}
+    {% set errorMessage = errorMessage|default('') %}
+    {% set value = value|default('') %}
+    {% set row_li_class = row_li_class|default('') %}
+    {% set span_widget_class = 'select-box ' ~ span_widget_class|default('') %}
+    {% set help = help_text|default(help) %}
+    {% set autocomplete = autocomplete|default('off') %}
+
+    {% set error_class = '' %}
+    {% if form.vars.errors|length > 0%}
+        {% set error_class = 'error' %}
+    {% endif %}
+    <li class="{{ row_li_class }}">
+        <div class="form-left">
+            {{ form_label(form) }}
+        </div>
+        <div class="form-right {{ error_class }}">
+            <span class="{{ span_widget_class }}">
+                {% if type == 'html' %}
+                    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+                {% else %}
+                    <input autocomplete="{{ autocomplete }}" type="{{ type }}" value="{{ value }}" {{ block('widget_attributes') }} />
+                {% endif %}
+            </span>
+            {% if span_second_widget_class is defined %}
+                <span class="{{ span_second_widget_class }}">
+                </span>
+            {% endif %}
+        </div>
+        {% if help is not empty %}
+            <div class="extra">
+                <span class="icon-info">{{ help }}</span>
+            </div>
+        {% endif %}
+    </li>
+{% endspaceless %}
+{% endblock %}
+
+{% block pum_object_widget %}
+{% endblock %}
+
+
+{# Rows #}
+{% block checkbox_row %}
+{% spaceless %}
+    <span class="checkbox-buttons">
+        {% set checked = (form.vars.data) ? {"checked": "checked"} : {} %}
+        {{ form_widget(form, {attr: checked}) }}
+        {{ form_label(form) }}
+    </span>
+{% endspaceless %}
+{% endblock checkbox_row %}
+
+{% block submit_row %}
+{% spaceless %}
+    {{ form_widget(form) }}
+{% endspaceless %}
+{% endblock submit_row %}
+
+{% block form_row %}
+{% spaceless %}
+    {{ form_label(form) }}
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+{% endspaceless %}
+{% endblock form_row %}
+
+{# CUSTOM #}
+{% block form_errors %}
+   {% spaceless %}
+       {% if errors|length > 0 %}
+       <ul class="error_list">
+           {% for error in errors %}
+               <li class="{{ error.messageTemplate }}">
+                {% set messageTemplate = error.messageTemplate %}
+               {% if form.vars.name == "emailPro"  %}
+                  {% if error.messageTemplate == "This value is already used." %}
+                    {% set messageTemplate = "This email adress is already used." %}
+                  {% endif %}
+              {% endif %}
+               {{
+                   error.messagePluralization is null
+                       ? messageTemplate|trans(error.messageParameters, 'validators')
+                       : messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+               }}</li>
+           {% endfor %}
+       </ul>
+       {% endif %}
+   {% endspaceless %}
+{% endblock form_errors %}
+
+{% block field_errors %}
+    {% if errors|length > 0 %}
+        <span class="val-error">
+            {% for error in errors %}
+                {{ error.messageTemplate|trans(error.messageParameters, 'validators')~'. ' }}
+            {% endfor %}
+        </span>
+    {% endif %}
+{% endblock field_errors %}
