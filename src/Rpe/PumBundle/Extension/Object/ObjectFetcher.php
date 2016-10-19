@@ -94,7 +94,7 @@ class ObjectFetcher
         $occupationFields = 'id, name';
 
         $publications = $qb
-            ->select('partial p.{'.$postFields.'}', 'partial a.{'.$authorFields.'}', 'partial pg.{'.$groupFields.'}', 'partial o.{'.$occupationFields.'}'
+            ->select('partial p.{'.$postFields.'}', 'partial a.{'.$authorFields.'}', 'partial pg.{'.$groupFields.'}', 'partial o.{'.$occupationFields.'}')
             ->from($this->getObjectClass('post'), 'p')
             ->leftJoin('p.author', 'a', 'WITH', $qb->expr()->andX($qb->expr()->neq('a', ':user'), $qb->expr()->eq('a.status', ':u_active')))
             ->leftJoin('p.publishedGroup', 'pg', 'WITH', $qb->expr()->in('p.publishedGroup', ':groups'))
